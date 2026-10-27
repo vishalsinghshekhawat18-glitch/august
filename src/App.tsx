@@ -56,7 +56,7 @@ export const App: React.FC = () => {
         <StudyLogsView onOpenQuickAdd={() => setIsQuickAddOpen(true)} />
       )}
       {activeView === 'planning' && <PlanningView />}
-      {activeView === 'revisions' && <RevisionsView />}
+      {activeView === 'revisions' && <RevisionsView onNavigate={(v) => setActiveView(v)} />}
       {activeView === 'mocks' && <MockTestsView />}
       {activeView === 'university' && <UniversityView />}
       {activeView === 'reviews' && <ReviewsView />}

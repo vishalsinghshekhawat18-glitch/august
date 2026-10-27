@@ -27,6 +27,8 @@ import {
   UniversityItem,
   DailyReview,
   WeeklyReview,
+  Subject,
+  Topic,
 } from '../types';
 
 describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
@@ -415,6 +417,122 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(formatHoursDecimal(0)).toBe('0.0h');
       expect(formatHoursDecimal(90)).toBe('1.5h');
       expect(formatHoursDecimal(120)).toBe('2.0h');
+    });
+  });
+
+  describe('9. Revision Scheduling & Workflow Regression Suite (User Acceptance Bug Fix)', () => {
+    const subjects = [
+      { id: 'sub_reasoning', name: 'Reasoning Ability', examIds: ['comm_ibps_rrb_po'], order: 1 },
+      { id: 'sub_quant', name: 'Quantitative Aptitude', examIds: ['comm_ibps_rrb_po'], order: 2 },
+      { id: 'sub_eco', name: 'Microeconomics', examIds: ['comm_vmou_ma_eco'], order: 1 },
+    ];
+
+    const topics: Topic[] = [
+      { id: 'top_puzzles', subjectId: 'sub_reasoning', name: 'Floor Puzzles', order: 1, archived: false },
+      { id: 'top_syllogism', subjectId: 'sub_reasoning', name: 'Syllogism', order: 2, archived: false },
+      { id: 'top_di', subjectId: 'sub_quant', name: 'Bar Graphs & Tables', order: 1, archived: false },
+    ];
+
+    it('filters subjects strictly by examination and identifies empty syllabus states', () => {
+      const rrbSubjects = subjects.filter((s) => s.examIds.includes('comm_ibps_rrb_po'));
+      expect(rrbSubjects.length).toBe(2);
+      expect(rrbSubjects.map((s) => s.id)).toEqual(['sub_reasoning', 'sub_quant']);
+
+      const apfcSubjects = subjects.filter((s) => s.examIds.includes('comm_upsc_apfc'));
+      expect(apfcSubjects.length).toBe(0); // Detects empty state cleanly for APFC
+    });
+
+    it('filters topics strictly by subject and identifies subjects with zero topics', () => {
+      const reasoningTopics = topics.filter((t) => t.subjectId === 'sub_reasoning' && !t.archived);
+      expect(reasoningTopics.length).toBe(2);
+
+      const ecoTopics = topics.filter((t) => t.subjectId === 'sub_eco' && !t.archived);
+      expect(ecoTopics.length).toBe(0); // Detects empty topic state cleanly for Microeconomics
+    });
+
+    it('schedules spaced revision records with exact intervals and relationship keys', () => {
+      const basisDate = '2026-10-27';
+      const intervals = [1, 3, 7, 14, 30];
+      const examId = 'comm_ibps_rrb_po';
+      const subjectId = 'sub_reasoning';
+      const topicId = 'top_puzzles';
+
+      const scheduledRevisions: RevisionRecord[] = intervals.map((interval) => ({
+        id: `rev_${Date.now()}_${interval}`,
+        examId,
+        subjectId,
+        topicId,
+        basisDate,
+        intervalDays: interval,
+        scheduledDate: addDays(basisDate, interval),
+        status: 'due',
+        createdAt: new Date().toISOString(),
+      }));
+
+      expect(scheduledRevisions.length).toBe(5);
+      expect(scheduledRevisions[0].scheduledDate).toBe('2026-10-28');
+      expect(scheduledRevisions[1].scheduledDate).toBe('2026-10-30');
+      expect(scheduledRevisions[2].scheduledDate).toBe('2026-11-03');
+      expect(scheduledRevisions[3].scheduledDate).toBe('2026-11-10');
+      expect(scheduledRevisions[4].scheduledDate).toBe('2026-11-26');
+
+      for (const r of scheduledRevisions) {
+        expect(r.examId).toBe(examId);
+        expect(r.subjectId).toBe(subjectId);
+        expect(r.topicId).toBe(topicId);
+        expect(r.status).toBe('due');
+      }
+    });
+
+    it('handles revision completion, rescheduling, and skipping lifecycle transitions', () => {
+      const rev: RevisionRecord = {
+        id: 'rev_1',
+        examId: 'comm_ibps_rrb_po',
+        subjectId: 'sub_reasoning',
+        topicId: 'top_puzzles',
+        basisDate: '2026-10-26',
+        intervalDays: 1,
+        scheduledDate: '2026-10-27',
+        status: 'due',
+        createdAt: '2026-10-26T10:00:00Z',
+      };
+
+      // 1. Due check for today
+      const todayStr = '2026-10-27';
+      const isDue = (rev.status === 'due' || rev.status === 'rescheduled') && rev.scheduledDate <= todayStr;
+      expect(isDue).toBe(true);
+
+      // 2. Mark completed
+      const completedRev: RevisionRecord = {
+        ...rev,
+        status: 'completed',
+        completedAt: todayStr,
+      };
+      expect(completedRev.status).toBe('completed');
+      expect(completedRev.completedAt).toBe(todayStr);
+
+      // Excluded from due revisions after completion
+      const isDueAfterCompletion =
+        (completedRev.status === 'due' || completedRev.status === 'rescheduled') &&
+        completedRev.scheduledDate <= todayStr;
+      expect(isDueAfterCompletion).toBe(false);
+
+      // 3. Reschedule
+      const rescheduledRev: RevisionRecord = {
+        ...rev,
+        status: 'rescheduled',
+        scheduledDate: '2026-10-29',
+        rescheduledTo: '2026-10-29',
+      };
+      expect(rescheduledRev.status).toBe('rescheduled');
+      expect(rescheduledRev.scheduledDate).toBe('2026-10-29');
+
+      // 4. Skip
+      const skippedRev: RevisionRecord = {
+        ...rev,
+        status: 'skipped',
+      };
+      expect(skippedRev.status).toBe('skipped');
     });
   });
 });

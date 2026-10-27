@@ -9,12 +9,18 @@ import {
   XCircle,
   ChevronRight,
   Filter,
+  BookOpen,
+  ArrowRight,
 } from 'lucide-react';
 import { RevisionRecord, Commitment, Subject, Topic, RevisionInterval, RevisionStatus } from '../types';
 import { dbService } from '../services/db';
 import { getTodayDateString, addDays, daysBetween } from '../services/dateUtils';
 
-export const RevisionsView: React.FC = () => {
+interface RevisionsViewProps {
+  onNavigate?: (viewId: string) => void;
+}
+
+export const RevisionsView: React.FC<RevisionsViewProps> = ({ onNavigate }) => {
   const [todayStr, setTodayStr] = useState<string>(getTodayDateString());
   const [revisions, setRevisions] = useState<RevisionRecord[]>([]);
   const [commitments, setCommitments] = useState<Commitment[]>([]);
@@ -24,13 +30,20 @@ export const RevisionsView: React.FC = () => {
   // Filter tab
   const [activeTab, setActiveTab] = useState<'due' | 'overdue' | 'completed' | 'all'>('due');
 
-  // Schedule modal
+  // Schedule modal state
   const [isScheduleOpen, setIsScheduleOpen] = useState<boolean>(false);
   const [schedExamId, setSchedExamId] = useState<string>('comm_ibps_rrb_po');
   const [schedSubjectId, setSchedSubjectId] = useState<string>('');
   const [schedTopicId, setSchedTopicId] = useState<string>('');
   const [basisDate, setBasisDate] = useState<string>(getTodayDateString());
   const [selectedIntervals, setSelectedIntervals] = useState<number[]>([1, 3, 7]);
+  const [modalError, setModalError] = useState<string | null>(null);
+
+  // Inline subject / topic creation toggles within modal
+  const [isInlineAddingSubject, setIsInlineAddingSubject] = useState<boolean>(false);
+  const [inlineSubjectName, setInlineSubjectName] = useState<string>('');
+  const [isInlineAddingTopic, setIsInlineAddingTopic] = useState<boolean>(false);
+  const [inlineTopicName, setInlineTopicName] = useState<string>('');
 
   // Reschedule modal
   const [reschedulingRev, setReschedulingRev] = useState<RevisionRecord | null>(null);
@@ -49,12 +62,12 @@ export const RevisionsView: React.FC = () => {
       ]);
 
       setRevisions(rList.sort((a, b) => a.scheduledDate.localeCompare(b.scheduledDate)));
-      setCommitments(cList);
+      setCommitments(cList.sort((a, b) => a.priority - b.priority));
       setSubjects(sList);
       setTopics(tList);
 
-      if (sList.length > 0 && !schedSubjectId) {
-        setSchedSubjectId(sList[0].id);
+      if (cList.length > 0 && !schedExamId) {
+        setSchedExamId(cList[0].id);
       }
     } catch (err) {
       console.error('Error loading revisions:', err);
@@ -65,8 +78,43 @@ export const RevisionsView: React.FC = () => {
     loadData();
   }, []);
 
-  // Filter topics based on selected subject in modal
+  // When opening schedule modal, refresh all data to pick up any syllabus additions
+  useEffect(() => {
+    if (isScheduleOpen) {
+      loadData();
+      setModalError(null);
+      setIsInlineAddingSubject(false);
+      setIsInlineAddingTopic(false);
+    }
+  }, [isScheduleOpen]);
+
+  // Available subjects for the selected examination
+  const availableSubjects = subjects.filter((s) => s.examIds.includes(schedExamId));
+
+  // Synchronize schedSubjectId whenever schedExamId or subjects change
+  useEffect(() => {
+    if (availableSubjects.length > 0) {
+      if (!availableSubjects.some((s) => s.id === schedSubjectId)) {
+        setSchedSubjectId(availableSubjects[0].id);
+      }
+    } else {
+      setSchedSubjectId('');
+    }
+  }, [schedExamId, subjects]);
+
+  // Available topics for the selected subject
   const availableTopics = topics.filter((t) => t.subjectId === schedSubjectId && !t.archived);
+
+  // Synchronize schedTopicId whenever schedSubjectId or topics change
+  useEffect(() => {
+    if (availableTopics.length > 0) {
+      if (!availableTopics.some((t) => t.id === schedTopicId)) {
+        setSchedTopicId(availableTopics[0].id);
+      }
+    } else {
+      setSchedTopicId('');
+    }
+  }, [schedSubjectId, topics]);
 
   // Toggle spaced interval
   const toggleInterval = (intVal: number) => {
@@ -75,11 +123,74 @@ export const RevisionsView: React.FC = () => {
     );
   };
 
+  // Inline Quick-Add Subject
+  const handleInlineAddSubject = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inlineSubjectName.trim()) return;
+
+    try {
+      const newSub: Subject = {
+        id: `sub_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+        name: inlineSubjectName.trim(),
+        examIds: [schedExamId],
+        order: subjects.length + 1,
+      };
+
+      await dbService.put<Subject>('subjects', newSub);
+      setSubjects((prev) => [...prev, newSub]);
+      setSchedSubjectId(newSub.id);
+      setInlineSubjectName('');
+      setIsInlineAddingSubject(false);
+      setModalError(null);
+    } catch (err) {
+      console.error('Failed to quick-add subject:', err);
+    }
+  };
+
+  // Inline Quick-Add Topic
+  const handleInlineAddTopic = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inlineTopicName.trim() || !schedSubjectId) return;
+
+    try {
+      const newTop: Topic = {
+        id: `top_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+        subjectId: schedSubjectId,
+        name: inlineTopicName.trim(),
+        order: topics.filter((t) => t.subjectId === schedSubjectId).length + 1,
+        archived: false,
+      };
+
+      await dbService.put<Topic>('topics', newTop);
+      setTopics((prev) => [...prev, newTop]);
+      setSchedTopicId(newTop.id);
+      setInlineTopicName('');
+      setIsInlineAddingTopic(false);
+      setModalError(null);
+    } catch (err) {
+      console.error('Failed to quick-add topic:', err);
+    }
+  };
+
   // Schedule new revisions
   const handleScheduleRevisions = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!schedExamId || !schedSubjectId || !schedTopicId || selectedIntervals.length === 0) {
-      alert('Please select an examination, subject, topic, and at least one interval.');
+    setModalError(null);
+
+    if (!schedExamId) {
+      setModalError('Please select an examination commitment.');
+      return;
+    }
+    if (!schedSubjectId) {
+      setModalError('Please select or create a subject under this examination.');
+      return;
+    }
+    if (!schedTopicId) {
+      setModalError('Please select or create a topic under this subject.');
+      return;
+    }
+    if (selectedIntervals.length === 0) {
+      setModalError('Please select at least one revision interval (e.g. +1, +3, +7 days).');
       return;
     }
 
@@ -101,6 +212,7 @@ export const RevisionsView: React.FC = () => {
       loadData();
     } catch (err) {
       console.error('Failed to schedule revisions:', err);
+      setModalError('Failed to save revisions to browser storage.');
     }
   };
 
@@ -172,6 +284,8 @@ export const RevisionsView: React.FC = () => {
   const examMap = new Map(commitments.map((c) => [c.id, c.name]));
   const subjectMap = new Map(subjects.map((s) => [s.id, s.name]));
   const topicMap = new Map(topics.map((t) => [t.id, t.name]));
+  const selectedExam = commitments.find((c) => c.id === schedExamId);
+  const selectedSubject = subjects.find((s) => s.id === schedSubjectId);
 
   return (
     <div className="space-y-6 pb-12">
@@ -240,10 +354,33 @@ export const RevisionsView: React.FC = () => {
 
       {/* Schedule Modal */}
       {isScheduleOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
-          <div className="bg-white rounded-xl shadow-xl border border-slate-200 w-full max-w-md p-5 space-y-4">
-            <h3 className="text-sm font-bold text-slate-900">Schedule Spaced Revision</h3>
-            <form onSubmit={handleScheduleRevisions} className="space-y-3">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay overflow-y-auto">
+          <div className="bg-white rounded-xl shadow-xl border border-slate-200 w-full max-w-lg p-5 space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div>
+                <h3 className="text-sm font-bold text-slate-900">Schedule Spaced Revision</h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Select a topic from your syllabus to generate revision milestones.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsScheduleOpen(false)}
+                className="text-slate-400 hover:text-slate-600 p-1 rounded-lg"
+              >
+                ✕
+              </button>
+            </div>
+
+            {modalError && (
+              <div className="p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{modalError}</span>
+              </div>
+            )}
+
+            <form onSubmit={handleScheduleRevisions} className="space-y-4">
+              {/* Examination Selector */}
               <div>
                 <label className="block text-xs font-medium text-slate-700 mb-1">Examination</label>
                 <select
@@ -253,47 +390,205 @@ export const RevisionsView: React.FC = () => {
                 >
                   {commitments.map((c) => (
                     <option key={c.id} value={c.id}>
-                      {c.name}
+                      {c.name} {c.priority === 1 ? '★ [Priority 1]' : ''}
                     </option>
                   ))}
                 </select>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">Subject</label>
+              {/* Subject Selector or Missing Subject Alert */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-medium text-slate-700">Subject</label>
+                  {!isInlineAddingSubject && (
+                    <button
+                      type="button"
+                      onClick={() => setIsInlineAddingSubject(true)}
+                      className="text-[11px] text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-1"
+                    >
+                      <Plus className="w-3 h-3" />
+                      <span>Quick-Add Subject</span>
+                    </button>
+                  )}
+                </div>
+
+                {isInlineAddingSubject ? (
+                  <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-2">
+                    <span className="text-xs font-semibold text-slate-800">Add Subject to {selectedExam?.name}</span>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="e.g. Reasoning Ability"
+                        value={inlineSubjectName}
+                        onChange={(e) => setInlineSubjectName(e.target.value)}
+                        className="flex-1 text-xs px-3 py-1.5 border border-slate-200 rounded bg-white"
+                        autoFocus
+                      />
+                      <button
+                        type="button"
+                        onClick={handleInlineAddSubject}
+                        className="px-3 py-1.5 bg-indigo-600 text-white text-xs font-medium rounded hover:bg-indigo-700"
+                      >
+                        Save
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setIsInlineAddingSubject(false)}
+                        className="px-2 py-1.5 text-xs text-slate-500 hover:bg-slate-200 rounded"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                ) : availableSubjects.length === 0 ? (
+                  <div className="p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 space-y-2">
+                    <div className="flex items-center gap-1.5 font-semibold text-amber-950">
+                      <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+                      <span>No subjects found for {selectedExam?.name || 'this examination'}</span>
+                    </div>
+                    <p className="text-[11px] leading-relaxed text-amber-800">
+                      To schedule a revision, you must first add at least one subject and topic under this examination in your syllabus.
+                    </p>
+                    <div className="flex gap-2 pt-1 flex-wrap">
+                      <button
+                        type="button"
+                        onClick={() => setIsInlineAddingSubject(true)}
+                        className="px-3 py-1.5 bg-amber-700 hover:bg-amber-800 text-white rounded-lg font-medium text-xs shadow-sm transition-colors flex items-center gap-1"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Quick-Add Subject Here</span>
+                      </button>
+
+                      {onNavigate && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setIsScheduleOpen(false);
+                            onNavigate('syllabus');
+                          }}
+                          className="px-3 py-1.5 bg-white border border-amber-300 hover:bg-amber-100 text-amber-900 rounded-lg font-medium text-xs transition-colors flex items-center gap-1"
+                        >
+                          <span>Open Syllabus</span>
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ) : (
                   <select
                     value={schedSubjectId}
                     onChange={(e) => setSchedSubjectId(e.target.value)}
-                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg"
+                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     required
                   >
-                    {subjects.map((s) => (
+                    <option value="">-- Choose Subject --</option>
+                    {availableSubjects.map((s) => (
                       <option key={s.id} value={s.id}>
                         {s.name}
                       </option>
                     ))}
                   </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">Topic</label>
-                  <select
-                    value={schedTopicId}
-                    onChange={(e) => setSchedTopicId(e.target.value)}
-                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg"
-                    required
-                  >
-                    <option value="">-- Choose Topic --</option>
-                    {availableTopics.map((t) => (
-                      <option key={t.id} value={t.id}>
-                        {t.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                )}
               </div>
 
+              {/* Topic Selector or Missing Topic Alert */}
+              {availableSubjects.length > 0 && (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs font-medium text-slate-700">Topic</label>
+                    {schedSubjectId && !isInlineAddingTopic && (
+                      <button
+                        type="button"
+                        onClick={() => setIsInlineAddingTopic(true)}
+                        className="text-[11px] text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-1"
+                      >
+                        <Plus className="w-3 h-3" />
+                        <span>Quick-Add Topic</span>
+                      </button>
+                    )}
+                  </div>
+
+                  {isInlineAddingTopic ? (
+                    <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-2">
+                      <span className="text-xs font-semibold text-slate-800">Add Topic to {selectedSubject?.name}</span>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          placeholder="e.g. Syllogism Drill"
+                          value={inlineTopicName}
+                          onChange={(e) => setInlineTopicName(e.target.value)}
+                          className="flex-1 text-xs px-3 py-1.5 border border-slate-200 rounded bg-white"
+                          autoFocus
+                        />
+                        <button
+                          type="button"
+                          onClick={handleInlineAddTopic}
+                          className="px-3 py-1.5 bg-indigo-600 text-white text-xs font-medium rounded hover:bg-indigo-700"
+                        >
+                          Save
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setIsInlineAddingTopic(false)}
+                          className="px-2 py-1.5 text-xs text-slate-500 hover:bg-slate-200 rounded"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  ) : availableTopics.length === 0 ? (
+                    <div className="p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 space-y-2">
+                      <div className="flex items-center gap-1.5 font-semibold text-amber-950">
+                        <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+                        <span>No topics found under {selectedSubject?.name || 'this subject'}</span>
+                      </div>
+                      <p className="text-[11px] leading-relaxed text-amber-800">
+                        Please add at least one topic under this subject before scheduling revisions.
+                      </p>
+                      <div className="flex gap-2 pt-1 flex-wrap">
+                        <button
+                          type="button"
+                          onClick={() => setIsInlineAddingTopic(true)}
+                          className="px-3 py-1.5 bg-amber-700 hover:bg-amber-800 text-white rounded-lg font-medium text-xs shadow-sm transition-colors flex items-center gap-1"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                          <span>Quick-Add Topic Here</span>
+                        </button>
+
+                        {onNavigate && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIsScheduleOpen(false);
+                              onNavigate('syllabus');
+                            }}
+                            className="px-3 py-1.5 bg-white border border-amber-300 hover:bg-amber-100 text-amber-900 rounded-lg font-medium text-xs transition-colors flex items-center gap-1"
+                          >
+                            <span>Open Syllabus</span>
+                            <ChevronRight className="w-3.5 h-3.5" />
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <select
+                      value={schedTopicId}
+                      onChange={(e) => setSchedTopicId(e.target.value)}
+                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      required
+                    >
+                      <option value="">-- Choose Topic --</option>
+                      {availableTopics.map((t) => (
+                        <option key={t.id} value={t.id}>
+                          {t.name}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                </div>
+              )}
+
+              {/* Basis Date */}
               <div>
                 <label className="block text-xs font-medium text-slate-700 mb-1">Basis Date (When Learned)</label>
                 <input
@@ -305,6 +600,7 @@ export const RevisionsView: React.FC = () => {
                 />
               </div>
 
+              {/* Spaced Intervals */}
               <div>
                 <label className="block text-xs font-medium text-slate-700 mb-1.5">
                   Spaced Intervals to Generate
@@ -327,17 +623,19 @@ export const RevisionsView: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
+              {/* Footer */}
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={() => setIsScheduleOpen(false)}
-                  className="px-3 py-1.5 text-xs text-slate-600 hover:bg-slate-100 rounded-lg"
+                  className="px-3.5 py-2 text-xs text-slate-600 hover:bg-slate-100 rounded-lg"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 text-xs text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg font-medium shadow-sm"
+                  disabled={availableSubjects.length === 0 || availableTopics.length === 0}
+                  className="px-4 py-2 text-xs text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg font-medium shadow-sm transition-colors"
                 >
                   Schedule ({selectedIntervals.length})
                 </button>
