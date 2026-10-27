@@ -12,16 +12,28 @@ import { AnalyticsView } from './views/AnalyticsView';
 import { SettingsView } from './views/SettingsView';
 import { QuickAddStudyModal } from './components/QuickAddStudyModal';
 import { GuidedSetupModal } from './components/GuidedSetupModal';
+import { PinLockModal } from './components/PinLockModal';
 import { dbService } from './services/db';
+import { cloudSyncService } from './services/supabase';
 import { AppSettings } from './types';
 
 export const App: React.FC = () => {
   const [activeView, setActiveView] = useState<string>('dashboard');
   const [isQuickAddOpen, setIsQuickAddOpen] = useState<boolean>(false);
   const [isGuidedSetupOpen, setIsGuidedSetupOpen] = useState<boolean>(false);
+  const [isLocked, setIsLocked] = useState<boolean>(false);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
   useEffect(() => {
+    // Check initial app lock state
+    setIsLocked(cloudSyncService.isAppLocked());
+
+    const unsub = cloudSyncService.onStatusChange((status) => {
+      if (status === 'locked') {
+        setIsLocked(true);
+      }
+    });
+
     async function checkSetup() {
       try {
         const settingsList = await dbService.getAll<AppSettings>('settings');
@@ -37,6 +49,7 @@ export const App: React.FC = () => {
     }
 
     checkSetup();
+    return () => unsub();
   }, []);
 
   return (
@@ -44,6 +57,10 @@ export const App: React.FC = () => {
       activeView={activeView}
       onNavigate={(v) => setActiveView(v)}
       onOpenQuickAdd={() => setIsQuickAddOpen(true)}
+      onLockApp={() => {
+        cloudSyncService.lockApp();
+        setIsLocked(true);
+      }}
     >
       {activeView === 'dashboard' && (
         <DashboardView
@@ -83,6 +100,12 @@ export const App: React.FC = () => {
           setIsGuidedSetupOpen(false);
           setActiveView('dashboard');
         }}
+      />
+
+      {/* 4-Digit Numeric PIN Lock & Cloud Auth Modal */}
+      <PinLockModal
+        isOpen={isLocked}
+        onUnlocked={() => setIsLocked(false)}
       />
     </Layout>
   );

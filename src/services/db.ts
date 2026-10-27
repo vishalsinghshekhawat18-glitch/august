@@ -38,6 +38,11 @@ export type StoreName =
   | 'weeklyReviews'
   | 'settings';
 
+export interface CloudSyncHook {
+  pushItem: (storeName: StoreName, item: any) => Promise<void>;
+  deleteItem: (storeName: StoreName, id: string) => Promise<void>;
+}
+
 const INITIAL_COMMITMENTS: Commitment[] = [
   {
     id: 'comm_ibps_rrb_po',
@@ -111,6 +116,11 @@ const DEFAULT_SETTINGS: AppSettings = {
 class IndexedDBStorage {
   private dbPromise: Promise<IDBDatabase> | null = null;
   public onSaveStateChange: ((state: 'saved' | 'saving' | 'error', errorMsg?: string) => void) | null = null;
+  private cloudHook: CloudSyncHook | null = null;
+
+  public setCloudHook(hook: CloudSyncHook | null) {
+    this.cloudHook = hook;
+  }
 
   private notifySaveState(state: 'saved' | 'saving' | 'error', errorMsg?: string) {
     if (this.onSaveStateChange) {
@@ -244,6 +254,11 @@ class IndexedDBStorage {
 
       req.onsuccess = () => {
         this.notifySaveState('saved');
+        if (this.cloudHook) {
+          this.cloudHook.pushItem(storeName, item).catch((e) => {
+            console.warn(`Cloud push failed for ${storeName}:`, e);
+          });
+        }
         resolve(item);
       };
       req.onerror = () => {
@@ -253,6 +268,17 @@ class IndexedDBStorage {
         this.notifySaveState('error', errorMsg);
         reject(req.error);
       };
+    });
+  }
+
+  public async putSilent<T>(storeName: StoreName, item: T): Promise<T> {
+    const db = await this.openDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(storeName, 'readwrite');
+      const store = tx.objectStore(storeName);
+      const req = store.put(item);
+      req.onsuccess = () => resolve(item);
+      req.onerror = () => reject(req.error);
     });
   }
 
@@ -270,6 +296,11 @@ class IndexedDBStorage {
 
       tx.oncomplete = () => {
         this.notifySaveState('saved');
+        if (this.cloudHook) {
+          for (const item of items) {
+            this.cloudHook.pushItem(storeName, item).catch(() => {});
+          }
+        }
         resolve();
       };
       tx.onerror = () => {
@@ -289,6 +320,11 @@ class IndexedDBStorage {
 
       req.onsuccess = () => {
         this.notifySaveState('saved');
+        if (this.cloudHook) {
+          this.cloudHook.deleteItem(storeName, String(key)).catch((e) => {
+            console.warn(`Cloud delete failed for ${storeName}:`, e);
+          });
+        }
         resolve();
       };
       req.onerror = () => {

@@ -12,8 +12,16 @@ import {
   Laptop,
   CheckCircle2,
   Trash2,
+  Cloud,
+  CloudOff,
+  Lock,
+  KeyRound,
+  Shield,
+  ArrowRight,
+  Info,
 } from 'lucide-react';
 import { dbService } from '../services/db';
+import { cloudSyncService, SyncStatus, CloudConfig } from '../services/supabase';
 import {
   exportApplicationDataPackage,
   exportStudyLogsCSV,
@@ -31,6 +39,32 @@ export const SettingsView: React.FC = () => {
   const [saveState, setSaveState] = useState<'saved' | 'saving' | 'error'>('saved');
   const [saveErrorMsg, setSaveErrorMsg] = useState<string | undefined>();
 
+  // Cloud Sync state
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>('unconfigured');
+  const [syncStatusMsg, setSyncStatusMsg] = useState<string>('');
+  const [currentUserEmail, setCurrentUserEmail] = useState<string>('');
+  const [isConfigModalOpen, setIsConfigModalOpen] = useState<boolean>(false);
+  const [supabaseUrl, setSupabaseUrl] = useState<string>('');
+  const [supabaseAnonKey, setSupabaseAnonKey] = useState<string>('');
+  const [configSuccess, setConfigSuccess] = useState<string>('');
+
+  // PIN Change Modal State
+  const [isPinModalOpen, setIsPinModalOpen] = useState<boolean>(false);
+  const [newPin, setNewPin] = useState<string>('');
+  const [confirmNewPin, setConfirmNewPin] = useState<string>('');
+  const [pinChangeError, setPinChangeError] = useState<string>('');
+  const [pinChangeSuccess, setPinChangeSuccess] = useState<string>('');
+  const [isChangingPin, setIsChangingPin] = useState<boolean>(false);
+
+  // Cloud Migration Wizard State
+  const [localCounts, setLocalCounts] = useState<Record<string, number>>({});
+  const [isMigrating, setIsMigrating] = useState<boolean>(false);
+  const [migrationResult, setMigrationResult] = useState<{
+    success: boolean;
+    totalUploaded: number;
+    error?: string;
+  } | null>(null);
+
   // Import State
   const [importPreview, setImportPreview] = useState<ImportPreview | null>(null);
   const [pendingPackage, setPendingPackage] = useState<ApplicationDataPackage | null>(null);
@@ -40,6 +74,26 @@ export const SettingsView: React.FC = () => {
   const loadSettingsData = async () => {
     const est = await dbService.getStorageEstimate();
     setQuota(est);
+
+    // Calculate local record counts for migration preview
+    try {
+      const pkg = await dbService.exportFullPackage();
+      const d = pkg.data;
+      setLocalCounts({
+        commitments: d.commitments?.length || 0,
+        subjects: d.subjects?.length || 0,
+        topics: d.topics?.length || 0,
+        studyLogs: d.studyLogs?.length || 0,
+        weeklyPlans: d.weeklyPlans?.length || 0,
+        revisions: d.revisions?.length || 0,
+        mockTests: d.mockTests?.length || 0,
+        mistakes: d.mistakes?.length || 0,
+        universityItems: d.universityItems?.length || 0,
+        reviews: (d.dailyReviews?.length || 0) + (d.weeklyReviews?.length || 0),
+      });
+    } catch (e) {
+      console.warn('Failed to calculate local counts:', e);
+    }
   };
 
   useEffect(() => {
@@ -48,7 +102,101 @@ export const SettingsView: React.FC = () => {
       setSaveState(state);
       setSaveErrorMsg(msg);
     };
+
+    const unsub = cloudSyncService.onStatusChange((status, msg) => {
+      setSyncStatus(status);
+      setSyncStatusMsg(msg || '');
+      const user = cloudSyncService.getUser();
+      setCurrentUserEmail(user?.email || '');
+    });
+
+    const cfg = cloudSyncService.getConfig();
+    if (cfg) {
+      setSupabaseUrl(cfg.supabaseUrl);
+      setSupabaseAnonKey(cfg.supabaseAnonKey);
+    }
+
+    return () => unsub();
   }, []);
+
+  // Save Supabase credentials
+  const handleSaveConfig = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!supabaseUrl.trim() || !supabaseAnonKey.trim()) {
+      alert('Please provide both Project URL and Anon Public Key.');
+      return;
+    }
+    cloudSyncService.saveConfig({
+      supabaseUrl: supabaseUrl.trim(),
+      supabaseAnonKey: supabaseAnonKey.trim(),
+    });
+    setConfigSuccess('Credentials saved! Connect your account below or unlock via PIN.');
+    setTimeout(() => {
+      setConfigSuccess('');
+      setIsConfigModalOpen(false);
+    }, 1500);
+  };
+
+  // Change 4-digit PIN
+  const handleChangePin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPinChangeError('');
+    setPinChangeSuccess('');
+
+    if (!/^\d{4}$/.test(newPin)) {
+      setPinChangeError('PIN must be exactly 4 numeric digits.');
+      return;
+    }
+    if (newPin !== confirmNewPin) {
+      setPinChangeError('New PIN confirmation does not match.');
+      return;
+    }
+
+    try {
+      setIsChangingPin(true);
+      await cloudSyncService.setPin(newPin);
+      setPinChangeSuccess('4-digit PIN updated successfully!');
+      setTimeout(() => {
+        setIsPinModalOpen(false);
+        setNewPin('');
+        setConfirmNewPin('');
+        setPinChangeSuccess('');
+      }, 1500);
+    } catch (err: any) {
+      setPinChangeError(err.message || 'Failed to update PIN.');
+    } finally {
+      setIsChangingPin(false);
+    }
+  };
+
+  // Run Cloud Migration
+  const handleRunMigration = async () => {
+    if (!cloudSyncService.isConnected()) {
+      alert('Please sign in to Supabase first before uploading local records.');
+      return;
+    }
+
+    const confirmed = window.confirm(
+      'This will upload and merge your existing local IndexedDB records into your cloud Supabase database. A safety backup will be downloaded first. Proceed?'
+    );
+    if (!confirmed) return;
+
+    try {
+      setIsMigrating(true);
+      // Auto-download recovery backup first
+      await exportApplicationDataPackage();
+
+      const result = await cloudSyncService.migrateLocalDataToCloud();
+      setMigrationResult(result);
+      if (result.success) {
+        loadSettingsData();
+      }
+    } catch (err: any) {
+      setMigrationResult({ success: false, totalUploaded: 0, error: err.message });
+    } finally {
+      setIsMigrating(false);
+    }
+  };
 
   // Handle JSON File Selection
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +214,7 @@ export const SettingsView: React.FC = () => {
         } else {
           setPendingPackage(null);
         }
-      } catch (err) {
+      } catch {
         setImportPreview({
           valid: false,
           errors: ['Failed to parse file: Selected file is not valid JSON.'],
@@ -96,8 +244,6 @@ export const SettingsView: React.FC = () => {
 
     try {
       setIsImporting(true);
-
-      // Pre-replacement safety: If replacing, auto-export backup first
       if (importMode === 'replace') {
         await exportApplicationDataPackage();
       }
@@ -114,42 +260,201 @@ export const SettingsView: React.FC = () => {
     }
   };
 
+  const totalLocalRecords = Object.values(localCounts).reduce((a, b) => a + b, 0);
+
   return (
     <div className="space-y-6 pb-12">
       {/* Header */}
-      <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-        <h1 className="text-xl font-bold text-slate-900 tracking-tight">Data Management &amp; Device Portability</h1>
-        <p className="text-xs text-slate-500 mt-1">
-          Zero-backend privacy • Device-to-device migration • Structured CSV &amp; JSON recovery packages
-        </p>
+      <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Cloud Sync, Security &amp; Data</h1>
+          <p className="text-xs text-slate-500 mt-1">
+            4-digit PIN protection • Cross-device synchronization • Safe local migration • Zero privileged secrets
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          {cloudSyncService.isConnected() && (
+            <button
+              onClick={() => cloudSyncService.lockApp()}
+              className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition"
+            >
+              <Lock className="w-3.5 h-3.5" />
+              <span>Lock with PIN</span>
+            </button>
+          )}
+        </div>
       </div>
 
-      {/* Critical Rules & Local Storage Architecture Banner */}
-      <div className="bg-amber-50/70 border border-amber-200 rounded-2xl p-5 space-y-3 text-amber-950">
-        <div className="flex items-center gap-2">
-          <ShieldCheck className="w-5 h-5 text-amber-700 shrink-0" />
-          <h3 className="text-sm font-bold">Local-Only Storage Guarantee &amp; Boundaries</h3>
+      {/* Cloud Synchronization & PIN Security Card */}
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-100">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+              <Cloud className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="text-sm font-bold text-slate-900">Cloud Sync &amp; Device Identity</h3>
+                {syncStatus === 'synced' && (
+                  <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Synchronized</span>
+                  </span>
+                )}
+                {syncStatus === 'syncing' && (
+                  <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 flex items-center gap-1">
+                    <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                    <span>Syncing...</span>
+                  </span>
+                )}
+                {syncStatus === 'paused' && (
+                  <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200 flex items-center gap-1">
+                    <AlertTriangle className="w-3.5 h-3.5" />
+                    <span>Database Paused</span>
+                  </span>
+                )}
+                {(syncStatus === 'unconfigured' || syncStatus === 'unauthenticated') && (
+                  <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+                    Local Only
+                  </span>
+                )}
+              </div>
+              <p className="text-xs text-slate-500 mt-0.5">
+                {currentUserEmail ? `Signed in as ${currentUserEmail}` : 'No cloud account connected on this device'}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => setIsConfigModalOpen(true)}
+              className="px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition"
+            >
+              Supabase Project API
+            </button>
+            {cloudSyncService.isConnected() && (
+              <>
+                <button
+                  onClick={() => setIsPinModalOpen(true)}
+                  className="px-3 py-1.5 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition flex items-center gap-1"
+                >
+                  <KeyRound className="w-3.5 h-3.5" />
+                  <span>Change 4-Digit PIN</span>
+                </button>
+                <button
+                  onClick={async () => {
+                    await cloudSyncService.signOut();
+                    window.location.reload();
+                  }}
+                  className="px-3 py-1.5 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-xl transition"
+                >
+                  Sign Out
+                </button>
+              </>
+            )}
+          </div>
         </div>
-        <p className="text-xs leading-relaxed">
-          Your records are saved strictly in your browser&apos;s <strong>IndexedDB</strong> database on this physical
-          device. Data persists across normal browser restarts, reboots, and application updates published on GitHub
-          Pages.
-        </p>
-        <ul className="text-xs space-y-1 list-disc list-inside text-amber-900/90 pl-1">
-          <li>
-            <strong>Device Scoped:</strong> Records entered on your laptop remain on your laptop; records on your
-            iPhone stay on your iPhone.
-          </li>
-          <li>
-            <strong>No Cloud Synchronization:</strong> To move your data between devices, export the JSON package below
-            and import it on your other device.
-          </li>
-          <li>
-            <strong>Cache Clearance Risk:</strong> If you explicitly choose &quot;Clear all website data&quot; in
-            browser settings, local storage will be erased. Always keep an exported JSON backup in your files or cloud
-            drive!
-          </li>
-        </ul>
+
+        {/* Free-Tier 7-Day Inactivity Warning & Recovery Guide */}
+        <div className="bg-amber-50/60 border border-amber-200/80 rounded-xl p-4 text-xs text-amber-950 space-y-2">
+          <div className="flex items-center gap-2 font-bold text-amber-900">
+            <Info className="w-4 h-4 text-amber-700 flex-shrink-0" />
+            <span>Supabase Free-Tier 7-Day Pausing &amp; Recovery Notice</span>
+          </div>
+          <p className="leading-relaxed">
+            Supabase automatically pauses projects on the <strong>Free Plan</strong> if there are <strong>7 consecutive days</strong> of no database activity.
+            When paused, your data is <em>safely preserved</em>, but cloud sync stops until you restore the project.
+          </p>
+          <div className="bg-white/80 p-3 rounded-lg border border-amber-200 font-mono text-[11px] space-y-1">
+            <div className="font-sans font-bold text-amber-900 mb-1">To Unpause in 1 Click:</div>
+            <div>1. Visit <a href="https://supabase.com/dashboard" target="_blank" rel="noreferrer" className="text-indigo-600 underline">supabase.com/dashboard</a></div>
+            <div>2. Click on your project (&quot;august-exam-tracker&quot;)</div>
+            <div>3. Click the green <strong>&quot;Restore project&quot;</strong> button. (Compute resumes in ~20 seconds).</div>
+          </div>
+          <p className="text-[11px] text-amber-900/80">
+            <em>Local protection:</em> While paused, this tracker continues working seamlessly using your local IndexedDB records. Once unpaused, sync resumes automatically.
+          </p>
+        </div>
+
+        {/* Cloud Migration Wizard Section */}
+        {cloudSyncService.isConnected() && (
+          <div className="pt-3 border-t border-slate-100 space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div>
+                <h4 className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-indigo-600" />
+                  <span>Migrate Existing Local Records to Cloud Database</span>
+                </h4>
+                <p className="text-xs text-slate-500">
+                  Upload all {totalLocalRecords} records currently in your local IndexedDB to your private Supabase database.
+                </p>
+              </div>
+              <button
+                onClick={handleRunMigration}
+                disabled={isMigrating || totalLocalRecords === 0}
+                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-sm transition flex items-center gap-1.5 disabled:opacity-50"
+              >
+                {isMigrating ? (
+                  <>
+                    <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                    <span>Migrating...</span>
+                  </>
+                ) : (
+                  <>
+                    <Upload className="w-3.5 h-3.5" />
+                    <span>Upload &amp; Merge to Cloud</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Local Records Summary Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+              <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                <span className="text-[10px] text-slate-400 block font-medium">Study Sessions</span>
+                <span className="font-bold text-slate-800 text-sm">{localCounts.studyLogs || 0}</span>
+              </div>
+              <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                <span className="text-[10px] text-slate-400 block font-medium">Syllabus Topics</span>
+                <span className="font-bold text-slate-800 text-sm">{localCounts.topics || 0}</span>
+              </div>
+              <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                <span className="text-[10px] text-slate-400 block font-medium">Revisions</span>
+                <span className="font-bold text-slate-800 text-sm">{localCounts.revisions || 0}</span>
+              </div>
+              <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                <span className="text-[10px] text-slate-400 block font-medium">Mock Tests</span>
+                <span className="font-bold text-slate-800 text-sm">{localCounts.mockTests || 0}</span>
+              </div>
+              <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                <span className="text-[10px] text-slate-400 block font-medium">Weekly Plans</span>
+                <span className="font-bold text-slate-800 text-sm">{localCounts.weeklyPlans || 0}</span>
+              </div>
+            </div>
+
+            {migrationResult && (
+              <div
+                className={`p-3 rounded-xl border text-xs ${
+                  migrationResult.success
+                    ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
+                    : 'bg-rose-50 border-rose-200 text-rose-800'
+                }`}
+              >
+                {migrationResult.success ? (
+                  <div className="flex items-center gap-1.5 font-semibold">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <span>Successfully uploaded {migrationResult.totalUploaded} records to Supabase! Your devices are now in sync.</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1.5 font-semibold">
+                    <AlertTriangle className="w-4 h-4 text-rose-600" />
+                    <span>Migration issue: {migrationResult.error}</span>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Storage Quota Card */}
@@ -368,6 +673,144 @@ export const SettingsView: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Change PIN Modal */}
+      {isPinModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+          <div className="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                <KeyRound className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900 text-sm">Change 4-Digit PIN</h3>
+                <p className="text-xs text-slate-500">Updates app lock PIN across all devices</p>
+              </div>
+            </div>
+
+            <form onSubmit={handleChangePin} className="space-y-3">
+              <div>
+                <label className="block text-xs font-medium text-slate-700 mb-1">New 4-Digit PIN</label>
+                <input
+                  type="password"
+                  maxLength={4}
+                  pattern="\d{4}"
+                  required
+                  placeholder="••••"
+                  value={newPin}
+                  onChange={(e) => setNewPin(e.target.value.replace(/\D/g, ''))}
+                  className="w-full text-center tracking-widest font-bold text-lg rounded-xl border border-slate-300 py-2 text-slate-900 focus:border-indigo-600 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-700 mb-1">Confirm New PIN</label>
+                <input
+                  type="password"
+                  maxLength={4}
+                  pattern="\d{4}"
+                  required
+                  placeholder="••••"
+                  value={confirmNewPin}
+                  onChange={(e) => setConfirmNewPin(e.target.value.replace(/\D/g, ''))}
+                  className="w-full text-center tracking-widest font-bold text-lg rounded-xl border border-slate-300 py-2 text-slate-900 focus:border-indigo-600 focus:outline-none"
+                />
+              </div>
+
+              {pinChangeError && <p className="text-xs text-rose-600 font-medium">{pinChangeError}</p>}
+              {pinChangeSuccess && (
+                <p className="text-xs text-emerald-600 font-medium flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>{pinChangeSuccess}</span>
+                </p>
+              )}
+
+              <div className="flex gap-2 pt-2">
+                <button
+                  type="submit"
+                  disabled={isChangingPin}
+                  className="flex-1 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-sm transition disabled:opacity-50"
+                >
+                  {isChangingPin ? 'Updating...' : 'Save New PIN'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsPinModalOpen(false)}
+                  className="px-4 py-2 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-semibold transition"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Supabase Connection Modal */}
+      {isConfigModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                <Cloud className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900 text-sm">Supabase Project API Configuration</h3>
+                <p className="text-xs text-slate-500">Public credentials safe to keep in browser storage</p>
+              </div>
+            </div>
+
+            <form onSubmit={handleSaveConfig} className="space-y-3 text-xs">
+              <div>
+                <label className="block font-medium text-slate-700 mb-1">Supabase Project URL</label>
+                <input
+                  type="url"
+                  required
+                  placeholder="https://xyzcompany.supabase.co"
+                  value={supabaseUrl}
+                  onChange={(e) => setSupabaseUrl(e.target.value)}
+                  className="w-full rounded-xl border border-slate-300 p-2.5 text-slate-900 focus:border-indigo-600 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block font-medium text-slate-700 mb-1">Supabase Anon Public Key</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="eyJhbGciOi..."
+                  value={supabaseAnonKey}
+                  onChange={(e) => setSupabaseAnonKey(e.target.value)}
+                  className="w-full rounded-xl border border-slate-300 p-2.5 text-slate-900 focus:border-indigo-600 focus:outline-none"
+                />
+              </div>
+
+              {configSuccess && (
+                <p className="text-emerald-600 font-medium flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>{configSuccess}</span>
+                </p>
+              )}
+
+              <div className="flex gap-2 pt-2">
+                <button
+                  type="submit"
+                  className="flex-1 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold shadow-sm transition"
+                >
+                  Save API Credentials
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsConfigModalOpen(false)}
+                  className="px-4 py-2.5 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl font-semibold transition"
+                >
+                  Close
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -16,14 +16,19 @@ import {
   CheckCircle2,
   AlertCircle,
   Loader2,
+  Cloud,
+  CloudOff,
+  Lock,
 } from 'lucide-react';
 import { dbService } from '../services/db';
+import { cloudSyncService, SyncStatus } from '../services/supabase';
 import { getTodayDateString } from '../services/dateUtils';
 
 interface LayoutProps {
   activeView: string;
   onNavigate: (viewId: string) => void;
   onOpenQuickAdd: () => void;
+  onLockApp?: () => void;
   children: React.ReactNode;
 }
 
@@ -44,11 +49,13 @@ export const Layout: React.FC<LayoutProps> = ({
   activeView,
   onNavigate,
   onOpenQuickAdd,
+  onLockApp,
   children,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [saveState, setSaveState] = useState<'saved' | 'saving' | 'error'>('saved');
   const [errorMsg, setErrorMsg] = useState<string | undefined>();
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>('unconfigured');
   const [todayStr, setTodayStr] = useState<string>(getTodayDateString());
 
   useEffect(() => {
@@ -56,7 +63,11 @@ export const Layout: React.FC<LayoutProps> = ({
       setSaveState(state);
       setErrorMsg(msg);
     };
+    const unsub = cloudSyncService.onStatusChange((status) => {
+      setSyncStatus(status);
+    });
     setTodayStr(getTodayDateString());
+    return () => unsub();
   }, []);
 
   return (
@@ -74,28 +85,58 @@ export const Layout: React.FC<LayoutProps> = ({
         </div>
 
         {/* Center / Right Status & Quick Add */}
-        <div className="flex items-center gap-3">
-          {/* Save Status Indicator */}
+        <div className="flex items-center gap-2.5">
+          {/* Cloud Sync Status Indicator */}
           <div className="hidden sm:flex items-center gap-1.5 text-xs">
-            {saveState === 'saved' && (
-              <span className="text-slate-400 flex items-center gap-1 text-[11px]">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                <span>Saved locally</span>
+            {syncStatus === 'synced' && (
+              <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-1 text-[11px] font-medium border border-emerald-200">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Cloud synced</span>
               </span>
             )}
-            {saveState === 'saving' && (
-              <span className="text-indigo-600 flex items-center gap-1 text-[11px] font-medium">
-                <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                <span>Saving...</span>
+            {syncStatus === 'syncing' && (
+              <span className="text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-full flex items-center gap-1 text-[11px] font-medium border border-indigo-200">
+                <Loader2 className="w-3.5 h-3.5 animate-spin text-indigo-600" />
+                <span>Syncing...</span>
               </span>
             )}
-            {saveState === 'error' && (
-              <span className="text-rose-600 flex items-center gap-1 text-[11px] font-medium" title={errorMsg}>
-                <AlertCircle className="w-3.5 h-3.5" />
-                <span>Storage error</span>
-              </span>
+            {syncStatus === 'paused' && (
+              <button
+                type="button"
+                onClick={() => onNavigate('settings')}
+                className="text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full flex items-center gap-1 text-[11px] font-medium border border-amber-200 hover:bg-amber-100"
+                title="Database paused due to 7-day inactivity. Click to view recovery steps in Settings."
+              >
+                <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
+                <span>Cloud paused</span>
+              </button>
+            )}
+            {(syncStatus === 'unconfigured' || syncStatus === 'unauthenticated') && (
+              <button
+                type="button"
+                onClick={() => onNavigate('settings')}
+                className="text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full flex items-center gap-1 text-[11px] font-medium hover:bg-slate-200"
+                title="Working in local IndexedDB. Click Settings to connect Supabase."
+              >
+                <Cloud className="w-3.5 h-3.5 text-slate-400" />
+                <span>Local only</span>
+              </button>
             )}
           </div>
+
+          {/* Quick Lock Button */}
+          {cloudSyncService.isConnected() && (
+            <button
+              onClick={() => {
+                if (onLockApp) onLockApp();
+                else cloudSyncService.lockApp();
+              }}
+              className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition"
+              title="Lock app with 4-digit PIN"
+            >
+              <Lock className="w-4 h-4" />
+            </button>
+          )}
 
           {/* Quick-Add Study Log */}
           <button

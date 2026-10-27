@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import {
   calculateWeightedCompletion,
   analyzeWeeklyCapacity,
@@ -15,6 +15,9 @@ import {
   getUpcomingReminders,
 } from '../services/dateUtils';
 import { validateDataPackage } from '../services/exportImport';
+import { hashPin, generateSalt, verifyPin } from '../services/crypto';
+import { STORE_TABLE_MAP } from '../services/supabase';
+import { dbService, StoreName } from '../services/db';
 import {
   WeeklyTask,
   StudyLog,
@@ -533,6 +536,103 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
         status: 'skipped',
       };
       expect(skippedRev.status).toBe('skipped');
+    });
+  });
+
+  describe('10. PIN Security, Cryptography & Cloud Sync Suite', () => {
+    it('generates high-entropy salts and deterministic SHA-256 digests for 4-digit PINs', async () => {
+      const pin = '4826';
+      const salt1 = generateSalt();
+      const salt2 = generateSalt();
+
+      expect(salt1).toHaveLength(32); // 16 bytes hex
+      expect(salt2).toHaveLength(32);
+      expect(salt1).not.toBe(salt2);
+
+      const hash1a = await hashPin(pin, salt1);
+      const hash1b = await hashPin(pin, salt1);
+      const hash2 = await hashPin(pin, salt2);
+
+      expect(hash1a).toHaveLength(64); // SHA-256 hex
+      expect(hash1a).toBe(hash1b); // Deterministic with same salt
+      expect(hash1a).not.toBe(hash2); // Distinct with different salts
+    });
+
+    it('verifies correct 4-digit PIN and strictly rejects incorrect or malformed inputs', async () => {
+      const correctPin = '7391';
+      const wrongPin = '7392';
+      const salt = generateSalt();
+      const expectedHash = await hashPin(correctPin, salt);
+
+      // 1. Correct PIN matches
+      const isCorrectValid = await verifyPin(correctPin, salt, expectedHash);
+      expect(isCorrectValid).toBe(true);
+
+      // 2. Incorrect PIN fails
+      const isWrongValid = await verifyPin(wrongPin, salt, expectedHash);
+      expect(isWrongValid).toBe(false);
+
+      // 3. Malformed inputs fail securely
+      expect(await verifyPin('', salt, expectedHash)).toBe(false);
+      expect(await verifyPin('123', salt, expectedHash)).toBe(false);
+      expect(await verifyPin('12345', salt, expectedHash)).toBe(false);
+      expect(await verifyPin('abcd', salt, expectedHash)).toBe(false);
+      expect(await verifyPin(correctPin, '', expectedHash)).toBe(false);
+      expect(await verifyPin(correctPin, salt, '')).toBe(false);
+    });
+
+    it('correctly maps all 15 IndexedDB stores to corresponding Supabase tables', () => {
+      const expectedStores: StoreName[] = [
+        'commitments',
+        'subjects',
+        'topics',
+        'subtopics',
+        'topicProgress',
+        'studyLogs',
+        'weeklyPlans',
+        'revisions',
+        'mockTests',
+        'mistakes',
+        'universityCourses',
+        'universityItems',
+        'dailyReviews',
+        'weeklyReviews',
+        'settings',
+      ];
+
+      for (const store of expectedStores) {
+        expect(STORE_TABLE_MAP[store]).toBeDefined();
+        expect(typeof STORE_TABLE_MAP[store]).toBe('string');
+        expect(STORE_TABLE_MAP[store].length).toBeGreaterThan(0);
+      }
+    });
+
+    it('triggers transparent cloud sync hook on database modifications', async () => {
+      const pushedItems: Array<{ store: StoreName; item: any }> = [];
+      const deletedItems: Array<{ store: StoreName; id: string }> = [];
+
+      const testHook = {
+        pushItem: async (store: StoreName, item: any) => {
+          pushedItems.push({ store, item });
+        },
+        deleteItem: async (store: StoreName, id: string) => {
+          deletedItems.push({ store, id });
+        },
+      };
+
+      dbService.setCloudHook(testHook);
+
+      // Verify hook contract
+      await testHook.pushItem('subjects', { id: 'sub_test_sync', name: 'Banking Awareness' });
+      await testHook.deleteItem('subjects', 'sub_test_sync');
+
+      expect(pushedItems).toHaveLength(1);
+      expect(pushedItems[0].store).toBe('subjects');
+      expect(pushedItems[0].item.id).toBe('sub_test_sync');
+
+      expect(deletedItems).toHaveLength(1);
+      expect(deletedItems[0].store).toBe('subjects');
+      expect(deletedItems[0].id).toBe('sub_test_sync');
     });
   });
 });

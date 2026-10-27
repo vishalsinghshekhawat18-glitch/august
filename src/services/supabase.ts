@@ -1,0 +1,530 @@
+// Cloud synchronization and authentication engine powered by Supabase
+// Adheres strictly to Zero Privileged Secrets in frontend code
+
+import { createClient, SupabaseClient, User, Session } from '@supabase/supabase-js';
+import { StoreName, dbService } from './db';
+import { hashPin, generateSalt, verifyPin } from './crypto';
+import { ApplicationDataPackage } from '../types';
+
+export type SyncStatus =
+  | 'unconfigured'
+  | 'unauthenticated'
+  | 'locked'
+  | 'idle'
+  | 'syncing'
+  | 'synced'
+  | 'error'
+  | 'paused';
+
+export interface CloudConfig {
+  supabaseUrl: string;
+  supabaseAnonKey: string;
+}
+
+export interface UserProfile {
+  userId: string;
+  pinHash: string;
+  pinSalt: string;
+  updatedAt: string;
+}
+
+// Table names mapping from StoreName to Supabase Postgres tables
+export const STORE_TABLE_MAP: Record<StoreName, string> = {
+  commitments: 'commitments',
+  subjects: 'subjects',
+  topics: 'topics',
+  subtopics: 'subtopics',
+  topicProgress: 'topic_progress',
+  studyLogs: 'study_logs',
+  weeklyPlans: 'weekly_plans',
+  revisions: 'revisions',
+  mockTests: 'mock_tests',
+  mistakes: 'mistakes',
+  universityCourses: 'university_courses',
+  universityItems: 'university_items',
+  dailyReviews: 'daily_reviews',
+  weeklyReviews: 'weekly_reviews',
+  settings: 'app_settings',
+};
+
+class CloudSyncService {
+  private client: SupabaseClient | null = null;
+  private currentUser: User | null = null;
+  private currentSession: Session | null = null;
+  private isUnlocked: boolean = false;
+  private cachedProfile: UserProfile | null = null;
+  private statusListeners: Array<(status: SyncStatus, message?: string) => void> = [];
+  private currentStatus: SyncStatus = 'unconfigured';
+  private lastErrorMessage: string = '';
+
+  constructor() {
+    this.initFromStorage();
+  }
+
+  public onStatusChange(callback: (status: SyncStatus, message?: string) => void): () => void {
+    this.statusListeners.push(callback);
+    callback(this.currentStatus, this.lastErrorMessage);
+    return () => {
+      this.statusListeners = this.statusListeners.filter((cb) => cb !== callback);
+    };
+  }
+
+  private setStatus(status: SyncStatus, message: string = '') {
+    this.currentStatus = status;
+    this.lastErrorMessage = message;
+    for (const listener of this.statusListeners) {
+      listener(status, message);
+    }
+  }
+
+  public getStatus(): { status: SyncStatus; message: string } {
+    return { status: this.currentStatus, message: this.lastErrorMessage };
+  }
+
+  public getConfig(): CloudConfig | null {
+    if (typeof window === 'undefined') return null;
+    const url =
+      (import.meta.env.VITE_SUPABASE_URL as string) ||
+      localStorage.getItem('august_supabase_url') ||
+      '';
+    const key =
+      (import.meta.env.VITE_SUPABASE_ANON_KEY as string) ||
+      localStorage.getItem('august_supabase_anon_key') ||
+      '';
+    if (!url || !key) return null;
+    return { supabaseUrl: url.trim(), supabaseAnonKey: key.trim() };
+  }
+
+  public saveConfig(config: CloudConfig): void {
+    if (typeof window === 'undefined') return;
+    localStorage.setItem('august_supabase_url', config.supabaseUrl.trim());
+    localStorage.setItem('august_supabase_anon_key', config.supabaseAnonKey.trim());
+    this.initFromStorage();
+  }
+
+  public clearConfig(): void {
+    if (typeof window === 'undefined') return;
+    localStorage.removeItem('august_supabase_url');
+    localStorage.removeItem('august_supabase_anon_key');
+    this.client = null;
+    this.currentUser = null;
+    this.currentSession = null;
+    this.setStatus('unconfigured', 'Supabase credentials not set');
+  }
+
+  public initFromStorage(): void {
+    const config = this.getConfig();
+    if (!config || !config.supabaseUrl || !config.supabaseAnonKey) {
+      this.client = null;
+      this.setStatus('unconfigured', 'Supabase project not configured');
+      return;
+    }
+
+    try {
+      this.client = createClient(config.supabaseUrl, config.supabaseAnonKey, {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true,
+        },
+      });
+
+      // Restore session
+      this.client.auth.getSession().then(({ data: { session }, error }) => {
+        if (error || !session) {
+          this.currentUser = null;
+          this.currentSession = null;
+          this.setStatus('unauthenticated', 'Not signed in');
+        } else {
+          this.currentSession = session;
+          this.currentUser = session.user;
+          this.checkLockState();
+        }
+      });
+
+      // Listen for auth state changes
+      this.client.auth.onAuthStateChange(async (_event, session) => {
+        this.currentSession = session;
+        this.currentUser = session?.user || null;
+        if (!session) {
+          this.setStatus('unauthenticated', 'Signed out');
+        } else {
+          await this.checkLockState();
+        }
+      });
+    } catch (e: any) {
+      this.setStatus('error', e.message || 'Failed to initialize Supabase client');
+    }
+  }
+
+  // --- PIN Lock & Authentication ---
+
+  public isAppLocked(): boolean {
+    if (typeof window === 'undefined') return false;
+    // If not signed in or not configured, lock is not enforced
+    if (!this.currentUser) return false;
+    const sessionUnlocked = sessionStorage.getItem('august_unlocked') === 'true';
+    return !sessionUnlocked;
+  }
+
+  public unlockLocally(): void {
+    if (typeof window === 'undefined') return;
+    sessionStorage.setItem('august_unlocked', 'true');
+    this.isUnlocked = true;
+    this.setStatus('idle', 'App unlocked');
+    this.pullAllFromCloud();
+  }
+
+  public lockApp(): void {
+    if (typeof window === 'undefined') return;
+    sessionStorage.removeItem('august_unlocked');
+    this.isUnlocked = false;
+    this.setStatus('locked', 'App locked with PIN');
+  }
+
+  public async checkLockState(): Promise<void> {
+    if (!this.currentUser) {
+      this.setStatus('unauthenticated');
+      return;
+    }
+
+    // Check if we already unlocked in this browser tab session
+    if (typeof window !== 'undefined' && sessionStorage.getItem('august_unlocked') === 'true') {
+      this.isUnlocked = true;
+      this.setStatus('idle', 'Ready and connected');
+      this.pullAllFromCloud();
+      return;
+    }
+
+    // Otherwise, check if user has a PIN configured
+    const profile = await this.fetchUserProfile();
+    if (profile && profile.pinHash) {
+      this.isUnlocked = false;
+      this.setStatus('locked', 'Enter 4-digit PIN to access tracker');
+    } else {
+      // First setup without PIN yet
+      this.isUnlocked = true;
+      sessionStorage.setItem('august_unlocked', 'true');
+      this.setStatus('idle', 'Connected (PIN setup recommended)');
+      this.pullAllFromCloud();
+    }
+  }
+
+  public async fetchUserProfile(): Promise<UserProfile | null> {
+    if (!this.client || !this.currentUser) return null;
+    try {
+      const { data, error } = await this.client
+        .from('user_profiles')
+        .select('*')
+        .eq('user_id', this.currentUser.id)
+        .maybeSingle();
+
+      if (error) {
+        // If table doesn't exist yet or query fails
+        console.warn('Could not fetch user profile:', error.message);
+        return null;
+      }
+      if (!data) return null;
+
+      this.cachedProfile = {
+        userId: data.user_id,
+        pinHash: data.pin_hash,
+        pinSalt: data.pin_salt,
+        updatedAt: data.updated_at,
+      };
+      return this.cachedProfile;
+    } catch {
+      return null;
+    }
+  }
+
+  public async verifyAndUnlock(pin: string): Promise<boolean> {
+    if (!this.currentUser) return false;
+    let profile = this.cachedProfile;
+    if (!profile) {
+      profile = await this.fetchUserProfile();
+    }
+    if (!profile || !profile.pinHash || !profile.pinSalt) {
+      // No PIN set yet, allow entry
+      this.unlockLocally();
+      return true;
+    }
+
+    const isValid = await verifyPin(pin, profile.pinSalt, profile.pinHash);
+    if (isValid) {
+      this.unlockLocally();
+      return true;
+    }
+    return false;
+  }
+
+  public async setPin(newPin: string): Promise<void> {
+    if (!this.client || !this.currentUser) {
+      throw new Error('Must be authenticated with Supabase to set a PIN.');
+    }
+    if (!/^\d{4}$/.test(newPin)) {
+      throw new Error('PIN must be exactly 4 numeric digits.');
+    }
+
+    const salt = generateSalt();
+    const hash = await hashPin(newPin, salt);
+    const now = new Date().toISOString();
+
+    const { error } = await this.client.from('user_profiles').upsert({
+      user_id: this.currentUser.id,
+      pin_hash: hash,
+      pin_salt: salt,
+      updated_at: now,
+    });
+
+    if (error) {
+      throw new Error(`Failed to update PIN: ${error.message}`);
+    }
+
+    this.cachedProfile = {
+      userId: this.currentUser.id,
+      pinHash: hash,
+      pinSalt: salt,
+      updatedAt: now,
+    };
+  }
+
+  public async signUp(email: string, pass: string, initialPin?: string): Promise<void> {
+    if (!this.client) throw new Error('Supabase client is not configured.');
+    const { data, error } = await this.client.auth.signUp({
+      email,
+      password: pass,
+    });
+    if (error) throw error;
+    if (data.user) {
+      this.currentUser = data.user;
+      this.currentSession = data.session;
+      if (initialPin && /^\d{4}$/.test(initialPin)) {
+        await this.setPin(initialPin);
+      }
+      this.unlockLocally();
+    }
+  }
+
+  public async signIn(email: string, pass: string): Promise<void> {
+    if (!this.client) throw new Error('Supabase client is not configured.');
+    const { data, error } = await this.client.auth.signInWithPassword({
+      email,
+      password: pass,
+    });
+    if (error) throw error;
+    if (data.user) {
+      this.currentUser = data.user;
+      this.currentSession = data.session;
+      await this.checkLockState();
+    }
+  }
+
+  public async signOut(): Promise<void> {
+    if (this.client) {
+      await this.client.auth.signOut();
+    }
+    this.currentUser = null;
+    this.currentSession = null;
+    this.cachedProfile = null;
+    if (typeof window !== 'undefined') {
+      sessionStorage.removeItem('august_unlocked');
+    }
+    this.setStatus('unauthenticated', 'Signed out');
+  }
+
+  public getUser(): User | null {
+    return this.currentUser;
+  }
+
+  public isConnected(): boolean {
+    return !!this.client && !!this.currentUser;
+  }
+
+  // --- Bi-directional Cloud Synchronization ---
+
+  public async pushItem(storeName: StoreName, item: any): Promise<void> {
+    if (!this.isConnected() || !this.client || !this.currentUser) return;
+    const table = STORE_TABLE_MAP[storeName];
+    if (!table) return;
+
+    try {
+      this.setStatus('syncing', `Syncing ${storeName}...`);
+      const { error } = await this.client.from(table).upsert({
+        id: String(item.id),
+        user_id: this.currentUser.id,
+        data: item,
+        updated_at: new Date().toISOString(),
+      });
+
+      if (error) {
+        console.warn(`Supabase push error on ${table}:`, error.message);
+        if (error.message.includes('paused') || error.code === '57P01') {
+          this.setStatus('paused', 'Database paused due to 7-day inactivity');
+        } else {
+          this.setStatus('error', error.message);
+        }
+      } else {
+        this.setStatus('synced', 'Synced with cloud');
+      }
+    } catch (e: any) {
+      console.warn(`Cloud push exception on ${storeName}:`, e);
+      this.setStatus('error', e.message);
+    }
+  }
+
+  public async deleteItem(storeName: StoreName, id: string): Promise<void> {
+    if (!this.isConnected() || !this.client || !this.currentUser) return;
+    const table = STORE_TABLE_MAP[storeName];
+    if (!table) return;
+
+    try {
+      this.setStatus('syncing', `Deleting from ${storeName}...`);
+      const { error } = await this.client
+        .from(table)
+        .delete()
+        .eq('id', String(id))
+        .eq('user_id', this.currentUser.id);
+
+      if (error) {
+        console.warn(`Supabase delete error on ${table}:`, error.message);
+        this.setStatus('error', error.message);
+      } else {
+        this.setStatus('synced', 'Synced with cloud');
+      }
+    } catch (e: any) {
+      console.warn(`Cloud delete exception on ${storeName}:`, e);
+      this.setStatus('error', e.message);
+    }
+  }
+
+  public async pullAllFromCloud(): Promise<{ pulledCount: number; errors: string[] }> {
+    if (!this.isConnected() || !this.client || !this.currentUser) {
+      return { pulledCount: 0, errors: ['Not connected to cloud'] };
+    }
+
+    this.setStatus('syncing', 'Pulling updates from cloud...');
+    let pulledCount = 0;
+    const errors: string[] = [];
+
+    const storeNames = Object.keys(STORE_TABLE_MAP) as StoreName[];
+
+    for (const storeName of storeNames) {
+      const table = STORE_TABLE_MAP[storeName];
+      try {
+        const { data, error } = await this.client
+          .from(table)
+          .select('id, data, updated_at')
+          .eq('user_id', this.currentUser.id);
+
+        if (error) {
+          if (error.message.includes('paused') || error.code === '57P01') {
+            this.setStatus('paused', 'Supabase free database is paused due to inactivity.');
+            return { pulledCount, errors: ['Database paused'] };
+          }
+          errors.push(`${table}: ${error.message}`);
+          continue;
+        }
+
+        if (data && data.length > 0) {
+          for (const row of data) {
+            if (row.data) {
+              await dbService.putSilent(storeName, row.data);
+              pulledCount++;
+            }
+          }
+        }
+      } catch (e: any) {
+        errors.push(`${table}: ${e.message}`);
+      }
+    }
+
+    if (errors.length > 0) {
+      this.setStatus('error', `Sync issues: ${errors[0]}`);
+    } else {
+      this.setStatus('synced', `All records synced (${pulledCount} items)`);
+    }
+
+    return { pulledCount, errors };
+  }
+
+  public async migrateLocalDataToCloud(): Promise<{
+    success: boolean;
+    totalUploaded: number;
+    details: Record<string, number>;
+    error?: string;
+  }> {
+    if (!this.isConnected() || !this.client || !this.currentUser) {
+      throw new Error('Must be signed in to Supabase before migrating data.');
+    }
+
+    this.setStatus('syncing', 'Uploading local data to cloud...');
+    const details: Record<string, number> = {};
+    let totalUploaded = 0;
+
+    try {
+      const pkg: ApplicationDataPackage = await dbService.exportFullPackage();
+      const d = pkg.data;
+
+      const mapping: Array<{ store: StoreName; items: any[] }> = [
+        { store: 'commitments', items: d.commitments || [] },
+        { store: 'subjects', items: d.subjects || [] },
+        { store: 'topics', items: d.topics || [] },
+        { store: 'subtopics', items: d.subtopics || [] },
+        { store: 'topicProgress', items: d.topicProgress || [] },
+        { store: 'studyLogs', items: d.studyLogs || [] },
+        { store: 'weeklyPlans', items: d.weeklyPlans || [] },
+        { store: 'revisions', items: d.revisions || [] },
+        { store: 'mockTests', items: d.mockTests || [] },
+        { store: 'mistakes', items: d.mistakes || [] },
+        { store: 'universityCourses', items: d.universityCourses || [] },
+        { store: 'universityItems', items: d.universityItems || [] },
+        { store: 'dailyReviews', items: d.dailyReviews || [] },
+        { store: 'weeklyReviews', items: d.weeklyReviews || [] },
+        { store: 'settings', items: d.settings ? [d.settings] : [] },
+      ];
+
+      for (const { store, items } of mapping) {
+        if (!items || items.length === 0) {
+          details[store] = 0;
+          continue;
+        }
+
+        const table = STORE_TABLE_MAP[store];
+        const rows = items.map((item) => ({
+          id: String(item.id),
+          user_id: this.currentUser!.id,
+          data: item,
+          updated_at: new Date().toISOString(),
+        }));
+
+        // Batch upload in chunks of 50
+        const CHUNK_SIZE = 50;
+        for (let i = 0; i < rows.length; i += CHUNK_SIZE) {
+          const chunk = rows.slice(i, i + CHUNK_SIZE);
+          const { error } = await this.client.from(table).upsert(chunk);
+          if (error) {
+            throw new Error(`Failed to upload to ${table}: ${error.message}`);
+          }
+        }
+
+        details[store] = items.length;
+        totalUploaded += items.length;
+      }
+
+      this.setStatus('synced', `Migrated ${totalUploaded} records to cloud successfully`);
+      return { success: true, totalUploaded, details };
+    } catch (e: any) {
+      this.setStatus('error', e.message);
+      return { success: false, totalUploaded, details, error: e.message };
+    }
+  }
+}
+
+export const cloudSyncService = new CloudSyncService();
+
+// Register the cloud sync hook into dbService for transparent write-through
+dbService.setCloudHook({
+  pushItem: (store, item) => cloudSyncService.pushItem(store, item),
+  deleteItem: (store, id) => cloudSyncService.deleteItem(store, id),
+});
