@@ -265,7 +265,7 @@ export const MockTestsView: React.FC = () => {
               {/* Question Breakdown */}
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
                 <span className="text-xs font-semibold text-slate-800 block">Question Breakdown</span>
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   <div>
                     <label className="block text-[10px] text-slate-500">Attempted</label>
                     <input

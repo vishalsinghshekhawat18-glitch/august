@@ -42,7 +42,6 @@ export const SyllabusView: React.FC = () => {
   const [isAddSubjectOpen, setIsAddSubjectOpen] = useState<boolean>(false);
   const [isAddTopicOpen, setIsAddTopicOpen] = useState<boolean>(false);
   const [activeSubjectIdForTopic, setActiveSubjectIdForTopic] = useState<string>('');
-  const [editingTopic, setEditingTopic] = useState<Topic | null>(null);
 
   // Form fields
   const [newSubjectName, setNewSubjectName] = useState<string>('');
@@ -94,15 +93,6 @@ export const SyllabusView: React.FC = () => {
     });
   };
 
-  const toggleTopicExpand = (topId: string) => {
-    setExpandedTopics((prev) => {
-      const next = new Set(prev);
-      if (next.has(topId)) next.delete(topId);
-      else next.add(topId);
-      return next;
-    });
-  };
-
   // Add Subject
   const handleAddSubject = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -121,6 +111,30 @@ export const SyllabusView: React.FC = () => {
       loadData();
     } catch (err) {
       console.error('Failed to add subject:', err);
+    }
+  };
+
+  // Delete Subject
+  const handleDeleteSubject = async (sub: Subject) => {
+    if (!confirm(`Are you sure you want to remove subject "${sub.name}"? Topics under this subject will also be removed.`)) return;
+    try {
+      // If shared across multiple exams, only unlink from current exam unless it's only in this exam
+      if (sub.examIds.length > 1) {
+        const updated = {
+          ...sub,
+          examIds: sub.examIds.filter((id) => id !== selectedExamId),
+        };
+        await dbService.put<Subject>('subjects', updated);
+      } else {
+        await dbService.delete('subjects', sub.id);
+        const subjectTopics = topics.filter((t) => t.subjectId === sub.id);
+        for (const t of subjectTopics) {
+          await dbService.delete('topics', t.id);
+        }
+      }
+      loadData();
+    } catch (err) {
+      console.error('Failed to delete subject:', err);
     }
   };
 
@@ -157,6 +171,17 @@ export const SyllabusView: React.FC = () => {
       loadData();
     } catch (err) {
       console.error('Failed to add topic:', err);
+    }
+  };
+
+  // Delete Topic
+  const handleDeleteTopic = async (topicId: string, topicNameStr: string) => {
+    if (!confirm(`Are you sure you want to delete topic "${topicNameStr}"?`)) return;
+    try {
+      await dbService.delete('topics', topicId);
+      loadData();
+    } catch (err) {
+      console.error('Failed to delete topic:', err);
     }
   };
 
@@ -213,7 +238,7 @@ export const SyllabusView: React.FC = () => {
         <div>
           <h1 className="text-xl font-bold text-slate-900 tracking-tight">Syllabus &amp; Multi-Dimension Progress</h1>
           <p className="text-xs text-slate-500 mt-1">
-            Exam-specific progress tracking • Shared subject architecture • Independent Learning, Practice &amp; Revision
+            Build your syllabus gradually • Exam-specific progress tracking • Fully customizable &amp; removable
           </p>
         </div>
 
@@ -423,6 +448,14 @@ export const SyllabusView: React.FC = () => {
                       <Plus className="w-3 h-3" />
                       <span>Add Topic</span>
                     </button>
+
+                    <button
+                      onClick={() => handleDeleteSubject(subject)}
+                      className="text-slate-300 hover:text-rose-600 p-1.5 rounded-lg transition-colors"
+                      title="Remove this subject"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
 
@@ -572,14 +605,24 @@ export const SyllabusView: React.FC = () => {
                                   </span>
                                 </div>
 
-                                {/* Actions: Archive */}
-                                <button
-                                  onClick={() => handleToggleArchiveTopic(topic)}
-                                  className="text-slate-400 hover:text-slate-600 p-1"
-                                  title={topic.archived ? 'Unarchive Topic' : 'Archive Topic'}
-                                >
-                                  <Archive className="w-3.5 h-3.5" />
-                                </button>
+                                {/* Actions: Archive & Delete */}
+                                <div className="flex items-center gap-1">
+                                  <button
+                                    onClick={() => handleToggleArchiveTopic(topic)}
+                                    className="text-slate-400 hover:text-slate-600 p-1"
+                                    title={topic.archived ? 'Unarchive Topic' : 'Archive Topic'}
+                                  >
+                                    <Archive className="w-3.5 h-3.5" />
+                                  </button>
+
+                                  <button
+                                    onClick={() => handleDeleteTopic(topic.id, topic.name)}
+                                    className="text-slate-300 hover:text-rose-600 p-1"
+                                    title="Delete topic"
+                                  >
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           </div>

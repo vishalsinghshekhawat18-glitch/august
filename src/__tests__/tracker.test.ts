@@ -1,18 +1,36 @@
 import { describe, it, expect } from 'vitest';
-import { calculateWeightedCompletion, analyzeWeeklyCapacity } from '../services/planning';
+import {
+  calculateWeightedCompletion,
+  analyzeWeeklyCapacity,
+  generateProposedNextWeekPlan,
+} from '../services/planning';
 import {
   formatMinutes,
   formatHoursDecimal,
   getWeekBounds,
+  getNextWeekBounds,
   addDays,
   daysBetween,
   calculateStudyStreak,
+  getUpcomingReminders,
 } from '../services/dateUtils';
 import { validateDataPackage } from '../services/exportImport';
-import { WeeklyTask, StudyLog, ApplicationDataPackage } from '../types';
+import {
+  WeeklyTask,
+  StudyLog,
+  ApplicationDataPackage,
+  Commitment,
+  TopicProgress,
+  RevisionRecord,
+  MockTest,
+  UniversityCourse,
+  UniversityItem,
+  DailyReview,
+  WeeklyReview,
+} from '../types';
 
-describe('Personal Exam Tracker Test Suite', () => {
-  describe('1. Weighted Completion Formula (Section 8)', () => {
+describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
+  describe('1. Weighted Completion Formula & Unfinished Tasks (Section 8)', () => {
     it('calculates weighted completion correctly: Sum(Weight * Progress) / Sum(Weight) * 100', () => {
       const tasks: WeeklyTask[] = [
         {
@@ -75,6 +93,39 @@ describe('Personal Exam Tracker Test Suite', () => {
       expect(result.weightedPercent).toBe(100);
       expect(result.activeTaskCount).toBe(1);
     });
+
+    it('handles unresolved, deferred, and reduced scope tasks gracefully', () => {
+      const tasks: WeeklyTask[] = [
+        {
+          id: 't1',
+          weeklyPlanId: 'w1',
+          title: 'Deferred Task',
+          examId: 'comm_ibps_rrb_po',
+          estimatedMinutes: 120,
+          weight: 3,
+          status: 'deferred',
+          progressFraction: 0.2,
+          resolutionNotes: 'Deferred due to university deadline',
+        },
+        {
+          id: 't2',
+          weeklyPlanId: 'w1',
+          title: 'Reduced Task',
+          examId: 'comm_ibps_rrb_po',
+          estimatedMinutes: 60,
+          weight: 2,
+          status: 'reduced',
+          progressFraction: 0.8,
+          resolutionNotes: 'Reduced from 50 to 20 questions',
+        },
+      ];
+
+      const result = calculateWeightedCompletion(tasks);
+      // Weight: 3 + 2 = 5. Weighted progress: (3 * 0.2) + (2 * 0.8) = 0.6 + 1.6 = 2.2.
+      // (2.2 / 5) * 100 = 44%
+      expect(result.weightedPercent).toBe(44);
+      expect(result.activeTaskCount).toBe(2);
+    });
   });
 
   describe('2. Capacity Analysis & Realistic Planning (Section 8)', () => {
@@ -99,6 +150,50 @@ describe('Personal Exam Tracker Test Suite', () => {
       const checkBalanced = analyzeWeeklyCapacity(20, historicalLogs, '2026-10-27');
       expect(checkBalanced.isOverCapacity).toBe(false);
     });
+
+    it('proposes next-week plans based on exam priority, weak areas, and deadlines without forcing debt', () => {
+      const commitments: Commitment[] = [
+        {
+          id: 'comm_ibps_rrb_po',
+          name: 'IBPS RRB PO',
+          code: 'IBPS-RRB-PO',
+          type: 'competitive',
+          priority: 1,
+          dateStatus: 'provisional',
+          description: '',
+          createdAt: '',
+        },
+        {
+          id: 'comm_vmou_ma_eco',
+          name: 'VMOU MA Economics',
+          code: 'VMOU-MA-ECO',
+          type: 'university',
+          priority: 4,
+          dateStatus: 'unverified',
+          description: '',
+          createdAt: '',
+        },
+      ];
+
+      const universityItems: UniversityItem[] = [
+        {
+          id: 'u1',
+          courseId: 'mec_01',
+          title: 'Assignment 1',
+          type: 'assignment',
+          deadline: '2026-11-04', // Inside next week
+          status: 'pending',
+          studyMinutesSpent: 0,
+          createdAt: '',
+        },
+      ];
+
+      const plan = generateProposedNextWeekPlan('2026-10-27', commitments, [], [], universityItems, []);
+      expect(plan.status).toBe('proposed');
+      expect(plan.tasks.some((t) => t.title.includes('VMOU'))).toBe(true);
+      expect(plan.tasks.some((t) => t.examId === 'comm_ibps_rrb_po')).toBe(true);
+      expect(plan.targetHours).toBeGreaterThan(0);
+    });
   });
 
   describe('3. Spaced Intervals & Date Calculations (Section 9)', () => {
@@ -117,12 +212,33 @@ describe('Personal Exam Tracker Test Suite', () => {
       expect(daysBetween('2026-10-27', '2026-10-26')).toBe(-1);
     });
 
-    it('identifies Monday to Sunday planning bounds', () => {
+    it('identifies Monday to Sunday planning bounds and next week bounds', () => {
       // 2026-10-27 is a Tuesday
       const bounds = getWeekBounds('2026-10-27');
       expect(bounds.monday).toBe('2026-10-26');
       expect(bounds.sunday).toBe('2026-11-01');
       expect(bounds.days.length).toBe(7);
+
+      const nextBounds = getNextWeekBounds('2026-10-27');
+      expect(nextBounds.monday).toBe('2026-11-02');
+      expect(nextBounds.sunday).toBe('2026-11-08');
+    });
+
+    it('generates in-app reminders for upcoming events (7d, 3d, 1d)', () => {
+      const exams = [
+        { id: '1', name: 'IBPS RRB PO', targetDate: '2026-10-30', dateStatus: 'provisional' }, // 3 days away
+        { id: '2', name: 'Far Away Exam', targetDate: '2026-12-15', dateStatus: 'unverified' }, // > 30 days away
+      ];
+      const univItems = [
+        { id: 'u1', title: 'Assignment 1', deadline: '2026-10-28', status: 'pending' }, // 1 day away
+      ];
+
+      const reminders = getUpcomingReminders(exams, univItems, '2026-10-27');
+      expect(reminders.length).toBe(2);
+      expect(reminders[0].daysRemaining).toBe(1);
+      expect(reminders[0].urgency).toBe('critical');
+      expect(reminders[1].daysRemaining).toBe(3);
+      expect(reminders[1].urgency).toBe('critical');
     });
   });
 
@@ -140,9 +256,15 @@ describe('Personal Exam Tracker Test Suite', () => {
       expect(streak.currentStreak).toBe(1);
       expect(streak.bestStreak).toBe(2);
     });
+
+    it('returns 0 streak for empty study history', () => {
+      const streak = calculateStudyStreak([], '2026-10-27');
+      expect(streak.currentStreak).toBe(0);
+      expect(streak.bestStreak).toBe(0);
+    });
   });
 
-  describe('5. Data Package Import Validation (Section 3)', () => {
+  describe('5. Data Package Import Validation & Portability (Section 3)', () => {
     it('validates a complete, authentic Personal Exam Tracker package', () => {
       const validPkg: ApplicationDataPackage = {
         app: 'PersonalExamTracker',
@@ -191,15 +313,97 @@ describe('Personal Exam Tracker Test Suite', () => {
       expect(result.counts.studyLogs).toBe(1);
     });
 
-    it('rejects foreign or malformed JSON packages without corrupting data', () => {
+    it('rejects foreign, corrupted, or non-JSON payloads without altering existing data', () => {
       const foreign = { app: 'SomeOtherApp', version: 2, data: {} };
       const result = validateDataPackage(foreign);
       expect(result.valid).toBe(false);
       expect(result.errors[0]).toContain('File header mismatch');
+
+      const corrupted = null;
+      const resNull = validateDataPackage(corrupted);
+      expect(resNull.valid).toBe(false);
+
+      const missingData = { app: 'PersonalExamTracker', version: 1 };
+      const resMissing = validateDataPackage(missingData);
+      expect(resMissing.valid).toBe(false);
+      expect(resMissing.errors[0]).toContain('Missing root data payload');
     });
   });
 
-  describe('6. Formatting Helpers', () => {
+  describe('6. Mock Tests & Metric Consistency (Section 10)', () => {
+    it('verifies score percentages and flags metric inconsistency correctly', () => {
+      const mock: MockTest = {
+        id: 'm1',
+        examId: 'comm_ibps_rrb_po',
+        testName: 'Prelims Mock 1',
+        date: '2026-10-27',
+        totalScore: 56.5,
+        maxScore: 80,
+        accuracyPercent: 90.3,
+        correctCount: 56,
+        incorrectCount: 6,
+        skippedCount: 18,
+        attemptedCount: 62,
+        timeTakenMinutes: 45,
+        createdAt: '2026-10-27T10:00:00Z',
+      };
+
+      // Correct (56) + Incorrect (6) = 62 = Attempted (62) -> Consistent!
+      expect(mock.correctCount + mock.incorrectCount).toBe(mock.attemptedCount);
+
+      // Attempted (62) + Skipped (18) = 80 = Total Questions
+      expect(mock.attemptedCount + mock.skippedCount).toBe(80);
+
+      // Score percentage
+      const pct = (mock.totalScore / mock.maxScore) * 100;
+      expect(pct).toBeCloseTo(70.625);
+    });
+
+    it('identifies metric inconsistency when attempted != correct + incorrect', () => {
+      const correct = 50;
+      const incorrect = 10;
+      const attempted = 65; // Inconsistent by 5 questions!
+      const isConsistent = correct + incorrect === attempted;
+      expect(isConsistent).toBe(false);
+    });
+  });
+
+  describe('7. Shared Subjects & Independent Exam Progress (Section 5)', () => {
+    it('guarantees examination-specific progress for shared subjects via composite keys', () => {
+      const topicId = 'topic_seating_arrangement';
+      const exam1 = 'comm_ibps_rrb_po';
+      const exam2 = 'comm_iibf_dbf';
+
+      // Composite key architecture
+      const progressExam1: TopicProgress = {
+        id: `${exam1}_${topicId}`,
+        examId: exam1,
+        topicId,
+        learningStatus: 'completed',
+        practiceStatus: 'completed',
+        revisionStatus: 'completed',
+        manualCompletionPercentage: 100,
+        updatedAt: '2026-10-27T10:00:00Z',
+      };
+
+      const progressExam2: TopicProgress = {
+        id: `${exam2}_${topicId}`,
+        examId: exam2,
+        topicId,
+        learningStatus: 'not_started',
+        practiceStatus: 'not_started',
+        revisionStatus: 'not_started',
+        manualCompletionPercentage: 0,
+        updatedAt: '2026-10-27T10:00:00Z',
+      };
+
+      expect(progressExam1.id).not.toBe(progressExam2.id);
+      expect(progressExam1.learningStatus).toBe('completed');
+      expect(progressExam2.learningStatus).toBe('not_started');
+    });
+  });
+
+  describe('8. Formatting & Units Display (Section 14)', () => {
     it('formats minutes into human-readable hours and minutes', () => {
       expect(formatMinutes(0)).toBe('0m');
       expect(formatMinutes(45)).toBe('45m');

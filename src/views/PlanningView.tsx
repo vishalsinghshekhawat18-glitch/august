@@ -80,7 +80,7 @@ export const PlanningView: React.FC = () => {
       // Current week plan
       let plan = plans.find((p) => p.weekStartDate === weekBounds.monday) || null;
       if (!plan) {
-        // Initialize clean default plan for the current week if none exists
+        // Initialize clean default plan for the current week with empty tasks
         plan = {
           id: `week_${weekBounds.monday}`,
           weekStartDate: weekBounds.monday,
@@ -89,28 +89,7 @@ export const PlanningView: React.FC = () => {
           status: 'approved',
           approvedAt: new Date().toISOString(),
           notes: 'Standard focused target for competitive preparation.',
-          tasks: [
-            {
-              id: `task_core_rrb_${Date.now()}`,
-              weeklyPlanId: `week_${weekBounds.monday}`,
-              title: 'IBPS RRB PO: Complete 15 Reasoning Puzzles & Speed Quant Drill',
-              examId: 'comm_ibps_rrb_po',
-              estimatedMinutes: 300,
-              weight: 5,
-              status: 'in_progress',
-              progressFraction: 0.3,
-            },
-            {
-              id: `task_ga_rrb_${Date.now()}`,
-              weeklyPlanId: `week_${weekBounds.monday}`,
-              title: 'Current Affairs & Banking Awareness Weekly Capsule',
-              examId: 'comm_ibps_rrb_po',
-              estimatedMinutes: 180,
-              weight: 4,
-              status: 'planned',
-              progressFraction: 0,
-            },
-          ],
+          tasks: [],
         };
         await dbService.put<WeeklyPlan>('weeklyPlans', plan);
       }
@@ -258,6 +237,20 @@ export const PlanningView: React.FC = () => {
       setCurrentPlan(updatedPlan);
     } catch (err) {
       console.error('Failed to update target hours:', err);
+    }
+  };
+
+  // Delete Task
+  const handleDeleteTask = async (taskId: string) => {
+    if (!currentPlan) return;
+    if (!confirm('Are you sure you want to remove this weekly task?')) return;
+    try {
+      const updatedTasks = currentPlan.tasks.filter((t) => t.id !== taskId);
+      const updatedPlan = { ...currentPlan, tasks: updatedTasks };
+      await dbService.put<WeeklyPlan>('weeklyPlans', updatedPlan);
+      setCurrentPlan(updatedPlan);
+    } catch (err) {
+      console.error('Failed to delete task:', err);
     }
   };
 
@@ -687,6 +680,15 @@ export const PlanningView: React.FC = () => {
                           Resolve
                         </button>
                       )}
+
+                      {/* Delete Task */}
+                      <button
+                        onClick={() => handleDeleteTask(task.id)}
+                        className="text-slate-300 hover:text-rose-600 p-1 rounded transition-colors"
+                        title="Delete task"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
                     </div>
                   </div>
                 </div>

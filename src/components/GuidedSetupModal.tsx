@@ -11,7 +11,7 @@ interface GuidedSetupModalProps {
 
 export const GuidedSetupModal: React.FC<GuidedSetupModalProps> = ({ isOpen, onClose, onSetupComplete }) => {
   const [step, setStep] = useState<number>(1);
-  const [addRecommendedSubjects, setAddRecommendedSubjects] = useState<boolean>(true);
+  const [addRecommendedSubjects, setAddRecommendedSubjects] = useState<boolean>(false);
 
   if (!isOpen) return null;
 
