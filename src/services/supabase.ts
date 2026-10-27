@@ -159,10 +159,17 @@ class CloudSyncService {
 
   // --- PIN Lock & Authentication ---
 
+  public hasPin(): boolean {
+    if (typeof window === 'undefined') return false;
+    if (this.cachedProfile?.pinHash) return true;
+    const localHash = localStorage.getItem('august_local_pin_hash');
+    return !!localHash;
+  }
+
   public isAppLocked(): boolean {
     if (typeof window === 'undefined') return false;
-    // If not signed in or not configured, lock is not enforced
-    if (!this.currentUser) return false;
+    // If user has set a PIN and current session is not unlocked, app is locked
+    if (!this.hasPin()) return false;
     const sessionUnlocked = sessionStorage.getItem('august_unlocked') === 'true';
     return !sessionUnlocked;
   }
@@ -172,7 +179,9 @@ class CloudSyncService {
     sessionStorage.setItem('august_unlocked', 'true');
     this.isUnlocked = true;
     this.setStatus('idle', 'App unlocked');
-    this.pullAllFromCloud();
+    if (this.isConnected()) {
+      this.pullAllFromCloud();
+    }
   }
 
   public lockApp(): void {
@@ -184,7 +193,11 @@ class CloudSyncService {
 
   public async checkLockState(): Promise<void> {
     if (!this.currentUser) {
-      this.setStatus('unauthenticated');
+      if (this.hasPin() && !sessionStorage.getItem('august_unlocked')) {
+        this.setStatus('locked', 'Enter 4-digit PIN to access tracker');
+      } else {
+        this.setStatus('unauthenticated');
+      }
       return;
     }
 
@@ -196,13 +209,12 @@ class CloudSyncService {
       return;
     }
 
-    // Otherwise, check if user has a PIN configured
+    // Check if user has a PIN configured (either in cloud or locally)
     const profile = await this.fetchUserProfile();
-    if (profile && profile.pinHash) {
+    if ((profile && profile.pinHash) || this.hasPin()) {
       this.isUnlocked = false;
       this.setStatus('locked', 'Enter 4-digit PIN to access tracker');
     } else {
-      // First setup without PIN yet
       this.isUnlocked = true;
       sessionStorage.setItem('august_unlocked', 'true');
       this.setStatus('idle', 'Connected (PIN setup recommended)');
@@ -220,7 +232,6 @@ class CloudSyncService {
         .maybeSingle();
 
       if (error) {
-        // If table doesn't exist yet or query fails
         console.warn('Could not fetch user profile:', error.message);
         return null;
       }
@@ -232,6 +243,11 @@ class CloudSyncService {
         pinSalt: data.pin_salt,
         updatedAt: data.updated_at,
       };
+      // Keep local backup in sync
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('august_local_pin_hash', data.pin_hash);
+        localStorage.setItem('august_local_pin_salt', data.pin_salt);
+      }
       return this.cachedProfile;
     } catch {
       return null;
@@ -239,18 +255,28 @@ class CloudSyncService {
   }
 
   public async verifyAndUnlock(pin: string): Promise<boolean> {
-    if (!this.currentUser) return false;
     let profile = this.cachedProfile;
-    if (!profile) {
+    if (!profile && this.currentUser) {
       profile = await this.fetchUserProfile();
     }
-    if (!profile || !profile.pinHash || !profile.pinSalt) {
-      // No PIN set yet, allow entry
+
+    let salt = profile?.pinSalt;
+    let expectedHash = profile?.pinHash;
+
+    if (!salt || !expectedHash) {
+      if (typeof window !== 'undefined') {
+        salt = localStorage.getItem('august_local_pin_salt') || '';
+        expectedHash = localStorage.getItem('august_local_pin_hash') || '';
+      }
+    }
+
+    if (!salt || !expectedHash) {
+      // No PIN configured anywhere
       this.unlockLocally();
       return true;
     }
 
-    const isValid = await verifyPin(pin, profile.pinSalt, profile.pinHash);
+    const isValid = await verifyPin(pin, salt, expectedHash);
     if (isValid) {
       this.unlockLocally();
       return true;
@@ -259,9 +285,6 @@ class CloudSyncService {
   }
 
   public async setPin(newPin: string): Promise<void> {
-    if (!this.client || !this.currentUser) {
-      throw new Error('Must be authenticated with Supabase to set a PIN.');
-    }
     if (!/^\d{4}$/.test(newPin)) {
       throw new Error('PIN must be exactly 4 numeric digits.');
     }
@@ -270,23 +293,39 @@ class CloudSyncService {
     const hash = await hashPin(newPin, salt);
     const now = new Date().toISOString();
 
-    const { error } = await this.client.from('user_profiles').upsert({
-      user_id: this.currentUser.id,
-      pin_hash: hash,
-      pin_salt: salt,
-      updated_at: now,
-    });
-
-    if (error) {
-      throw new Error(`Failed to update PIN: ${error.message}`);
+    // 1. Always save locally first so app lock works reliably on this device
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('august_local_pin_hash', hash);
+      localStorage.setItem('august_local_pin_salt', salt);
     }
 
-    this.cachedProfile = {
-      userId: this.currentUser.id,
-      pinHash: hash,
-      pinSalt: salt,
-      updatedAt: now,
-    };
+    // 2. If connected to Supabase, sync to cloud user_profiles
+    if (this.client && this.currentUser) {
+      const { error } = await this.client.from('user_profiles').upsert({
+        user_id: this.currentUser.id,
+        pin_hash: hash,
+        pin_salt: salt,
+        updated_at: now,
+      });
+
+      if (error) {
+        throw new Error(`Failed to update cloud PIN: ${error.message}`);
+      }
+
+      this.cachedProfile = {
+        userId: this.currentUser.id,
+        pinHash: hash,
+        pinSalt: salt,
+        updatedAt: now,
+      };
+    } else {
+      this.cachedProfile = {
+        userId: 'local_user',
+        pinHash: hash,
+        pinSalt: salt,
+        updatedAt: now,
+      };
+    }
   }
 
   public async signUp(email: string, pass: string, initialPin?: string): Promise<void> {

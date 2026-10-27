@@ -19,6 +19,10 @@ import {
   Shield,
   ArrowRight,
   Info,
+  UserPlus,
+  LogIn,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import { dbService } from '../services/db';
 import { cloudSyncService, SyncStatus, CloudConfig } from '../services/supabase';
@@ -48,13 +52,25 @@ export const SettingsView: React.FC = () => {
   const [supabaseAnonKey, setSupabaseAnonKey] = useState<string>('');
   const [configSuccess, setConfigSuccess] = useState<string>('');
 
-  // PIN Change Modal State
+  // 4-Digit PIN State
+  const [hasPin, setHasPin] = useState<boolean>(false);
   const [isPinModalOpen, setIsPinModalOpen] = useState<boolean>(false);
   const [newPin, setNewPin] = useState<string>('');
   const [confirmNewPin, setConfirmNewPin] = useState<string>('');
   const [pinChangeError, setPinChangeError] = useState<string>('');
   const [pinChangeSuccess, setPinChangeSuccess] = useState<string>('');
   const [isChangingPin, setIsChangingPin] = useState<boolean>(false);
+
+  // Inline Cloud Auth State (for connecting device)
+  const [authMode, setAuthMode] = useState<'signup' | 'signin'>('signup');
+  const [authEmail, setAuthEmail] = useState<string>('');
+  const [authPassword, setAuthPassword] = useState<string>('');
+  const [authPin, setAuthPin] = useState<string>('');
+  const [authConfirmPin, setAuthConfirmPin] = useState<string>('');
+  const [showAuthPassword, setShowAuthPassword] = useState<boolean>(false);
+  const [authLoading, setAuthLoading] = useState<boolean>(false);
+  const [authError, setAuthError] = useState<string>('');
+  const [authSuccess, setAuthSuccess] = useState<string>('');
 
   // Cloud Migration Wizard State
   const [localCounts, setLocalCounts] = useState<Record<string, number>>({});
@@ -74,6 +90,7 @@ export const SettingsView: React.FC = () => {
   const loadSettingsData = async () => {
     const est = await dbService.getStorageEstimate();
     setQuota(est);
+    setHasPin(cloudSyncService.hasPin());
 
     // Calculate local record counts for migration preview
     try {
@@ -108,6 +125,7 @@ export const SettingsView: React.FC = () => {
       setSyncStatusMsg(msg || '');
       const user = cloudSyncService.getUser();
       setCurrentUserEmail(user?.email || '');
+      setHasPin(cloudSyncService.hasPin());
     });
 
     const cfg = cloudSyncService.getConfig();
@@ -130,14 +148,14 @@ export const SettingsView: React.FC = () => {
       supabaseUrl: supabaseUrl.trim(),
       supabaseAnonKey: supabaseAnonKey.trim(),
     });
-    setConfigSuccess('Credentials saved! Connect your account below or unlock via PIN.');
+    setConfigSuccess('Credentials saved! You can now sign in or create an account below.');
     setTimeout(() => {
       setConfigSuccess('');
       setIsConfigModalOpen(false);
     }, 1500);
   };
 
-  // Change 4-digit PIN
+  // Change or Set 4-digit PIN
   const handleChangePin = async (e: React.FormEvent) => {
     e.preventDefault();
     setPinChangeError('');
@@ -155,6 +173,7 @@ export const SettingsView: React.FC = () => {
     try {
       setIsChangingPin(true);
       await cloudSyncService.setPin(newPin);
+      setHasPin(true);
       setPinChangeSuccess('4-digit PIN updated successfully!');
       setTimeout(() => {
         setIsPinModalOpen(false);
@@ -166,6 +185,48 @@ export const SettingsView: React.FC = () => {
       setPinChangeError(err.message || 'Failed to update PIN.');
     } finally {
       setIsChangingPin(false);
+    }
+  };
+
+  // Inline Auth Submit (Sign In or Create Account)
+  const handleInlineAuthSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAuthError('');
+    setAuthSuccess('');
+
+    const cfg = cloudSyncService.getConfig();
+    if (!cfg || !cfg.supabaseUrl || !cfg.supabaseAnonKey) {
+      setAuthError('Please configure your Supabase Project URL and Anon Key first.');
+      setIsConfigModalOpen(true);
+      return;
+    }
+
+    if (authMode === 'signup') {
+      if (!authPin || authPin.length !== 4) {
+        setAuthError('Please set a 4-digit numeric PIN.');
+        return;
+      }
+      if (authPin !== authConfirmPin) {
+        setAuthError('PIN confirmation does not match.');
+        return;
+      }
+    }
+
+    try {
+      setAuthLoading(true);
+      if (authMode === 'signup') {
+        await cloudSyncService.signUp(authEmail, authPassword, authPin);
+        setHasPin(true);
+        setAuthSuccess('Account created and 4-digit PIN set! Cloud sync is now active.');
+      } else {
+        await cloudSyncService.signIn(authEmail, authPassword);
+        setAuthSuccess('Signed in successfully! Device linked to cloud.');
+      }
+      loadSettingsData();
+    } catch (err: any) {
+      setAuthError(err.message || 'Authentication error.');
+    } finally {
+      setAuthLoading(false);
     }
   };
 
@@ -277,13 +338,13 @@ export const SettingsView: React.FC = () => {
       {/* Header */}
       <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Cloud Sync, Security &amp; Data</h1>
+          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Security, Cloud Sync &amp; Data</h1>
           <p className="text-xs text-slate-500 mt-1">
             4-digit PIN protection • Cross-device synchronization • Safe local migration • Zero privileged secrets
           </p>
         </div>
         <div className="flex items-center gap-2">
-          {cloudSyncService.isConnected() && (
+          {hasPin && (
             <button
               onClick={() => cloudSyncService.lockApp()}
               className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition"
@@ -295,7 +356,60 @@ export const SettingsView: React.FC = () => {
         </div>
       </div>
 
-      {/* Cloud Synchronization & PIN Security Card */}
+      {/* 1. Dedicated 4-Digit PIN Security Card (Always Accessible) */}
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-100">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+              <KeyRound className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="text-sm font-bold text-slate-900">4-Digit Numeric PIN Lock</h3>
+                {hasPin ? (
+                  <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Active on this Device</span>
+                  </span>
+                ) : (
+                  <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+                    Not Set Up Yet
+                  </span>
+                )}
+              </div>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Convenient device-level lock so you never need to type your master email and password daily
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsPinModalOpen(true)}
+              className="px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition shadow-sm flex items-center gap-1.5"
+            >
+              <KeyRound className="w-3.5 h-3.5" />
+              <span>{hasPin ? 'Change 4-Digit PIN' : 'Set 4-Digit PIN Now'}</span>
+            </button>
+            {hasPin && (
+              <button
+                onClick={() => cloudSyncService.lockApp()}
+                className="px-3 py-2 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition flex items-center gap-1"
+                title="Lock application immediately"
+              >
+                <Lock className="w-3.5 h-3.5" />
+                <span>Lock Now</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        <p className="text-xs text-slate-600 leading-relaxed">
+          The 4-digit PIN uses native Web Crypto salted SHA-256 hashing. Once configured, simply enter your 4 digits to access your study logs and syllabus on laptop or iPhone without entering full credentials.
+        </p>
+      </div>
+
+      {/* 2. Cloud Synchronization & Supabase Connection Card */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-100">
           <div className="flex items-center gap-3">
@@ -304,7 +418,7 @@ export const SettingsView: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-sm font-bold text-slate-900">Cloud Sync &amp; Device Identity</h3>
+                <h3 className="text-sm font-bold text-slate-900">Cloud Synchronization (Supabase)</h3>
                 {syncStatus === 'synced' && (
                   <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
                     <CheckCircle2 className="w-3.5 h-3.5" />
@@ -325,12 +439,12 @@ export const SettingsView: React.FC = () => {
                 )}
                 {(syncStatus === 'unconfigured' || syncStatus === 'unauthenticated') && (
                   <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">
-                    Local Only
+                    {currentUserEmail ? 'Signed in' : 'Local Only — Needs Account'}
                   </span>
                 )}
               </div>
               <p className="text-xs text-slate-500 mt-0.5">
-                {currentUserEmail ? `Signed in as ${currentUserEmail}` : 'No cloud account connected on this device'}
+                {currentUserEmail ? `Connected as ${currentUserEmail}` : 'Connect your Supabase project to synchronize across laptop and iPhone'}
               </p>
             </div>
           </div>
@@ -345,11 +459,11 @@ export const SettingsView: React.FC = () => {
             {cloudSyncService.isConnected() && (
               <>
                 <button
-                  onClick={() => setIsPinModalOpen(true)}
+                  onClick={() => cloudSyncService.pullAllFromCloud()}
                   className="px-3 py-1.5 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition flex items-center gap-1"
                 >
-                  <KeyRound className="w-3.5 h-3.5" />
-                  <span>Change 4-Digit PIN</span>
+                  <RefreshCw className="w-3.5 h-3.5" />
+                  <span>Sync Now</span>
                 </button>
                 <button
                   onClick={async () => {
@@ -364,6 +478,165 @@ export const SettingsView: React.FC = () => {
             )}
           </div>
         </div>
+
+        {/* INLINE AUTH FORM: Shown when user is not connected yet */}
+        {!cloudSyncService.isConnected() && (
+          <div className="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-5 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div>
+                <h4 className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                  <UserPlus className="w-4 h-4 text-indigo-600" />
+                  <span>One-Time Cloud Account &amp; Device Pairing</span>
+                </h4>
+                <p className="text-xs text-slate-500">
+                  Create your private account or sign in to link this device. Row-Level Security ensures only you can access your data.
+                </p>
+              </div>
+
+              {/* Mode Toggle */}
+              <div className="inline-flex rounded-xl bg-slate-200/70 p-1 text-xs font-semibold">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAuthMode('signup');
+                    setAuthError('');
+                    setAuthSuccess('');
+                  }}
+                  className={`px-3 py-1.5 rounded-lg transition ${
+                    authMode === 'signup' ? 'bg-white text-indigo-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  Create Account &amp; Set PIN
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAuthMode('signin');
+                    setAuthError('');
+                    setAuthSuccess('');
+                  }}
+                  className={`px-3 py-1.5 rounded-lg transition ${
+                    authMode === 'signin' ? 'bg-white text-indigo-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  Sign In Existing
+                </button>
+              </div>
+            </div>
+
+            <form onSubmit={handleInlineAuthSubmit} className="space-y-3 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1">Account Email</label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="your-email@example.com"
+                    value={authEmail}
+                    onChange={(e) => setAuthEmail(e.target.value)}
+                    className="w-full rounded-xl border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-indigo-600 focus:outline-none bg-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1">Master Password</label>
+                  <div className="relative">
+                    <input
+                      type={showAuthPassword ? 'text' : 'password'}
+                      required
+                      placeholder="••••••••••••"
+                      value={authPassword}
+                      onChange={(e) => setAuthPassword(e.target.value)}
+                      className="w-full rounded-xl border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-indigo-600 focus:outline-none pr-8 bg-white"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowAuthPassword(!showAuthPassword)}
+                      className="absolute right-2.5 top-2.5 text-slate-400 hover:text-slate-600"
+                    >
+                      {showAuthPassword ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {authMode === 'signup' && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                  <div>
+                    <label className="block text-xs font-medium text-slate-700 mb-1">
+                      Choose 4-Digit Numeric PIN
+                    </label>
+                    <input
+                      type="password"
+                      maxLength={4}
+                      pattern="\d{4}"
+                      required
+                      placeholder="1234"
+                      value={authPin}
+                      onChange={(e) => setAuthPin(e.target.value.replace(/\D/g, ''))}
+                      className="w-full rounded-xl border border-slate-300 px-3 py-2 text-xs text-center font-bold tracking-widest text-slate-900 focus:border-indigo-600 focus:outline-none bg-white"
+                    />
+                    <span className="text-[10px] text-slate-400 block mt-0.5">Used for normal daily entry on this device</span>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-medium text-slate-700 mb-1">
+                      Confirm 4-Digit PIN
+                    </label>
+                    <input
+                      type="password"
+                      maxLength={4}
+                      pattern="\d{4}"
+                      required
+                      placeholder="1234"
+                      value={authConfirmPin}
+                      onChange={(e) => setAuthConfirmPin(e.target.value.replace(/\D/g, ''))}
+                      className="w-full rounded-xl border border-slate-300 px-3 py-2 text-xs text-center font-bold tracking-widest text-slate-900 focus:border-indigo-600 focus:outline-none bg-white"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {authError && (
+                <p className="text-xs text-rose-600 bg-rose-50 border border-rose-200 p-2.5 rounded-xl font-medium">
+                  {authError}
+                </p>
+              )}
+
+              {authSuccess && (
+                <p className="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl font-medium flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                  <span>{authSuccess}</span>
+                </p>
+              )}
+
+              <div className="pt-2 flex items-center gap-3">
+                <button
+                  type="submit"
+                  disabled={authLoading}
+                  className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-sm transition flex items-center gap-2 disabled:opacity-50"
+                >
+                  {authLoading && <RefreshCw className="w-3.5 h-3.5 animate-spin" />}
+                  {authMode === 'signup' ? (
+                    <>
+                      <UserPlus className="w-3.5 h-3.5" />
+                      <span>Create Account &amp; Link PIN</span>
+                    </>
+                  ) : (
+                    <>
+                      <LogIn className="w-3.5 h-3.5" />
+                      <span>Sign In &amp; Connect Device</span>
+                    </>
+                  )}
+                </button>
+
+                <span className="text-[11px] text-slate-400">
+                  Password is sent securely over HTTPS directly to Supabase and is never logged or exposed.
+                </span>
+              </div>
+            </form>
+          </div>
+        )}
 
         {/* Free-Tier 7-Day Inactivity Warning & Recovery Guide */}
         <div className="bg-amber-50/60 border border-amber-200/80 rounded-xl p-4 text-xs text-amber-950 space-y-2">
@@ -386,7 +659,7 @@ export const SettingsView: React.FC = () => {
           </p>
         </div>
 
-        {/* Cloud Migration Wizard Section */}
+        {/* Cloud Migration Wizard Section (Visible when connected) */}
         {cloudSyncService.isConnected() && (
           <div className="pt-3 border-t border-slate-100 space-y-3">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
@@ -693,14 +966,18 @@ export const SettingsView: React.FC = () => {
                 <KeyRound className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900 text-sm">Change 4-Digit PIN</h3>
-                <p className="text-xs text-slate-500">Updates app lock PIN across all devices</p>
+                <h3 className="font-bold text-slate-900 text-sm">
+                  {hasPin ? 'Change 4-Digit PIN' : 'Set Up 4-Digit PIN'}
+                </h3>
+                <p className="text-xs text-slate-500">Protects tracker access on this device</p>
               </div>
             </div>
 
             <form onSubmit={handleChangePin} className="space-y-3">
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">New 4-Digit PIN</label>
+                <label className="block text-xs font-medium text-slate-700 mb-1">
+                  {hasPin ? 'New 4-Digit PIN' : 'Enter 4-Digit PIN'}
+                </label>
                 <input
                   type="password"
                   maxLength={4}
@@ -714,7 +991,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">Confirm New PIN</label>
+                <label className="block text-xs font-medium text-slate-700 mb-1">Confirm PIN</label>
                 <input
                   type="password"
                   maxLength={4}
@@ -741,7 +1018,7 @@ export const SettingsView: React.FC = () => {
                   disabled={isChangingPin}
                   className="flex-1 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-sm transition disabled:opacity-50"
                 >
-                  {isChangingPin ? 'Updating...' : 'Save New PIN'}
+                  {isChangingPin ? 'Saving...' : 'Save PIN'}
                 </button>
                 <button
                   type="button"
