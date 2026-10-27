@@ -176,17 +176,27 @@ export const SettingsView: React.FC = () => {
       return;
     }
 
-    const confirmed = window.confirm(
-      'This will upload and merge your existing local IndexedDB records into your cloud Supabase database. A safety backup will be downloaded first. Proceed?'
-    );
-    if (!confirmed) return;
-
     try {
       setIsMigrating(true);
+      const existingCloudCount = await cloudSyncService.getCloudRecordCount();
+
+      let confirmMsg = `This will upload your ${totalLocalRecords} local IndexedDB records to your private Supabase database.`;
+      if (existingCloudCount > 0) {
+        confirmMsg = `Your cloud database already contains ${existingCloudCount} records.\n\nLocal records will be safely MERGED with cloud records (existing cloud records are preserved). A complete backup will be downloaded before proceeding.\n\nProceed with safe merge?`;
+      } else {
+        confirmMsg = `This will upload and initialize your cloud database with your ${totalLocalRecords} local records. A complete backup will be downloaded before proceeding.\n\nProceed?`;
+      }
+
+      const confirmed = window.confirm(confirmMsg);
+      if (!confirmed) {
+        setIsMigrating(false);
+        return;
+      }
+
       // Auto-download recovery backup first
       await exportApplicationDataPackage();
 
-      const result = await cloudSyncService.migrateLocalDataToCloud();
+      const result = await cloudSyncService.migrateLocalDataToCloud('merge');
       setMigrationResult(result);
       if (result.success) {
         loadSettingsData();

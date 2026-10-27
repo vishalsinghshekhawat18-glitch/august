@@ -448,7 +448,28 @@ class CloudSyncService {
     return { pulledCount, errors };
   }
 
-  public async migrateLocalDataToCloud(): Promise<{
+  public async getCloudRecordCount(): Promise<number> {
+    if (!this.isConnected() || !this.client || !this.currentUser) return 0;
+    let total = 0;
+    const storeNames = Object.keys(STORE_TABLE_MAP) as StoreName[];
+    for (const store of storeNames) {
+      const table = STORE_TABLE_MAP[store];
+      try {
+        const { count, error } = await this.client
+          .from(table)
+          .select('*', { count: 'exact', head: true })
+          .eq('user_id', this.currentUser.id);
+        if (!error && count) {
+          total += count;
+        }
+      } catch {
+        // ignore count probe error
+      }
+    }
+    return total;
+  }
+
+  public async migrateLocalDataToCloud(mode: 'merge' | 'replace' = 'merge'): Promise<{
     success: boolean;
     totalUploaded: number;
     details: Record<string, number>;
@@ -491,6 +512,15 @@ class CloudSyncService {
         }
 
         const table = STORE_TABLE_MAP[store];
+
+        // If replacing, clear cloud table for this user first
+        if (mode === 'replace') {
+          await this.client
+            .from(table)
+            .delete()
+            .eq('user_id', this.currentUser.id);
+        }
+
         const rows = items.map((item) => ({
           id: String(item.id),
           user_id: this.currentUser!.id,
@@ -511,6 +541,9 @@ class CloudSyncService {
         details[store] = items.length;
         totalUploaded += items.length;
       }
+
+      // After upload, pull remote changes to ensure local IndexedDB has all unified records
+      await this.pullAllFromCloud();
 
       this.setStatus('synced', `Migrated ${totalUploaded} records to cloud successfully`);
       return { success: true, totalUploaded, details };
