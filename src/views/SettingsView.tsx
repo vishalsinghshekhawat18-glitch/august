@@ -598,9 +598,14 @@ export const SettingsView: React.FC = () => {
               )}
 
               {authError && (
-                <p className="text-xs text-rose-600 bg-rose-50 border border-rose-200 p-2.5 rounded-xl font-medium">
-                  {authError}
-                </p>
+                <div className="text-xs text-rose-700 bg-rose-50 border border-rose-200 p-2.5 rounded-xl font-medium space-y-1">
+                  <div>{authError}</div>
+                  {authError.toLowerCase().includes('email not confirmed') && (
+                    <div className="text-[11px] font-normal text-rose-800 pt-1 border-t border-rose-200">
+                      <strong>To fix instantly:</strong> In Supabase Dashboard &rarr; <strong>Authentication</strong> &rarr; <strong>Users</strong>, click the <code>...</code> menu next to your email and select <strong>Auto-confirm user</strong>. You can also turn off &quot;Confirm email&quot; in Providers &rarr; Email.
+                    </div>
+                  )}
+                </div>
               )}
 
               {authSuccess && (
