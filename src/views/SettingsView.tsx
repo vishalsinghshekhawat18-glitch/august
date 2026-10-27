@@ -729,9 +729,20 @@ export const SettingsView: React.FC = () => {
                     <span>Successfully uploaded {migrationResult.totalUploaded} records to Supabase! Your devices are now in sync.</span>
                   </div>
                 ) : (
-                  <div className="flex items-center gap-1.5 font-semibold">
-                    <AlertTriangle className="w-4 h-4 text-rose-600" />
-                    <span>Migration issue: {migrationResult.error}</span>
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-1.5 font-semibold">
+                      <AlertTriangle className="w-4 h-4 text-rose-600 flex-shrink-0" />
+                      <span>Migration issue: {migrationResult.error}</span>
+                    </div>
+                    {migrationResult.error?.includes('permission denied') && (
+                      <div className="text-[11px] text-rose-700 pl-5 space-y-1">
+                        <p>PostgreSQL requires table permissions for authenticated users. In your Supabase Dashboard &rarr; SQL Editor, run:</p>
+                        <code className="block p-2 bg-rose-100 rounded text-rose-950 font-mono text-[10px]">
+                          GRANT ALL ON ALL TABLES IN SCHEMA public TO anon, authenticated;
+                        </code>
+                        <p>After running that query, click &quot;Upload &amp; Merge to Cloud&quot; again.</p>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

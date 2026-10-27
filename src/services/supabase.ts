@@ -212,6 +212,23 @@ class CloudSyncService {
     // Check if user has a PIN configured (either in cloud or locally)
     const profile = await this.fetchUserProfile();
     if ((profile && profile.pinHash) || this.hasPin()) {
+      // If we have a local PIN but cloud profile does not have it yet, sync to cloud
+      if (!profile?.pinHash && this.hasPin()) {
+        try {
+          const localHash = typeof window !== 'undefined' ? localStorage.getItem('august_local_pin_hash') : null;
+          const localSalt = typeof window !== 'undefined' ? localStorage.getItem('august_local_pin_salt') : null;
+          if (localHash && localSalt && this.client && this.currentUser) {
+            await this.client.from('user_profiles').upsert({
+              user_id: this.currentUser.id,
+              pin_hash: localHash,
+              pin_salt: localSalt,
+              updated_at: new Date().toISOString(),
+            }, { onConflict: 'user_id' });
+          }
+        } catch (e) {
+          console.warn('Could not sync local PIN to cloud user profile:', e);
+        }
+      }
       this.isUnlocked = false;
       this.setStatus('locked', 'Enter 4-digit PIN to access tracker');
     } else {
@@ -306,7 +323,7 @@ class CloudSyncService {
         pin_hash: hash,
         pin_salt: salt,
         updated_at: now,
-      });
+      }, { onConflict: 'user_id' });
 
       if (error) {
         throw new Error(`Failed to update cloud PIN: ${error.message}`);
@@ -394,7 +411,7 @@ class CloudSyncService {
         user_id: this.currentUser.id,
         data: item,
         updated_at: new Date().toISOString(),
-      });
+      }, { onConflict: 'user_id, id' });
 
       if (error) {
         console.warn(`Supabase push error on ${table}:`, error.message);
@@ -571,7 +588,7 @@ class CloudSyncService {
         const CHUNK_SIZE = 50;
         for (let i = 0; i < rows.length; i += CHUNK_SIZE) {
           const chunk = rows.slice(i, i + CHUNK_SIZE);
-          const { error } = await this.client.from(table).upsert(chunk);
+          const { error } = await this.client.from(table).upsert(chunk, { onConflict: 'user_id, id' });
           if (error) {
             throw new Error(`Failed to upload to ${table}: ${error.message}`);
           }

@@ -241,3 +241,19 @@ CREATE POLICY "User owns app_settings" ON public.app_settings
 CREATE INDEX IF NOT EXISTS idx_study_logs_user_updated ON public.study_logs (user_id, updated_at DESC);
 CREATE INDEX IF NOT EXISTS idx_revisions_user_updated ON public.revisions (user_id, updated_at DESC);
 CREATE INDEX IF NOT EXISTS idx_weekly_plans_user_updated ON public.weekly_plans (user_id, updated_at DESC);
+
+-- ==============================================================================
+-- 4. Grant table and sequence permissions to authenticated and anon roles
+-- PostgreSQL requires table-level GRANTs in addition to Row-Level Security policies.
+-- Row-Level Security (RLS) guarantees that each user can ONLY access their own rows.
+-- ==============================================================================
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO anon, authenticated;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO anon, authenticated;
+GRANT ALL ON ALL ROUTINES IN SCHEMA public TO anon, authenticated;
+
+-- Ensure future tables and sequences created in public schema also inherit these permissions
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO anon, authenticated;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO anon, authenticated;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON ROUTINES TO anon, authenticated;
+
