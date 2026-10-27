@@ -355,6 +355,9 @@ class CloudSyncService {
     if (data.user) {
       this.currentUser = data.user;
       this.currentSession = data.session;
+      if (!data.session) {
+        throw new Error('Account created, but email confirmation is required by Supabase. In Supabase Dashboard -> Authentication -> Users, click "..." next to your email and select "Auto-confirm user", then sign in.');
+      }
       if (initialPin && /^\d{4}$/.test(initialPin)) {
         await this.setPin(initialPin);
       }
@@ -394,7 +397,7 @@ class CloudSyncService {
   }
 
   public isConnected(): boolean {
-    return !!this.client && !!this.currentUser;
+    return !!this.client && !!this.currentUser && !!this.currentSession;
   }
 
   // --- Bi-directional Cloud Synchronization ---
@@ -531,8 +534,8 @@ class CloudSyncService {
     details: Record<string, number>;
     error?: string;
   }> {
-    if (!this.isConnected() || !this.client || !this.currentUser) {
-      throw new Error('Must be signed in to Supabase before migrating data.');
+    if (!this.isConnected() || !this.client || !this.currentUser || !this.currentSession) {
+      throw new Error('You must be signed in with an active cloud session before migrating data. Please check your login state.');
     }
 
     this.setStatus('syncing', 'Uploading local data to cloud...');

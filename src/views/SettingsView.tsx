@@ -748,6 +748,15 @@ export const SettingsView: React.FC = () => {
                         <p>After running that query, click &quot;Upload &amp; Merge to Cloud&quot; again.</p>
                       </div>
                     )}
+                    {migrationResult.error?.includes('row-level security') && (
+                      <div className="text-[11px] text-rose-700 pl-5 space-y-1">
+                        <p>Your session token is unauthenticated or expired (usually because the user account was not confirmed yet). To fix:</p>
+                        <ol className="list-decimal pl-4 space-y-0.5">
+                          <li>Auto-confirm your user in Supabase Dashboard &rarr; Authentication &rarr; Users (click ... &rarr; Auto-confirm user).</li>
+                          <li>Click &quot;Sign Out&quot; above and sign in under &quot;Sign In Existing&quot; to establish an active session token.</li>
+                        </ol>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
