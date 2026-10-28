@@ -60,17 +60,157 @@ export const OCTOBER_ECONOMICS_CHAPTERS: OctoberChapter[] = [
 ];
 
 export const OCTOBER_CURRENT_AFFAIRS_SECTIONS: OctoberChapter[] = [
-  { chapterNumber: 1, title: 'ESI, Finance and Business', part: 'January–March 2026' },
-  { chapterNumber: 2, title: 'Regulatory Bodies, PIB, Circulars and Notifications', part: 'January–March 2026' },
-  { chapterNumber: 3, title: 'International Organisations and Affairs', part: 'January–March 2026' },
-  { chapterNumber: 4, title: 'National and State News', part: 'January–March 2026' },
-  { chapterNumber: 5, title: 'MoUs, Conferences and Appointments', part: 'January–March 2026' },
-  { chapterNumber: 6, title: 'Science, Technology, Defence and Sports', part: 'January–March 2026' },
-  { chapterNumber: 7, title: 'Awards, Books, Indices and Rankings', part: 'January–March 2026' },
-  { chapterNumber: 8, title: 'Government Schemes and Static Links', part: 'January–March 2026' },
-  { chapterNumber: 9, title: 'Summary Tables', part: 'January–March 2026' },
-  { chapterNumber: 10, title: 'Revision (75 Recall Questions)', part: 'January–March 2026' },
+  // Part 1: Static Bank (10 Sections)
+  { chapterNumber: 1, title: 'Constitution, Polity and Amendments', part: 'Static Bank' },
+  { chapterNumber: 2, title: 'RBI, Monetary Policy and Banking Basics', part: 'Static Bank' },
+  { chapterNumber: 3, title: 'GST, Taxation and Budget', part: 'Static Bank' },
+  { chapterNumber: 4, title: 'Financial Regulators and Institutions', part: 'Static Bank' },
+  { chapterNumber: 5, title: 'Government Committees, Commissions and Reports', part: 'Static Bank' },
+  { chapterNumber: 6, title: 'Schemes and Acts with Launch Year and Ministry', part: 'Static Bank' },
+  { chapterNumber: 7, title: 'Important Days, Themes and Headquarters', part: 'Static Bank' },
+  { chapterNumber: 8, title: 'Older Important Current Affairs', part: 'Static Bank' },
+  { chapterNumber: 9, title: 'Summary Tables (key numbers and dates)', part: 'Static Bank' },
+  { chapterNumber: 10, title: 'Revision (168 Recall Questions)', part: 'Static Bank' },
+
+  // Part 2: January–March 2026 (10 Sections)
+  { chapterNumber: 11, title: 'ESI, Finance and Business', part: 'January–March 2026' },
+  { chapterNumber: 12, title: 'Regulatory Bodies, PIB, Circulars and Notifications', part: 'January–March 2026' },
+  { chapterNumber: 13, title: 'International Organisations and Affairs', part: 'January–March 2026' },
+  { chapterNumber: 14, title: 'National and State News', part: 'January–March 2026' },
+  { chapterNumber: 15, title: 'MoUs, Conferences and Appointments', part: 'January–March 2026' },
+  { chapterNumber: 16, title: 'Science, Technology, Defence and Sports', part: 'January–March 2026' },
+  { chapterNumber: 17, title: 'Awards, Books, Indices and Rankings', part: 'January–March 2026' },
+  { chapterNumber: 18, title: 'Government Schemes and Static Links', part: 'January–March 2026' },
+  { chapterNumber: 19, title: 'Summary Tables', part: 'January–March 2026' },
+  { chapterNumber: 20, title: 'Revision (75 Recall Questions)', part: 'January–March 2026' },
 ];
+
+export interface ParsedOctoberUnit {
+  order: number;
+  name: string;
+  part: string;
+  anchorId: string;
+  notes: string;
+}
+
+/**
+ * Dynamically parse any October Library book HTML into parts and sections/chapters.
+ * Handles multiple parts (e.g. Static Bank, January–March 2026, April–June 2026)
+ * and single-level chapters (e.g. Economics).
+ */
+export function parseOctoberHtml(html: string, slug: string, baseReaderUrl: string): ParsedOctoberUnit[] {
+  const units: ParsedOctoberUnit[] = [];
+  const cleanBase = baseReaderUrl.split('#')[0];
+
+  const hasParts = /<h1\s+class="rd-part"/i.test(html);
+
+  if (hasParts) {
+    const rawParts = html.split(/<h1\s+class="rd-part"/i);
+    for (let i = 1; i < rawParts.length; i++) {
+      const chunk = '<h1 class="rd-part"' + rawParts[i];
+      const h1Match = chunk.match(/<h1[^>]*id="([^"]+)"[^>]*data-toc="([^"]+)"[^>]*>([\s\S]*?)<\/h1>/i);
+      const partToc = h1Match ? h1Match[2].trim() : `Part ${i}`;
+
+      let partShort = partToc;
+      if (partToc.toLowerCase().includes('january–march') || partToc.toLowerCase().includes('jan-mar')) {
+        partShort = 'Jan–Mar 2026';
+      } else if (partToc.toLowerCase().includes('static')) {
+        partShort = 'Static';
+      } else if (partToc.toLowerCase().includes('april–june') || partToc.toLowerCase().includes('apr-jun')) {
+        partShort = 'Apr–Jun 2026';
+      } else if (partToc.toLowerCase().includes('july–september') || partToc.toLowerCase().includes('jul-sep')) {
+        partShort = 'Jul–Sep 2026';
+      } else if (partToc.toLowerCase().includes('october–december') || partToc.toLowerCase().includes('oct-dec')) {
+        partShort = 'Oct–Dec 2026';
+      }
+
+      const h2Regex = /<h2[^>]*id="([^"]+)"[^>]*data-toc="([^"]+)"[^>]*>([\s\S]*?)<\/h2>/gi;
+      let h2Match;
+      let sOrder = 1;
+      while ((h2Match = h2Regex.exec(chunk)) !== null) {
+        const sId = h2Match[1];
+        const sToc = h2Match[2].trim();
+        const cleanTitle = sToc.replace(/^\d+\.\s*/, '');
+        const directUrl = `${cleanBase}#${sId}`;
+
+        units.push({
+          order: units.length + 1,
+          name: `[${partShort}] Section ${sOrder}: ${cleanTitle}`,
+          part: partToc,
+          anchorId: sId,
+          notes: directUrl,
+        });
+        sOrder++;
+      }
+    }
+  } else {
+    // Single-level chapters without rd-part (Economics)
+    const h2Regex = /<h2[^>]*class="[^"]*rd-chapter[^"]*"[^>]*id="([^"]+)"[^>]*data-toc="([^"]+)"[^>]*>/gi;
+    let h2Match;
+    let chNum = 1;
+    while ((h2Match = h2Regex.exec(html)) !== null) {
+      if (h2Match[0].includes('rd-rev')) continue; // Skip revision quiz duplicates
+      const sId = h2Match[1];
+      const sToc = h2Match[2].trim();
+      const cleanTitle = sToc.replace(/^\d+\.\s*/, '');
+      const directUrl = `${cleanBase}#${sId}`;
+
+      units.push({
+        order: chNum,
+        name: `Chapter ${chNum}: ${cleanTitle}`,
+        part: 'Foundations',
+        anchorId: sId,
+        notes: directUrl,
+      });
+      chNum++;
+    }
+  }
+
+  return units;
+}
+
+/**
+ * Fetch live book content from October Library (or fallback to pre-bundled data)
+ */
+export async function fetchOctoberBookUnits(slug: string, baseReaderUrl: string): Promise<ParsedOctoberUnit[]> {
+  try {
+    const primaryUrl = `https://vishalsinghshekhawat18-glitch.github.io/October/books/${slug}/content.html`;
+    const res = await fetch(primaryUrl, { cache: 'no-cache' });
+    if (res.ok) {
+      const html = await res.text();
+      const parsed = parseOctoberHtml(html, slug, baseReaderUrl);
+      if (parsed.length > 0) return parsed;
+    }
+  } catch (err) {
+    console.warn(`Failed to live-fetch October book ${slug}, falling back to pre-bundled units:`, err);
+  }
+
+  // Pre-bundled fallback
+  const cleanBase = baseReaderUrl.split('#')[0];
+  if (slug === 'current-affairs') {
+    return OCTOBER_CURRENT_AFFAIRS_SECTIONS.map((s, idx) => {
+      const isStatic = s.part.includes('Static');
+      const sNum = isStatic ? s.chapterNumber : s.chapterNumber - 10;
+      const partTag = isStatic ? 'Static' : 'Jan–Mar 2026';
+      const anchor = isStatic ? `static-s${sNum}` : `jan-mar-2026-s${sNum}`;
+      return {
+        order: idx + 1,
+        name: `[${partTag}] Section ${sNum}: ${s.title}`,
+        part: s.part,
+        anchorId: anchor,
+        notes: `${cleanBase}#${anchor}`,
+      };
+    });
+  }
+
+  return OCTOBER_ECONOMICS_CHAPTERS.map((ch) => ({
+    order: ch.chapterNumber,
+    name: `Chapter ${ch.chapterNumber}: ${ch.title}`,
+    part: ch.part,
+    anchorId: `ch${ch.chapterNumber}`,
+    notes: `${cleanBase}#p1-chapter-${ch.chapterNumber}`,
+  }));
+}
 
 /**
  * Checks if a subject link or name points to October Library and returns the book slug if matched
@@ -105,7 +245,7 @@ export interface OctoberSubjectMeta {
 }
 
 /**
- * Determines October metadata, expected unit count (47 for Economics, 10 for Current Affairs),
+ * Determines October metadata, expected unit count (47 for Economics, 20+ for Current Affairs),
  * and checks if mismatched topics were mistakenly imported.
  */
 export function getOctoberSubjectMeta(subject: Subject, allTopics: Topic[] = []): OctoberSubjectMeta {
@@ -135,7 +275,7 @@ export function getOctoberSubjectMeta(subject: Subject, allTopics: Topic[] = [])
       isOctoberSubject: true,
       bookSlug: 'current-affairs',
       bookTitle: 'Current Affairs',
-      expectedUnitsCount: 10,
+      expectedUnitsCount: 20, // 10 Static Bank + 10 Jan–Mar (plus any future months)
       unitLabel: 'Sections',
       hasMismatchedTopics: hasEconomicsMismatched,
     };
@@ -152,10 +292,10 @@ export function getOctoberSubjectMeta(subject: Subject, allTopics: Topic[] = [])
 }
 
 /**
- * Unified importer for October Library books:
- * - Current Affairs: 10 Sections with direct anchors (#jan-mar-2026-s1 .. s10)
+ * Unified importer and incremental synchronizer for October Library books:
+ * - Current Affairs: Dynamically fetches all parts (Static Bank, January–March, and any newly added months/files)
  * - Economics: 47 Chapters across 6 parts
- * Automatically cleans up any mismatched topics (e.g. Economics chapters accidentally added to Current Affairs).
+ * Preserves all completed progress on existing topics and adds only new sections!
  */
 export async function importOctoberSubjectChapters(
   subject: Subject,
@@ -172,20 +312,19 @@ export async function importOctoberSubjectChapters(
   const existingTopics = await dbService.getAll<Topic>('topics');
   const subjectTopics = existingTopics.filter((t) => t.subjectId === subject.id);
 
-  let units: OctoberChapter[] = [];
-  let unitLabel = 'Chapters';
-  let bookTitle = 'Economics';
   const baseReaderUrl =
     options?.baseReaderUrl ||
     subject.description ||
     `https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=${slug}`;
 
-  if (slug === 'current-affairs') {
-    units = OCTOBER_CURRENT_AFFAIRS_SECTIONS;
-    unitLabel = 'Sections';
-    bookTitle = 'Current Affairs';
+  // 1. Fetch live or fallback parsed units (supports Static Bank, Jan-Mar, and any future parts)
+  const units = await fetchOctoberBookUnits(slug, baseReaderUrl);
+  const isSection = slug === 'current-affairs';
+  const unitLabel = isSection ? 'Sections' : 'Chapters';
+  const bookTitle = isSection ? 'Current Affairs' : 'Economics';
 
-    // If subject currently has mismatched Economics chapters, remove them
+  // 2. Clean up any mismatched Economics chapters accidentally in Current Affairs
+  if (slug === 'current-affairs') {
     const mismatchedEconomicsTopics = subjectTopics.filter(
       (t) =>
         t.name.toLowerCase().includes('economic organisation') ||
@@ -199,10 +338,6 @@ export async function importOctoberSubjectChapters(
         await dbService.delete('topicProgress', `${examId}_${mis.id}`);
       }
     }
-  } else {
-    units = OCTOBER_ECONOMICS_CHAPTERS;
-    unitLabel = 'Chapters';
-    bookTitle = 'Economics';
   }
 
   // Refreshed topics after any cleanups
@@ -212,31 +347,20 @@ export async function importOctoberSubjectChapters(
   const topicsToInsert: Topic[] = [];
 
   for (const item of units) {
-    const isSection = unitLabel === 'Sections';
-    const unitName = isSection
-      ? `Section ${item.chapterNumber}: ${item.title}`
-      : `Chapter ${item.chapterNumber}: ${item.title}`;
-
+    // Check if topic with matching name or anchor already exists
     const alreadyExists = currentSubjectTopics.some(
       (t) =>
-        t.name.toLowerCase() === unitName.toLowerCase() ||
-        (isSection
-          ? t.name.toLowerCase().includes(`section ${item.chapterNumber}:`) ||
-            t.name.toLowerCase().includes(`section ${item.chapterNumber} `)
-          : t.name.toLowerCase().includes(`chapter ${item.chapterNumber}:`) ||
-            t.name.toLowerCase().includes(`chapter ${item.chapterNumber} `))
+        t.name.toLowerCase() === item.name.toLowerCase() ||
+        (item.anchorId && t.notes && t.notes.includes(`#${item.anchorId}`))
     );
 
     if (!alreadyExists) {
-      const anchor = slug === 'current-affairs' ? `#jan-mar-2026-s${item.chapterNumber}` : '';
-      const directUrl = `${baseReaderUrl.split('#')[0]}${anchor}`;
-
       topicsToInsert.push({
-        id: `top_oct_${slug.replace(/[^a-z0-9]/g, '_')}_${item.chapterNumber}_${Date.now().toString(36)}`,
+        id: `top_oct_${slug.replace(/[^a-z0-9]/g, '_')}_${item.order}_${Date.now().toString(36)}_${Math.random().toString(36).substring(2, 5)}`,
         subjectId: subject.id,
-        name: unitName,
-        order: item.chapterNumber,
-        notes: directUrl,
+        name: item.name,
+        order: item.order,
+        notes: item.notes,
         archived: false,
       });
     }
@@ -246,7 +370,7 @@ export async function importOctoberSubjectChapters(
     await dbService.putMany<Topic>('topics', topicsToInsert);
   }
 
-  // Initialize TopicProgress for linked exams
+  // Initialize TopicProgress for newly inserted units across linked exams
   const targetExamIds = subject.examIds && subject.examIds.length > 0 ? subject.examIds : [];
   for (const t of topicsToInsert) {
     for (const examId of targetExamIds) {

@@ -990,7 +990,7 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       const meta = getOctoberSubjectMeta(caSubject, [accidentalEconTopic]);
       expect(meta.isOctoberSubject).toBe(true);
       expect(meta.bookSlug).toBe('current-affairs');
-      expect(meta.expectedUnitsCount).toBe(10);
+      expect(meta.expectedUnitsCount).toBe(20);
       expect(meta.unitLabel).toBe('Sections');
       expect(meta.hasMismatchedTopics).toBe(true);
 
@@ -998,16 +998,17 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       const result = await importOctoberSubjectChapters(caSubject);
       expect(result.bookSlug).toBe('current-affairs');
       expect(result.unitLabel).toBe('Sections');
-      expect(result.totalCount).toBe(10);
+      expect(result.totalCount).toBe(20);
 
-      // Verify accidental Economics chapter was deleted and replaced
+      // Verify accidental Economics chapter was deleted and replaced with all 20 sections (Static + Jan-Mar)
       const allTopics = await dbService.getAll<Topic>('topics');
       const caTopics = allTopics.filter((t) => t.subjectId === 'sub_ca');
-      expect(caTopics.length).toBe(10);
+      expect(caTopics.length).toBe(20);
       expect(caTopics.some((t) => t.name.includes('Economic Organisation'))).toBe(false);
-      expect(caTopics[0].name).toBe('Section 1: ESI, Finance and Business');
-      expect(caTopics[0].notes).toContain('#jan-mar-2026-s1');
-      expect(caTopics[9].name).toBe('Section 10: Revision (75 Recall Questions)');
+      expect(caTopics.some((t) => t.name.includes('[Static]'))).toBe(true);
+      expect(caTopics.some((t) => t.name.includes('[Jan–Mar 2026]'))).toBe(true);
+      expect(caTopics.some((t) => t.notes && t.notes.includes('#static-s1'))).toBe(true);
+      expect(caTopics.some((t) => t.notes && t.notes.includes('#jan-mar-2026-s1'))).toBe(true);
     });
   });
 });

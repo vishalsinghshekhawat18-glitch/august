@@ -6,6 +6,7 @@ import {
   Trash2,
   Archive,
   ChevronDown,
+  ChevronUp,
   ChevronRight,
   CheckCircle2,
   AlertCircle,
@@ -89,9 +90,6 @@ export const SyllabusView: React.FC = () => {
         pMap.set(`${p.examId}_${p.topicId}`, p);
       }
       setProgressMap(pMap);
-
-      // Expand all subjects by default for clear view
-      setExpandedSubjects(new Set(subs.map((s) => s.id)));
     } catch (err) {
       console.error('Error loading syllabus data:', err);
     }
@@ -324,6 +322,34 @@ export const SyllabusView: React.FC = () => {
             <span>Add Subject</span>
           </button>
 
+          <button
+            onClick={() => {
+              if (expandedSubjects.size === filteredSubjects.length) {
+                setExpandedSubjects(new Set());
+              } else {
+                setExpandedSubjects(new Set(filteredSubjects.map((s) => s.id)));
+              }
+            }}
+            className="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition-colors flex items-center gap-1.5"
+            title={
+              expandedSubjects.size === filteredSubjects.length
+                ? 'Collapse all subjects'
+                : 'Expand all subjects'
+            }
+          >
+            {expandedSubjects.size === filteredSubjects.length ? (
+              <>
+                <ChevronUp className="w-3.5 h-3.5 text-slate-600" />
+                <span>Collapse All</span>
+              </>
+            ) : (
+              <>
+                <ChevronDown className="w-3.5 h-3.5 text-slate-600" />
+                <span>Expand All</span>
+              </>
+            )}
+          </button>
+
           <label className="flex items-center gap-2 text-xs text-slate-600 cursor-pointer ml-2">
             <input
               type="checkbox"
@@ -551,32 +577,41 @@ export const SyllabusView: React.FC = () => {
                     {(() => {
                       const meta = getOctoberSubjectMeta(subject, topics);
                       if (!meta.isOctoberSubject) return null;
-                      if (subjectTopics.length >= meta.expectedUnitsCount && !meta.hasMismatchedTopics) {
-                        return null;
+
+                      // If mismatched topics detected (e.g. Economics chapters under Current Affairs)
+                      if (meta.hasMismatchedTopics) {
+                        return (
+                          <button
+                            onClick={() => handleImportOctober(subject)}
+                            disabled={isImporting}
+                            className="px-2.5 py-1.5 text-xs font-semibold rounded-lg border text-rose-700 bg-rose-50 hover:bg-rose-100 border-rose-300 transition-colors flex items-center gap-1 shadow-2xs disabled:opacity-50"
+                            title="Mismatched Economics chapters detected. Click to clean up and load all Current Affairs sections (Static Bank + Jan–Mar)."
+                          >
+                            <Download className="w-3.5 h-3.5 text-rose-600" />
+                            <span>{isImporting ? 'Fixing...' : `Fix: Import ${meta.bookTitle} Sections`}</span>
+                          </button>
+                        );
                       }
 
+                      const hasExistingTopics = subjectTopics.length > 0;
                       const btnLabel = isImporting
-                        ? 'Importing...'
-                        : meta.hasMismatchedTopics
-                        ? `Fix: Import ${meta.expectedUnitsCount} ${meta.bookTitle} ${meta.unitLabel}`
-                        : `Import ${meta.expectedUnitsCount} ${meta.unitLabel}`;
+                        ? 'Syncing...'
+                        : hasExistingTopics
+                        ? 'Sync from October'
+                        : `Import from October (${meta.expectedUnitsCount} ${meta.unitLabel})`;
 
                       return (
                         <button
                           onClick={() => handleImportOctober(subject)}
                           disabled={isImporting}
-                          className={`px-2.5 py-1.5 text-xs font-semibold rounded-lg border transition-colors flex items-center gap-1 shadow-2xs disabled:opacity-50 ${
-                            meta.hasMismatchedTopics
-                              ? 'text-rose-700 bg-rose-50 hover:bg-rose-100 border-rose-300'
-                              : 'text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border-emerald-200'
-                          }`}
-                          title={
-                            meta.hasMismatchedTopics
-                              ? `Mismatched chapters detected. Click to clean up and load the ${meta.expectedUnitsCount} ${meta.unitLabel.toLowerCase()} of ${meta.bookTitle} from your October Library.`
-                              : `Automatically load the ${meta.expectedUnitsCount} ${meta.unitLabel.toLowerCase()} of ${meta.bookTitle} from your October Library`
-                          }
+                          className="px-2.5 py-1.5 text-xs font-semibold rounded-lg border text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border-emerald-200 transition-colors flex items-center gap-1 shadow-2xs disabled:opacity-50"
+                          title="Sync with your October Library to import any newly added files or months (e.g. Static Bank, future months)"
                         >
-                          <Download className="w-3.5 h-3.5 text-emerald-600" />
+                          {hasExistingTopics ? (
+                            <RotateCw className="w-3.5 h-3.5 text-emerald-600" />
+                          ) : (
+                            <Download className="w-3.5 h-3.5 text-emerald-600" />
+                          )}
                           <span>{btnLabel}</span>
                         </button>
                       );
