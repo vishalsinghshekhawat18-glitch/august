@@ -59,43 +59,184 @@ export const OCTOBER_ECONOMICS_CHAPTERS: OctoberChapter[] = [
   { chapterNumber: 47, title: 'Infrastructure', part: 'Development and Indian Economy' },
 ];
 
+export const OCTOBER_CURRENT_AFFAIRS_SECTIONS: OctoberChapter[] = [
+  { chapterNumber: 1, title: 'ESI, Finance and Business', part: 'January–March 2026' },
+  { chapterNumber: 2, title: 'Regulatory Bodies, PIB, Circulars and Notifications', part: 'January–March 2026' },
+  { chapterNumber: 3, title: 'International Organisations and Affairs', part: 'January–March 2026' },
+  { chapterNumber: 4, title: 'National and State News', part: 'January–March 2026' },
+  { chapterNumber: 5, title: 'MoUs, Conferences and Appointments', part: 'January–March 2026' },
+  { chapterNumber: 6, title: 'Science, Technology, Defence and Sports', part: 'January–March 2026' },
+  { chapterNumber: 7, title: 'Awards, Books, Indices and Rankings', part: 'January–March 2026' },
+  { chapterNumber: 8, title: 'Government Schemes and Static Links', part: 'January–March 2026' },
+  { chapterNumber: 9, title: 'Summary Tables', part: 'January–March 2026' },
+  { chapterNumber: 10, title: 'Revision (75 Recall Questions)', part: 'January–March 2026' },
+];
+
 /**
- * Checks if a subject link points to October Library and returns the book slug if matched
+ * Checks if a subject link or name points to October Library and returns the book slug if matched
  */
-export function detectOctoberBookSlug(urlOrText?: string): string | null {
-  if (!urlOrText) return null;
-  const match = urlOrText.match(/[?&]book=([a-zA-Z0-9_-]+)/i);
-  if (match) return match[1].toLowerCase();
-  if (urlOrText.toLowerCase().includes('economics')) return 'economics';
+export function detectOctoberBookSlug(urlOrText?: string, subjectName?: string): string | null {
+  if (urlOrText) {
+    const match = urlOrText.match(/[?&]book=([a-zA-Z0-9_-]+)/i);
+    if (match) return match[1].toLowerCase();
+    const low = urlOrText.toLowerCase();
+    if (low.includes('current-affairs') || low.includes('current_affairs') || low.includes('currentaffairs')) {
+      return 'current-affairs';
+    }
+    if (low.includes('economics')) return 'economics';
+  }
+  if (subjectName) {
+    const s = subjectName.toLowerCase();
+    if (s.includes('current affair') || s.includes('general awareness') || s.includes('ga') || s.includes('current')) {
+      return 'current-affairs';
+    }
+    if (s.includes('econ')) return 'economics';
+  }
   return null;
 }
 
-/**
- * Import all 47 chapters for an Economics subject into the tracker database
- */
-export async function importOctoberEconomicsChapters(
-  subjectId: string,
-  baseReaderUrl: string = 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=economics'
-): Promise<Topic[]> {
-  const existingTopics = await dbService.getAll<Topic>('topics');
-  const subjectTopics = existingTopics.filter((t) => t.subjectId === subjectId);
+export interface OctoberSubjectMeta {
+  isOctoberSubject: boolean;
+  bookSlug: string | null;
+  bookTitle: string;
+  expectedUnitsCount: number;
+  unitLabel: string; // 'Chapters' | 'Sections'
+  hasMismatchedTopics: boolean;
+}
 
-  // If topics already exist with matching names, don't duplicate
+/**
+ * Determines October metadata, expected unit count (47 for Economics, 10 for Current Affairs),
+ * and checks if mismatched topics were mistakenly imported.
+ */
+export function getOctoberSubjectMeta(subject: Subject, allTopics: Topic[] = []): OctoberSubjectMeta {
+  const slug = detectOctoberBookSlug(subject.description, subject.name);
+  if (!slug) {
+    return {
+      isOctoberSubject: false,
+      bookSlug: null,
+      bookTitle: subject.name,
+      expectedUnitsCount: 0,
+      unitLabel: 'Chapters',
+      hasMismatchedTopics: false,
+    };
+  }
+
+  const subjectTopics = allTopics.filter((t) => t.subjectId === subject.id && !t.archived);
+
+  if (slug === 'current-affairs') {
+    const hasEconomicsMismatched = subjectTopics.some(
+      (t) =>
+        t.name.toLowerCase().includes('economic organisation') ||
+        t.name.toLowerCase().includes('sectors and goods') ||
+        t.id.includes('_oct_econ_')
+    );
+
+    return {
+      isOctoberSubject: true,
+      bookSlug: 'current-affairs',
+      bookTitle: 'Current Affairs',
+      expectedUnitsCount: 10,
+      unitLabel: 'Sections',
+      hasMismatchedTopics: hasEconomicsMismatched,
+    };
+  }
+
+  return {
+    isOctoberSubject: true,
+    bookSlug: 'economics',
+    bookTitle: 'Economics',
+    expectedUnitsCount: 47,
+    unitLabel: 'Chapters',
+    hasMismatchedTopics: false,
+  };
+}
+
+/**
+ * Unified importer for October Library books:
+ * - Current Affairs: 10 Sections with direct anchors (#jan-mar-2026-s1 .. s10)
+ * - Economics: 47 Chapters across 6 parts
+ * Automatically cleans up any mismatched topics (e.g. Economics chapters accidentally added to Current Affairs).
+ */
+export async function importOctoberSubjectChapters(
+  subject: Subject,
+  options?: { baseReaderUrl?: string }
+): Promise<{
+  importedCount: number;
+  totalCount: number;
+  bookSlug: string;
+  bookTitle: string;
+  unitLabel: string;
+  topics: Topic[];
+}> {
+  const slug = detectOctoberBookSlug(subject.description, subject.name) || 'economics';
+  const existingTopics = await dbService.getAll<Topic>('topics');
+  const subjectTopics = existingTopics.filter((t) => t.subjectId === subject.id);
+
+  let units: OctoberChapter[] = [];
+  let unitLabel = 'Chapters';
+  let bookTitle = 'Economics';
+  const baseReaderUrl =
+    options?.baseReaderUrl ||
+    subject.description ||
+    `https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=${slug}`;
+
+  if (slug === 'current-affairs') {
+    units = OCTOBER_CURRENT_AFFAIRS_SECTIONS;
+    unitLabel = 'Sections';
+    bookTitle = 'Current Affairs';
+
+    // If subject currently has mismatched Economics chapters, remove them
+    const mismatchedEconomicsTopics = subjectTopics.filter(
+      (t) =>
+        t.name.toLowerCase().includes('economic organisation') ||
+        t.name.toLowerCase().includes('sectors and goods') ||
+        t.id.includes('_oct_econ_')
+    );
+
+    for (const mis of mismatchedEconomicsTopics) {
+      await dbService.delete('topics', mis.id);
+      for (const examId of subject.examIds) {
+        await dbService.delete('topicProgress', `${examId}_${mis.id}`);
+      }
+    }
+  } else {
+    units = OCTOBER_ECONOMICS_CHAPTERS;
+    unitLabel = 'Chapters';
+    bookTitle = 'Economics';
+  }
+
+  // Refreshed topics after any cleanups
+  const refreshedTopics = await dbService.getAll<Topic>('topics');
+  const currentSubjectTopics = refreshedTopics.filter((t) => t.subjectId === subject.id);
+
   const topicsToInsert: Topic[] = [];
 
-  for (const ch of OCTOBER_ECONOMICS_CHAPTERS) {
-    const chapterName = `Chapter ${ch.chapterNumber}: ${ch.title}`;
-    const alreadyExists = subjectTopics.some(
-      (t) => t.name.toLowerCase() === chapterName.toLowerCase() || t.name.includes(`Chapter ${ch.chapterNumber}`)
+  for (const item of units) {
+    const isSection = unitLabel === 'Sections';
+    const unitName = isSection
+      ? `Section ${item.chapterNumber}: ${item.title}`
+      : `Chapter ${item.chapterNumber}: ${item.title}`;
+
+    const alreadyExists = currentSubjectTopics.some(
+      (t) =>
+        t.name.toLowerCase() === unitName.toLowerCase() ||
+        (isSection
+          ? t.name.toLowerCase().includes(`section ${item.chapterNumber}:`) ||
+            t.name.toLowerCase().includes(`section ${item.chapterNumber} `)
+          : t.name.toLowerCase().includes(`chapter ${item.chapterNumber}:`) ||
+            t.name.toLowerCase().includes(`chapter ${item.chapterNumber} `))
     );
 
     if (!alreadyExists) {
+      const anchor = slug === 'current-affairs' ? `#jan-mar-2026-s${item.chapterNumber}` : '';
+      const directUrl = `${baseReaderUrl.split('#')[0]}${anchor}`;
+
       topicsToInsert.push({
-        id: `top_oct_econ_${ch.chapterNumber}_${Date.now().toString(36)}`,
-        subjectId,
-        name: chapterName,
-        order: ch.chapterNumber,
-        notes: baseReaderUrl,
+        id: `top_oct_${slug.replace(/[^a-z0-9]/g, '_')}_${item.chapterNumber}_${Date.now().toString(36)}`,
+        subjectId: subject.id,
+        name: unitName,
+        order: item.chapterNumber,
+        notes: directUrl,
         archived: false,
       });
     }
@@ -105,7 +246,59 @@ export async function importOctoberEconomicsChapters(
     await dbService.putMany<Topic>('topics', topicsToInsert);
   }
 
-  return [...subjectTopics, ...topicsToInsert].sort((a, b) => a.order - b.order);
+  // Initialize TopicProgress for linked exams
+  const targetExamIds = subject.examIds && subject.examIds.length > 0 ? subject.examIds : [];
+  for (const t of topicsToInsert) {
+    for (const examId of targetExamIds) {
+      const progId = `${examId}_${t.id}`;
+      const existing = await dbService.get<TopicProgress>('topicProgress', progId);
+      if (!existing) {
+        await dbService.put<TopicProgress>('topicProgress', {
+          id: progId,
+          examId,
+          topicId: t.id,
+          learningStatus: 'not_started',
+          practiceStatus: 'not_started',
+          revisionStatus: 'not_started',
+          manualCompletionPercentage: 0,
+          updatedAt: new Date().toISOString(),
+        });
+      }
+    }
+  }
+
+  const finalTopics = await dbService.getAll<Topic>('topics');
+  const finalSubjectTopics = finalTopics
+    .filter((t) => t.subjectId === subject.id && !t.archived)
+    .sort((a, b) => a.order - b.order);
+
+  return {
+    importedCount: topicsToInsert.length,
+    totalCount: finalSubjectTopics.length,
+    bookSlug: slug,
+    bookTitle,
+    unitLabel,
+    topics: finalSubjectTopics,
+  };
+}
+
+/**
+ * Import all 47 chapters for an Economics subject into the tracker database (backward compatible)
+ */
+export async function importOctoberEconomicsChapters(
+  subjectId: string,
+  baseReaderUrl: string = 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=economics'
+): Promise<Topic[]> {
+  const sub = await dbService.get<Subject>('subjects', subjectId);
+  const subjectObj: Subject = sub || {
+    id: subjectId,
+    name: 'Economics',
+    description: baseReaderUrl,
+    examIds: ['comm_ibps_rrb_po'],
+    order: 1,
+  };
+  const result = await importOctoberSubjectChapters(subjectObj, { baseReaderUrl });
+  return result.topics;
 }
 
 /**

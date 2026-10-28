@@ -29,7 +29,11 @@ import {
 import { dbService } from '../services/db';
 import { SmartPacingModal } from '../components/SmartPacingModal';
 import { BatchReadChaptersModal } from '../components/BatchReadChaptersModal';
-import { importOctoberEconomicsChapters, detectOctoberBookSlug } from '../services/octoberLibrary';
+import {
+  importOctoberSubjectChapters,
+  getOctoberSubjectMeta,
+  detectOctoberBookSlug,
+} from '../services/octoberLibrary';
 
 export const SyllabusView: React.FC = () => {
   const [commitments, setCommitments] = useState<Commitment[]>([]);
@@ -106,14 +110,14 @@ export const SyllabusView: React.FC = () => {
     });
   };
 
-  // Import October Chapters
+  // Import October Chapters / Sections
   const handleImportOctober = async (sub: Subject) => {
     try {
       setIsImporting(true);
-      await importOctoberEconomicsChapters(sub.id, sub.description);
+      await importOctoberSubjectChapters(sub);
       await loadData();
     } catch (err) {
-      console.error('Failed to import October chapters:', err);
+      console.error('Failed to import October units:', err);
     } finally {
       setIsImporting(false);
     }
@@ -544,42 +548,71 @@ export const SyllabusView: React.FC = () => {
                   </div>
 
                   <div className="flex items-center gap-2 flex-wrap">
-                    {subjectTopics.length < 47 &&
-                      (detectOctoberBookSlug(subject.description) || subject.name.toLowerCase().includes('econ')) && (
+                    {(() => {
+                      const meta = getOctoberSubjectMeta(subject, topics);
+                      if (!meta.isOctoberSubject) return null;
+                      if (subjectTopics.length >= meta.expectedUnitsCount && !meta.hasMismatchedTopics) {
+                        return null;
+                      }
+
+                      const btnLabel = isImporting
+                        ? 'Importing...'
+                        : meta.hasMismatchedTopics
+                        ? `Fix: Import ${meta.expectedUnitsCount} ${meta.bookTitle} ${meta.unitLabel}`
+                        : `Import ${meta.expectedUnitsCount} ${meta.unitLabel}`;
+
+                      return (
                         <button
                           onClick={() => handleImportOctober(subject)}
                           disabled={isImporting}
-                          className="px-2.5 py-1.5 text-xs text-emerald-700 bg-emerald-50 hover:bg-emerald-100 font-semibold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1 shadow-2xs disabled:opacity-50"
-                          title="Automatically load all 47 chapters from your October Library"
+                          className={`px-2.5 py-1.5 text-xs font-semibold rounded-lg border transition-colors flex items-center gap-1 shadow-2xs disabled:opacity-50 ${
+                            meta.hasMismatchedTopics
+                              ? 'text-rose-700 bg-rose-50 hover:bg-rose-100 border-rose-300'
+                              : 'text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border-emerald-200'
+                          }`}
+                          title={
+                            meta.hasMismatchedTopics
+                              ? `Mismatched chapters detected. Click to clean up and load the ${meta.expectedUnitsCount} ${meta.unitLabel.toLowerCase()} of ${meta.bookTitle} from your October Library.`
+                              : `Automatically load the ${meta.expectedUnitsCount} ${meta.unitLabel.toLowerCase()} of ${meta.bookTitle} from your October Library`
+                          }
                         >
                           <Download className="w-3.5 h-3.5 text-emerald-600" />
-                          <span>{isImporting ? 'Importing...' : 'Import 47 Chapters'}</span>
+                          <span>{btnLabel}</span>
                         </button>
-                      )}
+                      );
+                    })()}
 
-                    <button
-                      onClick={() => {
-                        setBatchReadSubject(subject);
-                        setBatchModalMode('learning');
-                      }}
-                      className="px-2.5 py-1.5 text-xs text-indigo-700 bg-indigo-50 hover:bg-indigo-100 font-semibold rounded-lg border border-indigo-200 transition-colors flex items-center gap-1 shadow-2xs"
-                      title="Mark chapters read yesterday or today, log hours, and view pace"
-                    >
-                      <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
-                      <span>Log Chapters Read</span>
-                    </button>
+                    {(() => {
+                      const meta = getOctoberSubjectMeta(subject, topics);
+                      const unitText = meta.unitLabel === 'Sections' ? 'Sections' : 'Chapters';
+                      return (
+                        <>
+                          <button
+                            onClick={() => {
+                              setBatchReadSubject(subject);
+                              setBatchModalMode('learning');
+                            }}
+                            className="px-2.5 py-1.5 text-xs text-indigo-700 bg-indigo-50 hover:bg-indigo-100 font-semibold rounded-lg border border-indigo-200 transition-colors flex items-center gap-1 shadow-2xs"
+                            title={`Mark ${unitText.toLowerCase()} read yesterday or today, log hours, and view pace`}
+                          >
+                            <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
+                            <span>Log {unitText} Read</span>
+                          </button>
 
-                    <button
-                      onClick={() => {
-                        setBatchReadSubject(subject);
-                        setBatchModalMode('revision');
-                      }}
-                      className="px-2.5 py-1.5 text-xs text-emerald-700 bg-emerald-50 hover:bg-emerald-100 font-semibold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1 shadow-2xs"
-                      title="Mark chapters revised yesterday or today, complete revision milestones, and schedule next cycle"
-                    >
-                      <RotateCw className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>Log Revision</span>
-                    </button>
+                          <button
+                            onClick={() => {
+                              setBatchReadSubject(subject);
+                              setBatchModalMode('revision');
+                            }}
+                            className="px-2.5 py-1.5 text-xs text-emerald-700 bg-emerald-50 hover:bg-emerald-100 font-semibold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1 shadow-2xs"
+                            title={`Mark ${unitText.toLowerCase()} revised yesterday or today, complete revision milestones, and schedule next cycle`}
+                          >
+                            <RotateCw className="w-3.5 h-3.5 text-emerald-600" />
+                            <span>Log Revision</span>
+                          </button>
+                        </>
+                      );
+                    })()}
 
                     <button
                       onClick={() => setPacingSubject(subject)}

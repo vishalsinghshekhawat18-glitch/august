@@ -23,6 +23,9 @@ import {
   markBatchChaptersRevised,
   completeRevisionWithLog,
   updateCompletedRevisionTime,
+  detectOctoberBookSlug,
+  getOctoberSubjectMeta,
+  importOctoberSubjectChapters,
 } from '../services/octoberLibrary';
 import {
   WeeklyTask,
@@ -933,6 +936,78 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       const log = logs.find((l) => l.topicId === 'top_econ_ch1' && l.activityType === 'revision');
       expect(log).toBeDefined();
       expect(log?.durationMinutes).toBe(45);
+    });
+
+    it('correctly detects Current Affairs slug and imports 10 sections while removing accidental Economics chapters', async () => {
+      const memoryStore: Record<string, Map<string, any>> = {
+        subjects: new Map(),
+        topics: new Map(),
+        topicProgress: new Map(),
+        revisions: new Map(),
+        studyLogs: new Map(),
+      };
+
+      vi.spyOn(dbService, 'getAll').mockImplementation(async (store: any) => {
+        return Array.from(memoryStore[store]?.values() || []);
+      });
+      vi.spyOn(dbService, 'get').mockImplementation(async (store: any, key: any) => {
+        return memoryStore[store]?.get(String(key));
+      });
+      vi.spyOn(dbService, 'put').mockImplementation(async (store: any, item: any) => {
+        if (!memoryStore[store]) memoryStore[store] = new Map();
+        memoryStore[store].set(item.id, item);
+      });
+      vi.spyOn(dbService, 'putMany').mockImplementation(async (store: any, items: any[]) => {
+        if (!memoryStore[store]) memoryStore[store] = new Map();
+        for (const it of items) memoryStore[store].set(it.id, it);
+      });
+      vi.spyOn(dbService, 'delete').mockImplementation(async (store: any, key: any) => {
+        memoryStore[store]?.delete(String(key));
+      });
+
+      const caSubject: Subject = {
+        id: 'sub_ca',
+        name: 'Current Affairs',
+        description: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=current-affairs',
+        examIds: ['comm_ibps_rrb_po'],
+        order: 2,
+      };
+
+      // Verify slug detection
+      expect(detectOctoberBookSlug(caSubject.description, caSubject.name)).toBe('current-affairs');
+
+      // Simulate accidental presence of an Economics chapter under Current Affairs
+      const accidentalEconTopic: Topic = {
+        id: 'top_oct_econ_1_accidental',
+        subjectId: 'sub_ca',
+        name: 'Chapter 1: Economic Organisation and Systems',
+        order: 1,
+      };
+      await dbService.put<Subject>('subjects', caSubject);
+      await dbService.put<Topic>('topics', accidentalEconTopic);
+
+      // Verify metadata detects mismatch
+      const meta = getOctoberSubjectMeta(caSubject, [accidentalEconTopic]);
+      expect(meta.isOctoberSubject).toBe(true);
+      expect(meta.bookSlug).toBe('current-affairs');
+      expect(meta.expectedUnitsCount).toBe(10);
+      expect(meta.unitLabel).toBe('Sections');
+      expect(meta.hasMismatchedTopics).toBe(true);
+
+      // Execute import
+      const result = await importOctoberSubjectChapters(caSubject);
+      expect(result.bookSlug).toBe('current-affairs');
+      expect(result.unitLabel).toBe('Sections');
+      expect(result.totalCount).toBe(10);
+
+      // Verify accidental Economics chapter was deleted and replaced
+      const allTopics = await dbService.getAll<Topic>('topics');
+      const caTopics = allTopics.filter((t) => t.subjectId === 'sub_ca');
+      expect(caTopics.length).toBe(10);
+      expect(caTopics.some((t) => t.name.includes('Economic Organisation'))).toBe(false);
+      expect(caTopics[0].name).toBe('Section 1: ESI, Finance and Business');
+      expect(caTopics[0].notes).toContain('#jan-mar-2026-s1');
+      expect(caTopics[9].name).toBe('Section 10: Revision (75 Recall Questions)');
     });
   });
 });
