@@ -352,12 +352,12 @@ export const QuickAddStudyModal: React.FC<QuickAddStudyModalProps> = ({ isOpen, 
 
           {/* Outcome / Notes */}
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">Key Outcome or Notes</label>
+            <label className="block text-xs font-medium text-slate-700 mb-1">Key Outcome, Notes or Reading URL</label>
             <textarea
               rows={2}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="e.g. Completed Syllogisms exercises with 85% accuracy; struggled with conditional statements."
+              placeholder="e.g. Read Chapter 2 on October Library (https://.../reader.html?book=economics), 85% quiz accuracy..."
               className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 placeholder:text-slate-400"
             />
           </div>

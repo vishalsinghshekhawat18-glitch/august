@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, Plus, Trash2, Filter, Calendar, Tag, ChevronDown } from 'lucide-react';
+import { Clock, Plus, Trash2, Filter, Calendar, Tag, ChevronDown, ExternalLink } from 'lucide-react';
 import { StudyLog, Commitment, Subject, Topic, ActivityType } from '../types';
 import { dbService } from '../services/db';
 import { formatMinutes, formatHoursDecimal, getTodayDateString } from '../services/dateUtils';
@@ -64,6 +64,28 @@ export const StudyLogsView: React.FC<StudyLogsViewProps> = ({ onOpenQuickAdd }) 
   const examMap = new Map(commitments.map((c) => [c.id, c.name]));
   const subjectMap = new Map(subjects.map((s) => [s.id, s.name]));
   const topicMap = new Map(topics.map((t) => [t.id, t.name]));
+
+  const renderNotes = (text: string) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = text.split(urlRegex);
+    return parts.map((part, i) => {
+      if (part.match(urlRegex)) {
+        return (
+          <a
+            key={i}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-indigo-600 hover:text-indigo-800 underline inline-flex items-center gap-0.5 break-all font-medium"
+          >
+            <span>{part.length > 55 ? part.substring(0, 52) + '...' : part}</span>
+            <ExternalLink className="w-3 h-3 inline flex-shrink-0" />
+          </a>
+        );
+      }
+      return part;
+    });
+  };
 
   return (
     <div className="space-y-6 pb-12">
@@ -187,8 +209,8 @@ export const StudyLogsView: React.FC<StudyLogsViewProps> = ({ onOpenQuickAdd }) 
                       </div>
 
                       {log.notes && (
-                        <p className="text-xs text-slate-600 mt-1.5 bg-slate-50 p-2 rounded-lg border border-slate-100">
-                          {log.notes}
+                        <p className="text-xs text-slate-600 mt-1.5 bg-slate-50 p-2 rounded-lg border border-slate-100 leading-relaxed">
+                          {renderNotes(log.notes)}
                         </p>
                       )}
                     </div>

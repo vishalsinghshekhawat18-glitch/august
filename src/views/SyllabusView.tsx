@@ -12,6 +12,7 @@ import {
   Layers,
   Sparkles,
   HelpCircle,
+  ExternalLink,
 } from 'lucide-react';
 import {
   Commitment,
@@ -45,7 +46,9 @@ export const SyllabusView: React.FC = () => {
 
   // Form fields
   const [newSubjectName, setNewSubjectName] = useState<string>('');
+  const [newSubjectDesc, setNewSubjectDesc] = useState<string>('');
   const [newTopicName, setNewTopicName] = useState<string>('');
+  const [newTopicNotes, setNewTopicNotes] = useState<string>('');
 
   const loadData = async () => {
     try {
@@ -102,11 +105,13 @@ export const SyllabusView: React.FC = () => {
       const newSub: Subject = {
         id: `sub_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
         name: newSubjectName.trim(),
+        description: newSubjectDesc.trim() || undefined,
         examIds: [selectedExamId],
         order: subjects.length + 1,
       };
       await dbService.put<Subject>('subjects', newSub);
       setNewSubjectName('');
+      setNewSubjectDesc('');
       setIsAddSubjectOpen(false);
       loadData();
     } catch (err) {
@@ -148,10 +153,14 @@ export const SyllabusView: React.FC = () => {
         id: `top_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
         subjectId: activeSubjectIdForTopic,
         name: newTopicName.trim(),
+        notes: newTopicNotes.trim() || undefined,
         order: topics.filter((t) => t.subjectId === activeSubjectIdForTopic).length + 1,
         archived: false,
       };
       await dbService.put<Topic>('topics', newTop);
+      setNewTopicName('');
+      setNewTopicNotes('');
+      setIsAddTopicOpen(false);
 
       // Initialize TopicProgress for the selected exam
       const newProgress: TopicProgress = {
@@ -309,12 +318,24 @@ export const SyllabusView: React.FC = () => {
                 <label className="block text-xs font-medium text-slate-700 mb-1">Subject Name</label>
                 <input
                   type="text"
-                  placeholder="e.g. Reasoning Ability, Quantitative Aptitude"
+                  placeholder="e.g. Economics, Reasoning Ability"
                   value={newSubjectName}
                   onChange={(e) => setNewSubjectName(e.target.value)}
                   className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
                   required
                   autoFocus
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-700 mb-1">
+                  Online Notes URL / Resource <span className="text-slate-400 font-normal">(Optional)</span>
+                </label>
+                <input
+                  type="url"
+                  placeholder="e.g. https://.../reader.html?book=economics"
+                  value={newSubjectDesc}
+                  onChange={(e) => setNewSubjectDesc(e.target.value)}
+                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
                 />
               </div>
               <div className="flex justify-end gap-2 pt-2">
@@ -347,12 +368,24 @@ export const SyllabusView: React.FC = () => {
                 <label className="block text-xs font-medium text-slate-700 mb-1">Topic Name</label>
                 <input
                   type="text"
-                  placeholder="e.g. Syllogism, Blood Relations, Data Interpretation"
+                  placeholder="e.g. Monetary Policy, Fiscal Deficit, National Income"
                   value={newTopicName}
                   onChange={(e) => setNewTopicName(e.target.value)}
                   className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
                   required
                   autoFocus
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-700 mb-1">
+                  Online Material URL / Notes <span className="text-slate-400 font-normal">(Optional)</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. https://.../reader.html?book=economics or Chapter 3 notes"
+                  value={newTopicNotes}
+                  onChange={(e) => setNewTopicNotes(e.target.value)}
+                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
                 />
               </div>
               <div className="flex justify-end gap-2 pt-2">
@@ -423,8 +456,27 @@ export const SyllabusView: React.FC = () => {
                       {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
                     </button>
                     <div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <h3 className="text-sm font-bold text-slate-900">{subject.name}</h3>
+                        {subject.description && (
+                          subject.description.startsWith('http') ? (
+                            <a
+                              href={subject.description}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="inline-flex items-center gap-1 text-[11px] text-indigo-700 hover:text-indigo-900 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 px-2 py-0.5 rounded-lg font-medium transition"
+                              title={subject.description}
+                            >
+                              <span>Read Notes</span>
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
+                          ) : (
+                            <span className="text-[11px] text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+                              {subject.description}
+                            </span>
+                          )
+                        )}
                         {subject.examIds.length > 1 && (
                           <span className="text-[10px] bg-indigo-50 text-indigo-700 border border-indigo-100 font-medium px-1.5 py-0.2 rounded">
                             Shared across {subject.examIds.length} exams
@@ -491,8 +543,26 @@ export const SyllabusView: React.FC = () => {
                               <div className="flex items-start gap-2.5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-2 shrink-0" />
                                 <div>
-                                  <div className="flex items-center gap-2">
+                                  <div className="flex items-center gap-2 flex-wrap">
                                     <h4 className="text-xs font-semibold text-slate-800">{topic.name}</h4>
+                                    {topic.notes && (
+                                      topic.notes.startsWith('http') ? (
+                                        <a
+                                          href={topic.notes}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="inline-flex items-center gap-1 text-[11px] text-indigo-700 hover:text-indigo-900 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 px-2 py-0.5 rounded-lg font-medium transition"
+                                          title={topic.notes}
+                                        >
+                                          <span>Read Notes</span>
+                                          <ExternalLink className="w-3 h-3" />
+                                        </a>
+                                      ) : (
+                                        <span className="text-[11px] text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+                                          {topic.notes}
+                                        </span>
+                                      )
+                                    )}
                                     {topic.archived && (
                                       <span className="text-[10px] text-slate-500 bg-slate-200 px-1.5 py-0.2 rounded font-medium">
                                         Archived
