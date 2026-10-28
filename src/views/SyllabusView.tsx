@@ -17,6 +17,8 @@ import {
   Download,
   RotateCw,
   Folder,
+  Calendar,
+  Building,
 } from 'lucide-react';
 import {
   Commitment,
@@ -42,7 +44,7 @@ import {
   getTopicTotalCards,
   logTopicCardProgress,
 } from '../services/octoberLibrary';
-import { getTodayDateString } from '../services/dateUtils';
+import { getTodayDateString, daysBetween } from '../services/dateUtils';
 
 export const SyllabusView: React.FC = () => {
   const [commitments, setCommitments] = useState<Commitment[]>([]);
@@ -295,6 +297,52 @@ export const SyllabusView: React.FC = () => {
 
   // Filter subjects that belong to the selected exam
   const filteredSubjects = subjects.filter((s) => s.examIds.includes(selectedExamId));
+  const selectedCommitment = commitments.find((c) => c.id === selectedExamId);
+  const hasMissingDbfPapers = selectedExamId === 'comm_iibf_dbf' && filteredSubjects.length < 4;
+
+  const handleEnsureDbfSubjects = async () => {
+    try {
+      const allCurrentSubs = await dbService.getAll<Subject>('subjects');
+      const updatedSubs = [...allCurrentSubs];
+
+      const papersToEnsure = [
+        { name: 'Indian Economy & Indian Financial System', code: 'IE&IFS', order: 1, aliases: ['economic', 'economy'] },
+        { name: 'Principles & Practices of Banking', code: 'PPB', order: 2, aliases: ['principles', 'ppb'] },
+        { name: 'Accounting & Financial Management for Bankers', code: 'AFM', order: 3, aliases: ['accounting', 'afm'] },
+        { name: 'Retail Banking & Wealth Management', code: 'RBWM', order: 4, aliases: ['retail', 'rbwm'] },
+      ];
+
+      for (const p of papersToEnsure) {
+        // Check if a subject already exists with matching name or alias
+        const existing = updatedSubs.find(
+          (s) =>
+            s.name.toLowerCase() === p.name.toLowerCase() ||
+            p.aliases.some((alias) => s.name.toLowerCase().includes(alias))
+        );
+
+        if (existing) {
+          if (!existing.examIds.includes('comm_iibf_dbf')) {
+            existing.examIds = [...existing.examIds, 'comm_iibf_dbf'];
+            await dbService.put<Subject>('subjects', existing);
+          }
+        } else {
+          const newSub: Subject = {
+            id: `sub_dbf_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+            name: p.name,
+            code: p.code,
+            examIds: ['comm_iibf_dbf'],
+            order: p.order,
+          };
+          await dbService.put<Subject>('subjects', newSub);
+          updatedSubs.push(newSub);
+        }
+      }
+
+      await loadData();
+    } catch (err) {
+      console.error('Failed to ensure DBF subjects:', err);
+    }
+  };
 
   return (
     <div className="space-y-6 pb-12">
@@ -325,6 +373,91 @@ export const SyllabusView: React.FC = () => {
         </div>
       </div>
 
+      {/* Multi-Paper Official Schedule Banner */}
+      {selectedCommitment?.papers && selectedCommitment.papers.length > 0 && (
+        <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-2xl p-5 shadow-sm border border-indigo-900/60">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-indigo-800/50">
+            <div className="flex items-center gap-2 flex-wrap">
+              <Calendar className="w-4 h-4 text-indigo-400" />
+              <span className="text-xs font-bold uppercase tracking-wider text-indigo-200">
+                Official Examination Schedule ({selectedCommitment.papers.length} Papers)
+              </span>
+              <span className="text-[10px] bg-emerald-500/20 text-emerald-300 font-semibold px-2 py-0.5 rounded-full border border-emerald-500/30">
+                Confirmed Admit Details
+              </span>
+            </div>
+            <div className="text-xs text-indigo-200 flex items-center gap-2">
+              <span className="flex items-center gap-1">
+                <Building className="w-3.5 h-3.5 text-indigo-400" />
+                <span>Venue Code: <strong className="text-white">{selectedCommitment.papers[0]?.venueCode || '303012'}</strong></span>
+              </span>
+              <span>•</span>
+              <span>Medium: <strong className="text-white">English</strong></span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
+            {selectedCommitment.papers.map((p, idx) => {
+              const days = daysBetween(getTodayDateString(), p.date);
+              const isUrgent = days >= 0 && days <= 7;
+              return (
+                <div
+                  key={p.paperCode || idx}
+                  className={`p-3 rounded-xl border text-xs flex flex-col justify-between transition-all ${
+                    isUrgent
+                      ? 'bg-amber-500/15 border-amber-500/40 text-amber-100'
+                      : days < 0
+                      ? 'bg-slate-800/40 border-slate-700/50 text-slate-400'
+                      : 'bg-white/5 border-white/10 text-slate-200 hover:bg-white/10'
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-1 mb-1">
+                      <span className="text-[10px] font-bold text-indigo-300 uppercase tracking-wide">
+                        {p.paperCode}
+                      </span>
+                      <span
+                        className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                          isUrgent
+                            ? 'bg-amber-400 text-slate-950'
+                            : days >= 0
+                            ? 'bg-indigo-400/20 text-indigo-200'
+                            : 'bg-slate-700 text-slate-400'
+                        }`}
+                      >
+                        {days > 0 ? `${days}d left` : days === 0 ? 'Today!' : 'Passed'}
+                      </span>
+                    </div>
+                    <h5 className="font-semibold text-white text-xs line-clamp-2 mb-2" title={p.paperName}>
+                      {p.paperName}
+                    </h5>
+                  </div>
+                  <div className="text-[11px] text-indigo-200/80 space-y-0.5 border-t border-white/5 pt-2">
+                    <div className="font-medium text-white">📅 {p.date}</div>
+                    {p.examTime && <div className="text-[10px] text-indigo-300">⏰ Exam: {p.examTime} (Rep: {p.reportingTime})</div>}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {hasMissingDbfPapers && (
+            <div className="mt-4 pt-3 border-t border-indigo-800/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-indigo-950/40 p-2.5 rounded-xl">
+              <span className="text-xs text-indigo-200">
+                You have {filteredSubjects.length} of 4 official DBF paper subjects configured. Click to initialize the remaining papers instantly.
+              </span>
+              <button
+                type="button"
+                onClick={handleEnsureDbfSubjects}
+                className="px-3 py-1 bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg text-xs font-semibold shadow-xs transition-colors shrink-0"
+              >
+                + Quick Add All 4 DBF Papers
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Explanatory Note regarding 3 Independent Dimensions */}
       <div className="p-3.5 bg-indigo-50/70 border border-indigo-100 rounded-xl text-xs text-indigo-900 flex items-start gap-2.5">
         <Sparkles className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
@@ -350,6 +483,16 @@ export const SyllabusView: React.FC = () => {
             <Plus className="w-3.5 h-3.5" />
             <span>Add Subject</span>
           </button>
+
+          {hasMissingDbfPapers && (
+            <button
+              onClick={handleEnsureDbfSubjects}
+              className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-colors flex items-center gap-1.5"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Initialize 4 DBF Papers</span>
+            </button>
+          )}
 
           <button
             onClick={() => {

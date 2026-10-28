@@ -4,6 +4,16 @@ export type ExamType = 'competitive' | 'university';
 
 export type DateVerificationStatus = 'confirmed' | 'provisional' | 'unverified';
 
+export interface ExamPaperSchedule {
+  paperCode: string; // e.g. "Paper 1 (IE&IFS)"
+  paperName: string; // e.g. "Indian Economy & Indian Financial System"
+  date: string; // YYYY-MM-DD e.g. "2026-11-01"
+  reportingTime?: string; // e.g. "11:45 AM"
+  examTime?: string; // e.g. "12:15 PM"
+  venueCode?: string; // e.g. "303012"
+  medium?: string; // e.g. "English"
+}
+
 export interface Commitment {
   id: string;
   name: string;
@@ -17,6 +27,7 @@ export interface Commitment {
   description: string;
   officialNotificationUrl?: string;
   eligibilityNotes?: string;
+  papers?: ExamPaperSchedule[];
   createdAt: string;
 }
 

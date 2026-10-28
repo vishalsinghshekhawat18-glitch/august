@@ -13,6 +13,9 @@ import {
   RotateCw,
   Award,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
+  Building,
   TrendingUp,
   Edit2,
   X,
@@ -68,6 +71,18 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
 
   // Complete Revision Modal
   const [completingRevision, setCompletingRevision] = useState<RevisionRecord | null>(null);
+
+  // Multi-paper schedule expanded accordion
+  const [expandedSchedules, setExpandedSchedules] = useState<Set<string>>(new Set(['comm_iibf_dbf']));
+
+  const toggleSchedule = (commId: string) => {
+    setExpandedSchedules((prev) => {
+      const next = new Set(prev);
+      if (next.has(commId)) next.delete(commId);
+      else next.add(commId);
+      return next;
+    });
+  };
 
   const handleOpenEditMilestone = (c: Commitment) => {
     setEditingCommitment(c);
@@ -491,77 +506,156 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
               {commitments.map((c) => {
                 const hasDate = Boolean(c.targetDate);
                 const days = hasDate ? daysBetween(todayStr, c.targetDate!) : null;
+                const hasPapers = Boolean(c.papers && c.papers.length > 0);
+                const isExpanded = expandedSchedules.has(c.id);
 
                 return (
                   <div
                     key={c.id}
-                    className="p-3 rounded-xl border border-slate-100 bg-white hover:border-slate-200 transition-colors flex items-center justify-between gap-3"
+                    className="p-3.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition-all shadow-xs"
                   >
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-slate-900">{c.name}</span>
-                        <span
-                          className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${
-                            c.dateStatus === 'confirmed'
-                              ? 'bg-emerald-100 text-emerald-800'
-                              : c.dateStatus === 'provisional'
-                              ? 'bg-amber-100 text-amber-800'
-                              : 'bg-slate-100 text-slate-600'
-                          }`}
-                        >
-                          {c.dateStatus}
-                        </span>
-                      </div>
-                      <div className="text-[11px] text-slate-500 mt-0.5 flex items-center gap-2">
-                        <span>{c.targetDate || 'Date to be announced'}</span>
-                        {c.dateSourceUrl && (
-                          <a
-                            href={c.dateSourceUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-indigo-600 hover:underline flex items-center gap-0.5 text-[10px]"
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-xs font-bold text-slate-900">{c.name}</span>
+                          <span
+                            className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${
+                              c.dateStatus === 'confirmed'
+                                ? 'bg-emerald-100 text-emerald-800'
+                                : c.dateStatus === 'provisional'
+                                ? 'bg-amber-100 text-amber-800'
+                                : 'bg-slate-100 text-slate-600'
+                            }`}
                           >
-                            <span>Official Source</span>
-                            <ExternalLink className="w-2.5 h-2.5" />
-                          </a>
-                        )}
+                            {c.dateStatus}
+                          </span>
+
+                          {hasPapers && (
+                            <button
+                              type="button"
+                              onClick={() => toggleSchedule(c.id)}
+                              className="text-[10px] bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded-full flex items-center gap-1 transition-colors"
+                            >
+                              <span>{c.papers!.length} Papers Scheduled</span>
+                              {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                            </button>
+                          )}
+                        </div>
+                        <div className="text-[11px] text-slate-500 mt-0.5 flex items-center gap-2">
+                          <span>{hasPapers ? `Next Paper: ${c.targetDate}` : (c.targetDate || 'Date to be announced')}</span>
+                          {c.dateSourceUrl && (
+                            <a
+                              href={c.dateSourceUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-indigo-600 hover:underline flex items-center gap-0.5 text-[10px]"
+                            >
+                              <span>Official Source</span>
+                              <ExternalLink className="w-2.5 h-2.5" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3 shrink-0">
+                        <div className="text-right">
+                          {days !== null ? (
+                            <div>
+                              {days > 0 ? (
+                                <>
+                                  <span className="text-lg font-bold text-indigo-600">{days}</span>
+                                  <span className="text-[10px] text-slate-400 block -mt-1">days left</span>
+                                </>
+                              ) : days === 0 ? (
+                                <>
+                                  <span className="text-base font-bold text-emerald-600">Today</span>
+                                  <span className="text-[10px] text-emerald-600 block -mt-1">Exam day</span>
+                                </>
+                              ) : (
+                                <>
+                                  <span className="text-sm font-semibold text-slate-400">{Math.abs(days)}d ago</span>
+                                  <span className="text-[10px] text-slate-400 block -mt-1">Passed</span>
+                                </>
+                              )}
+                            </div>
+                          ) : (
+                            <span className="text-[10px] text-slate-400 italic">Unscheduled</span>
+                          )}
+                        </div>
+
+                        <button
+                          onClick={() => handleOpenEditMilestone(c)}
+                          className="text-slate-300 hover:text-indigo-600 p-1.5 rounded-lg hover:bg-slate-50 transition"
+                          title="Edit examination date and verification status"
+                        >
+                          <Edit2 className="w-3.5 h-3.5" />
+                        </button>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 shrink-0">
-                      <div className="text-right">
-                        {days !== null ? (
-                          <div>
-                            {days > 0 ? (
-                              <>
-                                <span className="text-lg font-bold text-indigo-600">{days}</span>
-                                <span className="text-[10px] text-slate-400 block -mt-1">days left</span>
-                              </>
-                            ) : days === 0 ? (
-                              <>
-                                <span className="text-base font-bold text-emerald-600">Today</span>
-                                <span className="text-[10px] text-emerald-600 block -mt-1">Exam day</span>
-                              </>
-                            ) : (
-                              <>
-                                <span className="text-sm font-semibold text-slate-400">{Math.abs(days)}d ago</span>
-                                <span className="text-[10px] text-slate-400 block -mt-1">Passed</span>
-                              </>
-                            )}
-                          </div>
-                        ) : (
-                          <span className="text-[10px] text-slate-400 italic">Unscheduled</span>
-                        )}
-                      </div>
+                    {/* Paper-Wise Schedule Breakdown */}
+                    {hasPapers && isExpanded && (
+                      <div className="mt-3 pt-3 border-t border-slate-100 space-y-2">
+                        <div className="flex items-center justify-between text-[11px] text-slate-500 px-0.5">
+                          <span className="font-medium text-slate-700 flex items-center gap-1.5">
+                            <Building className="w-3.5 h-3.5 text-indigo-500" />
+                            <span>Venue Code: <strong className="text-slate-900">{c.papers![0]?.venueCode || '303012'}</strong></span>
+                          </span>
+                          <span className="text-[10px] text-slate-400">Medium: English • Official Admit Schedule</span>
+                        </div>
 
-                      <button
-                        onClick={() => handleOpenEditMilestone(c)}
-                        className="text-slate-300 hover:text-indigo-600 p-1.5 rounded-lg hover:bg-slate-50 transition"
-                        title="Edit examination date and verification status"
-                      >
-                        <Edit2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
+                        <div className="space-y-1.5">
+                          {c.papers!.map((p, pIdx) => {
+                            const pDays = daysBetween(todayStr, p.date);
+                            const isNext = pDays >= 0 && (pIdx === 0 || daysBetween(todayStr, c.papers![pIdx - 1].date) < 0);
+                            return (
+                              <div
+                                key={p.paperCode || pIdx}
+                                className={`p-2.5 rounded-xl text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2 border transition-all ${
+                                  isNext
+                                    ? 'bg-amber-50/70 border-amber-200 shadow-xs'
+                                    : pDays < 0
+                                    ? 'bg-slate-50 border-slate-100 opacity-60'
+                                    : 'bg-white border-slate-100 hover:border-slate-200'
+                                }`}
+                              >
+                                <div className="min-w-0 flex-1">
+                                  <div className="flex items-center gap-1.5 flex-wrap">
+                                    <span className="font-bold text-slate-900 text-xs">{p.paperCode}:</span>
+                                    <span className="text-slate-700 font-semibold truncate">{p.paperName}</span>
+                                  </div>
+                                  <div className="flex items-center gap-2 mt-1 text-[11px] text-slate-500 flex-wrap">
+                                    <span className="font-semibold text-slate-800">📅 {p.date}</span>
+                                    {p.examTime && <span>• ⏰ Exam: {p.examTime} (Rep: {p.reportingTime})</span>}
+                                    {p.venueCode && <span>• Venue: {p.venueCode}</span>}
+                                  </div>
+                                </div>
+
+                                <div className="flex items-center gap-2 shrink-0">
+                                  {pDays > 0 ? (
+                                    <span
+                                      className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${
+                                        isNext
+                                          ? 'bg-amber-100 text-amber-900 border border-amber-200'
+                                          : 'bg-slate-100 text-slate-600'
+                                      }`}
+                                    >
+                                      {pDays} days left
+                                    </span>
+                                  ) : pDays === 0 ? (
+                                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                                      Today Exam!
+                                    </span>
+                                  ) : (
+                                    <span className="text-[10px] text-slate-400">Completed</span>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -732,23 +826,76 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
                   className="w-full px-3 py-2 border border-slate-200 rounded-xl text-slate-900 text-xs font-bold focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
                   required
                 />
-                <div className="flex gap-1.5 mt-1.5">
-                  <button
-                    type="button"
-                    onClick={() => setTargetDateInput('2026-11-20')}
-                    className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
-                  >
-                    Set 20 Nov 2026 (23d left)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setTargetDateInput('2026-11-21')}
-                    className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
-                  >
-                    Set 21 Nov 2026 (24d left)
-                  </button>
+                <div className="flex gap-1.5 mt-1.5 flex-wrap">
+                  {editingCommitment.id === 'comm_iibf_dbf' ? (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setTargetDateInput('2026-11-01')}
+                        className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
+                      >
+                        P1: 01 Nov 2026 (IE&IFS)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setTargetDateInput('2026-11-22')}
+                        className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
+                      >
+                        P2: 22 Nov 2026 (PPB)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setTargetDateInput('2026-11-28')}
+                        className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
+                      >
+                        P3: 28 Nov 2026 (AFM)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setTargetDateInput('2026-11-29')}
+                        className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
+                      >
+                        P4: 29 Nov 2026 (RBWM)
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setTargetDateInput('2026-11-20')}
+                        className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
+                      >
+                        Set 20 Nov 2026 (23d left)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setTargetDateInput('2026-11-21')}
+                        className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
+                      >
+                        Set 21 Nov 2026 (24d left)
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
+
+              {/* Multi-paper breakdown in edit modal */}
+              {editingCommitment.papers && editingCommitment.papers.length > 0 && (
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                  <div className="text-[11px] font-bold text-slate-800 flex items-center justify-between">
+                    <span>Configured Papers Schedule ({editingCommitment.papers.length} Papers)</span>
+                    <span className="text-[10px] text-slate-500 font-normal">Venue: 303012</span>
+                  </div>
+                  <div className="space-y-1">
+                    {editingCommitment.papers.map((p, idx) => (
+                      <div key={idx} className="p-1.5 bg-white rounded border border-slate-200 text-[11px] flex justify-between items-center">
+                        <span className="font-semibold text-slate-800">{p.paperCode}: <span className="font-normal text-slate-600">{p.paperName}</span></span>
+                        <span className="font-mono text-indigo-600 font-semibold">{p.date}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div>
                 <label className="block text-xs font-medium text-slate-700 mb-1">Verification Status</label>

@@ -43,7 +43,7 @@ export interface CloudSyncHook {
   deleteItem: (storeName: StoreName, id: string) => Promise<void>;
 }
 
-const INITIAL_COMMITMENTS: Commitment[] = [
+export const INITIAL_COMMITMENTS: Commitment[] = [
   {
     id: 'comm_ibps_rrb_po',
     name: 'IBPS RRB PO (Officer Scale I)',
@@ -65,12 +65,51 @@ const INITIAL_COMMITMENTS: Commitment[] = [
     code: 'IIBF-DBF',
     type: 'competitive',
     priority: 2,
-    dateStatus: 'unverified',
+    targetDate: '2026-11-01',
+    dateStatus: 'confirmed',
     dateSourceUrl: 'https://www.iibf.org.in',
-    dateVerificationDate: '2026-10-27',
-    description: 'Flagship banking qualification recognized by banks for non-bank employees, providing edge in bank recruitments.',
+    dateVerificationDate: '2026-10-28',
+    description: 'Flagship banking qualification recognized by banks for recruitment and promotion, consisting of 4 official examination papers.',
     officialNotificationUrl: 'https://www.iibf.org.in',
-    eligibilityNotes: 'Open to graduates or 10+2 with relevant qualifications per IIBF schedule. Check exam window on IIBF portal.',
+    eligibilityNotes: 'Official admit schedule released: 4 papers scheduled between 01-Nov-2026 and 29-Nov-2026 at Venue Code 303012.',
+    papers: [
+      {
+        paperCode: 'Paper 1 (IE&IFS)',
+        paperName: 'Indian Economy & Indian Financial System',
+        date: '2026-11-01',
+        reportingTime: '11:45 AM',
+        examTime: '12:15 PM',
+        venueCode: '303012',
+        medium: 'English',
+      },
+      {
+        paperCode: 'Paper 2 (PPB)',
+        paperName: 'Principles & Practices of Banking',
+        date: '2026-11-22',
+        reportingTime: '02:30 PM',
+        examTime: '03:00 PM',
+        venueCode: '303012',
+        medium: 'English',
+      },
+      {
+        paperCode: 'Paper 3 (AFM)',
+        paperName: 'Accounting & Financial Management for Bankers',
+        date: '2026-11-28',
+        reportingTime: '11:45 AM',
+        examTime: '12:15 PM',
+        venueCode: '303012',
+        medium: 'English',
+      },
+      {
+        paperCode: 'Paper 4 (RBWM)',
+        paperName: 'Retail Banking & Wealth Management',
+        date: '2026-11-29',
+        reportingTime: '02:30 PM',
+        examTime: '03:00 PM',
+        venueCode: '303012',
+        medium: 'English',
+      },
+    ],
     createdAt: new Date().toISOString(),
   },
   {
@@ -213,6 +252,67 @@ class IndexedDBStorage {
               rrb.targetDate = '2026-11-20';
               rrb.dateStatus = 'confirmed';
               commStore.put(rrb);
+            }
+          };
+
+          // Auto-patch IIBF DBF to confirmed 4-paper official schedule
+          const getIibfReq = commStore.get('comm_iibf_dbf');
+          getIibfReq.onsuccess = () => {
+            const iibf = getIibfReq.result as Commitment | undefined;
+            if (iibf) {
+              const needsUpdate =
+                iibf.targetDate !== '2026-11-01' ||
+                iibf.dateStatus !== 'confirmed' ||
+                !iibf.papers ||
+                iibf.papers.length !== 4;
+
+              if (needsUpdate) {
+                iibf.targetDate = '2026-11-01';
+                iibf.dateStatus = 'confirmed';
+                iibf.dateVerificationDate = '2026-10-28';
+                iibf.dateSourceUrl = 'https://www.iibf.org.in';
+                iibf.description = 'Flagship banking qualification recognized by banks for recruitment and promotion, consisting of 4 official examination papers.';
+                iibf.eligibilityNotes = 'Official admit schedule released: 4 papers scheduled between 01-Nov-2026 and 29-Nov-2026 at Venue Code 303012.';
+                iibf.papers = [
+                  {
+                    paperCode: 'Paper 1 (IE&IFS)',
+                    paperName: 'Indian Economy & Indian Financial System',
+                    date: '2026-11-01',
+                    reportingTime: '11:45 AM',
+                    examTime: '12:15 PM',
+                    venueCode: '303012',
+                    medium: 'English',
+                  },
+                  {
+                    paperCode: 'Paper 2 (PPB)',
+                    paperName: 'Principles & Practices of Banking',
+                    date: '2026-11-22',
+                    reportingTime: '02:30 PM',
+                    examTime: '03:00 PM',
+                    venueCode: '303012',
+                    medium: 'English',
+                  },
+                  {
+                    paperCode: 'Paper 3 (AFM)',
+                    paperName: 'Accounting & Financial Management for Bankers',
+                    date: '2026-11-28',
+                    reportingTime: '11:45 AM',
+                    examTime: '12:15 PM',
+                    venueCode: '303012',
+                    medium: 'English',
+                  },
+                  {
+                    paperCode: 'Paper 4 (RBWM)',
+                    paperName: 'Retail Banking & Wealth Management',
+                    date: '2026-11-29',
+                    reportingTime: '02:30 PM',
+                    examTime: '03:00 PM',
+                    venueCode: '303012',
+                    medium: 'English',
+                  },
+                ];
+                commStore.put(iibf);
+              }
             }
           };
         }

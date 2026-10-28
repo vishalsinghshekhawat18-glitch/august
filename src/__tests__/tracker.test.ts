@@ -17,7 +17,7 @@ import {
 import { validateDataPackage } from '../services/exportImport';
 import { hashPin, generateSalt, verifyPin } from '../services/crypto';
 import { STORE_TABLE_MAP } from '../services/supabase';
-import { dbService, StoreName } from '../services/db';
+import { dbService, StoreName, INITIAL_COMMITMENTS } from '../services/db';
 import {
   markBatchChaptersRead,
   markBatchChaptersRevised,
@@ -1063,6 +1063,101 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(res2.studyLog.notes).toContain('Cards 11–25');
       expect(res2.revisions[0].notes).toBe('Cards 11–25');
       expect(res2.revisions[0].scheduledDate).toBe('2026-10-29'); // +1 day from Oct 28
+    });
+  });
+
+  describe('11. IIBF DBF 4-Paper Official Examination Schedule & Auto-Patching', () => {
+    it('verifies the official IIBF DBF 4-paper admit schedule dates, times, and venue code in INITIAL_COMMITMENTS', () => {
+      const iibf = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_iibf_dbf');
+      expect(iibf).toBeDefined();
+      expect(iibf?.dateStatus).toBe('confirmed');
+      expect(iibf?.targetDate).toBe('2026-11-01');
+      expect(iibf?.papers).toBeDefined();
+      expect(iibf?.papers?.length).toBe(4);
+
+      const papers = iibf!.papers!;
+      // Paper 1
+      expect(papers[0].paperCode).toContain('Paper 1');
+      expect(papers[0].paperName).toBe('Indian Economy & Indian Financial System');
+      expect(papers[0].date).toBe('2026-11-01');
+      expect(papers[0].reportingTime).toBe('11:45 AM');
+      expect(papers[0].examTime).toBe('12:15 PM');
+      expect(papers[0].venueCode).toBe('303012');
+
+      // Paper 2
+      expect(papers[1].paperCode).toContain('Paper 2');
+      expect(papers[1].paperName).toBe('Principles & Practices of Banking');
+      expect(papers[1].date).toBe('2026-11-22');
+      expect(papers[1].reportingTime).toBe('02:30 PM');
+      expect(papers[1].examTime).toBe('03:00 PM');
+      expect(papers[1].venueCode).toBe('303012');
+
+      // Paper 3
+      expect(papers[2].paperCode).toContain('Paper 3');
+      expect(papers[2].paperName).toBe('Accounting & Financial Management for Bankers');
+      expect(papers[2].date).toBe('2026-11-28');
+      expect(papers[2].reportingTime).toBe('11:45 AM');
+      expect(papers[2].examTime).toBe('12:15 PM');
+      expect(papers[2].venueCode).toBe('303012');
+
+      // Paper 4
+      expect(papers[3].paperCode).toContain('Paper 4');
+      expect(papers[3].paperName).toBe('Retail Banking & Wealth Management');
+      expect(papers[3].date).toBe('2026-11-29');
+      expect(papers[3].reportingTime).toBe('02:30 PM');
+      expect(papers[3].examTime).toBe('03:00 PM');
+      expect(papers[3].venueCode).toBe('303012');
+    });
+
+    it('correctly calculates days remaining for all 4 IIBF papers from 2026-10-28', () => {
+      const todayStr = '2026-10-28';
+      const daysP1 = daysBetween(todayStr, '2026-11-01');
+      const daysP2 = daysBetween(todayStr, '2026-11-22');
+      const daysP3 = daysBetween(todayStr, '2026-11-28');
+      const daysP4 = daysBetween(todayStr, '2026-11-29');
+
+      expect(daysP1).toBe(4);
+      expect(daysP2).toBe(25);
+      expect(daysP3).toBe(31);
+      expect(daysP4).toBe(32);
+    });
+
+    it('verifies that outdated unverified IIBF commitments are transformed by auto-patch specifications', () => {
+      const outdatedIibf: Commitment = {
+        id: 'comm_iibf_dbf',
+        name: 'IIBF DBF (Diploma in Banking & Finance)',
+        code: 'IIBF-DBF',
+        type: 'competitive',
+        priority: 2,
+        dateStatus: 'unverified',
+        description: 'old desc',
+        createdAt: '2026-10-20T00:00:00Z',
+      };
+
+      const needsUpdate =
+        outdatedIibf.targetDate !== '2026-11-01' ||
+        outdatedIibf.dateStatus !== 'confirmed' ||
+        !outdatedIibf.papers ||
+        outdatedIibf.papers.length !== 4;
+
+      expect(needsUpdate).toBe(true);
+
+      // Simulate the auto-patch applied during seedInitialCommitmentsIfEmpty
+      const template = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_iibf_dbf')!;
+      const patched: Commitment = {
+        ...outdatedIibf,
+        targetDate: template.targetDate,
+        dateStatus: template.dateStatus,
+        dateVerificationDate: template.dateVerificationDate,
+        dateSourceUrl: template.dateSourceUrl,
+        eligibilityNotes: template.eligibilityNotes,
+        papers: template.papers,
+      };
+
+      expect(patched.dateStatus).toBe('confirmed');
+      expect(patched.targetDate).toBe('2026-11-01');
+      expect(patched.papers?.length).toBe(4);
+      expect(patched.papers![0].venueCode).toBe('303012');
     });
   });
 });
