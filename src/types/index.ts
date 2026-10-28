@@ -135,6 +135,7 @@ export interface RevisionRecord {
   scheduledDate: string; // YYYY-MM-DD
   status: RevisionStatus;
   completedAt?: string;
+  durationMinutes?: number;
   rescheduledTo?: string;
   notes?: string;
   createdAt: string;

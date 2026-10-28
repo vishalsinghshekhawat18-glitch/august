@@ -422,26 +422,52 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
           </div>
 
           {/* Time Spent */}
-          <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
-              {mode === 'revision' ? 'Focused Revision Time (Minutes)' : 'Focused Reading Time (Minutes)'}
-            </label>
-            <div className="flex items-center gap-2">
+          <div className="bg-slate-50/70 p-3.5 rounded-xl border border-slate-200 space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="block text-xs font-semibold text-slate-800">
+                {mode === 'revision' ? 'How long did you spend revising?' : 'Focused Reading Time:'}
+              </label>
+              <span className="text-[11px] font-bold text-slate-600">
+                {durationMinutes} min (~{(durationMinutes / 60).toFixed(1)} hrs)
+              </span>
+            </div>
+
+            {/* Quick Time Pills */}
+            <div className="flex flex-wrap gap-1.5">
+              {[15, 30, 45, 60, 90, 120].map((m) => (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => setDurationMinutes(m)}
+                  className={`px-3 py-1 rounded-xl text-xs font-bold border transition ${
+                    durationMinutes === m
+                      ? mode === 'revision'
+                        ? 'bg-emerald-600 border-emerald-600 text-white shadow-xs'
+                        : 'bg-indigo-600 border-indigo-600 text-white shadow-xs'
+                      : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
+                  }`}
+                >
+                  {m} min
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-2 pt-1">
+              <span className="text-slate-500 text-xs">Custom:</span>
               <input
                 type="number"
-                min={10}
+                min={5}
                 max={480}
                 step={5}
                 value={durationMinutes}
                 onChange={(e) => setDurationMinutes(Number(e.target.value))}
-                className="w-24 px-3 py-1.5 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+                className="w-24 px-3 py-1.5 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
                 required
               />
               <span className="text-slate-500 text-xs">
-                minutes (~{(durationMinutes / 60).toFixed(1)} hours) •{' '}
-                {selectedTopicIds.length > 0
-                  ? `~${Math.round(durationMinutes / selectedTopicIds.length)}m per chapter`
-                  : '0m per chapter'}
+                minutes
+                {selectedTopicIds.length > 0 &&
+                  ` • ~${Math.round(durationMinutes / selectedTopicIds.length)}m per chapter`}
               </span>
             </div>
           </div>

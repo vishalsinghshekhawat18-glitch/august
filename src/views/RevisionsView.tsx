@@ -16,6 +16,7 @@ import { RevisionRecord, Commitment, Subject, Topic, RevisionInterval, RevisionS
 import { dbService } from '../services/db';
 import { getTodayDateString, addDays, daysBetween } from '../services/dateUtils';
 import { BatchReadChaptersModal } from '../components/BatchReadChaptersModal';
+import { CompleteRevisionModal } from '../components/CompleteRevisionModal';
 
 interface RevisionsViewProps {
   onNavigate?: (viewId: string) => void;
@@ -51,6 +52,10 @@ export const RevisionsView: React.FC<RevisionsViewProps> = ({ onNavigate }) => {
   // Reschedule modal
   const [reschedulingRev, setReschedulingRev] = useState<RevisionRecord | null>(null);
   const [newSchedDate, setNewSchedDate] = useState<string>('');
+
+  // Complete / Edit revision time modal
+  const [completingRevision, setCompletingRevision] = useState<RevisionRecord | null>(null);
+  const [isEditingRevisionTime, setIsEditingRevisionTime] = useState<boolean>(false);
 
   const loadData = async () => {
     try {
@@ -777,9 +782,15 @@ export const RevisionsView: React.FC<RevisionsViewProps> = ({ onNavigate }) => {
                         {rev.completedAt && (
                           <>
                             <span>•</span>
-                            <span className="text-emerald-700">Completed on {rev.completedAt}</span>
+                            <span className="text-emerald-700 font-medium">Completed on {rev.completedAt}</span>
                           </>
                         )}
+                        {rev.durationMinutes ? (
+                          <>
+                            <span>•</span>
+                            <span className="text-emerald-700 font-semibold">{rev.durationMinutes} min</span>
+                          </>
+                        ) : null}
                       </div>
                     </div>
                   </div>
@@ -788,8 +799,12 @@ export const RevisionsView: React.FC<RevisionsViewProps> = ({ onNavigate }) => {
                   {rev.status !== 'completed' && rev.status !== 'skipped' && (
                     <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
                       <button
-                        onClick={() => handleMarkComplete(rev)}
+                        onClick={() => {
+                          setCompletingRevision(rev);
+                          setIsEditingRevisionTime(false);
+                        }}
                         className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold shadow-sm transition-colors flex items-center gap-1"
+                        title="Mark complete and log the time you spent revising"
                       >
                         <CheckCircle2 className="w-3.5 h-3.5" />
                         <span>Done</span>
@@ -814,6 +829,29 @@ export const RevisionsView: React.FC<RevisionsViewProps> = ({ onNavigate }) => {
                       </button>
                     </div>
                   )}
+
+                  {/* Actions for already completed revisions (Log / Edit Time) */}
+                  {rev.status === 'completed' && (
+                    <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                      {rev.durationMinutes ? (
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-200">
+                          <Clock className="w-3 h-3 text-emerald-600" />
+                          <span>{rev.durationMinutes} min</span>
+                        </span>
+                      ) : null}
+                      <button
+                        onClick={() => {
+                          setCompletingRevision(rev);
+                          setIsEditingRevisionTime(true);
+                        }}
+                        className="px-2.5 py-1 text-xs font-semibold text-slate-700 hover:text-emerald-700 bg-white hover:bg-emerald-50 border border-slate-200 hover:border-emerald-200 rounded-lg transition-colors flex items-center gap-1 shadow-2xs"
+                        title="Edit or log the minutes spent on this revision"
+                      >
+                        <Clock className="w-3 h-3 text-emerald-600" />
+                        <span>{rev.durationMinutes ? 'Edit Time' : 'Log Time'}</span>
+                      </button>
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -832,6 +870,21 @@ export const RevisionsView: React.FC<RevisionsViewProps> = ({ onNavigate }) => {
           progressMap={progressMap}
           commitments={commitments}
           initialMode="revision"
+          onSaved={() => loadData()}
+        />
+      )}
+
+      {/* Complete or Edit Revision Time Modal */}
+      {completingRevision && (
+        <CompleteRevisionModal
+          isOpen={!!completingRevision}
+          onClose={() => setCompletingRevision(null)}
+          revision={completingRevision}
+          topicName={topicMap.get(completingRevision.topicId) || 'Chapter'}
+          subjectName={subjectMap.get(completingRevision.subjectId) || 'Subject'}
+          allDueRevisions={dueList}
+          allTopics={topics}
+          isEditing={isEditingRevisionTime}
           onSaved={() => loadData()}
         />
       )}

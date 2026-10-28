@@ -1,7 +1,7 @@
 import { Topic, Subject, TopicProgress, StudyLog, RevisionRecord } from '../types';
 import { dbService } from './db';
 import { syncTopicProgressAcrossExams, scheduleSpacedRevisionCycle } from './smartPacing';
-import { addDays } from './dateUtils';
+import { addDays, getTodayDateString } from './dateUtils';
 
 export interface OctoberChapter {
   chapterNumber: number;
@@ -242,12 +242,14 @@ export async function markBatchChaptersRevised(params: {
   // 2. Mark existing due RevisionRecord items for these topics on or before date as completed
   const allRevisions = await dbService.getAll<RevisionRecord>('revisions');
   const updatedRevisions: RevisionRecord[] = [];
+  const perChapterMinutes = Math.max(5, Math.round(minutesSpent / (chapterTopicIds.length || 1)));
   for (const rev of allRevisions) {
     if (chapterTopicIds.includes(rev.topicId) && rev.status !== 'completed' && rev.scheduledDate <= date) {
       updatedRevisions.push({
         ...rev,
         status: 'completed',
         completedAt: date,
+        durationMinutes: perChapterMinutes,
       });
     }
   }
@@ -309,4 +311,177 @@ export async function markBatchChaptersRevised(params: {
     revisedTopicsCount: chapterTopicIds.length,
     nextScheduledDates: Array.from(new Set(nextScheduledDates)).sort(),
   };
+}
+
+/**
+ * Complete one or more specific revision records, record the exact time spent,
+ * update topic progress across linked exams, auto-schedule next retention interval,
+ * and create a focused StudyLog entry.
+ */
+export async function completeRevisionWithLog(params: {
+  revisionIds: string[];
+  date: string; // YYYY-MM-DD
+  durationMinutes: number;
+  autoScheduleNext?: boolean;
+  notes?: string;
+}): Promise<{
+  completedCount: number;
+  studyLogId: string;
+}> {
+  const { revisionIds, date, durationMinutes, autoScheduleNext = true, notes } = params;
+
+  const allRevisions = await dbService.getAll<RevisionRecord>('revisions');
+  const targetRevs = allRevisions.filter((r) => revisionIds.includes(r.id));
+  if (targetRevs.length === 0) {
+    throw new Error('No matching revision records found to complete.');
+  }
+
+  const perRevMinutes = Math.max(5, Math.round(durationMinutes / targetRevs.length));
+
+  // 1. Update RevisionRecords with completion date and duration
+  const updatedRevs: RevisionRecord[] = [];
+  for (const rev of targetRevs) {
+    updatedRevs.push({
+      ...rev,
+      status: 'completed',
+      completedAt: date,
+      durationMinutes: perRevMinutes,
+      notes: notes || rev.notes,
+    });
+  }
+  await dbService.putMany<RevisionRecord>('revisions', updatedRevs);
+
+  // 2. Update TopicProgress for each completed revision
+  for (const rev of targetRevs) {
+    const key = `${rev.examId}_${rev.topicId}`;
+    const existing = await dbService.get<TopicProgress>('topicProgress', key);
+    const prog: TopicProgress = existing || {
+      id: key,
+      examId: rev.examId,
+      topicId: rev.topicId,
+      learningStatus: 'completed',
+      practiceStatus: 'not_started',
+      revisionStatus: 'completed',
+      manualCompletionPercentage: 100,
+      updatedAt: new Date().toISOString(),
+    };
+    prog.revisionStatus = 'completed';
+    if (prog.learningStatus === 'not_started') {
+      prog.learningStatus = 'completed';
+      prog.manualCompletionPercentage = Math.max(prog.manualCompletionPercentage || 0, 100);
+    }
+    prog.lastStudiedAt = date;
+    prog.updatedAt = new Date().toISOString();
+    await dbService.put<TopicProgress>('topicProgress', prog);
+  }
+
+  // 3. Auto-schedule next retention interval
+  if (autoScheduleNext) {
+    const recordsToInsert: RevisionRecord[] = [];
+    for (const rev of targetRevs) {
+      let nextInterval = 3;
+      if (rev.intervalDays === 1) nextInterval = 3;
+      else if (rev.intervalDays === 3) nextInterval = 7;
+      else if (rev.intervalDays === 7) nextInterval = 21;
+      else if (rev.intervalDays >= 21) nextInterval = 30;
+      else nextInterval = rev.intervalDays * 2;
+
+      const schedDate = addDays(date, nextInterval);
+      recordsToInsert.push({
+        id: `rev_nxt_${Date.now()}_${nextInterval}_${Math.random().toString(36).substring(2, 6)}`,
+        examId: rev.examId,
+        subjectId: rev.subjectId,
+        topicId: rev.topicId,
+        basisDate: date,
+        intervalDays: nextInterval,
+        scheduledDate: schedDate,
+        status: 'due',
+        createdAt: new Date().toISOString(),
+      });
+    }
+    if (recordsToInsert.length > 0) {
+      await dbService.putMany<RevisionRecord>('revisions', recordsToInsert);
+    }
+  }
+
+  // 4. Create focused StudyLog
+  const allTopics = await dbService.getAll<Topic>('topics');
+  const topicNames = targetRevs
+    .map((r) => allTopics.find((t) => t.id === r.topicId)?.name || 'Chapter')
+    .join(', ');
+
+  const primaryRev = targetRevs[0];
+  const logId = `log_rev_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+  const newLog: StudyLog = {
+    id: logId,
+    date,
+    timestamp: `${date}T12:00:00.000Z`,
+    examId: primaryRev.examId,
+    subjectId: primaryRev.subjectId,
+    topicId: primaryRev.topicId,
+    durationMinutes,
+    activityType: 'revision',
+    notes: notes || `Revised ${targetRevs.length} chapter(s): ${topicNames}`,
+    createdAt: new Date().toISOString(),
+  };
+  await dbService.put<StudyLog>('studyLogs', newLog);
+
+  return {
+    completedCount: targetRevs.length,
+    studyLogId: logId,
+  };
+}
+
+/**
+ * Update the time spent on an already completed revision record,
+ * and create or update the corresponding StudyLog entry.
+ */
+export async function updateCompletedRevisionTime(params: {
+  revisionId: string;
+  durationMinutes: number;
+  date?: string;
+  notes?: string;
+}): Promise<void> {
+  const { revisionId, durationMinutes, date, notes } = params;
+
+  const rev = await dbService.get<RevisionRecord>('revisions', revisionId);
+  if (!rev) throw new Error('Revision record not found.');
+
+  const effectiveDate = date || rev.completedAt || date || getTodayDateString();
+  const updatedRev: RevisionRecord = {
+    ...rev,
+    status: 'completed',
+    completedAt: effectiveDate,
+    durationMinutes,
+    notes: notes || rev.notes,
+  };
+  await dbService.put<RevisionRecord>('revisions', updatedRev);
+
+  // Check if study log already exists for this revision
+  const logs = await dbService.getAll<StudyLog>('studyLogs');
+  const existingLog = logs.find(
+    (l) => l.topicId === rev.topicId && l.activityType === 'revision' && l.date === effectiveDate
+  );
+
+  if (existingLog) {
+    existingLog.durationMinutes = durationMinutes;
+    if (notes) existingLog.notes = notes;
+    await dbService.put<StudyLog>('studyLogs', existingLog);
+  } else {
+    const allTopics = await dbService.getAll<Topic>('topics');
+    const topic = allTopics.find((t) => t.id === rev.topicId);
+    const newLog: StudyLog = {
+      id: `log_rev_upd_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+      date: effectiveDate,
+      timestamp: `${effectiveDate}T12:00:00.000Z`,
+      examId: rev.examId,
+      subjectId: rev.subjectId,
+      topicId: rev.topicId,
+      durationMinutes,
+      activityType: 'revision',
+      notes: notes || `Revised: ${topic?.name || 'Chapter'}`,
+      createdAt: new Date().toISOString(),
+    };
+    await dbService.put<StudyLog>('studyLogs', newLog);
+  }
 }

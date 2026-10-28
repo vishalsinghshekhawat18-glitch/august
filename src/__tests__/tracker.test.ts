@@ -18,7 +18,12 @@ import { validateDataPackage } from '../services/exportImport';
 import { hashPin, generateSalt, verifyPin } from '../services/crypto';
 import { STORE_TABLE_MAP } from '../services/supabase';
 import { dbService, StoreName } from '../services/db';
-import { markBatchChaptersRead, markBatchChaptersRevised } from '../services/octoberLibrary';
+import {
+  markBatchChaptersRead,
+  markBatchChaptersRevised,
+  completeRevisionWithLog,
+  updateCompletedRevisionTime,
+} from '../services/octoberLibrary';
 import {
   WeeklyTask,
   StudyLog,
@@ -792,6 +797,142 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       const readLog = logList.find((l) => l.topicId === 'top_1' && l.activityType === 'learning');
       expect(readLog).toBeDefined();
       expect(readLog?.durationMinutes).toBe(90);
+    });
+
+    it('completes revision with exact time duration, creates StudyLog, and auto-schedules next interval', async () => {
+      const memoryStore: Record<string, Map<string, any>> = {
+        subjects: new Map(),
+        topics: new Map(),
+        topicProgress: new Map(),
+        revisions: new Map(),
+        studyLogs: new Map(),
+      };
+
+      vi.spyOn(dbService, 'getAll').mockImplementation(async (store: any) => {
+        return Array.from(memoryStore[store]?.values() || []);
+      });
+      vi.spyOn(dbService, 'get').mockImplementation(async (store: any, key: any) => {
+        return memoryStore[store]?.get(String(key));
+      });
+      vi.spyOn(dbService, 'put').mockImplementation(async (store: any, item: any) => {
+        if (!memoryStore[store]) memoryStore[store] = new Map();
+        memoryStore[store].set(item.id, item);
+      });
+      vi.spyOn(dbService, 'putMany').mockImplementation(async (store: any, items: any[]) => {
+        if (!memoryStore[store]) memoryStore[store] = new Map();
+        for (const it of items) memoryStore[store].set(it.id, it);
+      });
+
+      const dueRev1: RevisionRecord = {
+        id: 'rev_1',
+        examId: 'comm_ibps_rrb_po',
+        subjectId: 'sub_econ',
+        topicId: 'top_econ_ch1',
+        basisDate: '2026-10-26',
+        intervalDays: 1,
+        scheduledDate: '2026-10-27',
+        status: 'due',
+        createdAt: new Date().toISOString(),
+      };
+      const dueRev2: RevisionRecord = {
+        id: 'rev_2',
+        examId: 'comm_ibps_rrb_po',
+        subjectId: 'sub_econ',
+        topicId: 'top_econ_ch2',
+        basisDate: '2026-10-26',
+        intervalDays: 1,
+        scheduledDate: '2026-10-27',
+        status: 'due',
+        createdAt: new Date().toISOString(),
+      };
+
+      await dbService.put<RevisionRecord>('revisions', dueRev1);
+      await dbService.put<RevisionRecord>('revisions', dueRev2);
+
+      const result = await completeRevisionWithLog({
+        revisionIds: ['rev_1', 'rev_2'],
+        date: '2026-10-28',
+        durationMinutes: 50,
+        autoScheduleNext: true,
+        notes: 'Revised chapters 1 and 2 thoroughly',
+      });
+
+      expect(result.completedCount).toBe(2);
+
+      // Verify revision records updated with durationMinutes
+      const updated1 = await dbService.get<RevisionRecord>('revisions', 'rev_1');
+      const updated2 = await dbService.get<RevisionRecord>('revisions', 'rev_2');
+      expect(updated1?.status).toBe('completed');
+      expect(updated1?.completedAt).toBe('2026-10-28');
+      expect(updated1?.durationMinutes).toBe(25);
+      expect(updated2?.durationMinutes).toBe(25);
+
+      // Verify StudyLog created
+      const logs = await dbService.getAll<StudyLog>('studyLogs');
+      const revLog = logs.find((l) => l.activityType === 'revision');
+      expect(revLog).toBeDefined();
+      expect(revLog?.durationMinutes).toBe(50);
+      expect(revLog?.date).toBe('2026-10-28');
+
+      // Verify next intervals scheduled (+3d from 2026-10-28 -> 2026-10-31)
+      const allRevs = await dbService.getAll<RevisionRecord>('revisions');
+      const nextRevs = allRevs.filter((r) => r.scheduledDate === '2026-10-31');
+      expect(nextRevs.length).toBe(2);
+    });
+
+    it('retroactively updates time spent on an already completed revision record and syncs StudyLog', async () => {
+      const memoryStore: Record<string, Map<string, any>> = {
+        subjects: new Map(),
+        topics: new Map(),
+        topicProgress: new Map(),
+        revisions: new Map(),
+        studyLogs: new Map(),
+      };
+
+      vi.spyOn(dbService, 'getAll').mockImplementation(async (store: any) => {
+        return Array.from(memoryStore[store]?.values() || []);
+      });
+      vi.spyOn(dbService, 'get').mockImplementation(async (store: any, key: any) => {
+        return memoryStore[store]?.get(String(key));
+      });
+      vi.spyOn(dbService, 'put').mockImplementation(async (store: any, item: any) => {
+        if (!memoryStore[store]) memoryStore[store] = new Map();
+        memoryStore[store].set(item.id, item);
+      });
+      vi.spyOn(dbService, 'putMany').mockImplementation(async (store: any, items: any[]) => {
+        if (!memoryStore[store]) memoryStore[store] = new Map();
+        for (const it of items) memoryStore[store].set(it.id, it);
+      });
+
+      const completedRev: RevisionRecord = {
+        id: 'rev_completed_earlier',
+        examId: 'comm_ibps_rrb_po',
+        subjectId: 'sub_econ',
+        topicId: 'top_econ_ch1',
+        basisDate: '2026-10-26',
+        intervalDays: 1,
+        scheduledDate: '2026-10-27',
+        status: 'completed',
+        completedAt: '2026-10-28',
+        createdAt: new Date().toISOString(),
+      };
+
+      await dbService.put<RevisionRecord>('revisions', completedRev);
+
+      await updateCompletedRevisionTime({
+        revisionId: 'rev_completed_earlier',
+        durationMinutes: 45,
+        date: '2026-10-28',
+        notes: 'Added revision duration',
+      });
+
+      const updated = await dbService.get<RevisionRecord>('revisions', 'rev_completed_earlier');
+      expect(updated?.durationMinutes).toBe(45);
+
+      const logs = await dbService.getAll<StudyLog>('studyLogs');
+      const log = logs.find((l) => l.topicId === 'top_econ_ch1' && l.activityType === 'revision');
+      expect(log).toBeDefined();
+      expect(log?.durationMinutes).toBe(45);
     });
   });
 });

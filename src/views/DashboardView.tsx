@@ -40,6 +40,7 @@ import {
   daysBetween,
 } from '../services/dateUtils';
 import { calculateWeightedCompletion } from '../services/planning';
+import { CompleteRevisionModal } from '../components/CompleteRevisionModal';
 
 interface DashboardViewProps {
   onOpenQuickAdd: () => void;
@@ -64,6 +65,9 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
   const [targetDateInput, setTargetDateInput] = useState<string>('');
   const [dateStatusInput, setDateStatusInput] = useState<DateVerificationStatus>('confirmed');
   const [dateSourceUrlInput, setDateSourceUrlInput] = useState<string>('');
+
+  // Complete Revision Modal
+  const [completingRevision, setCompletingRevision] = useState<RevisionRecord | null>(null);
 
   const handleOpenEditMilestone = (c: Commitment) => {
     setEditingCommitment(c);
@@ -448,8 +452,9 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
                       </div>
 
                       <button
-                        onClick={() => handleMarkRevisionComplete(r)}
+                        onClick={() => setCompletingRevision(r)}
                         className="px-3 py-1.5 bg-white border border-slate-200 hover:border-emerald-300 text-slate-700 hover:text-emerald-700 text-xs font-medium rounded-lg shadow-sm transition-colors flex items-center gap-1 shrink-0"
+                        title="Complete revision and log time spent"
                       >
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                         <span>Done</span>
@@ -787,6 +792,20 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
             </form>
           </div>
         </div>
+      )}
+
+      {/* Complete Revision Modal with Time Logging */}
+      {completingRevision && (
+        <CompleteRevisionModal
+          isOpen={!!completingRevision}
+          onClose={() => setCompletingRevision(null)}
+          revision={completingRevision}
+          topicName={topics.find((t) => t.id === completingRevision.topicId)?.name || 'Chapter'}
+          subjectName={subjects.find((s) => s.id === completingRevision.subjectId)?.name || 'Subject'}
+          allDueRevisions={dueRevisions}
+          allTopics={topics}
+          onSaved={() => loadDashboardData()}
+        />
       )}
     </div>
   );
