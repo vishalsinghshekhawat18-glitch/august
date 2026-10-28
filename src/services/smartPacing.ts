@@ -79,8 +79,11 @@ export interface SubjectPacingPlan {
   linkedExams: { id: string; name: string; priority: number; targetDate?: string }[];
   totalTopics: number;
   completedTopics: number;
+  completionPercentage: number;
   remainingTopics: Topic[];
-  recommendedChaptersPerWeek: number;
+  paceMode: 'daily' | 'weekly';
+  chaptersPerUnit: number;
+  estimatedDaysToComplete: number;
   estimatedWeeksToComplete: number;
   targetCompletionDate: string;
   estimatedDailyMinutes: number;
@@ -93,6 +96,7 @@ export interface SubjectPacingPlan {
 
 /**
  * Calculate comfortable pacing for remaining chapters of a subject
+ * Supports both Daily Pacing (e.g. 2 chapters/day) and Weekly Pacing
  * Takes into account higher-priority exam commitments so the user is never overloaded
  */
 export function calculateSubjectPacing(
@@ -100,7 +104,7 @@ export function calculateSubjectPacing(
   allTopics: Topic[],
   progressMap: Map<string, TopicProgress>,
   commitments: Commitment[],
-  chaptersPerWeekOption?: number
+  paceOption: { mode: 'daily' | 'weekly'; rate: number } = { mode: 'daily', rate: 2 }
 ): SubjectPacingPlan {
   const subjectTopics = allTopics
     .filter((t) => t.subjectId === subject.id && !t.archived)
@@ -123,7 +127,6 @@ export function calculateSubjectPacing(
   let completedCount = 0;
 
   for (const topic of subjectTopics) {
-    // Check progress in any linked exam
     let isCompleted = false;
     for (const exam of linkedExams) {
       const p = progressMap.get(`${exam.id}_${topic.id}`);
@@ -140,34 +143,39 @@ export function calculateSubjectPacing(
     }
   }
 
-  // Determine comfortable pace
-  // If the subject belongs to a high-priority exam (Priority 1), pace can be 3 chapters/week
-  // If secondary/supplementary (Priority 3 or 4), pace is 1-2 chapters/week (~45 mins/day) to prevent crowding out Priority 1
-  let chaptersPerWeek = chaptersPerWeekOption || 2;
-  if (!chaptersPerWeekOption) {
-    if (primaryExam && primaryExam.priority === 1) {
-      chaptersPerWeek = 3;
-    } else {
-      chaptersPerWeek = 2; // Comfortable, steady pace
-    }
+  const totalCount = subjectTopics.length;
+  const completionPercentage = totalCount > 0 ? Number(((completedCount / totalCount) * 100).toFixed(1)) : 0;
+  const remainingCount = remainingTopics.length;
+  const today = getTodayDateString();
+
+  let estimatedDays = 0;
+  let estimatedWeeks = 0;
+  let estimatedDailyMinutes = 45;
+  let chaptersPerWeekForSchedule = 2;
+
+  if (paceOption.mode === 'daily') {
+    const chaptersPerDay = Math.max(1, paceOption.rate || 2);
+    estimatedDays = remainingCount === 0 ? 0 : Math.ceil(remainingCount / chaptersPerDay);
+    estimatedWeeks = Math.max(1, Math.ceil(estimatedDays / 7));
+    estimatedDailyMinutes = chaptersPerDay * 45;
+    chaptersPerWeekForSchedule = chaptersPerDay * 6; // 6 study days per week
+  } else {
+    const chaptersPerWeek = Math.max(1, paceOption.rate || 2);
+    chaptersPerWeekForSchedule = chaptersPerWeek;
+    estimatedWeeks = remainingCount === 0 ? 0 : Math.ceil(remainingCount / chaptersPerWeek);
+    estimatedDays = estimatedWeeks * 7;
+    estimatedDailyMinutes = Math.round((chaptersPerWeek * 60) / 6);
   }
 
-  const remainingCount = remainingTopics.length;
-  const estimatedWeeks = Math.max(1, Math.ceil(remainingCount / chaptersPerWeek));
-  const estimatedDays = estimatedWeeks * 7;
-  const today = getTodayDateString();
   const targetCompletionDate = addDays(today, estimatedDays);
-
-  // Approximately 45 minutes per chapter study session
-  const estimatedDailyMinutes = Math.round((chaptersPerWeek * 60) / 6); // spread over 6 study days
 
   // Distribute chapters into weekly schedule
   const weeklySchedule: SubjectPacingPlan['weeklySchedule'] = [];
   const currentWeek = getWeekBounds(today);
 
   for (let w = 0; w < estimatedWeeks; w++) {
-    const startIdx = w * chaptersPerWeek;
-    const weekChapters = remainingTopics.slice(startIdx, startIdx + chaptersPerWeek);
+    const startIdx = w * chaptersPerWeekForSchedule;
+    const weekChapters = remainingTopics.slice(startIdx, startIdx + chaptersPerWeekForSchedule);
     const weekStartDate = addDays(currentWeek.monday, w * 7);
 
     if (weekChapters.length > 0) {
@@ -183,10 +191,13 @@ export function calculateSubjectPacing(
     subjectId: subject.id,
     subjectName: subject.name,
     linkedExams,
-    totalTopics: subjectTopics.length,
+    totalTopics: totalCount,
     completedTopics: completedCount,
+    completionPercentage,
     remainingTopics,
-    recommendedChaptersPerWeek: chaptersPerWeek,
+    paceMode: paceOption.mode,
+    chaptersPerUnit: paceOption.rate,
+    estimatedDaysToComplete: estimatedDays,
     estimatedWeeksToComplete: estimatedWeeks,
     targetCompletionDate,
     estimatedDailyMinutes,

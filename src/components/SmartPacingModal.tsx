@@ -22,7 +22,8 @@ export const SmartPacingModal: React.FC<SmartPacingModalProps> = ({
   commitments,
   onPlanApplied,
 }) => {
-  const [chaptersPerWeek, setChaptersPerWeek] = useState<number>(2);
+  const [paceMode, setPaceMode] = useState<'daily' | 'weekly'>('daily');
+  const [chaptersRate, setChaptersRate] = useState<number>(2);
   const [isApplying, setIsApplying] = useState<boolean>(false);
   const [appliedSuccess, setAppliedSuccess] = useState<string | null>(null);
 
@@ -33,7 +34,7 @@ export const SmartPacingModal: React.FC<SmartPacingModalProps> = ({
     topics,
     progressMap,
     commitments,
-    chaptersPerWeek
+    { mode: paceMode, rate: chaptersRate }
   );
 
   const primaryExam = pacingPlan.linkedExams[0] || { id: 'comm_ibps_rrb_po', name: 'Primary Exam', priority: 1 };
@@ -124,29 +125,72 @@ export const SmartPacingModal: React.FC<SmartPacingModalProps> = ({
             <>
               {/* Pace Selector */}
               <div className="space-y-2">
-                <label className="font-semibold text-slate-800 block">
-                  Select Comfortable Reading Pace:
-                </label>
-                <div className="grid grid-cols-3 gap-2">
-                  {[
-                    { count: 1, label: 'Gentle', desc: '1 chapter / week (~30m/day)' },
-                    { count: 2, label: 'Steady (Recommended)', desc: '2 chapters / week (~45m/day)' },
-                    { count: 3, label: 'Accelerated', desc: '3 chapters / week (~60m/day)' },
-                  ].map((p) => (
+                <div className="flex items-center justify-between">
+                  <label className="font-semibold text-slate-800">
+                    Reading Pace &amp; Schedule Rate:
+                  </label>
+                  <div className="flex bg-slate-100 p-0.5 rounded-lg text-[11px] font-semibold">
                     <button
-                      key={p.count}
                       type="button"
-                      onClick={() => setChaptersPerWeek(p.count)}
-                      className={`p-3 rounded-xl border text-left transition ${
-                        chaptersPerWeek === p.count
-                          ? 'border-indigo-600 bg-indigo-50/50 text-indigo-900 ring-1 ring-indigo-600 font-semibold'
-                          : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                      onClick={() => setPaceMode('daily')}
+                      className={`px-2.5 py-1 rounded-md transition ${
+                        paceMode === 'daily' ? 'bg-white text-indigo-700 shadow-2xs' : 'text-slate-600'
                       }`}
                     >
-                      <div className="text-xs font-bold">{p.label}</div>
-                      <div className="text-[10px] text-slate-500 mt-0.5">{p.desc}</div>
+                      Daily Pace
                     </button>
-                  ))}
+                    <button
+                      type="button"
+                      onClick={() => setPaceMode('weekly')}
+                      className={`px-2.5 py-1 rounded-md transition ${
+                        paceMode === 'weekly' ? 'bg-white text-indigo-700 shadow-2xs' : 'text-slate-600'
+                      }`}
+                    >
+                      Weekly Pace
+                    </button>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-2">
+                  {paceMode === 'daily'
+                    ? [
+                        { count: 1, label: '1 Chapter / Day', desc: '~45 mins daily' },
+                        { count: 2, label: '2 Chapters / Day (Target)', desc: '~90 mins daily' },
+                        { count: 3, label: '3 Chapters / Day', desc: '~135 mins daily' },
+                      ].map((p) => (
+                        <button
+                          key={p.count}
+                          type="button"
+                          onClick={() => setChaptersRate(p.count)}
+                          className={`p-3 rounded-xl border text-left transition ${
+                            chaptersRate === p.count
+                              ? 'border-indigo-600 bg-indigo-50/50 text-indigo-900 ring-1 ring-indigo-600 font-semibold'
+                              : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                          }`}
+                        >
+                          <div className="text-xs font-bold">{p.label}</div>
+                          <div className="text-[10px] text-slate-500 mt-0.5">{p.desc}</div>
+                        </button>
+                      ))
+                    : [
+                        { count: 1, label: '1 Chapter / Week', desc: '~30m daily spread' },
+                        { count: 2, label: '2 Chapters / Week', desc: '~45m daily spread' },
+                        { count: 4, label: '4 Chapters / Week', desc: '~60m daily spread' },
+                      ].map((p) => (
+                        <button
+                          key={p.count}
+                          type="button"
+                          onClick={() => setChaptersRate(p.count)}
+                          className={`p-3 rounded-xl border text-left transition ${
+                            chaptersRate === p.count
+                              ? 'border-indigo-600 bg-indigo-50/50 text-indigo-900 ring-1 ring-indigo-600 font-semibold'
+                              : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                          }`}
+                        >
+                          <div className="text-xs font-bold">{p.label}</div>
+                          <div className="text-[10px] text-slate-500 mt-0.5">{p.desc}</div>
+                        </button>
+                      ))}
                 </div>
               </div>
 
@@ -154,13 +198,13 @@ export const SmartPacingModal: React.FC<SmartPacingModalProps> = ({
               <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <span className="font-bold text-slate-900 block">Priority Protection Safeguard</span>
+                  <span className="font-bold text-slate-900 block">Priority Protection &amp; Completion Estimate</span>
                   <p className="text-[11px] text-slate-600 leading-relaxed">
-                    At <strong>{chaptersPerWeek} chapters/week</strong>, {subject.name} requires approximately <strong>{pacingPlan.estimatedDailyMinutes} minutes/day</strong> (or ~{chaptersPerWeek * 1.2}h/week).
-                    This preserves <strong>85%+ of your focused study capacity</strong> for your Priority 1 commitments (e.g. Reasoning, Quantitative Aptitude) without cognitive fatigue.
+                    At <strong>{chaptersRate} chapter{chaptersRate > 1 ? 's' : ''} per {paceMode === 'daily' ? 'day' : 'week'}</strong>, {subject.name} requires approximately <strong>{pacingPlan.estimatedDailyMinutes} minutes/day</strong>.
+                    This preserves focused study capacity for your Priority 1 commitments (such as Reasoning and Quant) without cognitive fatigue.
                   </p>
-                  <p className="text-[11px] text-indigo-700 font-medium pt-1">
-                    Estimated completion of all remaining {pacingPlan.remainingTopics.length} chapters: <strong>{pacingPlan.targetCompletionDate}</strong> (~{pacingPlan.estimatedWeeksToComplete} weeks).
+                  <p className="text-[11px] text-indigo-900 font-semibold pt-1">
+                    ⚡ Estimated time to complete all remaining {pacingPlan.remainingTopics.length} chapters: <strong>{pacingPlan.estimatedDaysToComplete} days</strong> (Target finish date: <strong>{pacingPlan.targetCompletionDate}</strong>)!
                   </p>
                 </div>
               </div>

@@ -13,6 +13,7 @@ import {
   Sparkles,
   HelpCircle,
   ExternalLink,
+  Download,
 } from 'lucide-react';
 import {
   Commitment,
@@ -26,6 +27,8 @@ import {
 } from '../types';
 import { dbService } from '../services/db';
 import { SmartPacingModal } from '../components/SmartPacingModal';
+import { BatchReadChaptersModal } from '../components/BatchReadChaptersModal';
+import { importOctoberEconomicsChapters, detectOctoberBookSlug } from '../services/octoberLibrary';
 
 export const SyllabusView: React.FC = () => {
   const [commitments, setCommitments] = useState<Commitment[]>([]);
@@ -52,6 +55,8 @@ export const SyllabusView: React.FC = () => {
   const [newTopicName, setNewTopicName] = useState<string>('');
   const [newTopicNotes, setNewTopicNotes] = useState<string>('');
   const [pacingSubject, setPacingSubject] = useState<Subject | null>(null);
+  const [batchReadSubject, setBatchReadSubject] = useState<Subject | null>(null);
+  const [isImporting, setIsImporting] = useState<boolean>(false);
 
   const loadData = async () => {
     try {
@@ -97,6 +102,19 @@ export const SyllabusView: React.FC = () => {
       else next.add(subId);
       return next;
     });
+  };
+
+  // Import October Chapters
+  const handleImportOctober = async (sub: Subject) => {
+    try {
+      setIsImporting(true);
+      await importOctoberEconomicsChapters(sub.id, sub.description);
+      await loadData();
+    } catch (err) {
+      console.error('Failed to import October chapters:', err);
+    } finally {
+      setIsImporting(false);
+    }
   };
 
   // Add Subject
@@ -523,10 +541,32 @@ export const SyllabusView: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {subjectTopics.length < 47 &&
+                      (detectOctoberBookSlug(subject.description) || subject.name.toLowerCase().includes('econ')) && (
+                        <button
+                          onClick={() => handleImportOctober(subject)}
+                          disabled={isImporting}
+                          className="px-2.5 py-1.5 text-xs text-emerald-700 bg-emerald-50 hover:bg-emerald-100 font-semibold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1 shadow-2xs disabled:opacity-50"
+                          title="Automatically load all 47 chapters from your October Library"
+                        >
+                          <Download className="w-3.5 h-3.5 text-emerald-600" />
+                          <span>{isImporting ? 'Importing...' : 'Import 47 Chapters'}</span>
+                        </button>
+                      )}
+
+                    <button
+                      onClick={() => setBatchReadSubject(subject)}
+                      className="px-2.5 py-1.5 text-xs text-indigo-700 bg-indigo-50 hover:bg-indigo-100 font-semibold rounded-lg border border-indigo-200 transition-colors flex items-center gap-1 shadow-2xs"
+                      title="Mark chapters read yesterday or today, log hours, and view pace"
+                    >
+                      <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
+                      <span>Log Chapters Read</span>
+                    </button>
+
                     <button
                       onClick={() => setPacingSubject(subject)}
-                      className="px-2.5 py-1.5 text-xs text-indigo-700 bg-indigo-50 hover:bg-indigo-100 font-semibold rounded-lg border border-indigo-200 transition-colors flex items-center gap-1 shadow-2xs"
+                      className="px-2.5 py-1.5 text-xs text-slate-700 bg-slate-50 hover:bg-slate-100 font-semibold rounded-lg border border-slate-200 transition-colors flex items-center gap-1 shadow-2xs"
                       title="Smart pacing calculator & schedule remaining chapters"
                     >
                       <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
@@ -759,6 +799,19 @@ export const SyllabusView: React.FC = () => {
           progressMap={progressMap}
           commitments={commitments}
           onPlanApplied={() => loadData()}
+        />
+      )}
+
+      {/* Batch Read Chapters Modal */}
+      {batchReadSubject && (
+        <BatchReadChaptersModal
+          isOpen={!!batchReadSubject}
+          onClose={() => setBatchReadSubject(null)}
+          subject={batchReadSubject}
+          topics={topics}
+          progressMap={progressMap}
+          commitments={commitments}
+          onSaved={() => loadData()}
         />
       )}
     </div>
