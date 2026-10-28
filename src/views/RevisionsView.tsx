@@ -12,9 +12,10 @@ import {
   BookOpen,
   ArrowRight,
 } from 'lucide-react';
-import { RevisionRecord, Commitment, Subject, Topic, RevisionInterval, RevisionStatus } from '../types';
+import { RevisionRecord, Commitment, Subject, Topic, RevisionInterval, RevisionStatus, TopicProgress } from '../types';
 import { dbService } from '../services/db';
 import { getTodayDateString, addDays, daysBetween } from '../services/dateUtils';
+import { BatchReadChaptersModal } from '../components/BatchReadChaptersModal';
 
 interface RevisionsViewProps {
   onNavigate?: (viewId: string) => void;
@@ -26,6 +27,8 @@ export const RevisionsView: React.FC<RevisionsViewProps> = ({ onNavigate }) => {
   const [commitments, setCommitments] = useState<Commitment[]>([]);
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [topics, setTopics] = useState<Topic[]>([]);
+  const [progressMap, setProgressMap] = useState<Map<string, TopicProgress>>(new Map());
+  const [isBatchRevOpen, setIsBatchRevOpen] = useState<boolean>(false);
 
   // Filter tab
   const [activeTab, setActiveTab] = useState<'due' | 'overdue' | 'completed' | 'all'>('due');
@@ -54,17 +57,24 @@ export const RevisionsView: React.FC<RevisionsViewProps> = ({ onNavigate }) => {
       const today = getTodayDateString();
       setTodayStr(today);
 
-      const [rList, cList, sList, tList] = await Promise.all([
+      const [rList, cList, sList, tList, progList] = await Promise.all([
         dbService.getAll<RevisionRecord>('revisions'),
         dbService.getAll<Commitment>('commitments'),
         dbService.getAll<Subject>('subjects'),
         dbService.getAll<Topic>('topics'),
+        dbService.getAll<TopicProgress>('topicProgress'),
       ]);
 
       setRevisions(rList.sort((a, b) => a.scheduledDate.localeCompare(b.scheduledDate)));
       setCommitments(cList.sort((a, b) => a.priority - b.priority));
       setSubjects(sList);
       setTopics(tList);
+
+      const pMap = new Map<string, TopicProgress>();
+      for (const p of progList) {
+        pMap.set(`${p.examId}_${p.topicId}`, p);
+      }
+      setProgressMap(pMap);
 
       if (cList.length > 0 && !schedExamId) {
         setSchedExamId(cList[0].id);
@@ -298,13 +308,24 @@ export const RevisionsView: React.FC<RevisionsViewProps> = ({ onNavigate }) => {
           </p>
         </div>
 
-        <button
-          onClick={() => setIsScheduleOpen(true)}
-          className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-colors flex items-center justify-center gap-1.5"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Schedule Revision Cycle</span>
-        </button>
+        <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={() => setIsBatchRevOpen(true)}
+            className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-colors flex items-center justify-center gap-1.5"
+            title="Mark chapters revised yesterday or today, complete due revisions, and schedule next cycle"
+          >
+            <RotateCw className="w-4 h-4" />
+            <span>Mark Chapters Revised</span>
+          </button>
+
+          <button
+            onClick={() => setIsScheduleOpen(true)}
+            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-colors flex items-center justify-center gap-1.5"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Schedule Revision Cycle</span>
+          </button>
+        </div>
       </div>
 
       {/* Overview Stat Tabs */}
@@ -799,6 +820,21 @@ export const RevisionsView: React.FC<RevisionsViewProps> = ({ onNavigate }) => {
           </div>
         )}
       </div>
+
+      {/* Quick Mark Chapters Revised Modal */}
+      {isBatchRevOpen && subjects.length > 0 && (
+        <BatchReadChaptersModal
+          isOpen={isBatchRevOpen}
+          onClose={() => setIsBatchRevOpen(false)}
+          subject={subjects.find((s) => s.name.toLowerCase().includes('econ')) || subjects[0]}
+          allSubjects={subjects}
+          topics={topics}
+          progressMap={progressMap}
+          commitments={commitments}
+          initialMode="revision"
+          onSaved={() => loadData()}
+        />
+      )}
     </div>
   );
 };

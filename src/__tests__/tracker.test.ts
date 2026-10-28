@@ -18,6 +18,7 @@ import { validateDataPackage } from '../services/exportImport';
 import { hashPin, generateSalt, verifyPin } from '../services/crypto';
 import { STORE_TABLE_MAP } from '../services/supabase';
 import { dbService, StoreName } from '../services/db';
+import { markBatchChaptersRead, markBatchChaptersRevised } from '../services/octoberLibrary';
 import {
   WeeklyTask,
   StudyLog,
@@ -633,6 +634,164 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(deletedItems).toHaveLength(1);
       expect(deletedItems[0].store).toBe('subjects');
       expect(deletedItems[0].id).toBe('sub_test_sync');
+    });
+  });
+
+  describe('9. Batch Chapter Revision & Spaced Interval Cycles', () => {
+    it('marks chapters as revised, advances revisionStatus, completes due revisions, and schedules next cycle', async () => {
+      const memoryStore: Record<string, Map<string, any>> = {
+        subjects: new Map(),
+        topics: new Map(),
+        topicProgress: new Map(),
+        revisions: new Map(),
+        studyLogs: new Map(),
+      };
+
+      vi.spyOn(dbService, 'getAll').mockImplementation(async (store: any) => {
+        return Array.from(memoryStore[store]?.values() || []);
+      });
+      vi.spyOn(dbService, 'get').mockImplementation(async (store: any, key: any) => {
+        return memoryStore[store]?.get(String(key));
+      });
+      vi.spyOn(dbService, 'put').mockImplementation(async (store: any, item: any) => {
+        if (!memoryStore[store]) memoryStore[store] = new Map();
+        memoryStore[store].set(item.id, item);
+      });
+      vi.spyOn(dbService, 'putMany').mockImplementation(async (store: any, items: any[]) => {
+        if (!memoryStore[store]) memoryStore[store] = new Map();
+        for (const it of items) memoryStore[store].set(it.id, it);
+      });
+
+      const mockSubject: Subject = {
+        id: 'sub_econ_test',
+        name: 'Economics',
+        examIds: ['comm_ibps_rrb_po'],
+        order: 1,
+      };
+
+      const mockTopic1: Topic = {
+        id: 'top_econ_1',
+        subjectId: 'sub_econ_test',
+        name: 'Chapter 1: Economic Organisation and Systems',
+        order: 1,
+      };
+      const mockTopic2: Topic = {
+        id: 'top_econ_2',
+        subjectId: 'sub_econ_test',
+        name: 'Chapter 2: Sectors and Goods Typology',
+        order: 2,
+      };
+
+      await dbService.put<Subject>('subjects', mockSubject);
+      await dbService.put<Topic>('topics', mockTopic1);
+      await dbService.put<Topic>('topics', mockTopic2);
+
+      // Pre-existing due revision for yesterday
+      const dueRevision: RevisionRecord = {
+        id: 'rev_due_yesterday',
+        examId: 'comm_ibps_rrb_po',
+        subjectId: 'sub_econ_test',
+        topicId: 'top_econ_1',
+        basisDate: '2026-10-26',
+        intervalDays: 1,
+        scheduledDate: '2026-10-27',
+        status: 'due',
+        createdAt: new Date().toISOString(),
+      };
+      await dbService.put<RevisionRecord>('revisions', dueRevision);
+
+      // Execute batch revision for yesterday (2026-10-27)
+      const result = await markBatchChaptersRevised({
+        subject: mockSubject,
+        chapterTopicIds: ['top_econ_1', 'top_econ_2'],
+        date: '2026-10-27',
+        minutesSpent: 60,
+        autoScheduleNextCycle: true,
+      });
+
+      expect(result.revisedTopicsCount).toBe(2);
+      expect(result.nextScheduledDates.length).toBeGreaterThan(0);
+      expect(result.nextScheduledDates).toContain('2026-10-30'); // +3d
+      expect(result.nextScheduledDates).toContain('2026-11-03'); // +7d
+      expect(result.nextScheduledDates).toContain('2026-11-17'); // +21d
+
+      // Verify TopicProgress updated
+      const prog1 = await dbService.get<TopicProgress>('topicProgress', 'comm_ibps_rrb_po_top_econ_1');
+      expect(prog1?.revisionStatus).toBe('completed');
+      expect(prog1?.learningStatus).toBe('completed');
+      expect(prog1?.lastStudiedAt).toBe('2026-10-27');
+
+      // Verify pre-existing due revision was marked completed
+      const updatedRev = await dbService.get<RevisionRecord>('revisions', 'rev_due_yesterday');
+      expect(updatedRev?.status).toBe('completed');
+      expect(updatedRev?.completedAt).toBe('2026-10-27');
+
+      // Verify StudyLog created with activityType: 'revision'
+      const logs = await dbService.getAll<StudyLog>('studyLogs');
+      const revLog = logs.find((l) => l.topicId === 'top_econ_1' && l.activityType === 'revision');
+      expect(revLog).toBeDefined();
+      expect(revLog?.durationMinutes).toBe(60);
+      expect(revLog?.date).toBe('2026-10-27');
+    });
+
+    it('marks chapters as read in learning mode, calculates remaining chapters and completion percentage', async () => {
+      const memoryStore: Record<string, Map<string, any>> = {
+        subjects: new Map(),
+        topics: new Map(),
+        topicProgress: new Map(),
+        revisions: new Map(),
+        studyLogs: new Map(),
+      };
+
+      vi.spyOn(dbService, 'getAll').mockImplementation(async (store: any) => {
+        return Array.from(memoryStore[store]?.values() || []);
+      });
+      vi.spyOn(dbService, 'get').mockImplementation(async (store: any, key: any) => {
+        return memoryStore[store]?.get(String(key));
+      });
+      vi.spyOn(dbService, 'put').mockImplementation(async (store: any, item: any) => {
+        if (!memoryStore[store]) memoryStore[store] = new Map();
+        memoryStore[store].set(item.id, item);
+      });
+      vi.spyOn(dbService, 'putMany').mockImplementation(async (store: any, items: any[]) => {
+        if (!memoryStore[store]) memoryStore[store] = new Map();
+        for (const it of items) memoryStore[store].set(it.id, it);
+      });
+
+      const mockSubject: Subject = {
+        id: 'sub_econ_read_test',
+        name: 'Economics',
+        examIds: ['comm_ibps_rrb_po'],
+        order: 1,
+      };
+
+      const topics: Topic[] = [
+        { id: 'top_1', subjectId: 'sub_econ_read_test', name: 'Chapter 1', order: 1 },
+        { id: 'top_2', subjectId: 'sub_econ_read_test', name: 'Chapter 2', order: 2 },
+        { id: 'top_3', subjectId: 'sub_econ_read_test', name: 'Chapter 3', order: 3 },
+        { id: 'top_4', subjectId: 'sub_econ_read_test', name: 'Chapter 4', order: 4 },
+      ];
+
+      await dbService.put<Subject>('subjects', mockSubject);
+      for (const t of topics) await dbService.put<Topic>('topics', t);
+
+      const result = await markBatchChaptersRead({
+        subject: mockSubject,
+        chapterTopicIds: ['top_1', 'top_2'],
+        date: '2026-10-27',
+        minutesSpent: 90,
+        autoScheduleRevision: true,
+      });
+
+      expect(result.updatedTopicsCount).toBe(2);
+      expect(result.totalChapters).toBe(4);
+      expect(result.remainingChapters).toBe(2);
+      expect(result.completionPercentage).toBe(50);
+
+      const logList = await dbService.getAll<StudyLog>('studyLogs');
+      const readLog = logList.find((l) => l.topicId === 'top_1' && l.activityType === 'learning');
+      expect(readLog).toBeDefined();
+      expect(readLog?.durationMinutes).toBe(90);
     });
   });
 });

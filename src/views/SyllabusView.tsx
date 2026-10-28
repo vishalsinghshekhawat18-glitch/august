@@ -14,6 +14,7 @@ import {
   HelpCircle,
   ExternalLink,
   Download,
+  RotateCw,
 } from 'lucide-react';
 import {
   Commitment,
@@ -56,6 +57,7 @@ export const SyllabusView: React.FC = () => {
   const [newTopicNotes, setNewTopicNotes] = useState<string>('');
   const [pacingSubject, setPacingSubject] = useState<Subject | null>(null);
   const [batchReadSubject, setBatchReadSubject] = useState<Subject | null>(null);
+  const [batchModalMode, setBatchModalMode] = useState<'learning' | 'revision'>('learning');
   const [isImporting, setIsImporting] = useState<boolean>(false);
 
   const loadData = async () => {
@@ -556,12 +558,27 @@ export const SyllabusView: React.FC = () => {
                       )}
 
                     <button
-                      onClick={() => setBatchReadSubject(subject)}
+                      onClick={() => {
+                        setBatchReadSubject(subject);
+                        setBatchModalMode('learning');
+                      }}
                       className="px-2.5 py-1.5 text-xs text-indigo-700 bg-indigo-50 hover:bg-indigo-100 font-semibold rounded-lg border border-indigo-200 transition-colors flex items-center gap-1 shadow-2xs"
                       title="Mark chapters read yesterday or today, log hours, and view pace"
                     >
                       <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
                       <span>Log Chapters Read</span>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setBatchReadSubject(subject);
+                        setBatchModalMode('revision');
+                      }}
+                      className="px-2.5 py-1.5 text-xs text-emerald-700 bg-emerald-50 hover:bg-emerald-100 font-semibold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1 shadow-2xs"
+                      title="Mark chapters revised yesterday or today, complete revision milestones, and schedule next cycle"
+                    >
+                      <RotateCw className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Log Revision</span>
                     </button>
 
                     <button
@@ -808,9 +825,11 @@ export const SyllabusView: React.FC = () => {
           isOpen={!!batchReadSubject}
           onClose={() => setBatchReadSubject(null)}
           subject={batchReadSubject}
+          allSubjects={filteredSubjects}
           topics={topics}
           progressMap={progressMap}
           commitments={commitments}
+          initialMode={batchModalMode}
           onSaved={() => loadData()}
         />
       )}

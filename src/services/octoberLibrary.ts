@@ -1,6 +1,7 @@
-import { Topic, Subject, TopicProgress, StudyLog } from '../types';
+import { Topic, Subject, TopicProgress, StudyLog, RevisionRecord } from '../types';
 import { dbService } from './db';
 import { syncTopicProgressAcrossExams, scheduleSpacedRevisionCycle } from './smartPacing';
+import { addDays } from './dateUtils';
 
 export interface OctoberChapter {
   chapterNumber: number;
@@ -183,5 +184,129 @@ export async function markBatchChaptersRead(params: {
     completionPercentage,
     remainingChapters,
     totalChapters,
+  };
+}
+
+/**
+ * Mark specified chapters as revised on a given date (e.g. yesterday),
+ * synchronize topic revisionStatus across all linked exams,
+ * complete any due/overdue revision records on or before that date,
+ * schedule the next spaced revision cycle (+3d, +7d, +21d),
+ * and log a StudyLog entry with activityType: 'revision'.
+ */
+export async function markBatchChaptersRevised(params: {
+  subject: Subject;
+  chapterTopicIds: string[];
+  date: string; // YYYY-MM-DD
+  minutesSpent: number;
+  autoScheduleNextCycle?: boolean;
+}): Promise<{
+  revisedTopicsCount: number;
+  nextScheduledDates: string[];
+}> {
+  const { subject, chapterTopicIds, date, minutesSpent, autoScheduleNextCycle = true } = params;
+
+  const allTopics = await dbService.getAll<Topic>('topics');
+  const subjectTopics = allTopics.filter((t) => t.subjectId === subject.id && !t.archived);
+  const targetExamIds = subject.examIds && subject.examIds.length > 0 ? subject.examIds : ['comm_ibps_rrb_po'];
+
+  // 1. Update TopicProgress revisionStatus & lastStudiedAt across all linked exams
+  for (const topicId of chapterTopicIds) {
+    for (const examId of targetExamIds) {
+      const progressId = `${examId}_${topicId}`;
+      const existing = await dbService.get<TopicProgress>('topicProgress', progressId);
+      const prog: TopicProgress = existing || {
+        id: progressId,
+        examId,
+        topicId,
+        learningStatus: 'completed',
+        practiceStatus: 'not_started',
+        revisionStatus: 'completed',
+        manualCompletionPercentage: 100,
+        updatedAt: new Date().toISOString(),
+      };
+
+      prog.revisionStatus = 'completed';
+      // Revising a chapter confirms mastery if not previously marked
+      if (prog.learningStatus === 'not_started') {
+        prog.learningStatus = 'completed';
+        prog.manualCompletionPercentage = Math.max(prog.manualCompletionPercentage || 0, 100);
+      }
+      prog.lastStudiedAt = date;
+      prog.updatedAt = new Date().toISOString();
+
+      await dbService.put<TopicProgress>('topicProgress', prog);
+    }
+  }
+
+  // 2. Mark existing due RevisionRecord items for these topics on or before date as completed
+  const allRevisions = await dbService.getAll<RevisionRecord>('revisions');
+  const updatedRevisions: RevisionRecord[] = [];
+  for (const rev of allRevisions) {
+    if (chapterTopicIds.includes(rev.topicId) && rev.status !== 'completed' && rev.scheduledDate <= date) {
+      updatedRevisions.push({
+        ...rev,
+        status: 'completed',
+        completedAt: date,
+      });
+    }
+  }
+  if (updatedRevisions.length > 0) {
+    await dbService.putMany<RevisionRecord>('revisions', updatedRevisions);
+  }
+
+  // 3. Auto-schedule next retention intervals (+3d, +7d, +21d) starting from `date`
+  const nextScheduledDates: string[] = [];
+  if (autoScheduleNextCycle && targetExamIds.length > 0) {
+    const nextIntervals = [3, 7, 21];
+    const recordsToInsert: RevisionRecord[] = [];
+    for (const topicId of chapterTopicIds) {
+      for (const examId of targetExamIds) {
+        for (const interval of nextIntervals) {
+          const schedDate = addDays(date, interval);
+          nextScheduledDates.push(schedDate);
+          recordsToInsert.push({
+            id: `rev_nxt_${Date.now()}_${interval}_${Math.random().toString(36).substring(2, 6)}`,
+            examId,
+            subjectId: subject.id,
+            topicId,
+            basisDate: date,
+            intervalDays: interval,
+            scheduledDate: schedDate,
+            status: 'due',
+            createdAt: new Date().toISOString(),
+          });
+        }
+      }
+    }
+    if (recordsToInsert.length > 0) {
+      await dbService.putMany<RevisionRecord>('revisions', recordsToInsert);
+    }
+  }
+
+  // 4. Log Revision Study Session
+  const revisedTitles = subjectTopics
+    .filter((t) => chapterTopicIds.includes(t.id))
+    .map((t) => t.name)
+    .join(', ');
+
+  const primaryExamId = targetExamIds[0];
+  const newLog: StudyLog = {
+    id: `log_batch_rev_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+    date,
+    timestamp: `${date}T12:00:00.000Z`,
+    examId: primaryExamId,
+    subjectId: subject.id,
+    topicId: chapterTopicIds[0],
+    durationMinutes: minutesSpent,
+    activityType: 'revision',
+    notes: `Revised ${chapterTopicIds.length} chapter(s): ${revisedTitles || 'Chapters'}`,
+    createdAt: new Date().toISOString(),
+  };
+  await dbService.put<StudyLog>('studyLogs', newLog);
+
+  return {
+    revisedTopicsCount: chapterTopicIds.length,
+    nextScheduledDates: Array.from(new Set(nextScheduledDates)).sort(),
   };
 }
