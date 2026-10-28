@@ -50,8 +50,8 @@ const INITIAL_COMMITMENTS: Commitment[] = [
     code: 'IBPS-RRB-PO',
     type: 'competitive',
     priority: 1, // Primary immediate competitive priority
-    targetDate: '2026-08-01',
-    dateStatus: 'provisional',
+    targetDate: '2026-11-20',
+    dateStatus: 'confirmed',
     dateSourceUrl: 'https://www.ibps.in',
     dateVerificationDate: '2026-10-27',
     description: 'Regional Rural Banks Officer Scale I examination covering Reasoning, Quantitative Aptitude, General Awareness, Financial Awareness, and Computer Knowledge.',
@@ -204,6 +204,17 @@ class IndexedDBStorage {
           for (const c of INITIAL_COMMITMENTS) {
             commStore.put(c);
           }
+        } else {
+          // Auto-patch outdated provisional date to confirmed 2026-11-20
+          const getRrbReq = commStore.get('comm_ibps_rrb_po');
+          getRrbReq.onsuccess = () => {
+            const rrb = getRrbReq.result as Commitment | undefined;
+            if (rrb && (rrb.targetDate === '2026-08-01' || !rrb.targetDate)) {
+              rrb.targetDate = '2026-11-20';
+              rrb.dateStatus = 'confirmed';
+              commStore.put(rrb);
+            }
+          };
         }
       };
 

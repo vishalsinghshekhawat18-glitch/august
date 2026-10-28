@@ -14,9 +14,12 @@ import {
   Award,
   ChevronRight,
   TrendingUp,
+  Edit2,
+  X,
 } from 'lucide-react';
 import {
   Commitment,
+  DateVerificationStatus,
   StudyLog,
   WeeklyPlan,
   WeeklyTask,
@@ -55,6 +58,34 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
   const [topics, setTopics] = useState<Topic[]>([]);
   const [allPlans, setAllPlans] = useState<WeeklyPlan[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  // Edit Milestone Modal
+  const [editingCommitment, setEditingCommitment] = useState<Commitment | null>(null);
+  const [targetDateInput, setTargetDateInput] = useState<string>('');
+  const [dateStatusInput, setDateStatusInput] = useState<DateVerificationStatus>('confirmed');
+  const [dateSourceUrlInput, setDateSourceUrlInput] = useState<string>('');
+
+  const handleOpenEditMilestone = (c: Commitment) => {
+    setEditingCommitment(c);
+    setTargetDateInput(c.targetDate || '');
+    setDateStatusInput(c.dateStatus || 'confirmed');
+    setDateSourceUrlInput(c.dateSourceUrl || '');
+  };
+
+  const handleSaveMilestone = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingCommitment) return;
+    const updated: Commitment = {
+      ...editingCommitment,
+      targetDate: targetDateInput || undefined,
+      dateStatus: dateStatusInput,
+      dateSourceUrl: dateSourceUrlInput || undefined,
+      dateVerificationDate: todayStr,
+    };
+    await dbService.put<Commitment>('commitments', updated);
+    setCommitments((prev) => prev.map((c) => (c.id === updated.id ? updated : c)));
+    setEditingCommitment(null);
+  };
 
   // Load all dashboard metrics
   const loadDashboardData = async () => {
@@ -492,15 +523,39 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
                       </div>
                     </div>
 
-                    <div className="text-right shrink-0">
-                      {days !== null ? (
-                        <div>
-                          <span className="text-lg font-bold text-indigo-600">{days}</span>
-                          <span className="text-[10px] text-slate-400 block -mt-1">days left</span>
-                        </div>
-                      ) : (
-                        <span className="text-[10px] text-slate-400 italic">Unscheduled</span>
-                      )}
+                    <div className="flex items-center gap-3 shrink-0">
+                      <div className="text-right">
+                        {days !== null ? (
+                          <div>
+                            {days > 0 ? (
+                              <>
+                                <span className="text-lg font-bold text-indigo-600">{days}</span>
+                                <span className="text-[10px] text-slate-400 block -mt-1">days left</span>
+                              </>
+                            ) : days === 0 ? (
+                              <>
+                                <span className="text-base font-bold text-emerald-600">Today</span>
+                                <span className="text-[10px] text-emerald-600 block -mt-1">Exam day</span>
+                              </>
+                            ) : (
+                              <>
+                                <span className="text-sm font-semibold text-slate-400">{Math.abs(days)}d ago</span>
+                                <span className="text-[10px] text-slate-400 block -mt-1">Passed</span>
+                              </>
+                            )}
+                          </div>
+                        ) : (
+                          <span className="text-[10px] text-slate-400 italic">Unscheduled</span>
+                        )}
+                      </div>
+
+                      <button
+                        onClick={() => handleOpenEditMilestone(c)}
+                        className="text-slate-300 hover:text-indigo-600 p-1.5 rounded-lg hover:bg-slate-50 transition"
+                        title="Edit examination date and verification status"
+                      >
+                        <Edit2 className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   </div>
                 );
@@ -637,6 +692,102 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
           )}
         </div>
       </div>
+      {/* Edit Milestone Modal */}
+      {editingCommitment && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
+          <div className="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-sm p-5 space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <h3 className="text-sm font-bold text-slate-900">Edit Examination Milestone</h3>
+              <button
+                type="button"
+                onClick={() => setEditingCommitment(null)}
+                className="text-slate-400 hover:text-slate-600"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveMilestone} className="space-y-3 text-xs">
+              <div>
+                <label className="block text-xs font-medium text-slate-700 mb-1">Examination Name</label>
+                <input
+                  type="text"
+                  value={editingCommitment.name}
+                  disabled
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl bg-slate-50 text-slate-500 text-xs font-semibold"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">Official Target Exam Date</label>
+                <input
+                  type="date"
+                  value={targetDateInput}
+                  onChange={(e) => setTargetDateInput(e.target.value)}
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl text-slate-900 text-xs font-bold focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                  required
+                />
+                <div className="flex gap-1.5 mt-1.5">
+                  <button
+                    type="button"
+                    onClick={() => setTargetDateInput('2026-11-20')}
+                    className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
+                  >
+                    Set 20 Nov 2026 (23d left)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setTargetDateInput('2026-11-21')}
+                    className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
+                  >
+                    Set 21 Nov 2026 (24d left)
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-700 mb-1">Verification Status</label>
+                <select
+                  value={dateStatusInput}
+                  onChange={(e) => setDateStatusInput(e.target.value as DateVerificationStatus)}
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                >
+                  <option value="confirmed">Confirmed</option>
+                  <option value="provisional">Provisional</option>
+                  <option value="unverified">Unverified</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-700 mb-1">Official Notification URL</label>
+                <input
+                  type="url"
+                  placeholder="https://www.ibps.in"
+                  value={dateSourceUrlInput}
+                  onChange={(e) => setDateSourceUrlInput(e.target.value)}
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                />
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setEditingCommitment(null)}
+                  className="px-3 py-1.5 text-xs text-slate-600 hover:bg-slate-100 rounded-xl font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-1.5 text-xs text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl font-semibold shadow-sm"
+                >
+                  Save Milestone
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
