@@ -25,6 +25,7 @@ import {
   RevisionProgressStatus,
 } from '../types';
 import { dbService } from '../services/db';
+import { SmartPacingModal } from '../components/SmartPacingModal';
 
 export const SyllabusView: React.FC = () => {
   const [commitments, setCommitments] = useState<Commitment[]>([]);
@@ -47,8 +48,10 @@ export const SyllabusView: React.FC = () => {
   // Form fields
   const [newSubjectName, setNewSubjectName] = useState<string>('');
   const [newSubjectDesc, setNewSubjectDesc] = useState<string>('');
+  const [newSubjectExamIds, setNewSubjectExamIds] = useState<string[]>([]);
   const [newTopicName, setNewTopicName] = useState<string>('');
   const [newTopicNotes, setNewTopicNotes] = useState<string>('');
+  const [pacingSubject, setPacingSubject] = useState<Subject | null>(null);
 
   const loadData = async () => {
     try {
@@ -102,16 +105,18 @@ export const SyllabusView: React.FC = () => {
     if (!newSubjectName.trim()) return;
 
     try {
+      const targetExamIds = newSubjectExamIds.length > 0 ? newSubjectExamIds : [selectedExamId];
       const newSub: Subject = {
         id: `sub_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
         name: newSubjectName.trim(),
         description: newSubjectDesc.trim() || undefined,
-        examIds: [selectedExamId],
+        examIds: targetExamIds,
         order: subjects.length + 1,
       };
       await dbService.put<Subject>('subjects', newSub);
       setNewSubjectName('');
       setNewSubjectDesc('');
+      setNewSubjectExamIds([]);
       setIsAddSubjectOpen(false);
       loadData();
     } catch (err) {
@@ -285,7 +290,10 @@ export const SyllabusView: React.FC = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <button
-            onClick={() => setIsAddSubjectOpen(true)}
+            onClick={() => {
+              setNewSubjectExamIds([selectedExamId]);
+              setIsAddSubjectOpen(true);
+            }}
             className="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-colors flex items-center gap-1.5"
           >
             <Plus className="w-3.5 h-3.5" />
@@ -337,6 +345,32 @@ export const SyllabusView: React.FC = () => {
                   onChange={(e) => setNewSubjectDesc(e.target.value)}
                   className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
                 />
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-700 mb-1">Relevant Examinations</label>
+                <div className="space-y-1.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 max-h-36 overflow-y-auto">
+                  {commitments.map((c) => (
+                    <label key={c.id} className="flex items-center gap-2 text-xs text-slate-700 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={newSubjectExamIds.includes(c.id)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setNewSubjectExamIds((prev) => [...prev, c.id]);
+                          } else {
+                            if (newSubjectExamIds.length > 1) {
+                              setNewSubjectExamIds((prev) => prev.filter((id) => id !== c.id));
+                            }
+                          }
+                        }}
+                        className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                      />
+                      <span>{c.name} {c.priority === 1 ? '★ [Priority 1]' : `(Priority ${c.priority})`}</span>
+                    </label>
+                  ))}
+                </div>
+                <span className="text-[10px] text-slate-400 mt-1 block">Subject &amp; chapter progress will be synchronized across all checked exams</span>
               </div>
               <div className="flex justify-end gap-2 pt-2">
                 <button
@@ -490,6 +524,15 @@ export const SyllabusView: React.FC = () => {
                   </div>
 
                   <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setPacingSubject(subject)}
+                      className="px-2.5 py-1.5 text-xs text-indigo-700 bg-indigo-50 hover:bg-indigo-100 font-semibold rounded-lg border border-indigo-200 transition-colors flex items-center gap-1 shadow-2xs"
+                      title="Smart pacing calculator & schedule remaining chapters"
+                    >
+                      <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+                      <span>Pacing &amp; Schedule</span>
+                    </button>
+
                     <button
                       onClick={() => {
                         setActiveSubjectIdForTopic(subject.id);
@@ -706,6 +749,18 @@ export const SyllabusView: React.FC = () => {
           })
         )}
       </div>
+      {/* Smart Pacing Modal */}
+      {pacingSubject && (
+        <SmartPacingModal
+          isOpen={!!pacingSubject}
+          onClose={() => setPacingSubject(null)}
+          subject={pacingSubject}
+          topics={topics}
+          progressMap={progressMap}
+          commitments={commitments}
+          onPlanApplied={() => loadData()}
+        />
+      )}
     </div>
   );
 };

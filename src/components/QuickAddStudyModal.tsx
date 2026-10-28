@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { X, Clock, CheckCircle2, AlertCircle } from 'lucide-react';
-import { Commitment, Subject, Topic, Subtopic, ActivityType, StudyLog, AppSettings, TopicProgress } from '../types';
+import { X, Clock, CheckCircle2, AlertCircle, Sparkles, RotateCw } from 'lucide-react';
+import { Commitment, Subject, Topic, Subtopic, ActivityType, StudyLog, AppSettings, TopicProgress, LearningStatus } from '../types';
 import { dbService } from '../services/db';
 import { getTodayDateString } from '../services/dateUtils';
+import { scheduleSpacedRevisionCycle, syncTopicProgressAcrossExams } from '../services/smartPacing';
 
 interface QuickAddStudyModalProps {
   isOpen: boolean;
@@ -37,6 +38,11 @@ export const QuickAddStudyModal: React.FC<QuickAddStudyModalProps> = ({ isOpen, 
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  // Smart Sync & Revision Automation
+  const [autoScheduleRevision, setAutoScheduleRevision] = useState<boolean>(true);
+  const [syncAcrossAllExams, setSyncAcrossAllExams] = useState<boolean>(true);
+  const [markTopicCompleted, setMarkTopicCompleted] = useState<boolean>(false);
 
   // Load data & remember last-used defaults
   useEffect(() => {
@@ -149,27 +155,41 @@ export const QuickAddStudyModal: React.FC<QuickAddStudyModalProps> = ({ isOpen, 
       // 1. Save Study Log
       await dbService.put<StudyLog>('studyLogs', newLog);
 
-      // 2. Update Topic Progress if topicId exists
+      // 2. Update Topic Progress (Smart Cross-Exam Sync)
       if (topicId) {
-        const progressId = `${examId}_${topicId}`;
-        const existingProg = await dbService.get<TopicProgress>('topicProgress', progressId);
-        const updatedProg: TopicProgress = existingProg || {
-          id: progressId,
-          examId,
-          topicId,
-          learningStatus: 'in_progress',
-          practiceStatus: 'not_started',
-          revisionStatus: 'not_started',
-          manualCompletionPercentage: 25,
-          updatedAt: new Date().toISOString(),
-        };
+        const curSubject = subjects.find((s) => s.id === subjectId);
+        const targetStatus: LearningStatus = markTopicCompleted ? 'completed' : 'in_progress';
+        const targetPct = markTopicCompleted ? 100 : 50;
 
-        updatedProg.lastStudiedAt = date;
-        updatedProg.updatedAt = new Date().toISOString();
-        if (updatedProg.learningStatus === 'not_started') {
-          updatedProg.learningStatus = 'in_progress';
+        if (syncAcrossAllExams && curSubject && curSubject.examIds && curSubject.examIds.length > 0) {
+          // Sync across ALL examinations sharing this subject
+          await syncTopicProgressAcrossExams(curSubject, topicId, targetStatus, targetPct, date);
+        } else {
+          // Sync single exam
+          const progressId = `${examId}_${topicId}`;
+          const existingProg = await dbService.get<TopicProgress>('topicProgress', progressId);
+          const updatedProg: TopicProgress = existingProg || {
+            id: progressId,
+            examId,
+            topicId,
+            learningStatus: targetStatus,
+            practiceStatus: 'not_started',
+            revisionStatus: 'not_started',
+            manualCompletionPercentage: targetPct,
+            updatedAt: new Date().toISOString(),
+          };
+
+          updatedProg.lastStudiedAt = date;
+          updatedProg.updatedAt = new Date().toISOString();
+          updatedProg.learningStatus = targetStatus;
+          updatedProg.manualCompletionPercentage = Math.max(updatedProg.manualCompletionPercentage || 0, targetPct);
+          await dbService.put<TopicProgress>('topicProgress', updatedProg);
         }
-        await dbService.put<TopicProgress>('topicProgress', updatedProg);
+
+        // 3. Auto-Schedule Spaced Revision Cycle (+1d, +3d, +7d, +21d)
+        if (autoScheduleRevision) {
+          await scheduleSpacedRevisionCycle(examId, subjectId, topicId, date);
+        }
       }
 
       // 3. Update last-used settings
@@ -361,6 +381,63 @@ export const QuickAddStudyModal: React.FC<QuickAddStudyModalProps> = ({ isOpen, 
               className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 placeholder:text-slate-400"
             />
           </div>
+
+          {/* Smart Syllabus & Revision Automation */}
+          {topicId && (
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-2 text-xs">
+              {(() => {
+                const curSub = subjects.find((s) => s.id === subjectId);
+                const linked = curSub ? commitments.filter((c) => curSub.examIds.includes(c.id)) : [];
+                if (linked.length <= 1) return null;
+                return (
+                  <div className="flex items-start gap-2 text-indigo-900 bg-indigo-50/80 p-2 rounded-lg border border-indigo-100">
+                    <Sparkles className="w-3.5 h-3.5 text-indigo-600 shrink-0 mt-0.5" />
+                    <div className="space-y-0.5">
+                      <span className="font-semibold block text-[11px]">Cross-Exam Syllabus Mapping</span>
+                      <span className="text-[11px] text-indigo-800">
+                        This subject applies to <strong>{linked.map((e) => e.name).join(', ')}</strong>. Progress will update across all {linked.length} exams.
+                      </span>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              <div className="space-y-1.5 pt-0.5">
+                <label className="flex items-center gap-2 cursor-pointer font-medium text-slate-800">
+                  <input
+                    type="checkbox"
+                    checked={autoScheduleRevision}
+                    onChange={(e) => setAutoScheduleRevision(e.target.checked)}
+                    className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  />
+                  <span className="flex items-center gap-1">
+                    <RotateCw className="w-3 h-3 text-indigo-600" />
+                    <span>Auto-schedule Spaced Revision Cycle (+1d, +3d, +7d, +21d)</span>
+                  </span>
+                </label>
+
+                <label className="flex items-center gap-2 cursor-pointer text-slate-700">
+                  <input
+                    type="checkbox"
+                    checked={syncAcrossAllExams}
+                    onChange={(e) => setSyncAcrossAllExams(e.target.checked)}
+                    className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  />
+                  <span>Synchronize progress across all linked examinations</span>
+                </label>
+
+                <label className="flex items-center gap-2 cursor-pointer text-slate-700">
+                  <input
+                    type="checkbox"
+                    checked={markTopicCompleted}
+                    onChange={(e) => setMarkTopicCompleted(e.target.checked)}
+                    className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  />
+                  <span>Mark this chapter as <strong>100% Completed</strong> (conceptual grasp)</span>
+                </label>
+              </div>
+            </div>
+          )}
 
           {/* Submit */}
           <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
