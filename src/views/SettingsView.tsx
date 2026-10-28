@@ -598,11 +598,26 @@ export const SettingsView: React.FC = () => {
               )}
 
               {authError && (
-                <div className="text-xs text-rose-700 bg-rose-50 border border-rose-200 p-2.5 rounded-xl font-medium space-y-1">
+                <div className="text-xs text-rose-700 bg-rose-50 border border-rose-200 p-2.5 rounded-xl font-medium space-y-2">
                   <div>{authError}</div>
                   {authError.toLowerCase().includes('email not confirmed') && (
                     <div className="text-[11px] font-normal text-rose-800 pt-1 border-t border-rose-200">
-                      <strong>To fix instantly:</strong> In Supabase Dashboard &rarr; <strong>Authentication</strong> &rarr; <strong>Users</strong>, click the <code>...</code> menu next to your email and select <strong>Auto-confirm user</strong>. You can also turn off &quot;Confirm email&quot; in Providers &rarr; Email.
+                      <strong>To fix instantly:</strong> In Supabase Dashboard &rarr; <strong>Authentication</strong> &rarr; <strong>Users</strong>, scroll right and click the <code>...</code> menu next to your email &rarr; <strong>Auto-confirm user</strong>.
+                    </div>
+                  )}
+                  {authMode === 'signup' && (
+                    <div className="pt-1">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setAuthMode('signin');
+                          setAuthError('');
+                        }}
+                        className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold shadow-sm transition inline-flex items-center gap-1.5"
+                      >
+                        <LogIn className="w-3.5 h-3.5" />
+                        <span>Account already created? Switch to Sign In Existing</span>
+                      </button>
                     </div>
                   )}
                 </div>
