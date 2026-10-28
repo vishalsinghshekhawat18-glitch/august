@@ -17,7 +17,7 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 -- 2. Auto-Confirm Users (Bypasses email verification & localhost redirect issues permanently)
 -- Auto-confirm any existing users
 UPDATE auth.users
-SET email_confirmed_at = NOW(), confirmed_at = NOW()
+SET email_confirmed_at = NOW()
 WHERE email_confirmed_at IS NULL;
 
 -- Trigger to automatically auto-confirm any new user upon signup
@@ -25,7 +25,6 @@ CREATE OR REPLACE FUNCTION public.auto_confirm_new_user()
 RETURNS trigger AS $$
 BEGIN
   NEW.email_confirmed_at = NOW();
-  NEW.confirmed_at = NOW();
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
