@@ -14,7 +14,29 @@
 -- 1. Enable pgcrypto extension for cryptographic helpers if needed
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
--- 2. User Profiles Table (Stores Salted Hash of 4-Digit Numeric PIN)
+-- 2. Auto-Confirm Users (Bypasses email verification & localhost redirect issues permanently)
+-- Auto-confirm any existing users
+UPDATE auth.users
+SET email_confirmed_at = NOW(), confirmed_at = NOW()
+WHERE email_confirmed_at IS NULL;
+
+-- Trigger to automatically auto-confirm any new user upon signup
+CREATE OR REPLACE FUNCTION public.auto_confirm_new_user()
+RETURNS trigger AS $$
+BEGIN
+  NEW.email_confirmed_at = NOW();
+  NEW.confirmed_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+DROP TRIGGER IF EXISTS trigger_auto_confirm_user ON auth.users;
+CREATE TRIGGER trigger_auto_confirm_user
+  BEFORE INSERT ON auth.users
+  FOR EACH ROW
+  EXECUTE FUNCTION public.auto_confirm_new_user();
+
+-- 3. User Profiles Table (Stores Salted Hash of 4-Digit Numeric PIN)
 CREATE TABLE IF NOT EXISTS public.user_profiles (
   user_id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   pin_hash TEXT NOT NULL,
