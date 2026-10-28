@@ -749,8 +749,13 @@ export const RevisionsView: React.FC<RevisionsViewProps> = ({ onNavigate }) => {
                     </div>
 
                     <div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <h4 className="text-xs font-semibold text-slate-900">{topicName}</h4>
+                        {rev.notes && (
+                          <span className="text-[11px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded-md shadow-2xs">
+                            {rev.notes}
+                          </span>
+                        )}
                         <span className="text-[10px] text-slate-400">({subjectName})</span>
                         <span
                           className={`text-[9px] font-bold uppercase px-1.5 py-0.2 rounded ${

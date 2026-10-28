@@ -1,4 +1,4 @@
-import { Topic, Subject, TopicProgress, StudyLog, RevisionRecord } from '../types';
+import { Topic, Subject, TopicProgress, StudyLog, RevisionRecord, LearningStatus } from '../types';
 import { dbService } from './db';
 import { syncTopicProgressAcrossExams, scheduleSpacedRevisionCycle } from './smartPacing';
 import { addDays, getTodayDateString } from './dateUtils';
@@ -7,6 +7,83 @@ export interface OctoberChapter {
   chapterNumber: number;
   title: string;
   part: string;
+  totalCards?: number;
+  cardLabel?: string;
+}
+
+export const KNOWN_OCTOBER_CARD_COUNTS: Record<string, { totalCards: number; cardLabel: string }> = {
+  // Static Bank
+  'static-s1': { totalCards: 28, cardLabel: 'cards' },
+  'static-s2': { totalCards: 36, cardLabel: 'cards' },
+  'static-s3': { totalCards: 15, cardLabel: 'cards' },
+  'static-s4': { totalCards: 16, cardLabel: 'cards' },
+  'static-s5': { totalCards: 10, cardLabel: 'cards' },
+  'static-s6': { totalCards: 20, cardLabel: 'cards' },
+  'static-s7': { totalCards: 13, cardLabel: 'cards' },
+  'static-s8': { totalCards: 10, cardLabel: 'cards' },
+  'static-s9': { totalCards: 8, cardLabel: 'tables' },
+  'static-s10': { totalCards: 168, cardLabel: 'questions' },
+
+  // April 2026
+  'apr-2026-s1': { totalCards: 46, cardLabel: 'cards' },
+  'apr-2026-s2': { totalCards: 38, cardLabel: 'cards' },
+  'apr-2026-s3': { totalCards: 15, cardLabel: 'cards' },
+  'apr-2026-s4': { totalCards: 70, cardLabel: 'cards' },
+  'apr-2026-s5': { totalCards: 11, cardLabel: 'cards' },
+  'apr-2026-s6': { totalCards: 19, cardLabel: 'cards' },
+  'apr-2026-s7': { totalCards: 8, cardLabel: 'cards' },
+  'apr-2026-s8': { totalCards: 12, cardLabel: 'cards' },
+  'apr-2026-s9': { totalCards: 10, cardLabel: 'tables' },
+  'apr-2026-s10': { totalCards: 117, cardLabel: 'questions' },
+
+  // January–March 2026
+  'jan-mar-2026-s1': { totalCards: 64, cardLabel: 'cards' },
+  'jan-mar-2026-s2': { totalCards: 67, cardLabel: 'cards' },
+  'jan-mar-2026-s3': { totalCards: 21, cardLabel: 'cards' },
+  'jan-mar-2026-s4': { totalCards: 61, cardLabel: 'cards' },
+  'jan-mar-2026-s5': { totalCards: 8, cardLabel: 'cards' },
+  'jan-mar-2026-s6': { totalCards: 19, cardLabel: 'cards' },
+  'jan-mar-2026-s7': { totalCards: 8, cardLabel: 'cards' },
+  'jan-mar-2026-s8': { totalCards: 29, cardLabel: 'cards' },
+  'jan-mar-2026-s9': { totalCards: 10, cardLabel: 'tables' },
+  'jan-mar-2026-s10': { totalCards: 75, cardLabel: 'questions' },
+};
+
+/**
+ * Returns total cards/items and label for a topic (from topic directly or via known October anchors).
+ */
+export function getTopicTotalCards(topic: Topic): { totalCards: number; cardLabel: string } | null {
+  if (topic.totalCards && topic.totalCards > 0) {
+    return { totalCards: topic.totalCards, cardLabel: topic.cardLabel || 'cards' };
+  }
+  if (topic.notes) {
+    for (const [anchor, info] of Object.entries(KNOWN_OCTOBER_CARD_COUNTS)) {
+      if (topic.notes.includes(`#${anchor}`)) {
+        return info;
+      }
+    }
+  }
+  const lowerName = topic.name.toLowerCase();
+  if (lowerName.includes('[static]')) {
+    const sMatch = lowerName.match(/section\s*(\d+)/);
+    if (sMatch) {
+      const key = `static-s${sMatch[1]}`;
+      if (KNOWN_OCTOBER_CARD_COUNTS[key]) return KNOWN_OCTOBER_CARD_COUNTS[key];
+    }
+  } else if (lowerName.includes('[jan–mar') || lowerName.includes('[jan-mar')) {
+    const sMatch = lowerName.match(/section\s*(\d+)/);
+    if (sMatch) {
+      const key = `jan-mar-2026-s${sMatch[1]}`;
+      if (KNOWN_OCTOBER_CARD_COUNTS[key]) return KNOWN_OCTOBER_CARD_COUNTS[key];
+    }
+  } else if (lowerName.includes('[apr')) {
+    const sMatch = lowerName.match(/section\s*(\d+)/);
+    if (sMatch) {
+      const key = `apr-2026-s${sMatch[1]}`;
+      if (KNOWN_OCTOBER_CARD_COUNTS[key]) return KNOWN_OCTOBER_CARD_COUNTS[key];
+    }
+  }
+  return null;
 }
 
 export const OCTOBER_ECONOMICS_CHAPTERS: OctoberChapter[] = [
@@ -61,28 +138,28 @@ export const OCTOBER_ECONOMICS_CHAPTERS: OctoberChapter[] = [
 
 export const OCTOBER_CURRENT_AFFAIRS_SECTIONS: OctoberChapter[] = [
   // Part 1: Static Bank (10 Sections)
-  { chapterNumber: 1, title: 'Constitution, Polity and Amendments', part: 'Static Bank' },
-  { chapterNumber: 2, title: 'RBI, Monetary Policy and Banking Basics', part: 'Static Bank' },
-  { chapterNumber: 3, title: 'GST, Taxation and Budget', part: 'Static Bank' },
-  { chapterNumber: 4, title: 'Financial Regulators and Institutions', part: 'Static Bank' },
-  { chapterNumber: 5, title: 'Government Committees, Commissions and Reports', part: 'Static Bank' },
-  { chapterNumber: 6, title: 'Schemes and Acts with Launch Year and Ministry', part: 'Static Bank' },
-  { chapterNumber: 7, title: 'Important Days, Themes and Headquarters', part: 'Static Bank' },
-  { chapterNumber: 8, title: 'Older Important Current Affairs', part: 'Static Bank' },
-  { chapterNumber: 9, title: 'Summary Tables (key numbers and dates)', part: 'Static Bank' },
-  { chapterNumber: 10, title: 'Revision (168 Recall Questions)', part: 'Static Bank' },
+  { chapterNumber: 1, title: 'Constitution, Polity and Amendments', part: 'Static Bank', totalCards: 28, cardLabel: 'cards' },
+  { chapterNumber: 2, title: 'RBI, Monetary Policy and Banking Basics', part: 'Static Bank', totalCards: 36, cardLabel: 'cards' },
+  { chapterNumber: 3, title: 'GST, Taxation and Budget', part: 'Static Bank', totalCards: 15, cardLabel: 'cards' },
+  { chapterNumber: 4, title: 'Financial Regulators and Institutions', part: 'Static Bank', totalCards: 16, cardLabel: 'cards' },
+  { chapterNumber: 5, title: 'Government Committees, Commissions and Reports', part: 'Static Bank', totalCards: 10, cardLabel: 'cards' },
+  { chapterNumber: 6, title: 'Schemes and Acts with Launch Year and Ministry', part: 'Static Bank', totalCards: 20, cardLabel: 'cards' },
+  { chapterNumber: 7, title: 'Important Days, Themes and Headquarters', part: 'Static Bank', totalCards: 13, cardLabel: 'cards' },
+  { chapterNumber: 8, title: 'Older Important Current Affairs', part: 'Static Bank', totalCards: 10, cardLabel: 'cards' },
+  { chapterNumber: 9, title: 'Summary Tables (key numbers and dates)', part: 'Static Bank', totalCards: 8, cardLabel: 'tables' },
+  { chapterNumber: 10, title: 'Revision (168 Recall Questions)', part: 'Static Bank', totalCards: 168, cardLabel: 'questions' },
 
   // Part 2: January–March 2026 (10 Sections)
-  { chapterNumber: 11, title: 'ESI, Finance and Business', part: 'January–March 2026' },
-  { chapterNumber: 12, title: 'Regulatory Bodies, PIB, Circulars and Notifications', part: 'January–March 2026' },
-  { chapterNumber: 13, title: 'International Organisations and Affairs', part: 'January–March 2026' },
-  { chapterNumber: 14, title: 'National and State News', part: 'January–March 2026' },
-  { chapterNumber: 15, title: 'MoUs, Conferences and Appointments', part: 'January–March 2026' },
-  { chapterNumber: 16, title: 'Science, Technology, Defence and Sports', part: 'January–March 2026' },
-  { chapterNumber: 17, title: 'Awards, Books, Indices and Rankings', part: 'January–March 2026' },
-  { chapterNumber: 18, title: 'Government Schemes and Static Links', part: 'January–March 2026' },
-  { chapterNumber: 19, title: 'Summary Tables', part: 'January–March 2026' },
-  { chapterNumber: 20, title: 'Revision (75 Recall Questions)', part: 'January–March 2026' },
+  { chapterNumber: 11, title: 'ESI, Finance and Business', part: 'January–March 2026', totalCards: 64, cardLabel: 'cards' },
+  { chapterNumber: 12, title: 'Regulatory Bodies, PIB, Circulars and Notifications', part: 'January–March 2026', totalCards: 67, cardLabel: 'cards' },
+  { chapterNumber: 13, title: 'International Organisations and Affairs', part: 'January–March 2026', totalCards: 21, cardLabel: 'cards' },
+  { chapterNumber: 14, title: 'National and State News', part: 'January–March 2026', totalCards: 61, cardLabel: 'cards' },
+  { chapterNumber: 15, title: 'MoUs, Conferences and Appointments', part: 'January–March 2026', totalCards: 8, cardLabel: 'cards' },
+  { chapterNumber: 16, title: 'Science, Technology, Defence and Sports', part: 'January–March 2026', totalCards: 19, cardLabel: 'cards' },
+  { chapterNumber: 17, title: 'Awards, Books, Indices and Rankings', part: 'January–March 2026', totalCards: 8, cardLabel: 'cards' },
+  { chapterNumber: 18, title: 'Government Schemes and Static Links', part: 'January–March 2026', totalCards: 29, cardLabel: 'cards' },
+  { chapterNumber: 19, title: 'Summary Tables', part: 'January–March 2026', totalCards: 10, cardLabel: 'tables' },
+  { chapterNumber: 20, title: 'Revision (75 Recall Questions)', part: 'January–March 2026', totalCards: 75, cardLabel: 'questions' },
 ];
 
 export interface ParsedOctoberUnit {
@@ -91,6 +168,8 @@ export interface ParsedOctoberUnit {
   part: string;
   anchorId: string;
   notes: string;
+  totalCards?: number;
+  cardLabel?: string;
 }
 
 export interface TopicGroupInfo {
@@ -229,12 +308,29 @@ export function parseOctoberHtml(html: string, slug: string, baseReaderUrl: stri
         const cleanTitle = sToc.replace(/^\d+\.\s*/, '');
         const directUrl = `${cleanBase}#${sId}`;
 
+        const countAttrMatch = h2Match[0].match(/data-count="([^"]+)"/i);
+        let totalCards: number | undefined;
+        let cardLabel = 'cards';
+        if (countAttrMatch) {
+          const countStr = countAttrMatch[1];
+          const numMatch = countStr.match(/(\d+)/);
+          if (numMatch) totalCards = parseInt(numMatch[1], 10);
+          if (countStr.toLowerCase().includes('question')) cardLabel = 'questions';
+          else if (countStr.toLowerCase().includes('table')) cardLabel = 'tables';
+        }
+        if (!totalCards && KNOWN_OCTOBER_CARD_COUNTS[sId]) {
+          totalCards = KNOWN_OCTOBER_CARD_COUNTS[sId].totalCards;
+          cardLabel = KNOWN_OCTOBER_CARD_COUNTS[sId].cardLabel;
+        }
+
         units.push({
           order: units.length + 1,
           name: `[${partShort}] Section ${sOrder}: ${cleanTitle}`,
           part: partToc,
           anchorId: sId,
           notes: directUrl,
+          totalCards,
+          cardLabel,
         });
         sOrder++;
       }
@@ -295,6 +391,8 @@ export async function fetchOctoberBookUnits(slug: string, baseReaderUrl: string)
         part: s.part,
         anchorId: anchor,
         notes: `${cleanBase}#${anchor}`,
+        totalCards: s.totalCards,
+        cardLabel: s.cardLabel,
       };
     });
   }
@@ -451,9 +549,17 @@ export async function importOctoberSubjectChapters(
     );
 
     if (existing) {
-      // If the topic existed previously with an unbracketed name, update name to include part prefix
+      let needsSave = false;
       if (existing.name !== item.name && item.name.startsWith('[')) {
         existing.name = item.name;
+        needsSave = true;
+      }
+      if (item.totalCards && existing.totalCards !== item.totalCards) {
+        existing.totalCards = item.totalCards;
+        existing.cardLabel = item.cardLabel;
+        needsSave = true;
+      }
+      if (needsSave) {
         await dbService.put<Topic>('topics', existing);
       }
     } else {
@@ -464,6 +570,8 @@ export async function importOctoberSubjectChapters(
         order: item.order,
         notes: item.notes,
         archived: false,
+        totalCards: item.totalCards,
+        cardLabel: item.cardLabel,
       });
     }
   }
@@ -903,4 +1011,137 @@ export async function updateCompletedRevisionTime(params: {
     };
     await dbService.put<StudyLog>('studyLogs', newLog);
   }
+}
+
+export interface LogCardProgressOptions {
+  examId: string;
+  subject: Subject;
+  topic: Topic;
+  cardsReadCount: number; // e.g. 10
+  totalCards: number; // e.g. 64
+  date: string; // YYYY-MM-DD
+  durationMinutes: number; // e.g. 30
+  autoScheduleRevision?: boolean;
+  isRelativeIncrement?: boolean;
+}
+
+/**
+ * Log reading a specific number of cards/items from a topic,
+ * update progress (e.g. 10/64 cards, 16%), log focused study time,
+ * and automatically schedule spaced revision for that specific card slice (e.g. "Cards 1–10").
+ */
+export async function logTopicCardProgress(options: LogCardProgressOptions): Promise<{
+  topicProgress: TopicProgress;
+  studyLog: StudyLog;
+  revisions: RevisionRecord[];
+}> {
+  const {
+    examId,
+    subject,
+    topic,
+    cardsReadCount,
+    totalCards,
+    date,
+    durationMinutes,
+    autoScheduleRevision = true,
+    isRelativeIncrement = true,
+  } = options;
+
+  const primaryExamId = examId || (subject.examIds && subject.examIds[0]) || 'default';
+  const targetExamIds = Array.from(new Set([...(subject.examIds || []), primaryExamId]));
+
+  // 1. Get existing progress or create new
+  const progressId = `${primaryExamId}_${topic.id}`;
+  const existingProg = await dbService.get<TopicProgress>('topicProgress', progressId);
+  const currentCompleted = existingProg?.completedCards || 0;
+
+  const newCompleted = isRelativeIncrement
+    ? Math.min(totalCards, currentCompleted + cardsReadCount)
+    : Math.min(totalCards, cardsReadCount);
+
+  const cardSlice =
+    currentCompleted === 0 || !isRelativeIncrement
+      ? `Cards 1–${newCompleted}`
+      : `Cards ${currentCompleted + 1}–${newCompleted}`;
+
+  const completionPercent = Math.round((newCompleted / totalCards) * 100);
+  const learningStatus: LearningStatus = newCompleted >= totalCards ? 'completed' : 'in_progress';
+
+  // 2. Update progress across linked exams
+  let updatedProg: TopicProgress = existingProg || {
+    id: progressId,
+    examId: primaryExamId,
+    topicId: topic.id,
+    learningStatus,
+    practiceStatus: 'not_started',
+    revisionStatus: 'not_started',
+    manualCompletionPercentage: completionPercent,
+    completedCards: newCompleted,
+    lastStudiedAt: date,
+    updatedAt: new Date().toISOString(),
+  };
+
+  for (const eId of targetExamIds) {
+    const pId = `${eId}_${topic.id}`;
+    const p = (await dbService.get<TopicProgress>('topicProgress', pId)) || {
+      id: pId,
+      examId: eId,
+      topicId: topic.id,
+      learningStatus: 'not_started',
+      practiceStatus: 'not_started',
+      revisionStatus: 'not_started',
+      manualCompletionPercentage: 0,
+      updatedAt: new Date().toISOString(),
+    };
+    p.completedCards = newCompleted;
+    p.manualCompletionPercentage = completionPercent;
+    p.learningStatus = learningStatus;
+    p.lastStudiedAt = date;
+    p.updatedAt = new Date().toISOString();
+    await dbService.put<TopicProgress>('topicProgress', p);
+    if (eId === primaryExamId) updatedProg = p;
+  }
+
+  // 3. Create StudyLog entry
+  const studyLog: StudyLog = {
+    id: `log_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+    date,
+    timestamp: new Date().toISOString(),
+    examId: primaryExamId,
+    subjectId: subject.id,
+    topicId: topic.id,
+    durationMinutes: Math.max(5, durationMinutes),
+    activityType: 'learning',
+    notes: `${topic.name}: Read ${cardSlice} (${newCompleted}/${totalCards} cards)`,
+    createdAt: new Date().toISOString(),
+  };
+  await dbService.put<StudyLog>('studyLogs', studyLog);
+
+  // 4. Automatically schedule Spaced Revision cycle for these cards
+  const scheduledRevisions: RevisionRecord[] = [];
+  if (autoScheduleRevision && cardsReadCount > 0) {
+    const intervals = [1, 3, 7, 21];
+    for (const interval of intervals) {
+      const rev: RevisionRecord = {
+        id: `rev_${Date.now()}_${interval}_${Math.random().toString(36).substring(2, 6)}`,
+        examId: primaryExamId,
+        subjectId: subject.id,
+        topicId: topic.id,
+        basisDate: date,
+        intervalDays: interval,
+        scheduledDate: addDays(date, interval),
+        status: 'due',
+        notes: cardSlice, // e.g. "Cards 1–10"
+        createdAt: new Date().toISOString(),
+      };
+      await dbService.put<RevisionRecord>('revisions', rev);
+      scheduledRevisions.push(rev);
+    }
+  }
+
+  return {
+    topicProgress: updatedProg,
+    studyLog,
+    revisions: scheduledRevisions,
+  };
 }

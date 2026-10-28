@@ -36,6 +36,8 @@ export interface Topic {
   order: number;
   notes?: string;
   archived?: boolean;
+  totalCards?: number; // Total number of cards/questions/items (e.g. 64)
+  cardLabel?: string; // 'cards' | 'questions' | 'tables'
 }
 
 export interface Subtopic {
@@ -59,6 +61,7 @@ export interface TopicProgress {
   practiceAccuracyPercent?: number;
   revisionStatus: RevisionProgressStatus;
   manualCompletionPercentage: number; // 0 to 100
+  completedCards?: number; // Number of cards read so far (e.g. 10 out of 64)
   lastStudiedAt?: string;
   updatedAt: string;
 }

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, BookOpen, Clock, Calendar, Sparkles, RotateCw, ArrowRight, ChevronDown } from 'lucide-react';
 import { Subject, Topic, TopicProgress, Commitment } from '../types';
-import { markBatchChaptersRead, markBatchChaptersRevised, groupTopicsByPart, extractTopicGroup } from '../services/octoberLibrary';
+import {
+  markBatchChaptersRead,
+  markBatchChaptersRevised,
+  groupTopicsByPart,
+  extractTopicGroup,
+  getTopicTotalCards,
+} from '../services/octoberLibrary';
 import { getTodayDateString, addDays } from '../services/dateUtils';
 
 interface BatchReadChaptersModalProps {
@@ -415,6 +421,7 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
               ) : (
                 displayTopics.map((topic) => {
                   const groupInfo = extractTopicGroup(topic);
+                  const cardInfo = getTopicTotalCards(topic);
                   const displayName = groupInfo?.displayName || topic.name;
                   const isLearningDone = completedLearningIds.has(topic.id);
                   const isRevisionDone = completedRevisionIds.has(topic.id);
@@ -444,6 +451,11 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
                               </span>
                             )}
                             <span className="text-xs">{displayName}</span>
+                            {cardInfo && (
+                              <span className="text-[10px] font-bold text-slate-500 bg-slate-100 border border-slate-200 px-1.5 py-0.2 rounded">
+                                {cardInfo.totalCards} {cardInfo.cardLabel}
+                              </span>
+                            )}
                           </div>
                         </div>
                         <div className="flex items-center gap-1.5">
@@ -488,6 +500,11 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
                             </span>
                           )}
                           <span className="text-xs">{displayName}</span>
+                          {cardInfo && (
+                            <span className="text-[10px] font-bold text-slate-500 bg-slate-100 border border-slate-200 px-1.5 py-0.2 rounded">
+                              {cardInfo.totalCards} {cardInfo.cardLabel}
+                            </span>
+                          )}
                         </div>
                       </div>
                       {isLearningDone && (

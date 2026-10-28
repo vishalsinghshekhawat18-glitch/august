@@ -27,17 +27,22 @@ import {
   LearningStatus,
   PracticeStatus,
   RevisionProgressStatus,
+  RevisionRecord,
 } from '../types';
 import { dbService } from '../services/db';
 import { SmartPacingModal } from '../components/SmartPacingModal';
 import { BatchReadChaptersModal } from '../components/BatchReadChaptersModal';
+import { LogCardsModal } from '../components/LogCardsModal';
 import {
   importOctoberSubjectChapters,
   getOctoberSubjectMeta,
   detectOctoberBookSlug,
   groupTopicsByPart,
   extractTopicGroup,
+  getTopicTotalCards,
+  logTopicCardProgress,
 } from '../services/octoberLibrary';
+import { getTodayDateString } from '../services/dateUtils';
 
 export const SyllabusView: React.FC = () => {
   const [commitments, setCommitments] = useState<Commitment[]>([]);
@@ -69,15 +74,23 @@ export const SyllabusView: React.FC = () => {
   const [batchModalGroupKey, setBatchModalGroupKey] = useState<string | undefined>(undefined);
   const [batchModalMode, setBatchModalMode] = useState<'learning' | 'revision'>('learning');
   const [isImporting, setIsImporting] = useState<boolean>(false);
+  const [revisions, setRevisions] = useState<RevisionRecord[]>([]);
+  const [loggingCardTopic, setLoggingCardTopic] = useState<{
+    subject: Subject;
+    topic: Topic;
+    totalCards: number;
+    cardLabel: string;
+  } | null>(null);
 
   const loadData = async () => {
     try {
-      const [comms, subs, tops, subtops, progList] = await Promise.all([
+      const [comms, subs, tops, subtops, progList, revList] = await Promise.all([
         dbService.getAll<Commitment>('commitments'),
         dbService.getAll<Subject>('subjects'),
         dbService.getAll<Topic>('topics'),
         dbService.getAll<Subtopic>('subtopics'),
         dbService.getAll<TopicProgress>('topicProgress'),
+        dbService.getAll<RevisionRecord>('revisions'),
       ]);
 
       const sortedComms = comms.sort((a, b) => a.priority - b.priority);
@@ -89,6 +102,7 @@ export const SyllabusView: React.FC = () => {
       setSubjects(subs.sort((a, b) => a.order - b.order));
       setTopics(tops.sort((a, b) => a.order - b.order));
       setSubtopics(subtops);
+      setRevisions(revList);
 
       const pMap = new Map<string, TopicProgress>();
       for (const p of progList) {
@@ -238,7 +252,7 @@ export const SyllabusView: React.FC = () => {
   // Update Progress dimension for this specific exam
   const handleUpdateProgress = async (
     topicId: string,
-    field: 'learningStatus' | 'practiceStatus' | 'revisionStatus' | 'manualCompletionPercentage',
+    field: keyof TopicProgress,
     val: unknown
   ) => {
     try {
@@ -251,6 +265,7 @@ export const SyllabusView: React.FC = () => {
         practiceStatus: 'not_started',
         revisionStatus: 'not_started',
         manualCompletionPercentage: 0,
+        completedCards: 0,
         updatedAt: new Date().toISOString(),
       };
 
@@ -724,12 +739,24 @@ export const SyllabusView: React.FC = () => {
                           practiceStatus: 'not_started',
                           revisionStatus: 'not_started',
                           manualCompletionPercentage: 0,
+                          completedCards: 0,
                           updatedAt: new Date().toISOString(),
                         };
 
                         const displayName = customDisplayName || topic.name;
-                        const isCompleted =
-                          progress.learningStatus === 'completed' || progress.manualCompletionPercentage >= 100;
+                        const cardInfo = getTopicTotalCards(topic);
+                        const totalCards = cardInfo?.totalCards || 0;
+                        const completedCards = progress.completedCards || 0;
+                        const percent = totalCards > 0
+                          ? Math.min(100, Math.round((completedCards / totalCards) * 100))
+                          : (progress.manualCompletionPercentage || 0);
+
+                        const isCompleted = percent >= 100 || progress.learningStatus === 'completed';
+
+                        // Check if there is an active revision due/scheduled for this topic
+                        const activeRevision = revisions.find(
+                          (r) => r.topicId === topic.id && (r.status === 'due' || r.status === 'rescheduled')
+                        );
 
                         return (
                           <div
@@ -743,44 +770,49 @@ export const SyllabusView: React.FC = () => {
                             }`}
                           >
                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
-                              {/* Topic Name & Status */}
-                              <div className="flex items-start gap-2.5">
+                              {/* Left: Checkbox + Name + Notes Link + Card Total + Active Revision */}
+                              <div className="flex items-start gap-2.5 min-w-0">
                                 <button
                                   type="button"
                                   onClick={() => {
                                     const nextStatus: LearningStatus = isCompleted ? 'not_started' : 'completed';
                                     handleUpdateProgress(topic.id, 'learningStatus', nextStatus);
                                     handleUpdateProgress(topic.id, 'manualCompletionPercentage', isCompleted ? 0 : 100);
+                                    if (cardInfo) {
+                                      handleUpdateProgress(topic.id, 'completedCards' as any, isCompleted ? 0 : cardInfo.totalCards);
+                                    }
                                   }}
                                   className={`mt-0.5 w-4 h-4 rounded flex items-center justify-center transition border shrink-0 ${
                                     isCompleted
                                       ? 'bg-emerald-600 border-emerald-600 text-white shadow-2xs'
                                       : 'border-slate-300 hover:border-indigo-500 bg-white'
                                   }`}
-                                  title={
-                                    isCompleted
-                                      ? 'Completed! Click to reset to Not Started'
-                                      : 'Click to mark Completed (100%)'
-                                  }
+                                  title={isCompleted ? 'Mark uncompleted' : 'Click to mark 100% completed'}
                                 >
                                   {isCompleted && <CheckCircle2 className="w-3.5 h-3.5" />}
                                 </button>
-                                <div>
+
+                                <div className="min-w-0">
                                   <div className="flex items-center gap-2 flex-wrap">
                                     <h4
                                       className={`text-xs font-semibold ${
-                                        isCompleted ? 'text-slate-700 font-medium' : 'text-slate-900'
+                                        isCompleted ? 'text-slate-600 line-through opacity-85' : 'text-slate-900'
                                       }`}
                                     >
                                       {displayName}
                                     </h4>
+                                    {cardInfo && (
+                                      <span className="text-[10px] font-bold text-slate-600 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-full shadow-2xs">
+                                        {cardInfo.totalCards} {cardInfo.cardLabel}
+                                      </span>
+                                    )}
                                     {topic.notes && (
                                       topic.notes.startsWith('http') ? (
                                         <a
                                           href={topic.notes}
                                           target="_blank"
                                           rel="noopener noreferrer"
-                                          className="inline-flex items-center gap-1 text-[11px] text-indigo-700 hover:text-indigo-900 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 px-2 py-0.5 rounded-lg font-medium transition"
+                                          className="inline-flex items-center gap-1 text-[11px] text-indigo-700 hover:text-indigo-900 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 px-2 py-0.5 rounded-md font-medium transition"
                                           title={topic.notes}
                                         >
                                           <span>Read Notes</span>
@@ -798,114 +830,157 @@ export const SyllabusView: React.FC = () => {
                                       </span>
                                     )}
                                   </div>
-                                  {progress.lastStudiedAt && (
-                                    <span className="text-[10px] text-slate-400 mt-0.5 block">
-                                      Last studied: {progress.lastStudiedAt}
-                                    </span>
-                                  )}
+
+                                  {/* Sub-info: Last Studied & Next Scheduled Revision */}
+                                  <div className="flex items-center gap-2.5 mt-1 text-[10px] text-slate-400 flex-wrap">
+                                    {progress.lastStudiedAt && <span>Last read: {progress.lastStudiedAt}</span>}
+                                    {activeRevision && (
+                                      <span className="text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.2 rounded font-semibold flex items-center gap-1">
+                                        <RotateCw className="w-2.5 h-2.5 text-amber-600" />
+                                        <span>
+                                          Revision Due: {activeRevision.scheduledDate} {activeRevision.notes ? `(${activeRevision.notes})` : `(+${activeRevision.intervalDays}d)`}
+                                        </span>
+                                      </span>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
 
-                              {/* 3 Dimension Controls */}
-                              <div className="flex flex-wrap items-center gap-3">
-                                {/* 1. Learning Status */}
-                                <div className="flex items-center gap-1.5">
-                                  <span className="text-[10px] font-medium text-slate-400">Learning:</span>
-                                  <select
-                                    value={progress.learningStatus}
-                                    onChange={(e) =>
-                                      handleUpdateProgress(topic.id, 'learningStatus', e.target.value as LearningStatus)
-                                    }
-                                    className={`text-[11px] px-2 py-1 rounded-md border font-medium focus:outline-none ${
-                                      progress.learningStatus === 'completed'
-                                        ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                                        : progress.learningStatus === 'in_progress'
-                                        ? 'bg-blue-50 text-blue-800 border-blue-200'
-                                        : progress.learningStatus === 'needs_restudy'
-                                        ? 'bg-rose-50 text-rose-800 border-rose-200'
-                                        : 'bg-slate-50 text-slate-600 border-slate-200'
-                                    }`}
-                                  >
-                                    <option value="not_started">Not Started</option>
-                                    <option value="in_progress">In Progress</option>
-                                    <option value="completed">Completed</option>
-                                    <option value="needs_restudy">Needs Re-Study</option>
-                                  </select>
-                                </div>
+                              {/* Right: Progress Visual + Logging Actions + Status Pill + Delete */}
+                              <div className="flex items-center gap-2.5 shrink-0 flex-wrap">
+                                {/* Card / Chapter Progress Bar */}
+                                {cardInfo ? (
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-24 sm:w-28 h-2 bg-slate-100 rounded-full overflow-hidden border border-slate-200">
+                                      <div
+                                        className={`h-full transition-all duration-300 ${
+                                          isCompleted ? 'bg-emerald-500' : 'bg-indigo-600'
+                                        }`}
+                                        style={{ width: `${percent}%` }}
+                                      />
+                                    </div>
+                                    <span className="text-xs font-mono font-bold text-slate-700 min-w-16">
+                                      {completedCards} / {cardInfo.totalCards}
+                                    </span>
+                                  </div>
+                                ) : (
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-16 sm:w-20 h-2 bg-slate-100 rounded-full overflow-hidden border border-slate-200">
+                                      <div
+                                        className={`h-full transition-all duration-300 ${
+                                          isCompleted ? 'bg-emerald-500' : 'bg-indigo-600'
+                                        }`}
+                                        style={{ width: `${percent}%` }}
+                                      />
+                                    </div>
+                                    <span className="text-xs font-mono font-bold text-slate-700 min-w-8 text-right">
+                                      {percent}%
+                                    </span>
+                                  </div>
+                                )}
 
-                                {/* 2. Practice Status */}
-                                <div className="flex items-center gap-1.5">
-                                  <span className="text-[10px] font-medium text-slate-400">Practice:</span>
-                                  <select
-                                    value={progress.practiceStatus}
-                                    onChange={(e) =>
-                                      handleUpdateProgress(topic.id, 'practiceStatus', e.target.value as PracticeStatus)
-                                    }
-                                    className={`text-[11px] px-2 py-1 rounded-md border font-medium focus:outline-none ${
-                                      progress.practiceStatus === 'completed'
-                                        ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                                        : progress.practiceStatus === 'in_progress'
-                                        ? 'bg-purple-50 text-purple-800 border-purple-200'
-                                        : 'bg-slate-50 text-slate-600 border-slate-200'
-                                    }`}
-                                  >
-                                    <option value="not_started">Unpracticed</option>
-                                    <option value="in_progress">Practicing</option>
-                                    <option value="completed">Practiced</option>
-                                  </select>
-                                </div>
+                                {/* Fast Inline Card Increments (+5, +10) if topic has cards */}
+                                {cardInfo && !isCompleted && (
+                                  <div className="hidden sm:flex items-center gap-1">
+                                    <button
+                                      type="button"
+                                      onClick={async () => {
+                                        await logTopicCardProgress({
+                                          examId: selectedExamId,
+                                          subject,
+                                          topic,
+                                          cardsReadCount: 5,
+                                          totalCards: cardInfo.totalCards,
+                                          date: getTodayDateString(),
+                                          durationMinutes: 15,
+                                          autoScheduleRevision: true,
+                                        });
+                                        await loadData();
+                                      }}
+                                      className="px-2 py-0.5 text-[11px] font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-md transition"
+                                      title="Quick log +5 cards read today & schedule revision"
+                                    >
+                                      +5
+                                    </button>
+                                    <button
+                                      type="button"
+                                      onClick={async () => {
+                                        await logTopicCardProgress({
+                                          examId: selectedExamId,
+                                          subject,
+                                          topic,
+                                          cardsReadCount: 10,
+                                          totalCards: cardInfo.totalCards,
+                                          date: getTodayDateString(),
+                                          durationMinutes: 30,
+                                          autoScheduleRevision: true,
+                                        });
+                                        await loadData();
+                                      }}
+                                      className="px-2 py-0.5 text-[11px] font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-md transition"
+                                      title="Quick log +10 cards read today & schedule revision"
+                                    >
+                                      +10
+                                    </button>
+                                  </div>
+                                )}
 
-                                {/* 3. Revision Status */}
-                                <div className="flex items-center gap-1.5">
-                                  <span className="text-[10px] font-medium text-slate-400">Revision:</span>
-                                  <select
-                                    value={progress.revisionStatus}
-                                    onChange={(e) =>
-                                      handleUpdateProgress(
-                                        topic.id,
-                                        'revisionStatus',
-                                        e.target.value as RevisionProgressStatus
-                                      )
+                                {/* Primary Action Button */}
+                                {cardInfo ? (
+                                  <button
+                                    onClick={() =>
+                                      setLoggingCardTopic({
+                                        subject,
+                                        topic,
+                                        totalCards: cardInfo.totalCards,
+                                        cardLabel: cardInfo.cardLabel,
+                                      })
                                     }
-                                    className={`text-[11px] px-2 py-1 rounded-md border font-medium focus:outline-none ${
-                                      progress.revisionStatus === 'completed'
-                                        ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                                        : progress.revisionStatus === 'in_progress'
-                                        ? 'bg-amber-50 text-amber-800 border-amber-200'
-                                        : 'bg-slate-50 text-slate-600 border-slate-200'
-                                    }`}
+                                    className="px-2.5 py-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-lg transition flex items-center gap-1 shadow-2xs"
+                                    title={`Log cards read from ${displayName} (e.g. 10 cards) and auto-schedule revision`}
                                   >
-                                    <option value="not_started">Not Revised</option>
-                                    <option value="in_progress">Scheduled</option>
-                                    <option value="completed">Revised</option>
-                                  </select>
-                                </div>
+                                    <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
+                                    <span>+ Read Cards</span>
+                                  </button>
+                                ) : (
+                                  <button
+                                    onClick={() => {
+                                      setBatchReadSubject(subject);
+                                      setBatchModalMode('learning');
+                                    }}
+                                    className="px-2.5 py-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-lg transition flex items-center gap-1 shadow-2xs"
+                                    title="Log reading time & auto-schedule revision"
+                                  >
+                                    <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
+                                    <span>Log Read</span>
+                                  </button>
+                                )}
 
-                                {/* Manual Completion Slider */}
-                                <div className="flex items-center gap-1.5">
-                                  <input
-                                    type="range"
-                                    min="0"
-                                    max="100"
-                                    step="5"
-                                    value={progress.manualCompletionPercentage || 0}
-                                    onChange={(e) =>
-                                      handleUpdateProgress(
-                                        topic.id,
-                                        'manualCompletionPercentage',
-                                        parseInt(e.target.value, 10)
-                                      )
+                                {/* Clean Status Pill / Quick Toggle */}
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const nextStatus: LearningStatus = isCompleted ? 'not_started' : 'completed';
+                                    handleUpdateProgress(topic.id, 'learningStatus', nextStatus);
+                                    handleUpdateProgress(topic.id, 'manualCompletionPercentage', isCompleted ? 0 : 100);
+                                    if (cardInfo) {
+                                      handleUpdateProgress(topic.id, 'completedCards' as any, isCompleted ? 0 : cardInfo.totalCards);
                                     }
-                                    className="w-16 h-1.5 accent-indigo-600 cursor-pointer"
-                                    title="Manual preparation percentage"
-                                  />
-                                  <span className="text-[11px] font-mono font-medium text-slate-600 w-8 text-right">
-                                    {progress.manualCompletionPercentage || 0}%
-                                  </span>
-                                </div>
+                                  }}
+                                  className={`px-2.5 py-1 text-[11px] font-bold rounded-lg border transition ${
+                                    isCompleted
+                                      ? 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100'
+                                      : percent > 0
+                                      ? 'bg-blue-50 text-blue-800 border-blue-200 hover:bg-blue-100'
+                                      : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                                  }`}
+                                  title={isCompleted ? 'Completed! Click to reset' : 'Click to toggle completed'}
+                                >
+                                  {isCompleted ? '✓ Completed' : percent > 0 ? 'In Progress' : 'Not Started'}
+                                </button>
 
                                 {/* Actions: Archive & Delete */}
-                                <div className="flex items-center gap-1">
+                                <div className="flex items-center gap-0.5">
                                   <button
                                     onClick={() => handleToggleArchiveTopic(topic)}
                                     className="text-slate-400 hover:text-slate-600 p-1"
@@ -1103,6 +1178,21 @@ export const SyllabusView: React.FC = () => {
           commitments={commitments}
           initialMode={batchModalMode}
           initialGroupKey={batchModalGroupKey}
+          onSaved={() => loadData()}
+        />
+      )}
+
+      {/* Log Cards Reading Modal */}
+      {loggingCardTopic && (
+        <LogCardsModal
+          isOpen={!!loggingCardTopic}
+          onClose={() => setLoggingCardTopic(null)}
+          examId={selectedExamId}
+          subject={loggingCardTopic.subject}
+          topic={loggingCardTopic.topic}
+          totalCards={loggingCardTopic.totalCards}
+          cardLabel={loggingCardTopic.cardLabel}
+          currentProgress={progressMap.get(`${selectedExamId}_${loggingCardTopic.topic.id}`)}
           onSaved={() => loadData()}
         />
       )}

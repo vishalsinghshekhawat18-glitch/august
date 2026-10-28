@@ -27,6 +27,8 @@ import {
   getOctoberSubjectMeta,
   importOctoberSubjectChapters,
   groupTopicsByPart,
+  getTopicTotalCards,
+  logTopicCardProgress,
 } from '../services/octoberLibrary';
 import {
   WeeklyTask,
@@ -1014,6 +1016,53 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(groups.length).toBeGreaterThanOrEqual(2);
       expect(groups.some((g) => g.title === 'Static Bank')).toBe(true);
       expect(groups.some((g) => g.title.includes('2026'))).toBe(true);
+
+      // Verify card counting and logging card-level progress with automatic spaced revision
+      const s1Topic = caTopics.find((t) => t.notes && t.notes.includes('#jan-mar-2026-s1'))!;
+      expect(s1Topic).toBeDefined();
+      const cardInfo = getTopicTotalCards(s1Topic);
+      expect(cardInfo).toBeDefined();
+      expect(cardInfo?.totalCards).toBe(64);
+      expect(cardInfo?.cardLabel).toBe('cards');
+
+      // 1. Read first 10 cards out of 64
+      const res1 = await logTopicCardProgress({
+        examId: 'exam_rrb_po',
+        subject: caSubject,
+        topic: s1Topic,
+        cardsReadCount: 10,
+        totalCards: 64,
+        date: '2026-10-27',
+        durationMinutes: 30,
+        autoScheduleRevision: true,
+      });
+
+      expect(res1.topicProgress.completedCards).toBe(10);
+      expect(res1.topicProgress.manualCompletionPercentage).toBe(16);
+      expect(res1.topicProgress.learningStatus).toBe('in_progress');
+      expect(res1.studyLog.durationMinutes).toBe(30);
+      expect(res1.studyLog.notes).toContain('Cards 1–10');
+      expect(res1.revisions.length).toBe(4);
+      expect(res1.revisions[0].notes).toBe('Cards 1–10');
+      expect(res1.revisions[0].scheduledDate).toBe('2026-10-28'); // +1 day
+
+      // 2. Read next 15 cards (Cards 11–25)
+      const res2 = await logTopicCardProgress({
+        examId: 'exam_rrb_po',
+        subject: caSubject,
+        topic: s1Topic,
+        cardsReadCount: 15,
+        totalCards: 64,
+        date: '2026-10-28',
+        durationMinutes: 45,
+        autoScheduleRevision: true,
+      });
+
+      expect(res2.topicProgress.completedCards).toBe(25);
+      expect(res2.topicProgress.manualCompletionPercentage).toBe(39);
+      expect(res2.studyLog.notes).toContain('Cards 11–25');
+      expect(res2.revisions[0].notes).toBe('Cards 11–25');
+      expect(res2.revisions[0].scheduledDate).toBe('2026-10-29'); // +1 day from Oct 28
     });
   });
 });
