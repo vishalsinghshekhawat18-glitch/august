@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, BookOpen, Clock, Calendar, Sparkles, RotateCw, ArrowRight, ChevronDown } from 'lucide-react';
 import { Subject, Topic, TopicProgress, Commitment } from '../types';
-import { markBatchChaptersRead, markBatchChaptersRevised } from '../services/octoberLibrary';
+import { markBatchChaptersRead, markBatchChaptersRevised, groupTopicsByPart, extractTopicGroup } from '../services/octoberLibrary';
 import { getTodayDateString, addDays } from '../services/dateUtils';
 
 interface BatchReadChaptersModalProps {
@@ -13,6 +13,7 @@ interface BatchReadChaptersModalProps {
   progressMap: Map<string, TopicProgress>;
   commitments: Commitment[];
   initialMode?: 'learning' | 'revision';
+  initialGroupKey?: string;
   onSaved: () => void;
 }
 
@@ -25,6 +26,7 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
   progressMap,
   commitments,
   initialMode = 'learning',
+  initialGroupKey,
   onSaved,
 }) => {
   const todayStr = getTodayDateString();
@@ -32,6 +34,7 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
 
   const [mode, setMode] = useState<'learning' | 'revision'>(initialMode);
   const [selectedSubjectId, setSelectedSubjectId] = useState<string>(subject.id);
+  const [selectedGroupKey, setSelectedGroupKey] = useState<string>(initialGroupKey || 'all');
   const [selectedDate, setSelectedDate] = useState<string>(yesterdayStr);
   const [selectedTopicIds, setSelectedTopicIds] = useState<string[]>([]);
   const [durationMinutes, setDurationMinutes] = useState<number>(mode === 'revision' ? 60 : 90);
@@ -39,14 +42,15 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  // Sync mode and subject when prop changes
+  // Sync mode, subject, and group when prop changes
   useEffect(() => {
     setMode(initialMode);
     setSelectedSubjectId(subject.id);
+    setSelectedGroupKey(initialGroupKey || 'all');
     setSelectedDate(yesterdayStr);
     setSelectedTopicIds([]);
     setSuccessMessage(null);
-  }, [isOpen, initialMode, subject.id]);
+  }, [isOpen, initialMode, subject.id, initialGroupKey]);
 
   if (!isOpen) return null;
 
@@ -61,6 +65,14 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
   const subjectTopics = topics
     .filter((t) => t.subjectId === currentSubject.id && !t.archived)
     .sort((a, b) => a.order - b.order);
+
+  const topicGroups = groupTopicsByPart(subjectTopics);
+  const hasMultipleGroups = topicGroups.length > 1;
+
+  const displayTopics =
+    selectedGroupKey !== 'all' && hasMultipleGroups
+      ? topicGroups.find((g) => g.key === selectedGroupKey)?.topics || subjectTopics
+      : subjectTopics;
 
   // Check which topics are already completed in learning vs revision
   const completedLearningIds = new Set<string>();
@@ -78,8 +90,8 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
     }
   }
 
-  // Pre-select options
-  const uncompletedTopics = subjectTopics.filter((t) => !completedLearningIds.has(t.id));
+  // Pre-select options based on the currently displayed file/group
+  const uncompletedTopics = displayTopics.filter((t) => !completedLearningIds.has(t.id));
 
   const toggleTopic = (id: string) => {
     setSelectedTopicIds((prev) =>
@@ -93,24 +105,27 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
       setSelectedTopicIds(nextIds);
       setDurationMinutes(count * 45);
     } else {
-      // In revision mode: select first count topics or next un-revised
-      const candidateList = subjectTopics.filter((t) => !completedRevisionIds.has(t.id));
-      const pool = candidateList.length >= count ? candidateList : subjectTopics;
+      // In revision mode: select first count topics or next un-revised in displayTopics
+      const candidateList = displayTopics.filter((t) => !completedRevisionIds.has(t.id));
+      const pool = candidateList.length >= count ? candidateList : displayTopics;
       const nextIds = pool.slice(0, count).map((t) => t.id);
       setSelectedTopicIds(nextIds);
-      setDurationMinutes(count * 30);
+      setDurationMinutes(Math.max(20, count * 20));
     }
   };
 
   const selectFirstTwo = () => {
-    const nextIds = subjectTopics.slice(0, 2).map((t) => t.id);
+    const nextIds = displayTopics.slice(0, 2).map((t) => t.id);
     setSelectedTopicIds(nextIds);
     setDurationMinutes(mode === 'revision' ? 60 : 90);
   };
 
   const selectAllCompleted = () => {
-    setSelectedTopicIds(Array.from(completedLearningIds));
-    setDurationMinutes(completedLearningIds.size * 30);
+    const ids = displayTopics
+      .filter((t) => completedLearningIds.has(t.id))
+      .map((t) => t.id);
+    setSelectedTopicIds(ids);
+    setDurationMinutes(Math.max(30, ids.length * 15));
   };
 
   // Calculations for learning mode
@@ -349,14 +364,58 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
               </div>
             </div>
 
+            {/* File / Month Filter Tabs (if subject has multiple parts like Current Affairs) */}
+            {hasMultipleGroups && (
+              <div className="flex items-center gap-1.5 mb-2 overflow-x-auto pb-1 pt-0.5">
+                <span className="text-[11px] font-bold text-slate-400 shrink-0">File:</span>
+                <button
+                  type="button"
+                  onClick={() => setSelectedGroupKey('all')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition shrink-0 ${
+                    selectedGroupKey === 'all'
+                      ? 'bg-slate-800 text-white shadow-2xs'
+                      : 'bg-slate-100 hover:bg-slate-200 text-slate-600'
+                  }`}
+                >
+                  All Files ({subjectTopics.length})
+                </button>
+                {topicGroups.map((g) => {
+                  const isSelected = selectedGroupKey === g.key;
+                  return (
+                    <button
+                      key={g.key}
+                      type="button"
+                      onClick={() => setSelectedGroupKey(g.key)}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition shrink-0 flex items-center gap-1.5 ${
+                        isSelected
+                          ? 'bg-indigo-600 text-white shadow-2xs'
+                          : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                      }`}
+                    >
+                      <span>📁 {g.title}</span>
+                      <span
+                        className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                          isSelected ? 'bg-indigo-500 text-white' : 'bg-slate-200 text-slate-600'
+                        }`}
+                      >
+                        {g.topics.length}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
             {/* Scrollable Chapters List */}
-            <div className="space-y-1 max-h-44 overflow-y-auto border border-slate-200 rounded-xl p-2 bg-slate-50/50">
-              {subjectTopics.length === 0 ? (
+            <div className="space-y-1 max-h-48 overflow-y-auto border border-slate-200 rounded-xl p-2 bg-slate-50/50">
+              {displayTopics.length === 0 ? (
                 <div className="p-4 text-center text-slate-400">
-                  No chapters found. Please import the 47 chapters first.
+                  No {unitNounPlural.toLowerCase()} found in this selection.
                 </div>
               ) : (
-                subjectTopics.map((topic) => {
+                displayTopics.map((topic) => {
+                  const groupInfo = extractTopicGroup(topic);
+                  const displayName = groupInfo?.displayName || topic.name;
                   const isLearningDone = completedLearningIds.has(topic.id);
                   const isRevisionDone = completedRevisionIds.has(topic.id);
                   const isSelected = selectedTopicIds.includes(topic.id);
@@ -378,7 +437,14 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
                             onChange={() => toggleTopic(topic.id)}
                             className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
                           />
-                          <span className="text-xs">{topic.name}</span>
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            {selectedGroupKey === 'all' && groupInfo && (
+                              <span className="text-[10px] font-bold text-slate-500 bg-slate-100 border border-slate-200 px-1.5 py-0.2 rounded">
+                                {groupInfo.groupKey}
+                              </span>
+                            )}
+                            <span className="text-xs">{displayName}</span>
+                          </div>
                         </div>
                         <div className="flex items-center gap-1.5">
                           {isRevisionDone && (
@@ -415,7 +481,14 @@ export const BatchReadChaptersModal: React.FC<BatchReadChaptersModalProps> = ({
                           onChange={() => toggleTopic(topic.id)}
                           className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
                         />
-                        <span className="text-xs">{topic.name}</span>
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          {selectedGroupKey === 'all' && groupInfo && (
+                            <span className="text-[10px] font-bold text-slate-500 bg-slate-100 border border-slate-200 px-1.5 py-0.2 rounded">
+                              {groupInfo.groupKey}
+                            </span>
+                          )}
+                          <span className="text-xs">{displayName}</span>
+                        </div>
                       </div>
                       {isLearningDone && (
                         <span className="text-[10px] text-emerald-600 font-semibold no-underline">Completed</span>

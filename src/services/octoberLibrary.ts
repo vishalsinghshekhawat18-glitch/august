@@ -93,6 +93,100 @@ export interface ParsedOctoberUnit {
   notes: string;
 }
 
+export interface TopicGroupInfo {
+  groupKey: string;
+  groupTitle: string;
+  displayName: string;
+}
+
+/**
+ * Extracts grouping/file information from a topic (e.g. [Static], [Jan–Mar 2026], or anchor in notes).
+ */
+export function extractTopicGroup(topic: Topic): TopicGroupInfo | null {
+  const match = topic.name.match(/^\[(.*?)\]\s*(.*)$/);
+  if (match) {
+    const rawKey = match[1].trim();
+    const cleanName = match[2].trim();
+    let title = rawKey;
+    const low = rawKey.toLowerCase();
+    if (low === 'static' || low.includes('static')) {
+      title = 'Static Bank';
+    } else if (low.includes('jan') && low.includes('mar')) {
+      title = 'January–March 2026';
+    } else if (low.includes('apr') && low.includes('jun')) {
+      title = 'April–June 2026';
+    } else if (low.includes('apr')) {
+      title = 'April 2026';
+    } else if (low.includes('jul') && low.includes('sep')) {
+      title = 'July–September 2026';
+    } else if (low.includes('oct') && low.includes('dec')) {
+      title = 'October–December 2026';
+    }
+    return {
+      groupKey: rawKey,
+      groupTitle: title,
+      displayName: cleanName,
+    };
+  }
+
+  // Fallback: check topic.notes anchor
+  if (topic.notes) {
+    if (topic.notes.includes('#static-')) {
+      return { groupKey: 'Static', groupTitle: 'Static Bank', displayName: topic.name };
+    }
+    if (topic.notes.includes('#jan-mar-')) {
+      return { groupKey: 'Jan–Mar 2026', groupTitle: 'January–March 2026', displayName: topic.name };
+    }
+    if (topic.notes.includes('#apr-') || topic.notes.includes('april')) {
+      return { groupKey: 'Apr 2026', groupTitle: 'April 2026', displayName: topic.name };
+    }
+  }
+
+  return null;
+}
+
+export interface TopicGroup {
+  key: string;
+  title: string;
+  topics: Topic[];
+}
+
+/**
+ * Groups topics into distinct parts/files (e.g. Static Bank, Jan–Mar 2026, Apr–Jun 2026)
+ * If no group prefixes exist, returns a single group representing all chapters.
+ */
+export function groupTopicsByPart(topics: Topic[]): TopicGroup[] {
+  const groupsMap = new Map<string, { title: string; topics: Topic[] }>();
+  let hasAnyGroup = false;
+
+  for (const topic of topics) {
+    const groupInfo = extractTopicGroup(topic);
+    if (groupInfo) {
+      hasAnyGroup = true;
+      if (!groupsMap.has(groupInfo.groupKey)) {
+        groupsMap.set(groupInfo.groupKey, { title: groupInfo.groupTitle, topics: [] });
+      }
+      groupsMap.get(groupInfo.groupKey)!.topics.push(topic);
+    } else {
+      const generalKey = 'General';
+      if (!groupsMap.has(generalKey)) {
+        groupsMap.set(generalKey, { title: 'General Sections', topics: [] });
+      }
+      groupsMap.get(generalKey)!.topics.push(topic);
+    }
+  }
+
+  if (!hasAnyGroup) {
+    return [{ key: 'all', title: 'All Chapters', topics }];
+  }
+
+  return Array.from(groupsMap.entries()).map(([key, value]) => ({
+    key,
+    title: value.title,
+    topics: value.topics,
+  }));
+}
+
 /**
  * Dynamically parse any October Library book HTML into parts and sections/chapters.
  * Handles multiple parts (e.g. Static Bank, January–March 2026, April–June 2026)
@@ -118,6 +212,8 @@ export function parseOctoberHtml(html: string, slug: string, baseReaderUrl: stri
         partShort = 'Static';
       } else if (partToc.toLowerCase().includes('april–june') || partToc.toLowerCase().includes('apr-jun')) {
         partShort = 'Apr–Jun 2026';
+      } else if (partToc.toLowerCase().includes('april') || partToc.toLowerCase().includes('apr')) {
+        partShort = 'Apr 2026';
       } else if (partToc.toLowerCase().includes('july–september') || partToc.toLowerCase().includes('jul-sep')) {
         partShort = 'Jul–Sep 2026';
       } else if (partToc.toLowerCase().includes('october–december') || partToc.toLowerCase().includes('oct-dec')) {
@@ -348,13 +444,19 @@ export async function importOctoberSubjectChapters(
 
   for (const item of units) {
     // Check if topic with matching name or anchor already exists
-    const alreadyExists = currentSubjectTopics.some(
+    const existing = currentSubjectTopics.find(
       (t) =>
         t.name.toLowerCase() === item.name.toLowerCase() ||
         (item.anchorId && t.notes && t.notes.includes(`#${item.anchorId}`))
     );
 
-    if (!alreadyExists) {
+    if (existing) {
+      // If the topic existed previously with an unbracketed name, update name to include part prefix
+      if (existing.name !== item.name && item.name.startsWith('[')) {
+        existing.name = item.name;
+        await dbService.put<Topic>('topics', existing);
+      }
+    } else {
       topicsToInsert.push({
         id: `top_oct_${slug.replace(/[^a-z0-9]/g, '_')}_${item.order}_${Date.now().toString(36)}_${Math.random().toString(36).substring(2, 5)}`,
         subjectId: subject.id,

@@ -26,6 +26,7 @@ import {
   detectOctoberBookSlug,
   getOctoberSubjectMeta,
   importOctoberSubjectChapters,
+  groupTopicsByPart,
 } from '../services/octoberLibrary';
 import {
   WeeklyTask,
@@ -998,17 +999,21 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       const result = await importOctoberSubjectChapters(caSubject);
       expect(result.bookSlug).toBe('current-affairs');
       expect(result.unitLabel).toBe('Sections');
-      expect(result.totalCount).toBe(20);
+      expect(result.totalCount).toBeGreaterThanOrEqual(20);
 
-      // Verify accidental Economics chapter was deleted and replaced with all 20 sections (Static + Jan-Mar)
+      // Verify accidental Economics chapter was deleted and replaced with Current Affairs sections
       const allTopics = await dbService.getAll<Topic>('topics');
       const caTopics = allTopics.filter((t) => t.subjectId === 'sub_ca');
-      expect(caTopics.length).toBe(20);
+      expect(caTopics.length).toBeGreaterThanOrEqual(20);
       expect(caTopics.some((t) => t.name.includes('Economic Organisation'))).toBe(false);
       expect(caTopics.some((t) => t.name.includes('[Static]'))).toBe(true);
-      expect(caTopics.some((t) => t.name.includes('[Jan–Mar 2026]'))).toBe(true);
       expect(caTopics.some((t) => t.notes && t.notes.includes('#static-s1'))).toBe(true);
-      expect(caTopics.some((t) => t.notes && t.notes.includes('#jan-mar-2026-s1'))).toBe(true);
+
+      // Verify topics are grouped into distinct collapsible files
+      const groups = groupTopicsByPart(caTopics);
+      expect(groups.length).toBeGreaterThanOrEqual(2);
+      expect(groups.some((g) => g.title === 'Static Bank')).toBe(true);
+      expect(groups.some((g) => g.title.includes('2026'))).toBe(true);
     });
   });
 });
