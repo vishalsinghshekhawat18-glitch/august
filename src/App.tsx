@@ -12,29 +12,24 @@ import { AnalyticsView } from './views/AnalyticsView';
 import { SettingsView } from './views/SettingsView';
 import { QuickAddStudyModal } from './components/QuickAddStudyModal';
 import { GuidedSetupModal } from './components/GuidedSetupModal';
-import { PinLockModal } from './components/PinLockModal';
 import { dbService } from './services/db';
-import { cloudSyncService } from './services/supabase';
 import { AppSettings } from './types';
 
 export const App: React.FC = () => {
   const [activeView, setActiveView] = useState<string>('dashboard');
   const [isQuickAddOpen, setIsQuickAddOpen] = useState<boolean>(false);
   const [isGuidedSetupOpen, setIsGuidedSetupOpen] = useState<boolean>(false);
-  const [isLocked, setIsLocked] = useState<boolean>(false);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
   useEffect(() => {
-    // Check initial app lock state
-    setIsLocked(cloudSyncService.isAppLocked());
-
-    const unsub = cloudSyncService.onStatusChange((status) => {
-      if (status === 'locked') {
-        setIsLocked(true);
-      } else if (!cloudSyncService.isAppLocked()) {
-        setIsLocked(false);
-      }
-    });
+    // Completely wipe all legacy PIN/password and Supabase lock keys
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('august_local_pin_hash');
+      localStorage.removeItem('august_local_pin_salt');
+      localStorage.removeItem('august_supabase_url');
+      localStorage.removeItem('august_supabase_anon_key');
+      sessionStorage.removeItem('august_unlocked');
+    }
 
     async function checkSetup() {
       try {
@@ -51,7 +46,6 @@ export const App: React.FC = () => {
     }
 
     checkSetup();
-    return () => unsub();
   }, []);
 
   return (
@@ -59,10 +53,6 @@ export const App: React.FC = () => {
       activeView={activeView}
       onNavigate={(v) => setActiveView(v)}
       onOpenQuickAdd={() => setIsQuickAddOpen(true)}
-      onLockApp={() => {
-        cloudSyncService.lockApp();
-        setIsLocked(true);
-      }}
     >
       {activeView === 'dashboard' && (
         <DashboardView
@@ -87,7 +77,6 @@ export const App: React.FC = () => {
         isOpen={isQuickAddOpen}
         onClose={() => setIsQuickAddOpen(false)}
         onLogSaved={() => {
-          // Trigger a view rerender if on dashboard or logs
           if (activeView === 'dashboard' || activeView === 'logs') {
             setActiveView((prev) => prev);
           }
@@ -102,12 +91,6 @@ export const App: React.FC = () => {
           setIsGuidedSetupOpen(false);
           setActiveView('dashboard');
         }}
-      />
-
-      {/* 4-Digit Numeric PIN Lock & Cloud Auth Modal */}
-      <PinLockModal
-        isOpen={isLocked}
-        onUnlocked={() => setIsLocked(false)}
       />
     </Layout>
   );

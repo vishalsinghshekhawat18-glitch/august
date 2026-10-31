@@ -365,11 +365,6 @@ class IndexedDBStorage {
 
       req.onsuccess = () => {
         this.notifySaveState('saved');
-        if (this.cloudHook) {
-          this.cloudHook.pushItem(storeName, item).catch((e) => {
-            console.warn(`Cloud push failed for ${storeName}:`, e);
-          });
-        }
         resolve(item);
       };
       req.onerror = () => {
@@ -407,11 +402,6 @@ class IndexedDBStorage {
 
       tx.oncomplete = () => {
         this.notifySaveState('saved');
-        if (this.cloudHook) {
-          for (const item of items) {
-            this.cloudHook.pushItem(storeName, item).catch(() => {});
-          }
-        }
         resolve();
       };
       tx.onerror = () => {
@@ -431,11 +421,6 @@ class IndexedDBStorage {
 
       req.onsuccess = () => {
         this.notifySaveState('saved');
-        if (this.cloudHook) {
-          this.cloudHook.deleteItem(storeName, String(key)).catch((e) => {
-            console.warn(`Cloud delete failed for ${storeName}:`, e);
-          });
-        }
         resolve();
       };
       req.onerror = () => {
@@ -453,6 +438,25 @@ class IndexedDBStorage {
       const req = store.clear();
       req.onsuccess = () => resolve();
       req.onerror = () => reject(req.error);
+    });
+  }
+
+  public async clearAllStores(): Promise<void> {
+    const db = await this.openDB();
+    const storeNames = Array.from(db.objectStoreNames) as StoreName[];
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(storeNames, 'readwrite');
+      for (const s of storeNames) {
+        tx.objectStore(s).clear();
+      }
+      tx.oncomplete = () => {
+        this.notifySaveState('saved');
+        resolve();
+      };
+      tx.onerror = () => {
+        this.notifySaveState('error', tx.error?.message || 'Clear stores failed');
+        reject(tx.error);
+      };
     });
   }
 
