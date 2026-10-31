@@ -31,6 +31,8 @@ export const App: React.FC = () => {
     const unsub = cloudSyncService.onStatusChange((status) => {
       if (status === 'locked') {
         setIsLocked(true);
+      } else if (!cloudSyncService.isAppLocked()) {
+        setIsLocked(false);
       }
     });
 

@@ -345,6 +345,28 @@ class CloudSyncService {
     }
   }
 
+  public async clearPin(): Promise<void> {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('august_local_pin_hash');
+      localStorage.removeItem('august_local_pin_salt');
+    }
+    this.cachedProfile = null;
+
+    if (this.client && this.currentUser) {
+      try {
+        await this.client.from('user_profiles').upsert({
+          user_id: this.currentUser.id,
+          pin_hash: '',
+          pin_salt: '',
+          updated_at: new Date().toISOString(),
+        }, { onConflict: 'user_id' });
+      } catch (err) {
+        console.warn('Could not clear cloud PIN:', err);
+      }
+    }
+    this.unlockLocally();
+  }
+
   public async signUp(email: string, pass: string, initialPin?: string): Promise<void> {
     if (!this.client) throw new Error('Supabase client is not configured.');
     const { data, error } = await this.client.auth.signUp({
@@ -375,6 +397,8 @@ class CloudSyncService {
     if (data.user) {
       this.currentUser = data.user;
       this.currentSession = data.session;
+      // Master password explicitly grants access: unlock immediately
+      this.unlockLocally();
       await this.checkLockState();
     }
   }

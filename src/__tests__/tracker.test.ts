@@ -16,7 +16,7 @@ import {
 } from '../services/dateUtils';
 import { validateDataPackage } from '../services/exportImport';
 import { hashPin, generateSalt, verifyPin } from '../services/crypto';
-import { STORE_TABLE_MAP } from '../services/supabase';
+import { STORE_TABLE_MAP, cloudSyncService } from '../services/supabase';
 import { dbService, StoreName, INITIAL_COMMITMENTS } from '../services/db';
 import {
   markBatchChaptersRead,
@@ -645,6 +645,53 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(deletedItems).toHaveLength(1);
       expect(deletedItems[0].store).toBe('subjects');
       expect(deletedItems[0].id).toBe('sub_test_sync');
+    });
+
+    it('sets, verifies, and clears 4-digit PIN, ensuring app unlocks reliably', async () => {
+      const storageMock: Record<string, string> = {};
+      const fakeStorage = {
+        getItem: (key: string) => storageMock[key] ?? null,
+        setItem: (key: string, val: string) => {
+          storageMock[key] = String(val);
+        },
+        removeItem: (key: string) => {
+          delete storageMock[key];
+        },
+      };
+
+      const origWindow = (globalThis as any).window;
+      const origLocal = (globalThis as any).localStorage;
+      const origSession = (globalThis as any).sessionStorage;
+
+      (globalThis as any).window = globalThis;
+      (globalThis as any).localStorage = fakeStorage;
+      (globalThis as any).sessionStorage = fakeStorage;
+
+      try {
+        // 1. Set PIN
+        await cloudSyncService.setPin('1234');
+        expect(cloudSyncService.hasPin()).toBe(true);
+
+        // 2. Lock app
+        cloudSyncService.lockApp();
+        expect(cloudSyncService.isAppLocked()).toBe(true);
+
+        // 3. Verify and unlock
+        const unlocked = await cloudSyncService.verifyAndUnlock('1234');
+        expect(unlocked).toBe(true);
+        expect(cloudSyncService.isAppLocked()).toBe(false);
+
+        // 4. Lock app again and emergency clearPin
+        cloudSyncService.lockApp();
+        expect(cloudSyncService.isAppLocked()).toBe(true);
+        await cloudSyncService.clearPin();
+        expect(cloudSyncService.hasPin()).toBe(false);
+        expect(cloudSyncService.isAppLocked()).toBe(false);
+      } finally {
+        (globalThis as any).window = origWindow;
+        (globalThis as any).localStorage = origLocal;
+        (globalThis as any).sessionStorage = origSession;
+      }
     });
   });
 

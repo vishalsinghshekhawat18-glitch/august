@@ -2,7 +2,20 @@
 // Protects personal records while eliminating daily email/password friction
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { Lock, KeyRound, Cloud, ShieldAlert, ArrowRight, RefreshCw, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
+import {
+  Lock,
+  KeyRound,
+  Cloud,
+  ShieldAlert,
+  ArrowRight,
+  RefreshCw,
+  Eye,
+  EyeOff,
+  CheckCircle2,
+  Unlock,
+  Info,
+  RotateCcw,
+} from 'lucide-react';
 import { cloudSyncService, SyncStatus } from '../services/supabase';
 
 interface PinLockModalProps {
@@ -15,6 +28,7 @@ export const PinLockModal: React.FC<PinLockModalProps> = ({ isOpen, onUnlocked }
   const [errorMsg, setErrorMsg] = useState<string>('');
   const [isVerifying, setIsVerifying] = useState<boolean>(false);
   const [shake, setShake] = useState<boolean>(false);
+  const [isConfirmingReset, setIsConfirmingReset] = useState<boolean>(false);
 
   // Fallback / One-time auth states
   const [showAuthFallback, setShowAuthFallback] = useState<boolean>(false);
@@ -120,6 +134,21 @@ export const PinLockModal: React.FC<PinLockModalProps> = ({ isOpen, onUnlocked }
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [isOpen, showAuthFallback, handleDigit]);
 
+  // Emergency Reset 4-digit PIN for local device
+  const handleConfirmResetPin = async () => {
+    try {
+      setIsVerifying(true);
+      await cloudSyncService.clearPin();
+      cloudSyncService.unlockLocally();
+      setIsConfirmingReset(false);
+      onUnlocked();
+    } catch (err: any) {
+      setErrorMsg(err.message || 'Failed to reset PIN.');
+    } finally {
+      setIsVerifying(false);
+    }
+  };
+
   // Handle master password login
   const handleAuthSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -136,8 +165,17 @@ export const PinLockModal: React.FC<PinLockModalProps> = ({ isOpen, onUnlocked }
         }
         await cloudSyncService.signUp(email, password, initialPin);
       } else {
+        const cfg = cloudSyncService.getConfig();
+        if (!cfg || !cfg.supabaseUrl || !cfg.supabaseAnonKey) {
+          // In local mode without Supabase, entering password directly unlocks local tracker
+          cloudSyncService.unlockLocally();
+          setShowAuthFallback(false);
+          onUnlocked();
+          return;
+        }
         await cloudSyncService.signIn(email, password);
       }
+      cloudSyncService.unlockLocally();
       setShowAuthFallback(false);
       onUnlocked();
     } catch (err: any) {
@@ -187,96 +225,158 @@ export const PinLockModal: React.FC<PinLockModalProps> = ({ isOpen, onUnlocked }
               </p>
             </div>
 
-            {/* PIN Indicators */}
-            <div className="flex justify-center items-center gap-4 mb-6">
-              {[0, 1, 2, 3].map((idx) => {
-                const filled = pin.length > idx;
-                return (
-                  <div
-                    key={idx}
-                    className={`h-4 w-4 rounded-full border-2 transition-all duration-200 ${
-                      filled
-                        ? 'border-indigo-600 bg-indigo-600 scale-110 shadow-sm shadow-indigo-300'
-                        : 'border-slate-300 bg-slate-100'
-                    }`}
-                  />
-                );
-              })}
-            </div>
-
-            {/* Error Message */}
-            {errorMsg && (
-              <div className="text-center text-xs font-medium text-rose-600 mb-4 bg-rose-50 py-1.5 px-3 rounded-lg flex items-center justify-center gap-1.5">
-                <ShieldAlert className="h-3.5 w-3.5 flex-shrink-0" />
-                <span>{errorMsg}</span>
+            {/* Reset PIN Confirmation Overlay / Card */}
+            {isConfirmingReset ? (
+              <div className="bg-rose-50 border border-rose-200 rounded-xl p-4 text-center space-y-3 mb-6 animate-in fade-in zoom-in-95 duration-150">
+                <div className="inline-flex p-2 bg-rose-100 text-rose-700 rounded-full">
+                  <ShieldAlert className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-rose-900">Reset 4-Digit Device PIN?</h4>
+                  <p className="text-[11px] text-rose-700 mt-1 leading-relaxed">
+                    This will immediately clear the PIN lock on this device and grant access to your workspace. All your study logs, targets, and syllabus remain 100% safe.
+                  </p>
+                </div>
+                <div className="flex gap-2 pt-1">
+                  <button
+                    type="button"
+                    onClick={handleConfirmResetPin}
+                    disabled={isVerifying}
+                    className="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2 px-3 rounded-lg text-xs transition shadow-sm"
+                  >
+                    Confirm &amp; Unlock
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsConfirmingReset(false)}
+                    className="flex-1 bg-white hover:bg-slate-50 text-slate-700 font-medium py-2 px-3 rounded-lg text-xs border border-slate-200 transition"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
-            )}
+            ) : (
+              <>
+                {/* PIN Indicators */}
+                <div className="flex justify-center items-center gap-4 mb-6">
+                  {[0, 1, 2, 3].map((idx) => {
+                    const filled = pin.length > idx;
+                    return (
+                      <div
+                        key={idx}
+                        className={`h-4 w-4 rounded-full border-2 transition-all duration-200 ${
+                          filled
+                            ? 'border-indigo-600 bg-indigo-600 scale-110 shadow-sm shadow-indigo-300'
+                            : 'border-slate-300 bg-slate-100'
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
 
-            {/* Numeric Keypad */}
-            <div className="grid grid-cols-3 gap-3 mb-6">
-              {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((digit) => (
-                <button
-                  key={digit}
-                  type="button"
-                  onClick={() => handleDigit(digit)}
-                  disabled={isVerifying}
-                  className="h-14 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600 text-xl font-semibold text-slate-800 transition active:scale-95 shadow-sm border border-slate-200/60"
-                >
-                  {digit}
-                </button>
-              ))}
-              <button
-                type="button"
-                onClick={handleClear}
-                disabled={isVerifying}
-                className="h-14 rounded-xl bg-slate-50 hover:bg-slate-100 text-xs font-semibold text-slate-500 transition active:scale-95 border border-slate-200/60"
-              >
-                Clear
-              </button>
-              <button
-                type="button"
-                onClick={() => handleDigit('0')}
-                disabled={isVerifying}
-                className="h-14 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600 text-xl font-semibold text-slate-800 transition active:scale-95 shadow-sm border border-slate-200/60"
-              >
-                0
-              </button>
-              <button
-                type="button"
-                onClick={handleBackspace}
-                disabled={isVerifying}
-                className="h-14 rounded-xl bg-slate-50 hover:bg-slate-100 text-sm font-semibold text-slate-600 transition active:scale-95 border border-slate-200/60"
-              >
-                ⌫
-              </button>
-            </div>
+                {/* Error Message */}
+                {errorMsg && (
+                  <div className="text-center text-xs font-medium text-rose-600 mb-4 bg-rose-50 py-1.5 px-3 rounded-lg flex items-center justify-center gap-1.5">
+                    <ShieldAlert className="h-3.5 w-3.5 flex-shrink-0" />
+                    <span>{errorMsg}</span>
+                  </div>
+                )}
+
+                {/* Numeric Keypad */}
+                <div className="grid grid-cols-3 gap-3 mb-6">
+                  {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((digit) => (
+                    <button
+                      key={digit}
+                      type="button"
+                      onClick={() => handleDigit(digit)}
+                      disabled={isVerifying}
+                      className="h-14 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600 text-xl font-semibold text-slate-800 transition active:scale-95 shadow-sm border border-slate-200/60"
+                    >
+                      {digit}
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={handleClear}
+                    disabled={isVerifying}
+                    className="h-14 rounded-xl bg-slate-50 hover:bg-slate-100 text-xs font-semibold text-slate-500 transition active:scale-95 border border-slate-200/60"
+                  >
+                    Clear
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDigit('0')}
+                    disabled={isVerifying}
+                    className="h-14 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600 text-xl font-semibold text-slate-800 transition active:scale-95 shadow-sm border border-slate-200/60"
+                  >
+                    0
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleBackspace}
+                    disabled={isVerifying}
+                    className="h-14 rounded-xl bg-slate-50 hover:bg-slate-100 text-sm font-semibold text-slate-600 transition active:scale-95 border border-slate-200/60"
+                  >
+                    ⌫
+                  </button>
+                </div>
+              </>
+            )}
 
             {/* Footer options */}
             <div className="pt-2 border-t border-slate-100 flex flex-col items-center gap-2 text-xs">
-              <button
-                type="button"
-                onClick={() => {
-                  setShowAuthFallback(true);
-                  setAuthMode('signin');
-                }}
-                className="text-indigo-600 hover:text-indigo-800 font-medium py-1"
-              >
-                Forgot PIN? Sign in with Master Password
-              </button>
-
-              {syncStatus === 'unconfigured' && (
+              <div className="flex items-center gap-2 flex-wrap justify-center">
                 <button
                   type="button"
                   onClick={() => {
                     setShowAuthFallback(true);
-                    setAuthMode('config');
+                    setAuthMode('signin');
                   }}
-                  className="text-slate-500 hover:text-slate-700 flex items-center gap-1 font-medium"
+                  className="text-indigo-600 hover:text-indigo-800 font-medium py-1"
                 >
-                  <Cloud className="h-3.5 w-3.5 text-indigo-500" />
-                  Connect Supabase Cloud
+                  Sign in with Master Password
                 </button>
-              )}
+                <span className="text-slate-300">•</span>
+                <button
+                  type="button"
+                  onClick={() => setIsConfirmingReset(true)}
+                  className="text-rose-600 hover:text-rose-700 font-medium py-1"
+                >
+                  Forgot PIN? Reset PIN
+                </button>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    cloudSyncService.unlockLocally();
+                    onUnlocked();
+                  }}
+                  className="text-slate-500 hover:text-slate-800 flex items-center gap-1 font-medium text-[11px]"
+                  title="Unlock tracker directly on this local device"
+                >
+                  <Unlock className="h-3 w-3 text-emerald-600" />
+                  <span>Instant Local Access</span>
+                </button>
+
+                {syncStatus === 'unconfigured' && (
+                  <>
+                    <span className="text-slate-200">•</span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowAuthFallback(true);
+                        setAuthMode('config');
+                      }}
+                      className="text-slate-400 hover:text-slate-600 flex items-center gap-1 font-normal text-[11px]"
+                    >
+                      <Cloud className="h-3 w-3 text-slate-400" />
+                      Supabase Setup
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         ) : (
@@ -393,6 +493,31 @@ export const PinLockModal: React.FC<PinLockModalProps> = ({ isOpen, onUnlocked }
                   </button>
                 </div>
 
+                {syncStatus === 'unconfigured' && authMode === 'signin' && (
+                  <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 space-y-2">
+                    <div className="flex items-start gap-2">
+                      <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-semibold block">Local Device Mode</span>
+                        <span className="text-[11px] text-amber-800 leading-snug">
+                          Supabase cloud is not configured on this device. You can unlock your study workspace directly without entering credentials.
+                        </span>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        cloudSyncService.unlockLocally();
+                        setShowAuthFallback(false);
+                        onUnlocked();
+                      }}
+                      className="w-full py-1.5 px-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg text-xs shadow-xs transition"
+                    >
+                      Unlock Local Tracker Directly
+                    </button>
+                  </div>
+                )}
+
                 <div>
                   <label className="block text-xs font-medium text-slate-700 mb-1">
                     Account Email
@@ -478,24 +603,37 @@ export const PinLockModal: React.FC<PinLockModalProps> = ({ isOpen, onUnlocked }
                   {authMode === 'signup' ? 'Create Account & Unlock' : 'Authenticate & Unlock'}
                 </button>
 
-                <div className="pt-2 border-t border-slate-100 flex justify-between items-center text-xs">
-                  <button
-                    type="button"
-                    onClick={() => setAuthMode('config')}
-                    className="text-slate-500 hover:text-indigo-600 font-medium"
-                  >
-                    Configure Supabase Project
-                  </button>
+                <div className="pt-2 border-t border-slate-100 flex flex-col gap-2 text-xs">
+                  <div className="flex justify-between items-center">
+                    <button
+                      type="button"
+                      onClick={() => setAuthMode('config')}
+                      className="text-slate-500 hover:text-indigo-600 font-medium text-[11px]"
+                    >
+                      Configure Supabase
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        cloudSyncService.unlockLocally();
+                        setShowAuthFallback(false);
+                        onUnlocked();
+                      }}
+                      className="text-emerald-700 font-semibold hover:underline flex items-center gap-1 text-[11px]"
+                    >
+                      <Unlock className="w-3 h-3 text-emerald-600" />
+                      <span>Unlock Locally</span>
+                    </button>
+                  </div>
                   <button
                     type="button"
                     onClick={() => {
-                      // Offline emergency bypass
-                      cloudSyncService.unlockLocally();
-                      onUnlocked();
+                      setShowAuthFallback(false);
+                      setIsConfirmingReset(true);
                     }}
-                    className="text-slate-400 hover:text-slate-600"
+                    className="text-rose-600 hover:text-rose-700 text-center font-medium text-[11px]"
                   >
-                    Use Offline
+                    Forgot both? Reset 4-digit PIN on this device
                   </button>
                 </div>
               </form>
