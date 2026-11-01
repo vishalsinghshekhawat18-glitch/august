@@ -33,6 +33,7 @@ import {
   Subject,
   Topic,
   TopicProgress,
+  CoachDispatch,
 } from '../types';
 import { dbService } from '../services/db';
 import {
@@ -46,6 +47,9 @@ import {
 import { calculateWeightedCompletion } from '../services/planning';
 import { CompleteRevisionModal } from '../components/CompleteRevisionModal';
 import { AnalyzeMockModal } from '../components/AnalyzeMockModal';
+import { MentorCoachCorner } from '../components/MentorCoachCorner';
+import { LiveMockFeedbackModal } from '../components/LiveMockFeedbackModal';
+import { coachService } from '../services/coachService';
 
 interface DashboardViewProps {
   onOpenQuickAdd: () => void;
@@ -89,6 +93,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
   const [mockAnalysisCompleted, setMockAnalysisCompleted] = useState<boolean>(false);
   const [mockAnalysisMinutes, setMockAnalysisMinutes] = useState<number>(45);
   const [analyzingMock, setAnalyzingMock] = useState<MockTest | null>(null);
+  const [activeMockReview, setActiveMockReview] = useState<CoachDispatch | null>(null);
 
   // Multi-paper schedule expanded accordion
   const [expandedSchedules, setExpandedSchedules] = useState<Set<string>>(new Set());
@@ -184,6 +189,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
         };
         await dbService.put<StudyLog>('studyLogs', analysisLog);
       }
+
+      // Generate Live Mentor Coach Review & open instant feedback
+      const examName = examMap.get(mockExamId) || 'IBPS RRB PO (Officer Scale I)';
+      const coachReview = coachService.generateMockReview(newMock, mockTests, examName);
+      await coachService.saveDispatch(coachReview);
+      setActiveMockReview(coachReview);
 
       setIsAddMockOpen(false);
       setMockTestName('');
@@ -458,6 +469,18 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
           </div>
         </div>
       </div>
+
+      {/* AI Mentor Coach Hub & Live Commentary */}
+      <MentorCoachCorner
+        todayFocusedMinutes={todayFocusedMinutes}
+        streak={currentStreak}
+        weeklyActualMinutes={weeklyActualMinutes}
+        weeklyTargetHours={weeklyTargetHours}
+        dueRevisionsCount={dueRevisions.length}
+        recentMocks={mockTests}
+        currentPlanTasks={weeklyTasks}
+        onDispatchUpdated={loadDashboardData}
+      />
 
       {/* SECTION 1: TODAY'S TASKS (FIRST PER REQUIREMENT #7) */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
@@ -1404,6 +1427,15 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
           mock={analyzingMock}
           onClose={() => setAnalyzingMock(null)}
           onSaved={loadDashboardData}
+        />
+      )}
+
+      {/* Immediate Live Mock Feedback Modal */}
+      {activeMockReview && (
+        <LiveMockFeedbackModal
+          isOpen={!!activeMockReview}
+          dispatch={activeMockReview}
+          onClose={() => setActiveMockReview(null)}
         />
       )}
     </div>

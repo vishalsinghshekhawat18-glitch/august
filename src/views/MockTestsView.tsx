@@ -14,10 +14,12 @@ import {
   ChevronRight,
   CheckSquare,
 } from 'lucide-react';
-import { MockTest, MistakeEntry, Commitment, Subject, Topic, ErrorType, SubjectMockScore } from '../types';
+import { MockTest, MistakeEntry, Commitment, Subject, Topic, ErrorType, SubjectMockScore, CoachDispatch } from '../types';
 import { dbService } from '../services/db';
 import { getTodayDateString } from '../services/dateUtils';
 import { AnalyzeMockModal } from '../components/AnalyzeMockModal';
+import { LiveMockFeedbackModal } from '../components/LiveMockFeedbackModal';
+import { coachService } from '../services/coachService';
 
 export const MockTestsView: React.FC = () => {
   const [todayStr, setTodayStr] = useState<string>(getTodayDateString());
@@ -46,6 +48,7 @@ export const MockTestsView: React.FC = () => {
   const [mockAnalysisCompleted, setMockAnalysisCompleted] = useState<boolean>(false);
   const [mockAnalysisMinutes, setMockAnalysisMinutes] = useState<number>(45);
   const [analyzingMock, setAnalyzingMock] = useState<MockTest | null>(null);
+  const [activeMockReview, setActiveMockReview] = useState<CoachDispatch | null>(null);
 
   // Mistake Form State
   const [mistakeExamId, setMistakeExamId] = useState<string>('comm_ibps_rrb_po');
@@ -142,6 +145,12 @@ export const MockTestsView: React.FC = () => {
         };
         await dbService.put('studyLogs', analysisLog);
       }
+
+      // Generate immediate Live Mentor Coach Review
+      const examName = examMap.get(examId) || 'IBPS RRB PO (Officer Scale I)';
+      const coachReview = coachService.generateMockReview(newMock, mockTests, examName);
+      await coachService.saveDispatch(coachReview);
+      setActiveMockReview(coachReview);
 
       setIsAddMockOpen(false);
       setTestName('');
@@ -724,6 +733,15 @@ export const MockTestsView: React.FC = () => {
           mock={analyzingMock}
           onClose={() => setAnalyzingMock(null)}
           onSaved={loadData}
+        />
+      )}
+
+      {/* Immediate Live Mock Feedback Modal */}
+      {activeMockReview && (
+        <LiveMockFeedbackModal
+          isOpen={!!activeMockReview}
+          dispatch={activeMockReview}
+          onClose={() => setActiveMockReview(null)}
         />
       )}
     </div>

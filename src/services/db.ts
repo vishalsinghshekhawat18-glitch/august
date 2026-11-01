@@ -14,12 +14,13 @@ import {
   UniversityItem,
   DailyReview,
   WeeklyReview,
+  CoachDispatch,
   AppSettings,
   ApplicationDataPackage,
 } from '../types';
 
 const DB_NAME = 'August_ExamTracker_DB';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 export type StoreName =
   | 'commitments'
@@ -36,6 +37,7 @@ export type StoreName =
   | 'universityItems'
   | 'dailyReviews'
   | 'weeklyReviews'
+  | 'coachDispatches'
   | 'settings';
 
 export const INITIAL_COMMITMENTS: Commitment[] = [
@@ -134,6 +136,7 @@ class IndexedDBStorage {
           { name: 'universityItems', keyPath: 'id', indexes: [{ name: 'courseId', keyPath: 'courseId' }] },
           { name: 'dailyReviews', keyPath: 'id', indexes: [{ name: 'date', keyPath: 'date', unique: true }] },
           { name: 'weeklyReviews', keyPath: 'id', indexes: [{ name: 'weekStartDate', keyPath: 'weekStartDate', unique: true }] },
+          { name: 'coachDispatches', keyPath: 'id', indexes: [{ name: 'date', keyPath: 'date' }, { name: 'type', keyPath: 'type' }] },
           { name: 'settings', keyPath: 'id' },
         ];
 
@@ -446,6 +449,7 @@ class IndexedDBStorage {
       universityItems,
       dailyReviews,
       weeklyReviews,
+      coachDispatches,
       settingsList,
     ] = await Promise.all([
       this.getAll<Commitment>('commitments'),
@@ -462,6 +466,7 @@ class IndexedDBStorage {
       this.getAll<UniversityItem>('universityItems'),
       this.getAll<DailyReview>('dailyReviews'),
       this.getAll<WeeklyReview>('weeklyReviews'),
+      this.getAll<CoachDispatch>('coachDispatches'),
       this.getAll<AppSettings>('settings'),
     ]);
 
@@ -486,6 +491,7 @@ class IndexedDBStorage {
         universityItems,
         dailyReviews,
         weeklyReviews,
+        coachDispatches,
         settings,
       },
     };
@@ -513,6 +519,7 @@ class IndexedDBStorage {
       'universityItems',
       'dailyReviews',
       'weeklyReviews',
+      'coachDispatches',
       'settings',
     ];
 
@@ -542,6 +549,7 @@ class IndexedDBStorage {
         ['universityItems', d.universityItems || []],
         ['dailyReviews', d.dailyReviews || []],
         ['weeklyReviews', d.weeklyReviews || []],
+        ['coachDispatches', d.coachDispatches || []],
         ['settings', d.settings ? [d.settings] : [DEFAULT_SETTINGS]],
       ];
 

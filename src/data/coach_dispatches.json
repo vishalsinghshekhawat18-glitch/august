@@ -1,0 +1,42 @@
+[
+  {
+    "id": "dispatch_kickoff_20261101",
+    "timestamp": "2026-11-01T08:30:00.000Z",
+    "date": "2026-11-01",
+    "timeStr": "08:30 AM",
+    "type": "morning_kickoff",
+    "title": "🌅 Day 1 Official Kickoff: Focus on IBPS RRB PO Sprint & Foundation",
+    "summary": "Clean slate active. The countdown to 20 Nov 2026 starts today with clear priorities: IBPS RRB PO Officer Scale I (Priority 1) with UPSC APFC and RAS in supporting alignment.",
+    "rating": "on_track",
+    "metrics": {
+      "focusHoursToday": 0,
+      "streakDays": 1
+    },
+    "commentary": "Welcome to Day 1 of your renewed sprint. We eliminated all distractions and clashing IIBF DBF noise so your cognitive energy is 100% focused on your high-leverage targets: IBPS RRB PO Officer Scale I (Primary Priority, target 20 Nov 2026), UPSC APFC (Strategic Priority 2), and RAS Preliminary (Priority 3).\n\nIn bank prelims examinations, speed is merely a derivative of decision-making clarity. A candidate who scores 56+ does not work twice as fast; they decide twice as fast whether a question is a 30-second free mark or a 2-minute trap.\n\nYour mandate today: Begin with a full-length diagnostic mock drill. When you post your score, this coaching engine will automatically deconstruct your accuracy, negative mark leakage, and time allocation so you never practice blindly.",
+    "actionItems": [
+      {
+        "id": "act_1",
+        "title": "Take 1 full-length IBPS RRB PO Prelims mock drill (45 minutes, 80 questions)",
+        "priority": "high",
+        "type": "drill",
+        "completed": false
+      },
+      {
+        "id": "act_2",
+        "title": "Log attempt and dedicated post-test analysis time directly into the tracker",
+        "priority": "high",
+        "type": "analysis",
+        "completed": false
+      },
+      {
+        "id": "act_3",
+        "title": "Maintain absolute 90%+ accuracy discipline: zero negative marks on random guesses",
+        "priority": "medium",
+        "type": "mindset",
+        "completed": false
+      }
+    ],
+    "socraticQuestion": "What single habit or friction point caused you the most fatigue in past cycles, and what boundary will you set today to eliminate it?",
+    "author": "Antigravity Mentor"
+  }
+]

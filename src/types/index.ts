@@ -265,6 +265,50 @@ export interface AppSettings {
   updatedAt: string;
 }
 
+// AI Mentor Coach System Types
+export type CoachDispatchType =
+  | 'mock_review'
+  | 'morning_kickoff'
+  | 'midday_check'
+  | 'evening_debrief'
+  | 'strategic_alert';
+
+export type CoachRating = 'exceptional' | 'on_track' | 'needs_attention' | 'critical';
+
+export interface CoachActionItem {
+  id: string;
+  title: string;
+  priority: 'high' | 'medium' | 'low';
+  type: 'analysis' | 'drill' | 'revision' | 'mindset';
+  completed?: boolean;
+}
+
+export interface CoachDispatch {
+  id: string;
+  timestamp: string; // ISO string
+  date: string; // YYYY-MM-DD
+  timeStr: string; // e.g. "01:15 PM"
+  type: CoachDispatchType;
+  title: string;
+  summary: string;
+  rating?: CoachRating;
+  metrics?: {
+    score?: number;
+    maxScore?: number;
+    accuracyPercent?: number;
+    negativePenalty?: number;
+    predictedPercentile?: string;
+    focusHoursToday?: number;
+    streakDays?: number;
+    questionsAttempted?: number;
+    timePerQuestionSeconds?: number;
+  };
+  commentary: string; // In-depth coaching prose using GROW framework
+  actionItems: CoachActionItem[];
+  socraticQuestion?: string; // Reflective question to prompt deep candidate thinking
+  author: 'Antigravity Mentor' | 'Live Coach Engine';
+}
+
 // Data Package for Full Export / Import
 export interface ApplicationDataPackage {
   app: 'PersonalExamTracker';
@@ -285,6 +329,7 @@ export interface ApplicationDataPackage {
     universityItems: UniversityItem[];
     dailyReviews: DailyReview[];
     weeklyReviews: WeeklyReview[];
+    coachDispatches?: CoachDispatch[];
     settings: AppSettings;
   };
 }

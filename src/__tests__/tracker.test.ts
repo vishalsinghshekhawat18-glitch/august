@@ -29,6 +29,7 @@ import {
   getTopicTotalCards,
   logTopicCardProgress,
 } from '../services/octoberLibrary';
+import { coachService } from '../services/coachService';
 import {
   WeeklyTask,
   StudyLog,
@@ -1144,6 +1145,89 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(week.days[0]).toBe(todayStr);
       expect(week.startDate).toBe('2026-11-01');
       expect(week.endDate).toBe('2026-11-07');
+    });
+  });
+
+  describe('12. AI Mentor Coach & Live Immediate Review Suite', () => {
+    it('generates an immediate live diagnostic review upon submitting a mock test', () => {
+      const mock: MockTest = {
+        id: 'mock_test_sample',
+        examId: 'comm_ibps_rrb_po',
+        testName: 'IBPS RRB PO Prelims Mock #01',
+        date: '2026-11-01',
+        totalScore: 54.5,
+        maxScore: 80,
+        accuracyPercent: 90.3,
+        correctCount: 56,
+        incorrectCount: 6,
+        skippedCount: 18,
+        attemptedCount: 62,
+        timeTakenMinutes: 45,
+        createdAt: '2026-11-01T10:00:00Z',
+      };
+
+      const review = coachService.generateMockReview(mock, [], 'IBPS RRB PO');
+
+      expect(review).toBeDefined();
+      expect(review.type).toBe('mock_review');
+      expect(review.title).toContain('Live Mock Debrief');
+      expect(review.metrics?.score).toBe(54.5);
+      expect(review.metrics?.negativePenalty).toBe(1.5); // 6 * 0.25 = 1.5 marks lost
+      expect(review.actionItems.length).toBeGreaterThanOrEqual(3);
+      expect(review.socraticQuestion).toBeDefined();
+      expect(review.commentary.toLowerCase()).toContain('negative');
+    });
+
+    it('generates contextual periodic coach briefings based on hours and time of day', () => {
+      // 1. Morning Kickoff (09:00 AM)
+      const morningReview = coachService.generateProgressReview({
+        todayFocusedMinutes: 0,
+        streak: 1,
+        weeklyActualMinutes: 0,
+        weeklyTargetHours: 25,
+        dueRevisionsCount: 2,
+        recentMocks: [],
+        currentPlanTasks: [],
+        forcedHour: 9,
+      });
+
+      expect(morningReview).toBeDefined();
+      expect(morningReview.type).toBe('morning_kickoff');
+      expect(morningReview.actionItems.length).toBeGreaterThan(0);
+      expect(morningReview.socraticQuestion).toBeDefined();
+      expect(morningReview.summary).toContain('Streak: Day 1');
+
+      // 2. Midday Momentum Check (02:00 PM)
+      const middayReview = coachService.generateProgressReview({
+        todayFocusedMinutes: 90,
+        streak: 1,
+        weeklyActualMinutes: 90,
+        weeklyTargetHours: 25,
+        dueRevisionsCount: 0,
+        recentMocks: [],
+        currentPlanTasks: [],
+        forcedHour: 14,
+      });
+
+      expect(middayReview).toBeDefined();
+      expect(middayReview.type).toBe('midday_check');
+      expect(middayReview.summary).toContain('1.5h');
+
+      // 3. Evening Attainment Debrief (08:30 PM)
+      const eveningReview = coachService.generateProgressReview({
+        todayFocusedMinutes: 210,
+        streak: 1,
+        weeklyActualMinutes: 210,
+        weeklyTargetHours: 25,
+        dueRevisionsCount: 0,
+        recentMocks: [],
+        currentPlanTasks: [],
+        forcedHour: 20,
+      });
+
+      expect(eveningReview).toBeDefined();
+      expect(eveningReview.type).toBe('evening_debrief');
+      expect(eveningReview.rating).toBe('exceptional');
     });
   });
 });

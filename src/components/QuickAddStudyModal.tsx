@@ -4,6 +4,7 @@ import { Commitment, Subject, Topic, Subtopic, ActivityType, StudyLog, AppSettin
 import { dbService } from '../services/db';
 import { getTodayDateString } from '../services/dateUtils';
 import { scheduleSpacedRevisionCycle, syncTopicProgressAcrossExams } from '../services/smartPacing';
+import { coachService } from '../services/coachService';
 
 interface QuickAddStudyModalProps {
   isOpen: boolean;
@@ -193,6 +194,10 @@ export const QuickAddStudyModal: React.FC<QuickAddStudyModalProps> = ({ isOpen, 
           };
           await dbService.put<StudyLog>('studyLogs', analysisLog);
         }
+
+        // Generate Live Coach Review for the coach hub
+        const coachReview = coachService.generateMockReview(newMock, [], selectedExam?.name);
+        await coachService.saveDispatch(coachReview);
 
         logNotes = `Mock Test: ${finalTitle} — Score: ${mockScore}/${mockMaxScore} (${accuracy}% acc)` + (notes.trim() ? ` • ${notes.trim()}` : '');
       }
