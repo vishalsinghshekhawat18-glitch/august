@@ -66,7 +66,7 @@ Their rise opened office to non-Turks and Indian Muslims — power based on meri
   <ul>
   <li><b>Conquests:</b> Gujarat (1299), <b>Ranthambore</b> (1301, Hammir Deva), <b>Chittor</b> (1303, Ratan Singh),
   Malwa, Siwana, <b>Jalore</b> (1311, Kanhadadeva).</li>
-  <li><b>Deccan and south</b> through <b>Malik Kafur</b>: Devagiri (Yadavas), Warangal (Kakatiyas), Dwarasamudra
+  <li><b>Deccan and south</b> through <b>Malik Kafur</b> (a slave bought for 1,000 dinars — "hazar-dinari"): Devagiri (Yadavas), Warangal (Kakatiyas), Dwarasamudra
   (Hoysalas), Madurai (Pandyas) — tribute, not annexation.</li>
   <li><b>Mongols:</b> repulsed repeated invasions (1299, 1303, 1305–06); built Siri fort.</li>
   <li><b>Reforms</b> (market control, revenue, army) — see I18.</li>
@@ -95,7 +95,7 @@ Their rise opened office to non-Turks and Indian Muslims — power based on meri
 (1347).</p>
 <p><b>Firoz Shah Tughluq</b> (1351–88): conciliated nobles and ulema; made iqtas <b>hereditary</b>; abolished many
 taxes, levied only four sharia taxes (kharaj, khams, jizya, zakat) — jizya now also on Brahmins; canals (Yamuna);
-new towns (Firozabad, Hisar, Jaunpur); Diwan-i-Khairat (charity), Diwan-i-Bandagan (slaves — 1,80,000);
+new towns (Firozabad, Hisar, Jaunpur — named after Muhammad bin Tughluq, whose earlier name was Jauna Khan); Diwan-i-Khairat (charity), Diwan-i-Bandagan (slaves — 1,80,000);
 employment bureau; hospitals (Dar-ul-Shifa); moved Ashokan pillars from Topra and Meerut to Delhi; wrote
 <i>Futuhat-i-Firozshahi</i>. His policies weakened central authority.</p>
 <p><b>Timur's invasion (1398):</b> sacked Delhi under Nasiruddin Mahmud; the Sultanate collapsed into regional
@@ -137,6 +137,9 @@ of his time? Modern historians see sound ideas undone by poor execution, impatie
 revolts).</p></div>`,
 
   facts: [
+    'Malik Kafur was called "hazar-dinari" because he was bought for 1,000 dinars.',
+    'Jaunpur, founded by Firoz Shah Tughluq, was named after Jauna Khan (Muhammad bin Tughluq).',
+    'Tradition says Nizamuddin Auliya, threatened by Ghiyasuddin Tughluq, remarked "Hunuz Dilli dur ast" (Delhi is still far).',
     'Qutbuddin Aibak was the first Sultan of Delhi (1206) and ruled from Lahore.',
     'Iltutmish made Delhi the capital and received caliphal investiture in 1229.',
     'Iltutmish introduced the silver tanka and copper jital.',

@@ -82,7 +82,7 @@ fired; <b>Rupaji and Kirpaji Dhakad</b> were killed.</li>
 and <b>Devlal Gurjar</b> were killed.</p>
 <p><b>Alwar — Neemuchana (14 May 1925):</b> Rajput peasants protested against a steep rise in land revenue and new
 restrictions. At Neemuchana village state troops fired and set houses on fire; many were killed. Gandhi called it
-worse than Jallianwala Bagh. The Maharaja Jai Singh was later deposed (1933).</p>
+worse than Jallianwala Bagh — "Dyerism double distilled" (<i>Young India</i>). The Maharaja Jai Singh was later deposed (1933).</p>
 <p><b>Meo movement (1932–33):</b> Meo peasants of Alwar and Bharatpur protested against revenue increases and
 cesses, led by <b>Chaudhary Yasin Khan</b>; it took a communal turn and was suppressed with British help.</p>` },
 

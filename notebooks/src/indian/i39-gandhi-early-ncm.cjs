@@ -77,7 +77,7 @@ in Punjab.</li>
 resigned from the Viceroy's council.</li>
 <li><b>Hunter Committee</b> (official) censured Dyer mildly; the House of Lords praised him; Congress inquiry committee
 (Motilal Nehru, C.R. Das, Gandhi and others).</li>
-<li>Udham Singh shot O'Dwyer in London (1940).</li>
+<li>Udham Singh shot O'Dwyer at Caxton Hall, London (13 March 1940).</li>
 </ul>` },
 
     { title: 'Khilafat and Non-Cooperation', html: `

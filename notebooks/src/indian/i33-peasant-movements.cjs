@@ -20,6 +20,7 @@ movement and organised by Kisan Sabhas and the Left (Champaran, Kheda, Bardoli, 
   timeline: [
     ['1763–1800', 'Sanyasi and Fakir revolts (Bengal)'],
     ['1783', 'Rangpur dhing (Bengal) against Devi Singh'],
+    ['1817', 'Paika rebellion, Khurda (Odisha) — Bakshi Jagabandhu'],
     ['1820s–1850s', 'Faraizi movement (Haji Shariatullah, Dudu Miyan)'],
     ['1836–1921', 'Moplah (Mappila) outbreaks, Malabar'],
     ['1859–60', 'Indigo revolt (Bengal)'],
@@ -40,6 +41,7 @@ movement and organised by Kisan Sabhas and the Left (Champaran, Kheda, Bardoli, 
 <div class="tbl"><table>
 <tr><th>Movement</th><th>Details</th></tr>
 <tr><td><b>Sanyasi–Fakir</b> (1763–1800)</td><td>Bengal; after the 1770 famine; restrictions on pilgrimage; described in Bankim's <i>Anandamath</i></td></tr>
+<tr><td><b>Paika rebellion</b> (1817)</td><td>Odisha (Khurda); Paikas — the hereditary militia of the Khurda king — lost their rent-free lands after the British conquest (1803); led by Bakshi Jagabandhu</td></tr>
 <tr><td><b>Faraizi</b></td><td>East Bengal; Haji Shariatullah (religious reform), Dudu Miyan — against zamindars and indigo planters; "land belongs to God"</td></tr>
 <tr><td><b>Moplah outbreaks</b></td><td>Malabar; Muslim tenants against Hindu jenmis (landlords) and the British</td></tr>
 <tr><td><b>Indigo revolt</b> (1859–60)</td><td>Bengal (Nadia — Digambar and Bishnu Biswas); against European planters forcing indigo under the tinkathia-like dadan system; supported by intelligentsia — <b>Dinabandhu Mitra's <i>Nil Darpan</i></b> (1860), Harish Chandra Mukherji (<i>Hindoo Patriot</i>); <b>Indigo Commission</b> (1860) — cultivation not compulsory</td></tr>
@@ -71,6 +73,7 @@ peasant movements as autonomous, with their own consciousness, not merely led by
 <b>D.N. Dhanagare</b> (<i>Peasant Movements in India</i>) discussed which strata of peasants led them.</p>`,
 
   facts: [
+    'The Paika rebellion (1817, Khurda, Odisha) was led by Bakshi Jagabandhu.',
     'Dinabandhu Mitra wrote Nil Darpan (1860).',
     'The Indigo Commission was appointed in 1860.',
     'The Pabna movement led to the Bengal Tenancy Act of 1885.',

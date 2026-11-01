@@ -59,7 +59,7 @@ Punjab.</li>
     { title: 'Muhammad Ghori', html: `
 <ul>
 <li>Shihabuddin (Muizzuddin) of the Ghurid dynasty; aimed at permanent conquest.</li>
-<li>Took Multan (1175); defeated by the Chaulukyas near Mount Abu (Kasahrada, 1178); took Punjab from the last
+<li>Took Multan (1175); defeated by the Chaulukyas near Mount Abu (Kasahrada, 1178 — under the boy-king Mularaja II and his mother, queen Naikidevi); took Punjab from the last
 Ghaznavids (Lahore, 1186).</li>
 <li><b>Tarain I (1191):</b> Prithviraj III won; Ghori wounded.</li>
 <li><b>Tarain II (1192):</b> Ghori won with mounted archers, feigned retreat and reserves; Prithviraj killed. Ajmer
@@ -94,6 +94,7 @@ cavalry advantage. <b>Richard Eaton</b> analysed temple desecration as political
 general religious policy.</p>`,
 
   facts: [
+    'At Kasahrada (1178) the Chaulukya forces of Mularaja II, led by his mother Naikidevi, defeated Muhammad Ghori.',
     'Muhammad bin Qasim conquered Sindh in 712 and killed Raja Dahir.',
     'The Chachnama is the source for the Arab conquest of Sindh.',
     'Mahmud of Ghazni raided India 17 times (1000–1027).',

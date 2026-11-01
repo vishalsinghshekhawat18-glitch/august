@@ -72,7 +72,7 @@ minister), Ubaidullah Sindhi.</li>
 
     { title: 'Second wave: HRA/HSRA', html: `
 <ul>
-<li><b>Hindustan Republican Association</b> (October 1924, Kanpur): Sachindranath Sanyal, Jogesh Chatterjee, <b>Ram
+<li><b>Hindustan Republican Association</b> (October 1924, Kanpur): Sachindranath Sanyal (author of <i>Bandi Jeevan</i>), Jogesh Chatterjee, <b>Ram
 Prasad Bismil</b>; aim — federal republic of the United States of India.</li>
 <li><b>Kakori train robbery</b> (9 August 1925): government treasury looted near Lucknow; Bismil, <b>Ashfaqulla Khan</b>,
 Roshan Singh and Rajendra Lahiri hanged (1927); Chandrashekhar Azad escaped.</li>
@@ -115,6 +115,7 @@ analysed Bhagat Singh's socialism. <b>Peter Heehs</b> (<i>The Bomb in Bengal</i>
 described revolutionaries as terrorists — a term avoided by most Indian historians today.</p>`,
 
   facts: [
+    'Sachindranath Sanyal, a founder of the HRA, wrote Bandi Jeevan.',
     'The Chapekar brothers killed Rand in 1897.',
     'V.D. Savarkar founded Abhinav Bharat in 1904.',
     'Shyamji Krishna Varma founded India House in London in 1905.',

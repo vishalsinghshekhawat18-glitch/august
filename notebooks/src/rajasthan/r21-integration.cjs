@@ -156,6 +156,7 @@ Udaipur) over the capital and posts.</p>`,
   ],
 
   glossary: [
+    ['संयुक्त राजस्थान', 'United State of Rajasthan', 'Stage 3 of integration (18 April 1948).'],
     ['एकीकरण', 'Ekikaran', 'Integration.'],
     ['राजप्रमुख', 'Rajpramukh', 'Constitutional head of a union of states (ruler).'],
     ['महाराजप्रमुख', 'Maharajpramukh', 'Senior head (Bhupal Singh of Mewar).'],

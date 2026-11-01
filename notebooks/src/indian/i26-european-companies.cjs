@@ -70,7 +70,7 @@ a year, the right to issue dastaks — called the "Magna Carta" of the Company.<
 <div class="tbl"><table>
 <tr><th>War</th><th>European link</th><th>Events</th><th>Treaty</th></tr>
 <tr><td>First (1746–48)</td><td>Austrian Succession</td><td>French under <b>Dupleix</b> took Madras; <b>battle of St Thome (Adyar)</b> — small French force defeated the Nawab Anwaruddin's army</td><td>Aix-la-Chapelle (1748): Madras returned</td></tr>
-<tr><td>Second (1749–54)</td><td>None (Indian succession disputes)</td><td>Rival claimants in Hyderabad and Carnatic; Dupleix backed Chanda Sahib and Muzaffar Jang; <b>Robert Clive</b> seized Arcot (1751); Muhammad Ali became Nawab of Carnatic</td><td>Treaty of Pondicherry (1754); Dupleix recalled</td></tr>
+<tr><td>Second (1749–54)</td><td>None (Indian succession disputes)</td><td>Rival claimants in Hyderabad and Carnatic; <b>Battle of Ambur</b> (1749) — Anwaruddin killed; Dupleix backed Chanda Sahib and Muzaffar Jang; <b>Robert Clive</b> seized Arcot (1751); Muhammad Ali became Nawab of Carnatic</td><td>Treaty of Pondicherry (1754); Dupleix recalled</td></tr>
 <tr><td>Third (1756–63)</td><td>Seven Years' War</td><td>Count de Lally; <b>Wandiwash (1760)</b> — Sir Eyre Coote defeated the French; Pondicherry taken (1761)</td><td>Treaty of Paris (1763): French factories returned unfortified</td></tr>
 </table></div>` },
 
@@ -91,6 +91,7 @@ trade) are standard. <b>Ashin Das Gupta</b> studied Indian merchants of Surat an
 (<i>Rival Empires of Trade</i>) compares the companies.</p>`,
 
   facts: [
+    'The Second Carnatic War opened with the Battle of Ambur (1749), in which Nawab Anwaruddin was killed.',
     'Vasco da Gama reached Calicut in 1498.',
     'Albuquerque captured Goa in 1510.',
     'The Portuguese issued cartaz passes to Asian ships.',

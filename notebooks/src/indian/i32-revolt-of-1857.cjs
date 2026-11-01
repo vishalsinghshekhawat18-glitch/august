@@ -83,9 +83,9 @@ Delhi passed to <b>Bakht Khan</b>, who came with the Bareilly troops.</p>
 <div class="tbl"><table>
 <tr><th>Centre</th><th>Indian leaders</th><th>British commanders</th><th>Outcome</th></tr>
 <tr><td>Delhi</td><td>Bahadur Shah II, Bakht Khan</td><td>John Nicholson, William Hodson</td><td>Recaptured September 1857; Bahadur Shah exiled to Rangoon (died 1862); Hodson shot the princes</td></tr>
-<tr><td>Kanpur</td><td>Nana Saheb, Tatya Tope, Azimullah Khan</td><td>Havelock, Colin Campbell</td><td>Retaken July 1857; Tatya Tope fought on in central India until April 1859</td></tr>
+<tr><td>Kanpur</td><td>Nana Saheb (based at Bithoor), Tatya Tope, Azimullah Khan</td><td>Havelock, Colin Campbell</td><td>Retaken July 1857; Tatya Tope fought on in central India until April 1859</td></tr>
 <tr><td>Lucknow</td><td>Begum Hazrat Mahal (for her son Birjis Qadr)</td><td>Havelock, Outram, Colin Campbell</td><td>Residency besieged; city retaken March 1858; the Begum escaped to Nepal</td></tr>
-<tr><td>Jhansi and Gwalior</td><td>Rani Lakshmibai (with Tatya Tope)</td><td>Hugh Rose</td><td>Jhansi taken April 1858; the Rani killed fighting near Gwalior, June 1858</td></tr>
+<tr><td>Jhansi and Gwalior</td><td>Rani Lakshmibai (with Tatya Tope)</td><td>Hugh Rose</td><td>Jhansi taken April 1858; the Rani killed fighting at Kotah-ki-Serai near Gwalior, June 1858</td></tr>
 <tr><td>Bihar (Jagdishpur)</td><td>Kunwar Singh</td><td>William Taylor, Vincent Eyre</td><td>Kunwar Singh, about 80, fought across Bihar and UP; died April 1858</td></tr>
 <tr><td>Bareilly</td><td>Khan Bahadur Khan</td><td>Colin Campbell</td><td>Retaken 1858</td></tr>
 <tr><td>Faizabad</td><td>Maulvi Ahmadullah Shah</td><td>—</td><td>Killed 1858</td></tr>
@@ -155,6 +155,7 @@ calls it the first great struggle of Indians against British rule, which laid th
 movement.</p>`,
 
   facts: [
+    'Rani Lakshmibai fell at Kotah-ki-Serai near Gwalior (June 1858); Nana Saheb\'s base was Bithoor near Kanpur.',
     'Doctrine of Lapse annexations: Satara 1848, Jaitpur and Sambalpur 1849, Udaipur (central India) 1852, Jhansi 1853, Nagpur 1854.',
     'Awadh annexed in February 1856 on grounds of misgovernance, under Dalhousie.',
     'Religious Disabilities Act 1850 allowed converts to inherit ancestral property.',

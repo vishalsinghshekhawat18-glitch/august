@@ -48,7 +48,7 @@ the Mahajanapadas (I05). Learn the comparison as a table.</p></div>`,
 <tr><th></th><th>Early Vedic (Rig Vedic)</th><th>Later Vedic</th></tr>
 <tr><td>Region</td><td>Sapta Sindhu (Punjab, Afghanistan edges); Saraswati most praised river</td><td>Ganga–Yamuna doab; Kuru–Panchala the centre; later Kosala, Videha</td></tr>
 <tr><td>Economy</td><td>Pastoral; cattle as wealth (<i>gavishti</i> = search for cows = war); some barley farming</td><td>Settled agriculture; iron (<i>shyama ayas</i>) for clearing forests; rice, wheat; crafts</td></tr>
-<tr><td>Polity</td><td>Tribal chief (<i>rajan</i>) of a jana; assemblies <b>sabha</b>, <b>samiti</b>, vidatha, gana; women attended sabha and vidatha</td><td>Territorial kingdoms (rashtra); king grows powerful; rituals Rajasuya, Ashvamedha, Vajapeya; ratnins (officials); assemblies decline; women excluded</td></tr>
+<tr><td>Polity</td><td>Tribal chief (<i>rajan</i>) of a jana; assemblies <b>sabha</b>, <b>samiti</b>, vidatha, gana; women attended sabha and vidatha</td><td>Territorial kingdoms (rashtra); king grows powerful; rituals Rajasuya, Ashvamedha, Vajapeya; ratnins (officials, e.g. <i>bhagadugha</i> — tax collector, <i>sangrahitri</i> — treasurer); assemblies decline; women excluded</td></tr>
 <tr><td>Society</td><td>Varna fluid; division mainly Arya–Dasa; women relatively free (Apala, Ghosha, Lopamudra composed hymns)</td><td>Four varnas rigid; Shudras subordinate; gotra; three ashramas (fourth later); women's status declines</td></tr>
 <tr><td>Religion</td><td>Nature gods: Indra (most hymns, 250), Agni (200), Varuna (rita, cosmic order), Soma; simple sacrifices for material gain</td><td>Prajapati, Vishnu, Rudra rise; elaborate sacrifices dominated by priests; Upanishads reject ritual for knowledge</td></tr>
 </table></div>
@@ -83,6 +83,8 @@ trace the change from pastoral tribes to agrarian states. <b>Romila Thapar</b> (
 analysed later Vedic society as a "lineage society" moving towards kingship.</p>`,
 
   facts: [
+    'Early iron (c. 1000 BCE) has been found at Atranjikhera (Etah, UP) with Painted Grey Ware.',
+    'Among the Later Vedic ratnins, the bhagadugha collected taxes and the sangrahitri was the treasurer.',
     'The Rig Veda has 1,028 hymns in 10 mandalas.',
     'The Purusha Sukta (10th mandala) first mentions the four varnas.',
     'The Gayatri Mantra is in the 3rd mandala, addressed to Savitr.',

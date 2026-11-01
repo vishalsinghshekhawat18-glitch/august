@@ -97,6 +97,37 @@ Councils Act (1892); a resolution in the House of Commons (1893) for simultaneou
 <b>Naoroji</b> became the first Indian member of the British House of Commons (1892, Finsbury Central).</p>
 <p><b>Limitations:</b> narrow social base (urban educated middle class); faith in British justice; no mass mobilisation;
 little immediate success; led to the rise of the Extremists.</p>` },
+    { title: 'Reference: important Congress sessions, 1885–1948', html: `
+<div class="tbl"><table>
+<tr><th>Year</th><th>Place</th><th>President</th><th>Significance</th></tr>
+<tr><td>1885</td><td>Bombay</td><td><b>W.C. Bonnerjee</b></td><td>First session; 72 delegates</td></tr>
+<tr><td>1886</td><td>Calcutta</td><td><b>Dadabhai Naoroji</b></td><td>National Conference merged with the Congress</td></tr>
+<tr><td>1887</td><td>Madras</td><td><b>Badruddin Tyabji</b></td><td>First Muslim president</td></tr>
+<tr><td>1888</td><td>Allahabad</td><td><b>George Yule</b></td><td>First English president</td></tr>
+<tr><td>1896</td><td>Calcutta</td><td><b>Rahimtullah M. Sayani</b></td><td>Vande Mataram first sung at a Congress session (by Rabindranath Tagore)</td></tr>
+<tr><td>1905</td><td>Benaras</td><td><b>G.K. Gokhale</b></td><td>Swadeshi and boycott in Bengal supported</td></tr>
+<tr><td>1906</td><td>Calcutta</td><td><b>Dadabhai Naoroji</b></td><td>Swaraj declared the goal; resolutions on swadeshi, boycott, national education</td></tr>
+<tr><td>1907</td><td>Surat</td><td><b>Rash Behari Ghosh</b></td><td>Split between Moderates and Extremists</td></tr>
+<tr><td>1911</td><td>Calcutta</td><td><b>B.N. Dhar</b></td><td>Jana Gana Mana first sung</td></tr>
+<tr><td>1916</td><td>Lucknow</td><td><b>A.C. Mazumdar</b></td><td>Moderates and Extremists reunited; Lucknow Pact with the Muslim League</td></tr>
+<tr><td>1917</td><td>Calcutta</td><td><b>Annie Besant</b></td><td>First woman president</td></tr>
+<tr><td>Sept 1920</td><td>Calcutta (special)</td><td><b>Lala Lajpat Rai</b></td><td>Non-cooperation resolution passed</td></tr>
+<tr><td>Dec 1920</td><td>Nagpur</td><td><b>C. Vijayaraghavachariar</b></td><td>Non-cooperation ratified; linguistic provincial committees; new constitution</td></tr>
+<tr><td>1922</td><td>Gaya</td><td><b>C.R. Das</b></td><td>Council entry rejected — Das and Motilal Nehru formed the Swaraj Party</td></tr>
+<tr><td>1924</td><td>Belgaum</td><td><b>M.K. Gandhi</b></td><td>The only session Gandhi presided over</td></tr>
+<tr><td>1925</td><td>Kanpur</td><td><b>Sarojini Naidu</b></td><td>First Indian woman president</td></tr>
+<tr><td>1927</td><td>Madras</td><td><b>M.A. Ansari</b></td><td>Boycott of the Simon Commission; resolution for complete independence</td></tr>
+<tr><td>1928</td><td>Calcutta</td><td><b>Motilal Nehru</b></td><td>Nehru Report endorsed; one-year ultimatum for dominion status</td></tr>
+<tr><td>1929</td><td>Lahore</td><td><b>Jawaharlal Nehru</b></td><td>Purna Swaraj; 26 January 1930 celebrated as Independence Day</td></tr>
+<tr><td>1931</td><td>Karachi</td><td><b>Vallabhbhai Patel</b></td><td>Resolutions on Fundamental Rights and the National Economic Programme; Gandhi–Irwin Pact endorsed</td></tr>
+<tr><td>1936</td><td>Faizpur</td><td><b>Jawaharlal Nehru</b></td><td>First session held in a village</td></tr>
+<tr><td>1938</td><td>Haripura</td><td><b>Subhas Chandra Bose</b></td><td>National Planning Committee set up (Nehru chairman)</td></tr>
+<tr><td>1939</td><td>Tripuri</td><td><b>Subhas Chandra Bose</b></td><td>Bose re-elected defeating Pattabhi Sitaramayya, then resigned; Rajendra Prasad took over</td></tr>
+<tr><td>1940</td><td>Ramgarh</td><td><b>Maulana Abul Kalam Azad</b></td><td>Azad remained president until 1946</td></tr>
+<tr><td>1946</td><td>Meerut</td><td><b>J.B. Kripalani</b></td><td>President at the time of independence</td></tr>
+<tr><td>1948</td><td>Jaipur</td><td><b>Pattabhi Sitaramayya</b></td><td>First session after independence</td></tr>
+</table></div>
+<p>Later units refer back to this table for the sessions of 1916–1948.</p>` },
   ],
 
   historians: `
@@ -106,6 +137,9 @@ competition among regional elites. <b>S.R. Mehrotra</b> (<i>The Emergence of the
 Congress's roots in earlier associations.</p>`,
 
   facts: [
+    'Vande Mataram was first sung at a Congress session in 1896 (Calcutta); Jana Gana Mana in 1911 (Calcutta).',
+    'Gandhi presided over only one Congress session — Belgaum, 1924.',
+    'The first Congress session after independence was held at Jaipur (1948) under Pattabhi Sitaramayya.',
     'The British Indian Association was founded in 1851 in Calcutta.',
     'Surendranath Banerjea and Ananda Mohan Bose founded the Indian Association in 1876.',
     'The Poona Sarvajanik Sabha was founded in 1870.',

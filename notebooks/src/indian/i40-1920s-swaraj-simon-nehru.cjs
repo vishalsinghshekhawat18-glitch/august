@@ -59,7 +59,7 @@ ashrams (Sabarmati), Gandhi's All India Spinners' Association (1925); prepared c
 <li><b>Socialist ideas:</b> Jawaharlal Nehru and Subhas Bose (Independence for India League, 1928); youth leagues.</li>
 <li><b>Communists:</b> M.N. Roy (CPI at Tashkent, 1920); <b>CPI</b> at Kanpur conference (December 1925); Kanpur
 Bolshevik (1924) and <b>Meerut conspiracy</b> (1929) cases.</li>
-<li><b>Workers:</b> <b>AITUC</b> (1920; Lala Lajpat Rai first president, N.M. Joshi); Trade Unions Act (1926); Trade
+<li><b>Workers:</b> Bombay Mill Hands Association (1890, N.M. Lokhande) — the first organised workers' body; <b>AITUC</b> (1920; Lala Lajpat Rai first president, N.M. Joshi); Trade Unions Act (1926); Trade
 Disputes Act (1929); Girni Kamgar Union strikes (Bombay, 1928).</li>
 <li><b>Peasants:</b> Bardoli (1928), Kisan sabhas.</li>
 <li><b>Revolutionaries:</b> HRA/HSRA (I38).</li>
@@ -128,6 +128,7 @@ Spokesman</i>) argues Jinnah sought a strong Muslim position within a federation
 of his amendments was a turning point.</p>`,
 
   facts: [
+    'N.M. Lokhande founded the Bombay Mill Hands Association (1890).',
     'The Swaraj Party was founded in January 1923 by C.R. Das and Motilal Nehru.',
     'C.R. Das was the first president of the Swaraj Party.',
     'Vithalbhai Patel became President of the Central Legislative Assembly in 1925.',

@@ -97,6 +97,48 @@ Lytton)</b> — "gagging act", repealed by Ripon (1882); Newspapers (Incitement 
 → after 1858, <b>subordinate union</b> — no more annexation, adoption recognised, but intervention for "misrule";
 Chamber of Princes (1921); Butler Committee (1927) — paramountcy supreme.</li>
 </ul>` },
+    { title: 'Reference: Governors-General and Viceroys, 1773–1947', html: `
+<p>Prelims often asks "during whose tenure" an Act, war or reform took place. Only the main events are listed.</p>
+<div class="tbl"><table>
+<tr><th>Name</th><th>Tenure</th><th>Main events</th></tr>
+<tr><th colspan="3">Governors-General of Bengal (Regulating Act, 1773)</th></tr>
+<tr><td><b>Warren Hastings</b></td><td>1773–85</td><td>Regulating Act (1773); Rohilla War (1774); First Anglo-Maratha War — Treaty of Salbai (1782); Second Anglo-Mysore War; Pitt's India Act (1784); Asiatic Society (1784, William Jones)</td></tr>
+<tr><td><b>Cornwallis</b></td><td>1786–93</td><td>Third Anglo-Mysore War — Treaty of Seringapatam (1792); Permanent Settlement (1793); Cornwallis Code; reorganised civil services and police</td></tr>
+<tr><td><b>John Shore</b></td><td>1793–98</td><td>Charter Act (1793); policy of non-intervention; Battle of Kharda (1795, Marathas defeat the Nizam)</td></tr>
+<tr><td><b>Wellesley</b></td><td>1798–1805</td><td>Subsidiary Alliance (1798); Fourth Anglo-Mysore War — Tipu killed (1799); Fort William College (1800); Treaty of Bassein (1802); Second Anglo-Maratha War</td></tr>
+<tr><td><b>Minto I</b></td><td>1807–13</td><td>Treaty of Amritsar with Ranjit Singh (1809)</td></tr>
+<tr><td><b>Lord Hastings (Moira)</b></td><td>1813–23</td><td>Anglo-Nepal War — Treaty of Sugauli (1816); Pindari campaign; Third Anglo-Maratha War — Peshwaship abolished (1818); treaties with the Rajput states (1817–18)</td></tr>
+<tr><td><b>Amherst</b></td><td>1823–28</td><td>First Anglo-Burmese War — Treaty of Yandabo (1826); Barrackpore mutiny (1824)</td></tr>
+<tr><td><b>William Bentinck</b></td><td>1828–35</td><td>Sati abolished (1829); thuggee suppressed (Sleeman); Mysore taken over (1831); became first Governor-General of India under the Charter Act (1833); English Education Act (1835, Macaulay)</td></tr>
+<tr><th colspan="3">Governors-General of India (Charter Act, 1833)</th></tr>
+<tr><td><b>Charles Metcalfe</b></td><td>1835–36</td><td>Press restrictions lifted — "liberator of the Indian press"</td></tr>
+<tr><td><b>Auckland</b></td><td>1836–42</td><td>First Anglo-Afghan War (1839–42)</td></tr>
+<tr><td><b>Ellenborough</b></td><td>1842–44</td><td>Sindh annexed (1843, Charles Napier); slavery abolished (Act V of 1843)</td></tr>
+<tr><td><b>Hardinge I</b></td><td>1844–48</td><td>First Anglo-Sikh War — Treaty of Lahore (1846)</td></tr>
+<tr><td><b>Dalhousie</b></td><td>1848–56</td><td>Doctrine of Lapse (Satara 1848, Jhansi and Nagpur 1854); Second Anglo-Sikh War — Punjab annexed (1849); Second Anglo-Burmese War (1852); first railway (1853), telegraph, Post Office Act (1854); Wood's Despatch (1854); Awadh annexed (1856)</td></tr>
+<tr><td><b>Canning</b></td><td>1856–62</td><td>Hindu Widows' Remarriage Act (1856); universities at Calcutta, Bombay, Madras (1857); Revolt of 1857; Government of India Act (1858) — became the first Viceroy; Indian Penal Code (1860); Indian Councils Act and High Courts Act (1861)</td></tr>
+<tr><th colspan="3">Viceroys (Government of India Act, 1858)</th></tr>
+<tr><td><b>Elgin I</b></td><td>1862–63</td><td>Wahabi movement suppressed; died at Dharamshala</td></tr>
+<tr><td><b>John Lawrence</b></td><td>1864–69</td><td>Anglo-Bhutan War (1865); Orissa famine (1866); "masterly inactivity" towards Afghanistan</td></tr>
+<tr><td><b>Mayo</b></td><td>1869–72</td><td>Financial decentralisation (1870); first (non-synchronous) census (1872); Mayo College, Ajmer founded in his name; assassinated in the Andamans (1872)</td></tr>
+<tr><td><b>Northbrook</b></td><td>1872–76</td><td>Deposition of the Gaekwad of Baroda (1875); visit of the Prince of Wales (1875–76)</td></tr>
+<tr><td><b>Lytton</b></td><td>1876–80</td><td>Royal Titles Act (1876) and Delhi Durbar (1877) during the great famine; Vernacular Press Act and Arms Act (1878); ICS age cut to 19; Second Anglo-Afghan War (1878)</td></tr>
+<tr><td><b>Ripon</b></td><td>1880–84</td><td>First synchronous census (1881); Factory Act (1881); Vernacular Press Act repealed (1882); local self-government resolution (1882); Hunter Education Commission (1882); Ilbert Bill (1883)</td></tr>
+<tr><td><b>Dufferin</b></td><td>1884–88</td><td>Indian National Congress founded (1885); Third Anglo-Burmese War — Upper Burma annexed (1886)</td></tr>
+<tr><td><b>Lansdowne</b></td><td>1888–94</td><td>Factory Act (1891); Age of Consent Act (1891); Indian Councils Act (1892); Durand Line (1893)</td></tr>
+<tr><td><b>Elgin II</b></td><td>1894–99</td><td>Famine (1896–97) and plague; Chapekar brothers kill Rand (1897)</td></tr>
+<tr><td><b>Curzon</b></td><td>1899–1905</td><td>NWFP created (1901); Police Commission (1902); Universities Act and Ancient Monuments Preservation Act (1904); Tibet expedition (1904); Partition of Bengal (1905)</td></tr>
+<tr><td><b>Minto II</b></td><td>1905–10</td><td>Muslim League founded (1906); Surat split (1907); Morley–Minto Reforms (1909)</td></tr>
+<tr><td><b>Hardinge II</b></td><td>1910–16</td><td>Delhi Durbar (1911) — partition annulled, capital moved to Delhi; bomb thrown at Hardinge (1912)</td></tr>
+<tr><td><b>Chelmsford</b></td><td>1916–21</td><td>Lucknow Pact (1916); August Declaration (1917); Rowlatt Act and Jallianwala Bagh (1919); Government of India Act (1919); Non-Cooperation launched (1920)</td></tr>
+<tr><td><b>Reading</b></td><td>1921–26</td><td>Moplah rebellion (1921); Chauri Chaura (1922); Rowlatt Act repealed (1922); Swaraj Party (1923); Kakori (1925)</td></tr>
+<tr><td><b>Irwin</b></td><td>1926–31</td><td>Simon Commission (1927–28); Nehru Report (1928); Lahore session (1929); Dandi March (1930); First Round Table Conference; Gandhi–Irwin Pact (1931)</td></tr>
+<tr><td><b>Willingdon</b></td><td>1931–36</td><td>Second and Third Round Table Conferences; Communal Award and Poona Pact (1932); Government of India Act (1935)</td></tr>
+<tr><td><b>Linlithgow</b></td><td>1936–43</td><td>Provincial elections (1937); Second World War; August Offer (1940); Cripps Mission and Quit India (1942) — the longest-serving Viceroy</td></tr>
+<tr><td><b>Wavell</b></td><td>1943–47</td><td>Shimla Conference (1945); INA trials and RIN mutiny (1946); Cabinet Mission and Interim Government (1946)</td></tr>
+<tr><td><b>Mountbatten</b></td><td>Mar–Aug 1947</td><td>3 June Plan; Indian Independence Act; partition — last Viceroy and first Governor-General of independent India</td></tr>
+</table></div>
+<p>After independence: Mountbatten (1947–48), then <b>C. Rajagopalachari</b> (1948–50), the only Indian Governor-General.</p>` },
   ],
 
   historians: `
@@ -106,6 +148,9 @@ Macaulay and the ryotwari. <b>Gauri Viswanathan</b> (<i>Masks of Conquest</i>) a
 instrument of rule. <b>B.B. Misra</b> wrote on the bureaucracy.</p>`,
 
   facts: [
+    'Amherst was Governor-General during the First Anglo-Burmese War (Treaty of Yandabo, 1826).',
+    'Auckland was Governor-General during the First Anglo-Afghan War (1839–42); Ellenborough annexed Sindh (1843).',
+    'Lansdowne was Viceroy when the Indian Councils Act (1892) was passed and the Durand Line drawn (1893).',
     'The Permanent Settlement was introduced by Cornwallis in 1793.',
     'Under the Permanent Settlement the zamindar kept 1/11 of the revenue.',
     'The sunset law applied under the Permanent Settlement.',

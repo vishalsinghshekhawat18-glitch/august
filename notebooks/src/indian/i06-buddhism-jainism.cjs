@@ -59,7 +59,7 @@ died at <b>Kushinagar</b> at 80 (<i>mahaparinirvana</i>).</p>
 (philosophy); Jatakas (birth stories).</p>
 <div class="tbl"><table>
 <tr><th>Council</th><th>Place, patron</th><th>Chair</th><th>Outcome</th></tr>
-<tr><td>First (c. 483 BCE)</td><td>Rajagriha, Ajatashatru</td><td>Mahakassapa</td><td>Sutta (Ananda) and Vinaya (Upali) compiled</td></tr>
+<tr><td>First (c. 483 BCE)</td><td>Rajagriha (Saptaparni cave), Ajatashatru</td><td>Mahakassapa</td><td>Sutta (Ananda) and Vinaya (Upali) compiled</td></tr>
 <tr><td>Second (c. 383 BCE)</td><td>Vaishali, Kalashoka</td><td>Sabakami</td><td>Split: Sthaviravadins and Mahasanghikas</td></tr>
 <tr><td>Third (c. 250 BCE)</td><td>Pataliputra, Ashoka</td><td>Moggaliputta Tissa</td><td>Abhidhamma added; missions abroad</td></tr>
 <tr><td>Fourth (1st–2nd c. CE)</td><td>Kashmir (Kundalvana), Kanishka</td><td>Vasumitra; Ashvaghosha deputy</td><td>Split into Hinayana and Mahayana; Sanskrit texts</td></tr>
@@ -117,6 +117,7 @@ Early Buddhism</i>) showed how early Buddhism addressed the new social world of 
 Thapar</b> sees the shramana movements as part of a broad debate rather than a simple "revolt" against Brahmanism.</p>`,
 
   facts: [
+    'The first Buddhist council met in the Saptaparni cave at Rajagriha.',
     'The Buddha was born at Lumbini, enlightened at Bodh Gaya, preached first at Sarnath, died at Kushinagar.',
     'The first sermon is called dharmachakra-pravartana.',
     'Tripitaka: Vinaya, Sutta, Abhidhamma pitakas.',

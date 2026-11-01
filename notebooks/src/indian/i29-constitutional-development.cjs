@@ -35,6 +35,7 @@ the nationalists said about it.</p></div>`,
 <div class="tbl"><table>
 <tr><th>Act</th><th>Key provisions</th></tr>
 <tr><td><b>Regulating Act, 1773</b></td><td>First parliamentary control over the Company; Governor of Bengal became <b>Governor-General of Bengal</b> (Warren Hastings) with a council of four; Bombay and Madras subordinated; <b>Supreme Court at Calcutta (1774)</b> — Chief Justice Elijah Impey; servants barred from private trade and presents</td></tr>
+<tr><td>Act of Settlement, 1781</td><td>Amended the Regulating Act after clashes between Hastings's council and the Supreme Court: Governor-General in Council exempted from the Court's jurisdiction for official acts; revenue matters outside the Court; personal laws of Hindus and Muslims to apply</td></tr>
 <tr><td><b>Pitt's India Act, 1784</b></td><td><b>Board of Control</b> (political affairs) alongside the Court of Directors (commerce) — <b>dual control</b>; Company territories called "British possessions in India"</td></tr>
 <tr><td>Act of 1786</td><td>Governor-General could override his council (Cornwallis); also commander-in-chief</td></tr>
 <tr><td>Charter Act, 1793</td><td>Company charter renewed for 20 years</td></tr>
@@ -82,6 +83,7 @@ the reforms as concessions to pressure, designed to divide (separate electorates
 school" emphasised how reforms shaped Indian political competition.</p>`,
 
   facts: [
+    'The Act of Settlement (1781) limited the jurisdiction of the Calcutta Supreme Court created by the Regulating Act.',
     'The Regulating Act of 1773 made the Governor of Bengal the Governor-General of Bengal.',
     'The Supreme Court at Calcutta was set up in 1774.',
     'Pitt\'s India Act (1784) created the Board of Control.',
