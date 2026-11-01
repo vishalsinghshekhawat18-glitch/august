@@ -298,51 +298,6 @@ export const SyllabusView: React.FC = () => {
   // Filter subjects that belong to the selected exam
   const filteredSubjects = subjects.filter((s) => s.examIds.includes(selectedExamId));
   const selectedCommitment = commitments.find((c) => c.id === selectedExamId);
-  const hasMissingDbfPapers = selectedExamId === 'comm_iibf_dbf' && filteredSubjects.length < 4;
-
-  const handleEnsureDbfSubjects = async () => {
-    try {
-      const allCurrentSubs = await dbService.getAll<Subject>('subjects');
-      const updatedSubs = [...allCurrentSubs];
-
-      const papersToEnsure = [
-        { name: 'Indian Economy & Indian Financial System', code: 'IE&IFS', order: 1, aliases: ['economic', 'economy'] },
-        { name: 'Principles & Practices of Banking', code: 'PPB', order: 2, aliases: ['principles', 'ppb'] },
-        { name: 'Accounting & Financial Management for Bankers', code: 'AFM', order: 3, aliases: ['accounting', 'afm'] },
-        { name: 'Retail Banking & Wealth Management', code: 'RBWM', order: 4, aliases: ['retail', 'rbwm'] },
-      ];
-
-      for (const p of papersToEnsure) {
-        // Check if a subject already exists with matching name or alias
-        const existing = updatedSubs.find(
-          (s) =>
-            s.name.toLowerCase() === p.name.toLowerCase() ||
-            p.aliases.some((alias) => s.name.toLowerCase().includes(alias))
-        );
-
-        if (existing) {
-          if (!existing.examIds.includes('comm_iibf_dbf')) {
-            existing.examIds = [...existing.examIds, 'comm_iibf_dbf'];
-            await dbService.put<Subject>('subjects', existing);
-          }
-        } else {
-          const newSub: Subject = {
-            id: `sub_dbf_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
-            name: p.name,
-            code: p.code,
-            examIds: ['comm_iibf_dbf'],
-            order: p.order,
-          };
-          await dbService.put<Subject>('subjects', newSub);
-          updatedSubs.push(newSub);
-        }
-      }
-
-      await loadData();
-    } catch (err) {
-      console.error('Failed to ensure DBF subjects:', err);
-    }
-  };
 
   return (
     <div className="space-y-6 pb-12">
@@ -440,21 +395,6 @@ export const SyllabusView: React.FC = () => {
               );
             })}
           </div>
-
-          {hasMissingDbfPapers && (
-            <div className="mt-4 pt-3 border-t border-indigo-800/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-indigo-950/40 p-2.5 rounded-xl">
-              <span className="text-xs text-indigo-200">
-                You have {filteredSubjects.length} of 4 official DBF paper subjects configured. Click to initialize the remaining papers instantly.
-              </span>
-              <button
-                type="button"
-                onClick={handleEnsureDbfSubjects}
-                className="px-3 py-1 bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg text-xs font-semibold shadow-xs transition-colors shrink-0"
-              >
-                + Quick Add All 4 DBF Papers
-              </button>
-            </div>
-          )}
         </div>
       )}
 
@@ -483,16 +423,6 @@ export const SyllabusView: React.FC = () => {
             <Plus className="w-3.5 h-3.5" />
             <span>Add Subject</span>
           </button>
-
-          {hasMissingDbfPapers && (
-            <button
-              onClick={handleEnsureDbfSubjects}
-              className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-colors flex items-center gap-1.5"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Initialize 4 DBF Papers</span>
-            </button>
-          )}
 
           <button
             onClick={() => {

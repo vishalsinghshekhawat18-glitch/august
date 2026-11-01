@@ -29,40 +29,67 @@ export function formatHoursDecimal(minutes: number): string {
   return `${(minutes / 60).toFixed(1)}h`;
 }
 
-// Returns the Monday (YYYY-MM-DD) and Sunday (YYYY-MM-DD) for a given date
-export function getWeekBounds(dateStr: string): { monday: string; sunday: string; days: string[] } {
+// Returns the week bounds (YYYY-MM-DD) for a given date.
+// Defaults to Sunday-first cycle (Sunday to Saturday), making today (Sunday, 2026-11-01) Day 1 of the week.
+export function getWeekBounds(
+  dateStr: string,
+  startDay: 'sunday' | 'monday' = 'sunday'
+): {
+  startDate: string;
+  endDate: string;
+  monday: string;
+  sunday: string;
+  days: string[];
+} {
   const [y, m, d] = dateStr.split('-').map(Number);
   const date = new Date(Date.UTC(y, m - 1, d, 12, 0, 0));
   
   // getDay(): 0 is Sunday, 1 is Monday, ... 6 is Saturday
   const dayOfWeek = date.getUTCDay();
-  const diffToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+  const diffToStart = startDay === 'sunday'
+    ? -dayOfWeek
+    : (dayOfWeek === 0 ? -6 : 1 - dayOfWeek);
   
-  const mondayDate = new Date(date);
-  mondayDate.setUTCDate(date.getUTCDate() + diffToMonday);
+  const startDateObj = new Date(date);
+  startDateObj.setUTCDate(date.getUTCDate() + diffToStart);
   
   const days: string[] = [];
   for (let i = 0; i < 7; i++) {
-    const current = new Date(mondayDate);
-    current.setUTCDate(mondayDate.getUTCDate() + i);
+    const current = new Date(startDateObj);
+    current.setUTCDate(startDateObj.getUTCDate() + i);
     days.push(current.toISOString().slice(0, 10));
   }
   
   return {
+    startDate: days[0],
+    endDate: days[6],
+    // Aliases ensuring seamless backwards compatibility across all views and calculation filters
     monday: days[0],
     sunday: days[6],
     days,
   };
 }
 
-export function getNextWeekBounds(dateStr: string): { monday: string; sunday: string } {
-  const currentBounds = getWeekBounds(dateStr);
-  const [y, m, d] = currentBounds.monday.split('-').map(Number);
-  const nextMonday = new Date(Date.UTC(y, m - 1, d + 7, 12, 0, 0));
-  const nextSunday = new Date(Date.UTC(y, m - 1, d + 13, 12, 0, 0));
+export function getNextWeekBounds(
+  dateStr: string,
+  startDay: 'sunday' | 'monday' = 'sunday'
+): {
+  startDate: string;
+  endDate: string;
+  monday: string;
+  sunday: string;
+} {
+  const currentBounds = getWeekBounds(dateStr, startDay);
+  const [y, m, d] = currentBounds.startDate.split('-').map(Number);
+  const nextStart = new Date(Date.UTC(y, m - 1, d + 7, 12, 0, 0));
+  const nextEnd = new Date(Date.UTC(y, m - 1, d + 13, 12, 0, 0));
+  const sStr = nextStart.toISOString().slice(0, 10);
+  const eStr = nextEnd.toISOString().slice(0, 10);
   return {
-    monday: nextMonday.toISOString().slice(0, 10),
-    sunday: nextSunday.toISOString().slice(0, 10),
+    startDate: sStr,
+    endDate: eStr,
+    monday: sStr,
+    sunday: eStr,
   };
 }
 

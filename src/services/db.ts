@@ -38,11 +38,6 @@ export type StoreName =
   | 'weeklyReviews'
   | 'settings';
 
-export interface CloudSyncHook {
-  pushItem: (storeName: StoreName, item: any) => Promise<void>;
-  deleteItem: (storeName: StoreName, id: string) => Promise<void>;
-}
-
 export const INITIAL_COMMITMENTS: Commitment[] = [
   {
     id: 'comm_ibps_rrb_po',
@@ -60,64 +55,11 @@ export const INITIAL_COMMITMENTS: Commitment[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: 'comm_iibf_dbf',
-    name: 'IIBF DBF (Diploma in Banking & Finance)',
-    code: 'IIBF-DBF',
-    type: 'competitive',
-    priority: 2,
-    targetDate: '2026-11-01',
-    dateStatus: 'confirmed',
-    dateSourceUrl: 'https://www.iibf.org.in',
-    dateVerificationDate: '2026-10-28',
-    description: 'Flagship banking qualification recognized by banks for recruitment and promotion, consisting of 4 official examination papers.',
-    officialNotificationUrl: 'https://www.iibf.org.in',
-    eligibilityNotes: 'Official admit schedule released: 4 papers scheduled between 01-Nov-2026 and 29-Nov-2026 at Venue Code 303012.',
-    papers: [
-      {
-        paperCode: 'Paper 1 (IE&IFS)',
-        paperName: 'Indian Economy & Indian Financial System',
-        date: '2026-11-01',
-        reportingTime: '11:45 AM',
-        examTime: '12:15 PM',
-        venueCode: '303012',
-        medium: 'English',
-      },
-      {
-        paperCode: 'Paper 2 (PPB)',
-        paperName: 'Principles & Practices of Banking',
-        date: '2026-11-22',
-        reportingTime: '02:30 PM',
-        examTime: '03:00 PM',
-        venueCode: '303012',
-        medium: 'English',
-      },
-      {
-        paperCode: 'Paper 3 (AFM)',
-        paperName: 'Accounting & Financial Management for Bankers',
-        date: '2026-11-28',
-        reportingTime: '11:45 AM',
-        examTime: '12:15 PM',
-        venueCode: '303012',
-        medium: 'English',
-      },
-      {
-        paperCode: 'Paper 4 (RBWM)',
-        paperName: 'Retail Banking & Wealth Management',
-        date: '2026-11-29',
-        reportingTime: '02:30 PM',
-        examTime: '03:00 PM',
-        venueCode: '303012',
-        medium: 'English',
-      },
-    ],
-    createdAt: new Date().toISOString(),
-  },
-  {
     id: 'comm_upsc_apfc',
     name: 'UPSC APFC (Assistant Provident Fund Commissioner)',
     code: 'UPSC-APFC',
     type: 'competitive',
-    priority: 3,
+    priority: 2,
     dateStatus: 'unverified',
     dateSourceUrl: 'https://upsc.gov.in',
     dateVerificationDate: '2026-10-27',
@@ -131,7 +73,7 @@ export const INITIAL_COMMITMENTS: Commitment[] = [
     name: 'Masters in Economics — VMOU Kota',
     code: 'VMOU-MA-ECO',
     type: 'university',
-    priority: 4,
+    priority: 3,
     dateStatus: 'unverified',
     dateSourceUrl: 'https://www.vmou.ac.in',
     dateVerificationDate: '2026-10-27',
@@ -155,11 +97,6 @@ const DEFAULT_SETTINGS: AppSettings = {
 class IndexedDBStorage {
   private dbPromise: Promise<IDBDatabase> | null = null;
   public onSaveStateChange: ((state: 'saved' | 'saving' | 'error', errorMsg?: string) => void) | null = null;
-  private cloudHook: CloudSyncHook | null = null;
-
-  public setCloudHook(hook: CloudSyncHook | null) {
-    this.cloudHook = hook;
-  }
 
   private notifySaveState(state: 'saved' | 'saving' | 'error', errorMsg?: string) {
     if (this.onSaveStateChange) {
@@ -215,9 +152,10 @@ class IndexedDBStorage {
       request.onsuccess = async (event) => {
         const db = (event.target as IDBOpenDBRequest).result;
         try {
+          await this.applyFreshStartMigration(db);
           await this.seedInitialCommitmentsIfEmpty(db);
         } catch (e) {
-          console.warn('Seed initial commitments error:', e);
+          console.warn('Database initialization / migration error:', e);
         }
         resolve(db);
       };
@@ -232,6 +170,87 @@ class IndexedDBStorage {
     return this.dbPromise;
   }
 
+  // Ensures complete reset to zero history, Day 1 (Sunday, 2026-11-01), with IIBF completely removed
+  private async applyFreshStartMigration(db: IDBDatabase): Promise<void> {
+    if (typeof window === 'undefined') return;
+    const FRESH_START_FLAG = 'august_fresh_start_2026_11_01';
+    if (localStorage.getItem(FRESH_START_FLAG) === 'true') return;
+
+    return new Promise((resolve, reject) => {
+      const storesToClear: StoreName[] = [
+        'studyLogs',
+        'revisions',
+        'mockTests',
+        'mistakes',
+        'weeklyPlans',
+        'dailyReviews',
+        'weeklyReviews',
+        'topicProgress',
+      ];
+
+      const tx = db.transaction(
+        [...storesToClear, 'commitments', 'subjects', 'settings'],
+        'readwrite'
+      );
+
+      // 1. Wipe all historical activity, progress, logs, and revisions
+      for (const storeName of storesToClear) {
+        tx.objectStore(storeName).clear();
+      }
+
+      // 2. Remove IIBF DBF from commitments and ensure the 3 clean commitments
+      const commStore = tx.objectStore('commitments');
+      commStore.delete('comm_iibf_dbf');
+      for (const c of INITIAL_COMMITMENTS) {
+        commStore.put(c);
+      }
+
+      // 3. Remove DBF subjects and un-link comm_iibf_dbf from shared subjects
+      const subStore = tx.objectStore('subjects');
+      const getAllSubsReq = subStore.getAll();
+      getAllSubsReq.onsuccess = () => {
+        const subs = (getAllSubsReq.result as Subject[]) || [];
+        for (const s of subs) {
+          if (s.examIds && s.examIds.includes('comm_iibf_dbf')) {
+            const remaining = s.examIds.filter((id) => id !== 'comm_iibf_dbf');
+            if (remaining.length === 0 || s.id.startsWith('sub_dbf_')) {
+              subStore.delete(s.id);
+            } else {
+              s.examIds = remaining;
+              subStore.put(s);
+            }
+          }
+        }
+      };
+
+      // 4. Ensure settings focus on IBPS RRB PO
+      const settingsStore = tx.objectStore('settings');
+      const getSetReq = settingsStore.get('global_settings');
+      getSetReq.onsuccess = () => {
+        const settings = (getSetReq.result as AppSettings) || DEFAULT_SETTINGS;
+        settings.lastUsedExamId = 'comm_ibps_rrb_po';
+        settings.updatedAt = new Date().toISOString();
+        settingsStore.put(settings);
+      };
+
+      tx.oncomplete = () => {
+        try {
+          localStorage.removeItem('august_pin_hash');
+          localStorage.removeItem('august_pin_salt');
+          localStorage.removeItem('august_unlocked');
+          localStorage.removeItem('august_supabase_url');
+          localStorage.removeItem('august_supabase_anon_key');
+          localStorage.setItem(FRESH_START_FLAG, 'true');
+        } catch (e) {
+          console.warn('LocalStorage migration flag set error:', e);
+        }
+        resolve();
+      };
+
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+
   private async seedInitialCommitmentsIfEmpty(db: IDBDatabase): Promise<void> {
     return new Promise((resolve, reject) => {
       const tx = db.transaction(['commitments', 'settings'], 'readwrite');
@@ -244,75 +263,17 @@ class IndexedDBStorage {
             commStore.put(c);
           }
         } else {
+          // Permanently ensure comm_iibf_dbf is deleted
+          commStore.delete('comm_iibf_dbf');
+
           // Auto-patch outdated provisional date to confirmed 2026-11-20
           const getRrbReq = commStore.get('comm_ibps_rrb_po');
           getRrbReq.onsuccess = () => {
             const rrb = getRrbReq.result as Commitment | undefined;
-            if (rrb && (rrb.targetDate === '2026-08-01' || !rrb.targetDate)) {
+            if (rrb && (rrb.targetDate === '2026-08-01' || !rrb.targetDate || rrb.dateStatus !== 'confirmed')) {
               rrb.targetDate = '2026-11-20';
               rrb.dateStatus = 'confirmed';
               commStore.put(rrb);
-            }
-          };
-
-          // Auto-patch IIBF DBF to confirmed 4-paper official schedule
-          const getIibfReq = commStore.get('comm_iibf_dbf');
-          getIibfReq.onsuccess = () => {
-            const iibf = getIibfReq.result as Commitment | undefined;
-            if (iibf) {
-              const needsUpdate =
-                iibf.targetDate !== '2026-11-01' ||
-                iibf.dateStatus !== 'confirmed' ||
-                !iibf.papers ||
-                iibf.papers.length !== 4;
-
-              if (needsUpdate) {
-                iibf.targetDate = '2026-11-01';
-                iibf.dateStatus = 'confirmed';
-                iibf.dateVerificationDate = '2026-10-28';
-                iibf.dateSourceUrl = 'https://www.iibf.org.in';
-                iibf.description = 'Flagship banking qualification recognized by banks for recruitment and promotion, consisting of 4 official examination papers.';
-                iibf.eligibilityNotes = 'Official admit schedule released: 4 papers scheduled between 01-Nov-2026 and 29-Nov-2026 at Venue Code 303012.';
-                iibf.papers = [
-                  {
-                    paperCode: 'Paper 1 (IE&IFS)',
-                    paperName: 'Indian Economy & Indian Financial System',
-                    date: '2026-11-01',
-                    reportingTime: '11:45 AM',
-                    examTime: '12:15 PM',
-                    venueCode: '303012',
-                    medium: 'English',
-                  },
-                  {
-                    paperCode: 'Paper 2 (PPB)',
-                    paperName: 'Principles & Practices of Banking',
-                    date: '2026-11-22',
-                    reportingTime: '02:30 PM',
-                    examTime: '03:00 PM',
-                    venueCode: '303012',
-                    medium: 'English',
-                  },
-                  {
-                    paperCode: 'Paper 3 (AFM)',
-                    paperName: 'Accounting & Financial Management for Bankers',
-                    date: '2026-11-28',
-                    reportingTime: '11:45 AM',
-                    examTime: '12:15 PM',
-                    venueCode: '303012',
-                    medium: 'English',
-                  },
-                  {
-                    paperCode: 'Paper 4 (RBWM)',
-                    paperName: 'Retail Banking & Wealth Management',
-                    date: '2026-11-29',
-                    reportingTime: '02:30 PM',
-                    examTime: '03:00 PM',
-                    venueCode: '303012',
-                    medium: 'English',
-                  },
-                ];
-                commStore.put(iibf);
-              }
             }
           };
         }
@@ -449,6 +410,14 @@ class IndexedDBStorage {
       for (const s of storeNames) {
         tx.objectStore(s).clear();
       }
+      // Re-seed clean 3 commitments and default settings
+      const commStore = tx.objectStore('commitments');
+      for (const c of INITIAL_COMMITMENTS) {
+        commStore.put(c);
+      }
+      const settingsStore = tx.objectStore('settings');
+      settingsStore.put(DEFAULT_SETTINGS);
+
       tx.oncomplete = () => {
         this.notifySaveState('saved');
         resolve();

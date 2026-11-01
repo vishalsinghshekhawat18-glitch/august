@@ -73,7 +73,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
   const [completingRevision, setCompletingRevision] = useState<RevisionRecord | null>(null);
 
   // Multi-paper schedule expanded accordion
-  const [expandedSchedules, setExpandedSchedules] = useState<Set<string>>(new Set(['comm_iibf_dbf']));
+  const [expandedSchedules, setExpandedSchedules] = useState<Set<string>>(new Set());
 
   const toggleSchedule = (commId: string) => {
     setExpandedSchedules((prev) => {
@@ -827,36 +827,18 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
                   required
                 />
                 <div className="flex gap-1.5 mt-1.5 flex-wrap">
-                  {editingCommitment.id === 'comm_iibf_dbf' ? (
+                  {editingCommitment.papers && editingCommitment.papers.length > 0 ? (
                     <>
-                      <button
-                        type="button"
-                        onClick={() => setTargetDateInput('2026-11-01')}
-                        className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
-                      >
-                        P1: 01 Nov 2026 (IE&IFS)
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setTargetDateInput('2026-11-22')}
-                        className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
-                      >
-                        P2: 22 Nov 2026 (PPB)
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setTargetDateInput('2026-11-28')}
-                        className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
-                      >
-                        P3: 28 Nov 2026 (AFM)
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setTargetDateInput('2026-11-29')}
-                        className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
-                      >
-                        P4: 29 Nov 2026 (RBWM)
-                      </button>
+                      {editingCommitment.papers.map((p, idx) => (
+                        <button
+                          key={p.paperCode || idx}
+                          type="button"
+                          onClick={() => setTargetDateInput(p.date)}
+                          className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
+                        >
+                          {p.paperCode}: {p.date}
+                        </button>
+                      ))}
                     </>
                   ) : (
                     <>
@@ -865,14 +847,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
                         onClick={() => setTargetDateInput('2026-11-20')}
                         className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
                       >
-                        Set 20 Nov 2026 (23d left)
+                        IBPS RRB PO: 20 Nov 2026
                       </button>
                       <button
                         type="button"
                         onClick={() => setTargetDateInput('2026-11-21')}
                         className="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded text-[10px] font-semibold"
                       >
-                        Set 21 Nov 2026 (24d left)
+                        Set 21 Nov 2026
                       </button>
                     </>
                   )}

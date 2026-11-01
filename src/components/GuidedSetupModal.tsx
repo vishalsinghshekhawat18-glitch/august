@@ -23,12 +23,7 @@ export const GuidedSetupModal: React.FC<GuidedSetupModalProps> = ({ isOpen, onCl
           // IBPS RRB PO
           { id: 'sub_reasoning', name: 'Reasoning Ability', examIds: ['comm_ibps_rrb_po'], order: 1 },
           { id: 'sub_quant', name: 'Quantitative Aptitude', examIds: ['comm_ibps_rrb_po'], order: 2 },
-          { id: 'sub_ga', name: 'General & Banking Awareness', examIds: ['comm_ibps_rrb_po', 'comm_iibf_dbf'], order: 3 }, // shared subject!
-          // IIBF DBF (4 Official Papers)
-          { id: 'sub_dbf_ie_ifs', name: 'Indian Economy & Indian Financial System', examIds: ['comm_iibf_dbf', 'comm_ibps_rrb_po', 'comm_upsc_apfc'], order: 1 },
-          { id: 'sub_dbf_principles', name: 'Principles & Practices of Banking', examIds: ['comm_iibf_dbf'], order: 2 },
-          { id: 'sub_dbf_accounting', name: 'Accounting & Financial Management for Bankers', examIds: ['comm_iibf_dbf'], order: 3 },
-          { id: 'sub_dbf_rbwm', name: 'Retail Banking & Wealth Management', examIds: ['comm_iibf_dbf'], order: 4 },
+          { id: 'sub_ga', name: 'General & Banking Awareness', examIds: ['comm_ibps_rrb_po'], order: 3 },
           // UPSC APFC
           { id: 'sub_apfc_economy', name: 'Indian Economy & Labour Laws', examIds: ['comm_upsc_apfc'], order: 1 },
           // VMOU Kota
@@ -90,7 +85,7 @@ export const GuidedSetupModal: React.FC<GuidedSetupModalProps> = ({ isOpen, onCl
                   <ShieldCheck className="w-4 h-4 text-emerald-600" />
                   <span>Configured Initial Commitments</span>
                 </p>
-                <p>Four primary target streams have been initialized into your local storage:</p>
+                <p>Three primary target streams have been initialized into your local storage:</p>
               </div>
 
               <div className="space-y-2.5">
@@ -107,19 +102,14 @@ export const GuidedSetupModal: React.FC<GuidedSetupModalProps> = ({ isOpen, onCl
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <div className="p-2.5 rounded-lg border border-slate-200 bg-white">
                     <span className="text-[10px] font-semibold text-slate-500 uppercase">Priority #2</span>
-                    <h5 className="text-xs font-semibold text-slate-900 mt-0.5">IIBF DBF</h5>
-                    <p className="text-[11px] text-slate-500">4 Papers • Nov 2026</p>
-                  </div>
-                  <div className="p-2.5 rounded-lg border border-slate-200 bg-white">
-                    <span className="text-[10px] font-semibold text-slate-500 uppercase">Priority #3</span>
                     <h5 className="text-xs font-semibold text-slate-900 mt-0.5">UPSC APFC</h5>
                     <p className="text-[11px] text-slate-500">EPFO Commissioner</p>
                   </div>
                   <div className="p-2.5 rounded-lg border border-slate-200 bg-white">
-                    <span className="text-[10px] font-semibold text-slate-500 uppercase">Priority #4</span>
+                    <span className="text-[10px] font-semibold text-slate-500 uppercase">Priority #3</span>
                     <h5 className="text-xs font-semibold text-slate-900 mt-0.5">VMOU M.A. Economics</h5>
                     <p className="text-[11px] text-slate-500">University Degree</p>
                   </div>

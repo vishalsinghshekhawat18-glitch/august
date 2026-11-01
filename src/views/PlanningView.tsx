@@ -264,7 +264,7 @@ export const PlanningView: React.FC = () => {
           <div className="flex items-center gap-2">
             <h1 className="text-xl font-bold text-slate-900 tracking-tight">Weekly Planning &amp; Targets</h1>
             <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-mono">
-              Mon–Sun Cycle
+              Sun–Sat Cycle
             </span>
           </div>
           <p className="text-xs text-slate-500 mt-1">

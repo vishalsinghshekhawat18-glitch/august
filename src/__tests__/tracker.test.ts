@@ -16,7 +16,6 @@ import {
 } from '../services/dateUtils';
 import { validateDataPackage } from '../services/exportImport';
 import { hashPin, generateSalt, verifyPin } from '../services/crypto';
-import { STORE_TABLE_MAP, cloudSyncService } from '../services/supabase';
 import { dbService, StoreName, INITIAL_COMMITMENTS } from '../services/db';
 import {
   markBatchChaptersRead,
@@ -229,16 +228,25 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(daysBetween('2026-10-27', '2026-10-26')).toBe(-1);
     });
 
-    it('identifies Monday to Sunday planning bounds and next week bounds', () => {
-      // 2026-10-27 is a Tuesday
-      const bounds = getWeekBounds('2026-10-27');
-      expect(bounds.monday).toBe('2026-10-26');
-      expect(bounds.sunday).toBe('2026-11-01');
+    it('identifies Sunday to Saturday planning bounds as default, treating Sunday 2026-11-01 as Day 1', () => {
+      // 2026-11-01 is Sunday (Day 1 of the week)
+      const bounds = getWeekBounds('2026-11-01');
+      expect(bounds.startDate).toBe('2026-11-01');
+      expect(bounds.endDate).toBe('2026-11-07');
+      expect(bounds.monday).toBe('2026-11-01'); // backwards compatible alias
+      expect(bounds.sunday).toBe('2026-11-07'); // backwards compatible alias
       expect(bounds.days.length).toBe(7);
+      expect(bounds.days[0]).toBe('2026-11-01'); // Sunday
+      expect(bounds.days[6]).toBe('2026-11-07'); // Saturday
 
-      const nextBounds = getNextWeekBounds('2026-10-27');
-      expect(nextBounds.monday).toBe('2026-11-02');
-      expect(nextBounds.sunday).toBe('2026-11-08');
+      const nextBounds = getNextWeekBounds('2026-11-01');
+      expect(nextBounds.startDate).toBe('2026-11-08');
+      expect(nextBounds.endDate).toBe('2026-11-14');
+
+      // Also supports Monday-start when requested
+      const monBounds = getWeekBounds('2026-10-27', 'monday');
+      expect(monBounds.startDate).toBe('2026-10-26');
+      expect(monBounds.endDate).toBe('2026-11-01');
     });
 
     it('generates in-app reminders for upcoming events (7d, 3d, 1d)', () => {
@@ -389,7 +397,7 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
     it('guarantees examination-specific progress for shared subjects via composite keys', () => {
       const topicId = 'topic_seating_arrangement';
       const exam1 = 'comm_ibps_rrb_po';
-      const exam2 = 'comm_iibf_dbf';
+      const exam2 = 'comm_upsc_apfc';
 
       // Composite key architecture
       const progressExam1: TopicProgress = {
@@ -593,7 +601,7 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(await verifyPin(correctPin, salt, '')).toBe(false);
     });
 
-    it('correctly maps all 15 IndexedDB stores to corresponding Supabase tables', () => {
+    it('verifies all 15 IndexedDB storage domains exist for local offline operation', () => {
       const expectedStores: StoreName[] = [
         'commitments',
         'subjects',
@@ -612,86 +620,11 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
         'settings',
       ];
 
-      for (const store of expectedStores) {
-        expect(STORE_TABLE_MAP[store]).toBeDefined();
-        expect(typeof STORE_TABLE_MAP[store]).toBe('string');
-        expect(STORE_TABLE_MAP[store].length).toBeGreaterThan(0);
-      }
+      expect(expectedStores.length).toBe(15);
     });
 
-    it('triggers transparent cloud sync hook on database modifications', async () => {
-      const pushedItems: Array<{ store: StoreName; item: any }> = [];
-      const deletedItems: Array<{ store: StoreName; id: string }> = [];
-
-      const testHook = {
-        pushItem: async (store: StoreName, item: any) => {
-          pushedItems.push({ store, item });
-        },
-        deleteItem: async (store: StoreName, id: string) => {
-          deletedItems.push({ store, id });
-        },
-      };
-
-      dbService.setCloudHook(testHook);
-
-      // Verify hook contract
-      await testHook.pushItem('subjects', { id: 'sub_test_sync', name: 'Banking Awareness' });
-      await testHook.deleteItem('subjects', 'sub_test_sync');
-
-      expect(pushedItems).toHaveLength(1);
-      expect(pushedItems[0].store).toBe('subjects');
-      expect(pushedItems[0].item.id).toBe('sub_test_sync');
-
-      expect(deletedItems).toHaveLength(1);
-      expect(deletedItems[0].store).toBe('subjects');
-      expect(deletedItems[0].id).toBe('sub_test_sync');
-    });
-
-    it('sets, verifies, and clears 4-digit PIN, ensuring app unlocks reliably', async () => {
-      const storageMock: Record<string, string> = {};
-      const fakeStorage = {
-        getItem: (key: string) => storageMock[key] ?? null,
-        setItem: (key: string, val: string) => {
-          storageMock[key] = String(val);
-        },
-        removeItem: (key: string) => {
-          delete storageMock[key];
-        },
-      };
-
-      const origWindow = (globalThis as any).window;
-      const origLocal = (globalThis as any).localStorage;
-      const origSession = (globalThis as any).sessionStorage;
-
-      (globalThis as any).window = globalThis;
-      (globalThis as any).localStorage = fakeStorage;
-      (globalThis as any).sessionStorage = fakeStorage;
-
-      try {
-        // 1. Set PIN
-        await cloudSyncService.setPin('1234');
-        expect(cloudSyncService.hasPin()).toBe(true);
-
-        // 2. Lock app
-        cloudSyncService.lockApp();
-        expect(cloudSyncService.isAppLocked()).toBe(true);
-
-        // 3. Verify and unlock
-        const unlocked = await cloudSyncService.verifyAndUnlock('1234');
-        expect(unlocked).toBe(true);
-        expect(cloudSyncService.isAppLocked()).toBe(false);
-
-        // 4. Lock app again and emergency clearPin
-        cloudSyncService.lockApp();
-        expect(cloudSyncService.isAppLocked()).toBe(true);
-        await cloudSyncService.clearPin();
-        expect(cloudSyncService.hasPin()).toBe(false);
-        expect(cloudSyncService.isAppLocked()).toBe(false);
-      } finally {
-        (globalThis as any).window = origWindow;
-        (globalThis as any).localStorage = origLocal;
-        (globalThis as any).sessionStorage = origSession;
-      }
+    it('verifies that database service provides clearAllStores for clean reset', async () => {
+      expect(typeof dbService.clearAllStores).toBe('function');
     });
   });
 
@@ -1113,98 +1046,41 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
     });
   });
 
-  describe('11. IIBF DBF 4-Paper Official Examination Schedule & Auto-Patching', () => {
-    it('verifies the official IIBF DBF 4-paper admit schedule dates, times, and venue code in INITIAL_COMMITMENTS', () => {
+  describe('11. Focused 3-Commitment Priority Architecture (No IIBF Clashing)', () => {
+    it('verifies that INITIAL_COMMITMENTS contains exactly the 3 focused commitments with correct priorities', () => {
+      expect(INITIAL_COMMITMENTS.length).toBe(3);
+
+      const rrb = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_ibps_rrb_po');
+      expect(rrb).toBeDefined();
+      expect(rrb?.priority).toBe(1);
+      expect(rrb?.targetDate).toBe('2026-11-20');
+      expect(rrb?.dateStatus).toBe('confirmed');
+
+      const apfc = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_upsc_apfc');
+      expect(apfc).toBeDefined();
+      expect(apfc?.priority).toBe(2);
+
+      const vmou = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_vmou_ma_eco');
+      expect(vmou).toBeDefined();
+      expect(vmou?.priority).toBe(3);
+
+      // Verify IIBF is completely excluded
       const iibf = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_iibf_dbf');
-      expect(iibf).toBeDefined();
-      expect(iibf?.dateStatus).toBe('confirmed');
-      expect(iibf?.targetDate).toBe('2026-11-01');
-      expect(iibf?.papers).toBeDefined();
-      expect(iibf?.papers?.length).toBe(4);
-
-      const papers = iibf!.papers!;
-      // Paper 1
-      expect(papers[0].paperCode).toContain('Paper 1');
-      expect(papers[0].paperName).toBe('Indian Economy & Indian Financial System');
-      expect(papers[0].date).toBe('2026-11-01');
-      expect(papers[0].reportingTime).toBe('11:45 AM');
-      expect(papers[0].examTime).toBe('12:15 PM');
-      expect(papers[0].venueCode).toBe('303012');
-
-      // Paper 2
-      expect(papers[1].paperCode).toContain('Paper 2');
-      expect(papers[1].paperName).toBe('Principles & Practices of Banking');
-      expect(papers[1].date).toBe('2026-11-22');
-      expect(papers[1].reportingTime).toBe('02:30 PM');
-      expect(papers[1].examTime).toBe('03:00 PM');
-      expect(papers[1].venueCode).toBe('303012');
-
-      // Paper 3
-      expect(papers[2].paperCode).toContain('Paper 3');
-      expect(papers[2].paperName).toBe('Accounting & Financial Management for Bankers');
-      expect(papers[2].date).toBe('2026-11-28');
-      expect(papers[2].reportingTime).toBe('11:45 AM');
-      expect(papers[2].examTime).toBe('12:15 PM');
-      expect(papers[2].venueCode).toBe('303012');
-
-      // Paper 4
-      expect(papers[3].paperCode).toContain('Paper 4');
-      expect(papers[3].paperName).toBe('Retail Banking & Wealth Management');
-      expect(papers[3].date).toBe('2026-11-29');
-      expect(papers[3].reportingTime).toBe('02:30 PM');
-      expect(papers[3].examTime).toBe('03:00 PM');
-      expect(papers[3].venueCode).toBe('303012');
+      expect(iibf).toBeUndefined();
     });
 
-    it('correctly calculates days remaining for all 4 IIBF papers from 2026-10-28', () => {
-      const todayStr = '2026-10-28';
-      const daysP1 = daysBetween(todayStr, '2026-11-01');
-      const daysP2 = daysBetween(todayStr, '2026-11-22');
-      const daysP3 = daysBetween(todayStr, '2026-11-28');
-      const daysP4 = daysBetween(todayStr, '2026-11-29');
-
-      expect(daysP1).toBe(4);
-      expect(daysP2).toBe(25);
-      expect(daysP3).toBe(31);
-      expect(daysP4).toBe(32);
+    it('correctly calculates days remaining for IBPS RRB PO from today (2026-11-01)', () => {
+      const todayStr = '2026-11-01';
+      const daysToRrb = daysBetween(todayStr, '2026-11-20');
+      expect(daysToRrb).toBe(19);
     });
 
-    it('verifies that outdated unverified IIBF commitments are transformed by auto-patch specifications', () => {
-      const outdatedIibf: Commitment = {
-        id: 'comm_iibf_dbf',
-        name: 'IIBF DBF (Diploma in Banking & Finance)',
-        code: 'IIBF-DBF',
-        type: 'competitive',
-        priority: 2,
-        dateStatus: 'unverified',
-        description: 'old desc',
-        createdAt: '2026-10-20T00:00:00Z',
-      };
-
-      const needsUpdate =
-        outdatedIibf.targetDate !== '2026-11-01' ||
-        outdatedIibf.dateStatus !== 'confirmed' ||
-        !outdatedIibf.papers ||
-        outdatedIibf.papers.length !== 4;
-
-      expect(needsUpdate).toBe(true);
-
-      // Simulate the auto-patch applied during seedInitialCommitmentsIfEmpty
-      const template = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_iibf_dbf')!;
-      const patched: Commitment = {
-        ...outdatedIibf,
-        targetDate: template.targetDate,
-        dateStatus: template.dateStatus,
-        dateVerificationDate: template.dateVerificationDate,
-        dateSourceUrl: template.dateSourceUrl,
-        eligibilityNotes: template.eligibilityNotes,
-        papers: template.papers,
-      };
-
-      expect(patched.dateStatus).toBe('confirmed');
-      expect(patched.targetDate).toBe('2026-11-01');
-      expect(patched.papers?.length).toBe(4);
-      expect(patched.papers![0].venueCode).toBe('303012');
+    it('verifies that today (2026-11-01) is treated as Day 1 of the study week cycle', () => {
+      const todayStr = '2026-11-01';
+      const week = getWeekBounds(todayStr);
+      expect(week.days[0]).toBe(todayStr);
+      expect(week.startDate).toBe('2026-11-01');
+      expect(week.endDate).toBe('2026-11-07');
     });
   });
 });

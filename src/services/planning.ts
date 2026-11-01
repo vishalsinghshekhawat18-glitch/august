@@ -92,9 +92,8 @@ export function generateProposedNextWeekPlan(
   const planId = `week_${nextBounds.monday}`;
 
   // Priority 1: IBPS RRB PO
-  // Priority 2: IIBF DBF
-  // Priority 3: UPSC APFC
-  // Priority 4: VMOU MA Economics
+  // Priority 2: UPSC APFC
+  // Priority 3: VMOU MA Economics
   const tasks: WeeklyTask[] = [];
 
   // Check university assignments due next week
@@ -160,7 +159,7 @@ export function generateProposedNextWeekPlan(
     targetHours,
     status: 'proposed',
     notes: 'Proposed plan structured around primary exam priority (IBPS RRB PO) with dedicated university deadlines and mistake drills.',
-    capacityNotes: `Planned for ${targetHours} hours across Monday to Sunday. Adjust task weights and estimates to fit your actual availability.`,
+    capacityNotes: `Planned for ${targetHours} hours across the weekly cycle (${nextBounds.startDate} to ${nextBounds.endDate}). Adjust task weights and estimates to fit your actual availability.`,
     tasks,
   };
 }
