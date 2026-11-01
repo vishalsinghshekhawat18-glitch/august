@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { X, Clock, CheckCircle2, AlertCircle, Sparkles, RotateCw } from 'lucide-react';
-import { Commitment, Subject, Topic, Subtopic, ActivityType, StudyLog, AppSettings, TopicProgress, LearningStatus } from '../types';
+import { X, Clock, CheckCircle2, AlertCircle, Sparkles, RotateCw, Award } from 'lucide-react';
+import { Commitment, Subject, Topic, Subtopic, ActivityType, StudyLog, AppSettings, TopicProgress, LearningStatus, MockTest } from '../types';
 import { dbService } from '../services/db';
 import { getTodayDateString } from '../services/dateUtils';
 import { scheduleSpacedRevisionCycle, syncTopicProgressAcrossExams } from '../services/smartPacing';
@@ -35,6 +35,14 @@ export const QuickAddStudyModal: React.FC<QuickAddStudyModalProps> = ({ isOpen, 
   const [activityType, setActivityType] = useState<ActivityType>('learning');
   const [notes, setNotes] = useState<string>('');
   const [date, setDate] = useState<string>(getTodayDateString());
+
+  // Mock Test Breakdown States (when activityType === 'mock_test')
+  const [mockTestName, setMockTestName] = useState<string>('');
+  const [mockScore, setMockScore] = useState<number>(54.5);
+  const [mockMaxScore, setMockMaxScore] = useState<number>(80);
+  const [mockAttempted, setMockAttempted] = useState<number>(62);
+  const [mockCorrect, setMockCorrect] = useState<number>(56);
+  const [mockIncorrect, setMockIncorrect] = useState<number>(6);
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -138,6 +146,35 @@ export const QuickAddStudyModal: React.FC<QuickAddStudyModalProps> = ({ isOpen, 
 
     setIsSubmitting(true);
     try {
+      let logNotes = notes.trim();
+
+      // If logging full mock test, also create formal MockTest record in mockTests store
+      if (activityType === 'mock_test') {
+        const accuracy = mockAttempted > 0 ? Number(((mockCorrect / mockAttempted) * 100).toFixed(1)) : 0;
+        const selectedExam = commitments.find((c) => c.id === examId);
+        const finalTitle = mockTestName.trim() || `${selectedExam?.name || 'IBPS RRB PO'} Prelims Mock`;
+
+        const newMock: MockTest = {
+          id: `mock_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+          examId,
+          testName: finalTitle,
+          date,
+          totalScore: Number(mockScore),
+          maxScore: Number(mockMaxScore),
+          accuracyPercent: accuracy,
+          correctCount: Number(mockCorrect),
+          incorrectCount: Number(mockIncorrect),
+          skippedCount: Math.max(0, Number(mockMaxScore) - Number(mockAttempted)),
+          attemptedCount: Number(mockAttempted),
+          timeTakenMinutes: Number(durationMinutes),
+          notes: notes.trim() || undefined,
+          createdAt: new Date().toISOString(),
+        };
+
+        await dbService.put<MockTest>('mockTests', newMock);
+        logNotes = `Mock Test: ${finalTitle} — Score: ${mockScore}/${mockMaxScore} (${accuracy}% acc)` + (notes.trim() ? ` • ${notes.trim()}` : '');
+      }
+
       const newLog: StudyLog = {
         id: `log_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
         date,
@@ -148,7 +185,7 @@ export const QuickAddStudyModal: React.FC<QuickAddStudyModalProps> = ({ isOpen, 
         subtopicId: subtopicId || undefined,
         durationMinutes: Number(durationMinutes),
         activityType,
-        notes: notes.trim() || undefined,
+        notes: logNotes || undefined,
         createdAt: new Date().toISOString(),
       };
 
@@ -369,6 +406,86 @@ export const QuickAddStudyModal: React.FC<QuickAddStudyModalProps> = ({ isOpen, 
               ))}
             </div>
           </div>
+
+          {/* Dedicated Mock Test Breakdown Form (when activityType === 'mock_test') */}
+          {activityType === 'mock_test' && (
+            <div className="p-3.5 bg-purple-50/70 rounded-xl border border-purple-200 space-y-3">
+              <div className="flex items-center gap-2 text-purple-900 font-semibold text-xs">
+                <Award className="w-4 h-4 text-purple-600" />
+                <span>Mock Test Diagnostic Breakdown</span>
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-medium text-slate-700 mb-1">Test Title / Series</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Testbook IBPS RRB PO Prelims Mock #1"
+                  value={mockTestName}
+                  onChange={(e) => setMockTestName(e.target.value)}
+                  className="w-full text-xs px-3 py-1.5 border border-purple-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-purple-500/20"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="block text-[11px] font-medium text-slate-700 mb-1">Total Score</label>
+                  <input
+                    type="number"
+                    step="0.25"
+                    value={mockScore}
+                    onChange={(e) => setMockScore(parseFloat(e.target.value) || 0)}
+                    className="w-full text-xs px-3 py-1.5 border border-purple-200 rounded-lg bg-white font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-purple-500/20"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-medium text-slate-700 mb-1">Maximum Score</label>
+                  <input
+                    type="number"
+                    value={mockMaxScore}
+                    onChange={(e) => setMockMaxScore(parseFloat(e.target.value) || 80)}
+                    className="w-full text-xs px-3 py-1.5 border border-purple-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-purple-500/20"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2">
+                <div>
+                  <label className="block text-[10px] text-slate-500 font-medium">Attempted</label>
+                  <input
+                    type="number"
+                    value={mockAttempted}
+                    onChange={(e) => setMockAttempted(parseInt(e.target.value, 10) || 0)}
+                    className="w-full text-xs px-2 py-1.5 border border-purple-200 rounded-lg bg-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] text-emerald-700 font-semibold">Correct</label>
+                  <input
+                    type="number"
+                    value={mockCorrect}
+                    onChange={(e) => setMockCorrect(parseInt(e.target.value, 10) || 0)}
+                    className="w-full text-xs px-2 py-1.5 border border-purple-200 rounded-lg bg-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] text-rose-700 font-semibold">Incorrect</label>
+                  <input
+                    type="number"
+                    value={mockIncorrect}
+                    onChange={(e) => setMockIncorrect(parseInt(e.target.value, 10) || 0)}
+                    className="w-full text-xs px-2 py-1.5 border border-purple-200 rounded-lg bg-white"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between text-[11px] text-purple-900 font-medium pt-0.5">
+                <span>Accuracy: <strong>{mockAttempted > 0 ? ((mockCorrect / mockAttempted) * 100).toFixed(1) : 0}%</strong></span>
+                <span>Score %: <strong>{Math.round((mockScore / (mockMaxScore || 1)) * 100)}%</strong></span>
+              </div>
+            </div>
+          )}
 
           {/* Outcome / Notes */}
           <div>

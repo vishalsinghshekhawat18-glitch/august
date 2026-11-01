@@ -102,11 +102,40 @@ export const MockTestsView: React.FC = () => {
       };
 
       await dbService.put<MockTest>('mockTests', newMock);
+
+      // Automatically log focused study log so time taken reflects across Dashboard, Weekly Hours, and Streak
+      if (newMock.timeTakenMinutes && newMock.timeTakenMinutes > 0) {
+        const mockLog = {
+          id: `log_mock_${newMock.id}`,
+          date: testDate,
+          timestamp: new Date().toISOString(),
+          examId,
+          subjectId: '',
+          durationMinutes: Number(timeTakenMinutes),
+          activityType: 'mock_test' as const,
+          notes: `Mock Test: ${testName.trim()} — Score: ${totalScore}/${maxScore} (${computedAccuracy}% acc)` + (notes.trim() ? ` • ${notes.trim()}` : ''),
+          createdAt: new Date().toISOString(),
+        };
+        await dbService.put('studyLogs', mockLog);
+      }
+
       setIsAddMockOpen(false);
       setTestName('');
       loadData();
     } catch (err) {
       console.error('Failed to save mock test:', err);
+    }
+  };
+
+  // Delete Mock Test
+  const handleDeleteMock = async (mockId: string) => {
+    if (!confirm('Are you sure you want to delete this mock test record?')) return;
+    try {
+      await dbService.delete('mockTests', mockId);
+      await dbService.delete('studyLogs', `log_mock_${mockId}`);
+      loadData();
+    } catch (err) {
+      console.error('Failed to delete mock test:', err);
     }
   };
 
@@ -488,22 +517,32 @@ export const MockTestsView: React.FC = () => {
                       )}
                     </div>
 
-                    <div className="text-right shrink-0">
-                      <div className="text-lg font-bold text-slate-900">
-                        {mock.totalScore} <span className="text-xs font-normal text-slate-400">/ {mock.maxScore}</span>
+                    <div className="flex items-center gap-3 self-end sm:self-center shrink-0">
+                      <div className="text-right">
+                        <div className="text-lg font-bold text-slate-900">
+                          {mock.totalScore} <span className="text-xs font-normal text-slate-400">/ {mock.maxScore}</span>
+                        </div>
+                        <div className="flex items-center justify-end gap-1.5 text-xs font-semibold">
+                          <span className="text-indigo-600">{pct}%</span>
+                          {diffScore !== null && (
+                            <span
+                              className={`text-[10px] px-1 py-0.2 rounded ${
+                                diffScore >= 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'
+                              }`}
+                            >
+                              {diffScore >= 0 ? `+${diffScore}` : diffScore} vs prior
+                            </span>
+                          )}
+                        </div>
                       </div>
-                      <div className="flex items-center justify-end gap-1.5 text-xs font-semibold">
-                        <span className="text-indigo-600">{pct}%</span>
-                        {diffScore !== null && (
-                          <span
-                            className={`text-[10px] px-1 py-0.2 rounded ${
-                              diffScore >= 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'
-                            }`}
-                          >
-                            {diffScore >= 0 ? `+${diffScore}` : diffScore} vs prior
-                          </span>
-                        )}
-                      </div>
+
+                      <button
+                        onClick={() => handleDeleteMock(mock.id)}
+                        className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                        title="Delete mock test record"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
                     </div>
                   </div>
                 </div>

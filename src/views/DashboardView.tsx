@@ -72,6 +72,19 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
   // Complete Revision Modal
   const [completingRevision, setCompletingRevision] = useState<RevisionRecord | null>(null);
 
+  // Dedicated Log Mock Test Modal on Dashboard
+  const [isAddMockOpen, setIsAddMockOpen] = useState<boolean>(false);
+  const [mockExamId, setMockExamId] = useState<string>('comm_ibps_rrb_po');
+  const [mockTestName, setMockTestName] = useState<string>('');
+  const [mockDate, setMockDate] = useState<string>(getTodayDateString());
+  const [mockScore, setMockScore] = useState<number>(54.5);
+  const [mockMaxScore, setMockMaxScore] = useState<number>(80);
+  const [mockTimeMinutes, setMockTimeMinutes] = useState<number>(45);
+  const [mockAttempted, setMockAttempted] = useState<number>(62);
+  const [mockCorrect, setMockCorrect] = useState<number>(56);
+  const [mockIncorrect, setMockIncorrect] = useState<number>(6);
+  const [mockNotes, setMockNotes] = useState<string>('');
+
   // Multi-paper schedule expanded accordion
   const [expandedSchedules, setExpandedSchedules] = useState<Set<string>>(new Set());
 
@@ -106,6 +119,57 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
     setEditingCommitment(null);
   };
 
+  // Save Mock Test directly from Dashboard
+  const handleSaveMock = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!mockTestName.trim()) return;
+
+    try {
+      const accuracy = mockAttempted > 0 ? Number(((mockCorrect / mockAttempted) * 100).toFixed(1)) : 0;
+      const newMock: MockTest = {
+        id: `mock_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+        examId: mockExamId,
+        testName: mockTestName.trim(),
+        date: mockDate,
+        totalScore: Number(mockScore),
+        maxScore: Number(mockMaxScore),
+        accuracyPercent: accuracy,
+        correctCount: Number(mockCorrect),
+        incorrectCount: Number(mockIncorrect),
+        skippedCount: Math.max(0, Number(mockMaxScore) - Number(mockAttempted)),
+        attemptedCount: Number(mockAttempted),
+        timeTakenMinutes: Number(mockTimeMinutes),
+        notes: mockNotes.trim() || undefined,
+        createdAt: new Date().toISOString(),
+      };
+
+      await dbService.put<MockTest>('mockTests', newMock);
+
+      // Automatically create corresponding StudyLog so time reflects in Today's Focus, Weekly hours, and Streak!
+      if (Number(mockTimeMinutes) > 0) {
+        const mockLog: StudyLog = {
+          id: `log_mock_${newMock.id}`,
+          date: mockDate,
+          timestamp: new Date().toISOString(),
+          examId: mockExamId,
+          subjectId: '',
+          durationMinutes: Number(mockTimeMinutes),
+          activityType: 'mock_test',
+          notes: `Mock Test: ${newMock.testName} — Score: ${newMock.totalScore}/${newMock.maxScore} (${newMock.accuracyPercent}% acc)` + (mockNotes.trim() ? ` • ${mockNotes.trim()}` : ''),
+          createdAt: new Date().toISOString(),
+        };
+        await dbService.put<StudyLog>('studyLogs', mockLog);
+      }
+
+      setIsAddMockOpen(false);
+      setMockTestName('');
+      setMockNotes('');
+      await loadDashboardData();
+    } catch (err) {
+      console.error('Failed to save mock test from dashboard:', err);
+    }
+  };
+
   // Load all dashboard metrics
   const loadDashboardData = async () => {
     try {
@@ -124,6 +188,29 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
         dbService.getAll<Subject>('subjects'),
         dbService.getAll<Topic>('topics'),
       ]);
+
+      // Auto-sync: Ensure all recorded mockTests have a corresponding studyLog so focused minutes are never omitted
+      for (const m of mocks) {
+        const mockLogId = `log_mock_${m.id}`;
+        const hasLog = logs.some(
+          (l) => l.id === mockLogId || (l.activityType === 'mock_test' && l.date === m.date && l.durationMinutes === m.timeTakenMinutes)
+        );
+        if (!hasLog && m.timeTakenMinutes && m.timeTakenMinutes > 0) {
+          const autoLog: StudyLog = {
+            id: mockLogId,
+            date: m.date,
+            timestamp: m.createdAt || new Date().toISOString(),
+            examId: m.examId,
+            subjectId: '',
+            durationMinutes: Number(m.timeTakenMinutes),
+            activityType: 'mock_test',
+            notes: `Mock Test: ${m.testName} — Score: ${m.totalScore}/${m.maxScore} (${m.accuracyPercent}% acc)` + (m.notes ? ` • ${m.notes}` : ''),
+            createdAt: m.createdAt || new Date().toISOString(),
+          };
+          await dbService.put<StudyLog>('studyLogs', autoLog);
+          logs.push(autoLog);
+        }
+      }
 
       setStudyLogs(logs);
       setCommitments(comms.sort((a, b) => a.priority - b.priority));
@@ -256,13 +343,27 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
           </p>
         </div>
 
-        <button
-          onClick={onOpenQuickAdd}
-          className="w-full sm:w-auto px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-all flex items-center justify-center gap-2 active:scale-98"
-        >
-          <PlusCircle className="w-4 h-4" />
-          <span>Quick Log Study</span>
-        </button>
+        <div className="flex items-center gap-2 w-full sm:w-auto">
+          <button
+            onClick={() => {
+              setMockExamId('comm_ibps_rrb_po');
+              setMockMaxScore(80);
+              setMockTimeMinutes(45);
+              setIsAddMockOpen(true);
+            }}
+            className="w-full sm:w-auto px-3.5 py-2.5 bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 rounded-xl text-xs font-semibold shadow-xs transition-all flex items-center justify-center gap-1.5 active:scale-98"
+          >
+            <Award className="w-4 h-4 text-purple-600" />
+            <span>Log Mock Test</span>
+          </button>
+          <button
+            onClick={onOpenQuickAdd}
+            className="w-full sm:w-auto px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-all flex items-center justify-center gap-2 active:scale-98"
+          >
+            <PlusCircle className="w-4 h-4" />
+            <span>Quick Log Study</span>
+          </button>
+        </div>
       </div>
 
       {/* KPI Cards Row */}
@@ -412,6 +513,76 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
           )}
         </div>
       </div>
+
+      {/* SECTION: TODAY'S RECORDED SESSIONS & MOCKS */}
+      {todayLogs.length > 0 && (
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <h2 className="text-sm font-semibold text-slate-900">Today&apos;s Completed Study &amp; Mock Sessions</h2>
+              <span className="text-xs bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded-full">
+                {formatMinutes(todayFocusedMinutes)} total
+              </span>
+            </div>
+            <span className="text-xs text-slate-400">
+              {todayLogs.length} session{todayLogs.length !== 1 ? 's' : ''} logged
+            </span>
+          </div>
+
+          <div className="p-4 space-y-2.5">
+            {todayLogs.map((log) => {
+              const examName = examMap.get(log.examId) || log.examId;
+              const isMock = log.activityType === 'mock_test';
+              return (
+                <div
+                  key={log.id}
+                  className={`p-3.5 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 transition-all ${
+                    isMock
+                      ? 'bg-purple-50/50 border-purple-200 shadow-xs'
+                      : 'bg-slate-50/50 border-slate-200/80'
+                  }`}
+                >
+                  <div className="flex items-start gap-2.5 min-w-0">
+                    <div
+                      className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${
+                        isMock ? 'bg-purple-100 text-purple-700' : 'bg-indigo-100 text-indigo-700'
+                      }`}
+                    >
+                      {isMock ? <Award className="w-4 h-4" /> : <Clock className="w-4 h-4" />}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className="text-xs font-bold text-slate-900">{examName}</span>
+                        <span
+                          className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${
+                            isMock
+                              ? 'bg-purple-100 text-purple-800'
+                              : 'bg-indigo-50 text-indigo-700'
+                          }`}
+                        >
+                          {isMock ? 'Full Mock Test' : log.activityType.replace('_', ' ')}
+                        </span>
+                      </div>
+                      {log.notes && (
+                        <p className="text-xs text-slate-700 font-medium mt-1 leading-snug">
+                          {log.notes}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 self-end sm:self-center shrink-0">
+                    <span className="text-xs font-bold text-slate-900 bg-white px-2.5 py-1 rounded-lg border border-slate-200">
+                      {formatMinutes(log.durationMinutes)}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* 2-Column Grid: Revisions Due & Examination Countdowns */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -935,6 +1106,183 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
           allTopics={topics}
           onSaved={() => loadDashboardData()}
         />
+      )}
+
+      {/* Log Mock Test Modal on Dashboard */}
+      {isAddMockOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay overflow-y-auto">
+          <div className="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-lg p-5 space-y-4 animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center font-semibold">
+                  <Award className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">Log Full Mock Test</h3>
+                  <p className="text-xs text-slate-500">Record score &amp; automatically count test time toward study hours</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsAddMockOpen(false)}
+                className="text-slate-400 hover:text-slate-600 p-1 rounded-lg"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveMock} className="space-y-3.5 text-xs">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1">Target Examination</label>
+                  <select
+                    value={mockExamId}
+                    onChange={(e) => {
+                      const newId = e.target.value;
+                      setMockExamId(newId);
+                      if (newId === 'comm_ibps_rrb_po') {
+                        setMockMaxScore(80);
+                        setMockTimeMinutes(45);
+                      }
+                    }}
+                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg bg-white"
+                    required
+                  >
+                    {commitments.map((c) => (
+                      <option key={c.id} value={c.id}>
+                        {c.name} {c.priority === 1 ? '★ [Priority 1]' : ''}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1">Test Date</label>
+                  <input
+                    type="date"
+                    value={mockDate}
+                    onChange={(e) => setMockDate(e.target.value)}
+                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg bg-white"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-700 mb-1">Test Title / Mock Series</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Testbook IBPS RRB PO Prelims Mock #01"
+                  value={mockTestName}
+                  onChange={(e) => setMockTestName(e.target.value)}
+                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg bg-white font-medium"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-3 gap-2.5">
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1">Total Score</label>
+                  <input
+                    type="number"
+                    step="0.25"
+                    value={mockScore}
+                    onChange={(e) => setMockScore(parseFloat(e.target.value) || 0)}
+                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg bg-white font-bold text-slate-900"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1">Max Score</label>
+                  <input
+                    type="number"
+                    value={mockMaxScore}
+                    onChange={(e) => setMockMaxScore(parseFloat(e.target.value) || 80)}
+                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg bg-white"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1">Time Taken (min)</label>
+                  <input
+                    type="number"
+                    value={mockTimeMinutes}
+                    onChange={(e) => setMockTimeMinutes(parseInt(e.target.value, 10) || 0)}
+                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg bg-white"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Question Breakdown */}
+              <div className="p-3 bg-purple-50/60 rounded-xl border border-purple-200/80 space-y-2">
+                <span className="text-[11px] font-bold text-purple-900 block">Question Breakdown</span>
+                <div className="grid grid-cols-3 gap-2">
+                  <div>
+                    <label className="block text-[10px] text-slate-500 font-medium">Attempted</label>
+                    <input
+                      type="number"
+                      value={mockAttempted}
+                      onChange={(e) => setMockAttempted(parseInt(e.target.value, 10) || 0)}
+                      className="w-full text-xs px-2 py-1.5 border border-purple-200 rounded bg-white"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] text-emerald-700 font-semibold">Correct</label>
+                    <input
+                      type="number"
+                      value={mockCorrect}
+                      onChange={(e) => setMockCorrect(parseInt(e.target.value, 10) || 0)}
+                      className="w-full text-xs px-2 py-1.5 border border-purple-200 rounded bg-white"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] text-rose-700 font-semibold">Incorrect</label>
+                    <input
+                      type="number"
+                      value={mockIncorrect}
+                      onChange={(e) => setMockIncorrect(parseInt(e.target.value, 10) || 0)}
+                      className="w-full text-xs px-2 py-1.5 border border-purple-200 rounded bg-white"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between text-[11px] text-purple-900 font-medium pt-1">
+                  <span>Accuracy: <strong>{mockAttempted > 0 ? ((mockCorrect / mockAttempted) * 100).toFixed(1) : 0}%</strong></span>
+                  <span>Percentage: <strong>{Math.round((mockScore / (mockMaxScore || 1)) * 100)}%</strong></span>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-700 mb-1">Diagnostic Observations (Optional)</label>
+                <textarea
+                  rows={2}
+                  value={mockNotes}
+                  onChange={(e) => setMockNotes(e.target.value)}
+                  placeholder="e.g. Reasoning completed in 21 mins, Quant arithmetic was calculation heavy."
+                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg bg-white"
+                />
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setIsAddMockOpen(false)}
+                  className="px-3 py-1.5 text-xs text-slate-600 hover:bg-slate-100 rounded-lg"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-1.5 text-xs text-white bg-purple-600 hover:bg-purple-700 rounded-lg font-medium shadow-sm transition-colors flex items-center gap-1.5"
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>Save Mock &amp; Update Hours</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       )}
     </div>
   );
