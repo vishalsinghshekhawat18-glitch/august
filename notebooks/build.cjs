@@ -5,6 +5,9 @@ const path = require('path');
 
 const ROOT = __dirname;
 const manifest = require('./src/manifest.cjs');
+const SYL = require('./src/syllabus2026.cjs');
+const MAINS_LINES = {};
+for (const p of Object.values(require('./pyq/syllabus.cjs'))) for (const u of p.units) Object.assign(MAINS_LINES, u.lines);
 
 const REQUIRED = ['id', 'title', 'period', 'syllabus', 'bigPicture', 'timeline', 'sections', 'historians',
   'facts', 'traps', 'pyqs', 'mains', 'revision', 'selfTest', 'glossary', 'sources'];
@@ -65,10 +68,15 @@ function renderUnit(u, meta) {
     `<section class="block ${cls}"><h3><span class="num">${n}</span>${title}</h3>${body}</section>`;
   const list = items => `<ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
 
+  const m = meta.map;
+  const line = (id, text) => `<span class="lid">${id}</span> ${text}`;
   const syllabus = `<div class="syl">
-    <div><b>Prelims</b>${list(u.syllabus.prelims)}</div>
-    <div><b>Mains</b>${list(u.syllabus.mains)}</div>
-    ${u.syllabus.weight ? `<p class="weight">${u.syllabus.weight}</p>` : ''}</div>`;
+    <div><b>Prelims 2026</b>${list(m.pre.map(id => line(id, meta.syl.prelims[id])))}</div>
+    <div><b>Mains 2026 (GS Paper I)</b>${m.mains.length ? list(m.mains.map(id => line(id, MAINS_LINES[id]))) : '<p>Background for Mains; no line of its own.</p>'}</div>
+    </div>
+    <p class="label">Topics this unit covers</p>${list(u.syllabus.prelims)}
+    ${m.note ? `<p class="weight">${m.note}</p>` : ''}
+    ${u.syllabus.weight ? `<p class="weight">${u.syllabus.weight}</p>` : ''}`;
 
   const timeline = `<ol class="timeline">${u.timeline.map(([d, t]) =>
     `<li><span class="when">${d}</span><span class="what">${t}</span></li>`).join('')}</ol>`;
@@ -114,7 +122,22 @@ function renderNotebook(key, nb, units) {
     file ? `<li><a href="#${id}"><span>${id}</span>${esc(title)}</a></li>`
          : `<li class="planned" title="Planned"><span>${id}</span>${esc(title)}</li>`).join('')}</ul>`).join('');
   const written = units.length, total = nb.parts.reduce((a, p) => a + p.units.length, 0);
-  const body = units.map(({ u, num }) => renderUnit(u, { num })).join('\n');
+  const syl = SYL[key];
+  const body = units.map(({ u, num }) => renderUnit(u, { num, map: syl.units[u.id], syl })).join('\n');
+  const isWritten = new Set(units.map(x => x.u.id));
+  const coverRow = (id, text) => {
+    const hits = Object.entries(syl.units).filter(([, v]) => v.pre.includes(id) || v.mains.includes(id)).map(([uid]) => uid);
+    const cell = hits.length
+      ? hits.map(uid => isWritten.has(uid) ? `<a href="#${uid}">${uid}</a>` : `<span class="planned">${uid} (planned)</span>`).join(' ')
+      : syl.elsewhere[id] ? `<i>${esc(syl.elsewhere[id])}</i>` : '<b class="gap">Not covered</b>';
+    const extra = hits.length && syl.elsewhere[id] ? `<br><i>${esc(syl.elsewhere[id])}</i>` : '';
+    return `<tr><td><span class="lid">${id}</span></td><td>${esc(text)}</td><td>${cell}${extra}</td></tr>`;
+  };
+  const coverage = `<details class="coverage"><summary>2026 syllabus coverage map: every line and the units that cover it</summary>
+  <table><tr><th>Line</th><th>2026 syllabus</th><th>Units</th></tr>
+  <tr><th colspan="3">Prelims</th></tr>${Object.entries(syl.prelims).map(([id, t]) => coverRow(id, t)).join('')}
+  <tr><th colspan="3">Mains, GS Paper I</th></tr>${syl.mains.map(id => coverRow(id, MAINS_LINES[id])).join('')}
+  </table><p class="note">Mains line IDs match the RAS Mains PYQ Database, so a line's past questions can be looked up there.</p></details>`;
   const css = fs.readFileSync(path.join(ROOT, 'src', 'notebook.css'), 'utf8');
   return `<!doctype html>
 <html lang="en">
@@ -133,7 +156,8 @@ function renderNotebook(key, nb, units) {
     <button data-size="-1">A−</button><button data-size="1">A+</button>
   </div>
   <header class="book-head"><h1>${esc(nb.title)}</h1><p>${nb.intro}</p>
-  <p class="howto"><b>How to use each unit:</b> read 1–4 for understanding, use 5 for Prelims revision, 6–7 for Mains practice, and 8–9 the day before the exam. Greyed units in the contents are planned but not written yet.</p></header>
+  <p class="howto"><b>How to use each unit:</b> read 1–4 for understanding, use 5 for Prelims revision, 6–7 for Mains practice, and 8–9 the day before the exam. Greyed units in the contents are planned but not written yet.</p>
+  ${coverage}</header>
   ${body}
 </main>
 <script>
@@ -160,6 +184,7 @@ for (const [key, nb] of Object.entries(manifest)) {
     if (!file) return;
     const u = require(path.join(ROOT, 'src', key, file));
     if (u.id !== id) console.error(`${file}: id ${u.id} does not match manifest ${id}`), failed = true;
+    if (!SYL[key].units[id]) console.error(`${file}: unit ${id} is not mapped in src/syllabus2026.cjs`), failed = true;
     const { errs, warns } = check(u, file);
     errs.forEach(e => console.error('ERROR ' + e));
     warns.forEach(w => console.warn('warn  ' + w));

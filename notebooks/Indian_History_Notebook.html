@@ -80,24 +80,39 @@ a{color:var(--accent)}
   .tbl table{min-width:560px}
   .timeline li{grid-template-columns:90px 1fr}
 }
+.lid{display:inline-block;font:600 .74rem/1.6 system-ui,sans-serif;background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-right:2px}
+.coverage{margin:18px 0;border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.coverage summary{cursor:pointer;font-weight:600}
+.coverage table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.88rem}
+.coverage th,.coverage td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+.coverage .planned{color:var(--muted)}
+.coverage .gap{color:var(--trap)}
 </style>
 </head>
 <body>
 <button class="menu" onclick="document.body.classList.toggle('nav-open')" aria-label="Contents">☰ Contents</button>
-<nav class="side"><p class="brand">Indian History — Master Notebook</p><p class="prog">46 of 46 units written</p><p class="part">Part I — Ancient India</p><ul><li><a href="#I01"><span>I01</span>Sources and How Historians Work</a></li><li><a href="#I02"><span>I02</span>Prehistory</a></li><li><a href="#I03"><span>I03</span>The Harappan Civilisation</a></li><li><a href="#I04"><span>I04</span>The Vedic Age</a></li><li><a href="#I05"><span>I05</span>Mahajanapadas and the Rise of Magadha</a></li><li><a href="#I06"><span>I06</span>Buddhism, Jainism, Ajivikas and 6th-century BCE Thought</a></li><li><a href="#I07"><span>I07</span>The Mauryas</a></li><li><a href="#I08"><span>I08</span>Post-Mauryan India: Shungas, Satavahanas, Indo-Greeks, Shakas, Kushans</a></li><li><a href="#I09"><span>I09</span>The Sangam Age</a></li><li><a href="#I10"><span>I10</span>The Guptas</a></li><li><a href="#I11"><span>I11</span>Harsha, Chalukyas, Pallavas and Rashtrakutas</a></li><li><a href="#I12"><span>I12</span>The Cholas</a></li><li><a href="#I13"><span>I13</span>Indian Knowledge and Value System</a></li><li><a href="#I14"><span>I14</span>Science and Technology in Ancient India</a></li></ul><p class="part">Part II — Medieval India</p><ul><li><a href="#I15"><span>I15</span>The Rajput Age and the Struggle for Kannauj</a></li><li><a href="#I16"><span>I16</span>Arab and Turkish Invasions</a></li><li><a href="#I17"><span>I17</span>Delhi Sultanate: Political History</a></li><li><a href="#I18"><span>I18</span>Delhi Sultanate: Administration, Economy and Society</a></li><li><a href="#I19"><span>I19</span>Vijayanagara and the Bahmanis</a></li><li><a href="#I20"><span>I20</span>Bhakti and Sufi Movements</a></li><li><a href="#I21"><span>I21</span>The Mughals I: Babur to Akbar</a></li><li><a href="#I22"><span>I22</span>The Mughals II: Jahangir to Aurangzeb and the Decline Debate</a></li><li><a href="#I23"><span>I23</span>Mughal Administration: Mansab, Jagir and Revenue</a></li><li><a href="#I24"><span>I24</span>The Marathas</a></li><li><a href="#I25"><span>I25</span>The Sikhs</a></li></ul><p class="part">Part III — Modern India (to 1947)</p><ul><li><a href="#I26"><span>I26</span>The European Companies</a></li><li><a href="#I27"><span>I27</span>Bengal: Plassey to Buxar</a></li><li><a href="#I28"><span>I28</span>British Expansion: Mysore, Marathas, Sikhs, Subsidiary Alliance, Lapse</a></li><li><a href="#I29"><span>I29</span>Constitutional Development, 1773–1947</a></li><li><a href="#I30"><span>I30</span>British Administrative Policies</a></li><li><a href="#I31"><span>I31</span>Economic Impact of British Rule</a></li><li><a href="#I32"><span>I32</span>The Revolt of 1857</a></li><li><a href="#I33"><span>I33</span>Peasant Movements</a></li><li><a href="#I34"><span>I34</span>Tribal Movements</a></li><li><a href="#I35"><span>I35</span>Socio-Religious Reform Movements</a></li><li><a href="#I36"><span>I36</span>Early Nationalism and the Moderates</a></li><li><a href="#I37"><span>I37</span>Swadeshi and the Extremists</a></li><li><a href="#I38"><span>I38</span>Revolutionary Nationalism</a></li><li><a href="#I39"><span>I39</span>Gandhi's Early Movements and Non-Cooperation</a></li><li><a href="#I40"><span>I40</span>The 1920s: Swarajists, Simon Commission, Nehru Report</a></li><li><a href="#I41"><span>I41</span>Civil Disobedience to the 1937 Ministries</a></li><li><a href="#I42"><span>I42</span>1939–1947: War, Quit India, INA, Partition</a></li></ul><p class="part">Part IV — Independent India (to 2000)</p><ul><li><a href="#I43"><span>I43</span>Integration of the Princely States</a></li><li><a href="#I44"><span>I44</span>Linguistic Reorganisation of States</a></li><li><a href="#I45"><span>I45</span>Nation-Building in the Nehru Era and Planning</a></li><li><a href="#I46"><span>I46</span>Science and Technology; Economic Reforms of 1991</a></li></ul></nav>
+<nav class="side"><p class="brand">Indian History — Master Notebook</p><p class="prog">51 of 51 units written</p><p class="part">Part I — Ancient India</p><ul><li><a href="#I01"><span>I01</span>Sources and How Historians Work</a></li><li><a href="#I02"><span>I02</span>Prehistory</a></li><li><a href="#I03"><span>I03</span>The Harappan Civilisation</a></li><li><a href="#I04"><span>I04</span>The Vedic Age</a></li><li><a href="#I05"><span>I05</span>Mahajanapadas and the Rise of Magadha</a></li><li><a href="#I06"><span>I06</span>Buddhism, Jainism, Ajivikas and 6th-century BCE Thought</a></li><li><a href="#I07"><span>I07</span>The Mauryas</a></li><li><a href="#I08"><span>I08</span>Post-Mauryan India: Shungas, Satavahanas, Indo-Greeks, Shakas, Kushans</a></li><li><a href="#I09"><span>I09</span>The Sangam Age</a></li><li><a href="#I10"><span>I10</span>The Guptas</a></li><li><a href="#I11"><span>I11</span>Harsha, Chalukyas, Pallavas and Rashtrakutas</a></li><li><a href="#I12"><span>I12</span>The Cholas</a></li><li><a href="#I13"><span>I13</span>Indian Knowledge and Value System</a></li><li><a href="#I14"><span>I14</span>Science and Technology in Ancient India</a></li></ul><p class="part">Part II — Medieval India</p><ul><li><a href="#I15"><span>I15</span>The Rajput Age and the Struggle for Kannauj</a></li><li><a href="#I16"><span>I16</span>Arab and Turkish Invasions</a></li><li><a href="#I17"><span>I17</span>Delhi Sultanate: Political History</a></li><li><a href="#I18"><span>I18</span>Delhi Sultanate: Administration, Economy and Society</a></li><li><a href="#I19"><span>I19</span>Vijayanagara and the Bahmanis</a></li><li><a href="#I20"><span>I20</span>Bhakti and Sufi Movements</a></li><li><a href="#I21"><span>I21</span>The Mughals I: Babur to Akbar</a></li><li><a href="#I22"><span>I22</span>The Mughals II: Jahangir to Aurangzeb and the Decline Debate</a></li><li><a href="#I23"><span>I23</span>Mughal Administration: Mansab, Jagir and Revenue</a></li><li><a href="#I24"><span>I24</span>The Marathas</a></li><li><a href="#I25"><span>I25</span>The Sikhs</a></li></ul><p class="part">Part III — Modern India (to 1947)</p><ul><li><a href="#I26"><span>I26</span>The European Companies</a></li><li><a href="#I27"><span>I27</span>Bengal: Plassey to Buxar</a></li><li><a href="#I28"><span>I28</span>British Expansion: Mysore, Marathas, Sikhs, Subsidiary Alliance, Lapse</a></li><li><a href="#I29"><span>I29</span>Constitutional Development, 1773–1947</a></li><li><a href="#I30"><span>I30</span>British Administrative Policies</a></li><li><a href="#I31"><span>I31</span>Economic Impact of British Rule</a></li><li><a href="#I32"><span>I32</span>The Revolt of 1857</a></li><li><a href="#I33"><span>I33</span>Peasant Movements</a></li><li><a href="#I34"><span>I34</span>Tribal Movements</a></li><li><a href="#I35"><span>I35</span>Socio-Religious Reform Movements</a></li><li><a href="#I36"><span>I36</span>Early Nationalism and the Moderates</a></li><li><a href="#I37"><span>I37</span>Swadeshi and the Extremists</a></li><li><a href="#I38"><span>I38</span>Revolutionary Nationalism</a></li><li><a href="#I39"><span>I39</span>Gandhi's Early Movements and Non-Cooperation</a></li><li><a href="#I40"><span>I40</span>The 1920s: Swarajists, Simon Commission, Nehru Report</a></li><li><a href="#I41"><span>I41</span>Civil Disobedience to the 1937 Ministries</a></li><li><a href="#I42"><span>I42</span>1939–1947: War, Quit India, INA, Partition</a></li></ul><p class="part">Part IV — Independent India (to 2000)</p><ul><li><a href="#I43"><span>I43</span>Integration of the Princely States</a></li><li><a href="#I44"><span>I44</span>Linguistic Reorganisation of States</a></li><li><a href="#I45"><span>I45</span>Nation-Building in the Nehru Era and Planning</a></li><li><a href="#I46"><span>I46</span>Science and Technology; Economic Reforms of 1991</a></li><li><a href="#I47"><span>I47</span>Women's Reform Movement and Women's Empowerment</a></li></ul><p class="part">Part V — Indian Heritage (Indus to the British era)</p><ul><li><a href="#I48"><span>I48</span>Architecture: Indus to the British Era</a></li><li><a href="#I49"><span>I49</span>Sculpture and Painting</a></li><li><a href="#I50"><span>I50</span>Music, Dance and Theatre</a></li><li><a href="#I51"><span>I51</span>Literature: Vedic to the British Era</a></li></ul></nav>
 <main>
   <div class="tools">
     <button data-theme="sepia">Sepia</button><button data-theme="light">Light</button><button data-theme="dark">Dark</button>
     <button data-size="-1">A−</button><button data-size="1">A+</button>
   </div>
-  <header class="book-head"><h1>Indian History — Master Notebook</h1><p>Ancient, medieval, modern and post-independence Indian history, written for RAS Prelims and Mains. Art and culture is a separate notebook.</p>
-  <p class="howto"><b>How to use each unit:</b> read 1–4 for understanding, use 5 for Prelims revision, 6–7 for Mains practice, and 8–9 the day before the exam. Greyed units in the contents are planned but not written yet.</p></header>
+  <header class="book-head"><h1>Indian History — Master Notebook</h1><p>Ancient, medieval, modern and post-independence Indian history, with Indian heritage (architecture, sculpture, painting, performing arts and literature), written for RAS Prelims and Mains and mapped line by line to the 2026 syllabus. Modern World History is a separate notebook.</p>
+  <p class="howto"><b>How to use each unit:</b> read 1–4 for understanding, use 5 for Prelims revision, 6–7 for Mains practice, and 8–9 the day before the exam. Greyed units in the contents are planned but not written yet.</p>
+  <details class="coverage"><summary>2026 syllabus coverage map: every line and the units that cover it</summary>
+  <table><tr><th>Line</th><th>2026 syllabus</th><th>Units</th></tr>
+  <tr><th colspan="3">Prelims</th></tr><tr><td><span class="lid">PI1</span></td><td>Cultural foundations of India — Indus and Vedic Age; religious ideas of the 6th century BC: Ajivakas, Buddhism and Jainism</td><td><a href="#I01">I01</a> <a href="#I02">I02</a> <a href="#I03">I03</a> <a href="#I04">I04</a> <a href="#I05">I05</a> <a href="#I06">I06</a></td></tr><tr><td><span class="lid">PI2</span></td><td>Achievements of prominent rulers of major dynasties: Maurya, Kushan, Satavahana, Gupta, Chalukya, Pallava and Chola</td><td><a href="#I01">I01</a> <a href="#I05">I05</a> <a href="#I07">I07</a> <a href="#I08">I08</a> <a href="#I10">I10</a> <a href="#I11">I11</a> <a href="#I12">I12</a></td></tr><tr><td><span class="lid">PI3</span></td><td>Art and architecture and scientific development in ancient India</td><td><a href="#I03">I03</a> <a href="#I07">I07</a> <a href="#I08">I08</a> <a href="#I09">I09</a> <a href="#I10">I10</a> <a href="#I11">I11</a> <a href="#I12">I12</a> <a href="#I14">I14</a> <a href="#I48">I48</a> <a href="#I49">I49</a> <a href="#I50">I50</a> <a href="#I51">I51</a></td></tr><tr><td><span class="lid">PI4</span></td><td>Indian knowledge and value system: varna-ashrama, purushartha, sanskara, philosophy and education</td><td><a href="#I04">I04</a> <a href="#I13">I13</a></td></tr><tr><td><span class="lid">PI5</span></td><td>Sultanate period: achievements of prominent dynasties; political and cultural achievements of the Vijayanagara empire</td><td><a href="#I15">I15</a> <a href="#I16">I16</a> <a href="#I17">I17</a> <a href="#I18">I18</a> <a href="#I19">I19</a></td></tr><tr><td><span class="lid">PI6</span></td><td>Mughal period: administration and policies; Marathas</td><td><a href="#I21">I21</a> <a href="#I22">I22</a> <a href="#I23">I23</a> <a href="#I24">I24</a></td></tr><tr><td><span class="lid">PI7</span></td><td>Development of art and architecture, literature, painting and music in the medieval period</td><td><a href="#I18">I18</a> <a href="#I19">I19</a> <a href="#I22">I22</a> <a href="#I23">I23</a> <a href="#I48">I48</a> <a href="#I49">I49</a> <a href="#I50">I50</a> <a href="#I51">I51</a></td></tr><tr><td><span class="lid">PI8</span></td><td>Religious movements; contribution of the Bhakti and Sufi movements</td><td><a href="#I06">I06</a> <a href="#I20">I20</a></td></tr><tr><td><span class="lid">PI9</span></td><td>British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</td><td><a href="#I24">I24</a> <a href="#I25">I25</a> <a href="#I26">I26</a> <a href="#I27">I27</a> <a href="#I28">I28</a> <a href="#I29">I29</a> <a href="#I30">I30</a> <a href="#I31">I31</a> <a href="#I32">I32</a> <a href="#I35">I35</a> <a href="#I36">I36</a> <a href="#I47">I47</a></td></tr><tr><td><span class="lid">PI10</span></td><td>Freedom struggle and national movement: evolution, stages and major events; revolutionary and regional movements; partition</td><td><a href="#I33">I33</a> <a href="#I34">I34</a> <a href="#I36">I36</a> <a href="#I37">I37</a> <a href="#I38">I38</a> <a href="#I39">I39</a> <a href="#I40">I40</a> <a href="#I41">I41</a> <a href="#I42">I42</a></td></tr><tr><td><span class="lid">PI11</span></td><td>Post-independence nation building (up to 2000): reorganisation of states, institution building in the Nehruvian age, planning and economic reforms, science and technology</td><td><a href="#I43">I43</a> <a href="#I44">I44</a> <a href="#I45">I45</a> <a href="#I46">I46</a> <a href="#I47">I47</a></td></tr>
+  <tr><th colspan="3">Mains, GS Paper I</th></tr><tr><td><span class="lid">IH1</span></td><td>Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</td><td><a href="#I01">I01</a> <a href="#I02">I02</a> <a href="#I03">I03</a> <a href="#I04">I04</a> <a href="#I07">I07</a> <a href="#I08">I08</a> <a href="#I09">I09</a> <a href="#I10">I10</a> <a href="#I11">I11</a> <a href="#I12">I12</a> <a href="#I14">I14</a> <a href="#I15">I15</a> <a href="#I18">I18</a> <a href="#I19">I19</a> <a href="#I22">I22</a> <a href="#I23">I23</a> <a href="#I48">I48</a> <a href="#I49">I49</a> <a href="#I50">I50</a> <a href="#I51">I51</a></td></tr><tr><td><span class="lid">IH2</span></td><td>Religious movements and philosophy in ancient and medieval India</td><td><a href="#I04">I04</a> <a href="#I05">I05</a> <a href="#I06">I06</a> <a href="#I07">I07</a> <a href="#I13">I13</a> <a href="#I20">I20</a> <a href="#I21">I21</a> <a href="#I25">I25</a></td></tr><tr><td><span class="lid">IH3</span></td><td>British policies and their impact: political, economic, administrative unification</td><td><a href="#I26">I26</a> <a href="#I27">I27</a> <a href="#I28">I28</a> <a href="#I29">I29</a> <a href="#I30">I30</a> <a href="#I31">I31</a> <a href="#I32">I32</a></td></tr><tr><td><span class="lid">IH4</span></td><td>Indian National Movement: stages, streams, contributors</td><td><a href="#I32">I32</a> <a href="#I33">I33</a> <a href="#I34">I34</a> <a href="#I36">I36</a> <a href="#I37">I37</a> <a href="#I38">I38</a> <a href="#I39">I39</a> <a href="#I40">I40</a> <a href="#I41">I41</a> <a href="#I42">I42</a></td></tr><tr><td><span class="lid">IH5</span></td><td>Socio-religious reform movements (19th–20th century), intellectual awakening</td><td><a href="#I35">I35</a> <a href="#I36">I36</a> <a href="#I47">I47</a></td></tr><tr><td><span class="lid">IH6</span></td><td>Post-independence: accession of princely states, linguistic reorganisation, S&amp;T, women empowerment</td><td><a href="#I43">I43</a> <a href="#I44">I44</a> <a href="#I45">I45</a> <a href="#I46">I46</a> <a href="#I47">I47</a></td></tr><tr><td><span class="lid">WH1</span></td><td>Renaissance and Reformation</td><td><i>Modern World History notebook (book 10)</i></td></tr><tr><td><span class="lid">WH2</span></td><td>American War of Independence, French, Industrial and Russian Revolutions</td><td><i>Modern World History notebook (book 10)</i></td></tr><tr><td><span class="lid">WH3</span></td><td>Nazism in Germany and Fascism in Italy</td><td><i>Modern World History notebook (book 10)</i></td></tr><tr><td><span class="lid">WH4</span></td><td>Impact of World Wars; world during the Cold War</td><td><i>Modern World History notebook (book 10)</i></td></tr>
+  </table><p class="note">Mains line IDs match the RAS Mains PYQ Database, so a line's past questions can be looked up there.</p></details></header>
   <article class="unit" id="I01">
   <header class="unit-head"><p class="kicker">Unit I01 · All periods (focus: ancient India)</p><h2>Sources and How Historians Work</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Sources of ancient Indian history: literary, archaeological, epigraphic, numismatic, foreign accounts</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Indian history — the basis for every ancient and medieval topic</li></ul></div>
-    <p class="weight">Rarely a full Mains question by itself, but source facts (decipherment, first inscriptions, foreign travellers) are steady Prelims material and strengthen every answer.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI1</span> Cultural foundations of India — Indus and Vedic Age; religious ideas of the 6th century BC: Ajivakas, Buddhism and Jainism</li><li><span class="lid">PI2</span> Achievements of prominent rulers of major dynasties: Maurya, Kushan, Satavahana, Gupta, Chalukya, Pallava and Chola</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Sources of ancient Indian history: literary, archaeological, epigraphic, numismatic, foreign accounts</li></ul>
+    <p class="weight">Foundation for every ancient and medieval unit.</p>
+    <p class="weight">Rarely a full Mains question by itself, but source facts (decipherment, first inscriptions, foreign travellers) are steady Prelims material and strengthen every answer.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>History is built from <b>evidence</b>. For ancient India, written texts are few, late or religious, so historians
 combine four kinds of sources: <b>literary</b> (religious and secular texts), <b>epigraphic</b> (inscriptions),
@@ -176,9 +191,12 @@ as <b>Upinder Singh</b> stress weighing all source types together.</p></section>
 <article class="unit" id="I02">
   <header class="unit-head"><p class="kicker">Unit I02 · c. 2 million years ago – c. 1000 BCE</p><h2>Prehistory</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Prehistoric cultures of India: Palaeolithic, Mesolithic, Neolithic, Chalcolithic</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Ancient Indian history — prehistoric cultures</li></ul></div>
-    <p class="weight">Mostly Prelims: site–phase–region matching (Bhimbetka, Mehrgarh, Burzahom, Chirand, Bagor, Adamgarh). For Rajasthan sites see R02 and R03.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI1</span> Cultural foundations of India — Indus and Vedic Age; religious ideas of the 6th century BC: Ajivakas, Buddhism and Jainism</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Prehistoric cultures of India: Palaeolithic, Mesolithic, Neolithic, Chalcolithic</li></ul>
+    
+    <p class="weight">Mostly Prelims: site–phase–region matching (Bhimbetka, Mehrgarh, Burzahom, Chirand, Bagor, Adamgarh). For Rajasthan sites see R02 and R03.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Prehistory is the long period before writing. In India it is divided by tool technology and way of life:</p>
 <ol>
@@ -251,9 +269,12 @@ diffusion from West Asia alone.</p></section>
 <article class="unit" id="I03">
   <header class="unit-head"><p class="kicker">Unit I03 · c. 2600 – 1900 BCE (mature phase)</p><h2>The Harappan Civilisation</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Harappan civilisation: sites, town planning, economy, religion, decline</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Indus–Saraswati civilisation — features and decline</li></ul></div>
-    <p class="weight">A favourite at every level. Mains asks features of town planning, economy or reasons for decline; Prelims asks site–river–discoverer–find matching.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI1</span> Cultural foundations of India — Indus and Vedic Age; religious ideas of the 6th century BC: Ajivakas, Buddhism and Jainism</li><li><span class="lid">PI3</span> Art and architecture and scientific development in ancient India</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Harappan civilisation: sites, town planning, economy, religion, decline</li></ul>
+    
+    <p class="weight">A favourite at every level. Mains asks features of town planning, economy or reasons for decline; Prelims asks site–river–discoverer–find matching.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The Harappan (Indus, or Indus–Saraswati) civilisation was South Asia's first urban culture, contemporary with
 Mesopotamia and Egypt. At its height it covered about 1.3 million sq km — larger than either — from Baluchistan to
@@ -350,9 +371,12 @@ sites on the dry Ghaggar–Hakra channel; its identification with the Vedic Sara
 <article class="unit" id="I04">
   <header class="unit-head"><p class="kicker">Unit I04 · c. 1500 – 600 BCE</p><h2>The Vedic Age</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Vedic literature; early and later Vedic polity, society, economy and religion</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Vedic age — society, polity, religion; Indian knowledge tradition</li></ul></div>
-    <p class="weight">Comparison of early and later Vedic periods is a classic Mains question; Prelims asks Vedic literature (which Veda, which Upanishad), rivers and assemblies.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI1</span> Cultural foundations of India — Indus and Vedic Age; religious ideas of the 6th century BC: Ajivakas, Buddhism and Jainism</li><li><span class="lid">PI4</span> Indian knowledge and value system: varna-ashrama, purushartha, sanskara, philosophy and education</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li><li><span class="lid">IH2</span> Religious movements and philosophy in ancient and medieval India</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Vedic literature; early and later Vedic polity, society, economy and religion</li></ul>
+    
+    <p class="weight">Comparison of early and later Vedic periods is a classic Mains question; Prelims asks Vedic literature (which Veda, which Upanishad), rivers and assemblies.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The Vedic age is named after the <b>Vedas</b>, the oldest texts of India, composed in Sanskrit by people who called
 themselves <b>Aryas</b>. It has two phases:</p>
@@ -431,9 +455,12 @@ analysed later Vedic society as a "lineage society" moving towards kingship.</p>
 <article class="unit" id="I05">
   <header class="unit-head"><p class="kicker">Unit I05 · c. 600 – 321 BCE</p><h2>Mahajanapadas and the Rise of Magadha</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Sixteen Mahajanapadas; republics; rise of Magadha; Persian and Macedonian invasions</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Ancient India — second urbanisation and state formation</li></ul></div>
-    <p class="weight">Reasons for the rise of Magadha is a standard Mains question; Prelims asks Mahajanapada–capital matching and dynasty sequence.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI1</span> Cultural foundations of India — Indus and Vedic Age; religious ideas of the 6th century BC: Ajivakas, Buddhism and Jainism</li><li><span class="lid">PI2</span> Achievements of prominent rulers of major dynasties: Maurya, Kushan, Satavahana, Gupta, Chalukya, Pallava and Chola</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH2</span> Religious movements and philosophy in ancient and medieval India</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Sixteen Mahajanapadas; republics; rise of Magadha; Persian and Macedonian invasions</li></ul>
+    
+    <p class="weight">Reasons for the rise of Magadha is a standard Mains question; Prelims asks Mahajanapada–capital matching and dynasty sequence.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Around the 6th century BCE the Ganga valley saw a <b>second urbanisation</b> (after the Harappan): towns, coins,
 trade and large states. Buddhist and Jain texts list <b>sixteen Mahajanapadas</b> — some monarchies, some republics
@@ -513,9 +540,12 @@ Kshatriya clans, not democracies.</p></section>
 <article class="unit" id="I06">
   <header class="unit-head"><p class="kicker">Unit I06 · c. 600 – 300 BCE (with later councils and sects)</p><h2>Buddhism, Jainism, Ajivikas and 6th-century BCE Thought</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Buddhism and Jainism: founders, teachings, councils, sects, texts</li><li>Heterodox schools</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Religious movements of the 6th century BCE; Indian knowledge and value system</li></ul></div>
-    <p class="weight">Causes of the rise of new religions, comparison of Buddhism and Jainism, and Buddhist councils are standard questions.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI1</span> Cultural foundations of India — Indus and Vedic Age; religious ideas of the 6th century BC: Ajivakas, Buddhism and Jainism</li><li><span class="lid">PI8</span> Religious movements; contribution of the Bhakti and Sufi movements</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH2</span> Religious movements and philosophy in ancient and medieval India</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Buddhism and Jainism: founders, teachings, councils, sects, texts</li><li>Heterodox schools</li></ul>
+    
+    <p class="weight">Causes of the rise of new religions, comparison of Buddhism and Jainism, and Buddhist councils are standard questions.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The 6th century BCE was an age of intellectual ferment across the Ganga valley. Wandering teachers
 (<b>shramanas</b>) challenged Vedic sacrifice and Brahmin dominance. Two of their movements — <b>Buddhism</b> and
@@ -624,9 +654,12 @@ Thapar</b> sees the shramana movements as part of a broad debate rather than a s
 <article class="unit" id="I07">
   <header class="unit-head"><p class="kicker">Unit I07 · c. 321 – 185 BCE</p><h2>The Mauryas</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Mauryan empire: Chandragupta, Bindusara, Ashoka; administration; dhamma; edicts; decline</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Mauryan polity, administration and Ashoka's dhamma</li></ul></div>
-    <p class="weight">Ashoka's dhamma, Mauryan administration and the causes of decline are classic Mains questions; edict content and locations are Prelims favourites.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI2</span> Achievements of prominent rulers of major dynasties: Maurya, Kushan, Satavahana, Gupta, Chalukya, Pallava and Chola</li><li><span class="lid">PI3</span> Art and architecture and scientific development in ancient India</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li><li><span class="lid">IH2</span> Religious movements and philosophy in ancient and medieval India</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Mauryan empire: Chandragupta, Bindusara, Ashoka; administration; dhamma; edicts; decline</li></ul>
+    
+    <p class="weight">Ashoka's dhamma, Mauryan administration and the causes of decline are classic Mains questions; edict content and locations are Prelims favourites.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The Mauryas built India's first empire covering nearly the whole subcontinent. <b>Chandragupta</b>, guided by
 <b>Kautilya</b>, overthrew the Nandas and expelled the Greek governors; <b>Bindusara</b> extended rule south; and
@@ -724,9 +757,12 @@ arguing for a core with looser control over peripheries.</p></section>
 <article class="unit" id="I08">
   <header class="unit-head"><p class="kicker">Unit I08 · c. 185 BCE – 300 CE</p><h2>Post-Mauryan India: Shungas, Satavahanas, Indo-Greeks, Shakas, Kushans</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Shungas, Kanvas, Kharavela, Satavahanas; Indo-Greeks, Shakas, Parthians, Kushans; trade and art</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Post-Mauryan polity, economy, trade with Rome; Gandhara and Mathura art</li></ul></div>
-    <p class="weight">Kanishka, Gandhara vs Mathura art, Satavahana society and Indo-Roman trade are the usual questions.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI2</span> Achievements of prominent rulers of major dynasties: Maurya, Kushan, Satavahana, Gupta, Chalukya, Pallava and Chola</li><li><span class="lid">PI3</span> Art and architecture and scientific development in ancient India</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Shungas, Kanvas, Kharavela, Satavahanas; Indo-Greeks, Shakas, Parthians, Kushans; trade and art</li></ul>
+    
+    <p class="weight">Kanishka, Gandhara vs Mathura art, Satavahana society and Indo-Roman trade are the usual questions.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>After the Mauryas, no single empire ruled India for five centuries. In the Ganga valley the <b>Shungas</b> and
 <b>Kanvas</b> ruled a shrinking Magadha; in Kalinga <b>Kharavela</b> rose; in the Deccan the <b>Satavahanas</b> built a
@@ -817,9 +853,12 @@ Mathura — is debated: <b>A. Foucher</b> argued Gandhara; <b>Ananda Coomaraswam
 <article class="unit" id="I09">
   <header class="unit-head"><p class="kicker">Unit I09 · c. 3rd century BCE – 3rd century CE</p><h2>The Sangam Age</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Sangam literature; Cheras, Cholas, Pandyas; society and economy of the far south</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Ancient south India — Sangam polity, society, economy</li></ul></div>
-    <p class="weight">Mostly Prelims: Sangam texts, kingdoms and capitals, tinai landscapes.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI3</span> Art and architecture and scientific development in ancient India</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Sangam literature; Cheras, Cholas, Pandyas; society and economy of the far south</li></ul>
+    
+    <p class="weight">Mostly Prelims: Sangam texts, kingdoms and capitals, tinai landscapes.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>"Sangam" refers to assemblies of Tamil poets said to have met at Madurai under Pandya patronage. The poems that
 survive — about 2,400 — describe the far south (Tamilakam) between roughly the 3rd century BCE and the 3rd century CE,
@@ -881,9 +920,12 @@ redistribution of plunder, not a full state. Dating the poems is difficult; the 
 <article class="unit" id="I10">
   <header class="unit-head"><p class="kicker">Unit I10 · c. 319 – 550 CE</p><h2>The Guptas</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Gupta rulers, administration, society, economy, culture; the "golden age" debate</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Gupta age — polity, culture, science; was it a golden age?</li></ul></div>
-    <p class="weight">"Was the Gupta age a golden age?" is a classic 10-mark question; Samudragupta's Allahabad inscription and Gupta science and literature are Prelims favourites.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI2</span> Achievements of prominent rulers of major dynasties: Maurya, Kushan, Satavahana, Gupta, Chalukya, Pallava and Chola</li><li><span class="lid">PI3</span> Art and architecture and scientific development in ancient India</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Gupta rulers, administration, society, economy, culture; the "golden age" debate</li></ul>
+    
+    <p class="weight">"Was the Gupta age a golden age?" is a classic 10-mark question; Samudragupta's Allahabad inscription and Gupta science and literature are Prelims favourites.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The Guptas rebuilt a large empire in north India from Magadha. <b>Samudragupta</b> conquered widely;
 <b>Chandragupta II</b> took western India from the Shakas. The period saw a flowering of Sanskrit literature
@@ -968,9 +1010,12 @@ Singh</b> suggests calling it a "classical" age rather than golden.</p></section
 <article class="unit" id="I11">
   <header class="unit-head"><p class="kicker">Unit I11 · c. 550 – 973 CE</p><h2>Harsha, Chalukyas, Pallavas and Rashtrakutas</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Harshavardhana; Chalukyas of Badami; Pallavas of Kanchi; Rashtrakutas; art and architecture</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Early medieval polity; regional kingdoms; temple architecture</li></ul></div>
-    <p class="weight">Harsha (Xuanzang, Banabhatta), Pulakeshin II (Aihole), Pallava architecture (Mahabalipuram) and the Rashtrakuta Kailasa temple are standard questions.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI2</span> Achievements of prominent rulers of major dynasties: Maurya, Kushan, Satavahana, Gupta, Chalukya, Pallava and Chola</li><li><span class="lid">PI3</span> Art and architecture and scientific development in ancient India</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Harshavardhana; Chalukyas of Badami; Pallavas of Kanchi; Rashtrakutas; art and architecture</li></ul>
+    
+    <p class="weight">Harsha (Xuanzang, Banabhatta), Pulakeshin II (Aihole), Pallava architecture (Mahabalipuram) and the Rashtrakuta Kailasa temple are standard questions.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>After the Guptas, power became regional. In the north, <b>Harshavardhana</b> of Thanesar and Kannauj built the last
 large north Indian kingdom before the Turks. In the Deccan and south, three dynasties dominated and competed: the
@@ -1060,9 +1105,12 @@ the period as one of regional state formation, not decline.</p></section>
 <article class="unit" id="I12">
   <header class="unit-head"><p class="kicker">Unit I12 · c. 850 – 1279 CE</p><h2>The Cholas</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Imperial Cholas: rulers, administration, local self-government, naval expeditions, art</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Chola administration and village self-government; temple architecture; bronzes</li></ul></div>
-    <p class="weight">Chola local self-government (Uttaramerur), naval expeditions and the Brihadeshvara temple are perennial questions.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI2</span> Achievements of prominent rulers of major dynasties: Maurya, Kushan, Satavahana, Gupta, Chalukya, Pallava and Chola</li><li><span class="lid">PI3</span> Art and architecture and scientific development in ancient India</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Imperial Cholas: rulers, administration, local self-government, naval expeditions, art</li></ul>
+    
+    <p class="weight">Chola local self-government (Uttaramerur), naval expeditions and the Brihadeshvara temple are perennial questions.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The <b>imperial Cholas</b> of Thanjavur were the greatest power in south India from the 10th to the 12th century.
 <b>Rajaraja I</b> and <b>Rajendra I</b> conquered the Tamil country, Sri Lanka and the Maldives, led an army to the
@@ -1141,9 +1189,12 @@ used inscriptions to show increasing bureaucratic control and the role of temple
 <article class="unit" id="I13">
   <header class="unit-head"><p class="kicker">Unit I13 · Ancient and early medieval India</p><h2>Indian Knowledge and Value System</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Six schools of Indian philosophy; purusharthas, ashramas, sanskaras; ancient education</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Indian knowledge tradition, value system and philosophy; ancient education</li></ul></div>
-    <p class="weight">Short notes on darshanas, purusharthas, Nalanda/Taxila and concepts such as rita, dharma and rina are common in both stages.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI4</span> Indian knowledge and value system: varna-ashrama, purushartha, sanskara, philosophy and education</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH2</span> Religious movements and philosophy in ancient and medieval India</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Six schools of Indian philosophy; purusharthas, ashramas, sanskaras; ancient education</li></ul>
+    
+    <p class="weight">Short notes on darshanas, purusharthas, Nalanda/Taxila and concepts such as rita, dharma and rina are common in both stages.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Ancient India developed systematic thought on how to live (<b>values</b>), what is real (<b>philosophy</b>) and how
 to know (<b>epistemology</b>). The core ideas — <b>dharma</b>, <b>karma</b>, rebirth, <b>moksha</b> — were debated by
@@ -1226,9 +1277,12 @@ Dharmashastra ideals (varna, ashrama) describe norms, not how everyone lived.</p
 <article class="unit" id="I14">
   <header class="unit-head"><p class="kicker">Unit I14 · c. 2600 BCE – 1200 CE</p><h2>Science and Technology in Ancient India</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Mathematics, astronomy, medicine, metallurgy and technology in ancient India; scientists and their works</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Contribution of ancient India to science and technology</li></ul></div>
-    <p class="weight">Scientist–work matching (Aryabhata, Brahmagupta, Bhaskara, Charaka, Sushruta, Nagarjuna) is a Prelims staple; a Mains question on ancient Indian science is common.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI3</span> Art and architecture and scientific development in ancient India</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Mathematics, astronomy, medicine, metallurgy and technology in ancient India; scientists and their works</li></ul>
+    
+    <p class="weight">Scientist–work matching (Aryabhata, Brahmagupta, Bhaskara, Charaka, Sushruta, Nagarjuna) is a Prelims staple; a Mains question on ancient Indian science is common.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Ancient India made lasting contributions to science: the <b>decimal place-value system with zero</b>, which spread
 through the Arab world to Europe; astronomy that calculated eclipses and the earth's rotation; <b>Ayurveda</b> with
@@ -1312,9 +1366,12 @@ historians warn against inflated claims not supported by texts.</p></section>
 <article class="unit" id="I15">
   <header class="unit-head"><p class="kicker">Unit I15 · c. 750 – 1200 CE</p><h2>The Rajput Age and the Struggle for Kannauj</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Tripartite struggle; Palas, Pratiharas, Rashtrakutas; Rajput kingdoms; early medieval society</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Early medieval India — polity, the feudalism debate</li></ul></div>
-    <p class="weight">The tripartite struggle and the "Indian feudalism" debate are the analytical questions; Palas and Rajput dynasties are Prelims material. Rajasthan dynasties are covered in detail in R05–R07.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI5</span> Sultanate period: achievements of prominent dynasties; political and cultural achievements of the Vijayanagara empire</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Tripartite struggle; Palas, Pratiharas, Rashtrakutas; Rajput kingdoms; early medieval society</li></ul>
+    
+    <p class="weight">The tripartite struggle and the "Indian feudalism" debate are the analytical questions; Palas and Rajput dynasties are Prelims material. Rajasthan dynasties are covered in detail in R05–R07.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Between the 8th and 12th centuries north India was divided among regional kingdoms. Three great powers — the
 <b>Palas</b> of Bengal, the <b>Gurjara-Pratiharas</b> of western India and the <b>Rashtrakutas</b> of the Deccan —
@@ -1385,9 +1442,12 @@ coins continued in debased forms.</p></section>
 <article class="unit" id="I16">
   <header class="unit-head"><p class="kicker">Unit I16 · 712 – 1206 CE</p><h2>Arab and Turkish Invasions</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Arab conquest of Sindh; Mahmud of Ghazni; Muhammad Ghori; battles of Tarain</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Turkish invasions — causes of Rajput defeat</li></ul></div>
-    <p class="weight">"Why were the Rajputs defeated by the Turks?" is a classic Mains question; dates and battles (712, 1025, 1191, 1192, 1194) are Prelims staples.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI5</span> Sultanate period: achievements of prominent dynasties; political and cultural achievements of the Vijayanagara empire</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><p>Background for Mains; no line of its own.</p></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Arab conquest of Sindh; Mahmud of Ghazni; Muhammad Ghori; battles of Tarain</li></ul>
+    
+    <p class="weight">"Why were the Rajputs defeated by the Turks?" is a classic Mains question; dates and battles (712, 1025, 1191, 1192, 1194) are Prelims staples.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Islam reached India in three waves: Arab traders on the western coast (from the 7th century), the <b>Arab conquest
 of Sindh</b> (712), and the <b>Turkish</b> invasions from Afghanistan. <b>Mahmud of Ghazni</b> raided India
@@ -1468,9 +1528,12 @@ general religious policy.</p></section>
 <article class="unit" id="I17">
   <header class="unit-head"><p class="kicker">Unit I17 · 1206 – 1526</p><h2>Delhi Sultanate: Political History</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Five dynasties of the Sultanate; Iltutmish, Balban, Alauddin Khalji, Muhammad bin Tughluq, Firoz Shah; Timur; Lodis</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Delhi Sultanate — consolidation, expansion, decline</li></ul></div>
-    <p class="weight">Alauddin's reforms and Muhammad bin Tughluq's experiments are the most-asked topics. Sultanate relations with Rajasthan (Ranthambore, Chittor, Jalore) are in R06–R07.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI5</span> Sultanate period: achievements of prominent dynasties; political and cultural achievements of the Vijayanagara empire</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><p>Background for Mains; no line of its own.</p></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Five dynasties of the Sultanate; Iltutmish, Balban, Alauddin Khalji, Muhammad bin Tughluq, Firoz Shah; Timur; Lodis</li></ul>
+    
+    <p class="weight">Alauddin's reforms and Muhammad bin Tughluq's experiments are the most-asked topics. Sultanate relations with Rajasthan (Ranthambore, Chittor, Jalore) are in R06–R07.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>For 320 years five dynasties ruled from Delhi: the <b>Mamluks</b> ("Slave" dynasty, 1206–1290), <b>Khaljis</b>
 (1290–1320), <b>Tughluqs</b> (1320–1414), <b>Sayyids</b> (1414–1451) and <b>Lodis</b> (1451–1526). The Sultanate grew
@@ -1583,9 +1646,12 @@ revolts).</p></div></section>
 <article class="unit" id="I18">
   <header class="unit-head"><p class="kicker">Unit I18 · 1206 – 1526</p><h2>Delhi Sultanate: Administration, Economy and Society</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Central and provincial administration; iqta; Alauddin's market and revenue reforms; Sultanate architecture and literature</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Sultanate administration, economy, society and culture</li></ul></div>
-    <p class="weight">Alauddin's market control and the iqta system are frequent Mains questions; ministries and architecture are Prelims material.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI5</span> Sultanate period: achievements of prominent dynasties; political and cultural achievements of the Vijayanagara empire</li><li><span class="lid">PI7</span> Development of art and architecture, literature, painting and music in the medieval period</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Central and provincial administration; iqta; Alauddin's market and revenue reforms; Sultanate architecture and literature</li></ul>
+    
+    <p class="weight">Alauddin's market control and the iqta system are frequent Mains questions; ministries and architecture are Prelims material.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The Sultanate was a centralised military state. The Sultan was the head of the army, justice and administration;
 in theory he ruled under the sharia and recognised the Caliph. Ministers ran departments; the empire was divided into
@@ -1698,9 +1764,12 @@ monarchy with Islamic legitimacy, not a theocracy.</p></div></section>
 <article class="unit" id="I19">
   <header class="unit-head"><p class="kicker">Unit I19 · 1336 – 1687</p><h2>Vijayanagara and the Bahmanis</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Vijayanagara dynasties; Krishnadevaraya; Talikota; nayankara and ayagar systems; Bahmani kingdom; Mahmud Gawan; Deccan Sultanates; foreign travellers</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Vijayanagara administration and culture; Bahmani kingdom</li></ul></div>
-    <p class="weight">Krishnadevaraya, the nayankara system and foreign travellers' accounts are frequent; Hampi links to art and culture.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI5</span> Sultanate period: achievements of prominent dynasties; political and cultural achievements of the Vijayanagara empire</li><li><span class="lid">PI7</span> Development of art and architecture, literature, painting and music in the medieval period</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Vijayanagara dynasties; Krishnadevaraya; Talikota; nayankara and ayagar systems; Bahmani kingdom; Mahmud Gawan; Deccan Sultanates; foreign travellers</li></ul>
+    
+    <p class="weight">Krishnadevaraya, the nayankara system and foreign travellers' accounts are frequent; Hampi links to art and culture.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>As Muhammad bin Tughluq's control over the south collapsed, two states arose: <b>Vijayanagara</b> (1336), founded
 by the brothers <b>Harihara and Bukka</b> of the Sangama family, and the <b>Bahmani</b> kingdom (1347) of Alauddin
@@ -1810,9 +1879,12 @@ Muslim soldiers in its army, alliances across religious lines, the title "Hindu-
 <article class="unit" id="I20">
   <header class="unit-head"><p class="kicker">Unit I20 · c. 6th – 17th century</p><h2>Bhakti and Sufi Movements</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Alvars and Nayanars; Acharyas; Nirguna and Saguna saints; Kabir, Nanak, Mirabai, Tulsidas; Sufi silsilas</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Bhakti and Sufi movements — teachings and social impact; medieval religious synthesis</li></ul></div>
-    <p class="weight">One of the highest-yield medieval topics for both papers. Rajasthan saints (Mira, Dadu, Jambhoji, Ramdev, Pipa) are in the art and culture notebook; core Rajasthan links appear here.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI8</span> Religious movements; contribution of the Bhakti and Sufi movements</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH2</span> Religious movements and philosophy in ancient and medieval India</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Alvars and Nayanars; Acharyas; Nirguna and Saguna saints; Kabir, Nanak, Mirabai, Tulsidas; Sufi silsilas</li></ul>
+    
+    <p class="weight">One of the highest-yield medieval topics for both papers. Rajasthan saints (Mira, Dadu, Jambhoji, Ramdev, Pipa) are in the art and culture notebook; core Rajasthan links appear here.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p><b>Bhakti</b> — loving devotion to a personal god — began with the Tamil <b>Alvars</b> (Vishnu) and <b>Nayanars</b>
 (Shiva) between the 6th and 9th centuries, was given a philosophical base by the <b>Acharyas</b> (Ramanuja,
@@ -1922,9 +1994,12 @@ movement is a later construction; it was many local traditions linked over centu
 <article class="unit" id="I21">
   <header class="unit-head"><p class="kicker">Unit I21 · 1526 – 1605</p><h2>The Mughals I: Babur to Akbar</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Babur's battles; Humayun and Sher Shah; Sur administration; Akbar — conquests, Rajput policy, religious policy (Sulh-i-kul, Din-i-Ilahi)</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Mughal empire — establishment, consolidation; Akbar's policies</li></ul></div>
-    <p class="weight">Akbar's Rajput and religious policies and Sher Shah's administration are the highest-yield topics; battles and dates are Prelims staples. Rajasthan angles (Sanga, Pratap, Haldighati, Amber) are in R08–R11.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI6</span> Mughal period: administration and policies; Marathas</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH2</span> Religious movements and philosophy in ancient and medieval India</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Babur's battles; Humayun and Sher Shah; Sur administration; Akbar — conquests, Rajput policy, religious policy (Sulh-i-kul, Din-i-Ilahi)</li></ul>
+    
+    <p class="weight">Akbar's Rajput and religious policies and Sher Shah's administration are the highest-yield topics; battles and dates are Prelims staples. Rajasthan angles (Sanga, Pratap, Haldighati, Amber) are in R08–R11.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p><b>Babur</b>, a Timurid from Ferghana, won north India with artillery and cavalry tactics at <b>Panipat (1526)</b>
 and <b>Khanwa (1527)</b>. His son <b>Humayun</b> lost the empire to the Afghan <b>Sher Shah Sur</b>, whose short reign
@@ -2040,9 +2115,12 @@ is more neutral. <b>Satish Chandra</b> and <b>Iqtidar Alam Khan</b> analysed the
 <article class="unit" id="I22">
   <header class="unit-head"><p class="kicker">Unit I22 · 1605 – 1761</p><h2>The Mughals II: Jahangir to Aurangzeb and the Decline Debate</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Jahangir, Nur Jahan; Shah Jahan — architecture, war of succession; Aurangzeb — religious and Deccan policy; later Mughals; Nadir Shah, Abdali</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Mughal empire — Aurangzeb's policies; causes of decline (historiographical debate)</li></ul></div>
-    <p class="weight">"Causes of decline of the Mughal empire" with the historiographical schools is a classic Mains question. Rajput relations under Aurangzeb (Marwar, Mewar, Durgadas) are in R08–R09.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI6</span> Mughal period: administration and policies; Marathas</li><li><span class="lid">PI7</span> Development of art and architecture, literature, painting and music in the medieval period</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Jahangir, Nur Jahan; Shah Jahan — architecture, war of succession; Aurangzeb — religious and Deccan policy; later Mughals; Nadir Shah, Abdali</li></ul>
+    
+    <p class="weight">"Causes of decline of the Mughal empire" with the historiographical schools is a classic Mains question. Rajput relations under Aurangzeb (Marwar, Mewar, Durgadas) are in R08–R09.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The empire reached its greatest extent under <b>Aurangzeb</b> (1658–1707) but began to break up within decades of
 his death. <b>Jahangir</b> (1605–27) and <b>Shah Jahan</b> (1628–58) continued Akbar's system; Shah Jahan's reign is
@@ -2152,9 +2230,12 @@ no private property in land — a view later used by Marx's "Asiatic mode"), Tav
 <article class="unit" id="I23">
   <header class="unit-head"><p class="kicker">Unit I23 · 1556 – 1707</p><h2>Mughal Administration: Mansab, Jagir and Revenue</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Mansabdari system (zat, sawar); jagirdari; zabt / dahsala; central and provincial officers; Mughal architecture and painting</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Mughal administration and economy; art and architecture</li></ul></div>
-    <p class="weight">Mansabdari and Todar Mal's dahsala system are among the most-asked medieval Mains topics.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI6</span> Mughal period: administration and policies; Marathas</li><li><span class="lid">PI7</span> Development of art and architecture, literature, painting and music in the medieval period</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Mansabdari system (zat, sawar); jagirdari; zabt / dahsala; central and provincial officers; Mughal architecture and painting</li></ul>
+    
+    <p class="weight">Mansabdari and Todar Mal's dahsala system are among the most-asked medieval Mains topics.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Akbar created an administrative structure that lasted, in parts, into British times. Its three pillars were:
 the <b>mansabdari</b> system (ranks for nobles and officers, defining pay and troops), the <b>jagirdari</b> system
@@ -2264,9 +2345,12 @@ negotiation with local power holders.</p></section>
 <article class="unit" id="I24">
   <header class="unit-head"><p class="kicker">Unit I24 · 1630 – 1818</p><h2>The Marathas</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Shivaji — conquests, administration (Ashtapradhan, chauth, sardeshmukhi); Peshwas; third battle of Panipat; Maratha confederacy</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Rise of the Marathas; Shivaji's administration; Panipat III</li></ul></div>
-    <p class="weight">Shivaji's administration and Panipat III are classic questions. Maratha intervention in Rajasthan (chauth, Holkar–Scindia) is in R15.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI6</span> Mughal period: administration and policies; Marathas</li><li><span class="lid">PI9</span> British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><p>Background for Mains; no line of its own.</p></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Shivaji — conquests, administration (Ashtapradhan, chauth, sardeshmukhi); Peshwas; third battle of Panipat; Maratha confederacy</li></ul>
+    
+    <p class="weight">Shivaji's administration and Panipat III are classic questions. Maratha intervention in Rajasthan (chauth, Holkar–Scindia) is in R15.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The Marathas rose in the western Deccan, in the hilly Maval region, where peasant-soldiers and local landholders
 (deshmukhs) had served the Deccan Sultanates. <b>Shivaji</b> (1630–1680) built an independent kingdom (crowned 1674)
@@ -2385,9 +2469,12 @@ use of Persianate administrative practices.</p></div></section>
 <article class="unit" id="I25">
   <header class="unit-head"><p class="kicker">Unit I25 · 1469 – 1849</p><h2>The Sikhs</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Ten Gurus; Guru Granth Sahib; Khalsa; Banda Bahadur; misls; Ranjit Singh; Anglo-Sikh wars</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Rise of Sikh power; Ranjit Singh</li></ul></div>
-    <p class="weight">Mostly Prelims (Gurus and their contributions); Ranjit Singh and the transformation of the Sikh community into a political power suit Mains.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI9</span> British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH2</span> Religious movements and philosophy in ancient and medieval India</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Ten Gurus; Guru Granth Sahib; Khalsa; Banda Bahadur; misls; Ranjit Singh; Anglo-Sikh wars</li></ul>
+    
+    <p class="weight">Mostly Prelims (Gurus and their contributions); Ranjit Singh and the transformation of the Sikh community into a political power suit Mains.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Sikhism began with the teachings of <b>Guru Nanak</b> (1469–1539), a nirguna bhakti saint (I20). Under nine
 successor Gurus the community developed institutions — langar, scripture, gurdwaras, the masand system — and,
@@ -2480,9 +2567,12 @@ grievances.</p></section>
 <article class="unit" id="I26">
   <header class="unit-head"><p class="kicker">Unit I26 · 1498 – 1763</p><h2>The European Companies</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Portuguese, Dutch, English, Danish, French companies; Carnatic wars</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Advent of Europeans; Anglo-French rivalry</li></ul></div>
-    <p class="weight">Dates of arrival and factories are Prelims staples; "Why did the English succeed against the French?" is a standard Mains question.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI9</span> British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH3</span> British policies and their impact: political, economic, administrative unification</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Portuguese, Dutch, English, Danish, French companies; Carnatic wars</li></ul>
+    
+    <p class="weight">Dates of arrival and factories are Prelims staples; "Why did the English succeed against the French?" is a standard Mains question.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>After <b>Vasco da Gama</b> reached Calicut (1498), the <b>Portuguese</b> dominated Indian Ocean trade through naval
 power and the cartaz (pass) system. In the 17th century the <b>Dutch</b>, <b>English</b> and <b>French</b> East India
@@ -2553,9 +2643,12 @@ trade) are standard. <b>Ashin Das Gupta</b> studied Indian merchants of Surat an
 <article class="unit" id="I27">
   <header class="unit-head"><p class="kicker">Unit I27 · 1717 – 1772</p><h2>Bengal: Plassey to Buxar</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Nawabs of Bengal; Plassey; Mir Jafar, Mir Qasim; Buxar; Treaty of Allahabad; Dual government</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Establishment of British power in Bengal</li></ul></div>
-    <p class="weight">"Plassey was a conspiracy, Buxar a battle" — compare their significance. Dual government is frequently asked.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI9</span> British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH3</span> British policies and their impact: political, economic, administrative unification</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Nawabs of Bengal; Plassey; Mir Jafar, Mir Qasim; Buxar; Treaty of Allahabad; Dual government</li></ul>
+    
+    <p class="weight">"Plassey was a conspiracy, Buxar a battle" — compare their significance. Dual government is frequently asked.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Bengal was the richest Mughal province. Its Nawabs — <b>Murshid Quli Khan</b>, <b>Alivardi Khan</b> and
 <b>Siraj-ud-Daula</b> — were virtually independent. Disputes over the Company's misuse of trade privileges and
@@ -2652,9 +2745,12 @@ private interests drawing the Company in; nationalist historians stress delibera
 <article class="unit" id="I28">
   <header class="unit-head"><p class="kicker">Unit I28 · 1765 – 1856</p><h2>British Expansion: Mysore, Marathas, Sikhs, Subsidiary Alliance, Lapse</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Anglo-Mysore wars; Anglo-Maratha wars; Subsidiary Alliance; Doctrine of Lapse; annexation of Awadh; Governors-General</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Expansion of British paramountcy — policies and instruments</li></ul></div>
-    <p class="weight">Subsidiary Alliance and Doctrine of Lapse are frequently asked; the Rajasthan treaties of 1817–18 are in R15.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI9</span> British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH3</span> British policies and their impact: political, economic, administrative unification</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Anglo-Mysore wars; Anglo-Maratha wars; Subsidiary Alliance; Doctrine of Lapse; annexation of Awadh; Governors-General</li></ul>
+    
+    <p class="weight">Subsidiary Alliance and Doctrine of Lapse are frequently asked; the Rajasthan treaties of 1817–18 are in R15.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>From Bengal, the Company extended control over India in about ninety years through war, diplomacy and annexation.
 The main opponents were <b>Mysore</b> (Haidar Ali, Tipu Sultan), the <b>Marathas</b> and the <b>Sikhs</b>. The key
@@ -2745,9 +2841,12 @@ Colonialism</i>) studied Tipu Sultan as a modernising ruler, against the older B
 <article class="unit" id="I29">
   <header class="unit-head"><p class="kicker">Unit I29 · 1773 – 1947</p><h2>Constitutional Development, 1773–1947</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Regulating Act to Indian Independence Act — key provisions</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I/II: Constitutional development under British rule; background of the Indian Constitution</li></ul></div>
-    <p class="weight">Very high yield for Prelims (provisions) and frequently a Mains question (Government of India Act 1935, Morley-Minto, Montford). Links to Polity.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI9</span> British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH3</span> British policies and their impact: political, economic, administrative unification</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Regulating Act to Indian Independence Act — key provisions</li></ul>
+    
+    <p class="weight">Very high yield for Prelims (provisions) and frequently a Mains question (Government of India Act 1935, Morley-Minto, Montford). Links to Polity.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>British constitutional development moved through two phases. Under the Company (1773–1858), Parliament gradually
 asserted control over the Company and centralised Indian administration. Under the Crown (1858–1947), Acts slowly
@@ -2822,9 +2921,12 @@ school" emphasised how reforms shaped Indian political competition.</p></section
 <article class="unit" id="I30">
   <header class="unit-head"><p class="kicker">Unit I30 · 1772 – 1947</p><h2>British Administrative Policies</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Land revenue settlements; civil services; judiciary; police; army; education policy; press laws; policy towards princely states</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: British administrative structure; land revenue systems; education policy</li></ul></div>
-    <p class="weight">The three land revenue systems and education milestones (1813, 1835, 1854, 1882, 1904, 1917, 1944) are high-yield for both papers.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI9</span> British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH3</span> British policies and their impact: political, economic, administrative unification</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Land revenue settlements; civil services; judiciary; police; army; education policy; press laws; policy towards princely states</li></ul>
+    
+    <p class="weight">The three land revenue systems and education milestones (1813, 1835, 1854, 1882, 1904, 1917, 1944) are high-yield for both papers.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>British rule rested on a set of institutions built between Warren Hastings and Curzon: a <b>land revenue</b>
 system to extract the surplus, a <b>civil service</b> to run the state, a <b>judiciary</b> and codified law, a
@@ -2955,9 +3057,12 @@ instrument of rule. <b>B.B. Misra</b> wrote on the bureaucracy.</p></section>
 <article class="unit" id="I31">
   <header class="unit-head"><p class="kicker">Unit I31 · 1757 – 1947</p><h2>Economic Impact of British Rule</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Drain of wealth; deindustrialisation; commercialisation of agriculture; famines; railways</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Economic impact of colonial rule; economic critique of the early nationalists</li></ul></div>
-    <p class="weight">Drain theory (Naoroji, R.C. Dutt) and deindustrialisation are classic Mains questions.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI9</span> British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH3</span> British policies and their impact: political, economic, administrative unification</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Drain of wealth; deindustrialisation; commercialisation of agriculture; famines; railways</li></ul>
+    
+    <p class="weight">Drain theory (Naoroji, R.C. Dutt) and deindustrialisation are classic Mains questions.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>British rule transformed India's economy in three phases, as described by R. Palme Dutt: <b>mercantile</b>
 (1757–1813, monopoly trade and plunder), <b>industrial capital / free trade</b> (1813–1858, India as a market for
@@ -3042,9 +3147,12 @@ Holocausts</i>) linked famines to colonial policy.</p></section>
 <article class="unit" id="I32">
   <header class="unit-head"><p class="kicker">Unit I32 · 1857–1859</p><h2>The Revolt of 1857</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>British imperialism and resistance — Revolt of 1857</li><li>British political, economic and administrative policies</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part B: British policies and their impact — political, economic and administrative</li><li>GS-I Part B: Indian National Movement — its various stages (1857 as the great precursor)</li><li>Rajasthan side of the revolt: Rajasthan History unit R16</li></ul></div>
-    <p class="weight">Asked in RAS Mains at least three times (2013, 2016 Special, 2021 — see section 6). Prelims questions usually test leaders and centres, dates, and the 1858 changes.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI9</span> British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH3</span> British policies and their impact: political, economic, administrative unification</li><li><span class="lid">IH4</span> Indian National Movement: stages, streams, contributors</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>British imperialism and resistance — Revolt of 1857</li><li>British political, economic and administrative policies</li></ul>
+    
+    <p class="weight">Asked in RAS Mains at least three times (2013, 2016 Special, 2021 — see section 6). Prelims questions usually test leaders and centres, dates, and the 1858 changes.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>By 1856 the East India Company ruled or controlled almost all of India. A hundred years of conquest had
 created a long list of people with grievances: dethroned rulers, dispossessed landlords, over-taxed peasants,
@@ -3185,9 +3293,12 @@ movement.</p></section>
 <article class="unit" id="I33">
   <header class="unit-head"><p class="kicker">Unit I33 · 1783 – 1947</p><h2>Peasant Movements</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Indigo revolt; Pabna; Deccan riots; Champaran, Kheda; Moplah; Bardoli; Kisan Sabha; Tebhaga; Telangana</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Peasant movements under colonial rule — phases and character</li></ul></div>
-    <p class="weight">Frequently asked in both papers. Rajasthan peasant movements (Bijolia, Begun, Shekhawati) are in R17.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI10</span> Freedom struggle and national movement: evolution, stages and major events; revolutionary and regional movements; partition</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH4</span> Indian National Movement: stages, streams, contributors</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Indigo revolt; Pabna; Deccan riots; Champaran, Kheda; Moplah; Bardoli; Kisan Sabha; Tebhaga; Telangana</li></ul>
+    
+    <p class="weight">Frequently asked in both papers. Rajasthan peasant movements (Bijolia, Begun, Shekhawati) are in R17.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Colonial land revenue, landlords, planters and moneylenders made peasants the most exploited class under British
 rule. Peasant resistance passed through three stages: <b>early revolts</b> mixed with religious or tribal elements
@@ -3248,9 +3359,12 @@ peasant movements as autonomous, with their own consciousness, not merely led by
 <article class="unit" id="I34">
   <header class="unit-head"><p class="kicker">Unit I34 · 1774 – 1947</p><h2>Tribal Movements</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Paharia, Kol, Santhal, Munda (Birsa), Bhil, Khond, Rampa, Naga, Tana Bhagat revolts</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Tribal uprisings — causes and character</li></ul></div>
-    <p class="weight">Santhal and Munda (Birsa) revolts are the most asked. Rajasthan tribal movements (Govind Guru, Bhil, Meena, Eki) are in R18.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI10</span> Freedom struggle and national movement: evolution, stages and major events; revolutionary and regional movements; partition</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH4</span> Indian National Movement: stages, streams, contributors</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Paharia, Kol, Santhal, Munda (Birsa), Bhil, Khond, Rampa, Naga, Tana Bhagat revolts</li></ul>
+    
+    <p class="weight">Santhal and Munda (Birsa) revolts are the most asked. Rajasthan tribal movements (Govind Guru, Bhil, Meena, Eki) are in R18.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Tribal communities lived in forests and hills with their own land systems, chiefs and customs. Colonial rule
 brought outsiders — <b>dikus</b> (moneylenders, traders, landlords), revenue demands, forest laws and missionaries —
@@ -3315,9 +3429,12 @@ in western India. <b>Ramachandra Guha</b> (<i>The Unquiet Woods</i>) linked trib
 <article class="unit" id="I35">
   <header class="unit-head"><p class="kicker">Unit I35 · 1815 – 1947</p><h2>Socio-Religious Reform Movements</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Brahmo Samaj, Prarthana Samaj, Arya Samaj, Ramakrishna Mission, Theosophical Society, Aligarh, Satyashodhak, SNDP; social legislation</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: 19th-century renaissance — reform movements, their nature and limitations</li></ul></div>
-    <p class="weight">One of the most-asked modern topics. Rajasthan links (Dayanand at Udaipur and Ajmer; Paropkarini Sabha; Walterkrit Sabha) are in R15.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI9</span> British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH5</span> Socio-religious reform movements (19th–20th century), intellectual awakening</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Brahmo Samaj, Prarthana Samaj, Arya Samaj, Ramakrishna Mission, Theosophical Society, Aligarh, Satyashodhak, SNDP; social legislation</li></ul>
+    
+    <p class="weight">One of the most-asked modern topics. Rajasthan links (Dayanand at Udaipur and Ajmer; Paropkarini Sabha; Walterkrit Sabha) are in R15.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>In the 19th century educated Indians, influenced by Western rationalism and humanism and by pride in India's past,
 sought to reform society and religion. Two broad trends emerged: <b>reformist</b> (Brahmo Samaj, Prarthana Samaj,
@@ -3428,9 +3545,12 @@ showed that women were often the site rather than the subject of reform debates.
 <article class="unit" id="I36">
   <header class="unit-head"><p class="kicker">Unit I36 · 1836 – 1905</p><h2>Early Nationalism and the Moderates</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Pre-Congress associations; foundation of the INC; Moderate leaders, methods and demands</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Rise of nationalism; foundation of the Congress (safety-valve debate); assessment of the Moderates</li></ul></div>
-    <p class="weight">The safety-valve theory and the assessment of the Moderates are classic Mains questions.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI9</span> British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</li><li><span class="lid">PI10</span> Freedom struggle and national movement: evolution, stages and major events; revolutionary and regional movements; partition</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH4</span> Indian National Movement: stages, streams, contributors</li><li><span class="lid">IH5</span> Socio-religious reform movements (19th–20th century), intellectual awakening</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Pre-Congress associations; foundation of the INC; Moderate leaders, methods and demands</li></ul>
+    
+    <p class="weight">The safety-valve theory and the assessment of the Moderates are classic Mains questions.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Modern Indian nationalism arose from the contradictions of colonial rule — economic exploitation, racial
 discrimination, administrative unification, modern education, the press and the reform movements. Political
@@ -3553,9 +3673,12 @@ Congress's roots in earlier associations.</p></section>
 <article class="unit" id="I37">
   <header class="unit-head"><p class="kicker">Unit I37 · 1905 – 1918</p><h2>Swadeshi and the Extremists</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Partition of Bengal; Swadeshi and boycott; Surat split; Muslim League; Morley-Minto; Lucknow Pact; Home Rule Leagues</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Swadeshi movement; Extremists vs Moderates; Home Rule movement</li></ul></div>
-    <p class="weight">Swadeshi movement and the Surat split are high-yield; the Lucknow Pact and Home Rule are frequent Prelims topics.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI10</span> Freedom struggle and national movement: evolution, stages and major events; revolutionary and regional movements; partition</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH4</span> Indian National Movement: stages, streams, contributors</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Partition of Bengal; Swadeshi and boycott; Surat split; Muslim League; Morley-Minto; Lucknow Pact; Home Rule Leagues</li></ul>
+    
+    <p class="weight">Swadeshi movement and the Surat split are high-yield; the Lucknow Pact and Home Rule are frequent Prelims topics.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Dissatisfaction with Moderate methods, Curzon's policies and international events produced the <b>Extremists</b>
 — Lal, Bal, Pal (Lajpat Rai, Tilak, Bipin Chandra Pal) and Aurobindo Ghosh — who demanded <b>swaraj</b> and used mass
@@ -3655,9 +3778,12 @@ the Home Rule movement.</p></section>
 <article class="unit" id="I38">
   <header class="unit-head"><p class="kicker">Unit I38 · 1897 – 1934</p><h2>Revolutionary Nationalism</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Anushilan, Jugantar; Abhinav Bharat; Ghadar; HRA/HSRA; Kakori; Bhagat Singh; Chittagong; revolutionaries abroad</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Revolutionary movements — phases, ideology, contribution</li></ul></div>
-    <p class="weight">Ghadar, HSRA and Bhagat Singh are the most-asked. Rajasthan revolutionaries (Barhat family, Arjun Lal Sethi, Rao Gopal Singh Kharwa) are in R19.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI10</span> Freedom struggle and national movement: evolution, stages and major events; revolutionary and regional movements; partition</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH4</span> Indian National Movement: stages, streams, contributors</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Anushilan, Jugantar; Abhinav Bharat; Ghadar; HRA/HSRA; Kakori; Bhagat Singh; Chittagong; revolutionaries abroad</li></ul>
+    
+    <p class="weight">Ghadar, HSRA and Bhagat Singh are the most-asked. Rajasthan revolutionaries (Barhat family, Arjun Lal Sethi, Rao Gopal Singh Kharwa) are in R19.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Revolutionary nationalism developed in two waves. The <b>first wave</b> (1905–1918) grew out of the Swadeshi
 movement's frustration: secret societies in Bengal and Maharashtra used assassination and dacoity to finance
@@ -3752,9 +3878,12 @@ described revolutionaries as terrorists — a term avoided by most Indian histor
 <article class="unit" id="I39">
   <header class="unit-head"><p class="kicker">Unit I39 · 1915 – 1922</p><h2>Gandhi's Early Movements and Non-Cooperation</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Gandhi in South Africa; Champaran, Ahmedabad, Kheda; Rowlatt satyagraha; Jallianwala Bagh; Khilafat; Non-Cooperation; Chauri Chaura</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Gandhian methods; Non-Cooperation and Khilafat — significance and withdrawal</li></ul></div>
-    <p class="weight">Non-Cooperation, its withdrawal, and Gandhian satyagraha are among the most-asked modern topics.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI10</span> Freedom struggle and national movement: evolution, stages and major events; revolutionary and regional movements; partition</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH4</span> Indian National Movement: stages, streams, contributors</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Gandhi in South Africa; Champaran, Ahmedabad, Kheda; Rowlatt satyagraha; Jallianwala Bagh; Khilafat; Non-Cooperation; Chauri Chaura</li></ul>
+    
+    <p class="weight">Non-Cooperation, its withdrawal, and Gandhian satyagraha are among the most-asked modern topics.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p><b>Mohandas Karamchand Gandhi</b> (1869–1948) developed <b>satyagraha</b> — non-violent resistance based on truth —
 in South Africa (1893–1914). Returning to India in 1915, he tested it locally (Champaran, Ahmedabad, Kheda), then
@@ -3853,9 +3982,12 @@ studied the Khilafat movement. <b>Bipan Chandra</b> analysed the S–T–S strat
 <article class="unit" id="I40">
   <header class="unit-head"><p class="kicker">Unit I40 · 1922 – 1929</p><h2>The 1920s: Swarajists, Simon Commission, Nehru Report</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Swaraj Party; no-changers; Simon Commission; Nehru Report; Jinnah's 14 points; Lahore session and purna swaraj; left-wing, youth and workers' movements</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: National movement 1922–29; Nehru Report and communal question</li></ul></div>
-    <p class="weight">The Nehru Report, Simon boycott and the Lahore session are high-yield.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI10</span> Freedom struggle and national movement: evolution, stages and major events; revolutionary and regional movements; partition</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH4</span> Indian National Movement: stages, streams, contributors</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Swaraj Party; no-changers; Simon Commission; Nehru Report; Jinnah's 14 points; Lahore session and purna swaraj; left-wing, youth and workers' movements</li></ul>
+    
+    <p class="weight">The Nehru Report, Simon boycott and the Lahore session are high-yield.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>After Non-Cooperation, the Congress split over the next step: the <b>Swarajists</b> (C.R. Das, Motilal Nehru)
 wanted to enter the councils and obstruct them from within, while the <b>no-changers</b> (Patel, Rajendra Prasad,
@@ -3965,9 +4097,12 @@ of his amendments was a turning point.</p></section>
 <article class="unit" id="I41">
   <header class="unit-head"><p class="kicker">Unit I41 · 1930 – 1939</p><h2>Civil Disobedience to the 1937 Ministries</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Dandi March; Civil Disobedience; Round Table Conferences; Gandhi-Irwin Pact; Karachi session; Communal Award; Poona Pact; 1937 elections; Tripuri crisis</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Civil Disobedience — features and comparison with NCM; Poona Pact; Congress ministries</li></ul></div>
-    <p class="weight">Civil Disobedience (and its comparison with NCM), the Gandhi-Irwin Pact and the Poona Pact are very frequent.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI10</span> Freedom struggle and national movement: evolution, stages and major events; revolutionary and regional movements; partition</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH4</span> Indian National Movement: stages, streams, contributors</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Dandi March; Civil Disobedience; Round Table Conferences; Gandhi-Irwin Pact; Karachi session; Communal Award; Poona Pact; 1937 elections; Tripuri crisis</li></ul>
+    
+    <p class="weight">Civil Disobedience (and its comparison with NCM), the Gandhi-Irwin Pact and the Poona Pact are very frequent.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>After the Lahore declaration, Gandhi launched <b>Civil Disobedience</b> with the <b>Dandi March</b> (March–April
 1930). Unlike Non-Cooperation, it involved <b>deliberately breaking laws</b> — salt, forest, tax laws. Mass
@@ -4090,9 +4225,12 @@ Poona Pact, which he later criticised.</p></section>
 <article class="unit" id="I42">
   <header class="unit-head"><p class="kicker">Unit I42 · 1939 – 1947</p><h2>1939–1947: War, Quit India, INA, Partition</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>August Offer; individual satyagraha; Cripps Mission; Quit India; INA; Wavell Plan; RIN mutiny; Cabinet Mission; Direct Action; Mountbatten Plan; Independence Act</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Quit India — significance; INA; Cabinet Mission; causes of partition</li></ul></div>
-    <p class="weight">Quit India, Cripps and Cabinet Mission, and "causes of partition" are among the most-asked questions of modern history.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI10</span> Freedom struggle and national movement: evolution, stages and major events; revolutionary and regional movements; partition</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH4</span> Indian National Movement: stages, streams, contributors</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>August Offer; individual satyagraha; Cripps Mission; Quit India; INA; Wavell Plan; RIN mutiny; Cabinet Mission; Direct Action; Mountbatten Plan; Independence Act</li></ul>
+    
+    <p class="weight">Quit India, Cripps and Cabinet Mission, and "causes of partition" are among the most-asked questions of modern history.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The Second World War changed everything. When the Viceroy declared India at war without consultation, the
 Congress ministries resigned. British offers (<b>August Offer</b>, <b>Cripps Mission</b>) fell short; Gandhi launched
@@ -4239,9 +4377,12 @@ Chandra</b> stresses colonial communal policy and the failure to contain communa
 <article class="unit" id="I43">
   <header class="unit-head"><p class="kicker">Unit I43 · 1947 – 1950</p><h2>Integration of the Princely States</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Instrument of Accession; Standstill Agreement; Patel and V.P. Menon; Junagadh, Hyderabad, Kashmir; Goa, Pondicherry</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Post-independence consolidation — integration of princely states</li></ul></div>
-    <p class="weight">Patel's role and the three problem states are standard questions. The integration of Rajasthan (seven stages) is in R21.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI11</span> Post-independence nation building (up to 2000): reorganisation of states, institution building in the Nehruvian age, planning and economic reforms, science and technology</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH6</span> Post-independence: accession of princely states, linguistic reorganisation, S&T, women empowerment</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Instrument of Accession; Standstill Agreement; Patel and V.P. Menon; Junagadh, Hyderabad, Kashmir; Goa, Pondicherry</li></ul>
+    
+    <p class="weight">Patel's role and the three problem states are standard questions. The integration of Rajasthan (seven stages) is in R21.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>At independence there were about <b>565 princely states</b> covering roughly two-fifths of the subcontinent's area.
 With the lapse of paramountcy (Indian Independence Act, 1947), each was legally free to join India or Pakistan or
@@ -4314,9 +4455,12 @@ analysed the princes' strategies.</p></section>
 <article class="unit" id="I44">
   <header class="unit-head"><p class="kicker">Unit I44 · 1948 – 1987</p><h2>Linguistic Reorganisation of States</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Dhar Commission; JVP Committee; Potti Sriramulu; States Reorganisation Commission; creation of new states</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Linguistic reorganisation — process, rationale and effect on national unity</li></ul></div>
-    <p class="weight">Frequently asked as an analytical question ("Did linguistic states weaken or strengthen national unity?").</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI11</span> Post-independence nation building (up to 2000): reorganisation of states, institution building in the Nehruvian age, planning and economic reforms, science and technology</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH6</span> Post-independence: accession of princely states, linguistic reorganisation, S&T, women empowerment</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Dhar Commission; JVP Committee; Potti Sriramulu; States Reorganisation Commission; creation of new states</li></ul>
+    
+    <p class="weight">Frequently asked as an analytical question ("Did linguistic states weaken or strengthen national unity?").</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The Congress had accepted linguistic provinces since the Nagpur session (1920). After independence and partition,
 leaders feared that linguistic states would encourage division. The <b>Dhar Commission</b> and the <b>JVP Committee</b>
@@ -4397,9 +4541,12 @@ true.</p></section>
 <article class="unit" id="I45">
   <header class="unit-head"><p class="kicker">Unit I45 · 1947 – 1964</p><h2>Nation-Building in the Nehru Era and Planning</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Constituent Assembly; Planning Commission; Five-Year Plans; land reforms; Non-Alignment; Panchsheel; 1962 war; Bhoodan</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Post-independence consolidation — planning, land reforms, foreign policy; Nehru's legacy</li></ul></div>
-    <p class="weight">Planning (Mahalanobis model), land reforms and Non-Alignment are frequently asked. Links to Economy and International Relations.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI11</span> Post-independence nation building (up to 2000): reorganisation of states, institution building in the Nehruvian age, planning and economic reforms, science and technology</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH6</span> Post-independence: accession of princely states, linguistic reorganisation, S&T, women empowerment</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Constituent Assembly; Planning Commission; Five-Year Plans; land reforms; Non-Alignment; Panchsheel; 1962 war; Bhoodan</li></ul>
+    
+    <p class="weight">Planning (Mahalanobis model), land reforms and Non-Alignment are frequently asked. Links to Economy and International Relations.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>India at independence faced partition refugees, communal violence, integration of states, poverty and illiteracy.
 Under <b>Jawaharlal Nehru</b> (Prime Minister 1947–64), the new state built its foundations: a democratic
@@ -4492,9 +4639,12 @@ survived. <b>Sunil Khilnani</b> (<i>The Idea of India</i>) analyses Nehru's visi
 <article class="unit" id="I46">
   <header class="unit-head"><p class="kicker">Unit I46 · 1947 – 2000s</p><h2>Science and Technology; Economic Reforms of 1991</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Atomic energy and space programmes; Green and White Revolutions; IT; 1991 crisis and LPG reforms</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I: Post-independence India — science and technology, economic reforms</li></ul></div>
-    <p class="weight">This closes the RAS history syllabus's "post-independence" section. Detailed science and economy content belongs in GS-III notebooks; here the historical narrative is enough.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI11</span> Post-independence nation building (up to 2000): reorganisation of states, institution building in the Nehruvian age, planning and economic reforms, science and technology</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH6</span> Post-independence: accession of princely states, linguistic reorganisation, S&T, women empowerment</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Atomic energy and space programmes; Green and White Revolutions; IT; 1991 crisis and LPG reforms</li></ul>
+    
+    <p class="weight">This closes the RAS history syllabus's "post-independence" section. Detailed science and economy content belongs in GS-III notebooks; here the historical narrative is enough.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Independent India invested early in <b>science and technology</b> — atomic energy (Homi Bhabha), space (Vikram
 Sarabhai), agricultural research (M.S. Swaminathan) — as tools of self-reliance. The <b>Green Revolution</b> (late
@@ -4559,6 +4709,441 @@ of the Indian Atomic Bomb</i>) and <b>Gyan Prakash</b> (<i>Another Reason</i>) s
   <section class="block "><h3><span class="num">9</span>Self-test</h3><ol class="test"><li><p>Who is the father of India's nuclear programme?</p><details><summary>Answer</summary><p>Homi J. Bhabha.</p></details></li><li><p>Where was India's first rocket launched?</p><details><summary>Answer</summary><p>Thumba (1963).</p></details></li><li><p>When was Pokhran-I conducted?</p><details><summary>Answer</summary><p>18 May 1974.</p></details></li><li><p>What was India's first satellite?</p><details><summary>Answer</summary><p>Aryabhata (1975).</p></details></li><li><p>Who led Operation Flood?</p><details><summary>Answer</summary><p>Verghese Kurien.</p></details></li><li><p>Who led the IGMDP?</p><details><summary>Answer</summary><p>A.P.J. Abdul Kalam.</p></details></li><li><p>Name two causes of the 1991 crisis.</p><details><summary>Answer</summary><p>Fiscal deficits and the Gulf War oil shock (also debt, Soviet collapse).</p></details></li><li><p>Who was Finance Minister in 1991?</p><details><summary>Answer</summary><p>Manmohan Singh.</p></details></li></ol></section>
   <section class="block "><h3><span class="num">10</span>Glossary (हिन्दी ↔ English)</h3><table class="gloss"><tr><th>हिन्दी</th><th>English</th><th>Meaning</th></tr><tr><td lang="hi">हरित क्रांति</td><td>Green Revolution</td><td>Rise in grain output through HYV seeds.</td></tr><tr><td lang="hi">श्वेत क्रांति</td><td>White Revolution</td><td>Rise in milk production.</td></tr><tr><td lang="hi">उदारीकरण</td><td>Liberalisation</td><td>Removal of controls.</td></tr><tr><td lang="hi">निजीकरण</td><td>Privatisation</td><td>Transfer to private sector.</td></tr><tr><td lang="hi">वैश्वीकरण</td><td>Globalisation</td><td>Integration with world economy.</td></tr><tr><td lang="hi">भुगतान संतुलन</td><td>Balance of payments</td><td>Record of external transactions.</td></tr></table></section>
   <section class="block sources"><h3>Sources used for this unit</h3><ul><li>Bipan Chandra et al., <i>India since Independence</i>, chs. 22–24, 29.</li><li>Ramachandra Guha, <i>India after Gandhi</i>.</li><li>NCERT Class 11, <i>Indian Economic Development</i>, chs. 1–3.</li></ul></section>
+</article>
+<article class="unit" id="I47">
+  <header class="unit-head"><p class="kicker">Unit I47 · 1829 – 2001</p><h2>Women's Reform Movement and Women's Empowerment</h2></header>
+  <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI9</span> British imperialism and resistance (Maratha, Mysore, Sikh); Revolt of 1857; British political, economic and administrative policies; emergence of nationalism; socio-religious movements</li><li><span class="lid">PI11</span> Post-independence nation building (up to 2000): reorganisation of states, institution building in the Nehruvian age, planning and economic reforms, science and technology</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH5</span> Socio-religious reform movements (19th–20th century), intellectual awakening</li><li><span class="lid">IH6</span> Post-independence: accession of princely states, linguistic reorganisation, S&T, women empowerment</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Social reform for women in the 19th century: sati, widow remarriage, female infanticide, child marriage, education</li><li>Women reformers: Savitribai Phule, Pandita Ramabai, Tarabai Shinde, Rukhmabai, D.K. Karve, Begum Rokeya</li><li>Women's organisations: WIA (1917), NCWI (1925), AIWC (1927); women in the freedom struggle</li><li>After 1947: constitutional guarantees, Hindu Code laws, Towards Equality (1974), NCW (1992), 73rd and 74th Amendments</li><li>Rajasthan link: Deorala (1987) and the Sati (Prevention) law; the Women's Development Programme and the Bhanwari Devi case leading to Vishaka (1997)</li></ul>
+    
+    <p class="weight">New in the 2026 syllabus, so there is no RAS PYQ yet. Expect a 10-mark question on the course of the women's movement from social reform to empowerment, and short questions on laws, reports and reformers. Links: I35 (reform movements), I42 (women in Quit India), Law notebook (Domestic Violence Act, POSH Act).</p></section>
+  <section class="block "><h3><span class="num">2</span>The big picture</h3>
+<p>The women's question in India moved through three stages. <b>First (c. 1820–1900)</b>, male reformers sought
+legal change for women: the ban on <b>sati</b> (1829), the <b>Widow Remarriage Act</b> (1856) and the <b>Age of
+Consent Act</b> (1891), with schools for girls. Women such as Savitribai Phule and Pandita Ramabai began speaking for
+themselves. <b>Second (1900–1947)</b>, women organised: the <b>Women's Indian Association</b> (1917) and the <b>All
+India Women's Conference</b> (1927) demanded education, suffrage and legal reform, while thousands joined the Salt
+Satyagraha and Quit India. <b>Third (after 1947)</b>, the Constitution promised equality, the <b>Hindu Code</b> laws
+(1955–56) reformed family law, the report <b>Towards Equality</b> (1974) showed how far reality lagged behind, and a
+new autonomous women's movement pressed for laws on dowry, rape and violence, leading to the <b>National Commission for
+Women</b> (1992) and one-third reservation in local bodies (<b>73rd and 74th Amendments</b>, 1992).</p>
+<div class="box why"><p>Answer frame: reform <i>for</i> women → movement <i>by</i> women → rights and empowerment
+<i>through</i> the state and law; end with a Rajasthan example (Deorala 1987, Bhanwari Devi and Vishaka 1997).</p></div><ol class="timeline"><li><span class="when">4 December 1829</span><span class="what">Bengal Sati Regulation (Regulation XVII) under William Bentinck</span></li><li><span class="when">1 January 1848</span><span class="what">Jyotiba and Savitribai Phule open a girls' school in Pune</span></li><li><span class="when">1849</span><span class="what">J.E.D. Bethune founds a girls' school in Calcutta</span></li><li><span class="when">1856</span><span class="what">Hindu Widows' Remarriage Act (Act XV), campaign of Ishwar Chandra Vidyasagar</span></li><li><span class="when">1870</span><span class="what">Female Infanticide Prevention Act</span></li><li><span class="when">1882</span><span class="what">Tarabai Shinde publishes Stri Purush Tulana; Pandita Ramabai founds the Arya Mahila Samaj</span></li><li><span class="when">1891</span><span class="what">Age of Consent Act raises the age of consent to 12</span></li><li><span class="when">1916</span><span class="what">D.K. Karve founds the Indian Women's University (now SNDT), Pune</span></li><li><span class="when">1917</span><span class="what">Women's Indian Association, Madras (Annie Besant, Margaret Cousins, Dorothy Jinarajadasa)</span></li><li><span class="when">1925</span><span class="what">Sarojini Naidu presides over the Kanpur Congress</span></li><li><span class="when">1927</span><span class="what">All India Women's Conference, Pune</span></li><li><span class="when">1929</span><span class="what">Child Marriage Restraint Act (Sarda Act)</span></li><li><span class="when">1931</span><span class="what">Karachi Congress resolution on fundamental rights includes equality of sexes</span></li><li><span class="when">1955–56</span><span class="what">Hindu Marriage, Succession, Minority and Guardianship, and Adoptions and Maintenance Acts</span></li><li><span class="when">1961</span><span class="what">Dowry Prohibition Act; Maternity Benefit Act</span></li><li><span class="when">1974</span><span class="what">Towards Equality: report of the Committee on the Status of Women in India</span></li><li><span class="when">1987</span><span class="what">Deorala sati (Sikar, Rajasthan); Commission of Sati (Prevention) Act</span></li><li><span class="when">1992</span><span class="what">National Commission for Women set up; 73rd and 74th Amendments passed</span></li><li><span class="when">1997</span><span class="what">Supreme Court's Vishaka guidelines on sexual harassment at work</span></li><li><span class="when">2001</span><span class="what">National Policy for the Empowerment of Women</span></li></ol></section>
+  <section class="block "><h3><span class="num">3</span>Core notes</h3><div class="topic"><h4>I47.1 Stage 1: social reform for women (19th century)</h4>
+<div class="tbl"><table>
+<tr><th>Issue</th><th>Reformer</th><th>Outcome</th></tr>
+<tr><td>Sati</td><td>Raja Rammohan Roy</td><td>Bengal Regulation XVII, 1829 (Bentinck)</td></tr>
+<tr><td>Widow remarriage</td><td>Ishwar Chandra Vidyasagar</td><td>Hindu Widows' Remarriage Act, 1856</td></tr>
+<tr><td>Female infanticide</td><td>British officials; reformers</td><td>Bengal regulations (1795, 1804); Female Infanticide Prevention Act, 1870</td></tr>
+<tr><td>Child marriage</td><td>Behramji Malabari; the Rukhmabai case (1884–88)</td><td>Age of Consent Act, 1891 (12 years); Sarda Act, 1929</td></tr>
+<tr><td>Education</td><td>Phules, Bethune, Vidyasagar, Karve</td><td>Girls' schools (Pune 1848, Calcutta 1849); widows' home (1896) and women's university (1916) by Karve</td></tr>
+</table></div>
+<p><b>Women's own voices.</b> <b>Savitribai Phule</b> taught at the first girls' school and wrote poetry against caste and
+gender oppression. <b>Tarabai Shinde</b>'s <i>Stri Purush Tulana</i> (1882) attacked double standards. <b>Pandita
+Ramabai</b> founded the Arya Mahila Samaj (1882) and Sharada Sadan (1889) for widows. <b>Rukhmabai</b> refused to
+accept a child marriage and became one of India's first women doctors. <b>Begum Rokeya Sakhawat Hossain</b> wrote
+<i>Sultana's Dream</i> (1905) and worked for Muslim girls' education in Bengal.</p></div><div class="topic"><h4>I47.2 Stage 2: women organise (1900–1947)</h4>
+<ul>
+<li><b>Organisations:</b> Women's Indian Association (1917, Madras), National Council of Women in India (1925), and the
+<b>All India Women's Conference</b> (1927, Pune), which began with education and moved on to suffrage and legal
+reform.</li>
+<li><b>Politics:</b> Annie Besant presided over the Congress in 1917 and Sarojini Naidu in 1925, the first Indian woman
+to do so. Women won a limited franchise in the provinces in the 1920s and under the 1935 Act.</li>
+<li><b>Freedom struggle:</b> mass participation in the Salt Satyagraha (1930); in Quit India, Aruna Asaf Ali hoisted the
+flag at Gowalia Tank (9 August 1942) and Usha Mehta ran the underground Congress Radio; the INA's Rani of Jhansi
+Regiment was led by Lakshmi Swaminathan.</li>
+<li><b>Karachi resolution (1931)</b> promised equal rights regardless of sex: the bridge to the Constitution.</li>
+</ul></div><div class="topic"><h4>I47.3 Stage 3: rights and empowerment after 1947</h4>
+<ul>
+<li><b>Constitution:</b> equality (Art. 14), no discrimination on grounds of sex with special provisions allowed for
+women (Art. 15(1), 15(3)), equal opportunity (Art. 16), equal pay for equal work (Art. 39(d)), maternity relief
+(Art. 42), and the duty to renounce practices derogatory to women (Art. 51A(e), added in 1976).</li>
+<li><b>Hindu Code laws (1955–56):</b> monogamy and divorce, daughters' inheritance, guardianship and adoption. The
+Special Marriage Act (1954) allowed civil marriage.</li>
+<li><b>Other laws:</b> Dowry Prohibition Act (1961), Maternity Benefit Act (1961), Equal Remuneration Act (1976).</li>
+<li><b>Towards Equality (1974):</b> the Committee on the Status of Women in India found falling sex ratios and
+widespread disadvantage; it gave rise to women's studies and a new women's movement.</li>
+<li><b>Autonomous women's movement (1970s–80s):</b> campaigns against dowry deaths and custodial rape (the Mathura case
+led to the 1983 criminal law amendment).</li>
+<li><b>Institutions:</b> National Commission for Women (1992, under the 1990 Act); <b>73rd and 74th Amendments</b>
+(1992) reserving at least one-third of seats in panchayats and municipalities for women; National Policy for the
+Empowerment of Women (2001).</li>
+</ul></div><div class="topic"><h4>I47.4 Rajasthan link</h4>
+<ul>
+<li><b>Deorala, Sikar (1987):</b> the sati of Roop Kanwar led to the Rajasthan Sati (Prevention) law and the central
+<b>Commission of Sati (Prevention) Act, 1987</b>.</li>
+<li><b>Women's Development Programme (1984):</b> village-level workers (sathins) campaigned against child marriage.
+The gang-rape of <b>Bhanwari Devi</b>, a sathin, in 1992 led to the Supreme Court's <b>Vishaka guidelines</b> (1997),
+later the basis of the POSH Act 2013 (Law notebook).</li>
+<li>Rajasthan's women reformers and Praja Mandal activists are covered in the Rajasthan History notebook (R19, R20).</li>
+</ul></div></section>
+  <section class="block "><h3><span class="num">4</span>What historians say</h3>
+<p><b>Geraldine Forbes</b> (<i>Women in Modern India</i>, 1996) traces the move from reform for women to women's
+organisations. <b>Radha Kumar</b> (<i>The History of Doing</i>, 1993) documents campaigns from the 19th century to the
+1990s. <b>Uma Chakravarti</b> and <b>Lata Mani</b> argue that 19th-century reform debated women more than it listened
+to them; Mani shows the sati debate was really about scripture and colonial authority. <b>Vina Mazumdar</b>, member
+secretary of the 1974 committee, describes <i>Towards Equality</i> as the starting point of women's studies in
+India.</p></section>
+  <section class="block facts"><h3><span class="num">5</span>Prelims fact bank</h3><ul><li>Sati was banned in Bengal by Regulation XVII of 4 December 1829 under William Bentinck.</li><li>The Hindu Widows' Remarriage Act was passed in 1856 after Ishwar Chandra Vidyasagar's campaign.</li><li>Jyotiba and Savitribai Phule opened a girls' school in Pune on 1 January 1848.</li><li>Tarabai Shinde wrote Stri Purush Tulana in 1882.</li><li>Pandita Ramabai founded the Arya Mahila Samaj in 1882 and Sharada Sadan in 1889.</li><li>The Age of Consent Act, 1891 raised the age of consent to 12 years.</li><li>D.K. Karve founded the Indian Women's University in Pune in 1916.</li><li>The Women's Indian Association was founded in Madras in 1917.</li><li>The All India Women's Conference held its first session in Pune in 1927.</li><li>The Child Marriage Restraint Act of 1929 is known as the Sarda Act.</li><li>Sarojini Naidu was the first Indian woman president of the Congress (Kanpur, 1925).</li><li>Towards Equality was the 1974 report of the Committee on the Status of Women in India.</li><li>The National Commission for Women was set up in 1992.</li><li>The 73rd and 74th Amendments reserve at least one-third of local body seats for women.</li><li>The Vishaka guidelines (1997) followed the Bhanwari Devi case in Rajasthan.</li><li>The Commission of Sati (Prevention) Act was passed in 1987 after the Deorala case.</li></ul><p class="label trap-label">Exam traps</p><ul><li>Annie Besant (1917) was the first woman Congress president; Sarojini Naidu (1925) the first Indian woman.</li><li>Age of Consent Act 1891 (consent at 12) ≠ Sarda Act 1929 (marriage age).</li><li>Regulation XVII (1829) applied to Bengal first; it was extended to Madras and Bombay later.</li><li>NCW Act 1990; the commission was constituted in 1992.</li><li>Art. 51A(e) was added by the 42nd Amendment (1976), not in the original Constitution.</li></ul></section>
+  <section class="block "><h3><span class="num">6</span>Previous-year questions (RAS)</h3><p class="note">Women empowerment and the women reform movement enter the RAS Mains syllabus for the first time in 2026, so there is no previous question. The 2018 Mains question on the Indian Renaissance (I35) can be answered better with material from Stage 1 of this unit.</p></section>
+  <section class="block "><h3><span class="num">7</span>Mains answer writing</h3><div class="mains">
+      <p class="mq"><span class="tag">10 marks · 100 words</span> Trace the evolution of the women's movement in India from social reform to empowerment.</p>
+      <p class="label">How to frame it</p><ul><li>Stage 1: reform for women (sati, widow remarriage, education)</li><li>Stage 2: women's organisations and the freedom struggle</li><li>Stage 3: Constitution, Hindu Code, Towards Equality</li><li>Institutions: NCW, 73rd/74th Amendments</li><li>Rajasthan example</li><li>Conclusion</li></ul>
+      <details><summary>Model answer (101 words)</summary><div class="answer"><p>In the 19th century reformers sought laws for women: the sati ban (1829), widow remarriage (1856) and the Age of Consent Act (1891), with girls' schools started by the Phules. Women then organised through the WIA (1917) and AIWC (1927) and joined the Salt and Quit India movements. After 1947 the Constitution promised equality and the Hindu Code laws reformed family law, but Towards Equality (1974) exposed the gap, sparking campaigns against dowry and rape. The NCW (1992) and one-third reservation in local bodies followed. Rajasthan's Bhanwari Devi case produced the Vishaka guidelines (1997): reform became empowerment through law and participation.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">5 marks · 50 words</span> What was the significance of the report "Towards Equality" (1974)?</p>
+      <p class="label">How to frame it</p><ul><li>Committee</li><li>Findings</li><li>Impact</li></ul>
+      <details><summary>Model answer (43 words)</summary><div class="answer"><p>Prepared by the Committee on the Status of Women in India, it showed a falling sex ratio and deep disadvantage in health, education and work despite constitutional equality. It launched women's studies, revived an autonomous women's movement and shaped later laws and institutions.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">2 marks · 15 words</span> Who was Savitribai Phule?</p>
+      <p class="label">How to frame it</p><ul><li>Answer</li></ul>
+      <details><summary>Model answer (14 words)</summary><div class="answer"><p>Teacher and poet who, with Jyotiba Phule, opened a girls' school in Pune (1848).</p></div></details>
+    </div></section>
+  <section class="block card"><h3><span class="num">8</span>One-screen revision card</h3><ul><li>Reform for women: sati 1829 · widow remarriage 1856 · infanticide Act 1870 · consent 1891 · Sarda 1929.</li><li>Women's voices: Savitribai Phule (1848 school), Tarabai Shinde (1882), Pandita Ramabai (1882, 1889), Rukhmabai, Begum Rokeya (1905).</li><li>Organisations: WIA 1917 · NCWI 1925 · AIWC 1927; Besant 1917, Naidu 1925; Karachi 1931.</li><li>After 1947: Arts. 14, 15(3), 16, 39(d), 42, 51A(e) · Hindu Code 1955–56 · Dowry 1961 · Towards Equality 1974 · NCW 1992 · 73rd/74th 1992 · Policy 2001.</li><li>Rajasthan: Deorala 1987 → Sati Act; Bhanwari Devi → Vishaka 1997 → POSH 2013.</li></ul></section>
+  <section class="block "><h3><span class="num">9</span>Self-test</h3><ol class="test"><li><p>Which regulation banned sati, and under which Governor-General?</p><details><summary>Answer</summary><p>Regulation XVII of 1829, under William Bentinck.</p></details></li><li><p>Whose campaign led to the Widow Remarriage Act of 1856?</p><details><summary>Answer</summary><p>Ishwar Chandra Vidyasagar.</p></details></li><li><p>Who wrote Stri Purush Tulana?</p><details><summary>Answer</summary><p>Tarabai Shinde (1882).</p></details></li><li><p>Which institutions did Pandita Ramabai found?</p><details><summary>Answer</summary><p>Arya Mahila Samaj (1882) and Sharada Sadan (1889).</p></details></li><li><p>Where and when did the AIWC first meet?</p><details><summary>Answer</summary><p>Pune, 1927.</p></details></li><li><p>What is the Sarda Act?</p><details><summary>Answer</summary><p>The Child Marriage Restraint Act, 1929.</p></details></li><li><p>What did Towards Equality (1974) report on?</p><details><summary>Answer</summary><p>The status of women in India (Committee on the Status of Women in India).</p></details></li><li><p>Which constitutional amendments reserved one-third of local body seats for women?</p><details><summary>Answer</summary><p>The 73rd and 74th (1992).</p></details></li><li><p>Which Rajasthan case led to the Vishaka guidelines?</p><details><summary>Answer</summary><p>The Bhanwari Devi case.</p></details></li></ol></section>
+  <section class="block "><h3><span class="num">10</span>Glossary (हिन्दी ↔ English)</h3><table class="gloss"><tr><th>हिन्दी</th><th>English</th><th>Meaning</th></tr><tr><td lang="hi">सती प्रथा</td><td>Sati</td><td>Burning of a widow on her husband's pyre.</td></tr><tr><td lang="hi">विधवा पुनर्विवाह</td><td>Widow remarriage</td><td>Remarriage of widows.</td></tr><tr><td lang="hi">बाल विवाह</td><td>Child marriage</td><td>Marriage below the legal age.</td></tr><tr><td lang="hi">महिला सशक्तिकरण</td><td>Women empowerment</td><td>Gaining rights, resources and decision-making power.</td></tr><tr><td lang="hi">साथिन</td><td>Sathin</td><td>Village worker of Rajasthan's Women's Development Programme.</td></tr></table></section>
+  <section class="block sources"><h3>Sources used for this unit</h3><ul><li>Geraldine Forbes, <i>Women in Modern India</i> (Cambridge, 1996).</li><li>Radha Kumar, <i>The History of Doing</i> (Kali for Women, 1993).</li><li>Government of India, <i>Towards Equality: Report of the Committee on the Status of Women in India</i> (1974).</li><li>Constitution of India (Bare Act); National Commission for Women Act, 1990; Vishaka v. State of Rajasthan (1997).</li><li>Bipan Chandra et al., <i>India's Struggle for Independence</i>, and NCERT Class 12, <i>Themes in Indian History III</i>.</li></ul></section>
+</article>
+<article class="unit" id="I48">
+  <header class="unit-head"><p class="kicker">Unit I48 · c. 2600 BCE – 1931 CE</p><h2>Architecture: Indus to the British Era</h2></header>
+  <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI3</span> Art and architecture and scientific development in ancient India</li><li><span class="lid">PI7</span> Development of art and architecture, literature, painting and music in the medieval period</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Harappan town planning: Mohenjodaro, Dholavira, Lothal</li><li>Mauryan pillars, stupas and rock-cut caves; post-Mauryan stupas and chaityas</li><li>Temple architecture: Gupta beginnings; Nagara, Dravida and Vesara styles; Pallava, Chola, Chandela, Odisha, Hoysala</li><li>Indo-Islamic architecture: Sultanate, provincial styles, Vijayanagara, Mughal</li><li>Colonial architecture: Indo-Saracenic, New Delhi</li></ul>
+    
+    <p class="weight">Indian heritage (IH1) carried 55.5 marks across the five Mains papers 2016–2024, the sixth most-tested line. Architecture questions: Mauryan pillars (2023, 10 marks), indigenous impact on Mughal architecture (2024, 5 marks); the 2023 "continuity of culture" question (10 marks) is best answered with examples from this unit and I49–I51. Rajasthan forts, temples and havelis are in the Art, Culture and Heritage notebook (book 6).</p></section>
+  <section class="block "><h3><span class="num">2</span>The big picture</h3>
+<p>Indian architecture shows <b>continuity with change</b>. The <b>Harappans</b> built planned cities of baked brick
+with drains and a citadel. The <b>Mauryas</b> introduced monumental stone: polished pillars, the first stupas and
+rock-cut caves. Buddhist stupas and chaityas grew in the post-Mauryan centuries. The <b>Gupta</b> period gave the first
+structural temples, which matured into the <b>Nagara</b> (north), <b>Dravida</b> (south) and <b>Vesara</b> (Deccan)
+styles. From the 13th century the <b>Indo-Islamic</b> tradition added the true arch, dome and minaret; Indian craftsmen
+blended these with brackets, chhatris and lotus motifs, a synthesis that peaked under the <b>Mughals</b>. The British
+added the <b>Indo-Saracenic</b> style and the new capital at <b>New Delhi</b>.</p>
+<div class="box why"><p>For any architecture answer: structure (plan, materials, technique) → features → one or two
+named monuments with patron and date → what it shows about continuity or synthesis.</p></div><ol class="timeline"><li><span class="when">c. 2600–1900 BCE</span><span class="what">Mature Harappan cities: Great Bath at Mohenjodaro, dockyard at Lothal, reservoirs at Dholavira</span></li><li><span class="when">3rd century BCE</span><span class="what">Ashoka: polished sandstone pillars, core of the Sanchi stupa, Barabar caves for the Ajivikas</span></li><li><span class="when">2nd century BCE – 1st century CE</span><span class="what">Bharhut railings; gateways (toranas) of Sanchi; chaityas at Bhaja and Karle</span></li><li><span class="when">5th century CE</span><span class="what">Gupta temples: Sanchi Temple 17, Tigawa, Dashavatara temple at Deogarh, brick temple at Bhitargaon</span></li><li><span class="when">7th–8th century</span><span class="what">Pallava rathas at Mahabalipuram; Shore Temple under Narasimhavarman II (Rajasimha)</span></li><li><span class="when">c. 1010</span><span class="what">Brihadeeswara (Rajarajeshwara) temple, Thanjavur, completed under Rajaraja I</span></li><li><span class="when">c. 950–1050</span><span class="what">Chandela temples at Khajuraho (Kandariya Mahadeva)</span></li><li><span class="when">13th century</span><span class="what">Sun temple at Konark under Narasimhadeva I (Eastern Ganga); Qutub Minar begun by Aibak, completed by Iltutmish</span></li><li><span class="when">1311</span><span class="what">Alai Darwaza built by Alauddin Khalji</span></li><li><span class="when">c. 1569–72</span><span class="what">Humayun's tomb, Delhi</span></li><li><span class="when">1571–85</span><span class="what">Fatehpur Sikri, Akbar's capital</span></li><li><span class="when">1632–c. 1653</span><span class="what">Taj Mahal, Agra, under Shah Jahan</span></li><li><span class="when">1888</span><span class="what">Victoria Terminus, Bombay, designed by F.W. Stevens</span></li><li><span class="when">1931</span><span class="what">New Delhi inaugurated (Lutyens and Baker)</span></li></ol></section>
+  <section class="block "><h3><span class="num">3</span>Core notes</h3><div class="topic"><h4>I48.1 Harappan and Mauryan foundations</h4>
+<ul>
+<li><b>Harappan:</b> grid streets, covered drains, baked bricks in a standard 1:2:4 ratio, citadel and lower town.
+Mohenjodaro has the Great Bath and a large granary-like structure; Lothal a dockyard; Dholavira a three-part city
+with stone reservoirs.</li>
+<li><b>Mauryan pillars:</b> monolithic Chunar sandstone with a mirror polish, a plain tapering shaft without a base, and
+a capital carved from a separate block (inverted lotus, abacus, animal). The Sarnath lion capital is the national
+emblem.</li>
+<li><b>Origin debate:</b> some scholars saw Achaemenid (Persian) influence in the polish and bell capital. Others point
+to Indian features: shafts without a base (Persian columns stand on bases), monolithic shafts (Persian ones are built
+in segments), free-standing pillars rather than parts of buildings, and Indian animals and motifs. The 2023 Mains asked
+candidates to explain their indigenous origin.</li>
+<li><b>Caves and stupas:</b> the Barabar caves (Lomas Rishi has a carved chaitya façade) were given to the Ajivikas.
+Ashoka built the brick core of the Sanchi stupa; the stone casing and the four toranas came later.</li>
+</ul></div><div class="topic"><h4>I48.2 Temple architecture</h4>
+<div class="tbl"><table>
+<tr><th>Style</th><th>Region</th><th>Features</th><th>Examples</th></tr>
+<tr><td>Nagara</td><td>North India</td><td>Curvilinear shikhara over the sanctum; amalaka on top; no boundary wall as a rule</td><td>Khajuraho (Kandariya Mahadeva), Konark, Lingaraja at Bhubaneswar</td></tr>
+<tr><td>Dravida</td><td>Tamil country</td><td>Stepped pyramidal tower (vimana); enclosure wall; gopuram gateways that later grow taller than the vimana</td><td>Shore Temple, Brihadeeswara, Meenakshi temple (Madurai)</td></tr>
+<tr><td>Vesara</td><td>Deccan</td><td>Mix of the two; star-shaped plans under the Hoysalas</td><td>Aihole and Pattadakal (Chalukya), Belur and Halebidu (Hoysala)</td></tr>
+</table></div>
+<p>The common core stays the same throughout: <b>garbhagriha</b> (sanctum), <b>mandapa</b> (hall), a tower above the
+sanctum, and a circumambulatory path. Gupta temples such as Sanchi Temple 17 were flat-roofed; Deogarh shows an early
+shikhara.</p></div><div class="topic"><h4>I48.3 Indo-Islamic and Mughal synthesis</h4>
+<ul>
+<li><b>Sultanate:</b> early buildings used corbelled arches built by Indian masons (Quwwat-ul-Islam mosque). The
+<b>Alai Darwaza</b> (1311) shows true arches and a true dome. Tughlaq buildings have sloping walls and little
+decoration.</li>
+<li><b>Provincial styles:</b> Gujarat (Jama Masjid, Ahmedabad) drew heavily on temple carving; the Deccan built the
+Gol Gumbaz at Bijapur; Jaunpur gave the Atala Masjid.</li>
+<li><b>Vijayanagara:</b> Dravida temples with tall gopurams, musical pillars and kalyana mandapas (Vitthala temple,
+Hampi); the Lotus Mahal blends Indo-Islamic arches.</li>
+<li><b>Mughal:</b> double dome, charbagh garden and red sandstone with white marble (Humayun's tomb); Fatehpur Sikri
+mixes trabeate (post-and-beam) Indian construction with arches; Shah Jahan's buildings use white marble, pietra dura
+and cusped arches (Taj Mahal, Red Fort and Jama Masjid of Delhi).</li>
+<li><b>Indigenous impact on Mughal architecture</b> (Mains 2024): chhatris, brackets and chhajjas, jharokhas, lotus and
+kalash finials, trabeate halls (Jodha Bai's palace, Panch Mahal), and the Hindu craftsmen of Rajasthan and Gujarat who
+built them.</li>
+</ul></div><div class="topic"><h4>I48.4 Colonial architecture</h4>
+<ul>
+<li><b>Neo-classical and Gothic:</b> early public buildings in Calcutta and Bombay followed European styles (Writers'
+Building, Bombay University buildings).</li>
+<li><b>Indo-Saracenic:</b> European plans with Mughal and Rajput domes, chhatris and arches: Victoria Terminus (F.W.
+Stevens, 1888), Madras High Court, Mysore Palace, Gateway of India (completed 1924).</li>
+<li><b>New Delhi:</b> capital moved from Calcutta in 1911; Edwin Lutyens and Herbert Baker designed it; inaugurated in
+1931. The Viceroy's House (Rashtrapati Bhavan) uses a dome inspired by the Sanchi stupa and Mughal chhatris.</li>
+<li>The <b>Victoria Memorial</b>, Calcutta (William Emerson, opened 1921) uses white Makrana marble from Rajasthan.</li>
+</ul></div></section>
+  <section class="block "><h3><span class="num">4</span>What historians say</h3>
+<p><b>Percy Brown</b> (<i>Indian Architecture</i>, 2 volumes) set the Buddhist–Hindu and Islamic periods that most
+textbooks still use. <b>Stella Kramrisch</b> (<i>The Hindu Temple</i>) explains the temple as a cosmic diagram.
+<b>Ebba Koch</b> (<i>Mughal Architecture</i>) shows how the Mughals combined Timurid and Indian elements. On Mauryan
+pillars, <b>John Irwin</b> argued for an Indian pillar cult older than Ashoka, while older writers stressed Persian
+influence; the NCERT Class 11 text <i>An Introduction to Indian Art</i> presents both views.</p></section>
+  <section class="block facts"><h3><span class="num">5</span>Prelims fact bank</h3><ul><li>Harappan baked bricks follow a standard 1:2:4 ratio.</li><li>The Great Bath is at Mohenjodaro; the dockyard is at Lothal.</li><li>Mauryan pillars are monolithic Chunar sandstone with a mirror polish.</li><li>The Sarnath lion capital of Ashoka is India's national emblem.</li><li>The Barabar caves were dedicated to the Ajivikas.</li><li>The Dashavatara temple at Deogarh is a Gupta temple with an early shikhara.</li><li>The Shore Temple at Mahabalipuram was built under Narasimhavarman II (Rajasimha).</li><li>The Brihadeeswara temple at Thanjavur was completed around 1010 under Rajaraja I.</li><li>The Konark Sun temple was built under Narasimhadeva I of the Eastern Ganga dynasty.</li><li>The Alai Darwaza (1311) has the first true arches and dome in India.</li><li>Nagara temples have a curvilinear shikhara; Dravida temples have a pyramidal vimana and gopurams.</li><li>Humayun's tomb has a double dome and a charbagh garden.</li><li>Victoria Terminus in Bombay was designed by F.W. Stevens and completed in 1888.</li><li>New Delhi was designed by Edwin Lutyens and Herbert Baker and inaugurated in 1931.</li></ul><p class="label trap-label">Exam traps</p><ul><li>Qutub Minar was begun by Aibak and completed by Iltutmish; Firoz Tughlaq repaired the top storeys.</li><li>The Shore Temple is structural; the five rathas are monolithic rock-cut shrines.</li><li>Ashoka built the brick core of Sanchi; the stone toranas are post-Mauryan.</li><li>Gol Gumbaz is at Bijapur (Adil Shahi), not Golconda.</li><li>Vesara is the Deccan hybrid style, not a separate southern style.</li></ul></section>
+  <section class="block "><h3><span class="num">6</span>Previous-year questions (RAS)</h3><table class="pyq"><tr><th>Exam</th><th>Question</th><th>Marks</th></tr><tr><td>RAS Mains 2023</td><td>Mauryan pillars are of indigenous origin. Explain.</td><td>10</td></tr><tr><td>RAS Mains 2024</td><td>Examine the indigenous impact on Mughal architecture.</td><td>5</td></tr><tr><td>RAS Mains 2023</td><td>Continuity of culture is a unique feature of Indian civilization, which is unparalleled in world civilizations. Explain. (Use examples from I48–I51.)</td><td>10</td></tr></table><p class="note">Questions as printed in the RPSC Mains papers (GS Paper I), lightly edited for grammar. Prelims questions on architecture are listed in the units on the relevant dynasties.</p></section>
+  <section class="block "><h3><span class="num">7</span>Mains answer writing</h3><div class="mains">
+      <p class="mq"><span class="tag">10 marks · 100 words</span> Mauryan pillars are of indigenous origin. Explain.</p>
+      <p class="label">How to frame it</p><ul><li>Describe the pillars</li><li>Persian influence view</li><li>Indian features: no base, monolithic, free-standing</li><li>Indian motifs and purpose</li><li>Conclusion</li></ul>
+      <details><summary>Model answer (106 words)</summary><div class="answer"><p>Ashoka's pillars are monolithic Chunar sandstone shafts with a mirror polish, crowned by an inverted lotus, an abacus and animals, as at Sarnath. Their polish and bell capital led some scholars to see Persian influence. But the differences are basic: Persian columns stand on bases, are built in segments and support roofs, whereas Mauryan shafts have no base, are single blocks and stand free. The bull, elephant and lion, the lotus and the dharma-chakra are Indian motifs, and the pillars carried Ashoka's dhamma message. Irwin traced them to an older Indian pillar cult. Foreign ideas may have been absorbed, but the form and purpose are Indian.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">5 marks · 50 words</span> Examine the indigenous impact on Mughal architecture.</p>
+      <p class="label">How to frame it</p><ul><li>Indian elements</li><li>Examples</li><li>Craftsmen</li></ul>
+      <details><summary>Model answer (34 words)</summary><div class="answer"><p>Mughal buildings used Indian chhatris, brackets, chhajjas, jharokhas and lotus finials, and trabeate halls at Fatehpur Sikri (Panch Mahal, Jodha Bai's palace). Red sandstone, Makrana marble and Rajasthani and Gujarati craftsmen shaped the style.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">2 marks · 15 words</span> What is a gopuram?</p>
+      <p class="label">How to frame it</p><ul><li>Answer</li></ul>
+      <details><summary>Model answer (12 words)</summary><div class="answer"><p>The tall gateway tower in the enclosure wall of a Dravida-style temple.</p></div></details>
+    </div></section>
+  <section class="block card"><h3><span class="num">8</span>One-screen revision card</h3><ul><li>Harappan: grid, drains, 1:2:4 bricks; Great Bath (Mohenjodaro), dockyard (Lothal), reservoirs (Dholavira).</li><li>Mauryan: polished monolithic pillars, Sanchi core, Barabar caves (Ajivikas); indigenous-origin arguments.</li><li>Temples: Gupta (Deogarh) → Nagara / Dravida / Vesara; Shore Temple, Brihadeeswara c. 1010, Khajuraho, Konark.</li><li>Indo-Islamic: Alai Darwaza 1311 (true arch); Gol Gumbaz; Vitthala temple; Humayun's tomb, Fatehpur Sikri, Taj.</li><li>Colonial: Indo-Saracenic (VT 1888); New Delhi 1931 (Lutyens, Baker).</li></ul></section>
+  <section class="block "><h3><span class="num">9</span>Self-test</h3><ol class="test"><li><p>What is the ratio of Harappan baked bricks?</p><details><summary>Answer</summary><p>1:2:4.</p></details></li><li><p>Which site has a Harappan dockyard?</p><details><summary>Answer</summary><p>Lothal.</p></details></li><li><p>Give two features that distinguish Mauryan pillars from Persian columns.</p><details><summary>Answer</summary><p>No base; monolithic shaft (also free-standing).</p></details></li><li><p>For which sect were the Barabar caves cut?</p><details><summary>Answer</summary><p>The Ajivikas.</p></details></li><li><p>Under whom was the Brihadeeswara temple completed?</p><details><summary>Answer</summary><p>Rajaraja I (c. 1010).</p></details></li><li><p>Which dynasty built the Konark Sun temple?</p><details><summary>Answer</summary><p>The Eastern Gangas (Narasimhadeva I).</p></details></li><li><p>Which building first shows the true arch and dome in India?</p><details><summary>Answer</summary><p>The Alai Darwaza (1311).</p></details></li><li><p>Name the three temple styles and their regions.</p><details><summary>Answer</summary><p>Nagara (north), Dravida (south), Vesara (Deccan).</p></details></li><li><p>Who designed New Delhi?</p><details><summary>Answer</summary><p>Edwin Lutyens and Herbert Baker.</p></details></li></ol></section>
+  <section class="block "><h3><span class="num">10</span>Glossary (हिन्दी ↔ English)</h3><table class="gloss"><tr><th>हिन्दी</th><th>English</th><th>Meaning</th></tr><tr><td lang="hi">गर्भगृह</td><td>Garbhagriha</td><td>Sanctum of a temple.</td></tr><tr><td lang="hi">शिखर</td><td>Shikhara</td><td>Tower over the sanctum in Nagara temples.</td></tr><tr><td lang="hi">विमान</td><td>Vimana</td><td>Pyramidal tower over the sanctum in Dravida temples.</td></tr><tr><td lang="hi">तोरण</td><td>Torana</td><td>Gateway, as at the Sanchi stupa.</td></tr><tr><td lang="hi">छतरी</td><td>Chhatri</td><td>Domed kiosk on pillars.</td></tr><tr><td lang="hi">चारबाग</td><td>Charbagh</td><td>Garden divided into four parts by water channels.</td></tr></table></section>
+  <section class="block sources"><h3>Sources used for this unit</h3><ul><li>NCERT Class 11, <i>An Introduction to Indian Art, Part I</i> (2002 edition).</li><li>Percy Brown, <i>Indian Architecture</i> (Buddhist and Hindu; Islamic Period).</li><li>Ebba Koch, <i>Mughal Architecture</i> (1991).</li><li>Archaeological Survey of India site notes (Sanchi, Thanjavur, Konark, Fatehpur Sikri).</li></ul></section>
+</article>
+<article class="unit" id="I49">
+  <header class="unit-head"><p class="kicker">Unit I49 · Prehistory – 1905 CE</p><h2>Sculpture and Painting</h2></header>
+  <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI3</span> Art and architecture and scientific development in ancient India</li><li><span class="lid">PI7</span> Development of art and architecture, literature, painting and music in the medieval period</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Harappan sculpture: bronze, stone and terracotta; seals</li><li>Mauryan and post-Mauryan sculpture; Gandhara, Mathura and Amaravati schools</li><li>Gupta and early medieval sculpture: Sarnath, Elephanta, Ellora, Mahabalipuram; Chola bronzes</li><li>Painting: Bhimbetka, Ajanta, Bagh; Pala manuscripts; Mughal, Deccani and Pahari schools</li><li>Modern trends: Company painting, Raja Ravi Varma, the Bengal School</li></ul>
+    
+    <p class="weight">The most-tested part of IH1. RAS Mains asked about the Dancing Girl (2016, 2 marks), Gandhara vs Mathura (2016, 5), Mughal painting (2016, 10), Arjuna's Penance (2018, 2) and Harappan bronzes (2018, 5). Rajasthani painting schools are in book 6.</p></section>
+  <section class="block "><h3><span class="num">2</span>The big picture</h3>
+<p>Indian sculpture begins with the small bronzes and steatite figures of the <b>Harappans</b>, rises to the polished
+Mauryan court style, and becomes a narrative and devotional art in the stupa railings of Bharhut and Sanchi. Around
+the 1st–3rd centuries CE three schools shaped the Buddha image: <b>Gandhara</b> (Greco-Roman style), <b>Mathura</b>
+(Indian, red sandstone) and <b>Amaravati</b> (narrative, white limestone). The <b>Gupta</b> Buddha of Sarnath set the
+classical ideal; Pallava, Rashtrakuta and Chola art carried it into rock and bronze. Painting runs from the rock
+shelters of <b>Bhimbetka</b> to the murals of <b>Ajanta</b>, then to manuscript illustration, and to the
+<b>Mughal</b> atelier, where Persian and Indian painters created a new naturalistic style that fed Rajasthani and
+Pahari painting. Under colonial rule came Company painting, oil painting (<b>Raja Ravi Varma</b>) and the national
+<b>Bengal School</b>.</p><ol class="timeline"><li><span class="when">Mesolithic</span><span class="what">Rock paintings at Bhimbetka (Madhya Pradesh), a UNESCO World Heritage site</span></li><li><span class="when">c. 2500 BCE</span><span class="what">Bronze Dancing Girl and steatite Priest-King from Mohenjodaro</span></li><li><span class="when">3rd century BCE</span><span class="what">Sarnath lion capital; Didarganj Yakshi (dated by many to the Mauryan period)</span></li><li><span class="when">1st–3rd century CE</span><span class="what">Gandhara, Mathura and Amaravati schools under the Kushanas and Satavahanas</span></li><li><span class="when">5th century</span><span class="what">Sarnath Buddha (Gupta); Ajanta murals of Caves 1, 2, 16 and 17 (Vakataka period)</span></li><li><span class="when">7th century</span><span class="what">Arjuna's Penance (Descent of the Ganga), Mahabalipuram, under the Pallavas</span></li><li><span class="when">8th century</span><span class="what">Kailasa temple, Ellora (Rashtrakuta Krishna I); Elephanta Trimurti (c. 6th century)</span></li><li><span class="when">10th–11th century</span><span class="what">Chola bronzes: Nataraja</span></li><li><span class="when">c. 1557–77</span><span class="what">Hamzanama painted in Akbar's atelier</span></li><li><span class="when">1605–27</span><span class="what">Jahangir's reign: Mansur, Abul Hasan, Bishandas</span></li><li><span class="when">18th century</span><span class="what">Pahari schools: Basohli, Guler, Kangra</span></li><li><span class="when">1890s</span><span class="what">Raja Ravi Varma's oleograph press</span></li><li><span class="when">1905</span><span class="what">Abanindranath Tagore paints Bharat Mata</span></li></ol></section>
+  <section class="block "><h3><span class="num">3</span>Core notes</h3><div class="topic"><h4>I49.1 Harappan sculpture</h4>
+<ul>
+<li><b>Dancing Girl</b> (Mohenjodaro, bronze): made by the <b>lost-wax (cire perdue)</b> method; nude figure with a
+hand on the hip, the other arm covered with bangles, a necklace, and a confident pose. Mortimer Wheeler and others
+praised its naturalism.</li>
+<li><b>Other bronzes</b> (Mains 2018): bronze buffalo and ram, and the bronze chariot and animals from
+<b>Daimabad</b> (Maharashtra). They show knowledge of alloying and lost-wax casting.</li>
+<li><b>Stone:</b> the steatite <b>Priest-King</b> with a trefoil-patterned shawl; red sandstone male torso from
+Harappa.</li>
+<li><b>Terracotta</b> mother-goddess figures, toys; <b>seals</b> of steatite with animals (unicorn, bull) and the
+"Pashupati" seal.</li>
+</ul></div><div class="topic"><h4>I49.2 From Mauryan to Gupta</h4>
+<div class="tbl"><table>
+<tr><th>Feature</th><th>Gandhara</th><th>Mathura</th><th>Amaravati</th></tr>
+<tr><td>Region and patrons</td><td>North-west (Kushanas)</td><td>Mathura (Kushanas)</td><td>Andhra (Satavahanas, Ikshvakus)</td></tr>
+<tr><td>Material</td><td>Grey-blue schist, stucco</td><td>Spotted red sandstone</td><td>White marble-like limestone</td></tr>
+<tr><td>Influence</td><td>Greco-Roman (Hellenistic)</td><td>Indian, from yaksha figures</td><td>Indian, narrative</td></tr>
+<tr><td>Buddha image</td><td>Spiritual, wavy hair, heavy folded robes, moustache in some</td><td>Smiling, energetic, shaven head or snail curls, thin robe</td><td>Mostly in narrative panels, dynamic figures</td></tr>
+<tr><td>Subjects</td><td>Mainly Buddhist</td><td>Buddhist, Jain and Brahmanical</td><td>Mainly Buddhist</td></tr>
+</table></div>
+<p><b>Gupta:</b> the Sarnath seated Buddha (preaching posture, transparent robe) and the Mathura standing Buddha set the
+classical ideal; the Varaha panel at Udayagiri shows Brahmanical sculpture.</p></div><div class="topic"><h4>I49.3 Rock-cut and bronze masterpieces</h4>
+<ul>
+<li><b>Arjuna's Penance / Descent of the Ganga</b> (Mahabalipuram, Pallava, 7th century): a huge open-air relief on
+two boulders with a natural cleft for water; gods, sages, animals and an ascetic (identified as Arjuna or as
+Bhagiratha) and the famous cat imitating him.</li>
+<li><b>Elephanta</b>: the three-headed Shiva (Mahesamurti) in the main cave.</li>
+<li><b>Ellora</b>: 34 caves of Buddhist, Hindu and Jain faiths; the Kailasa temple (Cave 16) carved from the top down
+under Krishna I.</li>
+<li><b>Chola bronzes</b>: Nataraja dancing within a ring of fire, trampling the dwarf of ignorance, made by lost-wax.</li>
+</ul></div><div class="topic"><h4>I49.4 Painting</h4>
+<ul>
+<li><b>Ajanta:</b> Buddhist murals on lime plaster showing Jataka stories; the Bodhisattva Padmapani of Cave 1 is the
+best known. <b>Bagh</b> (Madhya Pradesh) has related murals.</li>
+<li><b>Manuscript painting:</b> Pala palm-leaf Buddhist manuscripts (eastern India) and Jain paper manuscripts
+(western India).</li>
+<li><b>Mughal painting</b> (Mains 2016): Humayun brought <b>Mir Sayyid Ali</b> and <b>Abd al-Samad</b> from Persia.
+Under <b>Akbar</b> the atelier, with Indian painters such as Daswanth and Basawan, produced the <i>Hamzanama</i>,
+<i>Razmnama</i> and <i>Akbarnama</i>: narrative, crowded, lively. Under <b>Jahangir</b> it turned to portraits and
+nature studies: <b>Ustad Mansur</b> (birds and animals), <b>Abul Hasan</b> (Nadir-uz-Zaman). Under Shah Jahan it
+became formal and decorative; Aurangzeb withdrew patronage and painters moved to Rajput and Pahari courts.</li>
+<li><b>Deccani</b> (Bijapur, Golconda) and <b>Pahari</b> (Basohli's bold colours, Kangra's lyrical Krishna themes).</li>
+<li><b>Colonial:</b> Company painting for British patrons; <b>Raja Ravi Varma</b>'s oil paintings and oleographs of
+mythological themes; <b>Abanindranath Tagore</b>'s Bengal School, which rejected Western academic art (Bharat Mata,
+1905).</li>
+</ul></div></section>
+  <section class="block "><h3><span class="num">4</span>What historians say</h3>
+<p><b>Ananda Coomaraswamy</b> argued that the Buddha image was an Indian creation at Mathura, against <b>Alfred
+Foucher</b>, who credited Gandhara and Greek influence; most scholars now accept that both arose around the same time.
+<b>Percy Brown</b> and <b>Milo Beach</b> (<i>Mughal and Rajput Painting</i>) trace the Mughal atelier. <b>Partha
+Mitter</b> studies colonial art and the Bengal School.</p></section>
+  <section class="block facts"><h3><span class="num">5</span>Prelims fact bank</h3><ul><li>The Harappan Dancing Girl from Mohenjodaro is a bronze made by the lost-wax method.</li><li>The bronze chariot hoard from Daimabad is from Maharashtra.</li><li>The Priest-King figure from Mohenjodaro is made of steatite.</li><li>Gandhara sculpture used grey-blue schist and shows Greco-Roman influence.</li><li>Mathura sculpture used spotted red sandstone.</li><li>Amaravati sculpture used white limestone and is mainly narrative.</li><li>The Sarnath seated Buddha is a Gupta sculpture in the preaching posture.</li><li>Arjuna's Penance at Mahabalipuram is a Pallava relief of the 7th century.</li><li>The Kailasa temple at Ellora was carved under the Rashtrakuta king Krishna I.</li><li>Chola bronzes of Nataraja were made by the lost-wax method.</li><li>Mir Sayyid Ali and Abd al-Samad founded the Mughal atelier under Humayun and Akbar.</li><li>The Hamzanama was painted in Akbar's atelier.</li><li>Ustad Mansur painted birds and animals for Jahangir.</li><li>Abanindranath Tagore painted Bharat Mata in 1905.</li></ul><p class="label trap-label">Exam traps</p><ul><li>Dancing Girl is bronze; the Priest-King is steatite (stone).</li><li>Mathura made Buddhist, Jain and Hindu images; Gandhara was mainly Buddhist.</li><li>Abul Hasan was titled Nadir-uz-Zaman; Mansur was Nadir-ul-Asr.</li><li>The Kailasa temple is Ellora Cave 16 (Rashtrakuta), not Elephanta.</li></ul></section>
+  <section class="block "><h3><span class="num">6</span>Previous-year questions (RAS)</h3><table class="pyq"><tr><th>Exam</th><th>Question</th><th>Marks</th></tr><tr><td>RAS Mains 2016</td><td>Write down any two attributes of the "Dancing Girl" statuette of the Indus Valley Civilization.</td><td>2</td></tr><tr><td>RAS Mains 2016</td><td>Explain the fundamental difference between the Gandhara and Mathura Schools of Art.</td><td>5</td></tr><tr><td>RAS Mains 2016</td><td>Write a detailed note on Mughal painting.</td><td>10</td></tr><tr><td>RAS Mains 2018</td><td>Briefly describe the "Arjun's Penance" sculpture.</td><td>2</td></tr><tr><td>RAS Mains 2018</td><td>Write a short note on bronze images found from Harappan sites.</td><td>5</td></tr></table><p class="note">Questions as printed in the RPSC Mains papers (GS Paper I), lightly edited for grammar.</p></section>
+  <section class="block "><h3><span class="num">7</span>Mains answer writing</h3><div class="mains">
+      <p class="mq"><span class="tag">10 marks · 100 words</span> Write a detailed note on Mughal painting.</p>
+      <p class="label">How to frame it</p><ul><li>Origins under Humayun</li><li>Akbar's atelier</li><li>Jahangir: portraits and nature</li><li>Shah Jahan and decline</li><li>Legacy</li></ul>
+      <details><summary>Model answer (94 words)</summary><div class="answer"><p>Humayun brought Mir Sayyid Ali and Abd al-Samad from Persia. Akbar organised a large atelier where Persian masters trained Indian painters such as Daswanth and Basawan; works like the Hamzanama and Razmnama are lively, crowded narratives that blend Persian line with Indian colour. Jahangir preferred single portraits and nature studies: Mansur painted birds and animals, Abul Hasan court scenes, and European perspective and shading appeared. Under Shah Jahan painting became formal and ornate. Aurangzeb withdrew patronage, so painters moved to Rajput and Pahari courts, where the Mughal style shaped Kishangarh, Kangra and other schools.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">5 marks · 50 words</span> Write a short note on bronze images found from Harappan sites.</p>
+      <p class="label">How to frame it</p><ul><li>Technique</li><li>Examples</li><li>Significance</li></ul>
+      <details><summary>Model answer (39 words)</summary><div class="answer"><p>Harappans cast bronzes by the lost-wax method. The Dancing Girl of Mohenjodaro is the best known; a buffalo and a ram are also known, and Daimabad yielded a chariot with animals. They show skill in alloying and lifelike modelling.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">2 marks · 15 words</span> Briefly describe the "Arjun's Penance" sculpture.</p>
+      <p class="label">How to frame it</p><ul><li>Answer</li></ul>
+      <details><summary>Model answer (13 words)</summary><div class="answer"><p>A 7th-century Pallava open-air relief at Mahabalipuram showing the descent of the Ganga.</p></div></details>
+    </div></section>
+  <section class="block card"><h3><span class="num">8</span>One-screen revision card</h3><ul><li>Harappan: Dancing Girl (bronze, lost-wax), Priest-King (steatite), Daimabad bronzes, seals, terracotta.</li><li>Gandhara (schist, Greek) · Mathura (red sandstone, Indian, all faiths) · Amaravati (limestone, narrative).</li><li>Gupta Sarnath Buddha; Arjuna's Penance (Pallava); Elephanta Trimurti; Ellora Kailasa (Krishna I); Chola Nataraja.</li><li>Painting: Bhimbetka → Ajanta/Bagh → Pala, Jain → Mughal (Akbar narrative, Jahangir portrait) → Pahari.</li><li>Colonial: Company painting, Ravi Varma, Bengal School (Bharat Mata 1905).</li></ul></section>
+  <section class="block "><h3><span class="num">9</span>Self-test</h3><ol class="test"><li><p>By what method was the Dancing Girl made?</p><details><summary>Answer</summary><p>The lost-wax (cire perdue) method.</p></details></li><li><p>Which site yielded a Harappan bronze chariot?</p><details><summary>Answer</summary><p>Daimabad.</p></details></li><li><p>What stone did Gandhara sculptors use?</p><details><summary>Answer</summary><p>Grey-blue schist (and stucco).</p></details></li><li><p>Which school produced Buddhist, Jain and Hindu images in red sandstone?</p><details><summary>Answer</summary><p>Mathura.</p></details></li><li><p>Which dynasty created Arjuna's Penance?</p><details><summary>Answer</summary><p>The Pallavas.</p></details></li><li><p>Under whom was the Kailasa temple at Ellora carved?</p><details><summary>Answer</summary><p>The Rashtrakuta king Krishna I.</p></details></li><li><p>Which two Persian painters founded the Mughal atelier?</p><details><summary>Answer</summary><p>Mir Sayyid Ali and Abd al-Samad.</p></details></li><li><p>For what was Ustad Mansur known?</p><details><summary>Answer</summary><p>Paintings of birds and animals under Jahangir.</p></details></li><li><p>Who painted Bharat Mata (1905)?</p><details><summary>Answer</summary><p>Abanindranath Tagore.</p></details></li></ol></section>
+  <section class="block "><h3><span class="num">10</span>Glossary (हिन्दी ↔ English)</h3><table class="gloss"><tr><th>हिन्दी</th><th>English</th><th>Meaning</th></tr><tr><td lang="hi">मोम सांचा विधि</td><td>Lost-wax method</td><td>Casting metal in a mould formed around a wax model.</td></tr><tr><td lang="hi">मूर्तिकला</td><td>Sculpture</td><td>Carving or casting figures.</td></tr><tr><td lang="hi">भित्तिचित्र</td><td>Mural</td><td>Painting on a wall.</td></tr><tr><td lang="hi">चित्रशाला</td><td>Atelier</td><td>Royal painting workshop.</td></tr><tr><td lang="hi">लघुचित्र</td><td>Miniature</td><td>Small, detailed painting, usually in a manuscript or album.</td></tr></table></section>
+  <section class="block sources"><h3>Sources used for this unit</h3><ul><li>NCERT Class 11, <i>An Introduction to Indian Art, Part I</i>.</li><li>NCERT Class 12, <i>Themes in Indian History I</i> (Harappan chapter).</li><li>Milo C. Beach, <i>Mughal and Rajput Painting</i> (Cambridge, 1992).</li><li>Partha Mitter, <i>Indian Art</i> (Oxford History of Art, 2001).</li></ul></section>
+</article>
+<article class="unit" id="I50">
+  <header class="unit-head"><p class="kicker">Unit I50 · Vedic age – 1943 CE</p><h2>Music, Dance and Theatre</h2></header>
+  <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI3</span> Art and architecture and scientific development in ancient India</li><li><span class="lid">PI7</span> Development of art and architecture, literature, painting and music in the medieval period</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Origins: Samaveda, Bharata's Natyashastra; ragas and talas</li><li>Medieval music: Amir Khusrau, Sangita Ratnakara, Tansen, the Bhakti composers; Hindustani and Carnatic traditions</li><li>Classical dances recognised by the Sangeet Natak Akademi</li><li>Theatre: Sanskrit drama, Koodiyattam, folk theatre, modern and political theatre</li></ul>
+    
+    <p class="weight">No RAS Mains question on music or dance yet, but Prelims PI7 names medieval music directly, and IH1 is wide enough for a 5-mark question on Natyashastra, Hindustani vs Carnatic, or a classical dance. Rajasthan's folk dances, instruments and gharanas are in book 6.</p></section>
+  <section class="block "><h3><span class="num">2</span>The big picture</h3>
+<p>India's performing arts start from ritual: the hymns of the <b>Samaveda</b> were sung, and <b>Bharata's
+Natyashastra</b> (dated broadly between the 2nd century BCE and the 2nd century CE) treated drama, dance and music as
+one art built on <b>rasa</b> (aesthetic emotion). In the medieval period temple and court patronage, the Bhakti
+movement and Persian influence produced two classical systems: <b>Hindustani</b> in the north, shaped by Amir Khusrau
+and Tansen, and <b>Carnatic</b> in the south, systematised by Purandara Dasa and later the Trinity. The Sangeet Natak
+Akademi recognises eight classical dances. Theatre ran from Sanskrit drama through regional folk forms to the
+political stage of the colonial era.</p><ol class="timeline"><li><span class="when">c. 1000 BCE onwards</span><span class="what">Samaveda: Rigvedic verses set to melody</span></li><li><span class="when">c. 2nd century BCE – 2nd century CE</span><span class="what">Natyashastra attributed to Bharata</span></li><li><span class="when">13th century</span><span class="what">Sangita Ratnakara by Sharngadeva (court of the Yadavas of Devagiri)</span></li><li><span class="when">1253–1325</span><span class="what">Amir Khusrau, credited with qawwali and with developing the khayal tradition</span></li><li><span class="when">15th–16th century</span><span class="what">Raja Man Singh Tomar of Gwalior patronises dhrupad</span></li><li><span class="when">16th century</span><span class="what">Purandara Dasa systematises Carnatic teaching; Tansen at Akbar's court</span></li><li><span class="when">18th–19th century</span><span class="what">Carnatic Trinity: Tyagaraja, Muthuswami Dikshitar, Syama Sastri</span></li><li><span class="when">1860</span><span class="what">Nil Darpan by Dinabandhu Mitra (Bengali play on indigo planters)</span></li><li><span class="when">1876</span><span class="what">Dramatic Performances Act to censor political plays</span></li><li><span class="when">1943</span><span class="what">Indian People's Theatre Association (IPTA) founded</span></li><li><span class="when">1953</span><span class="what">Sangeet Natak Akademi set up</span></li></ol></section>
+  <section class="block "><h3><span class="num">3</span>Core notes</h3><div class="topic"><h4>I50.1 Music</h4>
+<div class="tbl"><table>
+<tr><th>Feature</th><th>Hindustani</th><th>Carnatic</th></tr>
+<tr><td>Region</td><td>North India</td><td>South India</td></tr>
+<tr><td>Influences</td><td>Indian base with Persian and court influences</td><td>Largely indigenous, temple and devotional</td></tr>
+<tr><td>Forms</td><td>Dhrupad, khayal, thumri, tappa, tarana</td><td>Kriti, varnam, kirtanam</td></tr>
+<tr><td>Improvisation</td><td>Large scope; raga elaboration (alap)</td><td>Compositions central; improvisation within them</td></tr>
+<tr><td>Key figures</td><td>Amir Khusrau, Swami Haridas, Tansen</td><td>Purandara Dasa, Tyagaraja, Dikshitar, Syama Sastri</td></tr>
+</table></div>
+<p>Instruments are classed in the Natyashastra as tata (stringed), sushira (wind), avanaddha (membrane) and ghana
+(solid). <b>Amir Khusrau</b> is linked with qawwali, the sitar and tabla by tradition, though historians treat these
+attributions with caution.</p></div><div class="topic"><h4>I50.2 Classical dance</h4>
+<p>The Sangeet Natak Akademi recognises eight classical dances:</p>
+<div class="tbl"><table>
+<tr><th>Dance</th><th>State</th><th>Note</th></tr>
+<tr><td>Bharatanatyam</td><td>Tamil Nadu</td><td>Revived by Rukmini Devi Arundale</td></tr>
+<tr><td>Kathak</td><td>North India</td><td>Lucknow, Jaipur and Banaras gharanas</td></tr>
+<tr><td>Kathakali</td><td>Kerala</td><td>Dance-drama with elaborate make-up; revived by Vallathol</td></tr>
+<tr><td>Kuchipudi</td><td>Andhra Pradesh</td><td>Named after a village; tarangam on a brass plate</td></tr>
+<tr><td>Odissi</td><td>Odisha</td><td>Tribhanga posture; links with the Konark sculptures</td></tr>
+<tr><td>Manipuri</td><td>Manipur</td><td>Vaishnava ras lila themes</td></tr>
+<tr><td>Mohiniyattam</td><td>Kerala</td><td>Graceful solo dance by women</td></tr>
+<tr><td>Sattriya</td><td>Assam</td><td>From Sankardeva's sattras; recognised in 2000</td></tr>
+</table></div></div><div class="topic"><h4>I50.3 Theatre</h4>
+<ul>
+<li><b>Sanskrit drama:</b> Bhasa, Kalidasa (Abhijnanashakuntalam), Shudraka (Mrichchhakatika), Vishakhadatta
+(Mudrarakshasa); see I51 for the historical plays.</li>
+<li><b>Koodiyattam</b> (Kerala): the surviving form of Sanskrit theatre; proclaimed by UNESCO in 2001 as a masterpiece
+of intangible heritage.</li>
+<li><b>Folk theatre:</b> Yakshagana (Karnataka), Jatra (Bengal), Nautanki (Uttar Pradesh), Tamasha (Maharashtra),
+Bhavai (Gujarat); Rajasthan's Khyal and Gavari in book 6.</li>
+<li><b>Colonial era:</b> Parsi theatre companies; <b>Nil Darpan</b> (1860) on indigo oppression; the
+<b>Dramatic Performances Act (1876)</b>; the <b>IPTA</b> (1943) took theatre to political themes such as the Bengal
+famine.</li>
+</ul></div></section>
+  <section class="block "><h3><span class="num">4</span>What historians say</h3>
+<p><b>Kapila Vatsyayan</b> (<i>Classical Indian Dance in Literature and the Arts</i>) links dance to sculpture and
+texts. <b>Allyn Miner</b> and <b>Katherine Butler Brown</b> study Mughal music and question many traditional
+attributions to Amir Khusrau. <b>Sunil Kothari</b> documents the classical dances.</p></section>
+  <section class="block facts"><h3><span class="num">5</span>Prelims fact bank</h3><ul><li>The Samaveda set Rigvedic verses to melody.</li><li>The Natyashastra is attributed to Bharata.</li><li>The Natyashastra classifies instruments into tata, sushira, avanaddha and ghana.</li><li>Sangita Ratnakara was written by Sharngadeva in the 13th century.</li><li>Purandara Dasa systematised the teaching of Carnatic music.</li><li>The Carnatic Trinity are Tyagaraja, Muthuswami Dikshitar and Syama Sastri.</li><li>Tansen was a musician at Akbar's court.</li><li>Raja Man Singh Tomar of Gwalior patronised dhrupad.</li><li>The Sangeet Natak Akademi recognises eight classical dances.</li><li>Sattriya of Assam was recognised as a classical dance in 2000.</li><li>Koodiyattam was proclaimed by UNESCO in 2001.</li><li>Nil Darpan (1860) was written by Dinabandhu Mitra.</li><li>The Dramatic Performances Act was passed in 1876.</li><li>The Indian People's Theatre Association was founded in 1943.</li></ul><p class="label trap-label">Exam traps</p><ul><li>Sangita Ratnakara (Sharngadeva) ≠ Natyashastra (Bharata).</li><li>Kathakali and Mohiniyattam are both from Kerala; Kuchipudi is from Andhra Pradesh.</li><li>Sattriya comes from Sankardeva's monasteries in Assam, not Manipur.</li><li>Nil Darpan is a play (Dinabandhu Mitra), not a newspaper.</li></ul></section>
+  <section class="block "><h3><span class="num">6</span>Previous-year questions (RAS)</h3><p class="note">No RAS Mains question on music, dance or theatre in 2016–2024. The 2016 question on historical plays of Sanskrit literature is covered in I51.</p></section>
+  <section class="block "><h3><span class="num">7</span>Mains answer writing</h3><div class="mains">
+      <p class="mq"><span class="tag">5 marks · 50 words</span> Distinguish between Hindustani and Carnatic music.</p>
+      <p class="label">How to frame it</p><ul><li>Region and influence</li><li>Forms</li><li>Improvisation</li><li>Figures</li></ul>
+      <details><summary>Model answer (41 words)</summary><div class="answer"><p>Hindustani music developed in the north with Persian and court influence; its forms include dhrupad, khayal and thumri, with wide improvisation (Tansen, Amir Khusrau). Carnatic music in the south is temple-based and centred on compositions such as kritis (Purandara Dasa, Tyagaraja).</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">5 marks · 50 words</span> What is the significance of the Natyashastra?</p>
+      <p class="label">How to frame it</p><ul><li>Author and date</li><li>Content</li><li>Rasa</li><li>Legacy</li></ul>
+      <details><summary>Model answer (34 words)</summary><div class="answer"><p>Attributed to Bharata, it is the oldest Indian treatise on drama, dance and music. It explains stagecraft, gestures, instruments and the theory of rasa, and remains the base of classical dance and aesthetic theory.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">2 marks · 15 words</span> What is Koodiyattam?</p>
+      <p class="label">How to frame it</p><ul><li>Answer</li></ul>
+      <details><summary>Model answer (11 words)</summary><div class="answer"><p>Kerala's surviving form of Sanskrit theatre, proclaimed by UNESCO in 2001.</p></div></details>
+    </div></section>
+  <section class="block card"><h3><span class="num">8</span>One-screen revision card</h3><ul><li>Samaveda → Natyashastra (Bharata; rasa; four instrument classes) → Sangita Ratnakara (Sharngadeva, 13th century).</li><li>Hindustani: Khusrau, Man Singh Tomar (dhrupad), Haridas, Tansen. Carnatic: Purandara Dasa, Trinity.</li><li>Eight SNA classical dances; Sattriya 2000.</li><li>Theatre: Sanskrit drama, Koodiyattam (UNESCO 2001), folk forms, Nil Darpan 1860, Act 1876, IPTA 1943.</li></ul></section>
+  <section class="block "><h3><span class="num">9</span>Self-test</h3><ol class="test"><li><p>Which Veda is the source of Indian music?</p><details><summary>Answer</summary><p>The Samaveda.</p></details></li><li><p>Who wrote the Sangita Ratnakara?</p><details><summary>Answer</summary><p>Sharngadeva (13th century).</p></details></li><li><p>Name the four classes of instruments in the Natyashastra.</p><details><summary>Answer</summary><p>Tata, sushira, avanaddha, ghana.</p></details></li><li><p>Who are the Carnatic Trinity?</p><details><summary>Answer</summary><p>Tyagaraja, Muthuswami Dikshitar and Syama Sastri.</p></details></li><li><p>Which Gwalior ruler patronised dhrupad?</p><details><summary>Answer</summary><p>Raja Man Singh Tomar.</p></details></li><li><p>How many classical dances does the Sangeet Natak Akademi recognise?</p><details><summary>Answer</summary><p>Eight.</p></details></li><li><p>Which classical dance comes from Assam?</p><details><summary>Answer</summary><p>Sattriya.</p></details></li><li><p>Who wrote Nil Darpan?</p><details><summary>Answer</summary><p>Dinabandhu Mitra (1860).</p></details></li><li><p>When was the IPTA founded?</p><details><summary>Answer</summary><p>1943.</p></details></li></ol></section>
+  <section class="block "><h3><span class="num">10</span>Glossary (हिन्दी ↔ English)</h3><table class="gloss"><tr><th>हिन्दी</th><th>English</th><th>Meaning</th></tr><tr><td lang="hi">रस</td><td>Rasa</td><td>Aesthetic emotion evoked in the audience.</td></tr><tr><td lang="hi">राग</td><td>Raga</td><td>Melodic framework.</td></tr><tr><td lang="hi">ताल</td><td>Tala</td><td>Rhythmic cycle.</td></tr><tr><td lang="hi">घराना</td><td>Gharana</td><td>Lineage or school of musicians or dancers.</td></tr><tr><td lang="hi">लोक नाट्य</td><td>Folk theatre</td><td>Popular regional drama.</td></tr></table></section>
+  <section class="block sources"><h3>Sources used for this unit</h3><ul><li>NCERT Class 11, <i>An Introduction to Indian Art, Part I</i>, and CCRT material on performing arts.</li><li>Kapila Vatsyayan, <i>Classical Indian Dance in Literature and the Arts</i> (1968).</li><li>Sangeet Natak Akademi, list of classical dances.</li><li>UNESCO Intangible Cultural Heritage list (Kutiyattam).</li></ul></section>
+</article>
+<article class="unit" id="I51">
+  <header class="unit-head"><p class="kicker">Unit I51 · c. 1500 BCE – 1913 CE</p><h2>Literature: Vedic to the British Era</h2></header>
+  <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PI3</span> Art and architecture and scientific development in ancient India</li><li><span class="lid">PI7</span> Development of art and architecture, literature, painting and music in the medieval period</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">IH1</span> Indian heritage: fine and performing arts, architecture, literature (Indus to British era)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Vedic literature; epics and Puranas; Buddhist and Jain texts in Pali and Prakrit; Sangam literature</li><li>Classical Sanskrit: Kalidasa, Bana, historical plays and chronicles</li><li>Medieval literature: Persian, Bhakti literature in regional languages</li><li>Modern literature: Bharatendu Harishchandra, Bankim Chandra, Tagore, Premchand</li></ul>
+    
+    <p class="weight">RAS Mains asked about the historical plays of Sanskrit literature (2016, 5 marks) and Bharatendu Harishchandra as precursor of modern Hindi literature (2018, 5 marks). Rajasthani literature (Prithviraj Raso, dingal and pingal) is in book 6.</p></section>
+  <section class="block "><h3><span class="num">2</span>The big picture</h3>
+<p>India's literature is one of the longest continuous traditions in the world. The <b>Vedas</b> were transmitted
+orally for centuries; the <b>epics</b> and <b>Puranas</b> carried religious and social ideas to wider audiences.
+Buddhist and Jain texts used <b>Pali</b> and <b>Prakrit</b>, the language of the people. The <b>Sangam</b> poems
+record early Tamil society. Classical <b>Sanskrit</b> produced Kalidasa's plays, Bana's prose and Kalhana's chronicle.
+In the medieval period <b>Persian</b> became the court language while the Bhakti saints made regional languages
+literary. In the 19th century print, reform and nationalism produced modern prose, the novel and political poetry.</p><ol class="timeline"><li><span class="when">c. 1500–1000 BCE</span><span class="what">Rigveda</span></li><li><span class="when">c. 1000–500 BCE</span><span class="what">Later Vedas, Brahmanas, Aranyakas, Upanishads</span></li><li><span class="when">c. 400 BCE – 400 CE</span><span class="what">Mahabharata and Ramayana take their present form</span></li><li><span class="when">c. 3rd century BCE – 3rd century CE</span><span class="what">Sangam literature (Tamil); Tolkappiyam (grammar)</span></li><li><span class="when">4th–5th century</span><span class="what">Kalidasa</span></li><li><span class="when">7th century</span><span class="what">Banabhatta's Harshacharita at Harsha's court</span></li><li><span class="when">1148–49</span><span class="what">Kalhana's Rajatarangini (history of Kashmir)</span></li><li><span class="when">13th–14th century</span><span class="what">Amir Khusrau's Persian and Hindavi works</span></li><li><span class="when">16th century</span><span class="what">Baburnama (in Turki); Akbarnama by Abul Fazl; Razmnama (Persian Mahabharata)</span></li><li><span class="when">1574–77</span><span class="what">Tulsidas's Ramcharitmanas in Awadhi</span></li><li><span class="when">1868–1885</span><span class="what">Bharatendu Harishchandra's journals and plays (Kavivachan Sudha, 1868)</span></li><li><span class="when">1882</span><span class="what">Bankim Chandra Chattopadhyay's Anandamath, containing Vande Mataram</span></li><li><span class="when">1913</span><span class="what">Rabindranath Tagore wins the Nobel Prize for Literature for Gitanjali</span></li></ol></section>
+  <section class="block "><h3><span class="num">3</span>Core notes</h3><div class="topic"><h4>I51.1 Ancient literature</h4>
+<ul>
+<li><b>Vedic:</b> four Vedas (Rig, Sama, Yajur, Atharva), each with Brahmanas, Aranyakas and Upanishads; Vedangas
+(phonetics, ritual, grammar, etymology, metre, astronomy).</li>
+<li><b>Epics and Puranas:</b> Mahabharata (attributed to Vyasa, includes the Bhagavad Gita) and Ramayana (Valmiki);
+eighteen major Puranas.</li>
+<li><b>Buddhist and Jain:</b> the Tripitaka in Pali; Jataka tales; Jain Agamas in Prakrit.</li>
+<li><b>Sangam:</b> Tamil anthologies (Ettuthogai, Pattuppattu); later the epics Silappadikaram and Manimekalai;
+Tiruvalluvar's Tirukkural.</li>
+</ul></div><div class="topic"><h4>I51.2 Classical Sanskrit and historical plays</h4>
+<div class="tbl"><table>
+<tr><th>Work</th><th>Author</th><th>Historical subject</th></tr>
+<tr><td>Svapnavasavadatta</td><td>Bhasa</td><td>King Udayana of Vatsa and Vasavadatta</td></tr>
+<tr><td>Malavikagnimitram</td><td>Kalidasa</td><td>Agnimitra, Shunga king, and Malavika</td></tr>
+<tr><td>Mudrarakshasa</td><td>Vishakhadatta</td><td>Chanakya's plan to win Rakshasa, minister of the Nandas, for Chandragupta Maurya</td></tr>
+<tr><td>Devichandraguptam</td><td>Vishakhadatta (fragments only)</td><td>Chandragupta II rescuing his brother Ramagupta's queen from the Shakas</td></tr>
+<tr><td>Harshacharita (prose)</td><td>Banabhatta</td><td>Early life of Harshavardhana</td></tr>
+<tr><td>Rajatarangini (verse chronicle)</td><td>Kalhana</td><td>Kings of Kashmir</td></tr>
+</table></div>
+<p>These works mix history with drama and praise, so historians use them alongside inscriptions and coins. Other
+classics: Kalidasa's Abhijnanashakuntalam, Meghaduta and Raghuvamsha; Shudraka's Mrichchhakatika; Panchatantra.</p></div><div class="topic"><h4>I51.3 Medieval literature</h4>
+<ul>
+<li><b>Persian:</b> Amir Khusrau; Ziauddin Barani's Tarikh-i-Firoz Shahi; Abul Fazl's Akbarnama and Ain-i-Akbari;
+translations of the Mahabharata (Razmnama) and Upanishads (Dara Shikoh's Sirr-i-Akbar).</li>
+<li><b>Turki:</b> Babur's memoirs, Baburnama.</li>
+<li><b>Bhakti in regional languages:</b> Kabir, Surdas and Tulsidas (Hindi dialects), Mirabai (Rajasthani and Braj),
+Tukaram and Jnaneshwar (Marathi), Chaitanya's followers (Bengali), Shankardev (Assamese), Alvars and Nayanars (Tamil),
+Basavanna's vachanas (Kannada).</li>
+<li><b>Southern classics:</b> Kamban's Tamil Ramayana; Pampa in Kannada; Krishnadevaraya's Amuktamalyada in Telugu.</li>
+</ul></div><div class="topic"><h4>I51.4 Modern literature and the Renaissance</h4>
+<ul>
+<li><b>Bharatendu Harishchandra</b> (1850–1885), father of modern Hindi literature: Hindi prose in Khari Boli, the
+journals Kavivachan Sudha and Harishchandra Magazine, plays such as Andher Nagari and Bharat Durdasha that satirised
+colonial rule and social evils. The years 1868–1900 are called the Bharatendu Yug.</li>
+<li><b>Bengali:</b> Bankim Chandra's Anandamath (1882); Tagore's Gitanjali (Nobel Prize, 1913), the first Nobel for an
+Asian.</li>
+<li><b>Urdu:</b> Ghalib; Altaf Hussain Hali's Musaddas; Muhammad Iqbal.</li>
+<li><b>Hindi–Urdu fiction:</b> Premchand's realist stories and novels (Godan, 1936) on peasants and the poor.</li>
+<li>Print, journals and reform debates made literature a vehicle of the Indian Renaissance (I35).</li>
+</ul></div></section>
+  <section class="block "><h3><span class="num">4</span>What historians say</h3>
+<p><b>A.L. Basham</b> (<i>The Wonder That Was India</i>) surveys classical literature. <b>Romila Thapar</b> uses the
+historical plays and chronicles as sources while warning about their poetic purpose. <b>Ramchandra Shukla</b>
+(<i>Hindi Sahitya ka Itihas</i>, 1929) named the Bharatendu period and set the periods of Hindi literature.</p></section>
+  <section class="block facts"><h3><span class="num">5</span>Prelims fact bank</h3><ul><li>The Mahabharata is attributed to Vyasa and the Ramayana to Valmiki.</li><li>The Buddhist Tripitaka is in Pali.</li><li>Silappadikaram and Manimekalai are post-Sangam Tamil epics.</li><li>Svapnavasavadatta was written by Bhasa.</li><li>Malavikagnimitram by Kalidasa features the Shunga king Agnimitra.</li><li>Mudrarakshasa by Vishakhadatta tells how Chanakya won over Rakshasa for Chandragupta Maurya.</li><li>Harshacharita was written by Banabhatta.</li><li>Kalhana wrote the Rajatarangini in 1148–49.</li><li>The Baburnama was written in Turki.</li><li>Tulsidas wrote the Ramcharitmanas in Awadhi.</li><li>Bharatendu Harishchandra started the journal Kavivachan Sudha in 1868.</li><li>Anandamath by Bankim Chandra Chattopadhyay was published in 1882.</li><li>Tagore received the Nobel Prize for Literature in 1913.</li><li>Premchand's novel Godan was published in 1936.</li></ul><p class="label trap-label">Exam traps</p><ul><li>Mudrarakshasa and Devichandraguptam are both by Vishakhadatta; Devichandraguptam survives only in fragments.</li><li>Harshacharita is prose by Bana; Ratnavali and Nagananda are plays by Harsha himself.</li><li>Baburnama is in Turki, not Persian; its Persian translation was made under Akbar.</li><li>Ramcharitmanas is in Awadhi, not Braj; Surdas wrote in Braj.</li></ul></section>
+  <section class="block "><h3><span class="num">6</span>Previous-year questions (RAS)</h3><table class="pyq"><tr><th>Exam</th><th>Question</th><th>Marks</th></tr><tr><td>RAS Mains 2016</td><td>Write a short note on the historical plays of Sanskrit literature.</td><td>5</td></tr><tr><td>RAS Mains 2018</td><td>Bharatendu Harishchandra was the precursor of modern trends in Hindi literature. Discuss.</td><td>5</td></tr></table><p class="note">Questions as printed in the RPSC Mains papers (GS Paper I), lightly edited for grammar.</p></section>
+  <section class="block "><h3><span class="num">7</span>Mains answer writing</h3><div class="mains">
+      <p class="mq"><span class="tag">5 marks · 50 words</span> Write a short note on the historical plays of Sanskrit literature.</p>
+      <p class="label">How to frame it</p><ul><li>Examples with authors</li><li>Value as sources</li></ul>
+      <details><summary>Model answer (34 words)</summary><div class="answer"><p>Bhasa's Svapnavasavadatta (Udayana), Kalidasa's Malavikagnimitram (Agnimitra Shunga), and Vishakhadatta's Mudrarakshasa (Chanakya and Chandragupta) and Devichandraguptam (Chandragupta II) dramatise history. They add political detail but mix fact with poetry, so must be checked against inscriptions.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">5 marks · 50 words</span> Bharatendu Harishchandra was the precursor of modern trends in Hindi literature. Discuss.</p>
+      <p class="label">How to frame it</p><ul><li>Khari Boli prose</li><li>Journals</li><li>Plays with social and national themes</li><li>Legacy</li></ul>
+      <details><summary>Model answer (38 words)</summary><div class="answer"><p>He made Khari Boli the language of Hindi prose, founded journals like Kavivachan Sudha (1868), and wrote plays such as Bharat Durdasha and Andher Nagari attacking colonial exploitation and social evils. The period 1868–1900 is named after him.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">2 marks · 15 words</span> What is the Rajatarangini?</p>
+      <p class="label">How to frame it</p><ul><li>Answer</li></ul>
+      <details><summary>Model answer (10 words)</summary><div class="answer"><p>Kalhana's 12th-century Sanskrit verse chronicle of the kings of Kashmir.</p></div></details>
+    </div></section>
+  <section class="block card"><h3><span class="num">8</span>One-screen revision card</h3><ul><li>Vedas → Brahmanas → Aranyakas → Upanishads; epics; Puranas; Pali Tripitaka; Sangam, Tirukkural.</li><li>Historical plays: Svapnavasavadatta (Bhasa), Malavikagnimitram (Kalidasa), Mudrarakshasa and Devichandraguptam (Vishakhadatta); Harshacharita; Rajatarangini 1148.</li><li>Medieval: Persian (Khusrau, Barani, Abul Fazl), Turki Baburnama, Bhakti in regional languages, Ramcharitmanas (Awadhi).</li><li>Modern: Bharatendu (1868 journal), Anandamath 1882, Gitanjali Nobel 1913, Godan 1936.</li></ul></section>
+  <section class="block "><h3><span class="num">9</span>Self-test</h3><ol class="test"><li><p>In which language is the Tripitaka?</p><details><summary>Answer</summary><p>Pali.</p></details></li><li><p>Who wrote Svapnavasavadatta?</p><details><summary>Answer</summary><p>Bhasa.</p></details></li><li><p>Which Shunga king appears in Malavikagnimitram?</p><details><summary>Answer</summary><p>Agnimitra.</p></details></li><li><p>What is the subject of Mudrarakshasa?</p><details><summary>Answer</summary><p>Chanakya winning over Rakshasa, the Nanda minister, for Chandragupta Maurya.</p></details></li><li><p>Who wrote the Harshacharita?</p><details><summary>Answer</summary><p>Banabhatta.</p></details></li><li><p>When did Kalhana write the Rajatarangini?</p><details><summary>Answer</summary><p>1148–49.</p></details></li><li><p>In which language did Babur write his memoirs?</p><details><summary>Answer</summary><p>Turki.</p></details></li><li><p>Which journal did Bharatendu Harishchandra start in 1868?</p><details><summary>Answer</summary><p>Kavivachan Sudha.</p></details></li><li><p>For which work did Tagore win the Nobel Prize, and when?</p><details><summary>Answer</summary><p>Gitanjali, 1913.</p></details></li></ol></section>
+  <section class="block "><h3><span class="num">10</span>Glossary (हिन्दी ↔ English)</h3><table class="gloss"><tr><th>हिन्दी</th><th>English</th><th>Meaning</th></tr><tr><td lang="hi">श्रुति</td><td>Shruti</td><td>Heard (revealed) texts: the Vedas.</td></tr><tr><td lang="hi">स्मृति</td><td>Smriti</td><td>Remembered texts: epics, Puranas, law books.</td></tr><tr><td lang="hi">नाटक</td><td>Nataka</td><td>Drama.</td></tr><tr><td lang="hi">खड़ी बोली</td><td>Khari Boli</td><td>Dialect that became the base of modern standard Hindi.</td></tr><tr><td lang="hi">इतिवृत्त</td><td>Chronicle</td><td>Record of events in time order.</td></tr></table></section>
+  <section class="block sources"><h3>Sources used for this unit</h3><ul><li>A.L. Basham, <i>The Wonder That Was India</i> (1954).</li><li>Romila Thapar, <i>Early India</i> (Penguin, 2002).</li><li>Ramchandra Shukla, <i>Hindi Sahitya ka Itihas</i> (1929).</li><li>NCERT Class 11, <i>An Introduction to Indian Art</i>, and Class 12, <i>Themes in Indian History I–II</i>.</li></ul></section>
 </article>
 </main>
 <script>

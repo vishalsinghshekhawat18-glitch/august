@@ -4,7 +4,7 @@ module.exports = {
     title: 'Rajasthan History — Master Notebook',
     short: 'Rajasthan History',
     file: 'Rajasthan_History_Notebook.html',
-    intro: 'Political, administrative and modern history of Rajasthan from prehistory to integration (1956), written for RAS Prelims and Mains. Art and culture is a separate notebook.',
+    intro: 'Political, administrative and modern history of Rajasthan from prehistory to integration (1956), written for RAS Prelims and Mains and mapped line by line to the 2026 syllabus. Art, culture and heritage are a separate notebook.',
     parts: [
       { name: 'Part I — Foundations', units: [
         ['R01', 'Sources and Historians of Rajasthan', 'r01-sources.cjs'],
@@ -26,6 +26,7 @@ module.exports = {
       ]},
       { name: 'Part III — Modern Rajasthan', units: [
         ['R15', 'The 18th and 19th Centuries: Marathas, 1818 Treaties, Society and Reform', 'r15-marathas-british-reform.cjs'],
+        ['R23', 'Changing Patterns of Administration and Revenue, 1818–1959', 'r23-changing-patterns.cjs'],
         ['R16', 'The Revolt of 1857 in Rajasthan', 'r16-revolt-1857-rajasthan.cjs'],
         ['R17', 'Peasant Movements', 'r17-peasant-movements.cjs'],
         ['R18', 'Tribal Movements', 'r18-tribal-movements.cjs'],
@@ -40,7 +41,7 @@ module.exports = {
     title: 'Indian History — Master Notebook',
     short: 'Indian History',
     file: 'Indian_History_Notebook.html',
-    intro: 'Ancient, medieval, modern and post-independence Indian history, written for RAS Prelims and Mains. Art and culture is a separate notebook.',
+    intro: 'Ancient, medieval, modern and post-independence Indian history, with Indian heritage (architecture, sculpture, painting, performing arts and literature), written for RAS Prelims and Mains and mapped line by line to the 2026 syllabus. Modern World History is a separate notebook.',
     parts: [
       { name: 'Part I — Ancient India', units: [
         ['I01', 'Sources and How Historians Work', 'i01-sources.cjs'],
@@ -95,6 +96,13 @@ module.exports = {
         ['I44', 'Linguistic Reorganisation of States', 'i44-linguistic-reorganisation.cjs'],
         ['I45', 'Nation-Building in the Nehru Era and Planning', 'i45-nehru-era-planning.cjs'],
         ['I46', 'Science and Technology; Economic Reforms of 1991', 'i46-science-technology-1991.cjs'],
+        ['I47', "Women's Reform Movement and Women's Empowerment", 'i47-women.cjs'],
+      ]},
+      { name: 'Part V — Indian Heritage (Indus to the British era)', units: [
+        ['I48', 'Architecture: Indus to the British Era', 'i48-architecture.cjs'],
+        ['I49', 'Sculpture and Painting', 'i49-sculpture-painting.cjs'],
+        ['I50', 'Music, Dance and Theatre', 'i50-performing-arts.cjs'],
+        ['I51', 'Literature: Vedic to the British Era', 'i51-literature.cjs'],
       ]},
     ],
   },

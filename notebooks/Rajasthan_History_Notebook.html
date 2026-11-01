@@ -80,24 +80,39 @@ a{color:var(--accent)}
   .tbl table{min-width:560px}
   .timeline li{grid-template-columns:90px 1fr}
 }
+.lid{display:inline-block;font:600 .74rem/1.6 system-ui,sans-serif;background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-right:2px}
+.coverage{margin:18px 0;border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.coverage summary{cursor:pointer;font-weight:600}
+.coverage table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.88rem}
+.coverage th,.coverage td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+.coverage .planned{color:var(--muted)}
+.coverage .gap{color:var(--trap)}
 </style>
 </head>
 <body>
 <button class="menu" onclick="document.body.classList.toggle('nav-open')" aria-label="Contents">☰ Contents</button>
-<nav class="side"><p class="brand">Rajasthan History — Master Notebook</p><p class="prog">22 of 22 units written</p><p class="part">Part I — Foundations</p><ul><li><a href="#R01"><span>R01</span>Sources and Historians of Rajasthan</a></li><li><a href="#R02"><span>R02</span>Prehistoric Rajasthan</a></li><li><a href="#R03"><span>R03</span>Chalcolithic and Bronze Age Cultures</a></li><li><a href="#R04"><span>R04</span>Ancient Rajasthan: Janapadas to the Hunas</a></li></ul><p class="part">Part II — Dynasties (to the 18th century)</p><ul><li><a href="#R05"><span>R05</span>Origin of the Rajputs; Gurjara-Pratiharas and Parmaras</a></li><li><a href="#R06"><span>R06</span>The Chauhans: Shakambhari, Ajmer, Ranthambhor, Jalore</a></li><li><a href="#R07"><span>R07</span>Mewar I: The Guhils to Rana Kumbha</a></li><li><a href="#R08"><span>R08</span>Mewar II: Rana Sanga to Raj Singh (1509–1680)</a></li><li><a href="#R09"><span>R09</span>The Rathores of Marwar</a></li><li><a href="#R10"><span>R10</span>Bikaner, Jaisalmer and Sirohi</a></li><li><a href="#R11"><span>R11</span>Amber–Jaipur, Shekhawati and Alwar</a></li><li><a href="#R12"><span>R12</span>Hadoti, Karauli, Bharatpur, Dholpur and Tonk</a></li><li><a href="#R13"><span>R13</span>Cooperation and Resistance: Rajasthan and the Central Powers</a></li><li><a href="#R14"><span>R14</span>Administrative and Revenue System of Medieval Rajasthan</a></li></ul><p class="part">Part III — Modern Rajasthan</p><ul><li><a href="#R15"><span>R15</span>The 18th and 19th Centuries: Marathas, 1818 Treaties, Society and Reform</a></li><li><a href="#R16"><span>R16</span>The Revolt of 1857 in Rajasthan</a></li><li><a href="#R17"><span>R17</span>Peasant Movements</a></li><li><a href="#R18"><span>R18</span>Tribal Movements</a></li><li><a href="#R19"><span>R19</span>Political Awakening: Press, Organisations, Revolutionaries</a></li><li><a href="#R20"><span>R20</span>Praja Mandal Movements</a></li><li><a href="#R21"><span>R21</span>Integration of Rajasthan (1948–1956)</a></li><li><a href="#R22"><span>R22</span>Leading Personalities and Master Chronology</a></li></ul></nav>
+<nav class="side"><p class="brand">Rajasthan History — Master Notebook</p><p class="prog">23 of 23 units written</p><p class="part">Part I — Foundations</p><ul><li><a href="#R01"><span>R01</span>Sources and Historians of Rajasthan</a></li><li><a href="#R02"><span>R02</span>Prehistoric Rajasthan</a></li><li><a href="#R03"><span>R03</span>Chalcolithic and Bronze Age Cultures</a></li><li><a href="#R04"><span>R04</span>Ancient Rajasthan: Janapadas to the Hunas</a></li></ul><p class="part">Part II — Dynasties (to the 18th century)</p><ul><li><a href="#R05"><span>R05</span>Origin of the Rajputs; Gurjara-Pratiharas and Parmaras</a></li><li><a href="#R06"><span>R06</span>The Chauhans: Shakambhari, Ajmer, Ranthambhor, Jalore</a></li><li><a href="#R07"><span>R07</span>Mewar I: The Guhils to Rana Kumbha</a></li><li><a href="#R08"><span>R08</span>Mewar II: Rana Sanga to Raj Singh (1509–1680)</a></li><li><a href="#R09"><span>R09</span>The Rathores of Marwar</a></li><li><a href="#R10"><span>R10</span>Bikaner, Jaisalmer and Sirohi</a></li><li><a href="#R11"><span>R11</span>Amber–Jaipur, Shekhawati and Alwar</a></li><li><a href="#R12"><span>R12</span>Hadoti, Karauli, Bharatpur, Dholpur and Tonk</a></li><li><a href="#R13"><span>R13</span>Cooperation and Resistance: Rajasthan and the Central Powers</a></li><li><a href="#R14"><span>R14</span>Administrative and Revenue System of Medieval Rajasthan</a></li></ul><p class="part">Part III — Modern Rajasthan</p><ul><li><a href="#R15"><span>R15</span>The 18th and 19th Centuries: Marathas, 1818 Treaties, Society and Reform</a></li><li><a href="#R23"><span>R23</span>Changing Patterns of Administration and Revenue, 1818–1959</a></li><li><a href="#R16"><span>R16</span>The Revolt of 1857 in Rajasthan</a></li><li><a href="#R17"><span>R17</span>Peasant Movements</a></li><li><a href="#R18"><span>R18</span>Tribal Movements</a></li><li><a href="#R19"><span>R19</span>Political Awakening: Press, Organisations, Revolutionaries</a></li><li><a href="#R20"><span>R20</span>Praja Mandal Movements</a></li><li><a href="#R21"><span>R21</span>Integration of Rajasthan (1948–1956)</a></li><li><a href="#R22"><span>R22</span>Leading Personalities and Master Chronology</a></li></ul></nav>
 <main>
   <div class="tools">
     <button data-theme="sepia">Sepia</button><button data-theme="light">Light</button><button data-theme="dark">Dark</button>
     <button data-size="-1">A−</button><button data-size="1">A+</button>
   </div>
-  <header class="book-head"><h1>Rajasthan History — Master Notebook</h1><p>Political, administrative and modern history of Rajasthan from prehistory to integration (1956), written for RAS Prelims and Mains. Art and culture is a separate notebook.</p>
-  <p class="howto"><b>How to use each unit:</b> read 1–4 for understanding, use 5 for Prelims revision, 6–7 for Mains practice, and 8–9 the day before the exam. Greyed units in the contents are planned but not written yet.</p></header>
+  <header class="book-head"><h1>Rajasthan History — Master Notebook</h1><p>Political, administrative and modern history of Rajasthan from prehistory to integration (1956), written for RAS Prelims and Mains and mapped line by line to the 2026 syllabus. Art, culture and heritage are a separate notebook.</p>
+  <p class="howto"><b>How to use each unit:</b> read 1–4 for understanding, use 5 for Prelims revision, 6–7 for Mains practice, and 8–9 the day before the exam. Greyed units in the contents are planned but not written yet.</p>
+  <details class="coverage"><summary>2026 syllabus coverage map: every line and the units that cover it</summary>
+  <table><tr><th>Line</th><th>2026 syllabus</th><th>Units</th></tr>
+  <tr><th colspan="3">Prelims</th></tr><tr><td><span class="lid">PR1</span></td><td>Pre-historical sites of Rajasthan — Palaeolithic to Chalcolithic and Bronze Age; society and culture of ancient Rajasthan</td><td><a href="#R02">R02</a> <a href="#R03">R03</a> <a href="#R04">R04</a></td></tr><tr><td><span class="lid">PR2</span></td><td>Sources of Rajasthan history: archaeological, archival, literary and numismatic</td><td><a href="#R01">R01</a> <a href="#R04">R04</a></td></tr><tr><td><span class="lid">PR3</span></td><td>Political and cultural achievements of prominent rulers of major dynasties</td><td><a href="#R05">R05</a> <a href="#R06">R06</a> <a href="#R07">R07</a> <a href="#R08">R08</a> <a href="#R09">R09</a> <a href="#R10">R10</a> <a href="#R11">R11</a> <a href="#R12">R12</a></td></tr><tr><td><span class="lid">PR4</span></td><td>Cooperation and resistance with central power; administrative and revenue system in medieval Rajasthan</td><td><a href="#R06">R06</a> <a href="#R08">R08</a> <a href="#R09">R09</a> <a href="#R11">R11</a> <a href="#R13">R13</a> <a href="#R14">R14</a> <a href="#R23">R23</a></td></tr><tr><td><span class="lid">PR5</span></td><td>Political and social condition in the 18th–19th centuries; peasant and tribal movements in the 20th century; Praja Mandal movements and mass awakening; integration of Rajasthan</td><td><a href="#R15">R15</a> <a href="#R23">R23</a> <a href="#R16">R16</a> <a href="#R17">R17</a> <a href="#R18">R18</a> <a href="#R19">R19</a> <a href="#R20">R20</a> <a href="#R21">R21</a></td></tr><tr><td><span class="lid">PR6</span></td><td>Architectural tradition; schools of painting and handicrafts; performing arts, folk dance and drama; music and instruments</td><td><i>Rajasthan Art, Culture and Heritage notebook (book 6)</i></td></tr><tr><td><span class="lid">PR7</span></td><td>Language and literature; religious communities, saints, sects and folk deities; religious practices</td><td><i>Rajasthan Art, Culture and Heritage notebook (book 6)</i></td></tr><tr><td><span class="lid">PR8</span></td><td>Social life: fairs and festivals, customs and traditions, attire and ornaments</td><td><i>Rajasthan Art, Culture and Heritage notebook (book 6)</i></td></tr><tr><td><span class="lid">PR9</span></td><td>Leading personalities of Rajasthan</td><td><a href="#R22">R22</a></td></tr>
+  <tr><th colspan="3">Mains, GS Paper I</th></tr><tr><td><span class="lid">RH1</span></td><td>Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</td><td><a href="#R01">R01</a> <a href="#R02">R02</a> <a href="#R03">R03</a> <a href="#R04">R04</a> <a href="#R05">R05</a> <a href="#R06">R06</a> <a href="#R07">R07</a> <a href="#R08">R08</a> <a href="#R09">R09</a> <a href="#R10">R10</a> <a href="#R11">R11</a> <a href="#R12">R12</a> <a href="#R13">R13</a> <a href="#R22">R22</a></td></tr><tr><td><span class="lid">RH2</span></td><td>Revenue and administrative system and changing patterns</td><td><a href="#R14">R14</a> <a href="#R15">R15</a> <a href="#R23">R23</a></td></tr><tr><td><span class="lid">RH3</span></td><td>19th–20th century: Revolt of 1857, peasant and tribal movements, political awakening, mass movements, integration</td><td><a href="#R15">R15</a> <a href="#R16">R16</a> <a href="#R17">R17</a> <a href="#R18">R18</a> <a href="#R19">R19</a> <a href="#R20">R20</a> <a href="#R21">R21</a> <a href="#R22">R22</a></td></tr><tr><td><span class="lid">RH4</span></td><td>Art and culture: performing and fine arts, handicrafts, architecture and monuments, folk music, dance, stories</td><td><i>Rajasthan Art, Culture and Heritage notebook (book 6)</i></td></tr><tr><td><span class="lid">RH5</span></td><td>Fairs and festivals</td><td><i>Rajasthan Art, Culture and Heritage notebook (book 6)</i></td></tr><tr><td><span class="lid">RH6</span></td><td>Tribes and their traditions</td><td><a href="#R18">R18</a><br><i>Tribal movements in R18; tribes and their traditions in the Art, Culture and Heritage notebook (book 6)</i></td></tr><tr><td><span class="lid">RH7</span></td><td>Heritage: major heritage and tourism sites</td><td><i>Rajasthan Art, Culture and Heritage notebook (book 6)</i></td></tr><tr><td><span class="lid">RH8</span></td><td>Rajasthani language and literary works</td><td><i>Rajasthan Art, Culture and Heritage notebook (book 6)</i></td></tr><tr><td><span class="lid">RH9</span></td><td>Religious beliefs, saints and folk deities</td><td><i>Rajasthan Art, Culture and Heritage notebook (book 6)</i></td></tr>
+  </table><p class="note">Mains line IDs match the RAS Mains PYQ Database, so a line's past questions can be looked up there.</p></details></header>
   <article class="unit" id="R01">
   <header class="unit-head"><p class="kicker">Unit R01 · All periods</p><h2>Sources and Historians of Rajasthan</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Sources of Rajasthan history: archaeological, archival, literary and numismatic</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Political and cultural achievements of rulers (sources underpin every answer)</li><li>Short questions on individual inscriptions and texts</li></ul></div>
-    <p class="weight">Inscriptions, coins and chroniclers are asked almost every year in Prelims, and 2-mark Mains questions often name a single inscription (Ghosundi was asked in 2016).</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR2</span> Sources of Rajasthan history: archaeological, archival, literary and numismatic</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Sources of Rajasthan history: archaeological, archival, literary and numismatic</li></ul>
+    
+    <p class="weight">Inscriptions, coins and chroniclers are asked almost every year in Prelims, and 2-mark Mains questions often name a single inscription (Ghosundi was asked in 2016).</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Everything we know about Rajasthan's past comes from four kinds of evidence: what is <b>dug up or carved</b>
 (archaeology and inscriptions), what was <b>minted</b> (coins), what was <b>written down by governments</b> (archival
@@ -231,9 +246,12 @@ vassal — a useful point for questions on administration (unit R14).</p></secti
 <article class="unit" id="R02">
   <header class="unit-head"><p class="kicker">Unit R02 · Palaeolithic to Mesolithic (c. 5 lakh – 3000 BCE)</p><h2>Prehistoric Rajasthan</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Pre-historical sites of Rajasthan — from Palaeolithic to Chalcolithic and Bronze Age</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Prehistoric culture and various ancient historic sites and their importance</li></ul></div>
-    <p class="weight">Site–river–district matching is a Prelims favourite. RAS Mains 2018 asked a 10-mark question on Bagor, Kalibangan and Ahar (answered in unit R03).</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR1</span> Pre-historical sites of Rajasthan — Palaeolithic to Chalcolithic and Bronze Age; society and culture of ancient Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Pre-historical sites of Rajasthan — from Palaeolithic to Chalcolithic and Bronze Age</li></ul>
+    
+    <p class="weight">Site–river–district matching is a Prelims favourite. RAS Mains 2018 asked a 10-mark question on Bagor, Kalibangan and Ahar (answered in unit R03).</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Long before cities or kings, Rajasthan was home to hunter-gatherers. Their story is told by stone tools, not
 writing. Archaeologists divide this long period by the tools people made: large hand-axes in the
@@ -302,9 +320,12 @@ numbers.</p></section>
 <article class="unit" id="R03">
   <header class="unit-head"><p class="kicker">Unit R03 · c. 3000 – 1500 BCE</p><h2>Chalcolithic and Bronze Age Cultures</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Pre-historical sites of Rajasthan — Chalcolithic and Bronze Age</li><li>Sources: archaeological</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Prehistoric culture and various ancient historic sites and their importance</li></ul></div>
-    <p class="weight">Kalibangan, Ahar and Ganeshwar are among the most-asked topics in all of Rajasthan history. RAS Mains 2018 asked a 10-mark question on Bagor, Kalibangan and Ahar.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR1</span> Pre-historical sites of Rajasthan — Palaeolithic to Chalcolithic and Bronze Age; society and culture of ancient Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Pre-historical sites of Rajasthan — Chalcolithic and Bronze Age</li><li>Sources: archaeological</li></ul>
+    
+    <p class="weight">Kalibangan, Ahar and Ganeshwar are among the most-asked topics in all of Rajasthan history. RAS Mains 2018 asked a 10-mark question on Bagor, Kalibangan and Ahar.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Between about 3000 and 1500 BCE Rajasthan saw two kinds of societies that used copper. In the north, on the
 dried-up <b>Ghaggar (ancient Sarasvati)</b>, <b>Kalibangan</b> was part of the great <b>Harappan (Indus)
@@ -399,9 +420,12 @@ Harappans; Gilund's seal impressions suggest considerable local organisation (Po
 <article class="unit" id="R04">
   <header class="unit-head"><p class="kicker">Unit R04 · c. 1500 BCE – 600 CE</p><h2>Ancient Rajasthan: Janapadas to the Hunas</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Pre-historical sites (Iron Age)</li><li>Society and culture of ancient Rajasthan</li><li>Sources: archaeological and numismatic</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Prehistoric culture and various ancient historic sites and their importance</li></ul></div>
-    <p class="weight">Bairat, Noh, Rangmahal, Nagari and the tribal republics (Malava, Yaudheya, Arjunayana) recur in Prelims; "society and culture of ancient Rajasthan" is an explicit syllabus line.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR1</span> Pre-historical sites of Rajasthan — Palaeolithic to Chalcolithic and Bronze Age; society and culture of ancient Rajasthan</li><li><span class="lid">PR2</span> Sources of Rajasthan history: archaeological, archival, literary and numismatic</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Pre-historical sites (Iron Age)</li><li>Society and culture of ancient Rajasthan</li><li>Sources: archaeological and numismatic</li></ul>
+    
+    <p class="weight">Bairat, Noh, Rangmahal, Nagari and the tribal republics (Malava, Yaudheya, Arjunayana) recur in Prelims; "society and culture of ancient Rajasthan" is an explicit syllabus line.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>After the copper-using cultures, iron reached Rajasthan, and the region entered the age of <b>janapadas</b> —
 territorial states and tribal republics. Rajasthan was a meeting ground: the <b>Matsya</b> kingdom (around Bairat)
@@ -508,9 +532,12 @@ foreign invaders such as the Hunas and Gurjaras; others stress local origins. Un
 <article class="unit" id="R05">
   <header class="unit-head"><p class="kicker">Unit R05 · c. 600 – 1300 CE</p><h2>Origin of the Rajputs; Gurjara-Pratiharas and Parmaras</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Major dynasties of Rajasthan and their achievements</li><li>Origin of the Rajputs</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Important historical events and major dynasties, their administrative and revenue system</li></ul></div>
-    <p class="weight">The theories of Rajput origin are a standard Mains question; Pratihara rulers, the Agnikula myth, Osian and the Abu temples recur in Prelims.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR3</span> Political and cultural achievements of prominent rulers of major dynasties</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Major dynasties of Rajasthan and their achievements</li><li>Origin of the Rajputs</li></ul>
+    
+    <p class="weight">The theories of Rajput origin are a standard Mains question; Pratihara rulers, the Agnikula myth, Osian and the Abu temples recur in Prelims.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Between the 7th and 12th centuries, new ruling clans called <b>Rajputs</b> came to dominate Rajasthan and much of
 north India. Where they came from is one of the most debated questions in Indian history (section 1).</p>
@@ -613,9 +640,12 @@ narrative.</p>
 <article class="unit" id="R06">
   <header class="unit-head"><p class="kicker">Unit R06 · c. 7th century – 1311 CE</p><h2>The Chauhans: Shakambhari, Ajmer, Ranthambhor, Jalore</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Major dynasties of Rajasthan and their achievements</li><li>Battles: Tarain, Ranthambhor, Siwana, Jalore</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Important historical events and major dynasties</li></ul></div>
-    <p class="weight">Prithviraj III and Tarain, Vigraharaja IV's culture, and Hammir of Ranthambhor are the most-asked Chauhan topics; Jalore and Siwana come up in Prelims.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR3</span> Political and cultural achievements of prominent rulers of major dynasties</li><li><span class="lid">PR4</span> Cooperation and resistance with central power; administrative and revenue system in medieval Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Major dynasties of Rajasthan and their achievements</li><li>Battles: Tarain, Ranthambhor, Siwana, Jalore</li></ul>
+    
+    <p class="weight">Prithviraj III and Tarain, Vigraharaja IV's culture, and Hammir of Ranthambhor are the most-asked Chauhan topics; Jalore and Siwana come up in Prelims.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The Chauhans (Chahamanas) began as feudatories of the Pratiharas around <b>Shakambhari</b> (Sambhar lake). As
 Pratihara power faded, they became independent, founded <b>Ajmer</b> (c. 1113) and, under <b>Vigraharaja IV</b>,
@@ -722,9 +752,12 @@ Older explanations blaming "Rajput disunity" in general are now seen as too simp
 <article class="unit" id="R07">
   <header class="unit-head"><p class="kicker">Unit R07 · c. 566 – 1509 CE</p><h2>Mewar I: The Guhils to Rana Kumbha</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Major dynasties of Rajasthan and their achievements</li><li>Rana Kumbha: wars, forts and literature</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Important historical events and major dynasties</li></ul></div>
-    <p class="weight">Rana Kumbha is one of the most-asked rulers in all of Rajasthan history (titles, forts, Vijay Stambh, books, Sarangpur). Bappa Rawal, Jaitra Singh, the 1303 siege of Chittor and Rana Hammir follow.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR3</span> Political and cultural achievements of prominent rulers of major dynasties</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Major dynasties of Rajasthan and their achievements</li><li>Rana Kumbha: wars, forts and literature</li></ul>
+    
+    <p class="weight">Rana Kumbha is one of the most-asked rulers in all of Rajasthan history (titles, forts, Vijay Stambh, books, Sarangpur). Bappa Rawal, Jaitra Singh, the 1303 siege of Chittor and Rana Hammir follow.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Mewar's ruling house, the <b>Guhils</b>, is one of the longest-reigning dynasties in the world — from the 6th
 century to 1947. In this unit it grows from a local chiefdom around Nagda and Ahar into the strongest Rajput state.</p>
@@ -842,9 +875,12 @@ Gujarat prepared the ground for Sanga's bid for supremacy.</p></section>
 <article class="unit" id="R08">
   <header class="unit-head"><p class="kicker">Unit R08 · c. 1509–1680 CE</p><h2>Mewar II: Rana Sanga to Raj Singh (1509–1680)</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Political and cultural achievements of prominent rulers of major dynasties</li><li>Cooperation and resistance with central power</li><li>Sources of Rajasthan history (Raj Prashasti, Mughal chronicles)</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Political and cultural achievements of various rulers of Rajasthan (up to the 18th century)</li><li>Links to GS-I Part B: Mughal Rajput policy (Indian History unit I21–I22)</li></ul></div>
-    <p class="weight">Mewar is the single most-asked dynasty in Rajasthan history. Expect 1–2 Prelims questions on dates, battles, titles and inscriptions, and Mains questions that ask you to <i>evaluate</i> (Pratap's resistance, the 1615 treaty, Khanwa).</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR3</span> Political and cultural achievements of prominent rulers of major dynasties</li><li><span class="lid">PR4</span> Cooperation and resistance with central power; administrative and revenue system in medieval Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Political and cultural achievements of prominent rulers of major dynasties</li><li>Cooperation and resistance with central power</li><li>Sources of Rajasthan history (Raj Prashasti, Mughal chronicles)</li></ul>
+    
+    <p class="weight">Mewar is the single most-asked dynasty in Rajasthan history. Expect 1–2 Prelims questions on dates, battles, titles and inscriptions, and Mains questions that ask you to <i>evaluate</i> (Pratap's resistance, the 1615 treaty, Khanwa).</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>In 1509 Mewar was the strongest Rajput state in north India. Over the next 170 years it faced three great
 powers in turn — the Lodi sultans and Babur, the Sultan of Gujarat, and the Mughal empire — and its story is a
@@ -1060,9 +1096,12 @@ partly in religious language.</li>
 <article class="unit" id="R09">
   <header class="unit-head"><p class="kicker">Unit R09 · c. 1240 – 1818 CE</p><h2>The Rathores of Marwar</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Major dynasties of Rajasthan and their achievements</li><li>Rao Jodha, Maldeo, Chandrasen, Jaswant Singh, Durgadas</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Important historical events and major dynasties; Rajput–Mughal relations</li></ul></div>
-    <p class="weight">RAS Mains 2013 asked a 10-mark question on Maldeo's relations with Humayun and Sher Shah. Giri-Sumel, Chandrasen, Durgadas and the Rathore war of 1679–1707 recur.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR3</span> Political and cultural achievements of prominent rulers of major dynasties</li><li><span class="lid">PR4</span> Cooperation and resistance with central power; administrative and revenue system in medieval Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Major dynasties of Rajasthan and their achievements</li><li>Rao Jodha, Maldeo, Chandrasen, Jaswant Singh, Durgadas</li></ul>
+    
+    <p class="weight">RAS Mains 2013 asked a 10-mark question on Maldeo's relations with Humayun and Sher Shah. Giri-Sumel, Chandrasen, Durgadas and the Rathore war of 1679–1707 recur.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The Rathores came to Marwar (the Jodhpur region) in the 13th century as a small band and became the largest Rajput
 state by area. Three phases matter:</p>
@@ -1186,9 +1225,12 @@ handling of the Marwar succession as a political blunder that turned allies into
 <article class="unit" id="R10">
   <header class="unit-head"><p class="kicker">Unit R10 · c. 1155 – 1947 CE</p><h2>Bikaner, Jaisalmer and Sirohi</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Major dynasties of Rajasthan and their achievements</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Important historical events and major dynasties</li></ul></div>
-    <p class="weight">Rai Singh, Anup Singh and Ganga Singh of Bikaner; the "dhai saka" of Jaisalmer; and Rao Surtan of Sirohi (Dattani) are the usual Prelims targets.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR3</span> Political and cultural achievements of prominent rulers of major dynasties</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Major dynasties of Rajasthan and their achievements</li></ul>
+    
+    <p class="weight">Rai Singh, Anup Singh and Ganga Singh of Bikaner; the "dhai saka" of Jaisalmer; and Rao Surtan of Sirohi (Dattani) are the usual Prelims targets.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Three desert and hill states of western Rajasthan, each with its own pattern:</p>
 <ul>
@@ -1280,9 +1322,12 @@ balance his reforms against his autocracy.</p></section>
 <article class="unit" id="R11">
   <header class="unit-head"><p class="kicker">Unit R11 · c. 1137 – 1947 CE</p><h2>Amber–Jaipur, Shekhawati and Alwar</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Major dynasties of Rajasthan and their achievements</li><li>Sawai Jai Singh: Jaipur, observatories, Hurda</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Important historical events and major dynasties; Rajput–Mughal relations</li></ul></div>
-    <p class="weight">Bharmal's alliance (1562), Man Singh I, Mirza Raja Jai Singh (Purandar) and above all Sawai Jai Singh II (Jaipur, Jantar Mantar, Hurda) are standard Prelims and Mains topics.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR3</span> Political and cultural achievements of prominent rulers of major dynasties</li><li><span class="lid">PR4</span> Cooperation and resistance with central power; administrative and revenue system in medieval Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Major dynasties of Rajasthan and their achievements</li><li>Sawai Jai Singh: Jaipur, observatories, Hurda</li></ul>
+    
+    <p class="weight">Bharmal's alliance (1562), Man Singh I, Mirza Raja Jai Singh (Purandar) and above all Sawai Jai Singh II (Jaipur, Jantar Mantar, Hurda) are standard Prelims and Mains topics.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>The <b>Kachhwahas</b> of Dhundhar (the Jaipur region) were a modest power until 1562, when <b>Raja Bharmal</b>
 became the first major Rajput ruler to ally with Akbar. For the next 150 years Kachhwaha rulers were among the
@@ -1384,9 +1429,12 @@ historians note that his Hurda plan was undermined by the rivalries of the same 
 <article class="unit" id="R12">
   <header class="unit-head"><p class="kicker">Unit R12 · c. 1040 – 1947 CE</p><h2>Hadoti, Karauli, Bharatpur, Dholpur and Tonk</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Major dynasties of Rajasthan and their achievements</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Important historical events and major dynasties</li></ul></div>
-    <p class="weight">Zalim Singh Jhala and the creation of Jhalawar, Surjan Hada's treaty with Akbar, Maharaja Suraj Mal of Bharatpur, the 1805 siege of Bharatpur and Amir Khan of Tonk are the usual questions.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR3</span> Political and cultural achievements of prominent rulers of major dynasties</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Major dynasties of Rajasthan and their achievements</li></ul>
+    
+    <p class="weight">Zalim Singh Jhala and the creation of Jhalawar, Surjan Hada's treaty with Akbar, Maharaja Suraj Mal of Bharatpur, the 1805 siege of Bharatpur and Amir Khan of Tonk are the usual questions.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>South-eastern and eastern Rajasthan had a different mix of rulers:</p>
 <ul>
@@ -1496,9 +1544,12 @@ standard; Qanungo stressed the peasant roots of the Jat state.</p></section>
 <article class="unit" id="R13">
   <header class="unit-head"><p class="kicker">Unit R13 · 1192 – 1761 CE</p><h2>Cooperation and Resistance: Rajasthan and the Central Powers</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Rajput–Sultanate and Rajput–Mughal relations</li><li>Important battles</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Important historical events; Rajput resistance and cooperation with the Sultanate and the Mughals</li></ul></div>
-    <p class="weight">A synthesis unit. Akbar's Rajput policy, the effects of Rajput–Mughal relations and Aurangzeb's Rajput policy are classic 10-mark questions; battles and sieges are asked in Prelims.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR4</span> Cooperation and resistance with central power; administrative and revenue system in medieval Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Rajput–Sultanate and Rajput–Mughal relations</li><li>Important battles</li></ul>
+    
+    <p class="weight">A synthesis unit. Akbar's Rajput policy, the effects of Rajput–Mughal relations and Aurangzeb's Rajput policy are classic 10-mark questions; battles and sieges are asked in Prelims.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Units R06–R12 told the story dynasty by dynasty. This unit pulls it together around one question: <b>how did the
 Rajput states deal with the powers of Delhi and Agra?</b></p>
@@ -1608,9 +1659,12 @@ ideas of service and loyalty adapted to Mughal service.</p></section>
 <article class="unit" id="R14">
   <header class="unit-head"><p class="kicker">Unit R14 · c. 1500 – 1818 CE</p><h2>Administrative and Revenue System of Medieval Rajasthan</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Administrative and revenue system of the Rajput states</li><li>Jagirdari system; terms of land revenue</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Major dynasties, their administrative and revenue system</li></ul></div>
-    <p class="weight">Asked every recent year: RAS Mains 2024 (revenue system, 10 marks; "Hath ka Kurab", 2 marks) and 2023 ("Dyodhidar", 2 marks). Learn the technical terms precisely.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR4</span> Cooperation and resistance with central power; administrative and revenue system in medieval Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH2</span> Revenue and administrative system and changing patterns</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Administrative and revenue system of the Rajput states</li><li>Jagirdari system; terms of land revenue</li></ul>
+    
+    <p class="weight">Asked every recent year: RAS Mains 2024 (revenue system, 10 marks; "Hath ka Kurab", 2 marks) and 2023 ("Dyodhidar", 2 marks). Learn the technical terms precisely.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Medieval Rajput states were run on two principles:</p>
 <ol>
@@ -1738,9 +1792,12 @@ mansab system.</p></section>
 <article class="unit" id="R15">
   <header class="unit-head"><p class="kicker">Unit R15 · 1734 – c. 1900</p><h2>The 18th and 19th Centuries: Marathas, 1818 Treaties, Society and Reform</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Maratha intervention in Rajasthan</li><li>Treaties with the East India Company</li><li>Social reform in Rajasthan (sati, female infanticide, dakan pratha)</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Socio-political awakening; British paramountcy and its impact</li></ul></div>
-    <p class="weight">RAS Mains 2018 asked who Dungji and Jawaharji were (2 marks). The 1817–18 treaties, the AGG and the dates of social-reform bans are frequent Prelims topics.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR5</span> Political and social condition in the 18th–19th centuries; peasant and tribal movements in the 20th century; Praja Mandal movements and mass awakening; integration of Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH3</span> 19th–20th century: Revolt of 1857, peasant and tribal movements, political awakening, mass movements, integration</li><li><span class="lid">RH2</span> Revenue and administrative system and changing patterns</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Maratha intervention in Rajasthan</li><li>Treaties with the East India Company</li><li>Social reform in Rajasthan (sati, female infanticide, dakan pratha)</li></ul>
+    
+    <p class="weight">RAS Mains 2018 asked who Dungji and Jawaharji were (2 marks). The 1817–18 treaties, the AGG and the dates of social-reform bans are frequent Prelims topics.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>In 1734 the Marathas were invited into Rajasthan's succession quarrels; within a generation they were collecting
 heavy tribute from almost every state. Disputes among Rajput rulers, plunder by Pindari bands (Amir Khan) and the
@@ -1863,12 +1920,106 @@ the conditions for 1857 and later movements.</p></section>
   <section class="block "><h3><span class="num">10</span>Glossary (हिन्दी ↔ English)</h3><table class="gloss"><tr><th>हिन्दी</th><th>English</th><th>Meaning</th></tr><tr><td lang="hi">खिराज</td><td>Khiraj</td><td>Tribute.</td></tr><tr><td lang="hi">चौथ</td><td>Chauth</td><td>Maratha levy of one-fourth.</td></tr><tr><td lang="hi">पिंडारी</td><td>Pindari</td><td>Irregular plundering horsemen.</td></tr><tr><td lang="hi">ए.जी.जी.</td><td>AGG</td><td>Agent to the Governor-General (for Rajputana).</td></tr><tr><td lang="hi">सती प्रथा</td><td>Sati</td><td>Burning of a widow on the husband's pyre.</td></tr><tr><td lang="hi">डाकन प्रथा</td><td>Dakan pratha</td><td>Witch-hunting.</td></tr><tr><td lang="hi">त्याग</td><td>Tyag</td><td>Gifts demanded by bards at weddings.</td></tr><tr><td lang="hi">समाधि प्रथा</td><td>Samadhi</td><td>Live burial of ascetics.</td></tr></table></section>
   <section class="block sources"><h3>Sources used for this unit</h3><ul><li>Rima Hooja, <i>A History of Rajasthan</i>, chs. on the 18th–19th centuries.</li><li>M.S. Jain, <i>Concise History of Modern Rajasthan</i>.</li><li>Kalu Ram Sharma, <i>Unnisavin Sadi ke Rajasthan ka Samajik evam Arthik Jivan</i>.</li><li>V.S. Bhatnagar, <i>Life and Times of Sawai Jai Singh</i> (Marathas).</li><li>Rajasthan Board of Secondary Education, Rajasthan history textbooks.</li></ul></section>
 </article>
+<article class="unit" id="R23">
+  <header class="unit-head"><p class="kicker">Unit R23 · 1818 – 1959</p><h2>Changing Patterns of Administration and Revenue, 1818–1959</h2></header>
+  <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR4</span> Cooperation and resistance with central power; administrative and revenue system in medieval Rajasthan</li><li><span class="lid">PR5</span> Political and social condition in the 18th–19th centuries; peasant and tribal movements in the 20th century; Praja Mandal movements and mass awakening; integration of Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH2</span> Revenue and administrative system and changing patterns</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>British paramountcy and the political agency system (AGG Rajputana, residents, political agents)</li><li>Ajmer-Merwara as directly ruled British territory</li><li>Changes in the jagirdari system and in land revenue under British influence: cash assessment, settlements, cesses</li><li>Administrative modernisation in the princely states (Bikaner, Jaipur, Jodhpur)</li><li>After integration: abolition of jagirs and zamindari; Tenancy and Land Revenue Acts; Panchayati Raj (1959)</li></ul>
+    
+    <p class="weight">The 2026 Mains line asks for "changing patterns", not only the medieval system. RAS Mains 2024 asked for the revenue system of medieval Rajasthan (10 marks); a question on how that system changed under the British and after 1947 is the natural next step. Pair this unit with R14 (the medieval system) and R17 (peasant movements, which were a reaction to these changes).</p></section>
+  <section class="block "><h3><span class="num">2</span>The big picture</h3>
+<p>Until 1818 the Rajput states ran on the system described in R14: the ruler's <b>khalsa</b> land, <b>jagirs</b> held
+in return for military service, revenue taken largely <b>in kind</b> (batai, kunta) and a long list of cesses (lag-bag).
+The treaties of 1817–18 (R15) changed the frame. The British took charge of defence and foreign relations, so the
+jagirdar's military role faded while his rights over the peasant remained. A British <b>political agency system</b>
+supervised the states, and slowly pushed them towards cash revenue, regular land settlements, courts and departments.
+Peasants paid more in cash and cesses without the old protection, which fed the movements of the 20th century.
+After integration (1948–56) the new state of Rajasthan dismantled the system: <b>jagirs were resumed (Act of 1952)</b>,
+tenants got secure rights (<b>Tenancy Act 1955</b>), revenue law was unified (<b>Land Revenue Act 1956</b>), zamindari
+and biswedari were abolished (<b>1959</b>), and <b>Panchayati Raj</b> began at Nagaur on 2 October 1959.</p>
+<div class="box why"><p>Answer frame for "changing patterns": medieval base (R14) → British-era changes (agency control,
+cash revenue, settlements, decline of jagirdars' service role) → post-1947 land reforms and democratic
+decentralisation.</p></div><ol class="timeline"><li><span class="when">1817–18</span><span class="what">Treaties of protection with the Rajputana states (details in R15)</span></li><li><span class="when">1818</span><span class="what">Ajmer ceded to the British by Daulat Rao Sindhia; ruled directly</span></li><li><span class="when">1832</span><span class="what">Office of Agent to the Governor-General (AGG) for Rajputana created at Ajmer</span></li><li><span class="when">19th century (late)</span><span class="what">Survey and settlement operations begin in several states; shift towards cash revenue</span></li><li><span class="when">1913</span><span class="what">Bikaner sets up a Representative Assembly under Maharaja Ganga Singh</span></li><li><span class="when">1948–56</span><span class="what">Integration of Rajasthan in seven stages (R21)</span></li><li><span class="when">1952</span><span class="what">Rajasthan Land Reforms and Resumption of Jagirs Act</span></li><li><span class="when">1955</span><span class="what">Rajasthan Tenancy Act</span></li><li><span class="when">1956</span><span class="what">Rajasthan Land Revenue Act; Ajmer merged into Rajasthan (1 November)</span></li><li><span class="when">1959</span><span class="what">Rajasthan Zamindari and Biswedari Abolition Act; Panchayati Raj inaugurated at Nagaur (2 October)</span></li></ol></section>
+  <section class="block "><h3><span class="num">3</span>Core notes</h3><div class="topic"><h4>R23.1 The political agency system</h4>
+<ul>
+<li>Under the treaties the states kept internal autonomy but accepted British "protection" and paid <b>tribute</b>
+(khiraj) in many cases.</li>
+<li>The <b>Agent to the Governor-General for Rajputana</b> (from 1832, at Ajmer; later with a summer headquarters at
+Mount Abu) supervised the states through <b>residents</b> and <b>political agents</b> posted at their courts (for
+example the Mewar Political Agency at Udaipur).</li>
+<li>Agents intervened in successions, minority administrations and disputes between rulers and jagirdars. During a
+ruler's minority the agency often ran the state through a council, and introduced British-style departments.</li>
+<li><b>Ajmer-Merwara</b> was British territory, ruled directly, and became a model for settlement and irrigation work
+(for example the tanks built in Merwara by Colonel Dixon).</li>
+</ul></div><div class="topic"><h4>R23.2 What changed in the jagirdari system</h4>
+<div class="tbl"><table>
+<tr><th>Aspect</th><th>Before 1818 (R14)</th><th>Under British paramountcy</th></tr>
+<tr><td>Military service (chakri)</td><td>The core duty of a jagirdar</td><td>Lost its purpose once the British guaranteed defence; often commuted to cash payments</td></tr>
+<tr><td>Ruler–jagirdar relation</td><td>Kinship and service bond (bhai-bant)</td><td>Rulers used British backing to curb jagirdars; disputes went to the agency</td></tr>
+<tr><td>Jagirdar–peasant relation</td><td>Custom limited demands</td><td>Demands rose: cash rent, begar (forced labour) and dozens of cesses (lag-bag)</td></tr>
+<tr><td>Revenue form</td><td>Mostly in kind: batai (crop sharing), kunta (estimate)</td><td>Gradual shift to cash assessment based on survey and settlement</td></tr>
+</table></div>
+<p>The result was a jagirdar class that kept its income and privileges but no longer performed the service that
+justified them. Peasant movements in Bijolia, Begun, Shekhawati and Marwar (R17) targeted exactly these burdens.</p></div><div class="topic"><h4>R23.3 Administrative modernisation in the states</h4>
+<ul>
+<li><b>Land settlements</b> (bandobast) in several states in the late 19th and early 20th century surveyed land,
+recorded rights and fixed cash assessments, often with British settlement officers on loan.</li>
+<li><b>Departments and courts</b>: police, customs, public works, education and medical departments, and chief courts
+replaced personal rule in the larger states.</li>
+<li><b>Bikaner</b> under Maharaja Ganga Singh: Representative Assembly (1913), a chief court, and the <b>Gang Canal</b>
+(opened 1927) that brought Sutlej water to the north of the state.</li>
+<li><b>Jaipur</b> appointed Sir Mirza Ismail as prime minister (1942–46), who pushed public works and administrative
+reform.</li>
+<li>Limits: reforms were uneven, came from the top, and left jagirdari areas largely untouched, which is why the Praja
+Mandals (R20) demanded responsible government.</li>
+</ul></div><div class="topic"><h4>R23.4 After integration: dismantling the old order</h4>
+<div class="tbl"><table>
+<tr><th>Law or step</th><th>Year</th><th>What it did</th></tr>
+<tr><td><b>Rajasthan Land Reforms and Resumption of Jagirs Act</b></td><td>1952</td><td>Jagirs resumed by the state in stages, with compensation and rehabilitation grants; the jagirdar as revenue intermediary ended</td></tr>
+<tr><td><b>Rajasthan Tenancy Act</b></td><td>1955</td><td>Uniform tenancy law; <b>khatedari</b> (heritable, transferable) rights for cultivators; protection against arbitrary eviction</td></tr>
+<tr><td><b>Rajasthan Land Revenue Act</b></td><td>1956</td><td>Single revenue code for the whole state: revenue courts, records of rights, settlement</td></tr>
+<tr><td><b>Rajasthan Zamindari and Biswedari Abolition Act</b></td><td>1959</td><td>Abolished the remaining intermediary tenures</td></tr>
+<tr><td><b>Panchayati Raj</b></td><td>2 October 1959</td><td>Three-tier democratic decentralisation inaugurated at Nagaur by Jawaharlal Nehru; Rajasthan was the first state</td></tr>
+</table></div>
+<p>The Tenancy Act and the Land Revenue Act are now Mains Paper III law topics (LW8, LW9), so this unit is the history
+behind them.</p></div></section>
+  <section class="block "><h3><span class="num">4</span>What historians say</h3>
+<p><b>G.N. Sharma</b> (<i>Social Life in Medieval Rajasthan</i>) and <b>Dilbagh Singh</b> (<i>The State, Landlords and
+Peasants: Rajasthan in the 18th Century</i>) describe the pre-colonial system. <b>K.L. Kamal</b> and the official
+<i>Rajasthan District Gazetteers</i> trace the settlements and the post-1947 reforms. Historians broadly agree that
+paramountcy froze the jagirdari order: it removed the military reason for jagirs while protecting the jagirdars,
+so the burden on peasants grew until land reform ended the system.</p></section>
+  <section class="block facts"><h3><span class="num">5</span>Prelims fact bank</h3><ul><li>Ajmer was ceded to the British by Daulat Rao Sindhia in 1818 and ruled directly.</li><li>The office of Agent to the Governor-General for Rajputana was created in 1832 at Ajmer.</li><li>Political agents and residents represented the British at individual state courts.</li><li>Under paramountcy the jagirdar's military service lost its purpose and was often commuted to cash.</li><li>Batai was revenue taken as a share of the crop; kunta was revenue fixed by estimating the standing crop.</li><li>Lag-bag was the collective name for the many cesses levied on peasants.</li><li>Bikaner set up a Representative Assembly in 1913 under Maharaja Ganga Singh.</li><li>The Gang Canal, bringing Sutlej water to Bikaner, opened in 1927.</li><li>Sir Mirza Ismail was prime minister of Jaipur from 1942 to 1946.</li><li>The Rajasthan Land Reforms and Resumption of Jagirs Act was passed in 1952.</li><li>The Rajasthan Tenancy Act, 1955 gave cultivators khatedari rights.</li><li>The Rajasthan Land Revenue Act was passed in 1956.</li><li>The Rajasthan Zamindari and Biswedari Abolition Act was passed in 1959.</li><li>Panchayati Raj was inaugurated at Nagaur on 2 October 1959.</li></ul><p class="label trap-label">Exam traps</p><ul><li>Ajmer-Merwara was British territory, not a princely state; it joined Rajasthan only on 1 November 1956.</li><li>Jagir resumption (1952) came before zamindari and biswedari abolition (1959).</li><li>Tenancy Act 1955, Land Revenue Act 1956: do not swap the years.</li><li>The AGG was at Ajmer (1832); Mount Abu was a later summer headquarters.</li></ul></section>
+  <section class="block "><h3><span class="num">6</span>Previous-year questions (RAS)</h3><p class="note">No RAS Mains question yet on changes after 1818 specifically. Related: RAS Mains 2024, "Describe the revenue system of Mediaeval Rajasthan" (10 marks), and 2023, "Who were the Dyodhidars?" (2 marks), both in R14. The 2026 wording "changing patterns" makes a question on this unit likely.</p></section>
+  <section class="block "><h3><span class="num">7</span>Mains answer writing</h3><div class="mains">
+      <p class="mq"><span class="tag">10 marks · 100 words</span> Discuss the changes in the land revenue and jagirdari system of Rajasthan under British paramountcy.</p>
+      <p class="label">How to frame it</p><ul><li>Base system before 1818</li><li>Agency control</li><li>Jagirdars lose military role, keep privileges</li><li>Cash revenue, settlements, cesses</li><li>Effect: peasant movements</li><li>Conclusion</li></ul>
+      <details><summary>Model answer (96 words)</summary><div class="answer"><p>Before 1818 jagirs were held for military service and revenue was taken mostly in kind through batai and kunta. The treaties of 1817–18 placed the states under British protection and the AGG (1832). With defence guaranteed, the jagirdar's service lost its purpose, yet his rights over peasants stayed and were often turned into cash. Settlements gradually brought cash assessment, while cesses (lag-bag) and begar grew. Reforms such as Bikaner's assembly (1913) were top-down and spared jagir areas. The rising burden produced the Bijolia, Begun and Shekhawati movements and was ended only by land reform after 1947.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">5 marks · 50 words</span> What were the main land reform laws passed in Rajasthan between 1952 and 1959?</p>
+      <p class="label">How to frame it</p><ul><li>Four laws with years</li><li>One-line purpose each</li></ul>
+      <details><summary>Model answer (39 words)</summary><div class="answer"><p>The Land Reforms and Resumption of Jagirs Act (1952) ended jagirs; the Tenancy Act (1955) gave cultivators khatedari rights; the Land Revenue Act (1956) unified revenue law; and the Zamindari and Biswedari Abolition Act (1959) removed the remaining intermediaries.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">2 marks · 15 words</span> What is khatedari right?</p>
+      <p class="label">How to frame it</p><ul><li>Answer</li></ul>
+      <details><summary>Model answer (14 words)</summary><div class="answer"><p>A heritable, transferable cultivating right given to tenants by the Rajasthan Tenancy Act, 1955.</p></div></details>
+    </div></section>
+  <section class="block card"><h3><span class="num">8</span>One-screen revision card</h3><ul><li>1818 treaties → AGG Rajputana at Ajmer (1832) → political agents at courts; Ajmer-Merwara direct rule.</li><li>Jagirdar: military role gone, privileges kept; peasants paid cash rent, lag-bag, begar → 20th-century movements.</li><li>Modernisation: settlements, departments, courts; Bikaner assembly 1913, Gang Canal 1927.</li><li>Reforms: Jagirs 1952 · Tenancy 1955 · Land Revenue 1956 · Zamindari-Biswedari 1959 · Panchayati Raj, Nagaur, 2 Oct 1959.</li></ul></section>
+  <section class="block "><h3><span class="num">9</span>Self-test</h3><ol class="test"><li><p>Who ceded Ajmer to the British, and when?</p><details><summary>Answer</summary><p>Daulat Rao Sindhia, in 1818.</p></details></li><li><p>When and where was the office of the AGG for Rajputana created?</p><details><summary>Answer</summary><p>1832, at Ajmer.</p></details></li><li><p>Why did the jagirdar's military service lose its purpose after 1818?</p><details><summary>Answer</summary><p>The British guaranteed the defence of the states under the treaties.</p></details></li><li><p>What were batai and kunta?</p><details><summary>Answer</summary><p>Batai: revenue as a share of the crop; kunta: revenue fixed by estimating the standing crop.</p></details></li><li><p>Which ruler set up the Bikaner Representative Assembly, and when?</p><details><summary>Answer</summary><p>Maharaja Ganga Singh, in 1913.</p></details></li><li><p>Which law ended jagirs in Rajasthan?</p><details><summary>Answer</summary><p>The Rajasthan Land Reforms and Resumption of Jagirs Act, 1952.</p></details></li><li><p>Which Act gave khatedari rights?</p><details><summary>Answer</summary><p>The Rajasthan Tenancy Act, 1955.</p></details></li><li><p>When was the Zamindari and Biswedari Abolition Act passed?</p><details><summary>Answer</summary><p>1959.</p></details></li><li><p>Where and when was Panchayati Raj inaugurated?</p><details><summary>Answer</summary><p>Nagaur, 2 October 1959.</p></details></li></ol></section>
+  <section class="block "><h3><span class="num">10</span>Glossary (हिन्दी ↔ English)</h3><table class="gloss"><tr><th>हिन्दी</th><th>English</th><th>Meaning</th></tr><tr><td lang="hi">खालसा</td><td>Khalsa land</td><td>Land administered directly by the ruler.</td></tr><tr><td lang="hi">जागीर पुनर्ग्रहण</td><td>Resumption of jagirs</td><td>Taking jagirs back into state control.</td></tr><tr><td lang="hi">खातेदारी</td><td>Khatedari</td><td>Heritable, transferable tenancy right.</td></tr><tr><td lang="hi">लाग-बाग</td><td>Lag-bag</td><td>Cesses levied on peasants.</td></tr><tr><td lang="hi">बेगार</td><td>Begar</td><td>Forced, unpaid labour.</td></tr><tr><td lang="hi">बंदोबस्त</td><td>Settlement (bandobast)</td><td>Survey and fixing of land revenue.</td></tr></table></section>
+  <section class="block sources"><h3>Sources used for this unit</h3><ul><li>G.N. Sharma, <i>Rajasthan ka Itihas</i> and <i>Social Life in Medieval Rajasthan</i>.</li><li>Dilbagh Singh, <i>The State, Landlords and Peasants: Rajasthan in the 18th Century</i> (1990).</li><li>Rajasthan Tenancy Act, 1955 and Rajasthan Land Revenue Act, 1956 (bare Acts, Government of Rajasthan).</li><li>RBSE Class 12, <i>Rajasthan ka Itihas evam Sanskriti</i>.</li></ul></section>
+</article>
 <article class="unit" id="R16">
   <header class="unit-head"><p class="kicker">Unit R16 · May 1857 – April 1859</p><h2>The Revolt of 1857 in Rajasthan</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Revolt of 1857 in Rajasthan: centres, leaders, British officers</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Freedom struggle and political awakening in Rajasthan; 1857</li></ul></div>
-    <p class="weight">Nasirabad, Erinpura–Auwa, Kota and Tatya Tope's campaign are standard. Prelims likes cantonment–date and officer–state matching. For the all-India revolt see unit I32 of the Indian History notebook.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR5</span> Political and social condition in the 18th–19th centuries; peasant and tribal movements in the 20th century; Praja Mandal movements and mass awakening; integration of Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH3</span> 19th–20th century: Revolt of 1857, peasant and tribal movements, political awakening, mass movements, integration</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Revolt of 1857 in Rajasthan: centres, leaders, British officers</li></ul>
+    
+    <p class="weight">Nasirabad, Erinpura–Auwa, Kota and Tatya Tope's campaign are standard. Prelims likes cantonment–date and officer–state matching. For the all-India revolt see unit I32 of the Indian History notebook.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>In 1857 Rajasthan had <b>six cantonments</b> with Indian troops of the Company. Soldiers rose at <b>Nasirabad</b>,
 <b>Neemuch</b>, <b>Deoli</b> and <b>Erinpura</b>; the rebels joined discontented nobles, most famously
@@ -1978,9 +2129,12 @@ the dominance of soldiers and nobles.</p></section>
 <article class="unit" id="R17">
   <header class="unit-head"><p class="kicker">Unit R17 · 1897 – 1947</p><h2>Peasant Movements</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Peasant movements of Rajasthan: Bijolia, Begun, Shekhawati, Alwar, Bundi, Marwar</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Peasant and tribal movements; political awakening in Rajasthan</li></ul></div>
-    <p class="weight">Asked almost every year: RAS Mains 2024 (Chandawal incident of 1942, 5 marks), 2021 (Begun movement, 5 marks), 2018 (causes of peasant unrest in jagirdari areas, 5 marks). Bijolia is the most-asked single movement.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR5</span> Political and social condition in the 18th–19th centuries; peasant and tribal movements in the 20th century; Praja Mandal movements and mass awakening; integration of Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH3</span> 19th–20th century: Revolt of 1857, peasant and tribal movements, political awakening, mass movements, integration</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Peasant movements of Rajasthan: Bijolia, Begun, Shekhawati, Alwar, Bundi, Marwar</li></ul>
+    
+    <p class="weight">Asked almost every year: RAS Mains 2024 (Chandawal incident of 1942, 5 marks), 2021 (Begun movement, 5 marks), 2018 (causes of peasant unrest in jagirdari areas, 5 marks). Bijolia is the most-asked single movement.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Under British protection after 1818, jagirdars in the princely states faced no check. They raised land revenue,
 added dozens of cesses (<b>lag-baag</b>) and demanded forced labour (<b>begar</b>). From the 1890s peasants
@@ -2086,9 +2240,12 @@ agree the movements weakened jagirdari long before its legal abolition (1952 onw
 <article class="unit" id="R18">
   <header class="unit-head"><p class="kicker">Unit R18 · 1818 – 1947</p><h2>Tribal Movements</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Tribal movements: Bhil, Mer, Meena; Govind Guru, Motilal Tejawat</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Peasant and tribal movements</li></ul></div>
-    <p class="weight">RAS Mains 2016 asked about "Mewar Pukar" (2 marks). Mangarh (1913), Govind Guru, Motilal Tejawat's Eki movement and Neemda (1922) recur in Prelims.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR5</span> Political and social condition in the 18th–19th centuries; peasant and tribal movements in the 20th century; Praja Mandal movements and mass awakening; integration of Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH3</span> 19th–20th century: Revolt of 1857, peasant and tribal movements, political awakening, mass movements, integration</li><li><span class="lid">RH6</span> Tribes and their traditions</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Tribal movements: Bhil, Mer, Meena; Govind Guru, Motilal Tejawat</li></ul>
+    
+    <p class="weight">RAS Mains 2016 asked about "Mewar Pukar" (2 marks). Mangarh (1913), Govind Guru, Motilal Tejawat's Eki movement and Neemda (1922) recur in Prelims.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Rajasthan's tribal communities — <b>Bhils</b> and <b>Garasias</b> of the southern hills (Mewar, Dungarpur, Banswara,
 Sirohi), <b>Mers</b> of Merwara, and <b>Meenas</b> of the east — had lived with considerable autonomy, collecting
@@ -2183,9 +2340,12 @@ massacres is disputed; official records give low figures, oral tradition high on
 <article class="unit" id="R19">
   <header class="unit-head"><p class="kicker">Unit R19 · c. 1885 – 1947</p><h2>Political Awakening: Press, Organisations, Revolutionaries</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Political awakening in Rajasthan</li><li>Newspapers and organisations</li><li>Revolutionaries of Rajasthan</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Socio-political awakening; freedom movement in Rajasthan</li></ul></div>
-    <p class="weight">RAS Mains 2016 asked a 10-mark question on the causes of political awakening in early 20th-century Rajasthan. Newspapers (founder–paper–place) and revolutionaries (Barhath family, Kharwa, Sethi, Pathik, Gopa) recur in Prelims.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR5</span> Political and social condition in the 18th–19th centuries; peasant and tribal movements in the 20th century; Praja Mandal movements and mass awakening; integration of Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH3</span> 19th–20th century: Revolt of 1857, peasant and tribal movements, political awakening, mass movements, integration</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Political awakening in Rajasthan</li><li>Newspapers and organisations</li><li>Revolutionaries of Rajasthan</li></ul>
+    
+    <p class="weight">RAS Mains 2016 asked a 10-mark question on the causes of political awakening in early 20th-century Rajasthan. Newspapers (founder–paper–place) and revolutionaries (Barhath family, Kharwa, Sethi, Pathik, Gopa) recur in Prelims.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>Political awakening came late to Rajasthan, because most of it was ruled by princes under British protection, with
 little press freedom, education or political organisation. <b>Ajmer–Merwara</b>, the only British-ruled area, became
@@ -2278,9 +2438,12 @@ government. Ajmer's role as a channel for nationalist ideas is widely stressed.<
 <article class="unit" id="R20">
   <header class="unit-head"><p class="kicker">Unit R20 · 1931 – 1948</p><h2>Praja Mandal Movements</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Praja Mandal movements in the princely states: founders, years, events</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Freedom struggle and Praja Mandal movements</li></ul></div>
-    <p class="weight">Asked repeatedly: RAS Mains 2023 (Jaipur Praja Mandal's attitude to Quit India, 5 marks), 2013 (same theme, 2 marks), 2016 Special (features of the Praja Mandal movement, 10 marks). Prelims asks founder–state–year.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR5</span> Political and social condition in the 18th–19th centuries; peasant and tribal movements in the 20th century; Praja Mandal movements and mass awakening; integration of Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH3</span> 19th–20th century: Revolt of 1857, peasant and tribal movements, political awakening, mass movements, integration</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Praja Mandal movements in the princely states: founders, years, events</li></ul>
+    
+    <p class="weight">Asked repeatedly: RAS Mains 2023 (Jaipur Praja Mandal's attitude to Quit India, 5 marks), 2013 (same theme, 2 marks), 2016 Special (features of the Praja Mandal movement, 10 marks). Prelims asks founder–state–year.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p><b>Praja Mandals</b> ("people's associations") were political organisations formed in the princely states, mostly
 between 1931 and 1945. Their core demand was <b>responsible government</b> under the ruler — an elected government
@@ -2375,9 +2538,12 @@ view.</p></section>
 <article class="unit" id="R21">
   <header class="unit-head"><p class="kicker">Unit R21 · March 1948 – November 1956</p><h2>Integration of Rajasthan (1948–1956)</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Integration of Rajasthan: seven stages, dates, capitals, Rajpramukhs, prime ministers</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Integration of Rajasthan</li></ul></div>
-    <p class="weight">RAS Mains 2021 asked about Sirohi's integration (5 marks). The seven stages are a Prelims certainty: learn dates, member states, capital, Rajpramukh, prime minister and who inaugurated each.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR5</span> Political and social condition in the 18th–19th centuries; peasant and tribal movements in the 20th century; Praja Mandal movements and mass awakening; integration of Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH3</span> 19th–20th century: Revolt of 1857, peasant and tribal movements, political awakening, mass movements, integration</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Integration of Rajasthan: seven stages, dates, capitals, Rajpramukhs, prime ministers</li></ul>
+    
+    <p class="weight">RAS Mains 2021 asked about Sirohi's integration (5 marks). The seven stages are a Prelims certainty: learn dates, member states, capital, Rajpramukh, prime minister and who inaugurated each.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>In 1947 Rajputana consisted of <b>19 princely states</b>, <b>3 chiefships</b> (Lawa, Kushalgarh, Neemrana) and the
 British province of <b>Ajmer–Merwara</b>. All the states acceded to India on defence, foreign affairs and
@@ -2454,9 +2620,12 @@ Udaipur) over the capital and posts.</p></section>
 <article class="unit" id="R22">
   <header class="unit-head"><p class="kicker">Unit R22 · Whole syllabus</p><h2>Leading Personalities and Master Chronology</h2></header>
   <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
-    <div><b>Prelims</b><ul><li>Important personalities of Rajasthan history</li><li>Chronology</li></ul></div>
-    <div><b>Mains</b><ul><li>GS-I Part A: Important historical personalities; revision across the Rajasthan history syllabus</li></ul></div>
-    <p class="weight">A revision unit. Mains often asks short notes on a personality (2 or 5 marks); Prelims tests person–role matching. Use the master chronology the week before the exam.</p></div></section>
+    <div><b>Prelims 2026</b><ul><li><span class="lid">PR9</span> Leading personalities of Rajasthan</li></ul></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">RH1</span> Prehistoric cultures, ancient sites; political and cultural achievements of rulers (to 18th century)</li><li><span class="lid">RH3</span> 19th–20th century: Revolt of 1857, peasant and tribal movements, political awakening, mass movements, integration</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Important personalities of Rajasthan history</li><li>Chronology</li></ul>
+    
+    <p class="weight">A revision unit. Mains often asks short notes on a personality (2 or 5 marks); Prelims tests person–role matching. Use the master chronology the week before the exam.</p></section>
   <section class="block "><h3><span class="num">2</span>The big picture</h3>
 <p>This last unit brings the notebook together in two tools:</p>
 <ol>
