@@ -14,6 +14,8 @@ interface LogCardsModalProps {
   cardLabel?: string;
   currentProgress?: TopicProgress;
   onSaved: () => void;
+  initialCardsCount?: number;
+  initialDurationMinutes?: number;
 }
 
 export const LogCardsModal: React.FC<LogCardsModalProps> = ({
@@ -26,6 +28,8 @@ export const LogCardsModal: React.FC<LogCardsModalProps> = ({
   cardLabel = 'cards',
   currentProgress,
   onSaved,
+  initialCardsCount,
+  initialDurationMinutes,
 }) => {
   const todayStr = getTodayDateString();
   const yesterdayStr = addDays(todayStr, -1);
@@ -37,11 +41,16 @@ export const LogCardsModal: React.FC<LogCardsModalProps> = ({
   const initialCompleted = currentProgress?.completedCards || 0;
   const remainingCards = Math.max(0, activeTotalCards - initialCompleted);
 
-  const defaultAdd = Math.min(10, remainingCards > 0 ? remainingCards : activeTotalCards);
+  const defaultAdd =
+    initialCardsCount && initialCardsCount > 0
+      ? Math.min(initialCardsCount, activeTotalCards)
+      : Math.min(10, remainingCards > 0 ? remainingCards : activeTotalCards);
 
   const [cardsCount, setCardsCount] = useState<number>(defaultAdd);
-  const [selectedDate, setSelectedDate] = useState<string>(yesterdayStr);
-  const [durationMinutes, setDurationMinutes] = useState<number>(30);
+  const [selectedDate, setSelectedDate] = useState<string>(todayStr);
+  const [durationMinutes, setDurationMinutes] = useState<number>(
+    initialDurationMinutes || (defaultAdd <= 5 ? 30 : 40)
+  );
   const [autoScheduleRevision, setAutoScheduleRevision] = useState<boolean>(true);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);

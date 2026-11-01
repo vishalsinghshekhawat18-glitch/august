@@ -18,6 +18,7 @@ import {
   Building,
   TrendingUp,
   Edit2,
+  Trash2,
   X,
   CheckSquare,
 } from 'lucide-react';
@@ -49,6 +50,7 @@ import { CompleteRevisionModal } from '../components/CompleteRevisionModal';
 import { AnalyzeMockModal } from '../components/AnalyzeMockModal';
 import { MentorCoachCorner } from '../components/MentorCoachCorner';
 import { LiveMockFeedbackModal } from '../components/LiveMockFeedbackModal';
+import { EditStudyLogModal } from '../components/EditStudyLogModal';
 import { coachService } from '../services/coachService';
 
 interface DashboardViewProps {
@@ -77,6 +79,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
 
   // Complete Revision Modal
   const [completingRevision, setCompletingRevision] = useState<RevisionRecord | null>(null);
+  const [editingStudyLog, setEditingStudyLog] = useState<StudyLog | null>(null);
 
   // Dedicated Log Mock Test Modal on Dashboard
   const [isAddMockOpen, setIsAddMockOpen] = useState<boolean>(false);
@@ -636,10 +639,31 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2 self-end sm:self-center shrink-0">
+                  <div className="flex items-center gap-1.5 self-end sm:self-center shrink-0">
                     <span className="text-xs font-bold text-slate-900 bg-white px-2.5 py-1 rounded-lg border border-slate-200">
                       {formatMinutes(log.durationMinutes)}
                     </span>
+                    <button
+                      type="button"
+                      onClick={() => setEditingStudyLog(log)}
+                      className="p-1 text-slate-400 hover:text-indigo-600 rounded-md hover:bg-white transition cursor-pointer"
+                      title="Edit study session duration, date, or notes"
+                    >
+                      <Edit2 className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        if (confirm('Are you sure you want to delete this study session record?')) {
+                          await dbService.delete('studyLogs', log.id);
+                          await loadDashboardData();
+                        }
+                      }}
+                      className="p-1 text-slate-400 hover:text-rose-600 rounded-md hover:bg-white transition cursor-pointer"
+                      title="Delete study session"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
               );
@@ -1436,6 +1460,17 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
           isOpen={!!activeMockReview}
           dispatch={activeMockReview}
           onClose={() => setActiveMockReview(null)}
+        />
+      )}
+
+      {/* Edit Study Log Modal */}
+      {editingStudyLog && (
+        <EditStudyLogModal
+          isOpen={!!editingStudyLog}
+          onClose={() => setEditingStudyLog(null)}
+          studyLog={editingStudyLog}
+          onSaved={loadDashboardData}
+          onDeleted={loadDashboardData}
         />
       )}
     </div>

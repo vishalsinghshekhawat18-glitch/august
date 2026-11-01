@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, Plus, Trash2, Filter, Calendar, Tag, ChevronDown, ExternalLink } from 'lucide-react';
+import { Clock, Plus, Trash2, Edit2, Filter, Calendar, Tag, ChevronDown, ExternalLink } from 'lucide-react';
 import { StudyLog, Commitment, Subject, Topic, ActivityType } from '../types';
 import { dbService } from '../services/db';
 import { formatMinutes, formatHoursDecimal, getTodayDateString } from '../services/dateUtils';
+import { EditStudyLogModal } from '../components/EditStudyLogModal';
 
 interface StudyLogsViewProps {
   onOpenQuickAdd: () => void;
@@ -13,6 +14,7 @@ export const StudyLogsView: React.FC<StudyLogsViewProps> = ({ onOpenQuickAdd }) 
   const [commitments, setCommitments] = useState<Commitment[]>([]);
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [topics, setTopics] = useState<Topic[]>([]);
+  const [editingLog, setEditingLog] = useState<StudyLog | null>(null);
 
   // Filters
   const [filterExam, setFilterExam] = useState<string>('all');
@@ -216,19 +218,39 @@ export const StudyLogsView: React.FC<StudyLogsViewProps> = ({ onOpenQuickAdd }) 
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => handleDeleteLog(log.id)}
-                    className="text-slate-300 hover:text-rose-600 p-1 rounded transition-colors"
-                    title="Delete log entry"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                  <div className="flex items-center gap-1 shrink-0">
+                    <button
+                      onClick={() => setEditingLog(log)}
+                      className="text-slate-400 hover:text-indigo-600 p-1.5 rounded-lg hover:bg-indigo-50 transition-colors"
+                      title="Edit study session duration, date, or notes"
+                    >
+                      <Edit2 className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => handleDeleteLog(log.id)}
+                      className="text-slate-300 hover:text-rose-600 p-1.5 rounded-lg hover:bg-rose-50 transition-colors"
+                      title="Delete log entry"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               );
             })}
           </div>
         )}
       </div>
+
+      {/* Edit Study Log Modal */}
+      {editingLog && (
+        <EditStudyLogModal
+          isOpen={!!editingLog}
+          onClose={() => setEditingLog(null)}
+          studyLog={editingLog}
+          onSaved={loadData}
+          onDeleted={loadData}
+        />
+      )}
     </div>
   );
 };

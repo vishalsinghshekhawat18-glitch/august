@@ -1289,5 +1289,45 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(fetched?.totalCards).toBe(45);
       expect(fetched?.cardLabel).toBe('questions');
     });
+
+    it('allows editing an existing study log duration and date when a session took more time than expected', async () => {
+      const initialLog: StudyLog = {
+        id: 'log_polity_cards',
+        date: '2026-11-01',
+        timestamp: new Date().toISOString(),
+        examId: 'comm_ibps_rrb_po',
+        subjectId: 'sub_ca',
+        topicId: 'top_static_s1',
+        durationMinutes: 15, // Initially logged 15 minutes
+        activityType: 'learning',
+        notes: 'Section 1: Constitution, Polity and Amendments: Read Cards 1–5 (5/35 cards)',
+        createdAt: new Date().toISOString(),
+      };
+      await dbService.put<StudyLog>('studyLogs', initialLog);
+
+      // Student took >30 minutes (e.g. 35 minutes) and edits the record
+      const logToEdit = await dbService.get<StudyLog>('studyLogs', 'log_polity_cards');
+      expect(logToEdit).toBeDefined();
+      expect(logToEdit?.durationMinutes).toBe(15);
+
+      const updatedLog: StudyLog = {
+        ...logToEdit!,
+        durationMinutes: 35, // Corrected to 35 mins
+        notes: 'Section 1: Constitution, Polity and Amendments: Read Cards 1–5 (took 35 mins thorough reading)',
+      };
+      await dbService.put<StudyLog>('studyLogs', updatedLog);
+
+      // Verify the updated duration in DB
+      const verified = await dbService.get<StudyLog>('studyLogs', 'log_polity_cards');
+      expect(verified?.durationMinutes).toBe(35);
+      expect(verified?.notes).toContain('took 35 mins');
+
+      // Verify today's total calculation includes the full 35 minutes
+      const allLogs = await dbService.getAll<StudyLog>('studyLogs');
+      const todayTotal = allLogs
+        .filter((l) => l.date === '2026-11-01')
+        .reduce((sum, l) => sum + l.durationMinutes, 0);
+      expect(todayTotal).toBeGreaterThanOrEqual(35);
+    });
   });
 });

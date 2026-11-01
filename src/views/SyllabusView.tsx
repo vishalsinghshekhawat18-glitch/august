@@ -19,6 +19,7 @@ import {
   Folder,
   Calendar,
   Building,
+  Clock,
   X,
 } from 'lucide-react';
 import {
@@ -31,11 +32,13 @@ import {
   PracticeStatus,
   RevisionProgressStatus,
   RevisionRecord,
+  StudyLog,
 } from '../types';
 import { dbService } from '../services/db';
 import { SmartPacingModal } from '../components/SmartPacingModal';
 import { BatchReadChaptersModal } from '../components/BatchReadChaptersModal';
 import { LogCardsModal } from '../components/LogCardsModal';
+import { EditStudyLogModal } from '../components/EditStudyLogModal';
 import {
   importOctoberSubjectChapters,
   getOctoberSubjectMeta,
@@ -79,11 +82,15 @@ export const SyllabusView: React.FC = () => {
   const [batchModalMode, setBatchModalMode] = useState<'learning' | 'revision'>('learning');
   const [isImporting, setIsImporting] = useState<boolean>(false);
   const [revisions, setRevisions] = useState<RevisionRecord[]>([]);
+  const [studyLogs, setStudyLogs] = useState<StudyLog[]>([]);
+  const [editingStudyLog, setEditingStudyLog] = useState<StudyLog | null>(null);
   const [loggingCardTopic, setLoggingCardTopic] = useState<{
     subject: Subject;
     topic: Topic;
     totalCards: number;
     cardLabel: string;
+    initialCardsCount?: number;
+    initialDurationMinutes?: number;
   } | null>(null);
   const [editingCardTopic, setEditingCardTopic] = useState<{
     topic: Topic;
@@ -95,13 +102,14 @@ export const SyllabusView: React.FC = () => {
 
   const loadData = async () => {
     try {
-      const [comms, subs, rawTops, subtops, progList, revList] = await Promise.all([
+      const [comms, subs, rawTops, subtops, progList, revList, logList] = await Promise.all([
         dbService.getAll<Commitment>('commitments'),
         dbService.getAll<Subject>('subjects'),
         dbService.getAll<Topic>('topics'),
         dbService.getAll<Subtopic>('subtopics'),
         dbService.getAll<TopicProgress>('topicProgress'),
         dbService.getAll<RevisionRecord>('revisions'),
+        dbService.getAll<StudyLog>('studyLogs'),
       ]);
 
       // Auto-migrate Section 1 Polity if it was erroneously saved with 28 cards
@@ -134,6 +142,7 @@ export const SyllabusView: React.FC = () => {
       setTopics(tops.sort((a, b) => a.order - b.order));
       setSubtopics(subtops);
       setRevisions(revList);
+      setStudyLogs(logList);
 
       const pMap = new Map<string, TopicProgress>();
       for (const p of progList) {
@@ -974,8 +983,28 @@ export const SyllabusView: React.FC = () => {
                                     )}
                                   </div>
 
-                                  {/* Sub-info: Last Studied & Next Scheduled Revision */}
+                                  {/* Sub-info: Last Studied & Next Scheduled Revision & Today's Reading Time */}
                                   <div className="flex items-center gap-2.5 mt-1 text-[10px] text-slate-400 flex-wrap">
+                                    {(() => {
+                                      const todayTopicLogs = studyLogs.filter(
+                                        (l) => l.topicId === topic.id && l.date === getTodayDateString()
+                                      );
+                                      const todayTopicMinutes = todayTopicLogs.reduce((acc, l) => acc + (l.durationMinutes || 0), 0);
+                                      return todayTopicMinutes > 0 ? (
+                                        <span className="text-indigo-800 bg-indigo-50 border border-indigo-200 px-1.5 py-0.2 rounded font-semibold inline-flex items-center gap-1">
+                                          <Clock className="w-2.5 h-2.5 text-indigo-600" />
+                                          <span>Today: {todayTopicMinutes} min</span>
+                                          <button
+                                            type="button"
+                                            onClick={() => setEditingStudyLog(todayTopicLogs[todayTopicLogs.length - 1])}
+                                            className="ml-0.5 text-[10px] text-indigo-600 hover:text-indigo-900 underline font-bold cursor-pointer"
+                                            title="Click to edit duration, date, or notes for today's reading session"
+                                          >
+                                            Edit Time
+                                          </button>
+                                        </span>
+                                      ) : null;
+                                    })()}
                                     {progress.lastStudiedAt && <span>Last read: {progress.lastStudiedAt}</span>}
                                     {activeRevision && (
                                       <span className="text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.2 rounded font-semibold flex items-center gap-1">
@@ -1002,9 +1031,28 @@ export const SyllabusView: React.FC = () => {
                                         style={{ width: `${percent}%` }}
                                       />
                                     </div>
-                                    <span className="text-xs font-mono font-bold text-slate-700 min-w-16">
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        const input = prompt(
+                                          `Set completed cards for "${displayName}" (0 to ${cardInfo.totalCards}):`,
+                                          String(completedCards)
+                                        );
+                                        if (input !== null) {
+                                          const val = Math.max(0, Math.min(cardInfo.totalCards, parseInt(input, 10) || 0));
+                                          handleUpdateProgress(topic.id, 'completedCards' as any, val);
+                                          handleUpdateProgress(
+                                            topic.id,
+                                            'manualCompletionPercentage',
+                                            Math.round((val / cardInfo.totalCards) * 100)
+                                          );
+                                        }
+                                      }}
+                                      className="text-xs font-mono font-bold text-slate-700 hover:text-indigo-600 hover:underline min-w-16 cursor-pointer"
+                                      title="Click to directly adjust completed card progress"
+                                    >
                                       {completedCards} / {cardInfo.totalCards}
-                                    </span>
+                                    </button>
                                   </div>
                                 ) : (
                                   <div className="flex items-center gap-2">
@@ -1027,41 +1075,35 @@ export const SyllabusView: React.FC = () => {
                                   <div className="hidden sm:flex items-center gap-1">
                                     <button
                                       type="button"
-                                      onClick={async () => {
-                                        await logTopicCardProgress({
-                                          examId: selectedExamId,
+                                      onClick={() =>
+                                        setLoggingCardTopic({
                                           subject,
                                           topic,
-                                          cardsReadCount: 5,
                                           totalCards: cardInfo.totalCards,
-                                          date: getTodayDateString(),
-                                          durationMinutes: 15,
-                                          autoScheduleRevision: true,
-                                        });
-                                        await loadData();
-                                      }}
-                                      className="px-2 py-0.5 text-[11px] font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-md transition"
-                                      title="Quick log +5 cards read today & schedule revision"
+                                          cardLabel: cardInfo.cardLabel,
+                                          initialCardsCount: 5,
+                                          initialDurationMinutes: 30,
+                                        })
+                                      }
+                                      className="px-2 py-0.5 text-[11px] font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-md transition cursor-pointer"
+                                      title="Log 5 cards read (verify/customize your actual minutes)"
                                     >
                                       +5
                                     </button>
                                     <button
                                       type="button"
-                                      onClick={async () => {
-                                        await logTopicCardProgress({
-                                          examId: selectedExamId,
+                                      onClick={() =>
+                                        setLoggingCardTopic({
                                           subject,
                                           topic,
-                                          cardsReadCount: 10,
                                           totalCards: cardInfo.totalCards,
-                                          date: getTodayDateString(),
-                                          durationMinutes: 30,
-                                          autoScheduleRevision: true,
-                                        });
-                                        await loadData();
-                                      }}
-                                      className="px-2 py-0.5 text-[11px] font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-md transition"
-                                      title="Quick log +10 cards read today & schedule revision"
+                                          cardLabel: cardInfo.cardLabel,
+                                          initialCardsCount: 10,
+                                          initialDurationMinutes: 45,
+                                        })
+                                      }
+                                      className="px-2 py-0.5 text-[11px] font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-md transition cursor-pointer"
+                                      title="Log 10 cards read (verify/customize your actual minutes)"
                                     >
                                       +10
                                     </button>
@@ -1335,6 +1377,8 @@ export const SyllabusView: React.FC = () => {
           topic={loggingCardTopic.topic}
           totalCards={loggingCardTopic.totalCards}
           cardLabel={loggingCardTopic.cardLabel}
+          initialCardsCount={loggingCardTopic.initialCardsCount}
+          initialDurationMinutes={loggingCardTopic.initialDurationMinutes}
           currentProgress={progressMap.get(`${selectedExamId}_${loggingCardTopic.topic.id}`)}
           onSaved={() => loadData()}
         />
@@ -1439,6 +1483,17 @@ export const SyllabusView: React.FC = () => {
             </form>
           </div>
         </div>
+      )}
+
+      {/* Edit Study Session Modal */}
+      {editingStudyLog && (
+        <EditStudyLogModal
+          isOpen={!!editingStudyLog}
+          onClose={() => setEditingStudyLog(null)}
+          studyLog={editingStudyLog}
+          onSaved={() => loadData()}
+          onDeleted={() => loadData()}
+        />
       )}
     </div>
   );
