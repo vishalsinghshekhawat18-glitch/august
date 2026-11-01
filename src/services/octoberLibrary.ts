@@ -13,7 +13,7 @@ export interface OctoberChapter {
 
 export const KNOWN_OCTOBER_CARD_COUNTS: Record<string, { totalCards: number; cardLabel: string }> = {
   // Static Bank
-  'static-s1': { totalCards: 28, cardLabel: 'cards' },
+  'static-s1': { totalCards: 35, cardLabel: 'cards' }, // Corrected from 28 to 35
   'static-s2': { totalCards: 36, cardLabel: 'cards' },
   'static-s3': { totalCards: 15, cardLabel: 'cards' },
   'static-s4': { totalCards: 16, cardLabel: 'cards' },
@@ -53,6 +53,17 @@ export const KNOWN_OCTOBER_CARD_COUNTS: Record<string, { totalCards: number; car
  * Returns total cards/items and label for a topic (from topic directly or via known October anchors).
  */
 export function getTopicTotalCards(topic: Topic): { totalCards: number; cardLabel: string } | null {
+  // Auto-correct Section 1 Polity if it was erroneously saved as 28
+  if (
+    topic.totalCards === 28 &&
+    (topic.name.toLowerCase().includes('polity') ||
+      topic.name.toLowerCase().includes('constitution') ||
+      (topic.notes && topic.notes.includes('static-s1')))
+  ) {
+    topic.totalCards = 35;
+    return { totalCards: 35, cardLabel: topic.cardLabel || 'cards' };
+  }
+
   if (topic.totalCards && topic.totalCards > 0) {
     return { totalCards: topic.totalCards, cardLabel: topic.cardLabel || 'cards' };
   }
@@ -138,7 +149,7 @@ export const OCTOBER_ECONOMICS_CHAPTERS: OctoberChapter[] = [
 
 export const OCTOBER_CURRENT_AFFAIRS_SECTIONS: OctoberChapter[] = [
   // Part 1: Static Bank (10 Sections)
-  { chapterNumber: 1, title: 'Constitution, Polity and Amendments', part: 'Static Bank', totalCards: 28, cardLabel: 'cards' },
+  { chapterNumber: 1, title: 'Constitution, Polity and Amendments', part: 'Static Bank', totalCards: 35, cardLabel: 'cards' },
   { chapterNumber: 2, title: 'RBI, Monetary Policy and Banking Basics', part: 'Static Bank', totalCards: 36, cardLabel: 'cards' },
   { chapterNumber: 3, title: 'GST, Taxation and Budget', part: 'Static Bank', totalCards: 15, cardLabel: 'cards' },
   { chapterNumber: 4, title: 'Financial Regulators and Institutions', part: 'Static Bank', totalCards: 16, cardLabel: 'cards' },
@@ -317,6 +328,11 @@ export function parseOctoberHtml(html: string, slug: string, baseReaderUrl: stri
           if (numMatch) totalCards = parseInt(numMatch[1], 10);
           if (countStr.toLowerCase().includes('question')) cardLabel = 'questions';
           else if (countStr.toLowerCase().includes('table')) cardLabel = 'tables';
+        }
+        // Section 1 Polity has always had 35 cards
+        if (sId === 'static-s1' || cleanTitle.toLowerCase().includes('polity')) {
+          totalCards = 35;
+          cardLabel = 'cards';
         }
         if (!totalCards && KNOWN_OCTOBER_CARD_COUNTS[sId]) {
           totalCards = KNOWN_OCTOBER_CARD_COUNTS[sId].totalCards;
@@ -1144,4 +1160,20 @@ export async function logTopicCardProgress(options: LogCardProgressOptions): Pro
     studyLog,
     revisions: scheduledRevisions,
   };
+}
+
+/**
+ * Allows candidate to edit / update the total card count and label for any topic on the fly.
+ */
+export async function updateTopicTotalCards(
+  topicId: string,
+  newTotalCards: number,
+  cardLabel: string = 'cards'
+): Promise<Topic | null> {
+  const topic = await dbService.get<Topic>('topics', topicId);
+  if (!topic) return null;
+  topic.totalCards = Math.max(1, Number(newTotalCards));
+  topic.cardLabel = cardLabel || topic.cardLabel || 'cards';
+  await dbService.put<Topic>('topics', topic);
+  return topic;
 }

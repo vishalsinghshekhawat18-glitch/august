@@ -19,6 +19,7 @@ import {
   Folder,
   Calendar,
   Building,
+  X,
 } from 'lucide-react';
 import {
   Commitment,
@@ -43,6 +44,7 @@ import {
   extractTopicGroup,
   getTopicTotalCards,
   logTopicCardProgress,
+  updateTopicTotalCards,
 } from '../services/octoberLibrary';
 import { getTodayDateString, daysBetween } from '../services/dateUtils';
 
@@ -83,10 +85,17 @@ export const SyllabusView: React.FC = () => {
     totalCards: number;
     cardLabel: string;
   } | null>(null);
+  const [editingCardTopic, setEditingCardTopic] = useState<{
+    topic: Topic;
+    currentTotal: number;
+    cardLabel: string;
+  } | null>(null);
+  const [newTotalCardsInput, setNewTotalCardsInput] = useState<number>(35);
+  const [newCardLabelInput, setNewCardLabelInput] = useState<string>('cards');
 
   const loadData = async () => {
     try {
-      const [comms, subs, tops, subtops, progList, revList] = await Promise.all([
+      const [comms, subs, rawTops, subtops, progList, revList] = await Promise.all([
         dbService.getAll<Commitment>('commitments'),
         dbService.getAll<Subject>('subjects'),
         dbService.getAll<Topic>('topics'),
@@ -94,6 +103,26 @@ export const SyllabusView: React.FC = () => {
         dbService.getAll<TopicProgress>('topicProgress'),
         dbService.getAll<RevisionRecord>('revisions'),
       ]);
+
+      // Auto-migrate Section 1 Polity if it was erroneously saved with 28 cards
+      let tops = rawTops;
+      let migrated = false;
+      for (const t of tops) {
+        if (
+          (t.totalCards === 28 || !t.totalCards) &&
+          (t.notes?.includes('static-s1') ||
+            t.name.toLowerCase().includes('polity') ||
+            t.name.toLowerCase().includes('constitution'))
+        ) {
+          t.totalCards = 35;
+          t.cardLabel = t.cardLabel || 'cards';
+          await dbService.put<Topic>('topics', t);
+          migrated = true;
+        }
+      }
+      if (migrated) {
+        tops = await dbService.getAll<Topic>('topics');
+      }
 
       const sortedComms = comms.sort((a, b) => a.priority - b.priority);
       setCommitments(sortedComms);
@@ -114,6 +143,16 @@ export const SyllabusView: React.FC = () => {
     } catch (err) {
       console.error('Error loading syllabus data:', err);
     }
+  };
+
+  const handleSaveCardCount = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingCardTopic) return;
+    const count = Math.max(1, newTotalCardsInput);
+    const label = newCardLabelInput.trim() || 'cards';
+    await updateTopicTotalCards(editingCardTopic.topic.id, count, label);
+    setEditingCardTopic(null);
+    await loadData();
   };
 
   useEffect(() => {
@@ -874,10 +913,41 @@ export const SyllabusView: React.FC = () => {
                                     >
                                       {displayName}
                                     </h4>
-                                    {cardInfo && (
-                                      <span className="text-[10px] font-bold text-slate-600 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-full shadow-2xs">
-                                        {cardInfo.totalCards} {cardInfo.cardLabel}
-                                      </span>
+                                    {cardInfo ? (
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          setEditingCardTopic({
+                                            topic,
+                                            currentTotal: cardInfo.totalCards,
+                                            cardLabel: cardInfo.cardLabel,
+                                          });
+                                          setNewTotalCardsInput(cardInfo.totalCards);
+                                          setNewCardLabelInput(cardInfo.cardLabel);
+                                        }}
+                                        className="inline-flex items-center gap-1 text-[10px] font-bold text-slate-700 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 hover:border-indigo-300 border border-slate-200 px-2 py-0.5 rounded-full shadow-2xs transition group cursor-pointer"
+                                        title="Click to edit/adjust total cards count for this topic"
+                                      >
+                                        <span>{cardInfo.totalCards} {cardInfo.cardLabel}</span>
+                                        <Edit2 className="w-2.5 h-2.5 opacity-40 group-hover:opacity-100 text-indigo-500" />
+                                      </button>
+                                    ) : (
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          setEditingCardTopic({
+                                            topic,
+                                            currentTotal: 25,
+                                            cardLabel: 'cards',
+                                          });
+                                          setNewTotalCardsInput(25);
+                                          setNewCardLabelInput('cards');
+                                        }}
+                                        className="inline-flex items-center gap-1 text-[10px] font-medium text-slate-400 hover:text-indigo-600 bg-slate-50 hover:bg-indigo-50 border border-dashed border-slate-200 hover:border-indigo-300 px-1.5 py-0.2 rounded transition cursor-pointer"
+                                        title="Set card count to track this topic with card/question units"
+                                      >
+                                        <span>+ Set Cards</span>
+                                      </button>
                                     )}
                                     {topic.notes && (
                                       topic.notes.startsWith('http') ? (
@@ -1268,6 +1338,107 @@ export const SyllabusView: React.FC = () => {
           currentProgress={progressMap.get(`${selectedExamId}_${loggingCardTopic.topic.id}`)}
           onSaved={() => loadData()}
         />
+      )}
+
+      {/* Adjust Total Cards / Questions Modal */}
+      {editingCardTopic && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay bg-slate-900/40 backdrop-blur-xs">
+          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-sm overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+            <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-700 flex items-center justify-center">
+                  <Edit2 className="w-4 h-4 text-indigo-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">Adjust Card Count</h3>
+                  <p className="text-[11px] text-slate-500 font-medium truncate max-w-[200px]">
+                    {editingCardTopic.topic.name}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setEditingCardTopic(null)}
+                className="text-slate-400 hover:text-slate-600 p-1 rounded-lg"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveCardCount} className="p-5 space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Total Cards / Items
+                </label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="number"
+                    min="1"
+                    max="1000"
+                    value={newTotalCardsInput}
+                    onChange={(e) => setNewTotalCardsInput(Math.max(1, parseInt(e.target.value, 10) || 1))}
+                    className="w-24 text-sm font-bold px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                    required
+                    autoFocus
+                  />
+                  <div className="flex gap-1 flex-wrap">
+                    {[20, 28, 35, 40, 50, 64].map((preset) => (
+                      <button
+                        key={preset}
+                        type="button"
+                        onClick={() => setNewTotalCardsInput(preset)}
+                        className={`px-1.5 py-1 text-[10px] font-bold rounded border transition ${
+                          newTotalCardsInput === preset
+                            ? 'bg-indigo-600 text-white border-indigo-600'
+                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border-slate-200'
+                        }`}
+                      >
+                        {preset}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Item Label
+                </label>
+                <select
+                  value={newCardLabelInput}
+                  onChange={(e) => setNewCardLabelInput(e.target.value)}
+                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 bg-white"
+                >
+                  <option value="cards">cards</option>
+                  <option value="questions">questions</option>
+                  <option value="tables">tables</option>
+                  <option value="items">items</option>
+                  <option value="pages">pages</option>
+                </select>
+              </div>
+
+              <div className="bg-indigo-50/60 border border-indigo-100 rounded-lg p-2.5 text-[11px] text-indigo-900 leading-relaxed">
+                Adjusting the denominator recalculates completion percentages and revision slices automatically across all views.
+              </div>
+
+              <div className="flex justify-end gap-2 pt-1">
+                <button
+                  type="button"
+                  onClick={() => setEditingCardTopic(null)}
+                  className="px-3 py-1.5 text-xs text-slate-600 hover:bg-slate-100 rounded-lg font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-1.5 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm"
+                >
+                  Save Card Count
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -28,6 +28,9 @@ import {
   groupTopicsByPart,
   getTopicTotalCards,
   logTopicCardProgress,
+  updateTopicTotalCards,
+  KNOWN_OCTOBER_CARD_COUNTS,
+  OCTOBER_CURRENT_AFFAIRS_SECTIONS,
 } from '../services/octoberLibrary';
 import { coachService } from '../services/coachService';
 import {
@@ -1228,6 +1231,63 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(eveningReview).toBeDefined();
       expect(eveningReview.type).toBe('evening_debrief');
       expect(eveningReview.rating).toBe('exceptional');
+    });
+  });
+
+  describe('13. Card Count Verification & On-the-Fly Card Count Customization', () => {
+    it('verifies Section 1 Constitution and Polity is configured to 35 cards in known counts and chapter catalogs', () => {
+      expect(KNOWN_OCTOBER_CARD_COUNTS['static-s1']).toEqual({
+        totalCards: 35,
+        cardLabel: 'cards',
+      });
+
+      const sec1 = OCTOBER_CURRENT_AFFAIRS_SECTIONS.find(
+        (s) => s.title.toLowerCase().includes('polity') && s.part === 'Static Bank'
+      );
+      expect(sec1).toBeDefined();
+      expect(sec1?.totalCards).toBe(35);
+      expect(sec1?.cardLabel).toBe('cards');
+    });
+
+    it('auto-corrects a topic stored with 28 cards for Polity to 35 cards in getTopicTotalCards', () => {
+      const storedTopic: Topic = {
+        id: 'top_static_s1',
+        subjectId: 'sub_ca',
+        name: 'Section 1: Constitution, Polity and Amendments',
+        order: 1,
+        totalCards: 28, // Erroneously stored count
+        cardLabel: 'cards',
+        notes: 'reader.html?book=current-affairs#static-s1',
+      };
+
+      const info = getTopicTotalCards(storedTopic);
+      expect(info).toBeDefined();
+      expect(info?.totalCards).toBe(35);
+      expect(info?.cardLabel).toBe('cards');
+      expect(storedTopic.totalCards).toBe(35);
+    });
+
+    it('allows updating total cards and card label for any topic on the fly via updateTopicTotalCards', async () => {
+      const customTopic: Topic = {
+        id: 'top_custom_reasoning',
+        subjectId: 'sub_reasoning',
+        name: 'Puzzles & Seating Arrangement',
+        order: 1,
+        totalCards: 20,
+        cardLabel: 'cards',
+      };
+      await dbService.put<Topic>('topics', customTopic);
+
+      // Student customizes count to 45 questions
+      const updated = await updateTopicTotalCards('top_custom_reasoning', 45, 'questions');
+      expect(updated).toBeDefined();
+      expect(updated?.totalCards).toBe(45);
+      expect(updated?.cardLabel).toBe('questions');
+
+      // Verify persisted in db
+      const fetched = await dbService.get<Topic>('topics', 'top_custom_reasoning');
+      expect(fetched?.totalCards).toBe(45);
+      expect(fetched?.cardLabel).toBe('questions');
     });
   });
 });

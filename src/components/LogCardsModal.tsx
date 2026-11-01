@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { X, CheckCircle2, Clock, Calendar, Sparkles, RotateCw, BookOpen } from 'lucide-react';
+import { X, CheckCircle2, Clock, Calendar, Sparkles, RotateCw, BookOpen, Edit2 } from 'lucide-react';
 import { Subject, Topic, TopicProgress } from '../types';
-import { logTopicCardProgress } from '../services/octoberLibrary';
+import { logTopicCardProgress, updateTopicTotalCards } from '../services/octoberLibrary';
 import { getTodayDateString, addDays } from '../services/dateUtils';
 
 interface LogCardsModalProps {
@@ -30,10 +30,14 @@ export const LogCardsModal: React.FC<LogCardsModalProps> = ({
   const todayStr = getTodayDateString();
   const yesterdayStr = addDays(todayStr, -1);
 
-  const initialCompleted = currentProgress?.completedCards || 0;
-  const remainingCards = Math.max(0, totalCards - initialCompleted);
+  const [activeTotalCards, setActiveTotalCards] = useState<number>(totalCards);
+  const [isEditingTotal, setIsEditingTotal] = useState<boolean>(false);
+  const [editTotalInput, setEditTotalInput] = useState<number>(totalCards);
 
-  const defaultAdd = Math.min(10, remainingCards > 0 ? remainingCards : totalCards);
+  const initialCompleted = currentProgress?.completedCards || 0;
+  const remainingCards = Math.max(0, activeTotalCards - initialCompleted);
+
+  const defaultAdd = Math.min(10, remainingCards > 0 ? remainingCards : activeTotalCards);
 
   const [cardsCount, setCardsCount] = useState<number>(defaultAdd);
   const [selectedDate, setSelectedDate] = useState<string>(yesterdayStr);
@@ -44,9 +48,17 @@ export const LogCardsModal: React.FC<LogCardsModalProps> = ({
 
   if (!isOpen) return null;
 
-  const projectedCompleted = Math.min(totalCards, initialCompleted + cardsCount);
-  const currentPercent = Math.round((initialCompleted / totalCards) * 100);
-  const projectedPercent = Math.round((projectedCompleted / totalCards) * 100);
+  const handleSaveTotalCount = async () => {
+    if (editTotalInput <= 0) return;
+    await updateTopicTotalCards(topic.id, editTotalInput, cardLabel);
+    setActiveTotalCards(editTotalInput);
+    setIsEditingTotal(false);
+    onSaved();
+  };
+
+  const projectedCompleted = Math.min(activeTotalCards, initialCompleted + cardsCount);
+  const currentPercent = Math.round((initialCompleted / activeTotalCards) * 100);
+  const projectedPercent = Math.round((projectedCompleted / activeTotalCards) * 100);
 
   const cardSlice =
     initialCompleted === 0
@@ -64,7 +76,7 @@ export const LogCardsModal: React.FC<LogCardsModalProps> = ({
         subject,
         topic,
         cardsReadCount: cardsCount,
-        totalCards,
+        totalCards: activeTotalCards,
         date: selectedDate,
         durationMinutes,
         autoScheduleRevision,
@@ -98,9 +110,47 @@ export const LogCardsModal: React.FC<LogCardsModalProps> = ({
             <div>
               <h2 className="text-sm font-bold text-slate-900 flex items-center gap-2">
                 <span>Log Card Reading</span>
-                <span className="text-[11px] font-bold text-slate-600 bg-white border border-slate-200 px-2 py-0.5 rounded-full shadow-2xs">
-                  {totalCards} {cardLabel} total
-                </span>
+                {isEditingTotal ? (
+                  <div className="flex items-center gap-1 bg-white border border-indigo-300 rounded-full px-2 py-0.5 shadow-xs">
+                    <input
+                      type="number"
+                      min="1"
+                      max="1000"
+                      value={editTotalInput}
+                      onChange={(e) => setEditTotalInput(Math.max(1, parseInt(e.target.value, 10) || 1))}
+                      className="w-14 text-xs font-bold text-slate-800 focus:outline-none"
+                      autoFocus
+                    />
+                    <span className="text-[10px] text-slate-500 font-medium">{cardLabel}</span>
+                    <button
+                      type="button"
+                      onClick={handleSaveTotalCount}
+                      className="px-1.5 py-0.2 bg-indigo-600 text-white text-[10px] font-bold rounded hover:bg-indigo-700"
+                    >
+                      Save
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setIsEditingTotal(false)}
+                      className="px-1 py-0.2 text-slate-400 hover:text-slate-600 text-[10px]"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEditTotalInput(activeTotalCards);
+                      setIsEditingTotal(true);
+                    }}
+                    className="text-[11px] font-bold text-slate-600 hover:text-indigo-700 bg-white hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 px-2 py-0.5 rounded-full shadow-2xs flex items-center gap-1 transition cursor-pointer group"
+                    title="Click to edit total cards count for this topic"
+                  >
+                    <span>{activeTotalCards} {cardLabel} total</span>
+                    <Edit2 className="w-2.5 h-2.5 opacity-40 group-hover:opacity-100 text-indigo-500" />
+                  </button>
+                )}
               </h2>
               <p className="text-xs text-slate-500 font-medium truncate max-w-xs sm:max-w-sm">
                 {topic.name}
@@ -121,10 +171,10 @@ export const LogCardsModal: React.FC<LogCardsModalProps> = ({
           <div className="bg-indigo-50/50 border border-indigo-100 rounded-xl p-3.5 space-y-2">
             <div className="flex items-center justify-between text-xs">
               <span className="font-semibold text-indigo-950">
-                Progress: {initialCompleted} / {totalCards} {cardLabel} ({currentPercent}%)
+                Progress: {initialCompleted} / {activeTotalCards} {cardLabel} ({currentPercent}%)
               </span>
               <span className="font-bold text-indigo-700">
-                → Projected: {projectedCompleted} / {totalCards} ({projectedPercent}%)
+                → Projected: {projectedCompleted} / {activeTotalCards} ({projectedPercent}%)
               </span>
             </div>
 
@@ -144,7 +194,7 @@ export const LogCardsModal: React.FC<LogCardsModalProps> = ({
 
             <div className="flex items-center justify-between text-[11px] text-indigo-800 pt-0.5 font-medium">
               <span>Slice: <strong className="font-bold">{cardSlice}</strong></span>
-              <span>{Math.max(0, totalCards - projectedCompleted)} {cardLabel} remaining</span>
+              <span>{Math.max(0, activeTotalCards - projectedCompleted)} {cardLabel} remaining</span>
             </div>
           </div>
 
@@ -191,7 +241,7 @@ export const LogCardsModal: React.FC<LogCardsModalProps> = ({
               <input
                 type="number"
                 min="1"
-                max={totalCards}
+                max={activeTotalCards}
                 value={cardsCount}
                 onChange={(e) => setCardsCount(Math.max(1, parseInt(e.target.value, 10) || 1))}
                 className="w-24 text-sm font-bold text-slate-800 px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
