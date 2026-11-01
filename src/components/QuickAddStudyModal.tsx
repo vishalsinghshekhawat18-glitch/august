@@ -43,6 +43,8 @@ export const QuickAddStudyModal: React.FC<QuickAddStudyModalProps> = ({ isOpen, 
   const [mockAttempted, setMockAttempted] = useState<number>(62);
   const [mockCorrect, setMockCorrect] = useState<number>(56);
   const [mockIncorrect, setMockIncorrect] = useState<number>(6);
+  const [mockAnalysisCompleted, setMockAnalysisCompleted] = useState<boolean>(false);
+  const [mockAnalysisMinutes, setMockAnalysisMinutes] = useState<number>(45);
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -169,9 +171,29 @@ export const QuickAddStudyModal: React.FC<QuickAddStudyModalProps> = ({ isOpen, 
           timeTakenMinutes: Number(durationMinutes),
           notes: notes.trim() || undefined,
           createdAt: new Date().toISOString(),
+          analysisCompleted: mockAnalysisCompleted,
+          analysisMinutes: mockAnalysisCompleted ? Number(mockAnalysisMinutes) : undefined,
+          analysisDate: mockAnalysisCompleted ? date : undefined,
         };
 
         await dbService.put<MockTest>('mockTests', newMock);
+
+        // If analysis was also performed, automatically create mistake analysis study log
+        if (mockAnalysisCompleted && Number(mockAnalysisMinutes) > 0) {
+          const analysisLog: StudyLog = {
+            id: `log_analysis_${newMock.id}`,
+            date,
+            timestamp: new Date().toISOString(),
+            examId,
+            subjectId: '',
+            durationMinutes: Number(mockAnalysisMinutes),
+            activityType: 'mistake_analysis',
+            notes: `Mock Analysis: ${finalTitle} (${mockAnalysisMinutes}m)`,
+            createdAt: new Date().toISOString(),
+          };
+          await dbService.put<StudyLog>('studyLogs', analysisLog);
+        }
+
         logNotes = `Mock Test: ${finalTitle} — Score: ${mockScore}/${mockMaxScore} (${accuracy}% acc)` + (notes.trim() ? ` • ${notes.trim()}` : '');
       }
 
@@ -483,6 +505,56 @@ export const QuickAddStudyModal: React.FC<QuickAddStudyModalProps> = ({ isOpen, 
               <div className="flex items-center justify-between text-[11px] text-purple-900 font-medium pt-0.5">
                 <span>Accuracy: <strong>{mockAttempted > 0 ? ((mockCorrect / mockAttempted) * 100).toFixed(1) : 0}%</strong></span>
                 <span>Score %: <strong>{Math.round((mockScore / (mockMaxScore || 1)) * 100)}%</strong></span>
+              </div>
+
+              {/* Analysis Checkbox & Minutes */}
+              <div className="pt-2 border-t border-purple-200/60 space-y-2">
+                <label className="flex items-center gap-2 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={mockAnalysisCompleted}
+                    onChange={(e) => setMockAnalysisCompleted(e.target.checked)}
+                    className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300"
+                  />
+                  <span className="text-xs font-semibold text-slate-800">
+                    Also record analysis time for this mock test
+                  </span>
+                </label>
+
+                {mockAnalysisCompleted && (
+                  <div className="p-2.5 bg-emerald-50/80 rounded-lg border border-emerald-200 space-y-1.5 animate-in fade-in duration-150">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-medium text-emerald-900">Analysis Duration</span>
+                      <div className="flex gap-1">
+                        {[20, 30, 45, 60, 90].map((mins) => (
+                          <button
+                            key={mins}
+                            type="button"
+                            onClick={() => setMockAnalysisMinutes(mins)}
+                            className={`px-2 py-0.5 rounded text-[10px] font-medium border transition-colors ${
+                              mockAnalysisMinutes === mins
+                                ? 'bg-emerald-600 text-white border-emerald-600'
+                                : 'bg-white text-emerald-800 border-emerald-200 hover:bg-emerald-100'
+                            }`}
+                          >
+                            {mins}m
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="number"
+                        min={5}
+                        max={240}
+                        value={mockAnalysisMinutes}
+                        onChange={(e) => setMockAnalysisMinutes(parseInt(e.target.value, 10) || 0)}
+                        className="w-20 text-xs px-2 py-1 border border-emerald-300 rounded bg-white font-bold text-emerald-950"
+                      />
+                      <span className="text-xs text-emerald-700">minutes added to study dashboard</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}

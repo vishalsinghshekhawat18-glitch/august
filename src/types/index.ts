@@ -196,6 +196,10 @@ export interface MockTest {
   skippedCount: number;
   attemptedCount: number;
   timeTakenMinutes: number;
+  analysisCompleted?: boolean;
+  analysisMinutes?: number;
+  analysisDate?: string;
+  analysisNotes?: string;
   subjectScores?: SubjectMockScore[];
   notes?: string;
   createdAt: string;

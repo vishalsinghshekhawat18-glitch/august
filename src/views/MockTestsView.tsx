@@ -12,10 +12,12 @@ import {
   Trash2,
   AlertTriangle,
   ChevronRight,
+  CheckSquare,
 } from 'lucide-react';
 import { MockTest, MistakeEntry, Commitment, Subject, Topic, ErrorType, SubjectMockScore } from '../types';
 import { dbService } from '../services/db';
 import { getTodayDateString } from '../services/dateUtils';
+import { AnalyzeMockModal } from '../components/AnalyzeMockModal';
 
 export const MockTestsView: React.FC = () => {
   const [todayStr, setTodayStr] = useState<string>(getTodayDateString());
@@ -41,6 +43,9 @@ export const MockTestsView: React.FC = () => {
   const [skippedCount, setSkippedCount] = useState<number>(18);
   const [attemptedCount, setAttemptedCount] = useState<number>(62);
   const [notes, setNotes] = useState<string>('');
+  const [mockAnalysisCompleted, setMockAnalysisCompleted] = useState<boolean>(false);
+  const [mockAnalysisMinutes, setMockAnalysisMinutes] = useState<number>(45);
+  const [analyzingMock, setAnalyzingMock] = useState<MockTest | null>(null);
 
   // Mistake Form State
   const [mistakeExamId, setMistakeExamId] = useState<string>('comm_ibps_rrb_po');
@@ -99,6 +104,9 @@ export const MockTestsView: React.FC = () => {
         timeTakenMinutes: Number(timeTakenMinutes),
         notes: notes.trim() || undefined,
         createdAt: new Date().toISOString(),
+        analysisCompleted: mockAnalysisCompleted,
+        analysisMinutes: mockAnalysisCompleted ? Number(mockAnalysisMinutes) : undefined,
+        analysisDate: mockAnalysisCompleted ? testDate : undefined,
       };
 
       await dbService.put<MockTest>('mockTests', newMock);
@@ -119,8 +127,27 @@ export const MockTestsView: React.FC = () => {
         await dbService.put('studyLogs', mockLog);
       }
 
+      // If candidate also completed analysis, automatically log analysis time into studyLogs!
+      if (mockAnalysisCompleted && Number(mockAnalysisMinutes) > 0) {
+        const analysisLog = {
+          id: `log_analysis_${newMock.id}`,
+          date: testDate,
+          timestamp: new Date().toISOString(),
+          examId,
+          subjectId: '',
+          durationMinutes: Number(mockAnalysisMinutes),
+          activityType: 'mistake_analysis' as const,
+          notes: `Mock Analysis: ${testName.trim()} (${mockAnalysisMinutes}m)`,
+          createdAt: new Date().toISOString(),
+        };
+        await dbService.put('studyLogs', analysisLog);
+      }
+
       setIsAddMockOpen(false);
       setTestName('');
+      setNotes('');
+      setMockAnalysisCompleted(false);
+      setMockAnalysisMinutes(45);
       loadData();
     } catch (err) {
       console.error('Failed to save mock test:', err);
@@ -133,6 +160,7 @@ export const MockTestsView: React.FC = () => {
     try {
       await dbService.delete('mockTests', mockId);
       await dbService.delete('studyLogs', `log_mock_${mockId}`);
+      await dbService.delete('studyLogs', `log_analysis_${mockId}`);
       loadData();
     } catch (err) {
       console.error('Failed to delete mock test:', err);
@@ -349,6 +377,56 @@ export const MockTestsView: React.FC = () => {
                 </div>
               </div>
 
+              {/* Mock Analysis Section */}
+              <div className="p-3 bg-emerald-50/70 rounded-xl border border-emerald-200/80 space-y-2">
+                <label className="flex items-center gap-2 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={mockAnalysisCompleted}
+                    onChange={(e) => setMockAnalysisCompleted(e.target.checked)}
+                    className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300"
+                  />
+                  <span className="text-xs font-semibold text-emerald-950">
+                    I also analyzed this mock test (Review incorrect &amp; skipped questions)
+                  </span>
+                </label>
+
+                {mockAnalysisCompleted && (
+                  <div className="pt-2 border-t border-emerald-200/60 space-y-2 animate-in fade-in duration-150">
+                    <div className="flex items-center justify-between">
+                      <label className="text-[11px] font-medium text-emerald-900">Analysis Duration</label>
+                      <div className="flex gap-1">
+                        {[20, 30, 45, 60, 90].map((mins) => (
+                          <button
+                            key={mins}
+                            type="button"
+                            onClick={() => setMockAnalysisMinutes(mins)}
+                            className={`px-2 py-0.5 rounded text-[10px] font-medium border transition-colors ${
+                              mockAnalysisMinutes === mins
+                                ? 'bg-emerald-600 text-white border-emerald-600'
+                                : 'bg-white text-emerald-800 border-emerald-200 hover:bg-emerald-100'
+                            }`}
+                          >
+                            {mins}m
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="number"
+                        min={5}
+                        max={240}
+                        value={mockAnalysisMinutes}
+                        onChange={(e) => setMockAnalysisMinutes(parseInt(e.target.value, 10) || 0)}
+                        className="w-20 text-xs px-2.5 py-1.5 border border-emerald-300 rounded-lg bg-white font-bold text-emerald-950"
+                      />
+                      <span className="text-xs text-emerald-700">minutes of post-test review added to dashboard</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <div>
                 <label className="block text-xs font-medium text-slate-700 mb-1">Diagnostic Notes</label>
                 <textarea
@@ -515,6 +593,25 @@ export const MockTestsView: React.FC = () => {
                           {mock.notes}
                         </p>
                       )}
+
+                      {/* Analysis Status */}
+                      <div className="mt-2 flex items-center gap-2">
+                        {mock.analysisCompleted ? (
+                          <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                            Analysis Done ({mock.analysisMinutes || 45}m)
+                          </span>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => setAnalyzingMock(mock)}
+                            className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 px-2.5 py-0.5 rounded-full border border-purple-200 transition-colors cursor-pointer shadow-xs"
+                          >
+                            <CheckSquare className="w-3.5 h-3.5 text-purple-600" />
+                            Mark Analysis Complete
+                          </button>
+                        )}
+                      </div>
                     </div>
 
                     <div className="flex items-center gap-3 self-end sm:self-center shrink-0">
@@ -619,6 +716,16 @@ export const MockTestsView: React.FC = () => {
           )}
         </div>
       </div>
+
+      {/* Analyze Mock Modal */}
+      {analyzingMock && (
+        <AnalyzeMockModal
+          isOpen={!!analyzingMock}
+          mock={analyzingMock}
+          onClose={() => setAnalyzingMock(null)}
+          onSaved={loadData}
+        />
+      )}
     </div>
   );
 };

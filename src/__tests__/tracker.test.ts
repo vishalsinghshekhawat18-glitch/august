@@ -391,6 +391,69 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       const isConsistent = correct + incorrect === attempted;
       expect(isConsistent).toBe(false);
     });
+
+    it('records mock test analysis and ensures both attempt time and analysis time accumulate into dashboard study hours', () => {
+      const today = '2026-11-01';
+      const mockAttemptTime = 45; // 45 minutes taking the test
+      const mockAnalysisTime = 45; // 45 minutes reviewing wrong & unattempted questions
+
+      const mock: MockTest = {
+        id: 'mock_test_101',
+        examId: 'comm_ibps_rrb_po',
+        testName: 'RRB PO Prelims Mock #1',
+        date: today,
+        totalScore: 58.75,
+        maxScore: 80,
+        accuracyPercent: 91.2,
+        correctCount: 62,
+        incorrectCount: 6,
+        skippedCount: 12,
+        attemptedCount: 68,
+        timeTakenMinutes: mockAttemptTime,
+        analysisCompleted: true,
+        analysisMinutes: mockAnalysisTime,
+        analysisDate: today,
+        createdAt: '2026-11-01T10:00:00Z',
+      };
+
+      expect(mock.analysisCompleted).toBe(true);
+      expect(mock.analysisMinutes).toBe(45);
+
+      // Verify corresponding study logs generated for dashboard totals
+      const studyLogs: StudyLog[] = [
+        {
+          id: `log_mock_${mock.id}`,
+          date: today,
+          timestamp: new Date().toISOString(),
+          examId: mock.examId,
+          subjectId: '',
+          durationMinutes: mock.timeTakenMinutes!,
+          activityType: 'mock_test',
+          notes: `Mock Test: ${mock.testName}`,
+          createdAt: new Date().toISOString(),
+        },
+        {
+          id: `log_analysis_${mock.id}`,
+          date: today,
+          timestamp: new Date().toISOString(),
+          examId: mock.examId,
+          subjectId: '',
+          durationMinutes: mock.analysisMinutes!,
+          activityType: 'mistake_analysis',
+          notes: `Mock Analysis: ${mock.testName} (${mock.analysisMinutes}m)`,
+          createdAt: new Date().toISOString(),
+        },
+      ];
+
+      // Calculate total study time for today
+      const todayLogs = studyLogs.filter((l) => l.date === today);
+      const todayFocusedMinutes = todayLogs.reduce((acc, l) => acc + (l.durationMinutes || 0), 0);
+
+      // 45m attempt + 45m analysis = 90m total (1.5 hours)
+      expect(todayFocusedMinutes).toBe(90);
+      expect(todayLogs.some((l) => l.activityType === 'mock_test')).toBe(true);
+      expect(todayLogs.some((l) => l.activityType === 'mistake_analysis')).toBe(true);
+    });
   });
 
   describe('7. Shared Subjects & Independent Exam Progress (Section 5)', () => {

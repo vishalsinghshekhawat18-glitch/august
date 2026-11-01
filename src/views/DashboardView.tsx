@@ -19,6 +19,7 @@ import {
   TrendingUp,
   Edit2,
   X,
+  CheckSquare,
 } from 'lucide-react';
 import {
   Commitment,
@@ -44,6 +45,7 @@ import {
 } from '../services/dateUtils';
 import { calculateWeightedCompletion } from '../services/planning';
 import { CompleteRevisionModal } from '../components/CompleteRevisionModal';
+import { AnalyzeMockModal } from '../components/AnalyzeMockModal';
 
 interface DashboardViewProps {
   onOpenQuickAdd: () => void;
@@ -84,6 +86,9 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
   const [mockCorrect, setMockCorrect] = useState<number>(56);
   const [mockIncorrect, setMockIncorrect] = useState<number>(6);
   const [mockNotes, setMockNotes] = useState<string>('');
+  const [mockAnalysisCompleted, setMockAnalysisCompleted] = useState<boolean>(false);
+  const [mockAnalysisMinutes, setMockAnalysisMinutes] = useState<number>(45);
+  const [analyzingMock, setAnalyzingMock] = useState<MockTest | null>(null);
 
   // Multi-paper schedule expanded accordion
   const [expandedSchedules, setExpandedSchedules] = useState<Set<string>>(new Set());
@@ -141,6 +146,9 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
         timeTakenMinutes: Number(mockTimeMinutes),
         notes: mockNotes.trim() || undefined,
         createdAt: new Date().toISOString(),
+        analysisCompleted: mockAnalysisCompleted,
+        analysisMinutes: mockAnalysisCompleted ? Number(mockAnalysisMinutes) : undefined,
+        analysisDate: mockAnalysisCompleted ? mockDate : undefined,
       };
 
       await dbService.put<MockTest>('mockTests', newMock);
@@ -161,9 +169,27 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
         await dbService.put<StudyLog>('studyLogs', mockLog);
       }
 
+      // If user also completed analysis, automatically log analysis time toward study hours!
+      if (mockAnalysisCompleted && Number(mockAnalysisMinutes) > 0) {
+        const analysisLog: StudyLog = {
+          id: `log_analysis_${newMock.id}`,
+          date: mockDate,
+          timestamp: new Date().toISOString(),
+          examId: mockExamId,
+          subjectId: '',
+          durationMinutes: Number(mockAnalysisMinutes),
+          activityType: 'mistake_analysis',
+          notes: `Mock Analysis: ${newMock.testName} (${mockAnalysisMinutes}m)`,
+          createdAt: new Date().toISOString(),
+        };
+        await dbService.put<StudyLog>('studyLogs', analysisLog);
+      }
+
       setIsAddMockOpen(false);
       setMockTestName('');
       setMockNotes('');
+      setMockAnalysisCompleted(false);
+      setMockAnalysisMinutes(45);
       await loadDashboardData();
     } catch (err) {
       console.error('Failed to save mock test from dashboard:', err);
@@ -534,22 +560,35 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
             {todayLogs.map((log) => {
               const examName = examMap.get(log.examId) || log.examId;
               const isMock = log.activityType === 'mock_test';
+              const isAnalysis = log.activityType === 'mistake_analysis';
               return (
                 <div
                   key={log.id}
                   className={`p-3.5 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 transition-all ${
                     isMock
                       ? 'bg-purple-50/50 border-purple-200 shadow-xs'
+                      : isAnalysis
+                      ? 'bg-emerald-50/50 border-emerald-200 shadow-xs'
                       : 'bg-slate-50/50 border-slate-200/80'
                   }`}
                 >
                   <div className="flex items-start gap-2.5 min-w-0">
                     <div
                       className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${
-                        isMock ? 'bg-purple-100 text-purple-700' : 'bg-indigo-100 text-indigo-700'
+                        isMock
+                          ? 'bg-purple-100 text-purple-700'
+                          : isAnalysis
+                          ? 'bg-emerald-100 text-emerald-700'
+                          : 'bg-indigo-100 text-indigo-700'
                       }`}
                     >
-                      {isMock ? <Award className="w-4 h-4" /> : <Clock className="w-4 h-4" />}
+                      {isMock ? (
+                        <Award className="w-4 h-4" />
+                      ) : isAnalysis ? (
+                        <CheckSquare className="w-4 h-4" />
+                      ) : (
+                        <Clock className="w-4 h-4" />
+                      )}
                     </div>
                     <div className="min-w-0">
                       <div className="flex items-center gap-1.5 flex-wrap">
@@ -558,10 +597,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
                           className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${
                             isMock
                               ? 'bg-purple-100 text-purple-800'
+                              : isAnalysis
+                              ? 'bg-emerald-100 text-emerald-800'
                               : 'bg-indigo-50 text-indigo-700'
                           }`}
                         >
-                          {isMock ? 'Full Mock Test' : log.activityType.replace('_', ' ')}
+                          {isMock ? 'Full Mock Test' : isAnalysis ? 'Mock Analysis' : log.activityType.replace('_', ' ')}
                         </span>
                       </div>
                       {log.notes && (
@@ -923,11 +964,32 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
                           <span className="text-[10px] text-slate-400">• {m.date}</span>
                         </div>
                         <h4 className="text-xs font-semibold text-slate-800 mt-0.5">{m.testName}</h4>
-                        <div className="text-[10px] text-slate-500 mt-0.5 flex gap-2">
+                        <div className="text-[10px] text-slate-500 mt-0.5 flex items-center gap-2">
                           <span>Acc: {m.accuracyPercent}%</span>
                           <span>•</span>
                           <span>✓ {m.correctCount}</span>
                           <span>✗ {m.incorrectCount}</span>
+                        </div>
+                        {/* Analysis Status */}
+                        <div className="mt-1.5">
+                          {m.analysisCompleted ? (
+                            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                              Analyzed ({m.analysisMinutes || 45}m)
+                            </span>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setAnalyzingMock(m);
+                              }}
+                              className="inline-flex items-center gap-1 text-[10px] font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 px-2 py-0.5 rounded-full border border-purple-200 transition-colors cursor-pointer"
+                            >
+                              <CheckSquare className="w-3 h-3 text-purple-600" />
+                              + Mark Analysis
+                            </button>
+                          )}
                         </div>
                       </div>
 
@@ -1253,6 +1315,56 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
                 </div>
               </div>
 
+              {/* Mock Analysis Section */}
+              <div className="p-3 bg-emerald-50/70 rounded-xl border border-emerald-200/80 space-y-2">
+                <label className="flex items-center gap-2 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={mockAnalysisCompleted}
+                    onChange={(e) => setMockAnalysisCompleted(e.target.checked)}
+                    className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300"
+                  />
+                  <span className="text-xs font-semibold text-emerald-950">
+                    I also analyzed this mock test (Review incorrect &amp; skipped questions)
+                  </span>
+                </label>
+
+                {mockAnalysisCompleted && (
+                  <div className="pt-2 border-t border-emerald-200/60 space-y-2 animate-in fade-in duration-150">
+                    <div className="flex items-center justify-between">
+                      <label className="text-[11px] font-medium text-emerald-900">Analysis Duration</label>
+                      <div className="flex gap-1">
+                        {[20, 30, 45, 60, 90].map((mins) => (
+                          <button
+                            key={mins}
+                            type="button"
+                            onClick={() => setMockAnalysisMinutes(mins)}
+                            className={`px-2 py-0.5 rounded text-[10px] font-medium border transition-colors ${
+                              mockAnalysisMinutes === mins
+                                ? 'bg-emerald-600 text-white border-emerald-600'
+                                : 'bg-white text-emerald-800 border-emerald-200 hover:bg-emerald-100'
+                            }`}
+                          >
+                            {mins}m
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="number"
+                        min={5}
+                        max={240}
+                        value={mockAnalysisMinutes}
+                        onChange={(e) => setMockAnalysisMinutes(parseInt(e.target.value, 10) || 0)}
+                        className="w-20 text-xs px-2.5 py-1.5 border border-emerald-300 rounded-lg bg-white font-bold text-emerald-950"
+                      />
+                      <span className="text-xs text-emerald-700">minutes of post-test review added to dashboard</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <div>
                 <label className="block text-xs font-medium text-slate-700 mb-1">Diagnostic Observations (Optional)</label>
                 <textarea
@@ -1283,6 +1395,16 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
             </form>
           </div>
         </div>
+      )}
+
+      {/* Analyze Existing Mock Modal */}
+      {analyzingMock && (
+        <AnalyzeMockModal
+          isOpen={!!analyzingMock}
+          mock={analyzingMock}
+          onClose={() => setAnalyzingMock(null)}
+          onSaved={loadDashboardData}
+        />
       )}
     </div>
   );
