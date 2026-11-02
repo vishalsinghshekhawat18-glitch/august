@@ -158,7 +158,6 @@ is more neutral. <b>Satish Chandra</b> and <b>Iqtidar Alam Khan</b> analysed the
     'Sher Shah issued patta and took qabuliyat from peasants.',
     'Sher Shah\'s tomb is at Sasaram.',
     'Gulbadan Begum wrote the Humayun-nama.',
-    "The Akbarnama credits the Gond kingdom of Garha Katanga with 70,000 villages.",
     "Rani Durgavati, a Chandela princess of Mahoba, ruled Garha Katanga as regent for her son Bir Narayan.",
     "The first Jesuit mission reached Akbar's court at Fatehpur Sikri in 1580.",
     "Nastaliq was Akbar's favourite style of calligraphy.",

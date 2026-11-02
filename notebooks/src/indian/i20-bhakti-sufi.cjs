@@ -111,7 +111,6 @@ Brahmin rituals; vachanas in Kannada; Anubhava Mantapa. Companions: Allama Prabh
 <li><b>Ziyarat</b> (pilgrimage to a saint's tomb) sought the saint's grace (<b>barakat</b>). At Ajmer, Muhammad bin Tughluq was the first Sultan to visit, Sultan Ghiyasuddin Khalji of Malwa funded the earliest building, and Akbar came fourteen times.</li>
 <li><b>Language:</b> Chishtis in Delhi spoke Hindavi; Baba Farid's verses entered the Guru Granth Sahib; Chishti Sufis around Bijapur wrote short poems in <b>Dakhani</b>, influenced by Kannada vachanas. Other Deccan Chishti: <b>Bandanawaz Gisudaraz</b> of Gulbarga.</li>
 <li><b>Sufis and the state:</b> Sultans set up charitable trusts (<b>auqaf</b>) and gave tax-free land (inam); kings sought burial near shrines; but both sides expected ritual deference, which caused friction.</li>
-<li><b>Popular Islam:</b> the Khojahs (an Ismaili branch) spread the Qur'an's message through devotional songs in local dialects; Arab traders on the Malabar coast adopted matriliny and the local language; Kerala mosques used local, temple-like roofs. Contemporary texts named communities by origin — Turushka (Turks), Tajika, Parashika (Persians) — or generally as mlechchha; "Hindu" and "Muslim" were rarely used as community labels. Non-Muslims paying jizya were <b>zimmis</b> (protected).</li>
 </ul>` },
 
     { title: 'Common features and impact', html: `

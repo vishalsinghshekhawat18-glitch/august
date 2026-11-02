@@ -121,7 +121,6 @@ Pahari) schools.</li>
 <li><b>Forests:</b> forest people lived by gathering, hunting and shifting cultivation, e.g. the <b>Bhils'</b> seasonal round. For the state the forest was a refuge (<b>mawas</b>) for rebels; peshkash from forest chiefs often included elephants. The Ahom kings used <b>paiks</b>, who did military service in return for land.</li>
 <li><b>Zamindars</b> held personal land (<b>milkiyat</b>) that they could sell or mortgage, did service (khidmat) for the state, kept forts (<b>qilachas</b>) and armed men, settled new land and set up markets (haats). Caste lineages built zamindaris, e.g. Rajputs and Jats in the north, Sadgops in Bengal.</li>
 <li><b>Revenue terms:</b> <b>jama</b> was the amount assessed, <b>hasil</b> the amount collected; the amil-guzar (amalguzar) collected it, in cash by preference.</li>
-<li><b>Inequality:</b> in Shah Jahan's 20th year, 445 of about 8,000 mansabdars (5.6%) took 61.5% of the empire's estimated revenue.</li>
 </ul>` },
 
     { title: 'The court, nobility and information', html: `

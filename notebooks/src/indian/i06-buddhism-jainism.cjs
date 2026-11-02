@@ -63,10 +63,6 @@ women; his foster mother <b>Mahapajapati Gotami</b> was the first nun. Children 
 slaves their masters', royal servants the king's, debtors their creditors' and wives their husbands'. Decisions were by
 consensus, or else by vote. Monks travelled except in the rainy season; permanent monasteries (<b>viharas</b>), first of
 wood and brick and later cut in rock in western India, grew from donated land.</p>
-<p><b>Relics:</b> after the cremation at Kushinagar, the <i>Mahaparinibbana Sutta</i> says the relics were divided into
-eight shares among Magadha, the Licchavis of Vaishali, the Shakyas of Kapilavastu, the Bulis of Allakappa, the
-Koliyas of Ramagrama, a Brahmin of Vethadipa and the Mallas of Pava and Kushinagar, each building a stupa. The
-<i>Ashokavadana</i> says Ashoka later redistributed them to stupas in every important town.</p>
 <div class="tbl"><table>
 <tr><th>Council</th><th>Place, patron</th><th>Chair</th><th>Outcome</th></tr>
 <tr><td>First (c. 483 BCE)</td><td>Rajagriha (Saptaparni cave), Ajatashatru</td><td>Mahakassapa</td><td>Sutta (Ananda) and Vinaya (Upali) compiled</td></tr>

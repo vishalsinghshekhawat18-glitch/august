@@ -63,15 +63,10 @@ gods); a mast (<b>yashti</b>) carrying an umbrella (<b>chhatri</b>); a railing (
 (<b>toranas</b>). Sanchi and Bharhut were plain except for railings and gateways; Amaravati and Shah-ji-ki-Dheri
 (Peshawar) carved the mound itself. Inscriptions record donors: Satavahana kings, monks, nuns, men and women, and
 guilds; the ivory workers of Vidisha paid for carving on one Sanchi gateway.</li>
-<li><b>Fate of the stupas:</b> Walter Elliot, commissioner of Guntur, carried Amaravati panels to Madras in 1854 (the
-"Elliot marbles"), and the stupa was dismantled piece by piece. Sanchi survived intact; the Begums of Bhopal
-(Shahjehan Begum and Sultan Jahan Begum) paid for its preservation. John Marshall and Alfred Foucher published <i>The
-Monuments of Sanchi</i> (1914); Sanchi became a World Heritage Site in 1989.</li>
 <li><b>Reading the carvings:</b> early sculptors showed the Buddha by symbols: an empty seat (meditation), a tree
 (enlightenment), a wheel (first sermon), a stupa (mahaparinibbana). Sanchi's northern gateway shows the
 <i>Vessantara Jataka</i>; the <i>shalabhanjika</i> (auspicious woman holding a tree) and Gajalakshmi panels show folk
-beliefs absorbed into Buddhism. James Fergusson, unaware of Buddhist texts, wrongly took Sanchi for a centre of tree
-and serpent worship.</li>
+beliefs absorbed into Buddhism.</li>
 </ul>` },
 
     { title: 'Temple architecture', html: `

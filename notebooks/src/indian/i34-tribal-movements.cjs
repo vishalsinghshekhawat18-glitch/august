@@ -62,7 +62,7 @@ forest produce; forced labour (begar).</li>
 <p><b>Other protests NCERT names:</b> Songram Sangma's revolt in Assam (1906), the Bastar rebellion (1910), the forest satyagraha of the 1930s in the Central Provinces and the Warli revolt in Maharashtra (1940).</p>
 <p><b>Paharias and Santhals ("the hoe and the plough"):</b> the Paharias of the Rajmahal hills lived by shifting cultivation and forest produce and raided the plains. The British tried extermination in the 1770s; in the 1780s Augustus Cleveland proposed pacification, paying allowances to Paharia chiefs. Failing to settle the Paharias, the British brought in Santhals to clear and plough the lower slopes; by 1832 the <b>Damin-i-Koh</b> was marked out as Santhal land. Heavy taxes and moneylenders' takeovers led to the hul of 1855–56, after which the Santhal Parganas (about 5,500 square miles, from Bhagalpur and Birbhum districts) were created.</p>
 <p><b>Birsa Munda's path:</b> he went to a mission school and also spent time with a Vaishnav preacher, wearing the sacred thread. His movement first sought reform (no liquor, no witchcraft) and a return to a golden age (satyug); he was jailed 1895–97, then urged followers to destroy "Ravana" (the dikus and Europeans). They attacked police stations, churches and moneylenders' property under a white flag of Birsa Raj. He died in 1900 (officially of cholera).</p>
-<p><b>Tribal labour:</b> Santhal silk-cocoon growers of Hazaribagh were paid Rs 3–4 per thousand cocoons while traders' agents profited; from the late 19th century contractors recruited tribals for Assam's tea gardens and the coal mines, and in the 1920s about half the miners at Jharia and Raniganj were tribals.</p>` },
+` },
 
     { title: 'Character', html: `
 <ul>
@@ -83,7 +83,6 @@ in western India. <b>Ramachandra Guha</b> (<i>The Unquiet Woods</i>) linked trib
     "Augustus Cleveland proposed a policy of pacifying the Paharias in the 1780s.",
     "The Damin-i-Koh was demarcated as Santhal land by 1832.",
     "Birsa Munda's followers raised a white flag as the symbol of Birsa Raj.",
-    "In the 1920s about half the miners at Jharia and Raniganj were tribals.",
     'Sidhu and Kanhu led the Santhal hul of 1855–56.',
     'The Santhal Parganas district was created after the hul.',
     'Birsa Munda led the ulgulan of 1899–1900.',

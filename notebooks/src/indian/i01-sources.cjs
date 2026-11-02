@@ -45,10 +45,6 @@ bare claim. This unit gives you the vocabulary of evidence for the whole noteboo
 <ul>
 <li>Scripts: <b>Brahmi</b> (written left to right; ancestor of most Indian scripts) and <b>Kharosthi</b> (right to left,
 north-west). <b>James Prinsep</b> deciphered Brahmi in <b>1837</b>.</li>
-<li><b>Milestones in epigraphy:</b> Colin Mackenzie collected over 8,000 inscriptions in the 1810s; Cunningham
-published the Ashokan inscriptions (1877); <i>Epigraphia Carnatica</i> (1886) and <i>Epigraphia Indica</i> (1888)
-began; D.C. Sircar wrote <i>Indian Epigraphy</i> (1965–66). Limits of inscriptions: faint or damaged letters, uncertain
-meanings, and silence on everyday life.</li>
 <li><b>Texts as sources:</b> the Critical Edition of the Mahabharata, led by V.S. Sukthankar at the Bhandarkar
 Oriental Research Institute, Pune (1919–1966), compared manuscripts from all over India and showed both a common core
 and wide regional variation. B.B. Lal's excavation at Hastinapura (1951–52) tried to match the Mahabharata with archaeology.</li>
@@ -64,10 +60,6 @@ used in the debate on early medieval "feudalism".</p>` },
 
     { title: 'Archaeology', html: `
 <ul>
-<li><b>Museums and heritage law:</b> Indian Museum, Calcutta (1814); Government Museum, Madras (1851); Cunningham's
-<i>Bhilsa Topes</i> (1854) on Sanchi; Indian Treasure Trove Act (1878) let the government acquire antiquities found
-in the ground; John Marshall's <i>Conservation Manual</i> (1923); foundation of the National Museum, New Delhi
-(1955).</li>
 <li>The <b>Archaeological Survey of India</b> was founded in <b>1861</b> under <b>Alexander Cunningham</b>, who identified
 many Buddhist sites using Xuanzang's account.</li>
 <li><b>John Marshall</b> (DG from 1902) directed the Harappan excavations; <b>Mortimer Wheeler</b> introduced stratigraphic

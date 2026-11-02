@@ -113,7 +113,6 @@ Colonialism</i>) studied Tipu Sultan as a modernising ruler, against the older B
   facts: [
     "Rani Channamma of Kittur resisted the Company and was captured in 1824.",
     "In 1785 Tipu Sultan stopped the export of sandalwood, pepper and cardamom through his ports.",
-    "Tipu's mechanical tiger, taken in 1799, is in the Victoria and Albert Museum, London.",
     'The Treaty of Madras (1769) ended the First Anglo-Mysore War.',
     'Eyre Coote defeated Haidar Ali at Porto Novo in 1781.',
     'The Treaty of Mangalore (1784) ended the Second Anglo-Mysore War.',

@@ -81,7 +81,6 @@ pratapa, fanam.</li>
 <li><b>City plan:</b> Abdur Razzaq saw seven lines of fortification, with fields and gardens between them, so that a besieged city could feed itself; water came from tanks such as Kamalapuram and the <b>Hiriya canal</b>. The royal centre had over 60 temples and about 30 palace-like buildings; Chinese porcelain marks rich traders' quarters in the Muslim quarter of the urban core.</li>
 <li><b>Mahanavami Dibba:</b> a large platform (about 11,000 sq ft base, 40 ft high) used during the Mahanavami (Navaratri) festival, when the king received gifts from the nayakas and reviewed their armies.</li>
 <li>The Vitthala temple's deity, a form of Vishnu worshipped in Maharashtra, shows how the rulers drew on several traditions; straight chariot streets lined with pillared shops ran from the gopurams.</li>
-<li><b>Rediscovery:</b> Colin Mackenzie surveyed the ruins (1800); Alexander Greenlaw photographed them (1856); J.F. Fleet copied inscriptions (1876); John Marshall began conservation (1902); national importance 1976; UNESCO 1986.</li>
 <li>Features: tall <b>raya gopurams</b>, <b>kalyana mandapas</b> (pillared marriage halls), carved pillars with
 yali (rearing horses), temple chariots.</li>
 <li>Temples: <b>Vitthala</b> (stone chariot, musical pillars), <b>Hazara Rama</b> (Ramayana friezes), Virupaksha.</li>
@@ -144,7 +143,6 @@ Muslim soldiers in its army, alliances across religious lines, the title "Hindu-
     'The Raichur doab lies between the Krishna and Tungabhadra rivers.',
     'Krishnadevaraya ruled 1509–1529 and wrote Amuktamalyada in Telugu.',
     "Royal orders of Vijayanagara were signed 'Shri Virupaksha'.",
-    "Colin Mackenzie surveyed the Hampi ruins in 1800.",
     "Hampi was declared a UNESCO World Heritage Site in 1986.",
     "Kudirai chettis were Vijayanagara's local horse merchants.",
     "Bidri inlay metalwork takes its name from Bidar.",

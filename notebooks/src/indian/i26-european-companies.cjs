@@ -101,7 +101,6 @@ trade) are standard. <b>Ashin Das Gupta</b> studied Indian merchants of Surat an
     'The Dutch VOC was formed in 1602.',
     'The English established a factory at Surat in 1613.',
     "Virji Vora and Mulla Abdul Ghafur were leading Indian merchants of 17th-century Surat.",
-    "Komati Chettis were Telugu merchants active at Masulipatnam.",
     'Fort St George was built at Madras.',
     'Bombay was given to Charles II as dowry in 1661.',
     'Job Charnock founded the settlement at Sutanuti in 1690.',

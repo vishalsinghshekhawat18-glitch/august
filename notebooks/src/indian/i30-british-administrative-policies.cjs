@@ -152,8 +152,6 @@ Chamber of Princes (1921); Butler Committee (1927) — paramountcy supreme.</li>
     { title: 'Colonial cities and hill stations', html: `
 <ul>
 <li><b>Three presidency cities:</b> Madras (1639), Calcutta (1690) and Bombay (given to the Company 1661 and leased 1668) grew at the expense of older towns, first as export depots, then as entry points for British goods. Railways (from 1853) made railway towns such as Jamalpur, Waltair and Bareilly.</li>
-<li><b>Madras:</b> land bought from the Nayaks of Kalahasti; Fort St George was the core of the White Town; the Black Town had caste quarters such as Chintadripet (weavers) and Washermanpet (dyers and bleachers); <b>dubashes</b> were bilingual agents.</li>
-<li><b>Calcutta:</b> grew from Sutanuti, Kalikata and Gobindapur; after Plassey the new Fort William was surrounded by an open field (the <b>Maidan</b>) for a clear line of fire; the <b>Lottery Committee (1817)</b> mapped the city and built roads; thatched huts were banned in 1836.</li>
 <li><b>Bombay:</b> the commercial capital, half of India's trade by 1900 (including Malwa opium to China); after the Suez Canal (1869) it called itself <i>Urbs Prima in Indis</i>; the one-room tenement, the <b>chawl</b>, was its typical housing.</li>
 <li><b>After 1857:</b> "Civil Lines" were built as safe European enclaves; sanitary rules from the 1860s–70s sharpened the White Town/Black Town divide.</li>
 <li><b>Hill stations:</b> Shimla was founded during the Gurkha War (1815–16) and became the summer seat of government in 1864 (John Lawrence); British interest in <b>Mount Abu</b> followed the Maratha war of 1818; Darjeeling was taken from Sikkim in 1835.</li>
@@ -170,9 +168,7 @@ instrument of rule. <b>B.B. Misra</b> wrote on the bureaucracy.</p>`,
     "James Augustus Hickey's Bengal Gazette (1780) was the first newspaper in India.",
     "William Adam's reports of the 1830s counted over 1 lakh pathshalas in Bengal and Bihar.",
     "Tagore founded Santiniketan in 1901.",
-    "Calcutta's Lottery Committee (1817) mapped the city and planned roads.",
     "Shimla became the official summer capital in 1864 under John Lawrence.",
-    "At the Burdwan auction of 1797, over 95% of the sale of the raja's estates was fictitious.",
     "Jotedars were rich peasants of Bengal who controlled land, trade and moneylending in the villages.",
     "The Fifth Report on the Company's administration was submitted to Parliament in 1813.",
     "N.B. Halhed translated the digest of Hindu law compiled by eleven pandits (1775).",
