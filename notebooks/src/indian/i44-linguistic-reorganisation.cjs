@@ -125,9 +125,10 @@ true.</p>`,
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2018', marks: 5, q: "What were the suggestions given by the State Reorganisation Commission to strengthen the National Unity?" },
       { exam: 'RAS Pre', year: '2023', marks: null, q: 'Who were members of the States Reorganisation Commission (1953): Sapru, Fazl Ali, Panikkar, Kunzru? — <b>Answer (RPSC final key):</b> Fazl Ali, K.M. Panikkar and H.N. Kunzru' },
     ],
-    note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
+    note: 'RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },
 
   mains: [

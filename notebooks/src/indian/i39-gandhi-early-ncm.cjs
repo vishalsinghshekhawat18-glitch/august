@@ -149,9 +149,11 @@ studied the Khilafat movement. <b>Bipan Chandra</b> analysed the S–T–S strat
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2024', marks: 10, q: "Mahatma Gandhi was relevant to each generation in his three decades involvement in Indian Freedom Struggle. Elucidate with proper examples." },
+      { exam: 'RAS Mains', year: '2016', marks: 5, q: "With what objectives did Mahatma Gandhi launch the Non-Cooperation Movement?" },
       { exam: 'RAS Pre', year: '2023', marks: null, q: 'Who presided over the special Calcutta session of the Congress (September 1920)? — <b>Answer (RPSC final key):</b> Lala Lajpat Rai' },
     ],
-    note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
+    note: 'RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },
 
   mains: [

@@ -176,6 +176,9 @@ showed that women were often the site rather than the subject of reform debates.
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2021', marks: 10, q: "Discuss in brief the growth of the ideology of Theosophists in the Theosophical society in India." },
+      { exam: 'RAS Mains', year: '2018', marks: 10, q: "The Indian Renaissance of the 19th century was the result of the challenges as well as the inspiration of the West. Examine critically." },
+      { exam: 'RAS Mains', year: '2016', marks: 2, q: "Who was the editor of Mirat-ul-Akhbar?" },
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'Who founded the Rajahmundry Social Reform Association (1871) to encourage widow remarriage? — <b>Answer (RPSC final key):</b> Veeresalingam' },
       { exam: 'UPSC Pre', year: '2021', marks: null, q: "Madanapalle (Andhra Pradesh) is where — <b>Answer:</b> Rabindranath Tagore translated the national anthem from Bengali into English." },
       { exam: 'UPSC Pre', year: '2020', marks: null, q: "Who published Vital-Vidhwansak, the first monthly aimed at the untouchables? — <b>Answer:</b> Gopal Baba Walangkar." },
@@ -186,7 +189,7 @@ showed that women were often the site rather than the subject of reform debates.
       { exam: 'UPSC Pre', year: '2012', marks: null, q: "Which parties did Ambedkar found: Peasants and Workers Party, All India Scheduled Castes Federation, Independent Labour Party? — <b>Answer:</b> the last two only." },
       { exam: 'UPSC Pre', year: '2012', marks: null, q: "The Brahmo Samaj: (1) opposed idolatry; (2) denied the need for priests to interpret texts; (3) taught that the Vedas are infallible. Which are correct? — <b>Answer:</b> 1 and 2 only." },
     ],
-    note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
+    note: 'RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },
 
   mains: [

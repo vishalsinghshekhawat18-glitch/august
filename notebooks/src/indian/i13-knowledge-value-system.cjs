@@ -60,7 +60,7 @@ Rig Veda).</li>
 <tr><td><b>Nyaya</b></td><td>Gautama (Akshapada), <i>Nyaya Sutra</i></td><td>Logic and valid means of knowledge (perception, inference, comparison, testimony)</td></tr>
 <tr><td><b>Vaisheshika</b></td><td>Kanada</td><td>Atomism: the world made of atoms (anu, paramanu); categories (padartha)</td></tr>
 <tr><td><b>Mimamsa</b> (Purva)</td><td>Jaimini</td><td>Authority of the Vedas and correct ritual action (karma-kanda)</td></tr>
-<tr><td><b>Vedanta</b> (Uttara Mimamsa)</td><td>Badarayana, <i>Brahma Sutra</i></td><td>Knowledge of Brahman from the Upanishads; schools: <b>Advaita</b> (Shankara — non-dualism), <b>Vishishtadvaita</b> (Ramanuja — qualified non-dualism), <b>Dvaita</b> (Madhva — dualism)</td></tr>
+<tr><td><b>Vedanta</b> (Uttara Mimamsa)</td><td>Badarayana, <i>Brahma Sutra</i></td><td>Knowledge of Brahman from the Upanishads; schools: <b>Advaita</b> (Shankara — non-dualism), <b>Vishishtadvaita</b> (Ramanuja — qualified non-dualism), <b>Dvaita</b> (Madhva — dualism). Its three foundational texts, the <b>Prasthan Trayi</b>, are the <b>Upanishads</b>, the <b>Bhagavad Gita</b> and the <b>Brahma Sutra</b>; each Vedanta teacher proved his school by commenting on all three</td></tr>
 </table></div>
 <p>They form three pairs: Samkhya–Yoga, Nyaya–Vaisheshika, Mimamsa–Vedanta. <b>Heterodox</b> (nastika): Buddhism,
 Jainism, Charvaka (materialism), Ajivika (fatalism) — see I06.</p>` },
@@ -119,8 +119,11 @@ Dharmashastra ideals (varna, ashrama) describe norms, not how everyone lived.</p
   ],
 
   pyqs: {
-    verified: [],
-    note: 'No verified RAS Mains question on this unit yet. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
+    verified: [
+      { exam: 'RAS Mains', year: '2021', marks: 2, q: "Name any four out of six orthodox schools of Indian Vedic Philosophy." },
+      { exam: 'RAS Mains', year: '2018', marks: 2, q: "Which three sacred texts of ancient India are termed 'Prasthan Trayi'?" },
+    ],
+    note: 'The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 
   mains: [

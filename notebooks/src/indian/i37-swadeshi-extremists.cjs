@@ -141,13 +141,14 @@ the Home Rule movement.</p>`,
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2016', marks: 10, q: "Why was Bengal partitioned in 1905? Also highlight its consequences." },
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'Who first painted Bharat Mata? — <b>Answer (RPSC final key):</b> Abanindranath Tagore' },
       { exam: 'UPSC Pre', year: '2016', marks: null, q: "The main reason for the Surat split (1907) was — <b>Answer:</b> the Extremists' lack of faith in the Moderates' capacity to negotiate with the British." },
       { exam: 'UPSC Pre', year: '2016', marks: null, q: "Swadeshi and boycott were first adopted as methods during — <b>Answer:</b> the agitation against the partition of Bengal." },
       { exam: 'UPSC Pre', year: '2015', marks: null, q: "Which movement led to the Moderate–Extremist split? — <b>Answer:</b> the Swadeshi Movement." },
       { exam: 'UPSC Pre', year: '2014', marks: null, q: "Curzon's partition of Bengal lasted until — <b>Answer:</b> George V annulled it at the Delhi Durbar of 1911." },
     ],
-    note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
+    note: 'RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },
 
   mains: [

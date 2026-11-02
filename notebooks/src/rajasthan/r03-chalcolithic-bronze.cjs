@@ -132,6 +132,7 @@ Harappans; Gilund's seal impressions suggest considerable local organisation (Po
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2018', marks: 10, q: "Give a brief description of the following archaeological sites of Rajasthan: (1) Bagore (2) Kalibangan (3) Ahar" },
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'Under whose direction was Ojiyana excavated? — <b>Answer (RPSC final key):</b> B.R. Meena and Alok Tripathi' },
       { exam: 'RAS Pre', year: '2023', marks: null, q: 'What do Jharol, Kurada and Sabania have in common? — <b>Answer (RPSC final key):</b> Copper hoards have been found there' },
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'Ahar: (A) people knew copper smelting; (B) rice was unknown; (C) metal work was part of the economy; (D) black-and-red pottery with white geometric designs found. Which are correct? — <b>Answer (RPSC final key):</b> A, C and D (rice was known at Ahar)' },

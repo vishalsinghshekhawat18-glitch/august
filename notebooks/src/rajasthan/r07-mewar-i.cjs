@@ -169,6 +169,7 @@ Gujarat prepared the ground for Sanga's bid for supremacy.</p>`,
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2018', marks: 2, q: "Describe the text \"Vishva Vallabh\" in brief." },
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'Match the battles with years: Gagron, Sarangpur, Sammel, Saheba. — <b>Answer (RPSC final key):</b> Gagron – 1519; Sarangpur – 1437; Sammel – 1544; Saheba – 1541–42' },
     ],
     note: 'No verified RAS Mains question on this unit found yet in the RajRAS list. Rana Kumbha is a frequent Prelims topic. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',

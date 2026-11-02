@@ -112,8 +112,11 @@ analysed the princes' strategies.</p>`,
   ],
 
   pyqs: {
-    verified: [],
-    note: 'No verified RAS Mains question on this unit yet. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
+    verified: [
+      { exam: 'RAS Mains', year: '2023', marks: 5, q: "The Razakars were the main obstacles to the accession of Hyderabad into Indian Union. Explain." },
+      { exam: 'RAS Mains', year: '2016', marks: 5, q: "How the problem of Hyderabad's accession in Indian Union was solved?" },
+    ],
+    note: 'The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 
   mains: [

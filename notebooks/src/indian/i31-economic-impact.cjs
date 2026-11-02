@@ -80,6 +80,7 @@ interest to British investors; but also integrated markets and enabled famine re
 <li><b>Modern industry:</b> cotton (Bombay, Ahmedabad — Indian capital), jute (Bengal — British capital), coal,
 plantations; <b>TISCO</b> (1907; steel from 1912 at Jamshedpur on the Subarnarekha; by 1919 the government bought 90% of its steel); growth during the World Wars; discriminating protection (1920s); dominated by
 managing agencies.</li>
+<li><b>Second World War (1939–45):</b> war orders and the fall in imports gave Indian industry a protected market: steel, cement, chemicals, textiles and engineering ran at full capacity, and new ventures appeared, such as Walchand Hirachand's <b>Hindustan Aircraft</b> (Bangalore, 1940) and the Scindia shipyard at Visakhapatnam (1941). But machinery could not be imported, so output rose more than capacity, and inflation and the Bengal famine (1943) hit the poor. Indian capitalists, stronger and richer, set out their post-war vision in the <b>Bombay Plan (1944)</b>.</li>
 <li>Emergence of a working class, an Indian capitalist class (Tata, Birla, Walchand) and a modern middle class.</li>
 </ul>` },
 
@@ -130,9 +131,10 @@ Holocausts</i>) linked famines to colonial policy.</p>`,
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2021', marks: 10, q: "Discuss the development of 'Indigenous' industries in India during the Second World War." },
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'When, and through whose efforts, was the Indian Institute of Science set up in Bangalore? — <b>Answer (RPSC final key):</b> 1909, Jamsetji Tata' },
     ],
-    note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
+    note: 'RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },
 
   mains: [

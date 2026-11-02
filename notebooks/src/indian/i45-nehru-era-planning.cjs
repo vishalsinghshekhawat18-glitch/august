@@ -62,7 +62,7 @@ Planning Committee (1938, Nehru).</li>
 </ul>
 <div class="tbl"><table>
 <tr><th>Plan</th><th>Focus</th><th>Result</th></tr>
-<tr><td><b>First (1951–56)</b></td><td>Agriculture, irrigation, power; <b>Harrod–Domar</b> model; Bhakra-Nangal, Damodar Valley, Hirakud</td><td>Successful — growth above target</td></tr>
+<tr><td><b>First (1951–56)</b></td><td>Agriculture, irrigation, power; <b>Harrod–Domar</b> model (drafted chiefly by the economist K.N. Raj); Bhakra-Nangal, Damodar Valley, Hirakud</td><td>Successful — growth above target</td></tr>
 <tr><td><b>Second (1956–61)</b></td><td>Rapid <b>heavy industrialisation</b>; <b>P.C. Mahalanobis</b> model; steel plants at Bhilai (USSR), Rourkela (West Germany), Durgapur (UK)</td><td>Foreign exchange crisis; industry grew</td></tr>
 <tr><td><b>Third (1961–66)</b></td><td>Self-reliance; agriculture and industry</td><td>Failed — 1962 and 1965 wars, droughts; Plan holiday (1966–69)</td></tr>
 </table></div>
@@ -146,11 +146,12 @@ survived. <b>Sunil Khilnani</b> (<i>The Idea of India</i>) analyses Nehru's visi
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2024', marks: 2, q: "Who drafted India's First Five Year plan and on which growth model it was based upon?" },
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'Who chaired the Secondary Education Commission (1952)? — <b>Answer (RPSC final key):</b> A. Lakshmanaswami Mudaliar' },
       { exam: 'UPSC Pre', year: '2024', marks: null, q: "Who was the provisional president of the Constituent Assembly before Rajendra Prasad? — <b>Answer:</b> Dr Sachchidananda Sinha." },
       { exam: 'UPSC Pre', year: '2013', marks: null, q: "Members of the Constituent Assembly from the provinces were — <b>Answer:</b> elected by the provincial legislative assemblies." },
     ],
-    note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
+    note: 'RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },
 
   mains: [

@@ -225,6 +225,7 @@ Chandra</b> stresses colonial communal policy and the failure to contain communa
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2021', marks: 2, q: "Highlight the role of Aruna Asaf Ali in the Quit India Movement." },
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'Where was Kanaklata Barua shot dead while leading a procession to a police station during the Quit India Movement? — <b>Answer (RPSC final key):</b> Gohpur' },
       { exam: 'UPSC Pre', year: '2021', marks: null, q: "What happened on 8 August 1942? — <b>Answer:</b> the AICC adopted the Quit India Resolution." },
       { exam: 'UPSC Pre', year: '2021', marks: null, q: "Shah Nawaz Khan, Prem Kumar Sehgal and Gurbaksh Singh Dhillon are remembered as — <b>Answer:</b> officers of the Indian National Army." },
@@ -234,7 +235,7 @@ Chandra</b> stresses colonial communal policy and the failure to contain communa
       { exam: 'UPSC Pre', year: '2022', marks: null, q: "Cripps proposals: (1) the Constituent Assembly would have members nominated by provincial assemblies and princely states; (2) a province not accepting the new constitution could sign a separate agreement with Britain. — <b>Answer:</b> 2 only (provincial members were to be elected by the provincial assemblies)." },
       { exam: 'UPSC Pre', year: '2014', marks: null, q: "The Radcliffe Committee was appointed to — <b>Answer:</b> delimit the boundaries between India and Pakistan." },
     ],
-    note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
+    note: 'RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },
 
   mains: [

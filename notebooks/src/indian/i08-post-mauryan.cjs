@@ -38,6 +38,7 @@ point examiners reward.</p></div>`,
 persecutor (debated). Capital Pataliputra, later Vidisha.</li>
 <li><b>Agnimitra</b>: hero of Kalidasa's <i>Malavikagnimitram</i>. <b>Heliodorus</b>, a Greek envoy of Antialcidas, set up the
 <b>Garuda pillar at Besnagar</b> (Vidisha) as a devotee of Vasudeva — early evidence of Bhagavatism.</li>
+<li><b>Pancharatra</b>: a Vaishnava system that merged with the Bhagavata cult. It worships Vasudeva-Narayana and his four emanations (<b>vyuhas</b>: Vasudeva, Sankarshana, Pradyumna, Aniruddha), and its texts (Pancharatra Samhitas or agamas) lay down temple building, image consecration and ritual. Ramanuja later defended it as Vedic.</li>
 <li>Patanjali's <i>Mahabhashya</i> (on Panini) belongs to this period; Bharhut stupa railings.</li>
 <li><b>Kanvas</b> (Vasudeva Kanva) replaced the Shungas.</li>
 <li><b>Kharavela</b> of Kalinga (Mahameghavahana, Chedi dynasty): a Jain; <b>Hathigumpha inscription</b> (Udayagiri,
@@ -131,10 +132,11 @@ Mathura — is debated: <b>A. Foucher</b> argued Gandhara; <b>Ananda Coomaraswam
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2024', marks: 5, q: "Explain the concept of 'Panchratra'." },
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'Which title did Kadphises II use? — <b>Answer (RPSC final key):</b> Sarvalokeshwar' },
       { exam: 'RAS Pre', year: '2023', marks: null, q: 'The Bharhut stupa is an example of which period\'s art? — <b>Answer (RPSC final key):</b> Shunga' },
     ],
-    note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
+    note: 'RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },
 
   mains: [

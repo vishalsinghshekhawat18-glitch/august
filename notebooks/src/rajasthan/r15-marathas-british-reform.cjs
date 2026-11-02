@@ -173,6 +173,7 @@ the conditions for 1857 and later movements.</p>`,
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2016', marks: 2, q: "Define the Tyaga Custom of Rajasthan." },
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'Which statement about the Walterkrit Rajputra Hitkarini Sabha is not true? — <b>Answer (RPSC final key):</b> That it worked for reforms among both Rajputs and Dalits' },
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'Where in Rajasthan was the printing press "Vedic Yantralaya" established? — <b>Answer (RPSC final key):</b> Ajmer' },
       { exam: 'RAS Mains', year: '2018', marks: 2, q: 'Who were Dungji and Jawaharji? <i>(paraphrased)</i>' },
@@ -189,7 +190,7 @@ the conditions for 1857 and later movements.</p>`,
     {
       q: 'Describe the social reform measures in 19th-century Rajasthan.', marks: 5, words: 50,
       outline: ['State bans', 'Hitkarini Sabha', 'Arya Samaj'],
-      answer: '<p>States banned sati (Bundi 1822), female infanticide (Kota 1833), samadhi (Jaipur 1844) and witch-hunting (Mewar 1853). The Walterkrit Rajputra Hitkarini Sabha (1888–89) limited marriage expenses and fixed marriage ages. Swami Dayanand\'s Arya Samaj, with the Paropkarini Sabha (1883), spread education and opposed child marriage.</p>',
+      answer: '<p>States banned sati (Bundi 1822), female infanticide (Kota 1833), samadhi (Jaipur 1844) and witch-hunting (Mewar 1853). The Walterkrit Rajputra Hitkarini Sabha (1888–89) limited marriage expenses, including <b>tyag</b> (the gifts Charans and Bhats claimed at Rajput weddings, a burden linked to female infanticide), and fixed marriage ages. Swami Dayanand\'s Arya Samaj, with the Paropkarini Sabha (1883), spread education and opposed child marriage.</p>',
     },
     {
       q: 'Who were Dungji and Jawaharji?', marks: 2, words: 15, pyq: 'RAS Mains 2018',

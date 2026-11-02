@@ -148,7 +148,9 @@ historians note that his Hurda plan was undermined by the rivalries of the same 
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'RAS Mains', year: '2016', marks: 5, q: "Evaluate the contribution of Sawai Jai Singh in the field of art and literature." },
+    ],
     note: 'No verified RAS Mains question on this unit found yet in the RajRAS list. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 

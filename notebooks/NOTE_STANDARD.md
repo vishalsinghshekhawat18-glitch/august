@@ -38,3 +38,13 @@ Weight comes from RAS questions linked in each unit's `pyqs.verified`. All RAS M
 - Only verifiable facts. RAS questions use the RPSC final answer key; UPSC questions use known-correct answers.
 - No hype words (the build warns). Our own words, not copied text.
 - Run `node build.cjs` after every unit, then `node export-october.cjs` before publishing.
+
+## Tiers (2 Nov 2026, after linking all 58 Indian and Rajasthan history Mains questions)
+
+Score = Mains marks + 2 per RAS Prelims question (Prelims data: 2021, 2023, 2024 only).
+
+- **Tier A (score 14+), rewrite order:** I49, I48, R03, I06, I35, I20, R20, R17, I39, R21, I32, R14.
+- **Tier B (score 8–13):** I31, I37, I38, R09, R19, I43, I51, R01, R02, I08, R15.
+- **Tier C:** all other units. I50 was piloted at Tier B depth.
+
+Rajasthan art, literature and religion questions (RH4–RH9) belong to book 6 and are not linked here.

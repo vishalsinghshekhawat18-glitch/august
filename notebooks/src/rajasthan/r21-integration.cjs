@@ -108,6 +108,7 @@ Udaipur) over the capital and posts.</p>`,
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2021', marks: 5, q: "Write a short note on the integration of Sirohi in 'United Rajasthan'." },
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'Shobharam (Prime Minister of Matsya): (A) he left law practice during the Non-Cooperation Movement; (B) he was in Heeralal Shastri\'s cabinet. Which is correct? — <b>Answer (RPSC final key):</b> Only B' },
       { exam: 'RAS Pre', year: '2023', marks: null, q: 'On which date was the Matsya Union merged into Greater Rajasthan? — <b>Answer (RPSC final key):</b> 15 May 1949' },
       { exam: 'RAS Pre', year: '2023', marks: null, q: 'Who was the first Rajpramukh of Rajasthan? — <b>Answer (RPSC final key):</b> Sawai Man Singh II' },

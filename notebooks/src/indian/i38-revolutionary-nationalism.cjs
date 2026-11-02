@@ -147,9 +147,10 @@ described revolutionaries as terrorists — a term avoided by most Indian histor
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2018', marks: 10, q: "Give an outline of the development of revolutionary freedom movement in 20th century India." },
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'Match the cases with people: Howrah, Lahore, Delhi and Alipore conspiracy cases. — <b>Answer (RPSC final key):</b> Howrah – Jatindranath Mukherjee; Lahore – Rajguru; Delhi – Amir Chand; Alipore – Aurobindo Ghosh' },
     ],
-    note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
+    note: 'RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },
 
   mains: [
