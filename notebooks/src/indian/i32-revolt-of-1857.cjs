@@ -13,7 +13,7 @@ module.exports = {
       'GS-I Part B: Indian National Movement — its various stages (1857 as the great precursor)',
       'Rajasthan side of the revolt: Rajasthan History unit R16',
     ],
-    weight: 'Asked in RAS Mains at least three times (2013, 2016 Special, 2021 — see section 6). Prelims questions usually test leaders and centres, dates, and the 1858 changes.',
+    weight: 'Tier A. Asked in RAS Mains at least three times (2013, 2016 Special, 2021 — see section 6). Prelims questions usually test leaders and centres, dates, and the 1858 changes.',
   },
 
   bigPicture: `
@@ -74,7 +74,20 @@ bitten off; rumours spread that they were greased with cow and pig fat, offendin
 <b>29 March 1857</b> <b>Mangal Pandey</b> of the 34th Bengal Native Infantry attacked officers at
 <b>Barrackpore</b>; he was hanged on 8 April. At <b>Meerut</b>, 85 troopers of the 3rd Light Cavalry who refused the
 cartridges were publicly humiliated and jailed on 9 May. On <b>10 May</b> their comrades rose, freed them, killed
-officers and marched to Delhi.</p>` },
+officers and marched to Delhi.</p>
+<div class="box concept"><p><b>Why the cartridge lit the fire.</b> A rumour about grease could start a revolt only
+because it fitted what people already feared. For years sepoys had seen annexations, missionary preaching, laws that
+seemed to threaten caste and religion, and orders to serve overseas. The cartridge seemed to prove that the British
+meant to destroy their caste and faith deliberately, and it touched Hindus and Muslims at once. Even after the British
+withdrew the greased cartridges, the fear remained. Historians call such an event a <b>trigger</b>: it does not cause a
+revolt by itself, but it turns long-standing grievances into action.</p></div>
+<div class="box concept"><p><b>Why Awadh became the heart of the revolt.</b> In Awadh every grievance met in one
+place. The annexation of 1856 deposed a popular Nawab, Wajid Ali Shah, and offended local pride. The summary
+settlement took villages away from the <b>taluqdars</b>, who lost their estates, forts and armed retainers. Peasants
+found the new revenue no lighter, and the court's artisans and servants lost their living. And Awadh was "the nursery
+of the Bengal army": its sepoys were the sons and brothers of these peasants and taluqdars, and the annexation took
+away the special privileges they had enjoyed as subjects of an allied state. So in Awadh the mutiny of the sepoys and
+the revolt of the countryside became one movement, led by the taluqdars and the Begum.</p></div>` },
 
     { title: 'How it spread: centres, leaders and suppression', html: `
 <p>On <b>11 May</b> the Meerut sepoys reached Delhi and proclaimed the aged Mughal emperor <b>Bahadur Shah II</b>
@@ -107,22 +120,38 @@ whole groups of villages.</p>
 <li><b>Awadh</b>, "the nursery of the Bengal army", had been called by Dalhousie "a cherry that will drop into our mouth one day" (1851). Officer Forsyth estimated that three-fourths of Awadh's adult men were in revolt. The <b>Azamgarh Proclamation</b> (25 August 1857) is a main source on what the rebels wanted.</li>
 <li><b>Indian eyewitness sources:</b> Vishnubhatt Godse's Marathi travelogue <i>Majha Pravas</i>; Subedar Sitaram Pande's <i>From Sepoy to Subedar</i>.</li>
 </ul>
+<div class="box concept"><p><b>What the rebels wanted.</b> The rebels did not issue a single manifesto, but their
+proclamations show their aims. The <b>Azamgarh Proclamation</b> addressed one group after another: zamindars burdened
+by revenue, merchants hurt by British trade monopolies, Indians denied high office in government service, artisans
+ruined by British goods, and pandits and fakirs whose religion was threatened. Rebel proclamations called on Hindus
+and Muslims to unite against a common enemy. In practice the rebels tried to restore the <b>pre-British order</b>: at
+Delhi a court of sepoy and civilian members governed in the emperor's name; at Kanpur and Lucknow, Nana Saheb and
+Birjis Qadr ruled as the emperor's deputies, using Mughal-style offices. Their programme looked back to a familiar
+world rather than forward to a new kind of state, which was both its strength (it drew loyalty) and its weakness (it
+could not attract classes who had gained under the British).</p></div>
 <p><b>Suppression</b> was savage on both sides: the killings of British civilians at Kanpur (Satichaura Ghat and
 Bibighar) were followed by mass hangings, burning of villages and "blowing from guns" by British forces.</p>` },
 
     { title: 'Why the revolt failed', html: `
-<ol>
-<li><b>Limited spread.</b> It never became all-India: Punjab, the south, most of Bengal and the big princely
-states stayed out, and many Indian soldiers (Sikh, Gurkha and others) fought for the British.</li>
-<li><b>Divided leadership and no common plan.</b> Each centre fought its own war; leaders such as Nana Saheb,
-the Rani and Bahadur Shah coordinated little.</li>
-<li><b>No forward-looking programme.</b> Rebels mostly aimed to restore the old order — the Mughal emperor, the
-Peshwa, the Nawab of Awadh — which could not unite all classes.</li>
-<li><b>Loyalty of key groups.</b> Most princes, big zamindars outside Awadh, merchants and the new English-educated
-middle class did not join.</li>
-<li><b>British resources.</b> Control of the telegraph and railways, money, modern weapons, and troops brought in
-from outside India gave the British the long-run advantage.</li>
-</ol>` },
+<p>The revolt was large and fierce, yet within about a year the British had recovered every major centre. Five
+reasons explain this, and they are linked: a revolt that was regional, divided and backward-looking could not match an
+empire with India-wide resources.</p>
+<p><b>1. Limited spread.</b> It never became all-India. Punjab, recently conquered and with Sikh soldiers who
+remembered that the Bengal sepoys had helped defeat them, stayed out; so did the south, most of Bengal and the big
+princely states. Many Indian soldiers (Sikh, Gurkha and others) fought for the British, and it was largely Punjab's
+troops who retook Delhi.</p>
+<p><b>2. Divided leadership and no common plan.</b> Each centre fought its own war. Bahadur Shah was old and
+unwilling; Nana Saheb, the Rani of Jhansi, Kunwar Singh and the Begum of Awadh coordinated little and had no joint
+command or strategy. Tatya Tope's brilliant guerrilla campaigns came only after the main centres had fallen.</p>
+<p><b>3. No forward-looking programme.</b> Rebels mostly aimed to restore the old order: the Mughal emperor, the
+Peshwa, the Nawab of Awadh. This could not unite all classes, and it offered nothing to those who disliked the old
+rulers as much as the new.</p>
+<p><b>4. Loyalty of key groups.</b> Most princes (Scindia, Holkar, the Nizam, the Rajput rulers), big zamindars
+outside Awadh, merchants and moneylenders, and the new English-educated middle class of Bengal, Bombay and Madras did
+not join. Canning later called the loyal princes "breakwaters to the storm".</p>
+<p><b>5. British resources.</b> Control of the telegraph and railways, money, modern weapons (the Enfield rifle itself)
+and troops brought in from outside India, including forces on their way to China, gave the British the long-run
+advantage.</p>` },
 
     { title: 'What changed: consequences', html: `
 <p><b>1. Crown rule.</b> The <b>Government of India Act, 2 August 1858</b>, ended Company rule. A <b>Secretary of
@@ -143,7 +172,29 @@ later justified through the "martial races" idea.</p>
 taluqdars got their estates back), slowed social reform, and increasingly played communities against each other.
 Racial distance between rulers and ruled widened.</p>
 <p><b>5. Legacy.</b> The Mughal dynasty ended. The revolt became a powerful memory for later nationalists — most
-famously in V.D. Savarkar's <i>The Indian War of Independence</i> (1909).</p>` },
+famously in V.D. Savarkar's <i>The Indian War of Independence</i> (1909).</p>
+<div class="box concept"><p><b>Turning point: what changed and what did not.</b> The 2016 Mains question asks why
+1857 was a turning point. What changed: the ruling authority (Crown, not Company), the policy towards princes (allies
+instead of targets of annexation), the army (more British, divided Indian units), the approach to reform (caution
+instead of active social reform) and the relationship of rulers and ruled (more racial distance). What did not change:
+India was still governed for Britain's benefit, revenue demands remained high, and power stayed in British hands. The
+shift was from conquest to consolidation. It also changed Indian politics: armed rebellion by old rulers gave way,
+within a generation, to new forms of opposition led by the educated middle class (I36).</p></div>
+<p><b>Images of the revolt.</b> British paintings such as Thomas Jones Barker's <i>The Relief of Lucknow</i> showed
+British heroes rescuing women and children, and pictures of Bibighar fed demands for revenge. Indian nationalists later
+produced their own images, above all of Rani Lakshmibai on horseback, sword in hand, as a symbol of resistance. How
+1857 was remembered became itself a political question.</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Causes:</b> British expansion, subsidiary alliance and the Doctrine of Lapse (I28); land revenue settlements
+and the ruin of artisans (I31); administrative and social policies (I30); missionaries and reform (I35).</li>
+<li><b>Resistance before 1857:</b> earlier peasant and tribal uprisings (I33, I34).</li>
+<li><b>After:</b> the Government of India Act 1858 and later constitutional change (I29); the rise of the educated
+middle class and the Congress (I36); Savarkar and the revolutionaries (I38).</li>
+<li><b>Earlier powers whose heirs led the revolt:</b> the Mughals (I22) and the Marathas (I24).</li>
+<li><b>Rajasthan:</b> Nasirabad, Neemuch, Erinpura and Kota; Thakur Kushal Singh of Auwa and the Kota rebels; the
+rulers' loyalty (R16).</li>
+</ul></div>` },
   ],
 
   historians: `
@@ -262,6 +313,8 @@ movement.</p>`,
     { q: 'Give two promises of Queen Victoria\'s Proclamation.', a: 'No further annexation (princes\' treaties honoured) and non-interference in religion; also pardon for most rebels.' },
     { q: 'Which historian said the revolt was "neither first, nor national, nor a war of independence"?', a: 'R.C. Majumdar.' },
     { q: 'What did the Peel Commission recommend?', a: 'A higher proportion of British to Indian troops, artillery in British hands, and mixing of castes and regions in units.' },
+    { q: 'Why could a rumour about greased cartridges spark so large a revolt?', a: 'It seemed to confirm long-held fears that the British meant to destroy caste and religion, and it touched Hindus and Muslims alike.' },
+    { q: 'How did the revolt change British policy towards the princes?', a: 'Annexation and the Doctrine of Lapse were dropped; princes became allies, with adoption sanads and honoured treaties.' },
   ],
 
   glossary: [
@@ -282,7 +335,7 @@ movement.</p>`,
     'Sekhar Bandyopadhyay, <i>From Plassey to Partition</i>, ch. 4.',
     'S.N. Sen, <i>Eighteen Fifty-Seven</i> (1957); R.C. Majumdar, <i>The Sepoy Mutiny and the Revolt of 1857</i> (1957).',
     'Eric Stokes, <i>The Peasant Armed</i> (1986); Rudrangshu Mukherjee, <i>Awadh in Revolt</i>.',
-    'NCERT Class XII, <i>Themes in Indian History III</i>, "Rebels and the Raj".',
+    'NCERT Class XII, <i>Themes in Indian History III</i>, "Rebels and the Raj" — standard text for this rewrite.',
     'RajRAS, "Indian History and Culture PYQs" (for the RAS Mains questions).',
   ],
 };
