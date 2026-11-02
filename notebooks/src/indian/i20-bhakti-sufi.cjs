@@ -100,7 +100,7 @@ Brahmin rituals; vachanas in Kannada; Anubhava Mantapa. Companions: Allama Prabh
 <div class="tbl"><table>
 <tr><th>Silsila</th><th>Founder in India / key saints</th><th>Features</th></tr>
 <tr><td><b>Chishti</b></td><td><b>Muinuddin Chishti</b> (Ajmer, d. 1236); Bakhtiyar Kaki (Delhi); <b>Baba Farid</b> (Pakpattan, verses in the Guru Granth); <b>Nizamuddin Auliya</b> (Delhi); Nasiruddin Chiragh-i-Delhi; Salim Chishti (Fatehpur Sikri)</td><td>Kept away from the state; poverty; sama; open to all; most popular</td></tr>
-<tr><td><b>Suhrawardi</b></td><td>Bahauddin Zakariya (Multan)</td><td>Accepted state patronage and office</td></tr>
+<tr><td><b>Suhrawardi</b></td><td>Order of Shihabuddin Umar Suhrawardi (Baghdad); in India <b>Bahauddin Zakariya</b> (Multan, 13th c.); Jalaluddin Tabrizi (Bengal); Qazi Hamiduddin Nagauri (Delhi)</td><td>Strict observance of the sharia; accepted state grants, posts and wealth; kept large khanqahs; mainly in Sindh, Multan and Punjab, also Bengal</td></tr>
 <tr><td><b>Naqshbandi</b></td><td>Khwaja Baqi Billah; <b>Shaikh Ahmad Sirhindi</b> (Mujaddid)</td><td>Orthodox; opposed Akbar's policies; wahdat-ul-shuhud (unity of appearance)</td></tr>
 <tr><td><b>Qadiri</b></td><td>Shah Niamatullah; Miyan Mir (laid foundation of the Golden Temple, by tradition); Dara Shikoh was a disciple of Mulla Shah</td><td>Liberal</td></tr>
 <tr><td>Firdausi, Shattari, Rishi (Kashmir — Nuruddin Rishi)</td><td>—</td><td>Regional</td></tr>
@@ -163,6 +163,7 @@ movement is a later construction; it was many local traditions linked over centu
   ],
 
   traps: [
+    "Two Hamiduddin Nagauris: Qazi Hamiduddin Nagauri was a Suhrawardi in Delhi; Sufi Hamiduddin (Suwali) Nagauri of Nagaur was a Chishti disciple of Muinuddin.",
     "Tiruvachakam = Manikkavachakar (Shaiva); Divya Prabandham = Alvars (Vaishnava).",
     "Bijak = Kabirpanth (Varanasi); Kabir Granthavali = Dadupanth (Rajasthan).",
     'Advaita (Shankara) ≠ Vishishtadvaita (Ramanuja) ≠ Dvaita (Madhva) ≠ Shuddhadvaita (Vallabha) ≠ Dvaitadvaita (Nimbarka).',
@@ -174,10 +175,13 @@ movement is a later construction; it was many local traditions linked over centu
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2024', marks: 10, q: "Underline the similarities between the 6th century B.C. religious movements and Nirgun Bhakti movement of mediaeval India in terms of Varna system and prevalent evils." },
+      { exam: 'RAS Mains', year: '2023', marks: 5, q: "Explain the socio-religious significance of Naynar and Alwar bhakti saints." },
+      { exam: 'RAS Mains', year: '2021', marks: 2, q: "Describe the Suharwardi Sufi Silsilah." },
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'Which statement about the Bhakti movement is not correct? — <b>Answer (RPSC final key):</b> That Madhvacharya propounded nirguna bhakti' },
       { exam: 'RAS Pre', year: '2023', marks: null, q: 'Which Sufi order was mostly limited to Sindh, Multan and Punjab? — <b>Answer (RPSC final key):</b> Suhrawardi' },
     ],
-    note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
+    note: 'RAS Mains questions are quoted as printed. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },
 
   mains: [
@@ -195,6 +199,21 @@ movement is a later construction; it was many local traditions linked over centu
       q: 'Who were the Alvars?', marks: 2, words: 15,
       outline: ['Answer'],
       answer: '<p>Twelve Tamil Vishnu devotees (6th–9th c.) whose hymns form the Divya Prabandham.</p>',
+    },
+    {
+      q: "Describe the Suhrawardi Sufi silsila.", marks: 2, words: 15,
+      outline: ["Answer"],
+      answer: "<p>Sufi order brought to Multan by Bahauddin Zakariya; followed the sharia strictly and accepted state grants and posts.</p>",
+    },
+    {
+      q: "Explain the socio-religious significance of the Nayanar and Alvar bhakti saints.", marks: 5, words: 50,
+      outline: ["Devotion over ritual","Caste and gender","Tamil","Temples and kings","Legacy"],
+      answer: "<p>The Nayanars (Shiva) and Alvars (Vishnu) of the 6th–9th centuries put devotion above ritual. They came from all castes, including Nandanar and Tiruppan Alvar of \"untouchable\" groups, and women such as Andal and Karaikkal Ammaiyar. Singing in Tamil, they made it a sacred language (Tevaram, Divya Prabandham). Pallava and Chola kings built temples around them, checking Buddhism and Jainism and shaping later all-India bhakti.</p>",
+    },
+    {
+      q: "Underline the similarities between the 6th-century BCE religious movements and the nirguna bhakti movement in terms of the varna system and prevalent evils.", marks: 10, words: 100,
+      outline: ["Context","Varna","Ritual and priests","Language and followers","Limits"],
+      answer: "<p>Both rose against Brahmanical dominance. On <b>varna</b>, the Buddha and Mahavira denied that birth decided worth and admitted all to the sangha (Upali was a barber); Kabir, Ravidas and Nanak, a weaver, a leather-worker and a Khatri, rejected caste and the Brahmin's role as mediator. On <b>evils</b>, the early movements condemned costly Vedic sacrifice and animal killing; the nirguna saints attacked idol worship, pilgrimage, rituals and hypocrisy in both Hindu and Muslim practice. Both preached ethical living and inner purity, spoke the people's languages (Pali and Prakrit; Hindavi and Punjabi), and drew artisans and traders. Neither ended caste, which absorbed them over time.</p>",
     },
   ],
 

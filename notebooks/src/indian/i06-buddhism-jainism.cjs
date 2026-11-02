@@ -151,6 +151,9 @@ Thapar</b> sees the shramana movements as part of a broad debate rather than a s
 
   pyqs: {
     verified: [
+      { exam: 'RAS Mains', year: '2024', marks: 10, q: "Underline the similarities between the 6th century B.C. religious movements and Nirgun Bhakti movement of mediaeval India in terms of Varna system and prevalent evils. (Model answer in I20.)" },
+      { exam: 'RAS Mains', year: '2023', marks: 2, q: "How were Buddhism and Jainism different from the religion of Samhitas? Underline two main differences." },
+      { exam: 'RAS Mains', year: '2016', marks: 2, q: "Who was Makkhaliputra Gosal?" },
       { exam: 'UPSC Pre', year: '2024', marks: null, q: 'Which are epithets of Gautama Buddha: Nayaputta, Shakyamuni, Tathagata? — <b>Answer:</b> Shakyamuni and Tathagata (Nayaputta refers to Mahavira)' },
       { exam: 'UPSC Pre', year: '2023', marks: null, q: 'Which sect held that rocks, running water and other natural objects have souls? — <b>Answer:</b> Jainism' },
       { exam: 'UPSC Pre', year: '2023', marks: null, q: 'Stupa: Buddhist in origin; a repository of relics; a votive and commemorative structure. How many are correct? — <b>Answer:</b> only two (the stupa is pre-Buddhist in origin)' },
@@ -163,7 +166,7 @@ Thapar</b> sees the shramana movements as part of a broad debate rather than a s
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'Which doctrines are associated with Jainism: Anekantavada, Sarvastivada, Sunyavada, Syadvada? — <b>Answer (RPSC final key):</b> Anekantavada and Syadvada' },
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'Match the tirthankaras with their symbols: Parshvanath, Adinath, Mahavir, Shantinath. — <b>Answer (RPSC final key):</b> Parshvanath – snake; Adinath – bull; Mahavir – lion; Shantinath – deer' },
     ],
-    note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
+    note: 'RAS Mains questions are quoted as printed. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },
 
   mains: [
@@ -176,6 +179,11 @@ Thapar</b> sees the shramana movements as part of a broad debate rather than a s
       q: 'Compare the teachings of Buddhism and Jainism.', marks: 5, words: 50,
       outline: ['Common', 'Differences'],
       answer: '<p>Both rejected Vedic authority and sacrifice, accepted karma and rebirth and stressed ethics. Buddhism denied a permanent soul and taught the Middle Path; Jainism saw souls in all things and demanded strict asceticism and extreme non-violence. Buddhism spread across Asia; Jainism remained in India.</p>',
+    },
+    {
+      q: "How were Buddhism and Jainism different from the religion of the Samhitas? Give two differences.", marks: 2, words: 15,
+      outline: ["Two differences"],
+      answer: "<p>They rejected Vedic authority and sacrifice for ethical conduct, and opened salvation to all, regardless of varna.</p>",
     },
     {
       q: 'Who were the Ajivikas?', marks: 2, words: 15,
