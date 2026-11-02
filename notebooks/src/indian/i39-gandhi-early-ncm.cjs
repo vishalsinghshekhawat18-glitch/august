@@ -95,6 +95,7 @@ Bihar Vidyapith); swadeshi and khadi; <b>Tilak Swaraj Fund</b> (Rs 1 crore); lat
 <li><b>Participation:</b> lawyers (Motilal Nehru, C.R. Das, Rajendra Prasad, Patel), students, peasants (Awadh, Bengal,
 Andhra — Chirala-Perala, Pedanandipadu no-tax), workers, tribals; Akali movement (Punjab); Gandhi promised "swaraj within
 a year".</li>
+<li><b>Regional forms (NCERT):</b> in <b>Awadh</b> the sanyasi <b>Baba Ramchandra</b> led tenants against taluqdars' high rents, cesses and begar; panchayats organised <i>nai–dhobi bandhs</i> (denying landlords barbers and washermen); the <b>Oudh Kisan Sabha</b> (October 1920, with Jawaharlal Nehru) took up their grievances; in 1921 taluqdars' houses and grain stores were attacked. In <b>Guntur</b> (Andhra) tribals and poor peasants held forest satyagrahas, grazing cattle without fees. In <b>Assam</b> tea-garden workers, bound by the <b>Inland Emigration Act (1859)</b>, which barred them from leaving without permission, left the plantations for home shouting "Gandhi Maharaj ki Jai". In <b>Madras</b> the non-Brahman <b>Justice Party</b> did not boycott the council elections.</li>
 <li>Boycott of the <b>Prince of Wales's visit</b> (November 1921).</li>
 <li><b>Chauri Chaura</b> (Gorakhpur district, <b>5 February 1922</b>): a crowd burned a police station, killing 22
 policemen; Gandhi withdrew the movement (Bardoli, 12 February 1922).</li>
@@ -117,6 +118,8 @@ image of Gandhi with miraculous powers; his <i>Event, Metaphor, Memory</i> studi
 studied the Khilafat movement. <b>Bipan Chandra</b> analysed the S–T–S strategy.</p>`,
 
   facts: [
+    "Baba Ramchandra, a sanyasi, led the Awadh peasants during the Non-Cooperation years.",
+    "Under the Inland Emigration Act (1859) Assam tea workers could not leave the gardens without permission.",
     'Gandhi founded the Natal Indian Congress in 1894.',
     'Gandhi wrote Hind Swaraj in 1909.',
     'Gandhi returned to India on 9 January 1915.',
@@ -137,6 +140,7 @@ studied the Khilafat movement. <b>Bipan Chandra</b> analysed the S–T–S strat
   ],
 
   traps: [
+    "Non-cooperation was launched on 1 August 1920 and approved at Calcutta (September) and Nagpur (December 1920); NCERT Class VIII says it \"began in January 1921\", meaning when it took off.",
     'Calcutta special session (Sept 1920) approved NCM; Nagpur (Dec 1920) ratified and reorganised.',
     'Gandhi\'s "Himalayan blunder" refers to the Rowlatt satyagraha (1919).',
     'Dyer ordered the firing; O\'Dwyer was the Lt-Governor; Udham Singh killed O\'Dwyer.',

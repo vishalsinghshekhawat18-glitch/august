@@ -40,6 +40,7 @@ Alauddin's reforms (army → revenue → prices).</p></div>`,
 <tr><td>Diwan-i-Kohi</td><td>—</td><td>Agriculture (Muhammad bin Tughluq)</td></tr>
 <tr><td>Diwan-i-Khairat, Diwan-i-Bandagan</td><td>—</td><td>Charity; slaves (Firoz)</td></tr>
 </table></div>
+<p><b>The "circle of justice"</b> (Fakhr-i Mudabbir, 13th century): a king needs soldiers; soldiers need salaries; salaries come from peasants' revenue; peasants pay only when prosperous; and they prosper only when the king rules justly.</p>
 <p><b>Provinces and below:</b> iqta / wilayat under a muqti or wali; shiqs under shiqdars; parganas (amil); villages
 under headmen (<b>muqaddam</b>, <b>chaudhari</b>) and accountants (<b>patwari</b>).</p>` },
 
@@ -101,6 +102,8 @@ intermediaries; peasants and artisans; slavery widespread.</li>
 <tr><td>Balban's tomb — first true arch</td><td>Mehrauli</td></tr>
 <tr><td><b>Alai Darwaza</b> (1311) — first true dome; red sandstone, white marble</td><td>Qutb complex</td></tr>
 <tr><td>Tughluq style: sloping (battered) walls, austere</td><td>Tughluqabad, Ghiyasuddin's tomb, Firoz Shah Kotla</td></tr>
+<tr><td>Mosques: the Quwwat-ul-Islam was enlarged by Iltutmish and again by Alauddin; <b>Begumpuri mosque</b>, main mosque of Jahanpanah (Muhammad bin Tughluq); <b>Moth ki Masjid</b> (built by Sikandar Lodi's minister); <b>Jamali Kamali</b> mosque (late 1520s)</td><td>Delhi</td></tr>
+<tr><td>Firoz Shah's tomb (1388), beside his madrasa</td><td>Hauz Khas, Delhi</td></tr>
 <tr><td>Lodi style: octagonal tombs, double dome</td><td>Lodi Garden; Sikandar Lodi's tomb</td></tr>
 </table></div>
 <p><b>Literature:</b> <b>Amir Khusrau</b> ("Tuti-i-Hind", parrot of India) — Persian poetry, Hindavi verse, credited
@@ -132,6 +135,8 @@ monarchy with Islamic legitimacy, not a theocracy.</p></div>`,
     'Balban\'s tomb has the first true arch in India.',
     'Amir Khusrau was called Tuti-i-Hind.',
     'Sultan Ghari is regarded as the first Islamic tomb in India.',
+    "The Begumpuri mosque was the main mosque of Jahanpanah, Muhammad bin Tughluq's city.",
+    'Fakhr-i Mudabbir described the "circle of justice" linking king, army, revenue and peasants.',
   ],
 
   traps: [

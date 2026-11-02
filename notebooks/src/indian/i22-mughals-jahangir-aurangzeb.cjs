@@ -72,6 +72,7 @@ viceroy of the Deccan.</li>
 <b>Shahjahanabad</b>, Moti Masjid (Agra), <b>Peacock Throne</b> (Takht-i-Taus), Diwan-i-Khas.</li>
 <li>Court historians: Abdul Hamid Lahori (<i>Padshahnama</i>), Inayat Khan.</li>
 <li>Travellers: <b>Bernier</b>, <b>Tavernier</b>, Manucci (reign of Shah Jahan to Aurangzeb).</li>
+<li><b>François Bernier</b>, a French physician, was in India from 1656 to 1668, attached to Dara Shukoh and then to the noble Danishmand Khan. He dedicated his main work to Louis XIV and set India up as the inverse of Europe: crown ownership of land, he argued, discouraged investment and ruined agriculture. He called Mughal cities "camp towns" that depended on the imperial camp. His books (1670–71) were quickly translated across Europe.</li>
 <li><b>War of succession (1657–58)</b> among Dara Shikoh, Shuja, Aurangzeb and Murad: Bahadurgarh (Shuja defeated by
 Dara's son), <b>Dharmat</b> (Aurangzeb and Murad defeat Jaswant Singh), <b>Samugarh</b> (Dara defeated), Khajwa (Shuja),
 Deorai (Dara, 1659). Shah Jahan imprisoned in Agra Fort till death (1666).</li>
@@ -92,6 +93,7 @@ Marathas); grants to some temples continued.</li>
 <ul>
 <li><b>Jats</b> (Gokula, 1669; Rajaram, Churaman); <b>Satnamis</b> (Narnaul, 1672); <b>Sikhs</b> (Guru Tegh Bahadur
 executed 1675; Guru Gobind Singh — Khalsa 1699); Afghans (Yusufzai).</li>
+<li><b>Ahoms</b> (Assam): Mir Jumla defeated them in 1662–63, but Mughal control did not last; the Ahoms won at <b>Saraighat</b> (1671) and rebelled again in the 1680s. The Ahom state, founded by migrants from Myanmar in the 13th century, ran on the <b>paik</b> system (rotational labour and military service, based on a census), used firearms from the 1530s, and kept chronicles called <b>buranjis</b>, first in Ahom and later in Assamese.</li>
 <li><b>Rajputs</b>: on Jaswant Singh's death (1678) Marwar was occupied; <b>Durgadas Rathore</b> defended infant Ajit
 Singh; Mewar (Raj Singh) joined; Prince Akbar's revolt (1681) — R09.</li>
 <li><b>Deccan (1681–1707)</b>: annexed Bijapur (1686) and Golconda (1687); captured and executed <b>Sambhaji</b> (1689);
@@ -110,6 +112,21 @@ argues his temple destructions were few and political. Present both; avoid moral
 <b>farman of 1717</b> gave the English duty-free trade in Bengal; abolished jizya again (by the Sayyids, 1713).</li>
 <li><b>Muhammad Shah</b> (1719–48): Sayyids overthrown (1720); provinces broke away — Hyderabad (Nizam-ul-Mulk, 1724),
 Bengal (Murshid Quli Khan), Awadh (Saadat Khan).</li>
+<li><b>Court factions:</b> nobles split into Iranis and Turanis, and later emperors became their puppets: Farrukhsiyar (1713–19) and Alamgir II (1754–59) were killed; Ahmad Shah (1748–54) and Shah Alam II were blinded.</li>
+</ul>
+<h4>The successor states (NCERT's three groups)</h4>
+<ol>
+<li><b>Old Mughal provinces</b> — Awadh, Bengal, Hyderabad — founded by high nobles who kept formal ties with the emperor.
+  <ul>
+  <li><b>Hyderabad:</b> Nizam-ul-Mulk Asaf Jah, governor of the Deccan, controlled its administration by 1720–22 and ruled independently from 1724; he fought the Marathas and Telugu nayakas, and the British checked him on the Coromandel coast.</li>
+  <li><b>Awadh:</b> Burhan-ul-Mulk Saadat Khan (from 1722) held subadari, diwani and faujdari together; he cut the number and size of Mughal jagirs, reassessed revenue, and took Rajput zamindaris and Rohilkhand lands.</li>
+  <li><b>Bengal:</b> Murshid Quli Khan, first the deputy (naib) and diwan, moved Mughal jagirdars to Orissa, reassessed revenue and collected it strictly in cash, so many zamindars borrowed or sold land; under Alivardi Khan (1740–56) the banking house of Jagat Seth prospered.</li>
+  <li><b>Common features:</b> distrust of the jagir system; <b>revenue farming</b> (ijara), with bankers guaranteeing the revenue farmers' payments, which brought bankers and moneylenders into state finance.</li>
+  </ul></li>
+<li><b>Watan jagirs</b> — the Rajput states (Amber, Jodhpur), which already had wide autonomy (see R11).</li>
+<li><b>States won by armed struggle</b> — Marathas, Sikhs, Jats.</li>
+</ol>
+<ul>
 <li><b>Nadir Shah</b> (Persia) defeated the Mughals at <b>Karnal (1739)</b>, sacked Delhi, took the Peacock Throne and
 Koh-i-Noor.</li>
 <li><b>Ahmad Shah Abdali</b> invaded repeatedly (1748–67); <b>third Panipat (1761)</b> against the Marathas (I24).</li>
@@ -134,7 +151,7 @@ decentralisation into regional states, which the British exploited.</p>` },
 
   historians: `
 <p>See the decline table. Sources: <b>Khafi Khan</b> (<i>Muntakhab-ul-Lubab</i>), <b>Saqi Mustaid Khan</b>
-(<i>Maasir-i-Alamgiri</i>), <b>Bhimsen</b> (<i>Nuskha-i-Dilkusha</i>); European travellers Bernier (who argued there was
+(<i>Maasir-i-Alamgiri</i>), <b>Bhimsen</b> (<i>Nuskha-i-Dilkusha</i>); official histories: Abdul Hamid Lahori's <i>Badshahnama</i> (first two decades of Shah Jahan, revised by the wazir Sadullah Khan; Muhammad Waris continued it), and Muhammad Kazim's <i>Alamgirnama</i> (Aurangzeb's first ten years). An illustrated <i>Badshahnama</i>, gifted by the Nawab of Awadh to George III in 1799, is in the Royal Collection at Windsor; European travellers Bernier (who argued there was
 no private property in land — a view later used by Marx's "Asiatic mode"), Tavernier, Manucci.</p>`,
 
   facts: [
@@ -143,6 +160,14 @@ no private property in land — a view later used by Marx's "Asiatic mode"), Tav
     'Sir Thomas Roe was the ambassador of James I at Jahangir\'s court.',
     'The Mughal–Mewar treaty was signed in 1615 with Amar Singh.',
     'Itimad-ud-Daula\'s tomb was built by Nur Jahan.',
+    "Jahanara received the revenues of Surat and built a caravanserai in Shahjahanabad (Chandni Chowk).",
+    "The court moved to the new capital, Shahjahanabad, in 1648.",
+    "Burhan-ul-Mulk Saadat Khan founded the Awadh state (1722).",
+    "Mir Jumla invaded the Ahom kingdom in 1662.",
+    "Bernier was in India from 1656 to 1668 and called Mughal cities 'camp towns'.",
+    "Buranjis are the historical chronicles of the Ahoms.",
+    "Murshid Quli Khan transferred Bengal's Mughal jagirdars to Orissa.",
+    "Farrukhsiyar and Alamgir II were killed by their nobles.",
     'Ahmadnagar was annexed by Shah Jahan in 1636.',
     'Ustad Ahmad Lahori was the architect of the Taj Mahal.',
     'Kandahar was finally lost to Persia in 1649.',
@@ -161,6 +186,9 @@ no private property in land — a view later used by Marx's "Asiatic mode"), Tav
   ],
 
   traps: [
+    "Shah Alam II reigned 1759–1806 (blinded 1788), not to 1816.",
+    "Ahmadnagar: NCERT Class VII gives 1632 and Daulatabad fell in 1633; the Nizam Shahi state was finally ended in 1636.",
+    "NCERT Class XII says Aurangzeb gave the title Mirza Raja to Jai Singh and Jaswant Singh; Jai Singh I is usually said to have received it from Shah Jahan (our R11).",
     'Dharmat (1658) before Samugarh (1658); Deorai (1659) ended Dara.',
     'Jizya: abolished by Akbar (1564), reimposed by Aurangzeb (1679), abolished again (1713/1720).',
     'Karnal (1739) — Nadir Shah; Panipat III (1761) — Abdali.',
@@ -168,7 +196,9 @@ no private property in land — a view later used by Marx's "Asiatic mode"), Tav
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'UPSC Pre', year: '2019', marks: null, q: "Which Mughal emperor shifted the emphasis from illustrated manuscripts to the album and individual portraits? — <b>Answer:</b> Jahangir." },
+    ],
     note: 'No verified RAS Mains question on this unit yet. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 

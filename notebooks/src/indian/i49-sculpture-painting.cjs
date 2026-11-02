@@ -37,7 +37,7 @@ Pahari painting. Under colonial rule came Company painting, oil painting (<b>Raj
     ['10th–11th century', 'Chola bronzes: Nataraja'],
     ['c. 1557–77', 'Hamzanama painted in Akbar\'s atelier'],
     ['1605–27', 'Jahangir\'s reign: Mansur, Abul Hasan, Bishandas'],
-    ['18th century', 'Pahari schools: Basohli, Guler, Kangra'],
+    ['Late 17th – 18th century', 'Pahari schools: Basohli (late 17th century), then Guler and Kangra (mid-18th century)'],
     ['1890s', 'Raja Ravi Varma\'s oleograph press'],
     ['1905', 'Abanindranath Tagore paints Bharat Mata'],
   ],
@@ -90,7 +90,11 @@ Under <b>Akbar</b> the atelier, with Indian painters such as Daswanth and Basawa
 <i>Razmnama</i> and <i>Akbarnama</i>: narrative, crowded, lively. Under <b>Jahangir</b> it turned to portraits and
 nature studies: <b>Ustad Mansur</b> (birds and animals), <b>Abul Hasan</b> (Nadir-uz-Zaman). Under Shah Jahan it
 became formal and decorative; Aurangzeb withdrew patronage and painters moved to Rajput and Pahari courts.</li>
-<li><b>Deccani</b> (Bijapur, Golconda) and <b>Pahari</b> (Basohli's bold colours, Kangra's lyrical Krishna themes).</li>
+<li><b>Deccani</b> (Bijapur, Golconda).</li>
+<li><b>Pahari</b> (hill states of present Himachal Pradesh and Jammu): <b>Basohli</b>, by the late 17th century, used
+bold, intense colours; Bhanudatta's <i>Rasamanjari</i> was its favourite text. Nadir Shah's sack of Delhi (1739) sent
+more Mughal-trained artists to the hills. <b>Kangra</b>, from the mid-18th century, drew on Vaishnava themes with soft,
+cool blues and greens and a lyrical line.</li>
 <li><b>Colonial:</b> Company painting for British patrons; <b>Raja Ravi Varma</b>'s oil paintings and oleographs of
 mythological themes; <b>Abanindranath Tagore</b>'s Bengal School, which rejected Western academic art (Bharat Mata,
 1905).</li>
@@ -118,6 +122,9 @@ Mitter</b> studies colonial art and the Bengal School.</p>`,
     'The Hamzanama was painted in Akbar\'s atelier.',
     'Ustad Mansur painted birds and animals for Jahangir.',
     'Abanindranath Tagore painted Bharat Mata in 1905.',
+    'Bhanudatta\'s Rasamanjari was the favourite text of Basohli painters.',
+    'Kangra painting is known for Vaishnava themes in soft blues and greens.',
+    'Ajanta has about 30 rock-cut Buddhist caves made in two phases, from the 2nd century BCE to about 480 CE.',
   ],
 
   traps: [

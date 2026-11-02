@@ -58,6 +58,14 @@ bodies — use them in any answer on Indian democratic traditions.</p></div>`,
 a pot). Qualifications: land ownership, a house, age 35–70, Vedic knowledge; disqualifications: not having
 submitted accounts, crimes, recent service on a committee.</li>
 <li>Land revenue: about 1/3 of produce; land survey under Rajaraja I and Kulottunga I.</li>
+<li><b>Kinds of land:</b> <i>vellanvagai</i> (non-Brahmin peasant proprietors), <i>brahmadeya</i> (Brahmins),
+<i>shalabhoga</i> (upkeep of a school), <i>devadana</i> or <i>tirunamattukkani</i> (temples), <i>pallichchhandam</i>
+(Jain institutions).</li>
+<li><b>Taxes:</b> inscriptions use over 400 tax terms; the most frequent are <i>vetti</i> (forced labour) and
+<i>kadamai</i> (land revenue); others fell on thatching a house, climbing palm trees with a ladder and inheriting
+property.</li>
+<li><b>Rural elites:</b> rich Vellala peasants dominated the nadu; kings gave them titles such as
+<i>muvendavelan</i> and <i>araiyar</i> and posts at the centre.</li>
 </ul>
 <div class="box debate"><p>How centralised was the Chola state? <b>Nilakanta Sastri</b> saw a strong centralised
 monarchy. <b>Burton Stein</b> proposed a "segmentary state": real power lay with peasant (nadu) assemblies, the king
@@ -66,7 +74,8 @@ in the core over time.</p></div>` },
 
     { title: 'Economy, religion and art', html: `
 <p><b>Economy:</b> irrigation tanks; temples as landowners, banks and employers; merchant guilds (<b>Manigramam</b>,
-<b>Ayyavole/Ainnurruvar</b>) traded across the Indian Ocean; trade with China and Srivijaya.</p>
+<b>Ayyavole/Ainnurruvar</b>, also known as the Nanadesis) traded across the Indian Ocean; trade with China and Srivijaya.</p>
+<p><b>Crafts:</b> sculptors (<b>sthapatis</b>) of <b>Svamimalai</b> near Thanjavur cast bronze images and bell-metal lamps; the <b>Saliya</b> weavers of Thanjavur and Uraiyur made temple flags and fine and coarse cotton; the Kaikkolar weavers grew rich enough to endow temples; the Panchalas (Vishwakarma) — smiths, masons and carpenters — were essential to temple building.</p>
 <p><b>Religion:</b> Shaivism dominant; the Nayanar hymns were compiled into the <i>Tirumurai</i> (Nambi Andar Nambi);
 Vaishnava Alvar hymns into the <i>Nalayira Divya Prabandham</i> (Nathamuni); Ramanuja (11th–12th c.); Sekkilar's
 <i>Periyapuranam</i> under Kulottunga II; Kamban's Tamil <i>Ramayana</i>.</p>
@@ -97,11 +106,13 @@ used inscriptions to show increasing bureaucratic control and the role of temple
     'Kulottunga I sent an embassy of 72 merchants to China (1077).',
     'Chola provinces were mandalams; subdivisions valanadu and nadu.',
     'The Nataraja bronze is a Chola masterpiece made by the lost-wax method.',
+    "Svamimalai near Thanjavur was a centre of bronze-casting sthapatis.",
     'Sekkilar wrote Periyapuranam; Kamban wrote the Tamil Ramayana.',
   ],
 
   traps: [
     'Uttaramerur = Parantaka I (919, 921), not Rajaraja I.',
+    'Airavateshvara temple, Darasuram, was built by Rajaraja II (12th century), not Rajadhiraja; some guidebooks get this wrong.',
     'Gangaikonda = Rajendra I; Mummadi Chola = Rajaraja I.',
     'Takkolam (949): the Cholas lost to Rashtrakuta Krishna III.',
     'Chola temples: tall vimana dominates; tall gopurams are a later (Pandya–Vijayanagara) emphasis.',

@@ -54,8 +54,8 @@ wealth and love.</li>
 (dry land; raiding).</li>
 <li>Kingship hereditary; king advised by the <b>sabha/manram</b>; revenue from land (karai), tribute and plunder.</li>
 <li>Hero stones (<i>nadukal</i>) for warriors who died in battle.</li>
-<li>Society: varna was weak; groups such as the <i>panar</i> and <i>viraliyar</i> (bards), <i>vellalar</i> (landowners),
-<i>kadaisiyar</i> (labourers). Women poets: Avvaiyar, Nachchellaiyar.</li>
+<li>Society: varna was weak; groups such as the <i>panar</i> and <i>viraliyar</i> (bards), <i>vellalar</i> (large landowners),
+<i>uzhavar</i> (ploughmen), <i>kadaisiyar</i> and <i>adimai</i> (landless labourers, including slaves). Women poets: Avvaiyar, Nachchellaiyar.</li>
 <li>Religion: <b>Murugan</b> (chief deity, with Kurinji), Mayon (Vishnu), Kotravai (war goddess); Vedic sacrifices and
 Buddhism and Jainism spread later.</li>
 <li>Trade: pepper, pearls, muslin, ivory to Rome; Roman coins found widely; Yavanas resident at ports.</li>

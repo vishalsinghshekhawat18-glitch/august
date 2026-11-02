@@ -38,6 +38,14 @@ materialists — not a single "Hindu view".</p></div>`,
 (renunciation). Grihastha was praised as supporting all the others.</li>
 <li><b>Rinas</b> — three debts: to the gods (deva-rina), sages (rishi-rina) and ancestors (pitri-rina).</li>
 <li><b>Sanskaras</b> — rites of passage, traditionally 16 (garbhadhana to antyeshti), including upanayana and vivaha.</li>
+<li><b>Marriage and family in the Dharmashastras:</b> the Manusmriti (compiled c. 200 BCE – 200 CE) lists <b>eight
+forms of marriage</b>; the first four (Brahma, Daiva, Arsha, Prajapatya) were approved and the rest (Asura, Gandharva,
+Rakshasa, Paishacha) condemned. Brahmanical rules favoured exogamy and gotra rules (a wife took her husband's gotra; no
+marriage within the gotra), but Satavahana queens kept their fathers' gotra names, and kin marriage (endogamy) was
+common in the south. Women could keep <b>stridhana</b> (marriage gifts) but had no share in the paternal estate.</li>
+<li><b>A different view of kingship:</b> a Buddhist myth in the Sutta Pitaka says people chose a ruler,
+<b>Mahasammata</b> ("the great elect"), to keep order, so kingship rested on human choice and taxes were payment for
+his service.</li>
 <li><b>Pancha mahayajnas</b> — five daily duties of the householder (to Brahman, gods, ancestors, beings, guests).</li>
 <li><b>Karma</b> and rebirth (samsara); liberation (moksha / nirvana / kaivalya).</li>
 <li>Ethical ideals: ahimsa, satya, daana (charity), seva; tolerance (Ashoka's RE XII; "ekam sat viprah bahudha vadanti" —

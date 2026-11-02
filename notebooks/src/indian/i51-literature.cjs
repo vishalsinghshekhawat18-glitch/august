@@ -72,6 +72,13 @@ translations of the Mahabharata (Razmnama) and Upanishads (Dara Shikoh's Sirr-i-
 Tukaram and Jnaneshwar (Marathi), Chaitanya's followers (Bengali), Shankardev (Assamese), Alvars and Nayanars (Tamil),
 Basavanna's vachanas (Kannada).</li>
 <li><b>Southern classics:</b> Kamban's Tamil Ramayana; Pampa in Kannada; Krishnadevaraya's Amuktamalyada in Telugu.</li>
+<li><b>Malayalam:</b> the Chera kingdom of Mahodayapuram (9th century) used Malayalam language and script in its
+inscriptions, one of the earliest official uses of a regional language. The 14th-century <i>Lilatilakam</i>, on
+grammar and poetics, was written in <b>Manipravalam</b> ("diamonds and corals"), a blend of Sanskrit and the regional
+language.</li>
+<li><b>Bengali:</b> one stream drew on Sanskrit (translations of the epics, <i>Mangalakavyas</i> on local deities,
+lives of Chaitanya); another was oral and independent of it (Nath songs of Maynamati and Gopichandra, tales of Dharma
+Thakur, ballads).</li>
 </ul>` },
 
     { title: 'Modern literature and the Renaissance', html: `
@@ -103,6 +110,8 @@ historical plays and chronicles as sources while warning about their poetic purp
     'Kalhana wrote the Rajatarangini in 1148–49.',
     'The Baburnama was written in Turki.',
     'Tulsidas wrote the Ramcharitmanas in Awadhi.',
+    'The Lilatilakam (14th century) is written in Manipravalam, a mix of Sanskrit and Malayalam.',
+    'The Cheras of Mahodayapuram used Malayalam in their 9th-century inscriptions.',
     'Bharatendu Harishchandra started the journal Kavivachan Sudha in 1868.',
     'Anandamath by Bankim Chandra Chattopadhyay was published in 1882.',
     'Tagore received the Nobel Prize for Literature in 1913.',

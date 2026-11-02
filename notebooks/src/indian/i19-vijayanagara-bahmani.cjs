@@ -50,7 +50,8 @@ the accounts of foreign visitors.</p></div>`,
 <ul>
 <li>Defeated the Bahmani successors; took <b>Raichur</b> (1520) from Bijapur; campaigned against the Gajapatis of
 Odisha.</li>
-<li>Friendly relations with the <b>Portuguese</b> (horse trade; Goa).</li>
+<li>Friendly relations with the <b>Portuguese</b> (horse trade; Goa). Horses came first through Arab traders, later also through local <b>kudirai chettis</b> (horse merchants).</li>
+<li>NCERT dates his gains as: Raichur doab 1512, Odisha's rulers subdued 1514, Bijapur's Sultan badly defeated 1520. He also backed claimants in the Sultanates and took the title "establisher of the Yavana kingdom".</li>
 <li>Wrote <b><i>Amuktamalyada</i></b> (Telugu, on statecraft and devotion) and Sanskrit works (Jambavati Kalyanam).</li>
 <li>His court had the <b>Ashtadiggajas</b> (eight Telugu poets) including Allasani Peddana ("Andhra Kavitapitamaha");
 Tenali Ramakrishna is associated by tradition.</li>
@@ -62,20 +63,25 @@ Tenali Ramakrishna is associated by tradition.</li>
     { title: 'Administration and society', html: `
 <ul>
 <li><b>King</b> assisted by a council; empire divided into <b>rajyas/mandalams</b>, nadu, sthala, villages.</li>
-<li><b>Nayankara system:</b> military chiefs (<b>nayakas</b>) held territories (amaram) in return for maintaining troops
+<li><b>Nayankara system</b> (NCERT: <b>amara-nayaka</b>): military chiefs (<b>nayakas</b>) held territories (amaram) in return for maintaining troops
 and paying tribute; they later became independent (Nayakas of Madurai, Thanjavur, Ikkeri).</li>
 <li><b>Ayagar system:</b> village functionaries (twelve ayagars) paid with tax-free land.</li>
 <li>Land revenue about one-sixth (traditionally), though often higher; also taxes on trade, property, marriage.</li>
 <li><b>Army:</b> cavalry with imported horses (Arab, Persian, via Portuguese); artillery; forts.</li>
 <li><b>Society:</b> Brahmins prominent; temples as economic centres; <b>devadasis</b>; sati noted by travellers; women
 as wrestlers, accountants and palace guards (Nuniz).</li>
-<li><b>Economy:</b> irrigation tanks (Kamalapuram), trade through western ports; coins — gold <b>varaha</b> (pagoda),
+<li><b>Economy:</b> irrigation tanks (Kamalapuram; the Anantaraja Sagar, with a 1.37 km earthen dam across the Maldevi river; a lake that Krishnadevaraya made by building an embankment between two hills), trade through western ports; coins — gold <b>varaha</b> (pagoda),
 pratapa, fanam.</li>
 </ul>` },
 
     { title: 'Art and architecture (Hampi)', html: `
 <ul>
 <li>Capital <b>Hampi</b> on the Tungabhadra — UNESCO World Heritage Site.</li>
+<li><b>Legitimacy:</b> the site was chosen for the shrines of Virupaksha and the local goddess Pampadevi; the kings ruled on Virupaksha's behalf and signed orders "Shri Virupaksha" in Kannada script.</li>
+<li><b>City plan:</b> Abdur Razzaq saw seven lines of fortification, with fields and gardens between them, so that a besieged city could feed itself; water came from tanks such as Kamalapuram and the <b>Hiriya canal</b>. The royal centre had over 60 temples and about 30 palace-like buildings; Chinese porcelain marks rich traders' quarters in the Muslim quarter of the urban core.</li>
+<li><b>Mahanavami Dibba:</b> a large platform (about 11,000 sq ft base, 40 ft high) used during the Mahanavami (Navaratri) festival, when the king received gifts from the nayakas and reviewed their armies.</li>
+<li>The Vitthala temple's deity, a form of Vishnu worshipped in Maharashtra, shows how the rulers drew on several traditions; straight chariot streets lined with pillared shops ran from the gopurams.</li>
+<li><b>Rediscovery:</b> Colin Mackenzie surveyed the ruins (1800); Alexander Greenlaw photographed them (1856); J.F. Fleet copied inscriptions (1876); John Marshall began conservation (1902); national importance 1976; UNESCO 1986.</li>
 <li>Features: tall <b>raya gopurams</b>, <b>kalyana mandapas</b> (pillared marriage halls), carved pillars with
 yali (rearing horses), temple chariots.</li>
 <li>Temples: <b>Vitthala</b> (stone chariot, musical pillars), <b>Hazara Rama</b> (Ramayana friezes), Virupaksha.</li>
@@ -94,6 +100,7 @@ court conspiracy.</li>
 state.</li>
 <li>Split into five: <b>Bijapur</b> (Adil Shahi), <b>Ahmadnagar</b> (Nizam Shahi), <b>Golconda</b> (Qutb Shahi),
 <b>Berar</b> (Imad Shahi), <b>Bidar</b> (Barid Shahi).</li>
+<li><b>Bidri</b> ware — inlay of silver (or brass) on a blackened alloy — is named after Bidar.</li>
 <li>Monuments: <b>Gol Gumbaz</b> (Bijapur, tomb of Muhammad Adil Shah, among the largest domes),
 <b>Charminar</b> (Hyderabad, Muhammad Quli Qutb Shah, 1591), Ibrahim Rauza; Golconda fort.</li>
 <li>Ibrahim Adil Shah II wrote <i>Kitab-i-Nauras</i> (songs in Dakhini); Muhammad Quli Qutb Shah — early Dakhini Urdu poet.</li>
@@ -136,6 +143,11 @@ Muslim soldiers in its army, alliances across religious lines, the title "Hindu-
     'The first Bahmani capital was Gulbarga, later Bidar.',
     'The Raichur doab lies between the Krishna and Tungabhadra rivers.',
     'Krishnadevaraya ruled 1509–1529 and wrote Amuktamalyada in Telugu.',
+    "Royal orders of Vijayanagara were signed 'Shri Virupaksha'.",
+    "Colin Mackenzie surveyed the Hampi ruins in 1800.",
+    "Hampi was declared a UNESCO World Heritage Site in 1986.",
+    "Kudirai chettis were Vijayanagara's local horse merchants.",
+    "Bidri inlay metalwork takes its name from Bidar.",
     'Krishnadevaraya\'s court had the Ashtadiggajas, eight Telugu poets.',
     'Nayakas were military chiefs holding territories in Vijayanagara.',
     'The ayagar system paid village servants with tax-free land.',
@@ -149,6 +161,8 @@ Muslim soldiers in its army, alliances across religious lines, the title "Hindu-
   ],
 
   traps: [
+    "Talikota (1565): Bijapur, Ahmadnagar, Golconda and Bidar fought; Berar stayed out (NCERT VII also lists Berar).",
+    "Raichur: NCERT dates the doab's acquisition to 1512; the famous battle of Raichur against Bijapur was in 1520.",
     'Nayankara (Vijayanagara military chiefs) ≠ ayagar (village servants).',
     'Talikota: four Sultanates joined; Berar did not.',
     'Nikitin visited the Bahmanis, not Vijayanagara.',
@@ -161,6 +175,8 @@ Muslim soldiers in its army, alliances across religious lines, the title "Hindu-
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'In which language did Mallanarya write <i>Bhava Chinta Ratna</i> and <i>Veerasaivamrita</i> at Krishnadevaraya\'s court? — <b>Answer (RPSC final key):</b> Kannada' },
       { exam: 'RAS Pre', year: '2023', marks: null, q: 'Who is called Andhra Kavita Pitamaha? — <b>Answer (RPSC final key):</b> Allasani Peddana' },
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'Krishnadevaraya: (1) he wrote <i>Amuktamalyada</i>; (2) he was called Andhra Bhoja; (3) Allasani Peddana, a Sanskrit and Tamil poet, adorned his court. Which are true? — <b>Answer (RPSC final key):</b> Statements 1 and 2 (Peddana wrote in Telugu)' },
+      { exam: 'UPSC Pre', year: '2024', marks: null, q: "Which medieval ruler allowed the Portuguese to build a fort at Bhatkal? — <b>Answer:</b> Krishnadevaraya." },
+      { exam: 'UPSC Pre', year: '2022', marks: null, q: "In medieval India, what was a \"fanam\"? — <b>Answer:</b> a coin." },
     ],
     note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },

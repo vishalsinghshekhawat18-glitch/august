@@ -73,6 +73,9 @@ Pattadakal.</li>
 <tr><td>Nandivarman II</td><td>Vaikuntha Perumal temple, Kanchi</td></tr>
 <tr><td>Aparajita</td><td>Defeated by Aditya I Chola (late 9th c.) — end of Pallava power</td></tr>
 </table></div>
+<p>Pallava inscriptions already mention the local assemblies that the Cholas later developed (I12): the
+<b>sabha</b> of Brahmin landowners, working through sub-committees for irrigation, roads and temples; the <b>ur</b> of
+non-Brahmin villages; and the <b>nagaram</b> of merchants.</p>
 <p>Pallava architecture moved from rock-cut caves (Mahendra style) to monolithic rathas (Mamalla style) to structural
 temples (Rajasimha style). Kanchi was a great centre of learning (the ghatika); Dandin (<i>Kavyadarsha</i>) and
 Bharavi (<i>Kiratarjuniya</i>) wrote under Pallava patronage. Nayanars and Alvars spread Bhakti.</p>` },
@@ -120,6 +123,7 @@ the period as one of regional state formation, not decline.</p>`,
   ],
 
   traps: [
+    'The Chalukya capital was Badami (Vatapi); Aihole was an early temple and trading centre. NCERT Class 6 calls Aihole the capital.',
     'Mahabalipuram rathas: Narasimhavarman I; Shore temple: Narasimhavarman II.',
     'Kailasa temple (Ellora) = Rashtrakuta Krishna I; Kailasanatha temple (Kanchi) = Pallava Rajasimha.',
     'Chalukyas of Badami (6th–8th c.) ≠ Chalukyas of Kalyani (10th–12th c.) ≠ Chaulukyas (Solankis) of Gujarat.',

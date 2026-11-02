@@ -62,6 +62,8 @@ symbol of injustice.</li>
   </ul></li>
 <li><b>Features:</b> breaking of laws; large participation of <b>women</b>; merchants and business groups; peasants;
 weaker Muslim participation than in NCM (except NWFP); boycott of foreign cloth and liquor.</li>
+<li><b>Who joined and why (NCERT):</b> rich peasants (Patidars of Gujarat, Jats of UP), hit by the Depression's price fall, fought against revenue and were let down when the movement was suspended in 1931 without revenue cuts; poor tenants wanted unpaid rent remitted. <b>Business</b> wanted protection from imports and a rupee–sterling ratio that discouraged them; it had organised in the Indian Industrial and Commercial Congress (1920) and <b>FICCI (1927)</b>; Purshottamdas Thakurdas and G.D. Birla backed the movement. <b>Workers</b> joined in large numbers mainly around Nagpur (railway strikes 1930, dock strikes 1932), but the Congress kept workers' demands off its programme to avoid alienating industrialists. <b>Kamaladevi Chattopadhyay</b> persuaded Gandhi to let women join the salt protests.</li>
+<li><b>Limits:</b> Dalit groups (especially in Maharashtra and Nagpur) kept away, as did most Muslim organisations after the Khilafat–Non-Cooperation alliance ended.</li>
 </ul>` },
 
     { title: 'Round Table Conferences and Gandhi-Irwin Pact', html: `
@@ -143,6 +145,7 @@ the S–T–S strategy, not a surrender. <b>Eleanor Zelliot</b> and <b>Gail Omve
 Poona Pact, which he later criticised.</p>`,
 
   facts: [
+    "FICCI (Federation of Indian Chambers of Commerce and Industry) was formed in 1927.",
     'Gandhi placed 11 demands before Irwin in January 1930.',
     'The Dandi March began on 12 March 1930 with 78 volunteers.',
     'Gandhi broke the salt law at Dandi on 6 April 1930.',
@@ -167,6 +170,7 @@ Poona Pact, which he later criticised.</p>`,
   ],
 
   traps: [
+    "Kamaladevi Chattopadhyay (NCERT Class XII) persuaded Gandhi to admit women to the salt protests; some guides credit Sarojini Naidu.",
     'Dandi March: 12 March – 6 April 1930.',
     'Poona Pact: joint electorate with reserved seats (148), not separate electorates.',
     'Karachi (1931) president: Patel; Lahore (1929): Nehru; Tripuri (1939): Bose.',

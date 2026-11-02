@@ -45,6 +45,13 @@ bare claim. This unit gives you the vocabulary of evidence for the whole noteboo
 <ul>
 <li>Scripts: <b>Brahmi</b> (written left to right; ancestor of most Indian scripts) and <b>Kharosthi</b> (right to left,
 north-west). <b>James Prinsep</b> deciphered Brahmi in <b>1837</b>.</li>
+<li><b>Milestones in epigraphy:</b> Colin Mackenzie collected over 8,000 inscriptions in the 1810s; Cunningham
+published the Ashokan inscriptions (1877); <i>Epigraphia Carnatica</i> (1886) and <i>Epigraphia Indica</i> (1888)
+began; D.C. Sircar wrote <i>Indian Epigraphy</i> (1965–66). Limits of inscriptions: faint or damaged letters, uncertain
+meanings, and silence on everyday life.</li>
+<li><b>Texts as sources:</b> the Critical Edition of the Mahabharata, led by V.S. Sukthankar at the Bhandarkar
+Oriental Research Institute, Pune (1919–1966), compared manuscripts from all over India and showed both a common core
+and wide regional variation. B.B. Lal's excavation at Hastinapura (1951–52) tried to match the Mahabharata with archaeology.</li>
 <li>Earliest deciphered inscriptions: <b>Ashoka's edicts</b> (3rd c. BCE), mostly in Prakrit; also Greek and Aramaic in
 the north-west.</li>
 <li>Key inscriptions: Hathigumpha (Kharavela), Junagadh (Rudradaman, 150 CE — first long Sanskrit inscription), Allahabad
@@ -57,6 +64,10 @@ used in the debate on early medieval "feudalism".</p>` },
 
     { title: 'Archaeology', html: `
 <ul>
+<li><b>Museums and heritage law:</b> Indian Museum, Calcutta (1814); Government Museum, Madras (1851); Cunningham's
+<i>Bhilsa Topes</i> (1854) on Sanchi; Indian Treasure Trove Act (1878) let the government acquire antiquities found
+in the ground; John Marshall's <i>Conservation Manual</i> (1923); foundation of the National Museum, New Delhi
+(1955).</li>
 <li>The <b>Archaeological Survey of India</b> was founded in <b>1861</b> under <b>Alexander Cunningham</b>, who identified
 many Buddhist sites using Xuanzang's account.</li>
 <li><b>John Marshall</b> (DG from 1902) directed the Harappan excavations; <b>Mortimer Wheeler</b> introduced stratigraphic
@@ -75,7 +86,7 @@ digging (1940s).</li>
 <tr><td><b>Faxian</b> (Fa-hien)</td><td>Chandragupta II (c. 399–414)</td><td>Buddhism, peaceful Gupta society; did not name the king</td></tr>
 <tr><td><b>Xuanzang</b> (Hiuen Tsang)</td><td>Harsha (c. 630–645)</td><td><i>Si-yu-ki</i>; studied at Nalanda</td></tr>
 <tr><td>Yijing (I-tsing)</td><td>Late 7th c.</td><td>Nalanda; Buddhist practice</td></tr>
-<tr><td><b>Al-Biruni</b></td><td>With Mahmud of Ghazni</td><td><i>Kitab-ul-Hind</i> (c. 1030): Indian science, religion, society</td></tr>
+<tr><td><b>Al-Biruni</b></td><td>With Mahmud of Ghazni</td><td><i>Kitab-ul-Hind</i> (c. 1030): Indian science, religion, society. Born in Khwarizm (973), taken to Ghazni as a hostage (1017), learnt Sanskrit; wrote in Arabic, 80 chapters. Named three barriers to understanding India: language, religious difference and local insularity. Relied on Brahmanical texts and accepted their account of caste, but rejected the idea of pollution as against nature</td></tr>
 </table></div>
 <div class="box debate"><p>Foreign accounts are valuable outsiders' views but often misread Indian society:
 Megasthenes' "seven castes" mixes occupation with varna, and his claim that India had no slavery contradicts Indian
@@ -102,18 +113,22 @@ as <b>Upinder Singh</b> stress weighing all source types together.</p>`,
     'Faxian visited during the reign of Chandragupta II.',
     'Xuanzang visited during Harsha\'s reign and studied at Nalanda.',
     'Al-Biruni wrote Kitab-ul-Hind.',
+    "Al-Biruni's Kitab-ul-Hind, in Arabic, has 80 chapters.",
     'The Periplus of the Erythraean Sea describes 1st-century Indo-Roman trade.',
   ],
 
   traps: [
     'Prinsep deciphered Brahmi; the Harappan script is still undeciphered.',
+    'NCERT Class 12 gives 1838 for Prinsep\'s decipherment of Brahmi; most references give 1837. If both appear in options, prefer 1837.',
     'Faxian (Gupta) ≠ Xuanzang (Harsha) ≠ Yijing (late 7th c.).',
     'Junagadh: Rudradaman (Sanskrit, 150 CE); also Skandagupta\'s inscription on the same rock.',
     'Megasthenes\' Indica survives only in quotations by later Greek writers.',
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'UPSC Pre', year: '2023', marks: null, q: "With what were Alexander Rea, A.H. Longhurst, Robert Sewell, James Burgess and Walter Elliot associated? — <b>Answer:</b> archaeological excavations." },
+    ],
     note: 'No verified RAS Mains question on this unit yet. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 

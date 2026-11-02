@@ -86,8 +86,17 @@ diverse empire; others stress personal conviction. Most historians combine both.
 <i>sitadhyaksha</i>; state control of mines, forests, salt and weapons; punch-marked silver coins (<i>pana</i>);
 trade routes (Uttarapatha). Megasthenes described <b>seven classes</b> (philosophers, farmers, herdsmen, artisans,
 soldiers, overseers, councillors).</p>
-<p><b>Art:</b> polished sandstone pillars (Chunar), Sarnath capital, Rampurva bull, Barabar caves, Didarganj Yakshi
-(debated date), Dhauli elephant.</p>` },
+<p><b>Tax and tribute:</b> the core around Pataliputra paid regular taxes collected by salaried officials; distant
+areas paid tribute when it could be taken. The Arthashastra notes blankets from the north-west and gold and precious
+stones from the south; Suvarnagiri probably tapped the Karnataka gold fields.</p>
+<p><b>Art:</b> polished sandstone pillars (Chunar), Sarnath capital, Rampurva bull (now at Rashtrapati Bhavan), Barabar
+caves, Didarganj Yakshi (debated date), Dhauli elephant. The <b>Sarnath capital</b> has four lions back to back on a
+round abacus carved with an elephant, a bull, a horse and a lion separated by wheels, over an inverted lotus. The
+national emblem (adopted 26 January 1950) shows three of the lions, the wheel, a bull and a horse, with
+<i>Satyameva Jayate</i> below.</p>
+<p><b>Later Mauryas:</b> Dasharatha, Ashoka's grandson, gave the <b>Nagarjuni hill</b> caves (near Barabar) to the
+Ajivikas; Jain tradition makes <b>Samprati</b> a great patron of Jainism; <b>Brihadratha</b>, the last ruler, was killed
+by his general Pushyamitra Shunga (c. 185 BCE).</p>` },
 
     { title: 'Decline', html: `
 <div class="tbl"><table>
@@ -130,6 +139,7 @@ arguing for a core with looser control over peripheries.</p>`,
   traps: [
     'Dhauli and Jaugada lack Rock Edict XIII (Kalinga war) — they have Separate Kalinga Edicts instead.',
     'Delhi–Topra has all seven pillar edicts; it was moved to Delhi by Firoz Shah Tughlaq.',
+    'Only Sarnath has the four-lion capital; Lauriya-Nandangarh and Vaishali (Kolhua) have single-lion capitals, and the Vaishali pillar carries no edict.',
     'Sudarshana lake: built under Chandragupta, repaired under Ashoka (Tushaspha), Rudradaman and Skandagupta.',
     'Megasthenes\' "seven classes" are occupational groups, not varnas.',
   ],

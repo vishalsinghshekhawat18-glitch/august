@@ -63,6 +63,8 @@ centuries.</p>
 <b>chandalas</b> lived outside towns and struck wood to announce their approach.</li>
 <li>Women: early marriage; first epigraphic sati at <b>Eran</b> (510 CE, Bhanugupta's general Goparaja); women had property
 rights only in stridhana; some royal women (Prabhavatigupta as regent) were powerful.</li>
+<li>Guilds: the <b>Mandasor (Dashapura) inscription</b> of a silk weavers' guild (5th century) records how the guild
+migrated from Lata (south Gujarat) to Dashapura, prospered, changed occupations and built a Sun temple.</li>
 <li>Religion: Vaishnavism (Bhagavata) favoured — Guptas called themselves <i>Paramabhagavata</i>; Shaivism; Buddhist
 Nalanda flourished; Puranas compiled.</li>
 </ul>` },

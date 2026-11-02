@@ -44,7 +44,8 @@ Sufi), and individual saints.</p></div>`,
 Alvar.</li>
 <li><b>Nayanars</b> (63, devotees of Shiva) — hymns in the <b>Tevaram</b> (part of Tirumurai); Appar, Sambandar,
 Sundarar, Manikkavachakar; Karaikkal Ammaiyar, a woman Nayanar.</li>
-<li>They came from all castes, travelled between temples and sang in Tamil.</li>
+<li>They came from all castes, including groups treated as "untouchable" such as the Pulaiyar and Panar, travelled between temples and sang in Tamil. Manikkavachakar's hymns form the <i>Tiruvachakam</i>; the <i>Divya Prabandham</i> was called the "Tamil Veda", claimed equal to the four Vedas.</li>
+<li><b>Link with the state:</b> from the 10th to 12th centuries Chola and Pandya kings built large temples at shrines the saints had sung of (Chidambaram, Thanjavur, Gangaikondacholapuram), installed images of the saints and had the Tevaram hymns sung in temples. The hymns' chief targets were Buddhists and Jains, rivals for royal patronage.</li>
 </ul>
 <div class="tbl"><table>
 <tr><th>Acharya</th><th>Philosophy</th><th>Region</th></tr>
@@ -55,7 +56,8 @@ Sundarar, Manikkavachakar; Karaikkal Ammaiyar, a woman Nayanar.</li>
 <tr><td><b>Vallabhacharya</b></td><td><b>Shuddhadvaita</b>; Pushti Marg; Krishna (Shrinathji)</td><td>Vrindavan; Nathdwara (Rajasthan)</td></tr>
 </table></div>
 <p><b>Basavanna</b> (12th c., Karnataka): Virashaiva/<b>Lingayat</b> movement; rejected caste, idol worship and
-Brahmin rituals; vachanas in Kannada; Anubhava Mantapa.</p>` },
+Brahmin rituals; vachanas in Kannada; Anubhava Mantapa. Companions: Allama Prabhu and Akka Mahadevi. Lingayats bury their dead (believing the devotee joins Shiva and is not reborn), and accepted post-puberty marriage and widow remarriage.</p>
+<p><b>Nathpanthis, Siddhas and Yogis</b> criticised ritual and the social order, taught renunciation and meditation on a formless reality through yoga and breath control, drew followers from artisan and "low" castes, and prepared the ground for nirguna bhakti in the north.</p>` },
 
     { title: 'Maharashtra (Warkari tradition)', html: `
 <ul>
@@ -64,13 +66,15 @@ Brahmin rituals; vachanas in Kannada; Anubhava Mantapa.</p>` },
 <li><b>Namdev</b> (14th c.): tailor; his verses are in the Guru Granth Sahib.</li>
 <li><b>Eknath</b> (16th c.) and <b>Tukaram</b> (17th c., abhangas).</li>
 <li><b>Ramdas</b> (17th c.): Dasbodh; associated with Shivaji.</li>
+<li>Women and "untouchable" saints too: Sakhubai, and the family of <b>Chokhamela</b> (a Mahar).</li>
+<li>The <b>Varkari</b> sect centres on the annual pilgrimage to Pandharpur. These saints rejected renunciation, lived as householders and saw bhakti as sharing others' pain; the Gujarati saint <b>Narsi Mehta</b> defined a Vaishnava as one who understands others' pain.</li>
 </ul>` },
 
     { title: 'Northern nirguna bhakti', html: `
 <div class="tbl"><table>
 <tr><th>Saint</th><th>Key points</th></tr>
 <tr><td><b>Ramananda</b> (14th–15th c.)</td><td>Bridge between south and north; preached Rama bhakti in Hindi; disciples from all castes — traditionally Kabir, Ravidas, Pipa, Sain, Dhanna</td></tr>
-<tr><td><b>Kabir</b></td><td>Weaver of Banaras; formless God (Rama, Allah, Hari); attacked idol worship, caste, ritual of both faiths; <b>dohas</b>, sakhis, ramainis; compiled in the <i>Bijak</i>, Kabir Granthavali, and the Guru Granth Sahib</td></tr>
+<tr><td><b>Kabir</b></td><td>Weaver of Banaras; formless God (Rama, Allah, Hari); attacked idol worship, caste, ritual of both faiths; <b>dohas</b>, sakhis, ramainis; compiled in the <i>Bijak</i>, Kabir Granthavali, and the Guru Granth Sahib. The <i>Bijak</i> is preserved by the Kabirpanth (Varanasi), the <i>Granthavali</i> by the Dadupanth (Rajasthan). He wrote in the "sant bhasha" of nirguna poets and in <b>ulatbansi</b> (upside-down sayings). That Ramananda was his guru is a later Vaishnava claim, hard to establish</td></tr>
 <tr><td><b>Ravidas</b> (Raidas)</td><td>Leather worker; Mirabai is traditionally regarded as his disciple</td></tr>
 <tr><td><b>Guru Nanak</b> (1469–1539)</td><td>Born at Talwandi (Nankana Sahib); one formless God; <b>nam japna, kirat karna, vand chhakna</b>; langar, sangat; founded Kartarpur; the basis of Sikhism (I25)</td></tr>
 <tr><td><b>Dadu Dayal</b> (1544–1603)</td><td>Gujarat-born, worked in Rajasthan (Naraina); Dadu Panth; <i>Dadu Vani</i></td></tr>
@@ -101,7 +105,14 @@ Brahmin rituals; vachanas in Kannada; Anubhava Mantapa.</p>` },
 <tr><td><b>Qadiri</b></td><td>Shah Niamatullah; Miyan Mir (laid foundation of the Golden Temple, by tradition); Dara Shikoh was a disciple of Mulla Shah</td><td>Liberal</td></tr>
 <tr><td>Firdausi, Shattari, Rishi (Kashmir — Nuruddin Rishi)</td><td>—</td><td>Regional</td></tr>
 </table></div>
-<p>Amir Khusrau was a disciple of Nizamuddin Auliya.</p>` },
+<p>Amir Khusrau was a disciple of Nizamuddin Auliya.</p>
+<ul>
+<li><b>Chishti khanqah life:</b> Nizamuddin's hospice in Delhi ran an open kitchen (<b>langar</b>) on unasked-for gifts (<b>futuh</b>); visitors included Amir Hasan Sijzi, Amir Khusrau and Ziyauddin Barani; bowing before the shaikh, shaving initiates' heads and yogic exercises show local influence. His disciples called him <i>sultan-ul-mashaikh</i>.</li>
+<li><b>Ziyarat</b> (pilgrimage to a saint's tomb) sought the saint's grace (<b>barakat</b>). At Ajmer, Muhammad bin Tughluq was the first Sultan to visit, Sultan Ghiyasuddin Khalji of Malwa funded the earliest building, and Akbar came fourteen times.</li>
+<li><b>Language:</b> Chishtis in Delhi spoke Hindavi; Baba Farid's verses entered the Guru Granth Sahib; Chishti Sufis around Bijapur wrote short poems in <b>Dakhani</b>, influenced by Kannada vachanas. Other Deccan Chishti: <b>Bandanawaz Gisudaraz</b> of Gulbarga.</li>
+<li><b>Sufis and the state:</b> Sultans set up charitable trusts (<b>auqaf</b>) and gave tax-free land (inam); kings sought burial near shrines; but both sides expected ritual deference, which caused friction.</li>
+<li><b>Popular Islam:</b> the Khojahs (an Ismaili branch) spread the Qur'an's message through devotional songs in local dialects; Arab traders on the Malabar coast adopted matriliny and the local language; Kerala mosques used local, temple-like roofs. Contemporary texts named communities by origin — Turushka (Turks), Tajika, Parashika (Persians) — or generally as mlechchha; "Hindu" and "Muslim" were rarely used as community labels. Non-Muslims paying jizya were <b>zimmis</b> (protected).</li>
+</ul>` },
 
     { title: 'Common features and impact', html: `
 <ol>
@@ -128,6 +139,11 @@ movement is a later construction; it was many local traditions linked over centu
   facts: [
     'The Alvars were devotees of Vishnu; the Nayanars of Shiva.',
     'Andal was a woman Alvar.',
+    "Lingayats bury their dead rather than cremate them.",
+    "Chokhamela, a Mahar, was a Varkari saint of Maharashtra.",
+    "The Kabir Bijak is preserved by the Kabirpanth; the Kabir Granthavali by the Dadupanth.",
+    "Akbar visited the Ajmer dargah fourteen times.",
+    "Bandanawaz Gisudaraz was a Chishti saint of Gulbarga.",
     'The Nalayira Divya Prabandham is the compilation of Alvar hymns.',
     'Ramanuja propounded Vishishtadvaita.',
     'Madhva propounded Dvaita.',
@@ -148,6 +164,8 @@ movement is a later construction; it was many local traditions linked over centu
   ],
 
   traps: [
+    "Tiruvachakam = Manikkavachakar (Shaiva); Divya Prabandham = Alvars (Vaishnava).",
+    "Bijak = Kabirpanth (Varanasi); Kabir Granthavali = Dadupanth (Rajasthan).",
     'Advaita (Shankara) ≠ Vishishtadvaita (Ramanuja) ≠ Dvaita (Madhva) ≠ Shuddhadvaita (Vallabha) ≠ Dvaitadvaita (Nimbarka).',
     'Kabir and Nanak: nirguna; Tulsidas, Surdas, Mira: saguna.',
     'Chishtis avoided the state; Suhrawardis accepted it.',

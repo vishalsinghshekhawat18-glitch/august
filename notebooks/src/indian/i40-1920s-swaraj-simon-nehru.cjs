@@ -156,7 +156,9 @@ of his amendments was a turning point.</p>`,
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'UPSC Pre', year: '2017', marks: null, q: "(1) The Factories Act 1881 fixed wages and allowed trade unions; (2) N.M. Lokhande pioneered labour organisation. — <b>Answer:</b> 2 only." },
+    ],
     note: 'No verified RAS Mains question on this unit yet. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 

@@ -97,6 +97,7 @@ past records; in Bengal).</li>
 
     { title: 'Economy and culture (summary)', html: `
 <ul>
+<li><b>Banjaras</b>, the leading trader-nomads, moved grain in caravans (<b>tanda</b>) of bullocks: Alauddin used them to supply Delhi's markets, Jahangir described them, and they fed Mughal armies on campaign.</li>
 <li>Agriculture: cash crops (cotton, indigo, sugarcane); new crops from the Americas (tobacco, maize, chilli,
 potato).</li>
 <li>Silver flowed in through trade; rupee standard; banking (sarrafs, hundis).</li>
@@ -107,6 +108,31 @@ Diwan-i-Khas), Agra Fort; Sikandra (Akbar's tomb); Itimad-ud-Daula (pietra dura)
 <li><b>Painting:</b> Mir Sayyid Ali and Abdus Samad (Persian masters under Humayun); <i>Hamzanama</i>; Daswant, Basawan
 under Akbar; peak under Jahangir (Mansur, Abul Hasan, Bishandas); decline under Aurangzeb led to provincial (Rajput,
 Pahari) schools.</li>
+</ul>` },
+
+    { title: 'Agrarian society: peasants, villages and zamindars', html: `
+<p><b>Sources:</b> the <i>Ain-i-Akbari</i> (a view from the top), revenue records from Gujarat, Maharashtra and Rajasthan, and East India Company records for eastern India.</p>
+<ul>
+<li><b>Peasants</b> (raiyat, plural riaya; also muzarian, kisan, asami) were of two kinds: <b>khud-kashta</b>, who lived in the village where they held land, and <b>pahi-kashta</b>, who cultivated in other villages on contract, by choice (better terms) or under distress (famine).</li>
+<li><b>Crops:</b> two seasons, kharif and rabi; most areas grew at least two crops a year (<b>do-fasla</b>). The Ain lists 39 crops for Agra, 43 for Delhi and 50 varieties of rice for Bengal. The state encouraged <b>jins-i-kamil</b> ("perfect crops") such as cotton and sugarcane, which paid more revenue. The <b>Shah Nahr</b> canal in Punjab was repaired under Shah Jahan.</li>
+<li><b>Village:</b> the panchayat of elders was headed by a <b>muqaddam</b> or mandal; each caste also had a <b>jati panchayat</b>, which in Rajasthan settled civil disputes, land claims and marriage questions. Records from Rajasthan and Maharashtra preserve petitions against excess taxes and forced labour (<b>begar</b>).</li>
+<li><b>Artisans</b> made up as much as a quarter of village households in Marathi records; in Maharashtra the land given to them became their <b>miras</b> or watan. Payment in goods for services was later called the <b>jajmani</b> system. The British picture of the village as a "little republic" hid sharp caste and gender inequality.</li>
+<li><b>Women</b> sowed, weeded, threshed and spun; peasant and artisan communities paid <b>bride-price</b> and allowed widows and divorced women to remarry; women petitioned panchayats; in Bengal there were women zamindars.</li>
+<li><b>Forests:</b> forest people lived by gathering, hunting and shifting cultivation, e.g. the <b>Bhils'</b> seasonal round. For the state the forest was a refuge (<b>mawas</b>) for rebels; peshkash from forest chiefs often included elephants. The Ahom kings used <b>paiks</b>, who did military service in return for land.</li>
+<li><b>Zamindars</b> held personal land (<b>milkiyat</b>) that they could sell or mortgage, did service (khidmat) for the state, kept forts (<b>qilachas</b>) and armed men, settled new land and set up markets (haats). Caste lineages built zamindaris, e.g. Rajputs and Jats in the north, Sadgops in Bengal.</li>
+<li><b>Revenue terms:</b> <b>jama</b> was the amount assessed, <b>hasil</b> the amount collected; the amil-guzar (amalguzar) collected it, in cash by preference.</li>
+<li><b>Inequality:</b> in Shah Jahan's 20th year, 445 of about 8,000 mansabdars (5.6%) took 61.5% of the empire's estimated revenue.</li>
+</ul>` },
+
+    { title: 'The court, nobility and information', html: `
+<ul>
+<li><b>The Ain-i-Akbari</b> is the third book of Abul Fazl's <i>Akbarnama</i>. It has five daftars: <b>manzil-abadi</b> (household), <b>sipah-abadi</b> (army and civil administration, with notes on mansabdars and learned men), <b>mulk-abadi</b> (revenue and the "Account of the Twelve Provinces": sarkars, parganas, measured area, jama, suyurghal, zamindars' castes); the last two cover religion, literature and Akbar's sayings.</li>
+<li><b>Sovereignty as a contract</b> (Abul Fazl): the emperor protects his subjects' life (jan), property (mal), honour (namus) and faith (din) in return for obedience and a share of resources. The lion lying beside the lamb was its visual symbol.</li>
+<li><b>Court ritual:</b> status was shown by nearness to the throne and the depth of the salutation (sijda the deepest; NCERT says Shah Jahan replaced it with <b>chahar taslim</b> and <b>zaminbos</b>). Akbar began <b>jharoka darshan</b>; then came the diwan-i-am (public business) and the diwan-i-khas (private audience).</li>
+<li><b>Honours:</b> the <b>khilat</b> (a robe once worn by the emperor), the sarapa (head-to-foot set), and the jewelled lotus (<b>padma murassa</b>) in rare cases. A courtier offered a small sum (<b>nazr</b>) or a large one (<b>peshkash</b>).</li>
+<li><b>Nobility:</b> Turanis and Iranis first, then Rajputs and Indian Muslims (Shaikhzadas) from the 1560s; Iranians rose under Nur Jahan; Marathas were numerous under Aurangzeb. Holders of 1,000 zat or more were <b>umara</b>. Akbar had 29 mansabdars of 5,000 zat; Aurangzeb had 79. A candidate was recommended through a noble's <b>tajwiz</b>; nobles posted at court (<b>tainat-i-rakab</b>) formed a reserve.</li>
+<li><b>Information:</b> court writers (waqia-navis) recorded proceedings; nobles' agents sent home the <b>akhbarat-i-darbar-i-mualla</b> (news of the exalted court); relays of runners (<b>qasid</b>, pathmar) carried papers in bamboo tubes.</li>
+<li><b>Pargana level:</b> three semi-hereditary officers — the qanungo (revenue records), the chaudhuri (collection) and the qazi. Persian was the language of administration, but village accounts were kept in local languages.</li>
 </ul>` },
   ],
 
@@ -131,6 +157,13 @@ negotiation with local power holders.</p>`,
     'Under Akbar the empire was divided into 12 subas in 1580.',
     'Taqavi loans were given to peasants for seed and cattle.',
     'Ustad Mansur was a painter of birds and animals under Jahangir.',
+    "Khud-kashta peasants lived in the village where they held land; pahi-kashta peasants cultivated elsewhere on contract.",
+    "Jins-i-kamil ('perfect crops') such as cotton and sugarcane paid more revenue.",
+    "Jama was the revenue assessed; hasil the revenue collected.",
+    "Milkiyat was a zamindar's personal land, which could be sold or mortgaged.",
+    "The Ain-i-Akbari is the third book of the Akbarnama and has five daftars.",
+    "Abul Fazl described sovereignty as protection of jan, mal, namus and din.",
+    "The akhbarat-i-darbar-i-mualla were newsletters of court proceedings.",
   ],
 
   traps: [
@@ -138,12 +171,17 @@ negotiation with local power holders.</p>`,
     'Jagir = right to revenue, not land ownership.',
     'Dahsala is not a ten-year settlement; it is assessment based on ten-year averages.',
     'Mir Bakhshi (military) ≠ Mir Saman (household) ≠ Diwan (finance).',
+    "Khud-kashta = resident cultivator; pahi-kashta = non-resident, contract cultivator.",
+    "Nazr = small offering; peshkash = large offering (also tribute from chiefs).",
     'Du-aspa sih-aspa: Jahangir; month scales: Shah Jahan.',
   ],
 
   pyqs: {
     verified: [
       { exam: 'RAS Pre', year: '2023', marks: null, q: 'Which building at Fatehpur Sikri is in the Buddhist (vihara) style? — <b>Answer (RPSC final key):</b> Panch Mahal' },
+      { exam: 'UPSC Pre', year: '2021', marks: null, q: "Ascending order of size in medieval India? — <b>Answer:</b> pargana, sarkar, suba." },
+      { exam: 'UPSC Pre', year: '2019', marks: null, q: "Differences between jagirdar and zamindar: (1) jagirdars held assignments for judicial and police duties, while zamindars had only revenue duties; (2) jagirs were hereditary and zamindars' rights were not. Which are correct? — <b>Answer:</b> neither (jagirs were transferable assignments for military service; zamindari rights were hereditary)." },
+      { exam: 'UPSC Pre', year: '2019', marks: null, q: "Which group of plants was domesticated in the New World and introduced to the Old World? — <b>Answer:</b> tobacco, cocoa and rubber." },
     ],
     note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },

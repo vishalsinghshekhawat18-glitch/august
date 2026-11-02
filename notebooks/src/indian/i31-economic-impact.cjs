@@ -57,6 +57,10 @@ competition from machine-made goods; loss of royal and aristocratic patronage; C
 railways opened interior markets to British goods.</li>
 <li><b>Effects:</b> artisans pushed back to agriculture — increased pressure on land, ruralisation; decline of towns such
 as Dhaka, Murshidabad, Surat.</li>
+<li><b>Indian textiles before the fall:</b> around 1750 India was the world's largest producer of cotton cloth. European words record the trade: <b>muslin</b> (from Mosul, where Europeans first met fine Indian cotton), <b>calico</b> (from Calicut), <b>chintz</b> (from chhint, small flowered prints, e.g. from Masulipatnam), <b>bandanna</b> (from bandhna, tie-and-dye, mostly Rajasthan and Gujarat). Other famous weaves: <b>patola</b> (Surat, Ahmedabad, Patan; prized in Indonesia) and <b>jamdani</b> (Dacca, Lucknow). Weaving communities included the tanti (Bengal), julaha or momin (north India) and the sale, kaikollar and devang (south India); dyers were rangrez and block printers chhipigar.</li>
+<li><b>How the trade was captured:</b> England's wool and silk makers won the <b>Calico Act (1720)</b> banning printed cotton (chintz) in England, and English calico printing grew behind it. In Bengal the Company used paid agents (<b>gomasthas</b>) and advances to tie weavers to itself. By the 1830s British cloth flooded India; by the 1880s two-thirds of the cotton cloth Indians wore was British.</li>
+<li><b>Survival of handlooms:</b> machines could not make fine bordered saris or the coarse cloth of the poor; new centres grew at Sholapur and Madura; by 1941 over 35% of handlooms used the <b>fly shuttle</b>.</li>
+<li><b>Wootz steel</b> (from Kannada ukku, steel) of south India made famous swords; Francis Buchanan described its Mysore furnaces (1800) and Michael Faraday studied it (1818–22); the craft was lost by the mid-19th century.</li>
 </ul>
 <div class="box debate"><p>Was deindustrialisation real? Nationalists (Dutt) and Amiya Bagchi (Bihar census data) said
 yes. <b>Morris D. Morris</b> questioned it, arguing handloom output survived; <b>Tirthankar Roy</b> argues handicrafts
@@ -72,8 +76,10 @@ under compulsion; benefited traders and moneylenders more than peasants; food cr
 famine was caused by a collapse in entitlements, not a food shortage alone.</li>
 <li><b>Railways</b> (Dalhousie, 1853): served British commerce and military needs; rates favoured ports; guaranteed 5%
 interest to British investors; but also integrated markets and enabled famine relief and national unity.</li>
+<li><b>Cotton boom:</b> when the American Civil War (1861) cut supplies, over 90% of Britain's cotton imports came from India by 1862; when it ended (1865) credit dried up, which led to the Deccan riots (I33).</li>
+<li><b>Mills:</b> the first cotton mill was a spinning mill in Bombay (1854); Ahmedabad's first mill 1861; the Elgin Mill at Kanpur in the 1860s; Madras 1874; Bombay had over 84 mills by 1900, many founded by Parsi and Gujarati traders enriched by the China trade. Early entrepreneurs: Dwarkanath Tagore (six joint-stock companies, 1830s–40s), Dinshaw Petit, Jamsetji Tata; Seth Hukumchand set up the first Indian-owned jute mill in Calcutta (1917).</li>
 <li><b>Modern industry:</b> cotton (Bombay, Ahmedabad — Indian capital), jute (Bengal — British capital), coal,
-plantations; <b>TISCO</b> (1907); growth during the World Wars; discriminating protection (1920s); dominated by
+plantations; <b>TISCO</b> (1907; steel from 1912 at Jamshedpur on the Subarnarekha; by 1919 the government bought 90% of its steel); growth during the World Wars; discriminating protection (1920s); dominated by
 managing agencies.</li>
 <li>Emergence of a working class, an Indian capitalist class (Tata, Birla, Walchand) and a modern middle class.</li>
 </ul>` },
@@ -97,6 +103,10 @@ exploitation; <b>Tirthankar Roy</b> (<i>The Economic History of India 1857–194
 Holocausts</i>) linked famines to colonial policy.</p>`,
 
   facts: [
+    "The Calico Act (1720) banned the use of printed cotton chintz in England.",
+    "Gomasthas were paid Company agents who supervised weavers.",
+    "By the 1880s two-thirds of the cotton cloth worn in India was made in Britain.",
+    "Seth Hukumchand set up the first Indian-owned jute mill in Calcutta (1917).",
     'Dadabhai Naoroji wrote Poverty and Un-British Rule in India (1901).',
     'R.C. Dutt wrote The Economic History of India.',
     'Naoroji estimated India\'s per capita income at Rs 20 a year.',
@@ -112,6 +122,8 @@ Holocausts</i>) linked famines to colonial policy.</p>`,
   ],
 
   traps: [
+    "Spinning jenny: James Hargreaves (1764); flying shuttle: John Kay (1733); water frame: Arkwright (1769); improved steam engine: James Watt. NCERT-based guides sometimes misassign these.",
+    "TISCO was founded in 1907 but began producing steel in 1912.",
     'Drain = unrequited transfer, not all trade.',
     'Cotton mills mainly Indian capital; jute mills mainly British capital.',
     'Strachey (1880) → Famine Code (1883); Lyall (1898); MacDonnell (1901).',

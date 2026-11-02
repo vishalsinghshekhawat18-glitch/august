@@ -60,8 +60,21 @@ dynasties and making north India vulnerable to the Turks.</p>` },
     { title: 'Society, economy and the feudalism debate', html: `
 <ul>
 <li>Land grants to Brahmins, temples and officials multiplied; grantees received fiscal and judicial rights.</li>
+<li><b>How new dynasties rose:</b> subordinate chiefs (<b>samantas</b>) owed gifts, attendance at court and troops; as
+they grew strong they took titles like <i>maha-samanta</i> and <i>maha-mandaleshvara</i> and broke away. Some Brahmin
+families took to arms: Mayurasharman founded the Kadamba kingdom (Karnataka) and Harichandra the Gurjara-Pratihara line
+(Rajasthan). Dantidurga, the Rashtrakuta chief who overthrew his Chalukya overlord, performed the
+<b>hiranyagarbha</b> ("golden womb") ritual to be "reborn" a Kshatriya. New kings took titles such as
+<i>maharajadhiraja</i> and <i>tribhuvana-chakravartin</i>.</li>
+<li>Jatis (sub-castes) ranked by occupation and power framed their own rules, enforced by a <b>jati panchayat</b> of
+elders.</li>
+<li>Regional identities grew: in 1318 Amir Khusrau listed a separate language in each region (Sindhi, Lahori,
+Kashmiri, Dvarsamudri, Telangani, Gujari, Ma'bari, Gauri, Awadhi and Hindawi) and noted that Sanskrit belonged to no
+region and was known only to Brahmins.</li>
 <li>Proliferation of castes; <b>Kayasthas</b> (scribes) rose as a group; new Rajput clans.</li>
 <li>Temple building became central to kingship (Khajuraho, Modhera, Lingaraja).</li>
+<li><b>Small towns</b> grew from large villages from the 8th century: each had a <b>mandapika</b> (the later mandi) where villagers sold produce, market streets (<b>hatta</b>, later haat) and streets of artisans. A samanta often built a fortified palace nearby, taxed traders and artisans, and sometimes granted the right to collect those taxes to a temple; a 10th-century inscription from Rajasthan lists such dues, some in cash and some in kind.</li>
+<li><b>Temple towns</b> grew around endowed temples, e.g. Bhillasvamin (Vidisha), Somnath, Kanchipuram, Madurai and Tirupati; temples also financed trade and lending.</li>
 <li>Regional languages and scripts emerged; Apabhramsha literature.</li>
 </ul>
 <div class="box debate"><p><b>R.S. Sharma</b> (<i>Indian Feudalism</i>, 1965) argued that land grants created a hierarchy
@@ -93,6 +106,9 @@ coins continued in debased forms.</p>`,
   ],
 
   traps: [
+    "Mandapika = market centre (later mandi); hatta = market street (later haat).",
+    'The tripartite struggle was for Kannauj and the Ganga valley, not the Kaveri valley (one guidebook mixes this up).',
+    'Nalanda was founded under the Guptas (Kumaragupta I); the Palas patronised it and founded Vikramashila.',
     'Mihira Bhoja (Pratihara) ≠ Bhoja Paramara (Malwa).',
     'Chaulukyas (Solankis, Gujarat) ≠ Chalukyas (Badami/Kalyani).',
     'Chandawar (1194): Ghori vs Jaichand; Tarain (1191–92): Ghori vs Prithviraj.',
@@ -100,7 +116,9 @@ coins continued in debased forms.</p>`,
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'UPSC Pre', year: '2015', marks: null, q: "Which are essential elements of the feudal system: (1) a very strong central authority and weak local authority; (2) an administrative structure based on control and possession of land; (3) a lord-vassal relationship between the feudal lord and his overlord? — <b>Answer:</b> 2 and 3 only (feudalism means weak central and strong local authority)." },
+    ],
     note: 'No verified RAS Mains question on this unit yet. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 

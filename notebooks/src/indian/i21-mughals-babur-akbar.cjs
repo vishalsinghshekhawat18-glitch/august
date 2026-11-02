@@ -142,7 +142,9 @@ Habib) see it as a political-ideological device for loyalty around a divinely-il
 <p><b>Abul Fazl</b> (<i>Akbarnama</i>, <i>Ain-i-Akbari</i>) presents Akbar as the ideal ruler with divine light
 (<i>farr-i-izadi</i>); <b>Badauni</b> (<i>Muntakhab-ut-Tawarikh</i>) is critical; <b>Nizamuddin Ahmad</b> (<i>Tabaqat-i-Akbari</i>)
 is more neutral. <b>Satish Chandra</b> and <b>Iqtidar Alam Khan</b> analysed the composition of the nobility.
-<b>Irfan Habib</b> and <b>M. Athar Ali</b> studied the Mughal ruling class.</p>`,
+<b>Irfan Habib</b> and <b>M. Athar Ali</b> studied the Mughal ruling class.</p>
+<p><b>Gondwana:</b> the Gond kingdom of <b>Garha Katanga</b> was divided into <b>garhs</b> (each under a Gond clan), then units of 84 villages (<b>chaurasi</b>) and of 12 villages (<b>barhot</b>). Its raja Aman Das took the title Sangram Shah; his son Dalpat married Durgavati, daughter of the Chandela ruler of Mahoba. Ruling for her young son Bir Narayan, she resisted Akbar's general Asaf Khan and chose death over surrender (1564). The Gond chiefs' wish to be counted as Rajputs and their land grants to Brahmins show how tribal states adopted caste society.</p>
+<p><b>Chronicles and books:</b> Abul Fazl wrote the <i>Akbarnama</i> (1589–1602) in three volumes; Henry Beveridge translated it into English. Gulbadan Begum began the <i>Humayun-nama</i> in 1587; Babur's Turkish memoirs were rendered into Persian in 1589. Manuscripts were made in the imperial <b>kitabkhana</b> (scriptorium); Akbar's favourite script was <b>nastaliq</b>. The translation bureau (maktab khana) at Fatehpur Sikri produced the illustrated <i>Razmnama</i> (Mahabharata). The first Jesuit mission reached Fatehpur Sikri in 1580. The Mughals divided inheritance among all sons (coparcenary) rather than following primogeniture.</p>`,
 
   facts: [
     'Babur defeated Ibrahim Lodi at the first battle of Panipat in 1526.',
@@ -156,6 +158,10 @@ is more neutral. <b>Satish Chandra</b> and <b>Iqtidar Alam Khan</b> analysed the
     'Sher Shah issued patta and took qabuliyat from peasants.',
     'Sher Shah\'s tomb is at Sasaram.',
     'Gulbadan Begum wrote the Humayun-nama.',
+    "The Akbarnama credits the Gond kingdom of Garha Katanga with 70,000 villages.",
+    "Rani Durgavati, a Chandela princess of Mahoba, ruled Garha Katanga as regent for her son Bir Narayan.",
+    "The first Jesuit mission reached Akbar's court at Fatehpur Sikri in 1580.",
+    "Nastaliq was Akbar's favourite style of calligraphy.",
     'Akbar was crowned at Kalanaur in 1556.',
     'The second battle of Panipat (1556) was fought against Hemu.',
     'Akbar abolished jizya in 1564.',
@@ -169,6 +175,7 @@ is more neutral. <b>Satish Chandra</b> and <b>Iqtidar Alam Khan</b> analysed the
   ],
 
   traps: [
+    "Durgavati died fighting Asaf Khan in 1564 (NCERT Class VII says 1565).",
     'Panipat I (1526, Babur–Ibrahim Lodi); Panipat II (1556, Akbar/Bairam–Hemu).',
     'Khanwa (1527) — Sanga; Chanderi (1528) — Medini Rai; Ghaghra (1529) — Afghans.',
     'Chausa (1539) before Kannauj (1540).',
@@ -180,6 +187,8 @@ is more neutral. <b>Satish Chandra</b> and <b>Iqtidar Alam Khan</b> analysed the
   pyqs: {
     verified: [
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'Which were built by Sher Shah? — <b>Answer (RPSC final key):</b> His tomb at Sasaram and the Qila-i-Kuhna mosque' },
+      { exam: 'UPSC Pre', year: '2022', marks: null, q: "In whose reign did Nizamuddin Panipati translate the \"Yogavasistha\" into Persian? — <b>Answer:</b> Akbar." },
+      { exam: 'UPSC Pre', year: '2019', marks: null, q: "Which statement about Mian Tansen is NOT correct: (a) \"Tansen\" was a title given by Akbar; (b) he composed dhrupads on Hindu deities; (c) he composed songs for his patrons; (d) he invented many ragas? — <b>Answer:</b> (a); the title came from Raja Vikramjit of Gwalior." },
     ],
     note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },

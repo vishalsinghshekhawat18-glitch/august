@@ -117,6 +117,7 @@ Satara (Shahu) and Kolhapur.</li>
 <tr><td>Narayan Rao (murdered 1773); Raghunath Rao; <b>Nana Phadnavis</b> (regent, Barbhai council)</td><td>First Anglo-Maratha War</td></tr>
 <tr><td>Baji Rao II (1796–1818)</td><td>Treaty of Bassein (1802); last Peshwa; pensioned at Bithur</td></tr>
 </table></div>
+<p><b>Maratha rule and the economy:</b> areas raided were usually made to pay tribute rather than annexed; once rule was secure, revenue was assessed to local conditions. Cities did well: Ujjain under Sindhia and Indore under Holkar; Chanderi silk found a market in Poona; Burhanpur's trade reached Poona, Nagpur, Lucknow and Allahabad.</p>
 <p><b>Maratha confederacy:</b> Peshwa (Pune), <b>Bhonsles</b> (Nagpur), <b>Gaekwads</b> (Baroda), <b>Holkars</b> (Indore),
 <b>Scindias</b> (Gwalior).</p>` },
 
@@ -168,6 +169,8 @@ use of Persianate administrative practices.</p></div>`,
     'The third battle of Panipat was fought on 14 January 1761.',
     'Sadashiv Rao Bhau led the Marathas at Panipat in 1761.',
     'The Gaekwads ruled Baroda; the Holkars Indore; the Scindias Gwalior; the Bhonsles Nagpur.',
+    "Mobile peasant-pastoralists (kunbis) formed the backbone of Shivaji's army.",
+    "Ujjain grew under Sindhia's patronage and Indore under Holkar's.",
   ],
 
   traps: [

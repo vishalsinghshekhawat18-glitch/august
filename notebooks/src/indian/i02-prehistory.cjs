@@ -74,6 +74,15 @@ dancing; a UNESCO World Heritage Site, discovered by <b>V.S. Wakankar</b> (1957)
 <b>Daimabad</b> yielded bronze sculptures (chariot, rhinoceros).</li>
 <li><b>Ochre Coloured Pottery</b> and <b>Copper Hoard</b> culture in the Ganga–Yamuna doab.</li>
 </ul>
+<p><b>Inamgaon burials</b> (on the Ghod, a tributary of the Bhima; occupied c. 1600–700 BCE): adults were buried lying
+straight with the head to the north, often inside houses, with pots of food and water; one man was buried seated in a
+large four-legged clay jar in the courtyard of a five-roomed house with a granary, probably a chief.</p>
+<p><b>Megaliths</b> ("big stones", from c. 1000 BCE) marked burials across the Deccan, south India, the north-east and
+Kashmir. Graves contain <b>Black and Red Ware</b>, iron tools and weapons, sometimes horse bones and gold ornaments.
+Types include <b>cists</b> (stone boxes, some with port-holes for later burials of the same family), dolmens,
+menhirs and urn burials. At <b>Brahmagiri</b> (Karnataka, excavated by Wheeler), one skeleton had 33 gold beads while
+others had only a few pots, showing status differences. Other sites: Hallur, Maski (Karnataka), Adichanallur (urn
+burials, Tamil Nadu), Junapani (Vidarbha).</p>
 <p>Common features: black-and-red painted pottery, mud houses, cattle, cereals, child burials under floors (Maharashtra),
 no writing.</p>` },
   ],
@@ -108,7 +117,9 @@ diffusion from West Asia alone.</p>`,
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'UPSC Pre', year: '2024', marks: null, q: 'Which pairs are correct: Chandraketugarh–Odisha–trading port town; Inamgaon–Maharashtra–Chalcolithic site; Mangadu–Kerala–Megalithic site; Salihundam–Andhra Pradesh–rock-cut cave shrines? — <b>Answer:</b> only Inamgaon and Mangadu (Chandraketugarh is in West Bengal; Salihundam is a Buddhist stupa and monastery site)' },
+    ],
     note: 'No verified RAS Mains question on all-India prehistory yet (Rajasthan sites: R02–R03). The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 

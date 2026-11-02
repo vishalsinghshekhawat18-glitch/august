@@ -111,7 +111,11 @@ school" emphasised how reforms shaped Indian political competition.</p>`,
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'UPSC Pre', year: '2023', marks: null, q: "Which Act made the Governor-General of Bengal the Governor-General of India? — <b>Answer:</b> the Charter Act of 1833." },
+      { exam: 'UPSC Pre', year: '2019', marks: null, q: "The Charter Act of 1813: (1) ended the Company's trade monopoly in India except for tea and trade with China; (2) asserted the Crown's sovereignty over the Company's Indian territories; (3) placed India's revenues under Parliament's control. Which are correct? — <b>Answer:</b> 1 and 2 only." },
+      { exam: 'UPSC Pre', year: '2024', marks: null, q: "The GoI Act 1935: (1) provided for an All-India Federation of provinces and princely states; (2) put defence and foreign affairs under the federal legislature. — <b>Answer:</b> 1 only (they were reserved subjects under the Governor-General)." },
+    ],
     note: 'No verified RAS Mains question on this unit yet. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 

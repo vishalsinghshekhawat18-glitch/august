@@ -40,6 +40,8 @@ industrialisation; shortcomings in agriculture, land reform and defence.</p></di
 <ul>
 <li>Constituent Assembly first met on 9 December 1946; <b>Rajendra Prasad</b> president; <b>B.R. Ambedkar</b> chairman of
 the Drafting Committee; adopted <b>26 November 1949</b>; in force <b>26 January 1950</b>.</li>
+<li><b>Making the Constitution (NCERT Class XII):</b> M.N. Roy first proposed a constituent assembly (1934). Members were chosen by the provincial legislatures elected in 1945–46, not by universal franchise; about 82% were also Congress members, and the League boycotted it. <b>Sachchidananda Sinha</b> was provisional president before Rajendra Prasad. Nehru moved the <b>Objectives Resolution</b> (13 December 1946) and proposed the tricolour with the navy-blue wheel; Patel worked behind the scenes on key reports; <b>B.N. Rau</b> was constitutional adviser. Drafting Committee members included K.M. Munshi, Alladi Krishnaswamy Aiyar, N. Gopalaswami Ayyangar, Mohammad Saadulla, B.L. Mitter and D.P. Khaitan.</li>
+<li><b>Debates:</b> separate electorates were rejected (Patel blamed them for Partition; Begum Aizaz Rasul called them self-destructive for minorities); <b>K. Santhanam</b> defended states' rights while Ambedkar wanted a Centre stronger than under the 1935 Act; the Congress had accepted Hindustani in the 1930s, but the compromise made Hindi the <b>official</b> (not national) language, with English continuing for 15 years.</li>
 <li>First general elections (October 1951 – February 1952): universal adult franchise; Election Commission under
 <b>Sukumar Sen</b>; Congress won a large majority.</li>
 <li>Strengthening of parliamentary institutions, an independent judiciary, a free press, civilian control of the
@@ -110,6 +112,10 @@ survived. <b>Sunil Khilnani</b> (<i>The Idea of India</i>) analyses Nehru's visi
 (1950s) questioned the Mahalanobis strategy; <b>Jagdish Bhagwati</b> criticised the licence raj.</p>`,
 
   facts: [
+    "Sachchidananda Sinha was the provisional president of the Constituent Assembly.",
+    "Nehru moved the Objectives Resolution on 13 December 1946.",
+    "K. Santhanam of Madras was the chief defender of states' rights in the Constituent Assembly.",
+    "Gandhi Sagar, the first of four dams on the Chambal, was completed in 1960.",
     'The Constitution was adopted on 26 November 1949 and came into force on 26 January 1950.',
     'Sukumar Sen was the first Chief Election Commissioner.',
     'The University Education Commission (1948–49) was chaired by S. Radhakrishnan; the Secondary Education Commission (1952–53) by A. Lakshmanaswami Mudaliar.',
@@ -131,6 +137,7 @@ survived. <b>Sunil Khilnani</b> (<i>The Idea of India</i>) analyses Nehru's visi
   ],
 
   traps: [
+    "The Constitution was adopted on 26 November 1949 and members signed it on 24 January 1950; NCERT's timeline line \"December 1949: Constitution is signed\" is wrong.",
     'First Plan: Harrod–Domar (agriculture); Second: Mahalanobis (heavy industry).',
     'Bhilai (USSR), Rourkela (West Germany), Durgapur (UK).',
     'Panchayati raj: Nagaur 1959 (not 1952 — that was CDP).',
@@ -140,6 +147,8 @@ survived. <b>Sunil Khilnani</b> (<i>The Idea of India</i>) analyses Nehru's visi
   pyqs: {
     verified: [
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'Who chaired the Secondary Education Commission (1952)? — <b>Answer (RPSC final key):</b> A. Lakshmanaswami Mudaliar' },
+      { exam: 'UPSC Pre', year: '2024', marks: null, q: "Who was the provisional president of the Constituent Assembly before Rajendra Prasad? — <b>Answer:</b> Dr Sachchidananda Sinha." },
+      { exam: 'UPSC Pre', year: '2013', marks: null, q: "Members of the Constituent Assembly from the provinces were — <b>Answer:</b> elected by the provincial legislative assemblies." },
     ],
     note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },

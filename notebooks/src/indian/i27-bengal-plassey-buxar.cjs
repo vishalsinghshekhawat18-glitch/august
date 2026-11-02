@@ -135,7 +135,9 @@ private interests drawing the Company in; nationalist historians stress delibera
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'UPSC Pre', year: '2018', marks: null, q: "What were the staple exports of the English East India Company from Bengal in the mid-18th century? — <b>Answer:</b> cotton, silk, saltpetre and opium." },
+    ],
     note: 'No verified RAS Mains question on this unit yet. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 

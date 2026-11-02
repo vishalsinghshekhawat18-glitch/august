@@ -117,6 +117,7 @@ secretary of the 1974 committee, describes <i>Towards Equality</i> as the starti
 India.</p>`,
 
   facts: [
+    "Rashsundari Debi wrote the first full autobiography in modern Bengali (Amar Jiban).",
     'Sati was banned in Bengal by Regulation XVII of 4 December 1829 under William Bentinck.',
     'The Hindu Widows\' Remarriage Act was passed in 1856 after Ishwar Chandra Vidyasagar\'s campaign.',
     'Jyotiba and Savitribai Phule opened a girls\' school in Pune on 1 January 1848.',
@@ -144,7 +145,10 @@ India.</p>`,
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'UPSC Pre', year: '2021', marks: null, q: "Who was associated as secretary with the Hindu Female School, later the Bethune School? — <b>Answer:</b> Ishwar Chandra Vidyasagar." },
+      { exam: 'UPSC Pre', year: '2020', marks: null, q: "The Rakhmabai case of 1884 was about: (1) women's right to education; (2) age of consent; (3) restitution of conjugal rights? — <b>Answer:</b> 2 and 3 only." },
+    ],
     note: 'Women empowerment and the women reform movement enter the RAS Mains syllabus for the first time in 2026, so there is no previous question. The 2018 Mains question on the Indian Renaissance (I35) can be answered better with material from Stage 1 of this unit.',
   },
 

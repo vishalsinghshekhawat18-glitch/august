@@ -86,11 +86,13 @@ French company was state-controlled and dependent on the crown.</li>
   ],
 
   historians: `
+<p><b>Indian ports and merchants (17th century):</b> <b>Surat</b>, the Mughal emporium of western trade, was called the "gate to Mecca" for its pilgrim ships; the English writer Ovington (1689) counted about a hundred ships in port at a time; its zari-bordered textiles sold in West Asia, Africa and Europe; its bankers' hundis were honoured at Cairo, Basra and Antwerp. It declined with the Mughals, Portuguese control of the sea routes and the rise of Bombay (Company headquarters from 1687). <b>Masulipatnam</b> on the Krishna delta drew Golconda nobles, Persian merchants, Telugu <b>Komati Chettis</b> and the Companies; the Qutb Shahis imposed royal monopolies, Mir Jumla played the Dutch and English against each other, and the port faded after Aurangzeb took Golconda (1687). Indian shipowners such as <b>Mulla Abdul Ghafur</b> and <b>Virji Vora</b> competed with the Companies until European naval power made Indian traders their agents. Weavers increasingly worked on Company <b>advances</b>, to Company designs. In Madras and Calcutta, Indian merchants and artisans lived in the "<b>Black Town</b>", Europeans in the fort area.</p>
 <p><b>K.N. Chaudhuri</b> (<i>The Trading World of Asia and the English East India Company</i>) and <b>Om Prakash</b> (Dutch
 trade) are standard. <b>Ashin Das Gupta</b> studied Indian merchants of Surat and their decline. <b>Holden Furber</b>
 (<i>Rival Empires of Trade</i>) compares the companies.</p>`,
 
   facts: [
+    "The English Company's first factory on the Hugli dates to 1651; it began fortifying the settlement in 1696.",
     'The Second Carnatic War opened with the Battle of Ambur (1749), in which Nawab Anwaruddin was killed.',
     'Vasco da Gama reached Calicut in 1498.',
     'Albuquerque captured Goa in 1510.',
@@ -98,6 +100,8 @@ trade) are standard. <b>Ashin Das Gupta</b> studied Indian merchants of Surat an
     'The English East India Company was chartered on 31 December 1600.',
     'The Dutch VOC was formed in 1602.',
     'The English established a factory at Surat in 1613.',
+    "Virji Vora and Mulla Abdul Ghafur were leading Indian merchants of 17th-century Surat.",
+    "Komati Chettis were Telugu merchants active at Masulipatnam.",
     'Fort St George was built at Madras.',
     'Bombay was given to Charles II as dowry in 1661.',
     'Job Charnock founded the settlement at Sutanuti in 1690.',
@@ -110,6 +114,8 @@ trade) are standard. <b>Ashin Das Gupta</b> studied Indian merchants of Surat an
   ],
 
   traps: [
+    "The first Dutch factory was at Masulipatnam (1605); Pulicat came in 1610.",
+    "Bombay was leased to the Company in 1668; NCERT says the headquarters moved there the same year, but the presidency seat moved from Surat only in 1687.",
     'Order of arrival: Portuguese, Dutch, English, Danes, French (company formation: English 1600, Dutch 1602).',
     'Second Carnatic War had no European war behind it.',
     'Bedara (1759) — Dutch; Wandiwash (1760) — French.',
@@ -117,7 +123,11 @@ trade) are standard. <b>Ashin Das Gupta</b> studied Indian merchants of Surat an
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'UPSC Pre', year: '2023', marks: null, q: "Which ruler of medieval Gujarat surrendered Diu to the Portuguese? — <b>Answer:</b> Bahadur Shah." },
+      { exam: 'UPSC Pre', year: '2022', marks: null, q: "Statements: (1) the Dutch set up factories on the east coast on land granted by the Gajapati rulers; (2) Albuquerque took Goa from the Bijapur Sultanate; (3) the English Company built its Madras factory on land leased from a representative of the Vijayanagara empire. Which are correct? — <b>Answer:</b> 2 and 3 only." },
+      { exam: 'UPSC Pre', year: '2021', marks: null, q: "In the first quarter of the 17th century, where were English East India Company factories: Broach, Chicacole, Trichinopoly? — <b>Answer:</b> Broach only." },
+    ],
     note: 'No verified RAS Mains question on this unit yet. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 

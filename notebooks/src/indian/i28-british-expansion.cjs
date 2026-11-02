@@ -82,6 +82,7 @@ system.</p>` },
     { title: 'Paramountcy and Doctrine of Lapse', html: `
 <ul>
 <li><b>Lord Hastings</b> (1813–23): policy of <b>paramountcy</b> — the Company as the supreme power, entitled to intervene.</li>
+<li><b>Kittur</b> (Karnataka): when the Company moved to take over this small state, <b>Rani Channamma</b> led an armed resistance; she was captured in 1824 and died in prison in 1829. <b>Sangolli Rayanna</b>, a village watchman, carried on the fight until he was hanged in 1830.</li>
 <li><b>Doctrine of Lapse</b> (Dalhousie, 1848–56): a dependent state whose ruler died without a natural heir would
 pass to the Company; adoption not recognised for succession to the state.</li>
 <li>States annexed: <b>Satara (1848)</b>, Jaitpur and Sambalpur (1849), Baghat (1850), Udaipur (Chhattisgarh, 1852),
@@ -90,6 +91,7 @@ pass to the Company; adoption not recognised for succession to the state.</li>
 Tanjore abolished.</li>
 <li><b>Awadh (1856)</b> annexed on grounds of "misgovernment" (Nawab Wajid Ali Shah) — not by lapse.</li>
 <li><b>Punjab (1849)</b> and Lower Burma (1852) by conquest.</li>
+<li>By 1857 the Company ruled directly about 63% of the subcontinent's territory and 78% of its population.</li>
 </ul>` },
 
     { title: 'Other wars on the frontiers', html: `
@@ -109,6 +111,9 @@ Marshall</b> stressed the "men on the spot". <b>Kate Brittlebank</b> and <b>Irfa
 Colonialism</i>) studied Tipu Sultan as a modernising ruler, against the older British image of a tyrant.</p>`,
 
   facts: [
+    "Rani Channamma of Kittur resisted the Company and was captured in 1824.",
+    "In 1785 Tipu Sultan stopped the export of sandalwood, pepper and cardamom through his ports.",
+    "Tipu's mechanical tiger, taken in 1799, is in the Victoria and Albert Museum, London.",
     'The Treaty of Madras (1769) ended the First Anglo-Mysore War.',
     'Eyre Coote defeated Haidar Ali at Porto Novo in 1781.',
     'The Treaty of Mangalore (1784) ended the Second Anglo-Mysore War.',
@@ -127,6 +132,8 @@ Colonialism</i>) studied Tipu Sultan as a modernising ruler, against the older B
   ],
 
   traps: [
+    "Udaipur annexed by lapse (1852) is Udaipur in Chhattisgarh, not Mewar.",
+    "Lapse dates: Jhansi 1853 and Nagpur 1854 in standard lists; NCERT Class VIII reverses them (Nagpur 1853, Jhansi 1854). The rulers died in 1853; both states were taken over in 1854.",
     'Awadh: annexed for misgovernment, not lapse.',
     'Hyderabad — first Subsidiary Alliance; Satara — first lapse.',
     'Treaty of Bassein 1802; Salbai 1782; Seringapatam 1792.',
@@ -134,7 +141,9 @@ Colonialism</i>) studied Tipu Sultan as a modernising ruler, against the older B
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'UPSC Pre', year: '2018', marks: null, q: "Which does NOT apply to Wellesley's Subsidiary Alliance: (a) maintaining a large army at others' expense; (b) keeping India safe from Napoleon; (c) securing a fixed income for the Company; (d) establishing British paramountcy? — <b>Answer:</b> (c)." },
+    ],
     note: 'No verified RAS Mains question on this unit yet. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 

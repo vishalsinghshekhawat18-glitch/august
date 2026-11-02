@@ -41,12 +41,12 @@ movement and organised by Kisan Sabhas and the Left (Champaran, Kheda, Bardoli, 
 <div class="tbl"><table>
 <tr><th>Movement</th><th>Details</th></tr>
 <tr><td><b>Sanyasi–Fakir</b> (1763–1800)</td><td>Bengal; after the 1770 famine; restrictions on pilgrimage; described in Bankim's <i>Anandamath</i></td></tr>
-<tr><td><b>Paika rebellion</b> (1817)</td><td>Odisha (Khurda); Paikas — the hereditary militia of the Khurda king — lost their rent-free lands after the British conquest (1803); led by Bakshi Jagabandhu</td></tr>
+<tr><td><b>Paika rebellion</b> (1817)</td><td>Odisha (Khurda); Paikas — the hereditary militia of the Khurda king — lost their rent-free lands after the British conquest (1803); led by Bakshi Jagabandhu, the deposed king's hereditary military commander. A higher revenue demand added to the anger; the rising began at Banpur on 29 March 1817, the rebels with Kandh tribals took Puri in April, and the British imposed martial law. Jagabandhu held out until he surrendered in 1825. Afterwards salt prices were cut, corrupt officials dismissed and some lands restored</td></tr>
 <tr><td><b>Faraizi</b></td><td>East Bengal; Haji Shariatullah (religious reform), Dudu Miyan — against zamindars and indigo planters; "land belongs to God"</td></tr>
 <tr><td><b>Moplah outbreaks</b></td><td>Malabar; Muslim tenants against Hindu jenmis (landlords) and the British</td></tr>
-<tr><td><b>Indigo revolt</b> (1859–60)</td><td>Bengal (Nadia — Digambar and Bishnu Biswas); against European planters forcing indigo under the tinkathia-like dadan system; supported by intelligentsia — <b>Dinabandhu Mitra's <i>Nil Darpan</i></b> (1860), Harish Chandra Mukherji (<i>Hindoo Patriot</i>); <b>Indigo Commission</b> (1860) — cultivation not compulsory</td></tr>
+<tr><td><b>Indigo revolt</b> (1859–60)</td><td>Bengal (Nadia — Digambar and Bishnu Biswas); against European planters forcing indigo under the tinkathia-like dadan system; supported by intelligentsia — <b>Dinabandhu Mitra's <i>Nil Darpan</i></b> (1860), Harish Chandra Mukherji (<i>Hindoo Patriot</i>); <b>Indigo Commission</b> (1860) — cultivation not compulsory. Background: India's share of Britain's indigo imports rose from about 30% (1788) to 95% (1810). Planters grew indigo either on land they controlled (<b>nij</b>, under a quarter of the area) or, mostly, through <b>ryoti</b> contracts (<b>satta</b>) that tied advances to indigo on at least a quarter of a ryot's holding, often on the best rice land. In March 1859 ryots refused to sow; magistrate Ashley Eden's notice that ryots could not be compelled to accept contracts was read as support. The Commission blamed the planters; indigo collapsed in Bengal and planters moved to Bihar</td></tr>
 <tr><td><b>Pabna</b> (1873–76)</td><td>East Bengal; agrarian leagues against zamindars' illegal enhancement of rent; legal methods; supported by Bankim Chandra, R.C. Dutt, Indian Association; led to the <b>Bengal Tenancy Act (1885)</b></td></tr>
-<tr><td><b>Deccan riots</b> (1875)</td><td>Poona and Ahmednagar; ryots against Marwari and Gujarati moneylenders after the cotton boom collapsed; social boycott and seizure of bonds; <b>Deccan Agriculturists Relief Act (1879)</b></td></tr>
+<tr><td><b>Deccan riots</b> (1875)</td><td>Poona and Ahmednagar; ryots against Marwari and Gujarati moneylenders after the cotton boom collapsed (the customary rule that interest could not exceed the principal had broken down, and the Limitation Law of 1859, which made loan bonds valid for three years, led moneylenders to make ryots sign fresh bonds with interest added to principal); the Deccan Riots Commission recorded the abuses (the revolt began at <b>Supa</b>, Poona district, on 12 May 1875, where ryots seized and burned the moneylenders' account books (bahi khatas) and bonds; ruined peasants had been made to sign "deeds of hire" for land and cattle that had become the moneylender's. The Commission blamed the moneylenders, not the revenue demand); social boycott and seizure of bonds; <b>Deccan Agriculturists Relief Act (1879)</b></td></tr>
 </table></div>
 <p><b>Features:</b> targeted immediate enemies (planters, zamindars, moneylenders), not colonialism as such; limited
 territorial reach; no long-term programme; but built peasant consciousness.</p>` },
@@ -73,6 +73,7 @@ peasant movements as autonomous, with their own consciousness, not merely led by
 <b>D.N. Dhanagare</b> (<i>Peasant Movements in India</i>) discussed which strata of peasants led them.</p>`,
 
   facts: [
+    "Indigo planters' two systems were nij (own land, hired labour) and ryoti (contract cultivation by ryots).",
     'The Paika rebellion (1817, Khurda, Odisha) was led by Bakshi Jagabandhu.',
     'Dinabandhu Mitra wrote Nil Darpan (1860).',
     'The Indigo Commission was appointed in 1860.',
@@ -92,6 +93,7 @@ peasant movements as autonomous, with their own consciousness, not merely led by
   ],
 
   traps: [
+    "The Paika rebellion is not officially the \"first war of independence\": that was proposed in 2017, but in 2021 the Union Culture Ministry told Parliament it would be treated as an early revolt, not the first war of independence.",
     'Pabna (rent, zamindars) ≠ Deccan riots (moneylenders).',
     'Indigo revolt (Bengal, 1859) ≠ Champaran (Bihar, 1917).',
     'Kheda (1918) and Bardoli (1928) — both Patel.',
@@ -99,7 +101,9 @@ peasant movements as autonomous, with their own consciousness, not merely led by
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'UPSC Pre', year: '2020', marks: null, q: "Why had indigo cultivation in India declined by the beginning of the 20th century? — <b>Answer:</b> it became unprofitable in the world market because of new inventions (synthetic dyes)." },
+    ],
     note: 'No verified RAS Mains question on this unit yet. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 

@@ -68,7 +68,7 @@ his father's pension, and the Mughal emperor was told his successors would lose 
 missionary activity, and even railways and telegraphs were read by many as an attack on religion and caste.</p>
 <p><b>4. Military.</b> Sepoys were paid far less than British soldiers and could not rise above junior ranks. The
 <b>General Service Enlistment Act (1856)</b> required new recruits to serve overseas, which high-caste sepoys feared
-would cost them caste. Allowances for service outside one's home region (<i>bhatta</i>) were cut.</p>
+would cost them caste (in 1824 sepoys at Barrackpore who refused to go to Burma by sea had been severely punished). Allowances for service outside one's home region (<i>bhatta</i>) were cut.</p>
 <p><b>The spark: the greased cartridge.</b> The new <b>Enfield rifle</b> used paper cartridges whose end had to be
 bitten off; rumours spread that they were greased with cow and pig fat, offending both Hindus and Muslims. On
 <b>29 March 1857</b> <b>Mangal Pandey</b> of the 34th Bengal Native Infantry attacked officers at
@@ -99,6 +99,14 @@ north and central India.</p>
 <p><b>Popular participation.</b> In Awadh and western UP the revolt became a wide rural rising: taluqdars,
 peasants and artisans joined the sepoys, and village leaders such as <b>Shah Mal</b> in the Baghpat region organised
 whole groups of villages.</p>
+<ul>
+<li><b>Shah Mal</b>, of a Jat cultivating clan of pargana Barout, moved at night through the <i>chaurasi des</i> (84 villages), attacked moneylenders' houses and government buildings, cut the Meerut–headquarters communications and sent supplies to the rebels in Delhi.</li>
+<li><b>Gonoo</b>, a tribal cultivator of Singhbhum (Chotanagpur), led the Kols; <b>Rani Avantibai Lodhi</b> of Ramgarh (Mandla, MP) raised about 4,000 men and, surrounded after an early win at Kheri, chose death over capture.</li>
+<li><b>Maulvi Ahmadullah Shah</b> of Faizabad, called "Danka Shah" (the maulvi with the drum), prophesied the end of British rule; at Kanpur Nana Saheb called himself Peshwa and a governor under Bahadur Shah; at Lucknow Birjis Qadr also accepted the emperor's suzerainty.</li>
+<li><b>Signals and rumours:</b> chapatis passed from village to village; rumours said cow and pig bone dust had been mixed into flour. They spread because they fitted fears built up since Bentinck's reforms, annexations and missionary activity. Charles Ball noted nightly sepoy <i>panchayats</i> at Kanpur.</li>
+<li><b>Awadh</b>, "the nursery of the Bengal army", had been called by Dalhousie "a cherry that will drop into our mouth one day" (1851). Officer Forsyth estimated that three-fourths of Awadh's adult men were in revolt. The <b>Azamgarh Proclamation</b> (25 August 1857) is a main source on what the rebels wanted.</li>
+<li><b>Indian eyewitness sources:</b> Vishnubhatt Godse's Marathi travelogue <i>Majha Pravas</i>; Subedar Sitaram Pande's <i>From Sepoy to Subedar</i>.</li>
+</ul>
 <p><b>Suppression</b> was savage on both sides: the killings of British civilians at Kanpur (Satichaura Ghat and
 Bibighar) were followed by mass hangings, burning of villages and "blowing from guns" by British forces.</p>` },
 
@@ -155,6 +163,12 @@ calls it the first great struggle of Indians against British rule, which laid th
 movement.</p>`,
 
   facts: [
+    "Rani Avantibai Lodhi of Ramgarh (Mandla) led about 4,000 men against the British in 1857.",
+    "Gonoo led the Kol tribals of Singhbhum in 1857.",
+    "Shah Mal mobilised the 84 villages (chaurasi des) of pargana Barout.",
+    "Maulvi Ahmadullah Shah of Faizabad was popularly called Danka Shah.",
+    "The Azamgarh Proclamation was issued on 25 August 1857.",
+    "Vishnubhatt Godse wrote Majha Pravas, an eyewitness travel account of 1857.",
     'Rani Lakshmibai fell at Kotah-ki-Serai near Gwalior (June 1858); Nana Saheb\'s base was Bithoor near Kanpur.',
     'Doctrine of Lapse annexations: Satara 1848, Jaitpur and Sambalpur 1849, Udaipur (central India) 1852, Jhansi 1853, Nagpur 1854.',
     'Awadh annexed in February 1856 on grounds of misgovernance, under Dalhousie.',
@@ -183,6 +197,7 @@ movement.</p>`,
   ],
 
   traps: [
+    "Mangal Pandey attacked his officers on 29 March 1857 and was hanged on 8 April; NCERT Class VIII wrongly implies he was hanged on 29 March.",
     'Mangal Pandey was at Barrackpore (Bengal), not Meerut. The general revolt began at Meerut.',
     'Awadh was NOT annexed under the Doctrine of Lapse — it was annexed for alleged misgovernance.',
     'Bakht Khan led at Delhi; he came from Bareilly. Khan Bahadur Khan led at Bareilly.',
@@ -198,6 +213,7 @@ movement.</p>`,
       { exam: 'RAS Mains', year: '2013', marks: 5, q: 'Discuss the nature of the 1857 revolt.' },
       { exam: 'RAS Mains (Special)', year: '2016', marks: 5, q: 'In what way the revolt of 1857 was a turning point in Indian history?' },
       { exam: 'RAS Mains', year: '2021', marks: 5, q: 'Throw light on the activities of Kunwar Singh in Bihar during the Revolt of 1857.' },
+      { exam: 'UPSC Pre', year: '2014', marks: null, q: "Objects of Queen Victoria's Proclamation (1858): (1) disclaim any intention to annex Indian states; (2) place Indian administration under the Crown; (3) regulate the Company's trade with India. — <b>Answer:</b> 1 and 2 only." },
     ],
     note: 'Questions as listed by RajRAS (rajras.in, "Indian History and Culture PYQs"). Model answers to all three are in section 7. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },

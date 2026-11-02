@@ -81,7 +81,7 @@ Die</b>" (Karo ya Maro).</li>
 leaders — <b>Jayaprakash Narayan</b>, <b>Ram Manohar Lohia</b>, <b>Aruna Asaf Ali</b> (hoisted the flag at Gowalia Tank),
 <b>Usha Mehta</b> (Congress Radio), Achyut Patwardhan, Sucheta Kripalani.</li>
 <li><b>Parallel governments:</b> <b>Ballia</b> (Chittu Pandey, August 1942), <b>Tamluk</b> (Midnapore — Jatiya Sarkar,
-1942–44; Matangini Hazra killed), <b>Satara</b> (Prati Sarkar, 1943–46, Y.B. Chavan, Nana Patil).</li>
+1942–44; Matangini Hazra killed), <b>Satara</b> (Prati Sarkar, 1943–46, Y.B. Chavan, Nana Patil; volunteer corps (seba dals) and village units (tufan dals), people's courts; mainly kunbi peasants with Dalit support, it lasted until the 1946 elections despite later Congress disapproval).</li>
 <li><b>Repression:</b> over 1 lakh arrested; firing, aerial strafing; collective fines.</li>
 <li><b>Attitudes:</b> Muslim League, Hindu Mahasabha and Communists (after the USSR joined, "People's War") stayed away;
 Ambedkar opposed it; princes supported the British.</li>
@@ -151,6 +151,7 @@ lapses); boundary commission; date advanced to <b>15 August 1947</b>.</li>
 <li><b>Radcliffe</b> boundary awards (published 17 August 1947).</li>
 <li><b>Indian Independence Act</b> (royal assent 18 July 1947) — see I29.</li>
 <li>Partition violence: an estimated 0.5–1 million killed (estimates vary up to 2 million); 10–15 million displaced.</li>
+<li>About 30,000 abducted women were "recovered" (22,000 Muslim women in India, 8,000 Hindu and Sikh women in Pakistan) in an operation that ran until 1954.</li>
 <li>Gandhi spent 15 August in Calcutta (Beliaghata), fasting for peace; assassinated on <b>30 January 1948</b>.</li>
 </ul>` },
 
@@ -166,6 +167,7 @@ victory.</li>
 <li><b>Direct Action</b> and communal violence made a united India seem unworkable; Congress leaders accepted partition
 to obtain a strong centre and quick transfer of power.</li>
 <li>British haste to leave (Attlee's deadline; Mountbatten's advanced date).</li>
+<li><b>Numbers NCERT uses:</b> in 1937 (franchise about 10–12% of the population) the League won only 4.4% of the Muslim vote; in 1946 the Congress took 91.3% of the non-Muslim vote and the League 86.6% of the Muslim vote. Iqbal's League presidential address (Allahabad, 1930) spoke of a "North-West Indian Muslim state", still within a loose federation. In December 1938 the Congress Working Committee barred its members from the Hindu Mahasabha (founded 1915). In Punjab the cross-community landholders' <b>Unionist Party</b> was strong from 1923 to 1947.</li>
 </ol>
 <div class="box debate"><p><b>Ayesha Jalal</b> argues Jinnah used the Pakistan demand as a bargaining counter for parity
 in a federal India and that the Congress's insistence on a strong centre made partition unavoidable. <b>Bipan
@@ -179,6 +181,9 @@ Chandra</b> stresses colonial communal policy and the failure to contain communa
 <b>Leonard Gordon</b> wrote a standard biography of the Bose brothers; <b>Peter Fay</b> studied the INA.</p>`,
 
   facts: [
+    "In the 1937 elections the Muslim League won only 4.4% of the total Muslim vote.",
+    "In 1946 the League won 86.6% of the Muslim vote; the Congress 91.3% of the non-Muslim vote.",
+    "The recovery of abducted women after Partition continued until 1954.",
     'Linlithgow declared India at war on 3 September 1939.',
     'The Muslim League passed the Lahore Resolution in March 1940.',
     'The August Offer was made on 8 August 1940.',
@@ -208,6 +213,9 @@ Chandra</b> stresses colonial communal policy and the failure to contain communa
   ],
 
   traps: [
+    "The Muslim League accepted the Cabinet Mission plan on 6 June 1946; the Mission's interim-government statement was 16 June. NCERT's timeline swaps the two dates.",
+    "1937 was not the first provincial election: councils had been elected under the 1919 Act from 1920. It was the first under the 1935 Act with provincial autonomy (NCERT says \"for the first time\").",
+    "Both the League (June 1946) and the Congress initially accepted the Cabinet Mission plan; the League withdrew its acceptance in July 1946. Statements that neither accepted it are wrong.",
     'Cripps (1942): provincial option; Cabinet Mission (1946): grouping, rejected Pakistan.',
     'Quit India resolution 8 August; arrests 9 August (August Kranti Day).',
     'First INA: Mohan Singh; Bose took over in 1943.',
@@ -218,6 +226,13 @@ Chandra</b> stresses colonial communal policy and the failure to contain communa
   pyqs: {
     verified: [
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'Where was Kanaklata Barua shot dead while leading a procession to a police station during the Quit India Movement? — <b>Answer (RPSC final key):</b> Gohpur' },
+      { exam: 'UPSC Pre', year: '2021', marks: null, q: "What happened on 8 August 1942? — <b>Answer:</b> the AICC adopted the Quit India Resolution." },
+      { exam: 'UPSC Pre', year: '2021', marks: null, q: "Shah Nawaz Khan, Prem Kumar Sehgal and Gurbaksh Singh Dhillon are remembered as — <b>Answer:</b> officers of the Indian National Army." },
+      { exam: 'UPSC Pre', year: '2017', marks: null, q: "Chronological order: RIN mutiny, Quit India launched, Second Round Table Conference — <b>Answer:</b> Second RTC (1931), Quit India (1942), RIN mutiny (1946)." },
+      { exam: 'UPSC Pre', year: '2015', marks: null, q: "The Cabinet Mission: (1) recommended a federal government; (2) enlarged the powers of Indian courts; (3) provided for more Indians in the ICS. — <b>Answer:</b> 1 only." },
+      { exam: 'UPSC Pre', year: '2013', marks: null, q: "The Quit India Movement was launched in response to — <b>Answer:</b> the Cripps Proposals." },
+      { exam: 'UPSC Pre', year: '2022', marks: null, q: "Cripps proposals: (1) the Constituent Assembly would have members nominated by provincial assemblies and princely states; (2) a province not accepting the new constitution could sign a separate agreement with Britain. — <b>Answer:</b> 2 only (provincial members were to be elected by the provincial assemblies)." },
+      { exam: 'UPSC Pre', year: '2014', marks: null, q: "The Radcliffe Committee was appointed to — <b>Answer:</b> delimit the boundaries between India and Pakistan." },
     ],
     note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },

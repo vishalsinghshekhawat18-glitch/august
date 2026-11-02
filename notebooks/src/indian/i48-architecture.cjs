@@ -36,7 +36,7 @@ named monuments with patron and date → what it shows about continuity or synth
     ['c. 950–1050', 'Chandela temples at Khajuraho (Kandariya Mahadeva)'],
     ['13th century', 'Sun temple at Konark under Narasimhadeva I (Eastern Ganga); Qutub Minar begun by Aibak, completed by Iltutmish'],
     ['1311', 'Alai Darwaza built by Alauddin Khalji'],
-    ['c. 1569–72', 'Humayun\'s tomb, Delhi'],
+    ['1565–72', 'Humayun\'s tomb, Delhi, commissioned by Bega Begum; architect Mirak Mirza Ghiyas'],
     ['1571–85', 'Fatehpur Sikri, Akbar\'s capital'],
     ['1632–c. 1653', 'Taj Mahal, Agra, under Shah Jahan'],
     ['1888', 'Victoria Terminus, Bombay, designed by F.W. Stevens'],
@@ -58,6 +58,20 @@ in segments), free-standing pillars rather than parts of buildings, and Indian a
 candidates to explain their indigenous origin.</li>
 <li><b>Caves and stupas:</b> the Barabar caves (Lomas Rishi has a carved chaitya façade) were given to the Ajivikas.
 Ashoka built the brick core of the Sanchi stupa; the stone casing and the four toranas came later.</li>
+<li><b>Parts of a stupa:</b> the hemispherical mound (<b>anda</b>); above it a balcony-like <b>harmika</b> (abode of the
+gods); a mast (<b>yashti</b>) carrying an umbrella (<b>chhatri</b>); a railing (vedika) around the mound, and gateways
+(<b>toranas</b>). Sanchi and Bharhut were plain except for railings and gateways; Amaravati and Shah-ji-ki-Dheri
+(Peshawar) carved the mound itself. Inscriptions record donors: Satavahana kings, monks, nuns, men and women, and
+guilds; the ivory workers of Vidisha paid for carving on one Sanchi gateway.</li>
+<li><b>Fate of the stupas:</b> Walter Elliot, commissioner of Guntur, carried Amaravati panels to Madras in 1854 (the
+"Elliot marbles"), and the stupa was dismantled piece by piece. Sanchi survived intact; the Begums of Bhopal
+(Shahjehan Begum and Sultan Jahan Begum) paid for its preservation. John Marshall and Alfred Foucher published <i>The
+Monuments of Sanchi</i> (1914); Sanchi became a World Heritage Site in 1989.</li>
+<li><b>Reading the carvings:</b> early sculptors showed the Buddha by symbols: an empty seat (meditation), a tree
+(enlightenment), a wheel (first sermon), a stupa (mahaparinibbana). Sanchi's northern gateway shows the
+<i>Vessantara Jataka</i>; the <i>shalabhanjika</i> (auspicious woman holding a tree) and Gajalakshmi panels show folk
+beliefs absorbed into Buddhism. James Fergusson, unaware of Buddhist texts, wrongly took Sanchi for a centre of tree
+and serpent worship.</li>
 </ul>` },
 
     { title: 'Temple architecture', html: `
@@ -80,20 +94,46 @@ decoration.</li>
 Gol Gumbaz at Bijapur; Jaunpur gave the Atala Masjid.</li>
 <li><b>Vijayanagara:</b> Dravida temples with tall gopurams, musical pillars and kalyana mandapas (Vitthala temple,
 Hampi); the Lotus Mahal blends Indo-Islamic arches.</li>
-<li><b>Mughal:</b> double dome, charbagh garden and red sandstone with white marble (Humayun's tomb); Fatehpur Sikri
-mixes trabeate (post-and-beam) Indian construction with arches; Shah Jahan's buildings use white marble, pietra dura
-and cusped arches (Taj Mahal, Red Fort and Jama Masjid of Delhi).</li>
+<li><b>Mughal:</b> Humayun's tomb (1565–72) is the first full statement of the style: a central double dome, a tall
+arched gateway (<b>pishtaq</b>), the <b>hasht bihisht</b> ("eight paradises") plan of a central hall ringed by eight
+rooms, red sandstone edged with white marble, all set in a <b>charbagh</b>. Fatehpur Sikri mixes trabeate Indian
+construction with arches. Shah Jahan's buildings use white marble, pietra dura and cusped arches (Taj Mahal, Red Fort
+and Jama Masjid of Delhi).</li>
+<li><b>Gardens:</b> the charbagh is a walled garden split into four by water channels (Babur describes laying them out).
+A variant, the <b>riverfront garden</b>, puts the building at the river's edge instead of the centre; the Taj Mahal
+uses it, with the tomb on a terrace by the Yamuna and the garden to its south. Terraced charbaghs were built in
+Kashmir (Shalimar Bagh).</li>
+<li><b>Court symbolism:</b> Shah Jahan's audience halls in the Red Fort, Delhi, were pillared halls (chihil sutun,
+"forty pillars"); behind the throne in the Diwan-i-Am, pietra dura panels show Orpheus playing the lute, a symbol of
+just rule that brings harmony. Pietra dura (inlay of cut, polished coloured stones) was called <b>parchin kari</b> in
+Mughal India.</li>
 <li><b>Indigenous impact on Mughal architecture</b> (Mains 2024): chhatris, brackets and chhajjas, jharokhas, lotus and
-kalash finials, trabeate halls (Jodha Bai's palace, Panch Mahal), and the Hindu craftsmen of Rajasthan and Gujarat who
-built them.</li>
+kalash finials, trabeate halls (Jodha Bai's palace, Panch Mahal) drawing on Gujarat and Malwa styles, the curved
+<b>Bangla roof</b> borrowed from Bengal's thatched huts, and the Hindu craftsmen of Rajasthan and Gujarat who built
+them.</li>
+</ul>` },
+
+    { title: 'Exchange between regions', html: `
+<ul>
+<li><b>Trabeate and arcuate:</b> trabeate (post-and-beam) construction places horizontal beams across vertical
+supports; arcuate construction carries the load on arches. Arcuate building spread from the 13th century, helped by
+lime mortar that set into concrete with stone chips.</li>
+<li><b>Influence ran both ways:</b> Vijayanagara's elephant stables show the arches and domes of the neighbouring
+Bijapur and Golconda sultanates; the <b>Govind Deva temple</b> at Vrindavan (built by Raja Man Singh of Amber, 1590)
+uses red sandstone and intersecting arches like Fatehpur Sikri.</li>
+<li><b>Bengal temples</b> (late 15th to 19th century): brick and terracotta temples copying the double roof
+(<b>dochala</b>) or four-part roof (<b>chauchala</b>) of village huts, on a square platform, with plain interiors and
+terracotta panels outside; the finest are at <b>Vishnupur</b> (Bankura district). Many were funded by artisan and
+trading groups whose fortunes rose with European trade.</li>
+<li><b>Public works:</b> Iltutmish's reservoir Hauz-i-Sultani at Delhi; rulers gained legitimacy by building tanks,
+wells, sarais and bazaars as well as places of worship.</li>
 </ul>` },
 
     { title: 'Colonial architecture', html: `
 <ul>
-<li><b>Neo-classical and Gothic:</b> early public buildings in Calcutta and Bombay followed European styles (Writers'
-Building, Bombay University buildings).</li>
-<li><b>Indo-Saracenic:</b> European plans with Mughal and Rajput domes, chhatris and arches: Victoria Terminus (F.W.
-Stevens, 1888), Madras High Court, Mysore Palace, Gateway of India (completed 1924).</li>
+<li><b>Neo-classical</b> (geometric fronts with tall columns, from Roman models): the Town Hall, Bombay (1833) and Elphinstone Circle (now Horniman Circle), built in the cotton boom of the 1860s; Writers' Building, Calcutta.</li>
+<li><b>Neo-Gothic</b> (steep roofs, pointed arches, rich decoration): Bombay University and High Court, and above all <b>Victoria Terminus</b> (F.W. Stevens, 1888), Gothic with some Indian motifs. Indian donors paid for parts: Cowasjee Jehangir Readymoney (University Hall) and Premchand Roychand (the Rajabai clock tower, named after his mother).</li>
+<li><b>Indo-Saracenic</b> ("Indo" for Hindu, "Saracen" for Muslim; early 20th century): European plans with Indian domes, chhatris, jalis and arches: Madras High Court, Mysore Palace, the Taj Mahal Hotel and the <b>Gateway of India</b> (commemorating the 1911 royal visit; completed 1924). The <b>bungalow</b> took its name from the Bengali bangla hut.</li>
 <li><b>New Delhi:</b> capital moved from Calcutta in 1911; Edwin Lutyens and Herbert Baker designed it; inaugurated in
 1931. The Viceroy's House (Rashtrapati Bhavan) uses a dome inspired by the Sanchi stupa and Mughal chhatris.</li>
 <li>The <b>Victoria Memorial</b>, Calcutta (William Emerson, opened 1921) uses white Makrana marble from Rajasthan.</li>
@@ -119,16 +159,24 @@ influence; the NCERT Class 11 text <i>An Introduction to Indian Art</i> presents
     'The Konark Sun temple was built under Narasimhadeva I of the Eastern Ganga dynasty.',
     'The Alai Darwaza (1311) has the first true arches and dome in India.',
     'Nagara temples have a curvilinear shikhara; Dravida temples have a pyramidal vimana and gopurams.',
-    'Humayun\'s tomb has a double dome and a charbagh garden.',
+    'Humayun\'s tomb (1565–72) has a double dome, a hasht bihisht plan and a charbagh garden.',
+    'Pietra dura inlay was called parchin kari in Mughal India.',
+    'The Govind Deva temple at Vrindavan was built by Raja Man Singh of Amber in 1590.',
+    'The Durga temple at Aihole (Chalukya) has an apsidal (rounded-end) plan.',
+    'Dochala and chauchala temples of Bengal copy the roofs of thatched huts; Vishnupur has the best examples.',
     'Victoria Terminus in Bombay was designed by F.W. Stevens and completed in 1888.',
     'New Delhi was designed by Edwin Lutyens and Herbert Baker and inaugurated in 1931.',
   ],
 
   traps: [
+    "Victoria Terminus is NCERT's main example of neo-Gothic, not Indo-Saracenic; the Gateway of India is Indo-Saracenic.",
+    "The Gateway of India marks the 1911 visit of George V but was completed only in 1924.",
     'Qutub Minar was begun by Aibak and completed by Iltutmish; Firoz Tughlaq repaired the top storeys.',
     'The Shore Temple is structural; the five rathas are monolithic rock-cut shrines.',
     'Ashoka built the brick core of Sanchi; the stone toranas are post-Mauryan.',
     'Gol Gumbaz is at Bijapur (Adil Shahi), not Golconda.',
+    'NCERT Class 7 says Kandariya Mahadeva was built in 999 by Dhanga; most scholars date it c. 1025–50 under Vidyadhara. Safe Prelims answer: Chandela, Khajuraho.',
+    'Humayun\'s tomb was built by his widow Bega Begum (1565–72), not by Humayun or Akbar.',
     'Vesara is the Deccan hybrid style, not a separate southern style.',
   ],
 
@@ -150,7 +198,7 @@ influence; the NCERT Class 11 text <i>An Introduction to Indian Art</i> presents
     {
       q: 'Examine the indigenous impact on Mughal architecture.', marks: 5, words: 50,
       outline: ['Indian elements', 'Examples', 'Craftsmen'],
-      answer: '<p>Mughal buildings used Indian chhatris, brackets, chhajjas, jharokhas and lotus finials, and trabeate halls at Fatehpur Sikri (Panch Mahal, Jodha Bai\'s palace). Red sandstone, Makrana marble and Rajasthani and Gujarati craftsmen shaped the style.</p>',
+      answer: '<p>Mughal buildings used Indian chhatris, brackets, chhajjas, jharokhas and lotus finials, and trabeate halls at Fatehpur Sikri (Panch Mahal, Jodha Bai\'s palace) in the Gujarat and Malwa manner, and the Bengal-style Bangla roof. Rajasthani and Gujarati craftsmen built them.</p>',
     },
     {
       q: 'What is a gopuram?', marks: 2, words: 15,
@@ -163,8 +211,9 @@ influence; the NCERT Class 11 text <i>An Introduction to Indian Art</i> presents
     'Harappan: grid, drains, 1:2:4 bricks; Great Bath (Mohenjodaro), dockyard (Lothal), reservoirs (Dholavira).',
     'Mauryan: polished monolithic pillars, Sanchi core, Barabar caves (Ajivikas); indigenous-origin arguments.',
     'Temples: Gupta (Deogarh) → Nagara / Dravida / Vesara; Shore Temple, Brihadeeswara c. 1010, Khajuraho, Konark.',
-    'Indo-Islamic: Alai Darwaza 1311 (true arch); Gol Gumbaz; Vitthala temple; Humayun\'s tomb, Fatehpur Sikri, Taj.',
-    'Colonial: Indo-Saracenic (VT 1888); New Delhi 1931 (Lutyens, Baker).',
+    'Indo-Islamic: Alai Darwaza 1311 (true arch); Gol Gumbaz; Vitthala temple; Humayun\'s tomb 1565–72 (hasht bihisht, pishtaq), Fatehpur Sikri, Taj (riverfront garden).',
+    'Exchange: Bangla roof, Gujarat–Malwa at Fatehpur Sikri, Govind Deva temple 1590, Bengal dochala/chauchala (Vishnupur).',
+    'Colonial: neo-classical (Town Hall 1833), neo-Gothic (VT 1888), Indo-Saracenic (Gateway 1924); New Delhi 1931 (Lutyens, Baker).',
   ],
 
   selfTest: [
@@ -177,6 +226,8 @@ influence; the NCERT Class 11 text <i>An Introduction to Indian Art</i> presents
     { q: 'Which building first shows the true arch and dome in India?', a: 'The Alai Darwaza (1311).' },
     { q: 'Name the three temple styles and their regions.', a: 'Nagara (north), Dravida (south), Vesara (Deccan).' },
     { q: 'Who designed New Delhi?', a: 'Edwin Lutyens and Herbert Baker.' },
+    { q: 'What is the hasht bihisht plan, and where does it first appear in Mughal India?', a: 'A central hall ringed by eight rooms; Humayun\'s tomb.' },
+    { q: 'Which garden plan does the Taj Mahal use?', a: 'The riverfront garden: tomb at the river\'s edge, garden to the south.' },
   ],
 
   glossary: [

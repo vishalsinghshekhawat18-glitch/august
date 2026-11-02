@@ -49,7 +49,9 @@ ideas (Bentinck, Macaulay) and paternalism (after 1857) shaping the style.</p>
 <p><b>Effects:</b> Permanent Settlement secured revenue and created a loyal landlord class, but the state lost future
 increases, absentee landlordism and sub-infeudation (patnidari) grew, and peasants became tenants-at-will. Ryotwari
 and Mahalwari made peasants owners on paper but high, rigid demands drove them to moneylenders, causing indebtedness and
-land alienation. All three commercialised land.</p>` },
+land alienation. All three commercialised land.</p>
+<p><b>Bengal after 1793 (NCERT Class XII):</b> the revenue was fixed high while prices were low in the 1790s, the zamindars' troops and courts were taken away, and many defaulted. At the <b>Burdwan auction of 1797</b> most buyers were the raja's own agents, and over 95% of the sale was fictitious: zamindars kept their estates through benami purchases, transfers to women of the family and endless re-bidding. In the villages, rich peasants called <b>jotedars</b> (also haoladars, gantidars or mandals) controlled land, trade and credit, worked land through sharecroppers (<b>adhiyars</b> or bargadars) and often withheld rent from the zamindars. The <b>Fifth Report</b> (1813) to Parliament, with petitions, collectors' reports and revenue tables, shaped later views of rural Bengal.</p>
+<p><b>Why later settlements were not permanent:</b> rising prices after 1810 benefited only the Bengal zamindars, and officials influenced by Ricardo held that a landowner should keep only the "average rent", the state taxing the surplus. Ryotwari demands of the 1820s were so high that peasants fled; prices fell after 1832 and the famine of 1832–34 drove ryots into debt.</p>` },
 
     { title: 'Civil services, judiciary, police, army', html: `
 <ul>
@@ -58,7 +60,7 @@ functions, raised salaries, banned private trade; <b>Fort William College</b> (W
 (1806); open competition (1853); Satyendranath Tagore first Indian ICS (1863); maximum age lowered to 19 (1876, Lytton),
 leading to protests; Statutory Civil Service (1879); Aitchison Commission (1886); Islington Commission (1912); Lee
 Commission (1924); exam held simultaneously in India from 1922.</li>
-<li><b>Judiciary:</b> Warren Hastings — district diwani and faujdari adalats (1772); Supreme Court (1774); <b>Cornwallis
+<li><b>Judiciary:</b> Warren Hastings — district diwani and faujdari adalats (1772), with the Sadar Diwani and Sadar Nizamat Adalats at Calcutta as appeal courts; maulvis and pandits advised the European judges; eleven pandits compiled a digest of Hindu law (1775), translated by N.B. Halhed, and a digest of Muslim law followed (1778); Supreme Court (1774); <b>Cornwallis
 Code (1793)</b> — separation of revenue and judicial functions; Bentinck abolished provincial circuit courts and used
 Indian languages in lower courts; IPC (1860, drafted by Macaulay's Law Commission); <b>High Courts</b> (1862, Calcutta,
 Bombay, Madras); Federal Court (1937). <b>Ilbert Bill</b> (1883) controversy over Indian judges trying Europeans.</li>
@@ -85,7 +87,13 @@ rule" in regiments (by caste, region); Peel Commission (1859); Indianisation slo
 <tr><td>Hartog Committee (1929)</td><td>Warned of wastage and stagnation; consolidation of primary education</td></tr>
 <tr><td><b>Wardha Scheme / Basic Education (1937)</b></td><td>Gandhi's Nai Talim: education through crafts in the mother tongue; Zakir Hussain Committee</td></tr>
 <tr><td><b>Sargent Plan (1944)</b></td><td>Universal free compulsory education for ages 6–14 within 40 years</td></tr>
-</table></div>` },
+</table></div>
+<ul>
+<li><b>Orientalists:</b> William Jones, H.T. Colebrooke and N.B. Halhed studied Sanskrit and Persian texts; the Asiatic Society published <i>Asiatick Researches</i>. They held that India's civilisation had been great in the past and had declined. <b>Anglicists:</b> James Mill wanted "useful" Western science; Macaulay called Oriental colleges "temples of darkness".</li>
+<li><b>Missionaries:</b> the Company kept them out of its territory until 1813, so William Carey and others worked from Danish <b>Serampore</b> (press 1800, college 1818). After 1857 the government avoided direct support for missionary schools.</li>
+<li><b>William Adam's reports</b> (1830s) on Bengal and Bihar found over 1 lakh <b>pathshalas</b> teaching over 20 lakh children: no fixed fees, printed books, buildings or timetable, and closed at harvest so peasant children could attend. After 1854 government pandits supervised four or five schools each and grants went only to pathshalas that accepted timetables, textbooks, examinations and fees — which pushed out poor children who worked at harvest.</li>
+<li><b>Nationalist alternatives:</b> Gandhi held that colonial education bred inferiority and wanted teaching in Indian languages, joined to handwork; Tagore founded <b>Santiniketan</b> (1901) for creative learning in nature, adding science and arts; Aurobindo (Bombay speech, 1908) asked for national education in the vernacular, using modern science.</li>
+</ul>` },
 
     { title: 'Press and policy towards princely states', html: `
 <ul>
@@ -93,6 +101,7 @@ rule" in regiments (by caste, region); Peel Commission (1859); Indianisation slo
 "liberator of the Indian press" (1835); Licensing Act (1857); Registration Act (1867); <b>Vernacular Press Act (1878,
 Lytton)</b> — "gagging act", repealed by Ripon (1882); Newspapers (Incitement to Offences) Act (1908); Indian Press Act
 (1910); Press Act of 1931 (during Civil Disobedience).</li>
+<li><b>Print in India (NCERT Class X):</b> the first press came to <b>Goa</b> with Portuguese missionaries in the mid-16th century (Jesuits printed tracts in Konkani). From 1780 <b>James Augustus Hickey</b> edited the weekly <i>Bengal Gazette</i>, which printed gossip about Company officials. Reform debates moved into print: Rammohun Roy's <i>Sambad Kaumudi</i> (1821) was answered by the orthodox <i>Samachar Chandrika</i>; the ulama used cheap lithographic presses for Urdu and Persian religious texts. Tilak's writing in <i>Kesari</i> led to his imprisonment in 1908.</li>
 <li><b>Princely states:</b> ring-fence (Warren Hastings) → subordinate isolation (Lord Hastings) → annexation (Dalhousie)
 → after 1858, <b>subordinate union</b> — no more annexation, adoption recognised, but intervention for "misrule";
 Chamber of Princes (1921); Butler Committee (1927) — paramountcy supreme.</li>
@@ -139,6 +148,16 @@ Chamber of Princes (1921); Butler Committee (1927) — paramountcy supreme.</li>
 <tr><td><b>Mountbatten</b></td><td>Mar–Aug 1947</td><td>3 June Plan; Indian Independence Act; partition — last Viceroy and first Governor-General of independent India</td></tr>
 </table></div>
 <p>After independence: Mountbatten (1947–48), then <b>C. Rajagopalachari</b> (1948–50), the only Indian Governor-General.</p>` },
+
+    { title: 'Colonial cities and hill stations', html: `
+<ul>
+<li><b>Three presidency cities:</b> Madras (1639), Calcutta (1690) and Bombay (given to the Company 1661 and leased 1668) grew at the expense of older towns, first as export depots, then as entry points for British goods. Railways (from 1853) made railway towns such as Jamalpur, Waltair and Bareilly.</li>
+<li><b>Madras:</b> land bought from the Nayaks of Kalahasti; Fort St George was the core of the White Town; the Black Town had caste quarters such as Chintadripet (weavers) and Washermanpet (dyers and bleachers); <b>dubashes</b> were bilingual agents.</li>
+<li><b>Calcutta:</b> grew from Sutanuti, Kalikata and Gobindapur; after Plassey the new Fort William was surrounded by an open field (the <b>Maidan</b>) for a clear line of fire; the <b>Lottery Committee (1817)</b> mapped the city and built roads; thatched huts were banned in 1836.</li>
+<li><b>Bombay:</b> the commercial capital, half of India's trade by 1900 (including Malwa opium to China); after the Suez Canal (1869) it called itself <i>Urbs Prima in Indis</i>; the one-room tenement, the <b>chawl</b>, was its typical housing.</li>
+<li><b>After 1857:</b> "Civil Lines" were built as safe European enclaves; sanitary rules from the 1860s–70s sharpened the White Town/Black Town divide.</li>
+<li><b>Hill stations:</b> Shimla was founded during the Gurkha War (1815–16) and became the summer seat of government in 1864 (John Lawrence); British interest in <b>Mount Abu</b> followed the Maratha war of 1818; Darjeeling was taken from Sikkim in 1835.</li>
+</ul>` },
   ],
 
   historians: `
@@ -148,6 +167,16 @@ Macaulay and the ryotwari. <b>Gauri Viswanathan</b> (<i>Masks of Conquest</i>) a
 instrument of rule. <b>B.B. Misra</b> wrote on the bureaucracy.</p>`,
 
   facts: [
+    "James Augustus Hickey's Bengal Gazette (1780) was the first newspaper in India.",
+    "William Adam's reports of the 1830s counted over 1 lakh pathshalas in Bengal and Bihar.",
+    "Tagore founded Santiniketan in 1901.",
+    "Calcutta's Lottery Committee (1817) mapped the city and planned roads.",
+    "Shimla became the official summer capital in 1864 under John Lawrence.",
+    "At the Burdwan auction of 1797, over 95% of the sale of the raja's estates was fictitious.",
+    "Jotedars were rich peasants of Bengal who controlled land, trade and moneylending in the villages.",
+    "The Fifth Report on the Company's administration was submitted to Parliament in 1813.",
+    "N.B. Halhed translated the digest of Hindu law compiled by eleven pandits (1775).",
+    "Edmund Burke led the impeachment of Warren Hastings, which lasted seven years.",
     'Amherst was Governor-General during the First Anglo-Burmese War (Treaty of Yandabo, 1826).',
     'Auckland was Governor-General during the First Anglo-Afghan War (1839–42); Ellenborough annexed Sindh (1843).',
     'Lansdowne was Viceroy when the Indian Councils Act (1892) was passed and the Durand Line drawn (1893).',
@@ -172,6 +201,7 @@ instrument of rule. <b>B.B. Misra</b> wrote on the bureaucracy.</p>`,
   ],
 
   traps: [
+    "Sanskrit College, Benaras: Jonathan Duncan (1791), not William Jones; Fort William College: Richard Wellesley, not Arthur Wellesley.",
     'Permanent (Cornwallis 1793); Ryotwari (Munro 1820); Mahalwari (Mackenzie 1822, Bird 1833).',
     'Downward filtration: Macaulay; Wood\'s Despatch moved away from it.',
     'Vernacular Press Act: Lytton (1878), repealed by Ripon (1882).',
@@ -179,7 +209,12 @@ instrument of rule. <b>B.B. Misra</b> wrote on the bureaucracy.</p>`,
   ],
 
   pyqs: {
-    verified: [],
+    verified: [
+      { exam: 'UPSC Pre', year: '2020', marks: null, q: "Why did Wellesley establish Fort William College, Calcutta? — <b>Answer:</b> to train British civil servants for administration in India." },
+      { exam: 'UPSC Pre', year: '2018', marks: null, q: "Wood's Despatch: (1) introduced grants-in-aid; (2) recommended universities; (3) recommended English as the medium at all levels. Which are true? — <b>Answer:</b> 1 and 2 only." },
+      { exam: 'UPSC Pre', year: '2018', marks: null, q: "Which led to the introduction of English education: the Charter Act of 1813, the General Committee of Public Instruction, the Orientalist–Anglicist controversy? — <b>Answer:</b> all three." },
+      { exam: 'UPSC Pre', year: '2018', marks: null, q: "Match: Sanskrit College, Benaras – William Jones; Calcutta Madrasa – Warren Hastings; Fort William College – Arthur Wellesley. Which are correct? — <b>Answer:</b> only the Calcutta Madrasa pair." },
+    ],
     note: 'No verified RAS Mains question on this unit yet. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 

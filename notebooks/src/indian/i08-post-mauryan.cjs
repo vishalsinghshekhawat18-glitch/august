@@ -83,7 +83,8 @@ c. 127 CE): capitals <b>Purushapura</b> (Peshawar) and Mathura; empire from Cent
     { title: 'Economy, trade and art', html: `
 <p><b>Trade with Rome:</b> exports of pepper, spices, textiles, precious stones, ivory; imports of gold and silver coins,
 wine, amphorae, glass. Ports: Barygaza (Bharuch), Sopara, Muziris, <b>Arikamedu</b> (Roman trading station,
-Puducherry). Pliny complained that India drained Rome of 50 million sesterces a year. The monsoon route (Hippalus) made
+Puducherry; finds include amphorae, Roman lamps and glass, and <b>Arretine ware</b>, a stamped red-glazed pottery named
+after Arezzo in Italy). Pliny complained that India drained Rome of 50 million sesterces a year. The monsoon route (Hippalus) made
 direct sailing possible.</p>
 <p><b>Guilds</b> (shrenis) organised crafts, acted as banks and donated to Buddhist caves.</p>
 <div class="tbl"><table>
@@ -123,6 +124,7 @@ Mathura — is debated: <b>A. Foucher</b> argued Gandhara; <b>Ananda Coomaraswam
   traps: [
     'Shaka era (78 CE) is linked to Kanishka\'s accession, though Kanishka was a Kushan.',
     'Vikrama Samvat begins 58 BCE; Shaka Samvat 78 CE.',
+    'Chandragupta II (c. 375–415 CE) took the title Vikramaditya, but could not have founded the Vikrama Samvat of 58 BCE; some guidebooks wrongly say he did.',
     'Gandhara = Greek-influenced, schist; Mathura = indigenous, red sandstone; Amaravati = white marble.',
     'Nahapana was defeated by Gautamiputra Satakarni; Rudradaman later defeated the Satavahanas.',
   ],

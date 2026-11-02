@@ -56,7 +56,17 @@ died at <b>Kushinagar</b> at 80 (<i>mahaparinirvana</i>).</p>
 <li><b>Three Jewels:</b> Buddha, Dhamma, Sangha.</li>
 </ul>
 <p><b>Texts:</b> <i>Tripitaka</i> in Pali — <b>Vinaya</b> (monastic rules), <b>Sutta</b> (discourses), <b>Abhidhamma</b>
-(philosophy); Jatakas (birth stories).</p>
+(philosophy); Jatakas (birth stories). The <b>Therigatha</b> (in the Sutta Pitaka) collects verses by nuns. Sri Lankan
+chronicles, the <b>Dipavamsa</b> and <b>Mahavamsa</b>, record the history of Buddhism on the island.</p>
+<p><b>The Sangha:</b> monks (bhikkhus) and nuns (bhikkhunis) lived on alms. At Ananda's request the Buddha admitted
+women; his foster mother <b>Mahapajapati Gotami</b> was the first nun. Children needed their parents' consent to join,
+slaves their masters', royal servants the king's, debtors their creditors' and wives their husbands'. Decisions were by
+consensus, or else by vote. Monks travelled except in the rainy season; permanent monasteries (<b>viharas</b>), first of
+wood and brick and later cut in rock in western India, grew from donated land.</p>
+<p><b>Relics:</b> after the cremation at Kushinagar, the <i>Mahaparinibbana Sutta</i> says the relics were divided into
+eight shares among Magadha, the Licchavis of Vaishali, the Shakyas of Kapilavastu, the Bulis of Allakappa, the
+Koliyas of Ramagrama, a Brahmin of Vethadipa and the Mallas of Pava and Kushinagar, each building a stupa. The
+<i>Ashokavadana</i> says Ashoka later redistributed them to stupas in every important town.</p>
 <div class="tbl"><table>
 <tr><th>Council</th><th>Place, patron</th><th>Chair</th><th>Outcome</th></tr>
 <tr><td>First (c. 483 BCE)</td><td>Rajagriha (Saptaparni cave), Ajatashatru</td><td>Mahakassapa</td><td>Sutta (Ananda) and Vinaya (Upali) compiled</td></tr>
@@ -145,6 +155,12 @@ Thapar</b> sees the shramana movements as part of a broad debate rather than a s
 
   pyqs: {
     verified: [
+      { exam: 'UPSC Pre', year: '2024', marks: null, q: 'Which are epithets of Gautama Buddha: Nayaputta, Shakyamuni, Tathagata? — <b>Answer:</b> Shakyamuni and Tathagata (Nayaputta refers to Mahavira)' },
+      { exam: 'UPSC Pre', year: '2023', marks: null, q: 'Which sect held that rocks, running water and other natural objects have souls? — <b>Answer:</b> Jainism' },
+      { exam: 'UPSC Pre', year: '2023', marks: null, q: 'Stupa: Buddhist in origin; a repository of relics; a votive and commemorative structure. How many are correct? — <b>Answer:</b> only two (the stupa is pre-Buddhist in origin)' },
+      { exam: 'UPSC Pre', year: '2013', marks: null, q: 'What best describes nirvana in Buddhism? — <b>Answer:</b> the extinction of the flame of desire' },
+      { exam: 'UPSC Pre', year: '2012', marks: null, q: 'Common to Buddhism and Jainism: avoiding extremes of penance and enjoyment; indifference to Vedic authority; denial of the efficacy of rituals? — <b>Answer:</b> the last two only' },
+      { exam: 'UPSC Pre', year: '2012', marks: null, q: 'What does the Bhumisparsha mudra symbolise? — <b>Answer:</b> the Buddha calling the Earth to witness his purity despite Mara\'s temptations' },
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'Stupa: (A) it was raised by accumulation; (B) the memorial custom was pre-Buddhist. Which is correct? — <b>Answer (RPSC final key):</b> Both A and B' },
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'Which Buddhist texts are in Sanskrit? — <b>Answer (RPSC final key):</b> <i>Divyavadana</i> and <i>Aryamanjushrimulakalpa</i>' },
       { exam: 'RAS Pre', year: '2024', marks: null, q: 'Ajivikas: (A) determinism; (B) reincarnation can be changed; (C) austerity. Which are correct? — <b>Answer (RPSC final key):</b> A and C' },

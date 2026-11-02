@@ -63,7 +63,12 @@ attributions with caution.</p>` },
 <tr><td>Manipuri</td><td>Manipur</td><td>Vaishnava ras lila themes</td></tr>
 <tr><td>Mohiniyattam</td><td>Kerala</td><td>Graceful solo dance by women</td></tr>
 <tr><td>Sattriya</td><td>Assam</td><td>From Sankardeva's sattras; recognised in 2000</td></tr>
-</table></div>` },
+</table></div>
+<p><b>How Kathak grew:</b> the name comes from <i>katha</i> (story). Kathaks were a caste of temple storytellers in north
+India. With the Bhakti movement (15th–16th centuries) their gestures merged with the Radha–Krishna <i>rasa lila</i>
+folk plays. At the Mughal and later courts it gained fast footwork and rich costume. The <b>Lucknow</b> gharana grew
+under Wajid Ali Shah, the last Nawab of Awadh; the <b>Jaipur</b> gharana at the Rajput courts. British officials of the
+19th century looked down on it; it was recognised as classical after independence.</p>` },
 
     { title: 'Theatre', html: `
 <ul>
@@ -99,11 +104,14 @@ attributions to Amir Khusrau. <b>Sunil Kothari</b> documents the classical dance
     'Nil Darpan (1860) was written by Dinabandhu Mitra.',
     'The Dramatic Performances Act was passed in 1876.',
     'The Indian People\'s Theatre Association was founded in 1943.',
+    'The word Kathak comes from katha, meaning story.',
+    'The Lucknow gharana of Kathak grew under Wajid Ali Shah, the last Nawab of Awadh.',
   ],
 
   traps: [
     'Sangita Ratnakara (Sharngadeva) ≠ Natyashastra (Bharata).',
     'Kathakali and Mohiniyattam are both from Kerala; Kuchipudi is from Andhra Pradesh.',
+    'Older NCERT texts say "six" classical dances; the current Sangeet Natak Akademi list has eight.',
     'Sattriya comes from Sankardeva\'s monasteries in Assam, not Manipur.',
     'Nil Darpan is a play (Dinabandhu Mitra), not a newspaper.',
   ],

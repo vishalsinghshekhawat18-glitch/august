@@ -41,7 +41,21 @@ the Mahajanapadas (I05). Learn the comparison as a table.</p></div>`,
 <tr><td><b>Upanishads</b></td><td>About 108; philosophy of <b>Brahman</b> and <b>Atman</b>; "Satyameva Jayate" from the <b>Mundaka</b> Upanishad</td></tr>
 <tr><td>Vedangas</td><td>Six aids: shiksha (phonetics), kalpa (ritual), vyakarana (grammar), nirukta (etymology), chhanda (metre), jyotisha (astronomy)</td></tr>
 </table></div>
-<p>The Vedas are called <b>shruti</b> ("heard"); later texts (smritis, epics, Puranas) are <b>smriti</b> ("remembered").</p>` },
+<p>The Vedas are called <b>shruti</b> ("heard"); later texts (smritis, epics, Puranas) are <b>smriti</b> ("remembered").</p>
+<div class="tbl"><table>
+<tr><th>Upanishad</th><th>Veda</th><th>Remember it for</th></tr>
+<tr><td>Brihadaranyaka</td><td>Shukla Yajur</td><td>Oldest and longest; Yajnavalkya's teaching on the self</td></tr>
+<tr><td>Chandogya</td><td>Sama</td><td>"Tat tvam asi" (you are that); importance of Om</td></tr>
+<tr><td>Isha</td><td>Shukla Yajur</td><td>Very short; renunciation with action</td></tr>
+<tr><td>Katha</td><td>Krishna Yajur</td><td>Dialogue of Nachiketa and Yama on death</td></tr>
+<tr><td>Taittiriya</td><td>Krishna Yajur</td><td>Five sheaths (koshas) of the self; Brahman as bliss</td></tr>
+<tr><td>Kena</td><td>Sama</td><td>Brahman as the power behind mind and senses</td></tr>
+<tr><td>Mundaka</td><td>Atharva</td><td>Higher and lower knowledge; "Satyameva Jayate"</td></tr>
+<tr><td>Mandukya</td><td>Atharva</td><td>Shortest; Om and the four states of consciousness</td></tr>
+</table></div>
+<p><b>A Rig Vedic dialogue:</b> one hymn is a conversation between the sage <b>Vishvamitra</b> and the rivers Beas and
+Sutlej, worshipped as goddesses; it places the composers in Punjab. The Ganga and Yamuna are named only once in the
+Rig Veda. Most Rig Vedic hymns pray for cattle, horses and sons; wars were fought for cattle, land and water.</p>` },
 
     { title: 'Early and later Vedic periods compared', html: `
 <div class="tbl"><table>
@@ -110,6 +124,9 @@ analysed later Vedic society as a "lineage society" moving towards kingship.</p>
   pyqs: {
     verified: [
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'Match: Vrihi, Mudga, Yava, Ikshu. — <b>Answer (RPSC final key):</b> Vrihi – rice; Mudga – mung; Yava – barley (जौ; printed "millet" in the English version); Ikshu – sugarcane' },
+      { exam: 'UPSC Pre', year: '2016', marks: null, q: 'Memorising chronicles, dynastic histories and heroic tales was the profession of: Shramana, Parivraajaka, Agrahaarika, Magadha? — <b>Answer:</b> Magadha (bards)' },
+      { exam: 'UPSC Pre', year: '2012', marks: null, q: 'The religion of the early Vedic Aryans was primarily: bhakti; image worship and yajnas; worship of nature and yajnas; worship of nature and bhakti? — <b>Answer:</b> worship of nature and yajnas' },
+      { exam: 'UPSC Pre', year: '2011', marks: null, q: 'Dharma as the idea of duties to oneself and others; rita as the moral law governing the universe — which is correct? — <b>Answer:</b> both' },
     ],
     note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },

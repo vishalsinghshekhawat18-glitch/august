@@ -106,6 +106,9 @@ visited; <b>Guruvayur satyagraha</b> (1931–32, K. Kelappan).</li>
 <li><b>B.R. Ambedkar</b>: Bahishkrit Hitakarini Sabha (1924); <b>Mahad satyagraha</b> (1927); burned the Manusmriti;
 Independent Labour Party (1936); All India Scheduled Castes Federation (1942).</li>
 <li><b>Gandhi</b>: Harijan Sevak Sangh (1932).</li>
+<li>Others in NCERT: <b>Ghasidas</b> founded the Satnami movement among leatherworkers in central India; <b>Haridas Thakur</b>'s <b>Matua</b> sect worked among Chandala cultivators in east Bengal; <b>Veerasalingam Pantulu</b> formed a widow remarriage association in the Telugu areas; the <b>Veda Samaj</b> (Madras, 1864) followed the Brahmo model; the <b>Paramhans Mandali</b> (Bombay, 1840) worked against caste; <b>Mumtaz Ali</b> reread the Qur'an to argue for women's education.</li>
+<li>Phule dedicated <i>Gulamgiri</i> (1873) to the Americans who fought to free slaves. Ambedkar led three temple-entry movements between 1927 and 1935. Periyar left the Congress after seeing caste-based seating at a nationalist feast.</li>
+<li><b>Orthodox reaction:</b> the Sanatan Dharma Sabhas, the Bharat Dharma Mahamandal and the Brahman Sabha (Bengal) defended caste as scriptural.</li>
 </ul>` },
 
     { title: 'Social legislation', html: `
@@ -135,6 +138,9 @@ O'Hanlon</b> studied Phule and anti-caste movements. <b>Uma Chakravarti</b> and 
 showed that women were often the site rather than the subject of reform debates.</p>`,
 
   facts: [
+    "Ghasidas founded the Satnami movement among leatherworkers of central India.",
+    "Haridas Thakur's Matua sect worked among the Chandalas of east Bengal.",
+    "The Veda Samaj was founded in Madras in 1864.",
     'Rammohun Roy founded the Atmiya Sabha in 1815 and the Brahmo Sabha in 1828.',
     'Sati was abolished in 1829 by Lord William Bentinck.',
     'Derozio led the Young Bengal movement.',
@@ -158,6 +164,9 @@ showed that women were often the site rather than the subject of reform debates.
   ],
 
   traps: [
+    "Phule's Gulamgiri was published in 1873, not 1871 as some NCERT-based guides print.",
+    "Sarda Act (1929): girls 14, boys 18 — not 16 for girls, as some NCERT-based guides print.",
+    "William Carey, of the Serampore mission, was an English Baptist, not Scottish (William Adam was the Scottish missionary).",
     'Arya Samaj founded at Bombay (1875), not Lahore.',
     'Theosophical Society founded at New York (1875); Adyar from 1886.',
     'Prarthana Samaj (Bombay) ≠ Brahmo Samaj (Calcutta).',
@@ -168,6 +177,14 @@ showed that women were often the site rather than the subject of reform debates.
   pyqs: {
     verified: [
       { exam: 'RAS Pre', year: '2021', marks: null, q: 'Who founded the Rajahmundry Social Reform Association (1871) to encourage widow remarriage? — <b>Answer (RPSC final key):</b> Veeresalingam' },
+      { exam: 'UPSC Pre', year: '2021', marks: null, q: "Madanapalle (Andhra Pradesh) is where — <b>Answer:</b> Rabindranath Tagore translated the national anthem from Bengali into English." },
+      { exam: 'UPSC Pre', year: '2020', marks: null, q: "Who published Vital-Vidhwansak, the first monthly aimed at the untouchables? — <b>Answer:</b> Gopal Baba Walangkar." },
+      { exam: 'UPSC Pre', year: '2019', marks: null, q: "Match: All India Anti-Untouchability League – Gandhi; All India Kisan Sabha – Swami Sahajanand Saraswati; Self-Respect Movement – E.V. Ramaswami Naicker. Which are correct? — <b>Answer:</b> all three." },
+      { exam: 'UPSC Pre', year: '2018', marks: null, q: "Which happened earliest: Arya Samaj founded; Nil Darpan written; Anandmath written; Satyendranath Tagore clears the ICS? — <b>Answer:</b> Nil Darpan (1860)." },
+      { exam: 'UPSC Pre', year: '2016', marks: null, q: "The Satya Shodhak Samaj organised — <b>Answer:</b> an anti-caste movement in Maharashtra." },
+      { exam: 'UPSC Pre', year: '2016', marks: null, q: "Keshab Chandra Sen is associated with founding which: Calcutta Unitarian Committee, Tabernacle of New Dispensation, Indian Reform Association? — <b>Answer:</b> the last two only." },
+      { exam: 'UPSC Pre', year: '2012', marks: null, q: "Which parties did Ambedkar found: Peasants and Workers Party, All India Scheduled Castes Federation, Independent Labour Party? — <b>Answer:</b> the last two only." },
+      { exam: 'UPSC Pre', year: '2012', marks: null, q: "The Brahmo Samaj: (1) opposed idolatry; (2) denied the need for priests to interpret texts; (3) taught that the Vedas are infallible. Which are correct? — <b>Answer:</b> 1 and 2 only." },
     ],
     note: 'No verified RAS Mains question on this unit yet. RAS Pre questions come from the history sections of the 2021, 2023 and 2024 papers, paraphrased, with answers as per the RPSC final answer keys (2018 not used: its key was not available).',
   },

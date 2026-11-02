@@ -67,6 +67,19 @@ rice; forests supplying <b>elephants</b> for war.</li>
 <li><b>Social openness:</b> less bound by Vedic orthodoxy; home of Buddhism and Jainism; mixed population.</li>
 </ol>` },
 
+    { title: 'Villages and towns of the janapada age', html: `
+<ul>
+<li><b>Village society (north):</b> the <b>grama bhojaka</b> was the hereditary headman and often the largest landowner;
+he got land cultivated by slaves and hired workers, collected taxes for the king and acted as judge and policeman.
+Smaller independent landowners were <b>grihapatis</b>; the landless who worked others' fields were <b>dasa
+karmakaras</b>.</li>
+<li><b>Farming:</b> iron ploughshares and transplantation of paddy raised output; kings and villagers built canals,
+wells, tanks and artificial lakes.</li>
+<li><b>Towns:</b> fortified cities with <b>ring wells</b> (stacked pottery rings used as toilets, drains and refuse pits),
+NBPW pottery, <b>punch-marked coins</b> (silver or copper pieces stamped with symbols, no legend) and craft guilds
+(<b>shrenis</b>) that also acted as banks.</li>
+</ul>` },
+
     { title: 'Persian and Macedonian invasions', html: `
 <p><b>Persians:</b> Cyrus and <b>Darius I</b> (c. 518 BCE) annexed Gandhara and the Indus region — the 20th and richest
 satrapy (Herodotus). Effects: Kharosthi script (from Aramaic), Persian influence on Mauryan edicts and pillars, trade.</p>
@@ -90,6 +103,7 @@ Kshatriya clans, not democracies.</p>`,
   facts: [
     'The sixteen Mahajanapadas are listed in the Anguttara Nikaya.',
     'Ashmaka (capital Potana, on the Godavari) was the only Mahajanapada south of the Vindhyas.',
+    'In the Vajji sangha many rajas ruled together through assemblies; women, dasas and kammakaras could not take part.',
     'Vajji (capital Vaishali) was a republican confederacy including the Lichchhavis.',
     'Kosala\'s capital was Shravasti; Avanti\'s was Ujjayini; Vatsa\'s was Kaushambi.',
     'Bimbisara annexed Anga; his physician was Jivaka.',
@@ -103,6 +117,7 @@ Kshatriya clans, not democracies.</p>`,
   ],
 
   traps: [
+    'Ashmaka\'s capital Potana (Potali) is usually identified with Bodhan (Telangana), not Paithan; some guidebooks wrongly write "Potana (Paithan)".',
     'Ajatashatru built the fort at Pataligrama; Udayin founded Pataliputra city.',
     'First Buddhist council (Rajagriha) — Ajatashatru; second (Vaishali) — Kalashoka.',
     'Hydaspes = Jhelum; Hyphasis = Beas.',
