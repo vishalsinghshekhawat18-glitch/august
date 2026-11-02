@@ -31,6 +31,11 @@ import {
   updateTopicTotalCards,
   KNOWN_OCTOBER_CARD_COUNTS,
   OCTOBER_CURRENT_AFFAIRS_SECTIONS,
+  OCTOBER_RAJASTHAN_HISTORY_UNITS,
+  OCTOBER_INDIAN_HISTORY_UNITS,
+  RAS_MASTER_SUBJECTS,
+  seedRasMasterSyllabus,
+  parseOctoberHtml,
 } from '../services/octoberLibrary';
 import { coachService } from '../services/coachService';
 import {
@@ -1113,9 +1118,9 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
     });
   });
 
-  describe('11. Focused 3-Commitment Priority Architecture (No IIBF Clashing)', () => {
-    it('verifies that INITIAL_COMMITMENTS contains exactly the 3 focused commitments with correct priorities', () => {
-      expect(INITIAL_COMMITMENTS.length).toBe(3);
+  describe('11. Focused Target Commitment Priority Architecture (No IIBF Clashing)', () => {
+    it('verifies that INITIAL_COMMITMENTS contains the focused commitments with correct priorities and no IIBF', () => {
+      expect(INITIAL_COMMITMENTS.length).toBe(4);
 
       const rrb = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_ibps_rrb_po');
       expect(rrb).toBeDefined();
@@ -1123,13 +1128,17 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(rrb?.targetDate).toBe('2026-11-20');
       expect(rrb?.dateStatus).toBe('confirmed');
 
+      const ras = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_rpsc_ras');
+      expect(ras).toBeDefined();
+      expect(ras?.priority).toBe(2);
+
       const apfc = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_upsc_apfc');
       expect(apfc).toBeDefined();
-      expect(apfc?.priority).toBe(2);
+      expect(apfc?.priority).toBe(3);
 
       const vmou = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_vmou_ma_eco');
       expect(vmou).toBeDefined();
-      expect(vmou?.priority).toBe(3);
+      expect(vmou?.priority).toBe(4);
 
       // Verify IIBF is completely excluded
       const iibf = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_iibf_dbf');
@@ -1328,6 +1337,202 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
         .filter((l) => l.date === '2026-11-01')
         .reduce((sum, l) => sum + l.durationMinutes, 0);
       expect(todayTotal).toBeGreaterThanOrEqual(35);
+    });
+  });
+
+  describe('15. RPSC RAS / RTS Master Syllabus & October Library Integration', () => {
+    it('includes comm_rpsc_ras in INITIAL_COMMITMENTS with code RPSC-RAS and priority 2', () => {
+      const rasComm = INITIAL_COMMITMENTS.find((c) => c.id === 'comm_rpsc_ras');
+      expect(rasComm).toBeDefined();
+      expect(rasComm?.code).toBe('RPSC-RAS');
+      expect(rasComm?.name).toContain('RPSC RAS');
+      expect(rasComm?.type).toBe('competitive');
+      expect(rasComm?.priority).toBe(2);
+    });
+
+    it('defines all 18 official RAS papers in RAS_MASTER_SUBJECTS matching October Library subjects.json', () => {
+      expect(RAS_MASTER_SUBJECTS.length).toBe(18);
+      const names = RAS_MASTER_SUBJECTS.map((s) => s.name);
+      expect(names).toEqual([
+        'Rajasthan History',
+        'Indian History',
+        'Rajasthan Art, Culture & Heritage',
+        'Modern World History',
+        'Indian & World Geography',
+        'Rajasthan Geography',
+        'Indian Polity, Governance & World Affairs',
+        'Rajasthan Polity & Administration',
+        'Indian Economy',
+        'Rajasthan Economy',
+        'Science & Technology',
+        'Reasoning & Mental Ability',
+        'Current Affairs',
+        'Sociology, Management & Accounting',
+        'Administrative Ethics & Behaviour',
+        'Public Administration & Law',
+        'Sports & Yoga',
+        'General Hindi & English',
+      ]);
+    });
+
+    it('contains exactly 22 units for Rajasthan History (R01 to R22) across 3 parts', () => {
+      expect(OCTOBER_RAJASTHAN_HISTORY_UNITS.length).toBe(22);
+      expect(OCTOBER_RAJASTHAN_HISTORY_UNITS[0].name).toContain('R01 · Sources and Historians of Rajasthan');
+      expect(OCTOBER_RAJASTHAN_HISTORY_UNITS[0].notes).toContain('book=ras-rajasthan-history#r01');
+      expect(OCTOBER_RAJASTHAN_HISTORY_UNITS[21].name).toContain('R22 · Leading Personalities and Master Chronology');
+      expect(OCTOBER_RAJASTHAN_HISTORY_UNITS[21].notes).toContain('book=ras-rajasthan-history#r22');
+
+      const parts = new Set(OCTOBER_RAJASTHAN_HISTORY_UNITS.map((u) => u.part));
+      expect(Array.from(parts)).toEqual([
+        'Foundations',
+        'Dynasties (to the 18th century)',
+        'Modern Rajasthan',
+      ]);
+    });
+
+    it('contains exactly 46 units for Indian History (I01 to I46) across 4 parts', () => {
+      expect(OCTOBER_INDIAN_HISTORY_UNITS.length).toBe(46);
+      expect(OCTOBER_INDIAN_HISTORY_UNITS[0].name).toContain('I01 · Sources and How Historians Work');
+      expect(OCTOBER_INDIAN_HISTORY_UNITS[0].notes).toContain('book=ras-indian-history#i01');
+      expect(OCTOBER_INDIAN_HISTORY_UNITS[45].name).toContain('I46 · Science and Technology; Economic Reforms of 1991');
+      expect(OCTOBER_INDIAN_HISTORY_UNITS[45].notes).toContain('book=ras-indian-history#i46');
+
+      const parts = new Set(OCTOBER_INDIAN_HISTORY_UNITS.map((u) => u.part));
+      expect(Array.from(parts)).toEqual([
+        'Ancient India',
+        'Medieval India',
+        'Modern India (to 1947)',
+        'Independent India (to 2000)',
+      ]);
+    });
+
+    it('correctly detects October book slug for Rajasthan History and Indian History', () => {
+      expect(detectOctoberBookSlug(undefined, 'Rajasthan History')).toBe('ras-rajasthan-history');
+      expect(detectOctoberBookSlug(undefined, 'Indian History')).toBe('ras-indian-history');
+      expect(detectOctoberBookSlug('https://domain/reader.html?book=ras-rajasthan-history')).toBe('ras-rajasthan-history');
+      expect(detectOctoberBookSlug('https://domain/reader.html?book=ras-indian-history')).toBe('ras-indian-history');
+    });
+
+    it('returns expected meta of 22 units for Rajasthan History and 46 units for Indian History', () => {
+      const rajSubject: Subject = {
+        id: 'sub_ras_raj_hist',
+        name: 'Rajasthan History',
+        examIds: ['comm_rpsc_ras'],
+        order: 1,
+      };
+      const rajMeta = getOctoberSubjectMeta(rajSubject);
+      expect(rajMeta.isOctoberSubject).toBe(true);
+      expect(rajMeta.bookSlug).toBe('ras-rajasthan-history');
+      expect(rajMeta.expectedUnitsCount).toBe(22);
+      expect(rajMeta.unitLabel).toBe('Units');
+
+      const indSubject: Subject = {
+        id: 'sub_ras_ind_hist',
+        name: 'Indian History',
+        examIds: ['comm_rpsc_ras'],
+        order: 2,
+      };
+      const indMeta = getOctoberSubjectMeta(indSubject);
+      expect(indMeta.isOctoberSubject).toBe(true);
+      expect(indMeta.bookSlug).toBe('ras-indian-history');
+      expect(indMeta.expectedUnitsCount).toBe(46);
+      expect(indMeta.unitLabel).toBe('Units');
+    });
+
+    it('correctly groups Rajasthan History and Indian History topics into part folders with accurate counts', () => {
+      const rajTopics: Topic[] = OCTOBER_RAJASTHAN_HISTORY_UNITS.map((u) => ({
+        id: `test_raj_${u.order}`,
+        subjectId: 'sub_ras_raj_hist',
+        name: u.name,
+        order: u.order,
+        notes: u.notes,
+        totalCards: 1,
+        cardLabel: 'units',
+      }));
+
+      const rajGroups = groupTopicsByPart(rajTopics);
+      expect(rajGroups.length).toBe(3);
+      expect(rajGroups[0].title).toBe('Foundations');
+      expect(rajGroups[0].topics.length).toBe(4);
+      expect(rajGroups[1].title).toBe('Dynasties (to the 18th century)');
+      expect(rajGroups[1].topics.length).toBe(10);
+      expect(rajGroups[2].title).toBe('Modern Rajasthan');
+      expect(rajGroups[2].topics.length).toBe(8);
+
+      const indTopics: Topic[] = OCTOBER_INDIAN_HISTORY_UNITS.map((u) => ({
+        id: `test_ind_${u.order}`,
+        subjectId: 'sub_ras_ind_hist',
+        name: u.name,
+        order: u.order,
+        notes: u.notes,
+        totalCards: 1,
+        cardLabel: 'units',
+      }));
+
+      const indGroups = groupTopicsByPart(indTopics);
+      expect(indGroups.length).toBe(4);
+      expect(indGroups[0].title).toBe('Ancient India');
+      expect(indGroups[0].topics.length).toBe(14);
+      expect(indGroups[1].title).toBe('Medieval India');
+      expect(indGroups[1].topics.length).toBe(11);
+      expect(indGroups[2].title).toBe('Modern India (to 1947)');
+      expect(indGroups[2].topics.length).toBe(17);
+      expect(indGroups[3].title).toBe('Independent India (to 2000)');
+      expect(indGroups[3].topics.length).toBe(4);
+    });
+
+    it('parses live October HTML for RAS books correctly with part prefixes and direct anchor links', () => {
+      const sampleHtml = `
+        <h1 class="rd-part" id="part-1" data-toc="Foundations">Foundations</h1>
+        <h2 id="r01" data-toc="R01 · Sources and Historians of Rajasthan">Sources</h2>
+        <h2 id="r02" data-toc="R02 · Prehistoric Rajasthan">Prehistoric</h2>
+        <h1 class="rd-part" id="part-2" data-toc="Dynasties (to the 18th century)">Dynasties</h1>
+        <h2 id="r05" data-toc="R05 · Origin of the Rajputs">Origin</h2>
+      `;
+      const parsed = parseOctoberHtml(
+        sampleHtml,
+        'ras-rajasthan-history',
+        'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history'
+      );
+
+      expect(parsed.length).toBe(3);
+      expect(parsed[0].name).toBe('[Foundations] R01 · Sources and Historians of Rajasthan');
+      expect(parsed[0].anchorId).toBe('r01');
+      expect(parsed[0].notes).toBe('https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r01');
+      expect(parsed[2].name).toBe('[Dynasties (to the 18th century)] R05 · Origin of the Rajputs');
+      expect(parsed[2].anchorId).toBe('r05');
+    });
+
+    it('seeds full RAS master syllabus into database with 18 subjects, 22 Rajasthan units, and 46 Indian units', async () => {
+      await seedRasMasterSyllabus(dbService);
+
+      // Verify commitment
+      const comm = await dbService.get<Commitment>('commitments', 'comm_rpsc_ras');
+      expect(comm).toBeDefined();
+      expect(comm?.name).toContain('RPSC RAS');
+
+      // Verify all 18 subjects exist and link to comm_rpsc_ras
+      const allSubs = await dbService.getAll<Subject>('subjects');
+      const rasSubs = allSubs.filter((s) => s.examIds.includes('comm_rpsc_ras'));
+      expect(rasSubs.length).toBe(18);
+
+      // Verify Rajasthan History has 22 topics in DB
+      const rajSub = allSubs.find((s) => s.name === 'Rajasthan History');
+      expect(rajSub).toBeDefined();
+      const allTopics = await dbService.getAll<Topic>('topics');
+      const rajTopics = allTopics.filter((t) => t.subjectId === rajSub?.id);
+      expect(rajTopics.length).toBe(22);
+
+      // Verify Indian History has 46 topics in DB
+      const indSub = allSubs.find((s) => s.name === 'Indian History');
+      expect(indSub).toBeDefined();
+      const indTopics = allTopics.filter((t) => t.subjectId === indSub?.id);
+      expect(indTopics.length).toBe(46);
+
+      // Verify topicProgress entries are generated for comm_rpsc_ras
+      const allProgress = await dbService.getAll<TopicProgress>('topicProgress');
+      const rasProgress = allProgress.filter((p) => p.examId === 'comm_rpsc_ras');
+      expect(rasProgress.length).toBeGreaterThanOrEqual(68); // 22 + 46 = 68
     });
   });
 });

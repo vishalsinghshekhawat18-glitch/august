@@ -48,6 +48,7 @@ import {
   getTopicTotalCards,
   logTopicCardProgress,
   updateTopicTotalCards,
+  seedRasMasterSyllabus,
 } from '../services/octoberLibrary';
 import { getTodayDateString, daysBetween } from '../services/dateUtils';
 
@@ -111,6 +112,14 @@ export const SyllabusView: React.FC = () => {
         dbService.getAll<RevisionRecord>('revisions'),
         dbService.getAll<StudyLog>('studyLogs'),
       ]);
+
+      // Ensure comm_rpsc_ras and its master syllabus are initialized
+      const hasRasComm = comms.some((c) => c.id === 'comm_rpsc_ras');
+      const hasRasSubjects = subs.some((s) => s.examIds && s.examIds.includes('comm_rpsc_ras'));
+      if (!hasRasComm || !hasRasSubjects) {
+        await seedRasMasterSyllabus();
+        return loadData();
+      }
 
       // Auto-migrate Section 1 Polity if it was erroneously saved with 28 cards
       let tops = rawTops;

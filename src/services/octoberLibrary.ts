@@ -1,4 +1,4 @@
-import { Topic, Subject, TopicProgress, StudyLog, RevisionRecord, LearningStatus } from '../types';
+import { Topic, Subject, TopicProgress, StudyLog, RevisionRecord, LearningStatus, Commitment } from '../types';
 import { dbService } from './db';
 import { syncTopicProgressAcrossExams, scheduleSpacedRevisionCycle } from './smartPacing';
 import { addDays, getTodayDateString } from './dateUtils';
@@ -173,6 +173,121 @@ export const OCTOBER_CURRENT_AFFAIRS_SECTIONS: OctoberChapter[] = [
   { chapterNumber: 20, title: 'Revision (75 Recall Questions)', part: 'January–March 2026', totalCards: 75, cardLabel: 'questions' },
 ];
 
+export const OCTOBER_RAJASTHAN_HISTORY_UNITS: ParsedOctoberUnit[] = [
+  // Part 1: Foundations (R01–R04)
+  { order: 1, name: '[Foundations] R01 · Sources and Historians of Rajasthan', part: 'Foundations', anchorId: 'r01', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r01', totalCards: 1, cardLabel: 'units' },
+  { order: 2, name: '[Foundations] R02 · Prehistoric Rajasthan', part: 'Foundations', anchorId: 'r02', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r02', totalCards: 1, cardLabel: 'units' },
+  { order: 3, name: '[Foundations] R03 · Chalcolithic and Bronze Age Cultures', part: 'Foundations', anchorId: 'r03', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r03', totalCards: 1, cardLabel: 'units' },
+  { order: 4, name: '[Foundations] R04 · Ancient Rajasthan: Janapadas to the Hunas', part: 'Foundations', anchorId: 'r04', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r04', totalCards: 1, cardLabel: 'units' },
+
+  // Part 2: Dynasties (to the 18th century) (R05–R14)
+  { order: 5, name: '[Dynasties (to the 18th century)] R05 · Origin of the Rajputs; Gurjara-Pratiharas and Parmaras', part: 'Dynasties (to the 18th century)', anchorId: 'r05', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r05', totalCards: 1, cardLabel: 'units' },
+  { order: 6, name: '[Dynasties (to the 18th century)] R06 · The Chauhans: Shakambhari, Ajmer, Ranthambhor, Jalore', part: 'Dynasties (to the 18th century)', anchorId: 'r06', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r06', totalCards: 1, cardLabel: 'units' },
+  { order: 7, name: '[Dynasties (to the 18th century)] R07 · Mewar I: The Guhils to Rana Kumbha', part: 'Dynasties (to the 18th century)', anchorId: 'r07', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r07', totalCards: 1, cardLabel: 'units' },
+  { order: 8, name: '[Dynasties (to the 18th century)] R08 · Mewar II: Rana Sanga to Raj Singh (1509–1680)', part: 'Dynasties (to the 18th century)', anchorId: 'r08', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r08', totalCards: 1, cardLabel: 'units' },
+  { order: 9, name: '[Dynasties (to the 18th century)] R09 · The Rathores of Marwar', part: 'Dynasties (to the 18th century)', anchorId: 'r09', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r09', totalCards: 1, cardLabel: 'units' },
+  { order: 10, name: '[Dynasties (to the 18th century)] R10 · Bikaner, Jaisalmer and Sirohi', part: 'Dynasties (to the 18th century)', anchorId: 'r10', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r10', totalCards: 1, cardLabel: 'units' },
+  { order: 11, name: '[Dynasties (to the 18th century)] R11 · Amber–Jaipur, Shekhawati and Alwar', part: 'Dynasties (to the 18th century)', anchorId: 'r11', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r11', totalCards: 1, cardLabel: 'units' },
+  { order: 12, name: '[Dynasties (to the 18th century)] R12 · Hadoti, Karauli, Bharatpur, Dholpur and Tonk', part: 'Dynasties (to the 18th century)', anchorId: 'r12', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r12', totalCards: 1, cardLabel: 'units' },
+  { order: 13, name: '[Dynasties (to the 18th century)] R13 · Cooperation and Resistance: Rajasthan and the Central Powers', part: 'Dynasties (to the 18th century)', anchorId: 'r13', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r13', totalCards: 1, cardLabel: 'units' },
+  { order: 14, name: '[Dynasties (to the 18th century)] R14 · Administrative and Revenue System of Medieval Rajasthan', part: 'Dynasties (to the 18th century)', anchorId: 'r14', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r14', totalCards: 1, cardLabel: 'units' },
+
+  // Part 3: Modern Rajasthan (R15–R22)
+  { order: 15, name: '[Modern Rajasthan] R15 · The 18th and 19th Centuries: Marathas, 1818 Treaties, Society and Reform', part: 'Modern Rajasthan', anchorId: 'r15', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r15', totalCards: 1, cardLabel: 'units' },
+  { order: 16, name: '[Modern Rajasthan] R16 · The Revolt of 1857 in Rajasthan', part: 'Modern Rajasthan', anchorId: 'r16', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r16', totalCards: 1, cardLabel: 'units' },
+  { order: 17, name: '[Modern Rajasthan] R17 · Peasant Movements', part: 'Modern Rajasthan', anchorId: 'r17', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r17', totalCards: 1, cardLabel: 'units' },
+  { order: 18, name: '[Modern Rajasthan] R18 · Tribal Movements', part: 'Modern Rajasthan', anchorId: 'r18', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r18', totalCards: 1, cardLabel: 'units' },
+  { order: 19, name: '[Modern Rajasthan] R19 · Political Awakening: Press, Organisations, Revolutionaries', part: 'Modern Rajasthan', anchorId: 'r19', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r19', totalCards: 1, cardLabel: 'units' },
+  { order: 20, name: '[Modern Rajasthan] R20 · Praja Mandal Movements', part: 'Modern Rajasthan', anchorId: 'r20', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r20', totalCards: 1, cardLabel: 'units' },
+  { order: 21, name: '[Modern Rajasthan] R21 · Integration of Rajasthan (1948–1956)', part: 'Modern Rajasthan', anchorId: 'r21', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r21', totalCards: 1, cardLabel: 'units' },
+  { order: 22, name: '[Modern Rajasthan] R22 · Leading Personalities and Master Chronology', part: 'Modern Rajasthan', anchorId: 'r22', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history#r22', totalCards: 1, cardLabel: 'units' },
+];
+
+export const OCTOBER_INDIAN_HISTORY_UNITS: ParsedOctoberUnit[] = [
+  // Part 1: Ancient India (I01–I14)
+  { order: 1, name: '[Ancient India] I01 · Sources and How Historians Work', part: 'Ancient India', anchorId: 'i01', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i01', totalCards: 1, cardLabel: 'units' },
+  { order: 2, name: '[Ancient India] I02 · Prehistory', part: 'Ancient India', anchorId: 'i02', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i02', totalCards: 1, cardLabel: 'units' },
+  { order: 3, name: '[Ancient India] I03 · The Harappan Civilisation', part: 'Ancient India', anchorId: 'i03', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i03', totalCards: 1, cardLabel: 'units' },
+  { order: 4, name: '[Ancient India] I04 · The Vedic Age', part: 'Ancient India', anchorId: 'i04', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i04', totalCards: 1, cardLabel: 'units' },
+  { order: 5, name: '[Ancient India] I05 · Mahajanapadas and the Rise of Magadha', part: 'Ancient India', anchorId: 'i05', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i05', totalCards: 1, cardLabel: 'units' },
+  { order: 6, name: '[Ancient India] I06 · Buddhism, Jainism, Ajivikas and 6th-century BCE Thought', part: 'Ancient India', anchorId: 'i06', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i06', totalCards: 1, cardLabel: 'units' },
+  { order: 7, name: '[Ancient India] I07 · The Mauryas', part: 'Ancient India', anchorId: 'i07', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i07', totalCards: 1, cardLabel: 'units' },
+  { order: 8, name: '[Ancient India] I08 · Post-Mauryan India: Shungas, Satavahanas, Indo-Greeks, Shakas, Kushans', part: 'Ancient India', anchorId: 'i08', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i08', totalCards: 1, cardLabel: 'units' },
+  { order: 9, name: '[Ancient India] I09 · The Sangam Age', part: 'Ancient India', anchorId: 'i09', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i09', totalCards: 1, cardLabel: 'units' },
+  { order: 10, name: '[Ancient India] I10 · The Guptas', part: 'Ancient India', anchorId: 'i10', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i10', totalCards: 1, cardLabel: 'units' },
+  { order: 11, name: '[Ancient India] I11 · Harsha, Chalukyas, Pallavas and Rashtrakutas', part: 'Ancient India', anchorId: 'i11', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i11', totalCards: 1, cardLabel: 'units' },
+  { order: 12, name: '[Ancient India] I12 · The Cholas', part: 'Ancient India', anchorId: 'i12', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i12', totalCards: 1, cardLabel: 'units' },
+  { order: 13, name: '[Ancient India] I13 · Indian Knowledge and Value System', part: 'Ancient India', anchorId: 'i13', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i13', totalCards: 1, cardLabel: 'units' },
+  { order: 14, name: '[Ancient India] I14 · Science and Technology in Ancient India', part: 'Ancient India', anchorId: 'i14', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i14', totalCards: 1, cardLabel: 'units' },
+
+  // Part 2: Medieval India (I15–I25)
+  { order: 15, name: '[Medieval India] I15 · The Rajput Age and the Struggle for Kannauj', part: 'Medieval India', anchorId: 'i15', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i15', totalCards: 1, cardLabel: 'units' },
+  { order: 16, name: '[Medieval India] I16 · Arab and Turkish Invasions', part: 'Medieval India', anchorId: 'i16', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i16', totalCards: 1, cardLabel: 'units' },
+  { order: 17, name: '[Medieval India] I17 · Delhi Sultanate: Political History', part: 'Medieval India', anchorId: 'i17', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i17', totalCards: 1, cardLabel: 'units' },
+  { order: 18, name: '[Medieval India] I18 · Delhi Sultanate: Administration, Economy and Society', part: 'Medieval India', anchorId: 'i18', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i18', totalCards: 1, cardLabel: 'units' },
+  { order: 19, name: '[Medieval India] I19 · Vijayanagara and the Bahmanis', part: 'Medieval India', anchorId: 'i19', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i19', totalCards: 1, cardLabel: 'units' },
+  { order: 20, name: '[Medieval India] I20 · Bhakti and Sufi Movements', part: 'Medieval India', anchorId: 'i20', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i20', totalCards: 1, cardLabel: 'units' },
+  { order: 21, name: '[Medieval India] I21 · The Mughals I: Babur to Akbar', part: 'Medieval India', anchorId: 'i21', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i21', totalCards: 1, cardLabel: 'units' },
+  { order: 22, name: '[Medieval India] I22 · The Mughals II: Jahangir to Aurangzeb and the Decline Debate', part: 'Medieval India', anchorId: 'i22', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i22', totalCards: 1, cardLabel: 'units' },
+  { order: 23, name: '[Medieval India] I23 · Mughal Administration: Mansab, Jagir and Revenue', part: 'Medieval India', anchorId: 'i23', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i23', totalCards: 1, cardLabel: 'units' },
+  { order: 24, name: '[Medieval India] I24 · The Marathas', part: 'Medieval India', anchorId: 'i24', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i24', totalCards: 1, cardLabel: 'units' },
+  { order: 25, name: '[Medieval India] I25 · The Sikhs', part: 'Medieval India', anchorId: 'i25', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i25', totalCards: 1, cardLabel: 'units' },
+
+  // Part 3: Modern India (to 1947) (I26–I42)
+  { order: 26, name: '[Modern India (to 1947)] I26 · The European Companies', part: 'Modern India (to 1947)', anchorId: 'i26', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i26', totalCards: 1, cardLabel: 'units' },
+  { order: 27, name: '[Modern India (to 1947)] I27 · Bengal: Plassey to Buxar', part: 'Modern India (to 1947)', anchorId: 'i27', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i27', totalCards: 1, cardLabel: 'units' },
+  { order: 28, name: '[Modern India (to 1947)] I28 · British Expansion: Mysore, Marathas, Sikhs, Subsidiary Alliance, Lapse', part: 'Modern India (to 1947)', anchorId: 'i28', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i28', totalCards: 1, cardLabel: 'units' },
+  { order: 29, name: '[Modern India (to 1947)] I29 · Constitutional Development, 1773–1947', part: 'Modern India (to 1947)', anchorId: 'i29', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i29', totalCards: 1, cardLabel: 'units' },
+  { order: 30, name: '[Modern India (to 1947)] I30 · British Administrative Policies', part: 'Modern India (to 1947)', anchorId: 'i30', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i30', totalCards: 1, cardLabel: 'units' },
+  { order: 31, name: '[Modern India (to 1947)] I31 · Economic Impact of British Rule', part: 'Modern India (to 1947)', anchorId: 'i31', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i31', totalCards: 1, cardLabel: 'units' },
+  { order: 32, name: '[Modern India (to 1947)] I32 · The Revolt of 1857', part: 'Modern India (to 1947)', anchorId: 'i32', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i32', totalCards: 1, cardLabel: 'units' },
+  { order: 33, name: '[Modern India (to 1947)] I33 · Peasant Movements', part: 'Modern India (to 1947)', anchorId: 'i33', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i33', totalCards: 1, cardLabel: 'units' },
+  { order: 34, name: '[Modern India (to 1947)] I34 · Tribal Movements', part: 'Modern India (to 1947)', anchorId: 'i34', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i34', totalCards: 1, cardLabel: 'units' },
+  { order: 35, name: '[Modern India (to 1947)] I35 · Socio-Religious Reform Movements', part: 'Modern India (to 1947)', anchorId: 'i35', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i35', totalCards: 1, cardLabel: 'units' },
+  { order: 36, name: '[Modern India (to 1947)] I36 · Early Nationalism and the Moderates', part: 'Modern India (to 1947)', anchorId: 'i36', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i36', totalCards: 1, cardLabel: 'units' },
+  { order: 37, name: '[Modern India (to 1947)] I37 · Swadeshi and the Extremists', part: 'Modern India (to 1947)', anchorId: 'i37', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i37', totalCards: 1, cardLabel: 'units' },
+  { order: 38, name: '[Modern India (to 1947)] I38 · Revolutionary Nationalism', part: 'Modern India (to 1947)', anchorId: 'i38', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i38', totalCards: 1, cardLabel: 'units' },
+  { order: 39, name: '[Modern India (to 1947)] I39 · Gandhi\'s Early Movements and Non-Cooperation', part: 'Modern India (to 1947)', anchorId: 'i39', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i39', totalCards: 1, cardLabel: 'units' },
+  { order: 40, name: '[Modern India (to 1947)] I40 · The 1920s: Swarajists, Simon Commission, Nehru Report', part: 'Modern India (to 1947)', anchorId: 'i40', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i40', totalCards: 1, cardLabel: 'units' },
+  { order: 41, name: '[Modern India (to 1947)] I41 · Civil Disobedience to the 1937 Ministries', part: 'Modern India (to 1947)', anchorId: 'i41', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i41', totalCards: 1, cardLabel: 'units' },
+  { order: 42, name: '[Modern India (to 1947)] I42 · 1939–1947: War, Quit India, INA, Partition', part: 'Modern India (to 1947)', anchorId: 'i42', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i42', totalCards: 1, cardLabel: 'units' },
+
+  // Part 4: Independent India (to 2000) (I43–I46)
+  { order: 43, name: '[Independent India (to 2000)] I43 · Integration of the Princely States', part: 'Independent India (to 2000)', anchorId: 'i43', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i43', totalCards: 1, cardLabel: 'units' },
+  { order: 44, name: '[Independent India (to 2000)] I44 · Linguistic Reorganisation of States', part: 'Independent India (to 2000)', anchorId: 'i44', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i44', totalCards: 1, cardLabel: 'units' },
+  { order: 45, name: '[Independent India (to 2000)] I45 · Nation-Building in the Nehru Era and Planning', part: 'Independent India (to 2000)', anchorId: 'i45', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i45', totalCards: 1, cardLabel: 'units' },
+  { order: 46, name: '[Independent India (to 2000)] I46 · Science and Technology; Economic Reforms of 1991', part: 'Independent India (to 2000)', anchorId: 'i46', notes: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history#i46', totalCards: 1, cardLabel: 'units' },
+];
+
+export interface RasMasterSubjectDef {
+  id: string;
+  name: string;
+  order: number;
+  description: string;
+  bookSlug?: string;
+}
+
+export const RAS_MASTER_SUBJECTS: RasMasterSubjectDef[] = [
+  { id: 'sub_ras_raj_hist', name: 'Rajasthan History', order: 1, description: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-rajasthan-history', bookSlug: 'ras-rajasthan-history' },
+  { id: 'sub_ras_ind_hist', name: 'Indian History', order: 2, description: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=ras-indian-history', bookSlug: 'ras-indian-history' },
+  { id: 'sub_ras_raj_art', name: 'Rajasthan Art, Culture & Heritage', order: 3, description: 'Visual arts, architecture, performing arts, folklore, literature and religious traditions of Rajasthan.' },
+  { id: 'sub_ras_world_hist', name: 'Modern World History', order: 4, description: 'Renaissance, Enlightenment, American & French Revolutions, Industrial Revolution, World Wars & Decolonization.' },
+  { id: 'sub_ras_ind_world_geo', name: 'Indian & World Geography', order: 5, description: 'Physical features, climate, river systems, mineral and energy resources, and demographic dynamics.' },
+  { id: 'sub_ras_raj_geo', name: 'Rajasthan Geography', order: 6, description: 'Physiographic divisions, climate, drainage, vegetation, agriculture, minerals, irrigation and industries in Rajasthan.' },
+  { id: 'sub_ras_ind_polity', name: 'Indian Polity, Governance & World Affairs', order: 7, description: 'Constitution, Parliament, Judiciary, Federalism, Public Policy, Good Governance and International Relations.' },
+  { id: 'sub_ras_raj_polity', name: 'Rajasthan Polity & Administration', order: 8, description: 'Governor, Chief Minister, State Assembly, High Court, RPSC, State Human Rights Commission and Panchayati Raj.' },
+  { id: 'sub_ras_ind_eco', name: 'Indian Economy', order: 9, description: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=economics', bookSlug: 'economics' },
+  { id: 'sub_ras_raj_eco', name: 'Rajasthan Economy', order: 10, description: 'Macro indicators, agriculture, industrial development, infrastructure, welfare schemes and budget of Rajasthan.' },
+  { id: 'sub_ras_sci_tech', name: 'Science & Technology', order: 11, description: 'Nanotechnology, biotechnology, space, defence, electronics, IT, and environmental science.' },
+  { id: 'sub_ras_reasoning', name: 'Reasoning & Mental Ability', order: 12, description: 'Logical reasoning, analytical reasoning, basic numeracy, data analysis and probability.' },
+  { id: 'sub_ras_current_affairs', name: 'Current Affairs', order: 13, description: 'https://vishalsinghshekhawat18-glitch.github.io/October/reader.html?book=current-affairs', bookSlug: 'current-affairs' },
+  { id: 'sub_ras_sociology_mgt', name: 'Sociology, Management & Accounting', order: 14, description: 'Social issues, management principles, financial auditing, corporate governance and accounting techniques.' },
+  { id: 'sub_ras_ethics', name: 'Administrative Ethics & Behaviour', order: 15, description: 'Ethics in public administration, moral values, integrity, attitude, emotional intelligence and stress management.' },
+  { id: 'sub_ras_pub_admin_law', name: 'Public Administration & Law', order: 16, description: 'Administrative theories, district administration, citizen charters, RTI, consumer protection, cyber laws and legal concepts.' },
+  { id: 'sub_ras_sports_yoga', name: 'Sports & Yoga', order: 17, description: 'Yoga philosophy, traditional games, sports policies, major sporting events and personality development.' },
+  { id: 'sub_ras_hindi_english', name: 'General Hindi & English', order: 18, description: 'Grammar, vocabulary, translation, comprehension, precis writing, letter drafting and elaboration.' },
+];
+
 export interface ParsedOctoberUnit {
   order: number;
   name: string;
@@ -229,6 +344,25 @@ export function extractTopicGroup(topic: Topic): TopicGroupInfo | null {
     }
     if (topic.notes.includes('#apr-') || topic.notes.includes('april')) {
       return { groupKey: 'Apr 2026', groupTitle: 'April 2026', displayName: topic.name };
+    }
+    if (topic.notes.includes('book=ras-rajasthan-history')) {
+      const rNum = topic.notes.match(/#r(\d+)/i);
+      if (rNum) {
+        const n = parseInt(rNum[1], 10);
+        if (n <= 4) return { groupKey: 'Foundations', groupTitle: 'Foundations', displayName: topic.name };
+        if (n <= 14) return { groupKey: 'Dynasties', groupTitle: 'Dynasties (to the 18th century)', displayName: topic.name };
+        return { groupKey: 'Modern Rajasthan', groupTitle: 'Modern Rajasthan', displayName: topic.name };
+      }
+    }
+    if (topic.notes.includes('book=ras-indian-history')) {
+      const iNum = topic.notes.match(/#i(\d+)/i);
+      if (iNum) {
+        const n = parseInt(iNum[1], 10);
+        if (n <= 14) return { groupKey: 'Ancient India', groupTitle: 'Ancient India', displayName: topic.name };
+        if (n <= 25) return { groupKey: 'Medieval India', groupTitle: 'Medieval India', displayName: topic.name };
+        if (n <= 42) return { groupKey: 'Modern India', groupTitle: 'Modern India (to 1947)', displayName: topic.name };
+        return { groupKey: 'Independent India', groupTitle: 'Independent India (to 2000)', displayName: topic.name };
+      }
     }
   }
 
@@ -320,8 +454,11 @@ export function parseOctoberHtml(html: string, slug: string, baseReaderUrl: stri
         const directUrl = `${cleanBase}#${sId}`;
 
         const countAttrMatch = h2Match[0].match(/data-count="([^"]+)"/i);
-        let totalCards: number | undefined;
-        let cardLabel = 'cards';
+        const isRas = slug.startsWith('ras-') || slug.includes('history');
+        const unitName = isRas ? `[${partToc}] ${sToc}` : `[${partShort}] Section ${sOrder}: ${cleanTitle}`;
+
+        let totalCards: number | undefined = isRas ? 1 : undefined;
+        let cardLabel = isRas ? 'units' : 'cards';
         if (countAttrMatch) {
           const countStr = countAttrMatch[1];
           const numMatch = countStr.match(/(\d+)/);
@@ -341,7 +478,7 @@ export function parseOctoberHtml(html: string, slug: string, baseReaderUrl: stri
 
         units.push({
           order: units.length + 1,
-          name: `[${partShort}] Section ${sOrder}: ${cleanTitle}`,
+          name: unitName,
           part: partToc,
           anchorId: sId,
           notes: directUrl,
@@ -395,6 +532,18 @@ export async function fetchOctoberBookUnits(slug: string, baseReaderUrl: string)
 
   // Pre-bundled fallback
   const cleanBase = baseReaderUrl.split('#')[0];
+  if (slug === 'ras-rajasthan-history') {
+    return OCTOBER_RAJASTHAN_HISTORY_UNITS.map((u) => ({
+      ...u,
+      notes: `${cleanBase}#${u.anchorId}`,
+    }));
+  }
+  if (slug === 'ras-indian-history') {
+    return OCTOBER_INDIAN_HISTORY_UNITS.map((u) => ({
+      ...u,
+      notes: `${cleanBase}#${u.anchorId}`,
+    }));
+  }
   if (slug === 'current-affairs') {
     return OCTOBER_CURRENT_AFFAIRS_SECTIONS.map((s, idx) => {
       const isStatic = s.part.includes('Static');
@@ -430,6 +579,8 @@ export function detectOctoberBookSlug(urlOrText?: string, subjectName?: string):
     const match = urlOrText.match(/[?&]book=([a-zA-Z0-9_-]+)/i);
     if (match) return match[1].toLowerCase();
     const low = urlOrText.toLowerCase();
+    if (low.includes('ras-rajasthan-history') || low.includes('rajasthan-history')) return 'ras-rajasthan-history';
+    if (low.includes('ras-indian-history') || low.includes('indian-history')) return 'ras-indian-history';
     if (low.includes('current-affairs') || low.includes('current_affairs') || low.includes('currentaffairs')) {
       return 'current-affairs';
     }
@@ -437,6 +588,8 @@ export function detectOctoberBookSlug(urlOrText?: string, subjectName?: string):
   }
   if (subjectName) {
     const s = subjectName.toLowerCase();
+    if (s.includes('rajasthan history') || s === 'rajasthan history') return 'ras-rajasthan-history';
+    if (s.includes('indian history') || s === 'indian history') return 'ras-indian-history';
     if (s.includes('current affair') || s.includes('general awareness') || s.includes('ga') || s.includes('current')) {
       return 'current-affairs';
     }
@@ -472,6 +625,28 @@ export function getOctoberSubjectMeta(subject: Subject, allTopics: Topic[] = [])
   }
 
   const subjectTopics = allTopics.filter((t) => t.subjectId === subject.id && !t.archived);
+
+  if (slug === 'ras-rajasthan-history') {
+    return {
+      isOctoberSubject: true,
+      bookSlug: 'ras-rajasthan-history',
+      bookTitle: 'Rajasthan History',
+      expectedUnitsCount: 22,
+      unitLabel: 'Units',
+      hasMismatchedTopics: false,
+    };
+  }
+
+  if (slug === 'ras-indian-history') {
+    return {
+      isOctoberSubject: true,
+      bookSlug: 'ras-indian-history',
+      bookTitle: 'Indian History',
+      expectedUnitsCount: 46,
+      unitLabel: 'Units',
+      hasMismatchedTopics: false,
+    };
+  }
 
   if (slug === 'current-affairs') {
     const hasEconomicsMismatched = subjectTopics.some(
@@ -529,9 +704,18 @@ export async function importOctoberSubjectChapters(
 
   // 1. Fetch live or fallback parsed units (supports Static Bank, Jan-Mar, and any future parts)
   const units = await fetchOctoberBookUnits(slug, baseReaderUrl);
-  const isSection = slug === 'current-affairs';
-  const unitLabel = isSection ? 'Sections' : 'Chapters';
-  const bookTitle = isSection ? 'Current Affairs' : 'Economics';
+  let unitLabel = 'Chapters';
+  let bookTitle = 'Economics';
+  if (slug === 'current-affairs') {
+    unitLabel = 'Sections';
+    bookTitle = 'Current Affairs';
+  } else if (slug === 'ras-rajasthan-history') {
+    unitLabel = 'Units';
+    bookTitle = 'Rajasthan History';
+  } else if (slug === 'ras-indian-history') {
+    unitLabel = 'Units';
+    bookTitle = 'Indian History';
+  }
 
   // 2. Clean up any mismatched Economics chapters accidentally in Current Affairs
   if (slug === 'current-affairs') {
@@ -1176,4 +1360,128 @@ export async function updateTopicTotalCards(
   topic.cardLabel = cardLabel || topic.cardLabel || 'cards';
   await dbService.put<Topic>('topics', topic);
   return topic;
+}
+
+/**
+ * Seeds RPSC RAS commitment, all 18 master subjects from October Library,
+ * and pre-populates Rajasthan History (22 units) and Indian History (46 units).
+ */
+export async function seedRasMasterSyllabus(db: typeof dbService = dbService): Promise<void> {
+  // 1. Ensure commitment exists
+  const existingComms = await db.getAll<Commitment>('commitments');
+  const rasComm = existingComms.find((c) => c.id === 'comm_rpsc_ras');
+  if (!rasComm) {
+    const defaultRas: Commitment = {
+      id: 'comm_rpsc_ras',
+      name: 'RPSC RAS / RTS (Rajasthan Administrative Services)',
+      code: 'RPSC-RAS',
+      type: 'competitive',
+      priority: 2,
+      targetDate: '2027-02-15',
+      dateStatus: 'unverified',
+      dateSourceUrl: 'https://rpsc.rajasthan.gov.in',
+      dateVerificationDate: '2026-11-01',
+      description: 'Rajasthan State and Subordinate Services Combined Competitive Examination covering 18 specialized subjects across Prelims and Mains.',
+      officialNotificationUrl: 'https://rpsc.rajasthan.gov.in',
+      eligibilityNotes: 'Age limit 21 to 40 years as of official notification cutoff date. Candidate DOB: 31 October 1996. Exam conducted by Rajasthan Public Service Commission (RPSC).',
+      createdAt: new Date().toISOString(),
+    };
+    await db.put<Commitment>('commitments', defaultRas);
+  }
+
+  // 2. Ensure all 18 subjects exist and are linked to comm_rpsc_ras
+  const existingSubs = await db.getAll<Subject>('subjects');
+  for (const rasSub of RAS_MASTER_SUBJECTS) {
+    const existing = existingSubs.find(
+      (s) => s.id === rasSub.id || s.name.toLowerCase() === rasSub.name.toLowerCase()
+    );
+    if (existing) {
+      if (!existing.examIds.includes('comm_rpsc_ras')) {
+        existing.examIds.push('comm_rpsc_ras');
+        await db.put<Subject>('subjects', existing);
+      }
+    } else {
+      const newSub: Subject = {
+        id: rasSub.id,
+        name: rasSub.name,
+        examIds: ['comm_rpsc_ras'],
+        order: rasSub.order,
+        description: rasSub.description || '',
+      };
+      await db.put<Subject>('subjects', newSub);
+    }
+  }
+
+  // 3. Ensure Rajasthan History has all 22 units
+  const refreshedSubs = await db.getAll<Subject>('subjects');
+  const rajSub = refreshedSubs.find(
+    (s) => s.name === 'Rajasthan History' || s.id === 'sub_ras_raj_hist'
+  );
+  if (rajSub) {
+    const allTopics = await db.getAll<Topic>('topics');
+    const existingRajTopics = allTopics.filter((t) => t.subjectId === rajSub.id);
+    if (existingRajTopics.length === 0) {
+      const topicsToInsert: Topic[] = OCTOBER_RAJASTHAN_HISTORY_UNITS.map((u) => ({
+        id: `top_oct_ras_raj_${u.order}_${u.anchorId}`,
+        subjectId: rajSub.id,
+        name: u.name,
+        order: u.order,
+        notes: u.notes,
+        archived: false,
+        totalCards: 1,
+        cardLabel: 'units',
+      }));
+      await db.putMany<Topic>('topics', topicsToInsert);
+
+      // Initialize TopicProgress for newly inserted units
+      const progressToInsert: TopicProgress[] = topicsToInsert.map((t) => ({
+        id: `comm_rpsc_ras_${t.id}`,
+        examId: 'comm_rpsc_ras',
+        topicId: t.id,
+        learningStatus: 'not_started',
+        practiceStatus: 'not_started',
+        revisionStatus: 'not_started',
+        manualCompletionPercentage: 0,
+        completedCards: 0,
+        updatedAt: new Date().toISOString(),
+      }));
+      await db.putMany<TopicProgress>('topicProgress', progressToInsert);
+    }
+  }
+
+  // 4. Ensure Indian History has all 46 units
+  const indSub = refreshedSubs.find(
+    (s) => s.name === 'Indian History' || s.id === 'sub_ras_ind_hist'
+  );
+  if (indSub) {
+    const allTopics = await db.getAll<Topic>('topics');
+    const existingIndTopics = allTopics.filter((t) => t.subjectId === indSub.id);
+    if (existingIndTopics.length === 0) {
+      const topicsToInsert: Topic[] = OCTOBER_INDIAN_HISTORY_UNITS.map((u) => ({
+        id: `top_oct_ras_ind_${u.order}_${u.anchorId}`,
+        subjectId: indSub.id,
+        name: u.name,
+        order: u.order,
+        notes: u.notes,
+        archived: false,
+        totalCards: 1,
+        cardLabel: 'units',
+      }));
+      await db.putMany<Topic>('topics', topicsToInsert);
+
+      // Initialize TopicProgress for newly inserted units
+      const progressToInsert: TopicProgress[] = topicsToInsert.map((t) => ({
+        id: `comm_rpsc_ras_${t.id}`,
+        examId: 'comm_rpsc_ras',
+        topicId: t.id,
+        learningStatus: 'not_started',
+        practiceStatus: 'not_started',
+        revisionStatus: 'not_started',
+        manualCompletionPercentage: 0,
+        completedCards: 0,
+        updatedAt: new Date().toISOString(),
+      }));
+      await db.putMany<TopicProgress>('topicProgress', progressToInsert);
+    }
+  }
 }

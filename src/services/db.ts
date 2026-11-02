@@ -57,11 +57,26 @@ export const INITIAL_COMMITMENTS: Commitment[] = [
     createdAt: new Date().toISOString(),
   },
   {
+    id: 'comm_rpsc_ras',
+    name: 'RPSC RAS / RTS (Rajasthan Administrative Services)',
+    code: 'RPSC-RAS',
+    type: 'competitive',
+    priority: 2,
+    targetDate: '2027-02-15',
+    dateStatus: 'unverified',
+    dateSourceUrl: 'https://rpsc.rajasthan.gov.in',
+    dateVerificationDate: '2026-11-01',
+    description: 'Rajasthan State and Subordinate Services Combined Competitive Examination covering 18 specialized subjects across Prelims and Mains.',
+    officialNotificationUrl: 'https://rpsc.rajasthan.gov.in',
+    eligibilityNotes: 'Age limit 21 to 40 years as of official notification cutoff date. Candidate DOB: 31 October 1996. Exam conducted by Rajasthan Public Service Commission (RPSC).',
+    createdAt: new Date().toISOString(),
+  },
+  {
     id: 'comm_upsc_apfc',
     name: 'UPSC APFC (Assistant Provident Fund Commissioner)',
     code: 'UPSC-APFC',
     type: 'competitive',
-    priority: 2,
+    priority: 3,
     dateStatus: 'unverified',
     dateSourceUrl: 'https://upsc.gov.in',
     dateVerificationDate: '2026-10-27',
@@ -75,7 +90,7 @@ export const INITIAL_COMMITMENTS: Commitment[] = [
     name: 'Masters in Economics — VMOU Kota',
     code: 'VMOU-MA-ECO',
     type: 'university',
-    priority: 3,
+    priority: 4,
     dateStatus: 'unverified',
     dateSourceUrl: 'https://www.vmou.ac.in',
     dateVerificationDate: '2026-10-27',
@@ -268,6 +283,16 @@ class IndexedDBStorage {
         } else {
           // Permanently ensure comm_iibf_dbf is deleted
           commStore.delete('comm_iibf_dbf');
+
+          // Ensure all initial commitments (such as comm_rpsc_ras) exist in DB
+          for (const c of INITIAL_COMMITMENTS) {
+            const getCReq = commStore.get(c.id);
+            getCReq.onsuccess = () => {
+              if (!getCReq.result) {
+                commStore.put(c);
+              }
+            };
+          }
 
           // Auto-patch outdated provisional date to confirmed 2026-11-20
           const getRrbReq = commStore.get('comm_ibps_rrb_po');
