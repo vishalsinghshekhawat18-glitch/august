@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Vijayanagara dynasties; Krishnadevaraya; Talikota; nayankara and ayagar systems; Bahmani kingdom; Mahmud Gawan; Deccan Sultanates; foreign travellers'],
     mains: ['GS-I: Vijayanagara administration and culture; Bahmani kingdom'],
-    weight: 'Krishnadevaraya, the nayankara system and foreign travellers\' accounts are frequent; Hampi links to art and culture.',
+    weight: 'Tier C. Krishnadevaraya, the nayankara system and foreign travellers\' accounts are frequent; Hampi links to art and culture.',
   },
 
   bigPicture: `
@@ -16,7 +16,14 @@ Hasan Bahman Shah. They fought for two centuries over the fertile <b>Raichur doa
 Tungabhadra). The Bahmani kingdom split into five <b>Deccan Sultanates</b>, which combined to defeat Vijayanagara at
 <b>Talikota (1565)</b>.</p>
 <div class="box why"><p>Vijayanagara is studied for its administration (nayankara), its capital Hampi (UNESCO) and
-the accounts of foreign visitors.</p></div>`,
+the accounts of foreign visitors.</p></div>
+<div class="box concept"><p><b>Why the Raichur doab was fought over.</b> The land between the Krishna and the
+Tungabhadra was fertile, river-fed and rich in revenue, and it lay on the routes linking the Deccan plateau to the
+western ports. Both states depended on <b>imported horses</b> for their cavalry and on trade revenue, so whoever held
+the doab and the coast was stronger. The rivalry was therefore about land, revenue and trade more than religion:
+alliances regularly crossed religious lines, Vijayanagara employed Muslim soldiers, and Rama Raya played one Sultanate
+against another until they combined against him.</p></div>
+`,
 
   timeline: [
     ['1336', 'Harihara I and Bukka found Vijayanagara (Sangama dynasty)'],
@@ -106,12 +113,14 @@ state.</li>
 </ul>` },
 
     { title: 'The battle of Talikota (1565)', html: `
-<ul>
-<li>Also called <b>Rakshasa-Tangadi</b> or Bannihatti.</li>
-<li><b>Cause:</b> Rama Raya's interference in Sultanate rivalries; Bijapur, Ahmadnagar, Golconda and Bidar united
-(Berar stayed out).</li>
-<li><b>Result:</b> Rama Raya killed; Hampi sacked for months; the empire survived under the Aravidus but declined.</li>
-</ul>` },
+<p>The battle is also called <b>Rakshasa-Tangadi</b> or Bannihatti. Under <b>Rama Raya</b>, the regent of Sadashiva
+Raya, Vijayanagara intervened in the quarrels of the Deccan Sultanates, allying first with one and then another. This
+drove four of them, <b>Bijapur, Ahmadnagar, Golconda and Bidar</b>, to unite (Berar stayed out). In 1565 Rama Raya was
+captured and killed, his army broke, and <b>Hampi was sacked</b> for months and abandoned.</p>
+<p>The empire did not end at once: the Aravidu dynasty ruled from Penukonda and Chandragiri, but its authority
+shrank, and the <b>nayakas</b> of Madurai, Thanjavur and Ikkeri became independent. The victors soon fell out among
+themselves, and in the next century the Deccan Sultanates in turn were absorbed by the Mughals (1636–1687).</p>
+` },
 
     { title: 'Foreign travellers', html: `
 <div class="tbl"><table>
@@ -123,7 +132,16 @@ state.</li>
 <tr><td>Duarte Barbosa</td><td>Portugal</td><td>Krishnadevaraya</td></tr>
 <tr><td>Domingo Paes</td><td>Portugal</td><td>Krishnadevaraya (c. 1520)</td></tr>
 <tr><td>Fernão Nunes (Nuniz)</td><td>Portugal</td><td>Achyuta Raya (c. 1535)</td></tr>
-</table></div>` },
+</table></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the Sultanate's southern campaigns and Muhammad bin Tughluq's loss of the south (I17).</li>
+<li><b>Alongside:</b> bhakti movements in the south and Deccan (I20).</li>
+<li><b>After:</b> Mughal conquest of the Deccan Sultanates under Shah Jahan and Aurangzeb (I22); the Marathas (I24).</li>
+<li><b>Architecture:</b> Hampi, Gol Gumbaz and Charminar (I48).</li>
+<li><b>Rajasthan:</b> Krishnadevaraya was a contemporary of Rana Sanga of Mewar (R08).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -216,6 +234,10 @@ Muslim soldiers in its army, alliances across religious lines, the title "Hindu-
     { q: 'Name the five Deccan Sultanates.', a: 'Bijapur, Ahmadnagar, Golconda, Berar, Bidar.' },
     { q: 'When was Talikota fought?', a: '1565.' },
     { q: 'Which Persian envoy visited Deva Raya II?', a: 'Abdur Razzaq (1443).' },
+    { q: 'Why did Vijayanagara and the Bahmanis fight over the Raichur doab?', a: 'Its fertile land, revenue and routes to the western ports and horse trade.' },
+    { q: 'Why did the Deccan Sultanates unite against Vijayanagara in 1565?', a: 'Rama Raya\'s interference in their rivalries made him a common threat.' },
+    { q: 'How did the nayaka system later weaken Vijayanagara?', a: 'Nayakas holding territory with their own troops became independent after Talikota.' },
+    { q: 'Why were horses so important to Vijayanagara?', a: 'Its cavalry depended on horses imported from Arabia and Persia through western ports.' },
   ],
 
   glossary: [
@@ -229,7 +251,7 @@ Muslim soldiers in its army, alliances across religious lines, the title "Hindu-
   sources: [
     'Burton Stein, <i>Vijayanagara</i> (New Cambridge History of India).',
     'Satish Chandra, <i>Medieval India</i>, vol. I, ch. 9.',
-    'NCERT Class 12, <i>Themes in Indian History II</i>, ch. 7 ("An Imperial Capital: Vijayanagara").',
+    'NCERT Class 12, <i>Themes in Indian History II</i>, ch. 7 ("An Imperial Capital: Vijayanagara"). — standard text for this rewrite',
     'Richard Eaton, <i>A Social History of the Deccan</i>.',
   ],
 };
