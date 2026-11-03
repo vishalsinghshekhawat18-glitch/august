@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Central and provincial administration; iqta; Alauddin\'s market and revenue reforms; Sultanate architecture and literature'],
     mains: ['GS-I: Sultanate administration, economy, society and culture'],
-    weight: 'Alauddin\'s market control and the iqta system are frequent Mains questions; ministries and architecture are Prelims material.',
+    weight: 'Tier C. Alauddin\'s market control and the iqta system are frequent Mains questions; ministries and architecture are Prelims material.',
   },
 
   bigPicture: `
@@ -45,42 +45,36 @@ Alauddin's reforms (army → revenue → prices).</p></div>`,
 under headmen (<b>muqaddam</b>, <b>chaudhari</b>) and accountants (<b>patwari</b>).</p>` },
 
     { title: 'The iqta system', html: `
-<ul>
-<li>An <b>iqta</b> was a revenue assignment (not land ownership) given to an officer in return for military service
-and administration.</li>
-<li><b>Iltutmish</b> organised it as a means to centralise power, pay troops and integrate distant regions.</li>
-<li><b>Balban</b> and <b>Alauddin</b> tightened audit; Alauddin paid many soldiers in cash and transferred muqtis.</li>
-<li><b>Muhammad bin Tughluq</b> separated revenue collection from military command in some areas.</li>
-<li><b>Firoz Shah</b> made iqtas <b>hereditary</b> — weakening central control.</li>
-<li>The iqta was the ancestor of the Mughal jagir.</li>
-</ul>` },
+<div class="box concept"><p><b>The iqta.</b> An <b>iqta</b> was a <b>revenue assignment</b>, not ownership of land:
+an officer (the <b>muqti</b>) was given the right to collect revenue from a territory, and in return he maintained
+troops for the Sultan and kept order there. It solved a basic problem of the early Sultanate: how to pay a large army
+and control distant regions without a cash-rich treasury. <b>Iltutmish</b> organised it to centralise power and tie
+conquered areas to Delhi. Because a muqti could grow too strong, later Sultans checked it: <b>Balban</b> and
+<b>Alauddin</b> audited accounts, transferred muqtis and paid many soldiers in cash, and <b>Muhammad bin Tughluq</b>
+separated revenue collection from military command in some areas. <b>Firoz Shah</b> reversed the trend by making iqtas
+<b>hereditary</b>, which weakened central control. The iqta was the ancestor of the Mughal jagir (I23).</p></div>
+` },
 
     { title: 'Alauddin Khalji\'s reforms', html: `
-<p><b>Why?</b> To maintain a large standing army against the Mongols and for conquest, without bankrupting the
-treasury; and to curb the nobles and rural chiefs.</p>
-<h4>Revenue reforms</h4>
-<ul>
-<li>Land measured (<b>masahat</b>, by biswa); revenue fixed at <b>half the produce</b> in the doab.</li>
-<li>Privileges of the <b>khuts, muqaddams and chaudharis</b> (rural intermediaries) curbed; they paid the same taxes.</li>
-<li>House tax (ghari) and grazing tax (charai).</li>
-<li>Diwan-i-Mustakhraj for arrears.</li>
-</ul>
-<h4>Market reforms (Barani)</h4>
-<ul>
-<li>Fixed prices for grain, cloth, horses, cattle and slaves; separate markets (mandi for grain, Sarai-i-Adl for
-cloth and luxuries).</li>
-<li>Officials: <b>Shahna-i-Mandi</b> (market superintendent), Diwan-i-Riyasat, spies (munhiyans, barids).</li>
-<li>State granaries; revenue in kind in the doab; merchants registered; harsh punishment for short-weighting.</li>
-<li>Rationing during scarcity.</li>
-</ul>
-<h4>Army</h4>
-<ul>
-<li>Standing army paid in cash; <b>dagh</b> (branding of horses) and <b>chehra</b> (descriptive roll of soldiers).</li>
-</ul>
+<p>Alauddin's reforms followed one logic. He needed a large <b>standing army</b> to fight the Mongols and conquer new
+lands, and to curb nobles and rural chiefs. Paying such an army in cash was ruinous unless soldiers could live on
+modest salaries; so he raised revenue and held prices down.</p>
+<p><b>Revenue:</b> land was measured (<b>masahat</b>, by the biswa) and revenue fixed at <b>half the produce</b> in
+the doab. The privileges of rural intermediaries, the <b>khuts, muqaddams and chaudharis</b>, were cut, so that they
+paid the same taxes as others. New taxes fell on houses (ghari) and grazing (charai), and a Diwan-i-Mustakhraj
+recovered arrears.</p>
+<p><b>Markets</b> (described by Barani): prices were fixed for grain, cloth, horses, cattle and slaves, with separate
+markets (the mandi for grain, the Sarai-i-Adl for cloth and luxuries). The <b>Shahna-i-Mandi</b> (market
+superintendent), the Diwan-i-Riyasat and spies (munhiyans, barids) enforced them. Revenue in kind from the doab filled
+state granaries, merchants were registered, short-weighting was harshly punished, and grain was rationed during
+scarcity.</p>
+<p><b>Army:</b> soldiers were paid in cash, and fraud was stopped by <b>dagh</b> (branding horses) and <b>chehra</b>
+(a descriptive roll of each soldier).</p>
 <div class="box debate"><p>Did market control apply to the whole empire or only Delhi? Most historians (following Barani)
 see it as confined to Delhi and its vicinity. Barani praises its efficiency but his account is idealised; the
 system ended with Alauddin's death. Irfan Habib sees the revenue reforms as a turning point in extracting surplus from
-the countryside.</p></div>` },
+the countryside.</p></div>
+` },
 
     { title: 'Economy and society', html: `
 <ul>
@@ -109,7 +103,15 @@ intermediaries; peasants and artisans; slavery widespread.</li>
 <p><b>Literature:</b> <b>Amir Khusrau</b> ("Tuti-i-Hind", parrot of India) — Persian poetry, Hindavi verse, credited
 with qawwali and (by tradition) the sitar; works <i>Khazain-ul-Futuh</i>, <i>Nuh Sipihr</i>, <i>Qiran-us-Sadain</i>.
 Historians Minhaj, Barani, Isami (<i>Futuh-us-Salatin</i>), Afif. Sanskrit works translated into Persian under Firoz.
-Growth of regional languages and early Urdu/Hindavi.</p>` },
+Growth of regional languages and early Urdu/Hindavi.</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Political history:</b> the rulers behind these institutions (I17).</li>
+<li><b>After:</b> the Mughal mansab, jagir and zabt systems that grew from these (I23).</li>
+<li><b>Culture:</b> Sufis and Amir Khusrau (I20); Sultanate architecture (I48).</li>
+<li><b>Rajasthan:</b> Adhai Din ka Jhonpra at Ajmer; Rajput chiefs and the Sultanate (R13).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -186,6 +188,10 @@ monarchy with Islamic legitimacy, not a theocracy.</p></div>`,
     { q: 'Which building has India\'s first true dome?', a: 'Alai Darwaza.' },
     { q: 'Who was called Tuti-i-Hind?', a: 'Amir Khusrau.' },
     { q: 'Which department did Muhammad bin Tughluq set up for agriculture?', a: 'Diwan-i-Kohi.' },
+    { q: 'Why did Alauddin control prices?', a: 'To keep soldiers\' cash salaries low enough to maintain a large standing army.' },
+    { q: 'How did the iqta help the early Sultanate?', a: 'It paid troops and tied distant regions to Delhi without needing a large cash treasury.' },
+    { q: 'Why did Firoz Shah\'s hereditary iqtas weaken the Sultanate?', a: 'Muqtis became entrenched and the Sultan lost control over them.' },
+    { q: 'What does the "circle of justice" say?', a: 'The king needs soldiers, soldiers need pay from peasants\' revenue, and peasants pay only when the king is just.' },
   ],
 
   glossary: [
@@ -201,6 +207,6 @@ monarchy with Islamic legitimacy, not a theocracy.</p></div>`,
     'Satish Chandra, <i>Medieval India</i>, vol. I, chs. 4–6.',
     'Irfan Habib, "Economic History of the Delhi Sultanate", in <i>Cambridge Economic History of India</i>, vol. I.',
     'Percy Brown, <i>Indian Architecture (Islamic Period)</i>.',
-    'NCERT Class 7, <i>Our Pasts II</i>.',
+    'NCERT Class 7, <i>Our Pasts II</i>. — standard text for this rewrite',
   ],
 };
