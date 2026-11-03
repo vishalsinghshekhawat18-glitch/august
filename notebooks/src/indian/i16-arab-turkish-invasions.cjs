@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Arab conquest of Sindh; Mahmud of Ghazni; Muhammad Ghori; battles of Tarain'],
     mains: ['GS-I: Turkish invasions — causes of Rajput defeat'],
-    weight: '"Why were the Rajputs defeated by the Turks?" is a classic Mains question; dates and battles (712, 1025, 1191, 1192, 1194) are Prelims staples.',
+    weight: 'Tier C. "Why were the Rajputs defeated by the Turks?" is a classic Mains question; dates and battles (712, 1025, 1191, 1192, 1194) are Prelims staples.',
   },
 
   bigPicture: `
@@ -35,41 +35,40 @@ sides — avoid simplistic "Rajput disunity" alone.</p></div>`,
 
   sections: [
     { title: 'The Arab conquest of Sindh', html: `
-<ul>
-<li><b>Cause:</b> pirates near Debal seized Arab ships; Hajjaj, governor of Iraq, sent <b>Muhammad bin Qasim</b>.</li>
-<li>712: Raja <b>Dahir</b> killed; Sindh and Multan conquered.</li>
-<li>Source: <b>Chachnama</b> (Persian translation, 13th c.).</li>
-<li>Non-Muslims treated as <i>dhimmis</i> on payment of jizya.</li>
-<li>Further Arab expansion was checked by the Pratiharas (Nagabhata I) and Chalukyas (Pulakeshi of Navsari).</li>
-<li><b>Effects:</b> limited politically; important culturally — Indian astronomy, mathematics (numerals), medicine and
-the Panchatantra reached Baghdad.</li>
-</ul>` },
+<p>Arab traders had long visited India's western coast. Conquest came in 712, when pirates near Debal seized Arab ships
+and Hajjaj, the governor of Iraq, sent <b>Muhammad bin Qasim</b> against Sindh. Raja <b>Dahir</b> was killed, and
+Sindh and Multan were conquered. Our main source is the <b>Chachnama</b>, a 13th-century Persian translation of an
+earlier account. Non-Muslims were treated as <i>dhimmis</i> (protected subjects) on payment of jizya.</p>
+<p>Further Arab expansion was checked by the Gurjara-Pratiharas under Nagabhata I and by the Chalukyas (Pulakeshi of
+Navsari). Politically the conquest stayed limited to Sindh, but culturally it mattered: Indian astronomy, mathematics
+(the numerals), medicine and the <i>Panchatantra</i> reached Baghdad and from there the wider world.</p>
+` },
 
     { title: 'Mahmud of Ghazni', html: `
-<ul>
-<li>Son of Sabuktigin; 17 raids between 1000 and 1027.</li>
-<li>Defeated the <b>Hindushahis</b> (Jayapala, Anandapala — battle of Waihind, 1008); raided Nagarkot, Thanesar,
-Mathura, Kannauj (1018), Kalinjar, and <b>Somnath</b> (1025, against the Chaulukya Bhima I).</li>
-<li><b>Aims:</b> plunder of temple wealth to finance Central Asian wars; prestige as a champion of Islam; annexed only
-Punjab.</li>
-<li>His court included <b>Al-Biruni</b> (<i>Kitab-ul-Hind</i>) and <b>Firdausi</b> (<i>Shahnama</i>); historian Utbi
-(<i>Tarikh-i-Yamini</i>).</li>
-</ul>` },
+<p><b>Mahmud</b>, son of Sabuktigin, raided India seventeen times between 1000 and 1027. He first broke the
+<b>Hindushahis</b>, who guarded the north-west (Jayapala at Peshawar, 1001; Anandapala at Waihind, 1008), and then
+raided Nagarkot, Thanesar, Mathura, Kannauj (1018), Kalinjar and <b>Somnath</b> (1025, against the Chaulukya Bhima I).
+His court included the scholar <b>Al-Biruni</b> (<i>Kitab-ul-Hind</i>), the poet <b>Firdausi</b> (<i>Shahnama</i>) and
+the historian Utbi (<i>Tarikh-i-Yamini</i>).</p>
+<div class="box concept"><p><b>Raid or conquest?</b> Mahmud and Ghori are often lumped together, but their aims were
+different. Mahmud wanted <b>wealth and prestige</b>: temple treasures paid for his wars in Central Asia and made him a
+hero of Islam at home, and he annexed only Punjab. Ghori, a century and a half later, wanted <b>permanent rule</b>:
+he defeated the major Rajput kings, occupied their capitals and left a slave commander, Qutbuddin Aibak, to govern.
+Mahmud's raids weakened north India and removed the Hindushahi buffer; Ghori's campaigns founded the Delhi
+Sultanate.</p></div>
+` },
 
     { title: 'Muhammad Ghori', html: `
-<ul>
-<li>Shihabuddin (Muizzuddin) of the Ghurid dynasty; aimed at permanent conquest.</li>
-<li>Took Multan (1175); defeated by the Chaulukyas near Mount Abu (Kasahrada, 1178 — under the boy-king Mularaja II and his mother, queen Naikidevi); took Punjab from the last
-Ghaznavids (Lahore, 1186).</li>
-<li><b>Tarain I (1191):</b> Prithviraj III won; Ghori wounded.</li>
-<li><b>Tarain II (1192):</b> Ghori won with mounted archers, feigned retreat and reserves; Prithviraj killed. Ajmer
-and Delhi occupied (R06).</li>
-<li><b>Chandawar (1194):</b> Jaichand Gahadavala defeated.</li>
-<li><b>Bakhtiyar Khalji</b>, a commander, overran Bihar (Nalanda, Vikramashila) and Bengal (Nadia, Lakshmana Sena),
-c. 1200–1204.</li>
-<li>Ghori was killed in 1206 (by Khokhars, per most accounts); his slave <b>Qutbuddin Aibak</b> became ruler in
-India.</li>
-</ul>` },
+<p><b>Muhammad Ghori</b> (Shihabuddin or Muizzuddin) of the Ghurid dynasty came to conquer. He took Multan (1175), but
+was defeated near Mount Abu at Kasahrada (1178) by the Chaulukyas under the boy-king Mularaja II and his mother,
+queen Naikidevi. He then turned to Punjab, taking Lahore from the last Ghaznavids (1186). At the <b>first battle of
+Tarain</b> (1191) Prithviraj III defeated and wounded him. At the <b>second battle of Tarain</b> (1192) Ghori won by
+using mounted archers, a feigned retreat and fresh reserves; Prithviraj was killed, and Ajmer and Delhi were
+occupied (R06). At <b>Chandawar</b> (1194) he defeated Jaichand Gahadavala of Kannauj.</p>
+<p>His commander <b>Bakhtiyar Khalji</b> overran Bihar, destroying Nalanda and Vikramashila, and Bengal (Nadia,
+Lakshmana Sena) around 1200–1204. Ghori was killed in 1206 (by Khokhars, according to most accounts), and his slave
+<b>Qutbuddin Aibak</b> became ruler in India.</p>
+` },
 
     { title: 'Why the Turks succeeded', html: `
 <ol>
@@ -84,7 +83,15 @@ troops.</li>
 </ol>
 <div class="box debate"><p>Older writers blamed Indian "moral decline" or "Hindu fatalism"; modern historians (Satish
 Chandra, Simon Digby) emphasise military technology — the horse and the mounted archer — and political
-fragmentation.</p></div>` },
+fragmentation.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the Rajput kingdoms and the tripartite struggle (I15).</li>
+<li><b>After:</b> the Delhi Sultanate (I17, I18).</li>
+<li><b>Sources:</b> Al-Biruni's Kitab-ul-Hind (I01).</li>
+<li><b>Rajasthan:</b> the Pratiharas against the Arabs (R05); Prithviraj Chauhan and Tarain (R06).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -154,6 +161,10 @@ general religious policy.</p>`,
     { q: 'Whom did Ghori defeat at Chandawar?', a: 'Jaichand Gahadavala (1194).' },
     { q: 'Who destroyed Nalanda?', a: 'Bakhtiyar Khalji.' },
     { q: 'Give two military reasons for Turkish success.', a: 'Mounted archers and fast cavalry; unified command; feigned retreat and reserves.' },
+    { q: 'How did Mahmud\'s aims differ from Ghori\'s?', a: 'Mahmud sought plunder and prestige; Ghori sought permanent conquest and rule.' },
+    { q: 'Why did the fall of the Hindushahis matter?', a: 'They had guarded the north-west passes; their fall opened north India to raids.' },
+    { q: 'Why was the Arab conquest of Sindh culturally important?', a: 'Indian numerals, astronomy, medicine and the Panchatantra reached Baghdad.' },
+    { q: 'Who defeated Ghori at Kasahrada in 1178?', a: 'The Chaulukyas under Mularaja II and queen Naikidevi.' },
   ],
 
   glossary: [
@@ -166,6 +177,6 @@ general religious policy.</p>`,
   sources: [
     'Satish Chandra, <i>Medieval India</i>, vol. I, chs. 1–2.',
     'Simon Digby, <i>War-horse and Elephant in the Delhi Sultanate</i>.',
-    'NCERT (old), Satish Chandra, <i>Medieval India</i>.',
+    'NCERT (old), Satish Chandra, <i>Medieval India</i>. — standard text for this rewrite',
   ],
 };
