@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Pre-Congress associations; foundation of the INC; Moderate leaders, methods and demands'],
     mains: ['GS-I: Rise of nationalism; foundation of the Congress (safety-valve debate); assessment of the Moderates'],
-    weight: 'The safety-valve theory and the assessment of the Moderates are classic Mains questions.',
+    weight: 'Tier C. The safety-valve theory and the assessment of the Moderates are classic Mains questions.',
   },
 
   bigPicture: `
@@ -36,16 +36,19 @@ education, economic critique, a national platform.</p></div>`,
 
   sections: [
     { title: 'Causes of the rise of nationalism', html: `
-<ol>
-<li>Colonial economic exploitation affected all classes.</li>
-<li>Political and administrative unification; railways, telegraph, post.</li>
-<li>Western education and ideas of liberty, democracy, nationalism.</li>
-<li>Press and literature (Amrita Bazar Patrika, The Hindu, Kesari, Bangadarshan).</li>
-<li>Rediscovery of India's past (Orientalist scholarship).</li>
-<li>Socio-religious reform movements.</li>
-<li>Racial arrogance (Ilbert Bill, 1883) and reactionary policies of <b>Lytton</b> (VPA, Arms Act 1878, lowering ICS age,
-Delhi Durbar 1877 during famine, removal of cotton import duties).</li>
-</ol>` },
+<p>Nationalism grew out of colonial rule itself. British <b>economic policy</b> hurt peasants, artisans and even the
+new Indian businessmen, so every class had a grievance against the same rulers. British rule also <b>unified</b> India
+as never before: one administration, one law, and railways, telegraph and post that let people and ideas move across
+the country. <b>Western education</b> gave a new middle class a common language, English, and the ideas of liberty,
+democracy and nationhood, which they turned against their rulers. The <b>press</b> (Amrita Bazar Patrika, The Hindu,
+Kesari, Bangadarshan) spread political discussion, while Orientalist scholarship and the <b>reform movements</b>
+restored pride in India's past.</p>
+<p>The trigger was British <b>racial arrogance</b> and reaction. Under <b>Lytton</b> (1876–80) came the Vernacular
+Press Act and Arms Act (1878), the lowering of the ICS age limit, the removal of cotton import duties and the lavish
+Delhi Durbar of 1877 held during a famine. The <b>Ilbert Bill</b> controversy (1883), when Europeans successfully
+agitated against Indian judges trying them, showed educated Indians that they would never be treated as equals and
+taught them the value of organised agitation.</p>
+` },
 
     { title: 'Pre-Congress associations', html: `
 <ul>
@@ -96,7 +99,15 @@ repeal of the Arms Act, expansion of education.</li>
 Councils Act (1892); a resolution in the House of Commons (1893) for simultaneous ICS exams; Welby Commission (1895).
 <b>Naoroji</b> became the first Indian member of the British House of Commons (1892, Finsbury Central).</p>
 <p><b>Limitations:</b> narrow social base (urban educated middle class); faith in British justice; no mass mobilisation;
-little immediate success; led to the rise of the Extremists.</p>` },
+little immediate success; led to the rise of the Extremists.</p>
+<div class="box concept"><p><b>Why the Moderates used petitions, not protest.</b> The Moderates were a small educated
+group facing a powerful state, at a time when the masses were not yet politically awake. Many sincerely believed that
+British rule had brought modern education, law and communications, and that the British people, once informed, would
+do justice to India. So they aimed first to <b>educate</b> both Indian and British opinion. Their great achievement
+was the <b>economic critique</b> of colonialism: Naoroji, Ranade, R.C. Dutt and Gokhale showed that British rule
+drained India's wealth, which destroyed the claim that it was for India's good. This laid the intellectual base on which
+the Extremists and Gandhi built mass movements.</p></div>
+` },
     { title: 'Reference: important Congress sessions, 1885–1948', html: `
 <div class="tbl"><table>
 <tr><th>Year</th><th>Place</th><th>President</th><th>Significance</th></tr>
@@ -127,7 +138,15 @@ little immediate success; led to the rise of the Extremists.</p>` },
 <tr><td>1946</td><td>Meerut</td><td><b>J.B. Kripalani</b></td><td>President at the time of independence</td></tr>
 <tr><td>1948</td><td>Jaipur</td><td><b>Pattabhi Sitaramayya</b></td><td>First session after independence</td></tr>
 </table></div>
-<p>Later units refer back to this table for the sessions of 1916–1948.</p>` },
+<p>Later units refer back to this table for the sessions of 1916–1948.</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Roots:</b> English education and the press (I30); the drain of wealth (I31); the reform movements (I35).</li>
+<li><b>Constitutional link:</b> the Indian Councils Act of 1892 (I29).</li>
+<li><b>After:</b> Swadeshi and the Extremists (I37); revolutionaries (I38); Gandhi (I39).</li>
+<li><b>Rajasthan:</b> early political awakening in the princely states (R19).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -213,6 +232,10 @@ Congress's roots in earlier associations.</p>`,
     { q: 'Who was the first Muslim INC president?', a: 'Badruddin Tyabji (1887).' },
     { q: 'Who was called the Grand Old Man of India?', a: 'Dadabhai Naoroji.' },
     { q: 'Who founded the Servants of India Society?', a: 'G.K. Gokhale (1905).' },
+    { q: 'Why did the Ilbert Bill controversy spur nationalism?', a: 'Europeans\' successful agitation against Indian judges showed racial inequality and the power of organised protest.' },
+    { q: 'How did British rule unintentionally help nationalism?', a: 'Administrative unification, railways, the press and English education linked Indians across regions.' },
+    { q: 'Why did the Moderates rely on constitutional methods?', a: 'A small educated group faced a strong state and believed informed British opinion would do justice.' },
+    { q: 'What was the Moderates\' greatest contribution?', a: 'The economic critique of colonialism, especially the drain theory.' },
   ],
 
   glossary: [
@@ -226,5 +249,6 @@ Congress's roots in earlier associations.</p>`,
     'Bipan Chandra et al., <i>India\'s Struggle for Independence</i>, chs. 5–7.',
     'Sekhar Bandyopadhyay, <i>From Plassey to Partition</i>, ch. 5.',
     'Spectrum, <i>A Brief History of Modern India</i>.',
+    'NCERT Class 8, <i>Our Pasts III</i>, "The Making of the National Movement: 1870s–1947" — standard text for this rewrite.',
   ],
 };
