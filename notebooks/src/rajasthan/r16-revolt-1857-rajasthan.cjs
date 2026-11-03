@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Revolt of 1857 in Rajasthan: centres, leaders, British officers'],
     mains: ['GS-I Part A: Freedom struggle and political awakening in Rajasthan; 1857'],
-    weight: 'Nasirabad, Erinpura–Auwa, Kota and Tatya Tope\'s campaign are standard. Prelims likes cantonment–date and officer–state matching. For the all-India revolt see unit I32 of the Indian History notebook.',
+    weight: 'Tier C. Nasirabad, Erinpura–Auwa, Kota and Tatya Tope\'s campaign are standard. Prelims likes cantonment–date and officer–state matching. For the all-India revolt see unit I32 of the Indian History notebook.',
   },
 
   bigPicture: `
@@ -51,7 +51,15 @@ protected by the British as against the British themselves. Auwa shows nobles' a
 <li>Soldiers' grievances and the all-India news (cartridges, Meerut, Delhi).</li>
 <li>Nobles' anger at British interference and at rulers who, backed by the British, cut their powers and privileges.</li>
 <li>Popular resentment of British interference in social customs and of the economic burden of tribute.</li>
-</ol>` },
+</ol>
+<div class="box concept"><p><b>Why 1857 took a different shape in Rajasthan.</b> In British India the revolt was
+directed against Company rule itself. Rajasthan was ruled by princes under British paramountcy, so the revolt had
+three layers. <b>Soldiers</b> in the cantonments rose, as elsewhere, and mostly marched off to Delhi. <b>Nobles</b>
+(thakurs) such as Kushal Singh of Auwa rose against both the British and their own ruler, because since the treaties
+of 1818 the British had backed the rulers in cutting the nobles' powers. And the <b>rulers</b>, who owed their
+security to the British, stayed loyal. That is why the revolt in Rajasthan was strong in places like Auwa and Kota but
+never had a princely leader.</p></div>
+` },
 
     { title: 'Nasirabad, Neemuch and Deoli', html: `
 <ul>
@@ -113,7 +121,15 @@ money to the rebels and was hanged (1858).</p>` },
 nobles who rebelled lost estates. But the memory of Auwa, Kota and Tatya Tope fed later folk songs and nationalism.</p>
 <div class="box debate"><p>Was it a "freedom struggle" in Rajasthan? Nationalist writers emphasise Auwa and Kota as
 patriotic. Others note that the rebel nobles were also defending their own privileges against their rulers. Both
-elements were present; in an answer, present them together.</p></div>` },
+elements were present; in an answer, present them together.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Background:</b> the treaties of 1818 and British interference in the Rajput states (R15).</li>
+<li><b>All-India context:</b> causes, course and results of the Revolt of 1857 (I32); Dalhousie's annexations (I28).</li>
+<li><b>After:</b> the Crown's new policy towards the princes (I29); peasant and political awakening in Rajasthan (R17,
+R19).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -193,6 +209,10 @@ the dominance of soldiers and nobles.</p>`,
     { q: 'When was Kota recaptured, and by whom?', a: '30 March 1858, by General Roberts.' },
     { q: 'Which treasury did Tatya Tope seize in Rajasthan?', a: 'Jhalrapatan (Jhalawar).' },
     { q: 'Which ruler led his troops in person to help the British?', a: 'Sardar Singh of Bikaner.' },
+    { q: 'Why did the Rajasthan rulers side with the British in 1857?', a: 'Their security and thrones depended on the British under the treaties of 1818.' },
+    { q: 'Why did thakurs like Kushal Singh rebel against their own ruler?', a: 'The British had backed rulers in cutting the nobles\' powers and privileges.' },
+    { q: 'Why is the Kota rising notable?', a: 'It came from the state\'s own army, had popular support and held Kota for about six months.' },
+    { q: 'Why did Canning call the princes "breakwaters in the storm"?', a: 'Their loyalty stopped the revolt spreading through their territories.' },
   ],
 
   glossary: [
@@ -205,7 +225,7 @@ the dominance of soldiers and nobles.</p>`,
 
   sources: [
     'N.R. Khadgawat, <i>Rajasthan\'s Role in the Struggle of 1857</i>.',
-    'Rima Hooja, <i>A History of Rajasthan</i>.',
+    'Rima Hooja, <i>A History of Rajasthan</i>. — standard text for this rewrite',
     'M.S. Jain, <i>Concise History of Modern Rajasthan</i>.',
     'Rajasthan Board of Secondary Education, Rajasthan history textbooks.',
   ],
