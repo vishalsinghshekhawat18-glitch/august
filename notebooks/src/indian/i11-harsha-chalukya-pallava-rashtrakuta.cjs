@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Harshavardhana; Chalukyas of Badami; Pallavas of Kanchi; Rashtrakutas; art and architecture'],
     mains: ['GS-I: Early medieval polity; regional kingdoms; temple architecture'],
-    weight: 'Harsha (Xuanzang, Banabhatta), Pulakeshin II (Aihole), Pallava architecture (Mahabalipuram) and the Rashtrakuta Kailasa temple are standard questions.',
+    weight: 'Tier C. Harsha (Xuanzang, Banabhatta), Pulakeshin II (Aihole), Pallava architecture (Mahabalipuram) and the Rashtrakuta Kailasa temple are standard questions.',
   },
 
   bigPicture: `
@@ -35,20 +35,18 @@ are the frameworks for this period.</p></div>`,
 
   sections: [
     { title: 'Harshavardhana (606–647)', html: `
-<ul>
-<li>Pushyabhuti dynasty of Thanesar; after his brother Rajyavardhana's murder by Shashanka of Gauda, Harsha took
-the throne and moved his capital to <b>Kannauj</b>.</li>
-<li>Defeated by <b>Pulakeshin II</b> on the <b>Narmada</b> (c. 618–619) — the limit of his power southward (Aihole
-inscription).</li>
-<li>Sources: <b>Banabhatta</b>'s <i>Harshacharita</i> and <i>Kadambari</i>; <b>Xuanzang</b>'s <i>Si-yu-ki</i>; Banskhera and
-Madhuban copper plates.</li>
-<li>Held the <b>Kannauj assembly</b> (in Xuanzang's honour, 643) and a quinquennial <b>Prayag assembly</b> (Mahamoksha
-Parishad) where he gave away his wealth.</li>
-<li>Wrote three Sanskrit plays: <i>Nagananda</i>, <i>Ratnavali</i>, <i>Priyadarshika</i>.</li>
-<li>Patron of <b>Nalanda</b>; leaned to Mahayana Buddhism but honoured Shiva and Surya.</li>
-<li>Administration more feudal than the Guptas; officials paid in land; Xuanzang notes revenue was 1/6 and that
-travel was unsafe (he was robbed).</li>
-</ul>` },
+<p>Harsha belonged to the Pushyabhuti dynasty of Thanesar. When his brother Rajyavardhana was murdered by Shashanka of
+Gauda, Harsha took the throne and moved his capital to <b>Kannauj</b>, which became the prize city of north India for
+the next three centuries. His power stopped at the <b>Narmada</b>, where <b>Pulakeshin II</b> defeated him (c.
+618–619), as the Aihole inscription proudly records.</p>
+<p>We know Harsha unusually well because of two writers: his court poet <b>Banabhatta</b> (<i>Harshacharita</i>,
+<i>Kadambari</i>) and the Chinese pilgrim <b>Xuanzang</b> (<i>Si-yu-ki</i>), supported by the Banskhera and Madhuban
+copper plates. Harsha held the <b>Kannauj assembly</b> (643) in Xuanzang's honour and a five-yearly <b>Prayag
+assembly</b> (Mahamoksha Parishad) at which he gave away his wealth. He wrote three Sanskrit plays, <i>Nagananda</i>,
+<i>Ratnavali</i> and <i>Priyadarshika</i>, patronised <b>Nalanda</b>, and leaned to Mahayana Buddhism while honouring
+Shiva and Surya. His administration was more feudal than the Guptas', with officials paid in land; Xuanzang notes
+that revenue was a sixth of the produce and that travel was unsafe (he was robbed).</p>
+` },
 
     { title: 'Chalukyas of Badami (Vatapi)', html: `
 <ul>
@@ -81,20 +79,33 @@ temples (Rajasimha style). Kanchi was a great centre of learning (the ghatika); 
 Bharavi (<i>Kiratarjuniya</i>) wrote under Pallava patronage. Nayanars and Alvars spread Bhakti.</p>` },
 
     { title: 'The Rashtrakutas', html: `
+<p>The <b>Rashtrakutas</b> began as feudatories of the Chalukyas. <b>Dantidurga</b> overthrew Kirtivarman II (c. 753)
+and founded their power; the capital later moved to <b>Manyakheta</b> (Malkhed). <b>Krishna I</b> built the
+monolithic <b>Kailasa (Kailashnath) temple at Ellora</b> (cave 16), cut downwards from a single rock. <b>Dhruva</b>
+and <b>Govinda III</b> raided north India in the <b>tripartite struggle</b>, defeating the Pratiharas and Palas, and
+<b>Indra III</b> sacked Kannauj (916).</p>
+<p><b>Amoghavarsha I</b> (814–878) reigned for 64 years, had Jain sympathies (his teacher was Jinasena), wrote
+<i>Kavirajamarga</i>, an early Kannada work on poetics, and <i>Prashnottara Ratnamalika</i>, and built up Manyakheta.
+The Arab merchant Sulaiman ranked him among the four great kings of the world. <b>Krishna III</b> defeated the Cholas
+at <b>Takkolam</b> (949). The dynasty ended when the Chalukya Tailapa II took power (973).</p>
+<p>Rashtrakuta culture included the Hindu, Buddhist and Jain caves of Ellora, the Elephanta caves (date debated,
+often linked with this period) and the beginnings of Kannada literature (Pampa, Ponna). Arab traders were welcomed;
+Arab writers called the king the "Balhara".</p>
+<div class="box concept"><p><b>Why the Deccan kingdoms fought so constantly.</b> The Chalukyas, Pallavas,
+Rashtrakutas and Cholas competed for the same prizes: fertile river lands such as the <b>Vengi</b> delta (between
+the Krishna and Godavari) and the <b>Raichur doab</b> (between the Krishna and Tungabhadra), control of ports and
+trade, and the prestige of defeating a rival's capital. Victories were celebrated with titles (<i>Vatapikonda</i>) and
+temples. These wars did not unite the south, but the rival courts' competition in patronage produced Aihole,
+Pattadakal, Mahabalipuram, Kanchi and Ellora.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
 <ul>
-<li>Founded by <b>Dantidurga</b> (c. 753), feudatory of the Chalukyas, who overthrew Kirtivarman II. Capital later at
-<b>Manyakheta</b> (Malkhed).</li>
-<li><b>Krishna I</b>: built the monolithic <b>Kailasa (Kailashnath) temple at Ellora</b> (cave 16), cut from a single rock.</li>
-<li><b>Dhruva</b> and <b>Govinda III</b>: raided north India in the <b>tripartite struggle</b>, defeating the Pratiharas and
-Palas.</li>
-<li><b>Amoghavarsha I</b> (814–878): reigned 64 years; Jain sympathies (Jinasena); wrote <i>Kavirajamarga</i>, an early
-Kannada work on poetics, and <i>Prashnottara Ratnamalika</i>; founded Manyakheta. Arab merchant Sulaiman ranked him
-among the four great kings of the world.</li>
-<li><b>Indra III</b> sacked Kannauj (916). <b>Krishna III</b> defeated the Cholas at <b>Takkolam</b> (949).</li>
-<li>Ended by the Chalukya Tailapa II (973).</li>
-<li>Culture: Ellora (Hindu, Buddhist and Jain caves), Elephanta caves (date debated, often linked with this period);
-Kannada literature (Pampa, Ponna) began; Arab traders welcomed (the Balhara of Arab writers).</li>
-</ul>` },
+<li><b>Before:</b> the Guptas and their decline (I10).</li>
+<li><b>Alongside:</b> the tripartite struggle for Kannauj and the Rajputs (I15); Tamil bhakti saints (I20).</li>
+<li><b>After:</b> the Cholas, who replaced the Pallavas (I12).</li>
+<li><b>Architecture:</b> Nagara, Dravida and Vesara temples, Ellora and Mahabalipuram (I48).</li>
+<li><b>Rajasthan:</b> the Gurjara-Pratiharas in the tripartite struggle (R05).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -170,6 +181,10 @@ the period as one of regional state formation, not decline.</p>`,
     { q: 'Who built the Kailasa temple at Ellora?', a: 'Rashtrakuta Krishna I.' },
     { q: 'Who wrote Kavirajamarga?', a: 'Amoghavarsha I.' },
     { q: 'Where did Krishna III defeat the Cholas?', a: 'Takkolam (949).' },
+    { q: 'Why do we know Harsha\'s reign so well?', a: 'Banabhatta\'s Harshacharita and Xuanzang\'s account, supported by copper plates.' },
+    { q: 'Why did the Deccan kingdoms fight constantly?', a: 'To control fertile river lands such as Vengi and the Raichur doab, ports and trade, and for prestige.' },
+    { q: 'How did Pallava architecture develop?', a: 'From rock-cut caves to monolithic rathas to structural temples.' },
+    { q: 'Why was Kannauj important after Harsha?', a: 'As his capital it became the symbol of power in north India, fought over in the tripartite struggle.' },
   ],
 
   glossary: [
@@ -183,5 +198,6 @@ the period as one of regional state formation, not decline.</p>`,
     'K.A. Nilakanta Sastri, <i>A History of South India</i>.',
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, ch. 9–10.',
     'Satish Chandra, <i>History of Medieval India</i>, ch. 1–2.',
+    'NCERT (old), R.S. Sharma, <i>Ancient India</i> — standard text for this rewrite.',
   ],
 };
