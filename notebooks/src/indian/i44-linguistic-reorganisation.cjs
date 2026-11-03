@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Dhar Commission; JVP Committee; Potti Sriramulu; States Reorganisation Commission; creation of new states'],
     mains: ['GS-I: Linguistic reorganisation — process, rationale and effect on national unity'],
-    weight: 'Frequently asked as an analytical question ("Did linguistic states weaken or strengthen national unity?").',
+    weight: 'Tier B. Frequently asked as an analytical question ("Did linguistic states weaken or strengthen national unity?").',
   },
 
   bigPicture: `
@@ -62,7 +62,22 @@ sole principle; also considered unity, security, financial and administrative vi
 <li><b>States Reorganisation Act, 1956</b> (with the 7th Amendment): abolished the four-category classification;
 <b>14 states and 6 union territories</b>; Kerala, Mysore (Karnataka), Andhra Pradesh (with Telangana), Madhya Pradesh,
 Rajasthan (with Ajmer) reshaped.</li>
-</ul>` },
+</ul>
+<p><b>Safeguards for national unity.</b> The SRC put unity and security first and rejected "one language, one state"
+as the sole principle. To keep states from turning inward, it recommended that the <b>all-India services</b> take at
+least half their new recruits from outside the state, that about a third of <b>High Court judges</b> come from outside
+the state, and that <b>linguistic minorities</b> be protected, with teaching in the mother tongue at the primary stage.
+These led to Articles 350A (mother-tongue instruction) and 350B (a Special Officer for Linguistic Minorities), added by
+the 7th Amendment (1956). The 1956 Act also set up five <b>zonal councils</b> to encourage co-operation between
+neighbouring states.</p>
+<div class="box concept"><p><b>Why leaders hesitated, and why they gave way.</b> In 1947–49 partition had just shown
+how identity could divide the country, the princely states were still being integrated, and leaders feared that
+language-based states would breed regional loyalties stronger than the national one. Hence the caution of the Dhar
+Commission and the JVP Committee. But language was how ordinary people dealt with government, courts and schools,
+and the demand had been Congress policy since 1920. Potti Sriramulu's death showed that refusing it was more dangerous
+than granting it. Reorganisation with safeguards turned a possible source of separatism into a base for democratic
+participation.</p></div>
+` },
 
     { title: 'Later reorganisations', html: `
 <div class="tbl"><table>
@@ -88,7 +103,15 @@ basis.</li>
 </ul>
 <div class="box debate"><p>Bipan Chandra and Ramachandra Guha argue that linguistic reorganisation strengthened unity by
 accommodating diversity; critics point to persistent border and water disputes and the rise of regionalism. Most
-scholars today see it as a democratic success.</p></div>` },
+scholars today see it as a democratic success.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the Nagpur Congress's linguistic committees (I39); integration of the princely states (I43).</li>
+<li><b>Alongside:</b> the Nehru era and planning (I45).</li>
+<li><b>Constitution:</b> Articles 3, 350A and 350B; the 7th Amendment.</li>
+<li><b>Rajasthan:</b> Ajmer merged into Rajasthan in 1956, the final stage of integration (R21).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -133,6 +156,11 @@ true.</p>`,
 
   mains: [
     {
+      q: 'What were the suggestions given by the State Reorganisation Commission to strengthen the national unity?', marks: 5, words: 50, pyq: 'RAS Mains 2018',
+      outline: ['Unity first', 'All-India services', 'High Court judges', 'Linguistic minorities'],
+      answer: '<p>The SRC (1955) put unity and security first and rejected "one language, one state" as the sole basis. It recommended that half of new all-India service recruits and about a third of High Court judges come from outside the state, and safeguards for linguistic minorities, including mother-tongue primary teaching (Articles 350A, 350B).</p>',
+    },
+    {
       q: 'Did the linguistic reorganisation of states weaken national unity? Discuss.', marks: 10, words: 100,
       outline: ['Background', 'Process', 'Fears', 'Outcome', 'Conclusion'],
       answer: '<p>The Congress had promised linguistic provinces since 1920, but after partition the Dhar Commission and the JVP Committee advised caution for the sake of unity. Potti Sriramulu\'s death forced the creation of Andhra (1953); the Fazl Ali Commission led to the 1956 Act creating 14 states and 6 UTs, followed by Maharashtra, Gujarat, Punjab and others. Critics feared regional chauvinism, and border and water disputes did arise. Yet administration in people\'s languages deepened democracy, removed a major grievance and showed that regional and national identities could coexist. On balance it strengthened unity.</p>',
@@ -164,6 +192,10 @@ true.</p>`,
     { q: 'When was Bombay divided?', a: '1960.' },
     { q: 'Which amendment made Sikkim a state?', a: 'The 36th (1975).' },
     { q: 'When was Telangana formed?', a: '2 June 2014.' },
+    { q: 'Why did leaders hesitate over linguistic states in 1948–49?', a: 'Partition and integration were fresh, and they feared regional loyalties would weaken national unity.' },
+    { q: 'Why did the government create Andhra in 1953?', a: 'Potti Sriramulu\'s death after a 58-day fast set off violent protests that made refusal dangerous.' },
+    { q: 'How did the SRC try to protect national unity?', a: 'All-India services and High Court judges partly from outside the state, and safeguards for linguistic minorities.' },
+    { q: 'Why did later states move away from language as the basis?', a: 'Development, tribal identity and administrative viability became the main demands.' },
   ],
 
   glossary: [
@@ -175,6 +207,6 @@ true.</p>`,
   sources: [
     'Bipan Chandra et al., <i>India since Independence</i>, ch. 8.',
     'Ramachandra Guha, <i>India after Gandhi</i>, ch. 9.',
-    'NCERT Class 12, <i>Politics in India since Independence</i>, ch. 1.',
+    'NCERT Class 12, <i>Politics in India since Independence</i>, ch. 1. — standard text for this rewrite',
   ],
 };
