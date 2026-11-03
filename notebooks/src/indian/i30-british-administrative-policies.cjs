@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Land revenue settlements; civil services; judiciary; police; army; education policy; press laws; policy towards princely states'],
     mains: ['GS-I: British administrative structure; land revenue systems; education policy'],
-    weight: 'The three land revenue systems and education milestones (1813, 1835, 1854, 1882, 1904, 1917, 1944) are high-yield for both papers.',
+    weight: 'Tier C. The three land revenue systems and education milestones (1813, 1835, 1854, 1882, 1904, 1917, 1944) are high-yield for both papers.',
   },
 
   bigPicture: `
@@ -51,7 +51,16 @@ increases, absentee landlordism and sub-infeudation (patnidari) grew, and peasan
 and Mahalwari made peasants owners on paper but high, rigid demands drove them to moneylenders, causing indebtedness and
 land alienation. All three commercialised land.</p>
 <p><b>Bengal after 1793 (NCERT Class XII):</b> the revenue was fixed high while prices were low in the 1790s, the zamindars' troops and courts were taken away, and many defaulted. At the <b>Burdwan auction of 1797</b> most buyers were the raja's own agents, and over 95% of the sale was fictitious: zamindars kept their estates through benami purchases, transfers to women of the family and endless re-bidding. In the villages, rich peasants called <b>jotedars</b> (also haoladars, gantidars or mandals) controlled land, trade and credit, worked land through sharecroppers (<b>adhiyars</b> or bargadars) and often withheld rent from the zamindars. The <b>Fifth Report</b> (1813) to Parliament, with petitions, collectors' reports and revenue tables, shaped later views of rural Bengal.</p>
-<p><b>Why later settlements were not permanent:</b> rising prices after 1810 benefited only the Bengal zamindars, and officials influenced by Ricardo held that a landowner should keep only the "average rent", the state taxing the surplus. Ryotwari demands of the 1820s were so high that peasants fled; prices fell after 1832 and the famine of 1832–34 drove ryots into debt.</p>` },
+<p><b>Why later settlements were not permanent:</b> rising prices after 1810 benefited only the Bengal zamindars, and officials influenced by Ricardo held that a landowner should keep only the "average rent", the state taxing the surplus. Ryotwari demands of the 1820s were so high that peasants fled; prices fell after 1832 and the famine of 1832–34 drove ryots into debt.</p>
+<div class="box concept"><p><b>Why the British tried three systems.</b> Land revenue was the Company's main income, and
+it needed it to be large, regular and easy to collect. In Bengal (1793) Cornwallis chose <b>zamindars</b> as owners,
+hoping that fixed revenue would make them improving landlords like English gentry and give the Company a loyal class
+and a secure income. When rising prices showed that a permanent demand meant giving up future gains, officials in
+Madras and Bombay, influenced by Ricardo's theory of rent, settled directly with the <b>ryot</b> and revised the demand
+periodically. In the north-west, where villages held land jointly, the <b>mahal</b> was the natural unit. The common
+thread was the state's claim to the surplus; in every system the demand was high and rigid, and peasants fell into
+debt.</p></div>
+` },
 
     { title: 'Civil services, judiciary, police, army', html: `
 <ul>
@@ -155,7 +164,17 @@ Chamber of Princes (1921); Butler Committee (1927) — paramountcy supreme.</li>
 <li><b>Bombay:</b> the commercial capital, half of India's trade by 1900 (including Malwa opium to China); after the Suez Canal (1869) it called itself <i>Urbs Prima in Indis</i>; the one-room tenement, the <b>chawl</b>, was its typical housing.</li>
 <li><b>After 1857:</b> "Civil Lines" were built as safe European enclaves; sanitary rules from the 1860s–70s sharpened the White Town/Black Town divide.</li>
 <li><b>Hill stations:</b> Shimla was founded during the Gurkha War (1815–16) and became the summer seat of government in 1864 (John Lawrence); British interest in <b>Mount Abu</b> followed the Maratha war of 1818; Darjeeling was taken from Sikkim in 1835.</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Roots:</b> the Mughal zamindar and pargana records (I23); the Diwani of Bengal (I27).</li>
+<li><b>Constitutional frame:</b> the Acts under which these institutions were built (I29).</li>
+<li><b>Effects:</b> drain, deindustrialisation and commercialisation (I31); peasant and tribal revolts against
+revenue demands and forest laws (I33, I34); the Revolt of 1857 (I32).</li>
+<li><b>Ideas:</b> English education and the rise of reformers and early nationalists (I35, I36).</li>
+<li><b>Rajasthan:</b> British policy in the Rajput states, Mayo College and Mount Abu (R15).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -249,6 +268,10 @@ instrument of rule. <b>B.B. Misra</b> wrote on the bureaucracy.</p>`,
     { q: 'Which commission handed primary education to local bodies?', a: 'Hunter Commission (1882).' },
     { q: 'Who passed the Vernacular Press Act?', a: 'Lord Lytton (1878).' },
     { q: 'Who was the first Indian ICS officer?', a: 'Satyendranath Tagore.' },
+    { q: 'Why did Cornwallis make the revenue permanent?', a: 'To secure a fixed income and create a loyal, improving landlord class.' },
+    { q: 'Why were ryotwari and mahalwari settlements not made permanent?', a: 'Rising prices showed a fixed demand lost future revenue; Ricardo\'s rent theory favoured periodic revision.' },
+    { q: 'Why did Macaulay favour English education?', a: 'To create a class of Indians, English in taste and opinion, to serve the government and spread Western learning.' },
+    { q: 'How did the 1854 grant rules hurt village pathshalas?', a: 'Fixed timetables, fees and exams pushed out poor children who worked at harvest.' },
   ],
 
   glossary: [
@@ -262,7 +285,7 @@ instrument of rule. <b>B.B. Misra</b> wrote on the bureaucracy.</p>`,
   sources: [
     'Bipan Chandra, <i>History of Modern India</i>, chs. 7–8.',
     'Spectrum, <i>A Brief History of Modern India</i>.',
-    'NCERT Class 8, <i>Our Pasts III</i>, chs. 3, 8.',
+    'NCERT Class 8, <i>Our Pasts III</i>, chs. 3, 8. — standard text for this rewrite',
     'Ranajit Guha, <i>A Rule of Property for Bengal</i>.',
   ],
 };
