@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Vedic literature; early and later Vedic polity, society, economy and religion'],
     mains: ['GS-I: Vedic age — society, polity, religion; Indian knowledge tradition'],
-    weight: 'Comparison of early and later Vedic periods is a classic Mains question; Prelims asks Vedic literature (which Veda, which Upanishad), rivers and assemblies.',
+    weight: 'Tier C. Comparison of early and later Vedic periods is a classic Mains question; Prelims asks Vedic literature (which Veda, which Upanishad), rivers and assemblies.',
   },
 
   bigPicture: `
@@ -67,7 +67,22 @@ Rig Veda. Most Rig Vedic hymns pray for cattle, horses and sons; wars were fough
 <tr><td>Religion</td><td>Nature gods: Indra (most hymns, 250), Agni (200), Varuna (rita, cosmic order), Soma; simple sacrifices for material gain</td><td>Prajapati, Vishnu, Rudra rise; elaborate sacrifices dominated by priests; Upanishads reject ritual for knowledge</td></tr>
 </table></div>
 <p>The <b>Battle of Ten Kings</b> (<i>Dasharajna</i>), on the Parushni (Ravi), in which <b>Sudas</b> of the Bharata tribe
-defeated a confederacy, is described in the Rig Veda (mandala 7).</p>` },
+defeated a confederacy, is described in the Rig Veda (mandala 7).</p>
+<p>Later Vedic texts name many crops, showing how central farming had become: <b>vrihi</b> (rice), <b>yava</b>
+(barley), <b>mudga</b> (mung), <b>masha</b> (urad), <b>godhuma</b> (wheat) and <b>ikshu</b> (sugarcane).</p>
+<div class="box concept"><p><b>From jana to janapada.</b> In the Rig Vedic age, a <b>jana</b> (tribe) moved with its
+herds; wealth was cattle, wars were cattle raids, and the chief was a leader of kin checked by the sabha and samiti.
+In the later Vedic age, iron tools and farming in the fertile doab tied people to land. Wealth now came from fields
+that had to be defended, so the tribe became attached to a territory, the <b>janapada</b> ("where the tribe set its
+foot"). Kings grew stronger, collected regular dues through officials such as the <i>bhagadugha</i>, and used great
+sacrifices such as the Rajasuya and Ashvamedha to proclaim their power. Assemblies declined. This is the path from
+tribe to state that led to the Mahajanapadas.</p></div>
+<div class="box concept"><p><b>Rita and dharma.</b> Rig Vedic religion pictured the universe as governed by
+<b>rita</b>, a cosmic and moral order guarded by Varuna; sacrifice kept that order working. Later this idea fed into
+<b>dharma</b>, the duties proper to each person and varna. The Upanishads went further, seeking liberation through
+knowledge of <b>Brahman</b> and <b>Atman</b> rather than ritual, a questioning that the Buddha and Mahavira would take
+up (I06).</p></div>
+` },
 
     { title: 'Rivers and geography', html: `
 <div class="tbl"><table>
@@ -87,7 +102,16 @@ defeated a confederacy, is described in the Rig Veda (mandala 7).</p>` },
 historians and linguists accept <b>migrations</b> of Indo-European-speaking groups into the subcontinent in the second
 millennium BCE, based on language families (Sanskrit's links with Avestan, Greek, Latin), the Boghazkoi inscription
 and recent genetic studies. A minority argues for an indigenous origin, identifying the Vedic and Harappan cultures.
-"Aryan" is a linguistic and cultural term in the Vedas, not a racial one.</p></div>` },
+"Aryan" is a linguistic and cultural term in the Vedas, not a racial one.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the Harappan civilisation and the debate on continuity (I03).</li>
+<li><b>After:</b> Mahajanapadas and the rise of Magadha (I05); Buddhism and Jainism as responses to Vedic ritual
+(I06).</li>
+<li><b>Ideas:</b> Indian knowledge and value systems, the Upanishads and dharma (I13); Vedic literature (I51).</li>
+<li><b>Rajasthan:</b> the Saraswati–Drishadvati region and Painted Grey Ware sites in north Rajasthan (R03, R04).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -166,6 +190,10 @@ analysed later Vedic society as a "lineage society" moving towards kingship.</p>
     { q: 'Which god has the most hymns in the Rig Veda?', a: 'Indra.' },
     { q: 'Name two Rig Vedic assemblies.', a: 'Sabha and samiti (also vidatha, gana).' },
     { q: 'What was "shyama ayas"?', a: 'Iron ("black metal") in later Vedic texts.' },
+    { q: 'What do vrihi, yava, mudga and ikshu mean?', a: 'Rice, barley, mung and sugarcane.' },
+    { q: 'How did iron and agriculture change the Vedic polity?', a: 'Settled farming tied tribes to territory, strengthening kings and turning jana into janapada.' },
+    { q: 'Why did assemblies decline in the later Vedic period?', a: 'Kings grew powerful through land revenue, officials and great sacrifices.' },
+    { q: 'How did the Upanishads differ from the Brahmanas?', a: 'The Brahmanas explained ritual; the Upanishads sought liberation through knowledge of Brahman and Atman.' },
   ],
 
   glossary: [
@@ -182,6 +210,6 @@ analysed later Vedic society as a "lineage society" moving towards kingship.</p>
     'R.S. Sharma, <i>India\'s Ancient Past</i>, chs. 10–12.',
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, ch. 5.',
     'Romila Thapar, <i>From Lineage to State</i>.',
-    'NCERT (old), R.S. Sharma, <i>Ancient India</i>.',
+    'NCERT (old), R.S. Sharma, <i>Ancient India</i>. — standard text for this rewrite',
   ],
 };
