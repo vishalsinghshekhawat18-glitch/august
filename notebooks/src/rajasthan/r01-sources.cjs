@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Sources of Rajasthan history: archaeological, archival, literary and numismatic'],
     mains: ['GS-I Part A: Political and cultural achievements of rulers (sources underpin every answer)', 'Short questions on individual inscriptions and texts'],
-    weight: 'Inscriptions, coins and chroniclers are asked almost every year in Prelims, and 2-mark Mains questions often name a single inscription (Ghosundi was asked in 2016).',
+    weight: 'Tier B. Inscriptions, coins and chroniclers are asked almost every year in Prelims, and 2-mark Mains questions often name a single inscription (Ghosundi was asked in 2016).',
   },
 
   bigPicture: `
@@ -100,6 +100,9 @@ and 2024) rely on this material — see unit R14.</p></div>` },
 <li><i>Hammir Mahakavya</i> (Nayachandra Suri) — Hammir of Ranthambhor.</li>
 <li><i>Amarkavya</i> (Ranchhod Bhatt) — Mewar, especially Amar Singh.</li>
 </ul>
+<p><b>Prakrit and Jain works</b> also help. Udyotana Suri's <i>Kuvalayamala</i> (778 CE), written at Jalore
+(Javalipura), describes the society of the region and lists <b>18 regional languages</b> (desh-bhasha), including
+the speech of Maru (Marwar), early evidence of a distinct Rajasthani tongue.</p>
 <p><b>Rajasthani works</b>: <i>raso</i> (heroic poems), <i>khyat</i> (prose chronicles), <i>vat</i> (tales),
 <i>vachanika</i>.</p>
 <ul>
@@ -111,7 +114,16 @@ and 2024) rely on this material — see unit R14.</p></div>` },
 pargana-by-pargana survey of Marwar's villages, revenue and castes, almost a gazetteer.</li>
 <li><i>Bankidas ri Khyat</i>; <i>Dayaldas ri Khyat</i> (Bikaner).</li>
 <li><i>Vansh Bhaskar</i> (Suryamal Mishran, Bundi) — history of the Hadas.</li>
+<li>Other pairs asked in Prelims: <i>Khuman Raso</i> (Dalpat Vijay; Mewar), <i>Neh Tarang</i> (Rao Budh Singh of
+Bundi), <i>Nagdaman</i> (Sayanji Jhula), <i>Ranmal Chhand</i> (Shridhar Vyas), <i>Bhasha Bhushan</i> (Maharaja
+Jaswant Singh of Marwar).</li>
 </ul>
+<div class="box concept"><p><b>Why bardic literature is both valuable and risky.</b> Charans and Bhats were
+hereditary poets and genealogists attached to ruling families. They preserved memories of battles, genealogies and
+customs that no inscription records, and khyats such as Nainsi's often used state documents. But they were paid to
+glorify their patrons, they recited from memory over generations, and they often added later events and legends; the
+<i>Prithviraj Raso</i> contains episodes and dates that cannot be true for the 12th century. Use them for tradition,
+values and social detail, and check events against inscriptions and archives.</p></div>
 <p><b>Persian works</b>: <i>Tabaqat-i-Nasiri</i> (Minhaj), <i>Khazain-ul-Futuh</i> (Amir Khusrau), <i>Baburnama</i>,
 <i>Akbarnama</i> and <i>Ain-i-Akbari</i> (Abul Fazl), <i>Muntakhab-ut-Tawarikh</i> (Badayuni), Jahangir's memoirs.
 They give the imperial view of Rajput states.</p>` },
@@ -129,7 +141,15 @@ They give the imperial view of Rajput states.</p>` },
 </table></div>
 <div class="box debate"><p><b>How reliable is Tod?</b> Tod gathered bardic accounts and documents and gave Rajasthan
 its first full history, but he romanticised Rajput chivalry, compared Rajput society to European feudalism, and
-relied on bards for dates. Use him for tradition, and verify dates from inscriptions and archives.</p></div>` },
+relied on bards for dates. Use him for tradition, and verify dates from inscriptions and archives.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Sites:</b> prehistoric and early sites (R02–R04).</li>
+<li><b>Inscriptions in use:</b> Samoli and Kumbhalgarh for Mewar (R07, R08); Mandore and Ghatiyala for the Pratiharas
+(R05); Bijolia for the Chauhans (R06).</li>
+<li><b>Archives in use:</b> administration and revenue (R14); Nainsi's Vigat for Marwar (R09).</li>
+<li><b>India:</b> sources of ancient Indian history (I01).</li>
+</ul></div>` },
   ],
 
   historians: `
@@ -165,6 +185,8 @@ vassal — a useful point for questions on administration (unit R14).</p>`,
     'Vir Vinod by Kaviraj Shyamaldas (Mewar, under Sajjan Singh).',
     'James Tod published the Annals and Antiquities of Rajasthan in two volumes (1829, 1832).',
     'G.H. Ojha wrote Bharatiya Prachin Lipimala.',
+    'Udyotana Suri\'s Kuvalayamala (778 CE, Jalore) lists 18 regional languages (desh-bhasha).',
+    'Khuman Raso is by Dalpat Vijay; Neh Tarang by Rao Budh Singh of Bundi; Nagdaman by Sayanji Jhula; Ranmal Chhand by Shridhar Vyas.',
   ],
 
   traps: [
@@ -230,6 +252,8 @@ vassal — a useful point for questions on administration (unit R14).</p>`,
     { q: 'In which years were the two volumes of Tod\'s Annals published?', a: '1829 and 1832.' },
     { q: 'What legend appears on Malava coins?', a: '"Malavanam Jayah" — victory of the Malavas.' },
     { q: 'Name the coin of Jodhpur state.', a: 'Vijayshahi.' },
+    { q: 'How many regional languages does the Kuvalayamala list?', a: '18 (desh-bhasha).' },
+    { q: 'Why are archival records more objective than prashastis?', a: 'They were working documents of administration, not compositions meant to praise a ruler.' },
   ],
 
   glossary: [
@@ -248,7 +272,7 @@ vassal — a useful point for questions on administration (unit R14).</p>`,
   sources: [
     'G.H. Ojha, <i>Rajputana ka Itihas</i>; Dasharath Sharma, <i>Early Chauhan Dynasties</i>.',
     'G.N. Sharma, <i>Rajasthan Studies</i> and <i>Social Life in Medieval Rajasthan</i>.',
-    'Rima Hooja, <i>A History of Rajasthan</i>, introduction and source chapters.',
+    'Rima Hooja, <i>A History of Rajasthan</i>, introduction and source chapters — standard text for this rewrite.',
     'Rajasthan Board of Secondary Education, Rajasthan history textbooks.',
     'RajRAS, "Rajasthan History and Culture PYQs".',
   ],
