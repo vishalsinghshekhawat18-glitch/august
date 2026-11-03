@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Rajput–Sultanate and Rajput–Mughal relations', 'Important battles'],
     mains: ['GS-I Part A: Important historical events; Rajput resistance and cooperation with the Sultanate and the Mughals'],
-    weight: 'A synthesis unit. Akbar\'s Rajput policy, the effects of Rajput–Mughal relations and Aurangzeb\'s Rajput policy are classic 10-mark questions; battles and sieges are asked in Prelims.',
+    weight: 'Tier C. A synthesis unit. Akbar\'s Rajput policy, the effects of Rajput–Mughal relations and Aurangzeb\'s Rajput policy are classic 10-mark questions; battles and sieges are asked in Prelims.',
   },
 
   bigPicture: `
@@ -116,7 +116,22 @@ and expanded their own states. Rajput rulers tried to unite against the Marathas
 <tr><td>Economic</td><td>Income from jagirs across the empire flowed home; safe trade routes; Marwari merchants spread across India</td></tr>
 <tr><td>Cultural</td><td>Mughal influence on Rajput painting (naturalism, portraiture), architecture (Amber palace, gardens), dress and court ceremony; Rajput influence at the Mughal court (music, customs)</td></tr>
 <tr><td>Social</td><td>Persian and Rajasthani literary exchange; a composite court culture; but also the decline of an independent Rajput military tradition</td></tr>
-</table></div>` },
+</table></div>
+<div class="box concept"><p><b>The arc of Rajput–Mughal relations.</b> The relationship moved through four stages,
+each driven by what both sides needed. Under the <b>Sultanate</b> (1192–1526) it was raid and resistance: the Sultans
+could take forts but not hold Rajasthan. Under <b>Babur and Sher Shah</b> the Rajputs' bid to lead north India failed
+at Khanwa and Giri-Sumel. Under <b>Akbar</b> it became a partnership: Rajput rulers gave service and loyalty, and the
+empire gave security, status and wealth, while those who resisted were crushed or, like Mewar in 1615, brought in on
+honourable terms. Under <b>Aurangzeb</b> the partnership broke over the Marwar succession and jizya, and after 1707
+the Rajput rulers acted for themselves. The same pattern explains both Mughal strength and Mughal decline.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Detailed stories:</b> the Khalji sieges (R06, R07); Sanga and Pratap (R08); Maldeo and Durgadas (R09); Amber and
+Man Singh (R11).</li>
+<li><b>All-India context:</b> the Sultanate (I17); Akbar (I21); Aurangzeb and decline (I22).</li>
+<li><b>After:</b> the Marathas and the British (R15); Rajput administration under Mughal influence (R14).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -190,6 +205,10 @@ ideas of service and loyalty adapted to Mughal service.</p>`,
     { q: 'What were the main terms of the 1615 treaty?', a: 'The Rana need not attend court; his heir would; Chittor returned but not refortified.' },
     { q: 'What triggered the breakdown under Aurangzeb?', a: 'The annexation of Marwar after Jaswant Singh\'s death (1678–79) and the reimposition of jizya.' },
     { q: 'How did Satish Chandra interpret Aurangzeb\'s Rajput policy?', a: 'Mainly as a political miscalculation over the Marwar succession, not primarily religious.' },
+    { q: 'Why could the Sultanate not hold Rajasthan?', a: 'Hard terrain, strong forts, priorities elsewhere, costly garrisons and clan networks that re-formed after defeat.' },
+    { q: 'What did Rajput rulers gain from the Mughal alliance?', a: 'Security from rivals, wealth from distant jagirs, high status and confirmed succession.' },
+    { q: 'Why did the Rajput–Mughal partnership break under Aurangzeb?', a: 'His takeover of Marwar after Jaswant Singh\'s death and the reimposition of jizya.' },
+    { q: 'How did Mughal recognition change Rajput states internally?', a: 'It strengthened rulers against their own nobles, while ending independent foreign policy.' },
   ],
 
   glossary: [
@@ -206,6 +225,6 @@ ideas of service and loyalty adapted to Mughal service.</p>`,
     'G.N. Sharma, <i>Mewar and the Mughal Emperors</i>.',
     'M. Athar Ali, <i>The Mughal Nobility under Aurangzeb</i>.',
     'Norman Ziegler, "Some notes on Rajput loyalties during the Mughal period", in J.F. Richards (ed.), <i>Kingship and Authority in South Asia</i>.',
-    'Rima Hooja, <i>A History of Rajasthan</i>.',
+    'Rima Hooja, <i>A History of Rajasthan</i>. — standard text for this rewrite',
   ],
 };
