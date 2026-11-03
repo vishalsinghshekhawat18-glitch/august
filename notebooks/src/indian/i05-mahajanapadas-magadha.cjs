@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Sixteen Mahajanapadas; republics; rise of Magadha; Persian and Macedonian invasions'],
     mains: ['GS-I: Ancient India — second urbanisation and state formation'],
-    weight: 'Reasons for the rise of Magadha is a standard Mains question; Prelims asks Mahajanapada–capital matching and dynasty sequence.',
+    weight: 'Tier C. Reasons for the rise of Magadha is a standard Mains question; Prelims asks Mahajanapada–capital matching and dynasty sequence.',
   },
 
   bigPicture: `
@@ -46,7 +46,14 @@ five-factor frame in section 3.</p></div>`,
 </table></div>
 <p><b>Republics</b> (<i>gana/sangha</i>): Vajji confederacy (with the Lichchhavis), Mallas, Shakyas (Kapilavastu — the
 Buddha's clan), Koliyas. Decisions were taken in assemblies of clan heads (in the <i>santhagara</i>); the Buddha
-modelled the Sangha on them.</p>` },
+modelled the Sangha on them.</p>
+<div class="box concept"><p><b>Monarchies and republics.</b> In a monarchy, power passed to the king's heir and
+was justified by Vedic sacrifice and Brahmin support. In a <b>gana-sangha</b>, power was shared by an assembly of
+clan heads (often many men called <i>raja</i>) who debated in a hall and decided by discussion or vote. The republics
+lay mostly in the Himalayan foothills and were often more open to new teachings: the Buddha was a Shakya and Mahavira
+a Lichchhavi (Vajji). In the long run the monarchies, with standing armies and regular taxes, absorbed the republics;
+Ajatashatru's conquest of the Vajjis is the classic example.</p></div>
+` },
 
     { title: 'Magadha: dynasties', html: `
 <div class="tbl"><table>
@@ -57,28 +64,28 @@ modelled the Sangha on them.</p>` },
 </table></div>` },
 
     { title: 'Why Magadha rose', html: `
-<ol>
-<li><b>Geography:</b> Rajagriha ringed by hills; Pataliputra a water fort at the confluence of the Ganga, Son and
-Gandak — control of river trade.</li>
-<li><b>Resources:</b> iron ore from the Chotanagpur region (nearby) for weapons and tools; fertile alluvial soil and
-rice; forests supplying <b>elephants</b> for war.</li>
-<li><b>Economy:</b> agricultural surplus, trade, punch-marked coins — revenue for a standing army.</li>
-<li><b>Ambitious rulers</b> and ministers (Bimbisara, Ajatashatru, Mahapadma Nanda); new war machines.</li>
-<li><b>Social openness:</b> less bound by Vedic orthodoxy; home of Buddhism and Jainism; mixed population.</li>
-</ol>` },
+<p>Why did Magadha, rather than Kosala or Avanti, build the first large empire? Five factors worked together.</p>
+<p><b>Geography</b> protected it: Rajagriha was ringed by hills, and Pataliputra was a water fort at the confluence
+of the Ganga, Son and Gandak, which also gave control of river trade. <b>Resources</b> armed it: iron ore from the
+nearby Chotanagpur region for weapons and tools, fertile alluvial soil producing rice surpluses, and forests that
+supplied <b>elephants</b> for war. A strong <b>economy</b> of agricultural surplus, trade and punch-marked coins paid
+for a standing army. <b>Ambitious rulers</b> and ministers, from Bimbisara and Ajatashatru to Mahapadma Nanda, used
+marriage alliances, conquest and new war machines. Finally, Magadha's <b>social openness</b>, less bound by Vedic
+orthodoxy and home to Buddhism and Jainism, allowed a mixed population and even a non-Kshatriya dynasty (the Nandas)
+to rule.</p>
+` },
 
     { title: 'Villages and towns of the janapada age', html: `
-<ul>
-<li><b>Village society (north):</b> the <b>grama bhojaka</b> was the hereditary headman and often the largest landowner;
-he got land cultivated by slaves and hired workers, collected taxes for the king and acted as judge and policeman.
-Smaller independent landowners were <b>grihapatis</b>; the landless who worked others' fields were <b>dasa
-karmakaras</b>.</li>
-<li><b>Farming:</b> iron ploughshares and transplantation of paddy raised output; kings and villagers built canals,
-wells, tanks and artificial lakes.</li>
-<li><b>Towns:</b> fortified cities with <b>ring wells</b> (stacked pottery rings used as toilets, drains and refuse pits),
-NBPW pottery, <b>punch-marked coins</b> (silver or copper pieces stamped with symbols, no legend) and craft guilds
-(<b>shrenis</b>) that also acted as banks.</li>
-</ul>` },
+<p>Behind the rise of states lay changes in the countryside. In north Indian villages the <b>grama bhojaka</b> was the
+hereditary headman and often the largest landowner; he got land cultivated by slaves and hired workers, collected
+taxes for the king and acted as judge and policeman. Smaller independent landowners were <b>grihapatis</b>; the
+landless who worked others' fields were <b>dasa karmakaras</b>. Iron ploughshares and the transplantation of paddy
+raised output, and kings and villagers built canals, wells, tanks and artificial lakes.</p>
+<p>The surplus fed a <b>second urbanisation</b>. Fortified towns grew, with <b>ring wells</b> (stacked pottery rings
+used as toilets, drains and refuse pits) and Northern Black Polished Ware (NBPW) pottery. Trade used
+<b>punch-marked coins</b> (silver or copper pieces stamped with symbols, without legends), and craft guilds
+(<b>shrenis</b>) also acted as banks.</p>
+` },
 
     { title: 'Persian and Macedonian invasions', html: `
 <p><b>Persians:</b> Cyrus and <b>Darius I</b> (c. 518 BCE) annexed Gandhara and the Indus region — the 20th and richest
@@ -91,7 +98,15 @@ satrapy (Herodotus). Effects: Kharosthi script (from Aramaic), Persian influence
 <li>He returned via Sindh and died at Babylon (323 BCE).</li>
 </ul>
 <p><b>Effects:</b> opened land and sea routes to the West; Greek settlements; political vacuum in the north-west that
-helped Chandragupta Maurya; Greek accounts give the first firm dates in Indian history (326 BCE).</p>` },
+helped Chandragupta Maurya; Greek accounts give the first firm dates in Indian history (326 BCE).</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the later Vedic shift from jana to janapada (I04).</li>
+<li><b>Alongside:</b> the Buddha and Mahavira, who taught in Magadha and the republics (I06).</li>
+<li><b>After:</b> Chandragupta Maurya overthrows the Nandas (I07).</li>
+<li><b>Rajasthan:</b> Matsya, with its capital at Viratnagar (Bairat), was one of the sixteen Mahajanapadas (R04).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -164,6 +179,10 @@ Kshatriya clans, not democracies.</p>`,
     { q: 'Where did Alexander defeat Porus?', a: 'On the Hydaspes (Jhelum), 326 BCE.' },
     { q: 'Give two geographical advantages of Magadha.', a: 'Protected capitals; river control at Pataliputra; nearby iron ore; fertile soil.' },
     { q: 'What were the gana-sanghas?', a: 'Republics governed by assemblies of clan heads.' },
+    { q: 'Why did the monarchies eventually absorb the republics?', a: 'Standing armies and regular taxes gave monarchies more power than assemblies of clan heads.' },
+    { q: 'How did iron help Magadha rise?', a: 'Nearby iron ore supplied weapons and tools for war and clearing land.' },
+    { q: 'Why was Pataliputra a good capital?', a: 'It was a water fort at the meeting of the Ganga, Son and Gandak, controlling river trade.' },
+    { q: 'Which Mahajanapada had its capital at Viratnagar?', a: 'Matsya.' },
   ],
 
   glossary: [
@@ -178,5 +197,6 @@ Kshatriya clans, not democracies.</p>`,
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, ch. 6.',
     'R.S. Sharma, <i>India\'s Ancient Past</i>, chs. 14–15.',
     'Romila Thapar, <i>Early India</i>.',
+    'NCERT, <i>Themes in Indian History</i> Part I, ch. 2 — standard text for this rewrite.',
   ],
 };
