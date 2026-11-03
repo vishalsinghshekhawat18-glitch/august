@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Regulating Act to Indian Independence Act — key provisions'],
     mains: ['GS-I/II: Constitutional development under British rule; background of the Indian Constitution'],
-    weight: 'Very high yield for Prelims (provisions) and frequently a Mains question (Government of India Act 1935, Morley-Minto, Montford). Links to Polity.',
+    weight: 'Tier C. Very high yield for Prelims (provisions) and frequently a Mains question (Government of India Act 1935, Morley-Minto, Montford). Links to Polity.',
   },
 
   bigPicture: `
@@ -54,7 +54,16 @@ the nationalists said about it.</p></div>`,
 <tr><td><b>Government of India Act, 1919</b> (Montagu–Chelmsford)</td><td>Based on Montagu's August Declaration (1917) — "responsible government"; <b>dyarchy</b> in provinces (transferred subjects under Indian ministers; reserved under the Governor); <b>bicameral central legislature</b> (Council of State, Legislative Assembly); direct elections on limited franchise; separate electorates extended to Sikhs, Indian Christians, Anglo-Indians, Europeans; separation of central and provincial budgets; <b>Public Service Commission</b> (1926); High Commissioner in London; review after ten years</td><td>Congress rejected it; dyarchy failed</td></tr>
 <tr><td><b>Government of India Act, 1935</b></td><td>See below</td><td>"Charter of slavery" (Nehru); "a machine with strong brakes but no engine"</td></tr>
 <tr><td><b>Indian Independence Act, 1947</b></td><td>Two dominions, India and Pakistan, from 15 August 1947; Constituent Assemblies sovereign; Secretary of State abolished; paramountcy lapsed; Governor-General as constitutional head; Crown's title "Emperor of India" dropped</td><td>End of British rule</td></tr>
-</table></div>` },
+</table></div>
+<div class="box concept"><p><b>The pattern: concession with control.</b> Each Act after 1858 gave Indians a little more
+place in government while keeping real power British. The 1861 Act brought in <b>nominated</b> Indians; 1892 added
+<b>indirect election</b>; 1909 enlarged councils but split voters by religion through <b>separate electorates</b>; 1919
+introduced <b>dyarchy</b>, under which Indian ministers ran "transferred" subjects such as education and local
+government while the Governor kept "reserved" subjects such as finance, police and law and order; 1935 gave
+<b>provincial autonomy</b> but left the Governor and Viceroy with discretionary powers. Most steps followed nationalist
+pressure (the Congress, the Swadeshi movement, the First World War, Non-Cooperation, Civil Disobedience), and most were
+designed to win over moderates while dividing the national movement.</p></div>
+` },
 
     { title: 'Government of India Act, 1935 (in detail)', html: `
 <ol>
@@ -73,7 +82,16 @@ Commissions.</li>
 <li>Governor and Governor-General retained special responsibilities and discretionary powers.</li>
 </ol>
 <p><b>Legacy:</b> much of the Constitution of India (1950) — the federal scheme, lists, emergency provisions, Governor's
-role, public service commissions — was drawn from this Act.</p>` },
+role, public service commissions — was drawn from this Act.</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Company context:</b> the Bengal crisis behind the Regulating Act (I27); administrative policies (I30).</li>
+<li><b>Nationalist pressure:</b> moderates and the 1892 Act (I36); Swadeshi and 1909 (I37); Non-Cooperation and 1919
+(I39); the Simon Commission and Nehru Report (I40); provincial ministries under the 1935 Act (I41); Cripps, Cabinet
+Mission and independence (I42).</li>
+<li><b>After:</b> the princely states and integration (I43).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -153,6 +171,10 @@ school" emphasised how reforms shaped Indian political competition.</p>`,
     { q: 'Which Act introduced provincial dyarchy?', a: 'Government of India Act, 1919.' },
     { q: 'Which Act introduced provincial autonomy?', a: 'Government of India Act, 1935.' },
     { q: 'Why did the 1935 federation not come into force?', a: 'The princely states did not join.' },
+    { q: 'What was dyarchy?', a: 'Division of provincial subjects into transferred (Indian ministers) and reserved (the Governor) under the 1919 Act.' },
+    { q: 'Why did dyarchy fail?', a: 'Ministers had responsibility without control of finance, and the Governor could override them.' },
+    { q: 'How did the 1909 Act divide the national movement?', a: 'Separate electorates for Muslims made religion the basis of political representation.' },
+    { q: 'Why is the 1935 Act important for the Constitution?', a: 'The federal scheme, the three lists, emergency provisions and the Governor\'s role came from it.' },
   ],
 
   glossary: [
@@ -166,5 +188,6 @@ school" emphasised how reforms shaped Indian political competition.</p>`,
     'M. Laxmikanth, <i>Indian Polity</i>, ch. 1.',
     'Bipan Chandra, <i>History of Modern India</i>.',
     'Spectrum, <i>A Brief History of Modern India</i>, appendix on constitutional development.',
+    'NCERT Class 11, <i>Indian Constitution at Work</i>, ch. 1 — standard text for this rewrite.',
   ],
 };
