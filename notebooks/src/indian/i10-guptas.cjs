@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Gupta rulers, administration, society, economy, culture; the "golden age" debate'],
     mains: ['GS-I: Gupta age — polity, culture, science; was it a golden age?'],
-    weight: '"Was the Gupta age a golden age?" is a classic 10-mark question; Samudragupta\'s Allahabad inscription and Gupta science and literature are Prelims favourites.',
+    weight: 'Tier C. "Was the Gupta age a golden age?" is a classic 10-mark question; Samudragupta\'s Allahabad inscription and Gupta science and literature are Prelims favourites.',
   },
 
   bigPicture: `
@@ -40,17 +40,21 @@ trade in later centuries, the rise of feudal land grants and worsening position 
 </table></div>` },
 
     { title: 'Administration', html: `
-<ul>
-<li>Grand titles (<i>Paramabhattaraka, Maharajadhiraja</i>); divine claims.</li>
-<li>Less centralised than the Mauryas: <b>feudatories</b> (samantas) ruled many areas.</li>
-<li>Provinces <b>bhukti</b> (under uparika), districts <b>vishaya</b> (under vishayapati); towns had councils with guild
-heads (nagarashreshthi, sarthavaha, prathama-kulika).</li>
-<li>Officials: <i>kumaramatya</i> (high officers), <i>sandhivigrahika</i> (peace and war), <i>mahadandanayaka</i>
-(justice/army).</li>
-<li>Officials paid by land grants rather than cash — a step towards feudalism.</li>
-<li>Land revenue (1/4 to 1/6); taxes <i>bhaga</i>, <i>bhoga</i>, <i>udranga</i>, <i>uparikara</i>; forced labour
-(<i>vishti</i>).</li>
-</ul>` },
+<p>Gupta kings took grand titles such as <i>Paramabhattaraka</i> and <i>Maharajadhiraja</i> and claimed divine
+qualities, but their state was <b>less centralised</b> than the Mauryan. Many areas were ruled by
+<b>feudatories</b> (samantas) who paid tribute and sent troops. The empire was divided into provinces
+(<b>bhukti</b>, under an uparika) and districts (<b>vishaya</b>, under a vishayapati); town councils included guild
+heads such as the nagarashreshthi, sarthavaha and prathama-kulika. High officials included the
+<i>kumaramatya</i>, the <i>sandhivigrahika</i> (minister of peace and war) and the <i>mahadandanayaka</i> (justice and
+army). Land revenue ranged from a quarter to a sixth of the produce, with other dues (<i>bhaga</i>, <i>bhoga</i>,
+<i>udranga</i>, <i>uparikara</i>) and forced labour (<i>vishti</i>).</p>
+<div class="box concept"><p><b>Land grants and "Indian feudalism".</b> Gupta and later kings increasingly paid
+Brahmins, temples and even officials with <b>land grants</b> (agraharas) instead of cash. Grantees often received the
+right to collect revenue and sometimes to judge and police the villages. R.S. Sharma argued that this, together with
+fewer coins and declining towns, created a "feudal" order in which intermediaries stood between king and peasant,
+and peasants lost freedom. Other historians (such as B.D. Chattopadhyaya) see instead the spread of agriculture and
+state power into new regions. Either way, land grants changed how power and wealth were distributed.</p></div>
+` },
 
     { title: 'Economy and society', html: `
 <p><b>Economy:</b> agrarian expansion; many land grants (<i>agrahara</i>) to Brahmins with fiscal and administrative rights;
@@ -88,7 +92,16 @@ decline after the 4th–5th centuries; R.S. Sharma and D.N. Jha reject the "gold
 construction.<br><b>Balanced view:</b> a high point of classical culture for the elite, alongside growing social
 inequality.</p></div>
 <p><b>Decline:</b> Huna invasions (Toramana, Mihirakula), weak successors, rise of feudatories (Maukharis, Maitrakas,
-Later Guptas, Yashodharman of Mandsaur), loss of western trade, financial strain (debased coins).</p>` },
+Later Guptas, Yashodharman of Mandsaur), loss of western trade, financial strain (debased coins).</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the Kushans, Shakas and Satavahanas (I08).</li>
+<li><b>After:</b> Harsha and the regional kingdoms (I11); the Rajput age (I15).</li>
+<li><b>Culture:</b> Gupta temples and sculpture (I48, I49); Kalidasa (I51); Aryabhata and science (I14).</li>
+<li><b>Rajasthan:</b> the Malavas and Yaudheyas who paid tribute to Samudragupta; the Bayana hoard of Gupta gold coins
+(R01, R04).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -167,6 +180,10 @@ Singh</b> suggests calling it a "classical" age rather than golden.</p>`,
     { q: 'What were bhuktis?', a: 'Provinces of the Gupta empire.' },
     { q: 'What did Aryabhata explain?', a: 'Earth\'s rotation, causes of eclipses, value of π.' },
     { q: 'Name an early Gupta temple with a shikhara.', a: 'Dashavatara temple, Deogarh.' },
+    { q: 'Into which dynasty did Chandragupta II marry his daughter Prabhavati?', a: 'The Vakatakas.' },
+    { q: 'Why was the Gupta state less centralised than the Mauryan?', a: 'Many areas were held by feudatories, and officials were increasingly paid with land grants.' },
+    { q: 'How did land grants change rural society?', a: 'Grantees gained revenue and sometimes judicial rights, placing intermediaries between king and peasant.' },
+    { q: 'Why do some historians reject the "golden age" label?', a: 'Benefits went mainly to elites while caste rigidity, untouchability and the decline of women\'s status grew.' },
   ],
 
   glossary: [
@@ -181,6 +198,6 @@ Singh</b> suggests calling it a "classical" age rather than golden.</p>`,
   sources: [
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, ch. 9.',
     'R.S. Sharma, <i>India\'s Ancient Past</i>, chs. 21–23; <i>Indian Feudalism</i>.',
-    'NCERT (old), R.S. Sharma, <i>Ancient India</i>.',
+    'NCERT (old), R.S. Sharma, <i>Ancient India</i>. — standard text for this rewrite',
   ],
 };
