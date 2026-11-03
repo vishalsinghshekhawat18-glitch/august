@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Imperial Cholas: rulers, administration, local self-government, naval expeditions, art'],
     mains: ['GS-I: Chola administration and village self-government; temple architecture; bronzes'],
-    weight: 'Chola local self-government (Uttaramerur), naval expeditions and the Brihadeshvara temple are perennial questions.',
+    weight: 'Tier C. Chola local self-government (Uttaramerur), naval expeditions and the Brihadeshvara temple are perennial questions.',
   },
 
   bigPicture: `
@@ -43,34 +43,30 @@ bodies — use them in any answer on Indian democratic traditions.</p></div>`,
 </table></div>` },
 
     { title: 'Administration and local self-government', html: `
-<ul>
-<li>King with officials (<i>perundaram</i>, <i>sirudaram</i>); a large army including elephants and a navy.</li>
-<li>Divisions: empire → <b>mandalam</b> (province) → <b>valanadu</b> → <b>nadu</b> → villages.</li>
-<li>Local assemblies:
-<ul>
-<li><b>Ur</b> — assembly of ordinary villages (landholders).</li>
-<li><b>Sabha</b> (mahasabha) — assembly of <b>brahmadeya</b> (Brahmin) villages.</li>
-<li><b>Nagaram</b> — assembly of merchants in trading towns.</li>
-<li><b>Nadu</b> — assembly of a group of villages.</li>
-</ul></li>
-<li><b>Uttaramerur inscriptions</b> (919 and 921, Parantaka I): describe election of the sabha's committees
-(<i>variyams</i>) — garden, tank, justice, annual committees — by lot (<b>kudavolai</b>: names on palm leaves drawn from
-a pot). Qualifications: land ownership, a house, age 35–70, Vedic knowledge; disqualifications: not having
-submitted accounts, crimes, recent service on a committee.</li>
-<li>Land revenue: about 1/3 of produce; land survey under Rajaraja I and Kulottunga I.</li>
-<li><b>Kinds of land:</b> <i>vellanvagai</i> (non-Brahmin peasant proprietors), <i>brahmadeya</i> (Brahmins),
-<i>shalabhoga</i> (upkeep of a school), <i>devadana</i> or <i>tirunamattukkani</i> (temples), <i>pallichchhandam</i>
-(Jain institutions).</li>
-<li><b>Taxes:</b> inscriptions use over 400 tax terms; the most frequent are <i>vetti</i> (forced labour) and
-<i>kadamai</i> (land revenue); others fell on thatching a house, climbing palm trees with a ladder and inheriting
-property.</li>
-<li><b>Rural elites:</b> rich Vellala peasants dominated the nadu; kings gave them titles such as
-<i>muvendavelan</i> and <i>araiyar</i> and posts at the centre.</li>
-</ul>
+<p>The Chola king ruled with ministers and officials (the <i>perundaram</i> and <i>sirudaram</i>) and kept a large
+army with elephants and a navy. The empire was divided into <b>mandalams</b> (provinces), <b>valanadus</b>,
+<b>nadus</b> and villages. Revenue came mainly from land, about a third of the produce, assessed through land surveys
+under Rajaraja I and Kulottunga I. Inscriptions use over 400 tax terms; the most frequent are <i>kadamai</i> (land
+revenue) and <i>vetti</i> (forced labour), and there were dues even for thatching a house, climbing palm trees with a
+ladder and inheriting property.</p>
+<p>Land was classified by who held it: <i>vellanvagai</i> (non-Brahmin peasant proprietors), <i>brahmadeya</i>
+(Brahmins), <i>shalabhoga</i> (upkeep of a school), <i>devadana</i> or <i>tirunamattukkani</i> (temples) and
+<i>pallichchhandam</i> (Jain institutions). Rich Vellala peasants dominated the nadu, and kings bound them to the
+state with titles such as <i>muvendavelan</i> and <i>araiyar</i> and posts at the centre.</p>
+<p>Below the state, local bodies ran much of daily life. The <b>ur</b> was the assembly of ordinary villages of
+landholders; the <b>sabha</b> (mahasabha) the assembly of <b>brahmadeya</b> villages; the <b>nagaram</b> the assembly
+of merchants in trading towns; and the <b>nadu</b> the assembly of a group of villages.</p>
+<div class="box concept"><p><b>The Uttaramerur elections.</b> Two inscriptions of Parantaka I (919 and 921) at
+Uttaramerur describe how a sabha chose its committees (<i>variyams</i>) for gardens, tanks, justice and annual
+supervision. Candidates had to own land and a house, be aged 35–70 and know the Vedas; those who had not submitted
+accounts, had committed crimes or had recently served were barred. Names were written on palm leaves, put in a pot,
+and drawn by a young boy (<b>kudavolai</b>). The system aimed at fairness and rotation, but only propertied Brahmin
+men could take part, so it was local self-government, not democracy in the modern sense.</p></div>
 <div class="box debate"><p>How centralised was the Chola state? <b>Nilakanta Sastri</b> saw a strong centralised
 monarchy. <b>Burton Stein</b> proposed a "segmentary state": real power lay with peasant (nadu) assemblies, the king
 having ritual supremacy over a loose structure. Most historians now see a middle position — growing central control
-in the core over time.</p></div>` },
+in the core over time.</p></div>
+` },
 
     { title: 'Economy, religion and art', html: `
 <p><b>Economy:</b> irrigation tanks; temples as landowners, banks and employers; merchant guilds (<b>Manigramam</b>,
@@ -86,7 +82,15 @@ vimana, the tallest of its time; the Great Living Chola Temples (UNESCO) include
 Airavateshvara (Darasuram).</li>
 <li>Dravida features: tall <b>vimana</b> over the sanctum, later large <b>gopurams</b> (gateways), mandapas, enclosure walls.</li>
 <li><b>Bronzes</b> by the lost-wax method; the <b>Nataraja</b> (Shiva as cosmic dancer) is the best-known.</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the Pallavas and Rashtrakutas (I11); Sangam Cholas (I09).</li>
+<li><b>Religion:</b> Nayanars, Alvars and Ramanuja (I20).</li>
+<li><b>Art:</b> Dravida temples (I48); Chola bronzes and the Nataraja (I49).</li>
+<li><b>After:</b> the Delhi Sultanate's southern campaigns and Vijayanagara (I17, I19).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -157,6 +161,10 @@ used inscriptions to show increasing bureaucratic control and the role of temple
     { q: 'What new capital did Rajendra I build?', a: 'Gangaikondacholapuram.' },
     { q: 'Who proposed the segmentary-state model?', a: 'Burton Stein.' },
     { q: 'Name two Chola merchant guilds.', a: 'Manigramam and Ayyavole (Ainnurruvar).' },
+    { q: 'How were committee members chosen at Uttaramerur?', a: 'By lot (kudavolai): names on palm leaves drawn from a pot, among qualified candidates.' },
+    { q: 'Why was Chola local government not democracy in the modern sense?', a: 'Only propertied, Vedic-learned Brahmin men could stand in the sabha.' },
+    { q: 'How did temples support the Chola economy?', a: 'As landowners, banks and employers of craftsmen.' },
+    { q: 'Why did Rajendra I send a navy to Srivijaya?', a: 'To secure the sea trade route to China through South-East Asia.' },
   ],
 
   glossary: [
@@ -172,6 +180,6 @@ used inscriptions to show increasing bureaucratic control and the role of temple
     'K.A. Nilakanta Sastri, <i>The Colas</i>.',
     'Burton Stein, <i>Peasant State and Society in Medieval South India</i>.',
     'Satish Chandra, <i>History of Medieval India</i>, ch. 3.',
-    'NCERT, <i>Our Pasts II</i> (Class VII), ch. 2.',
+    'NCERT, <i>Our Pasts II</i> (Class VII), ch. 2. — standard text for this rewrite',
   ],
 };
