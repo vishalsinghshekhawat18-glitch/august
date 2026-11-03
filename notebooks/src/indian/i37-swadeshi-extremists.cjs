@@ -6,17 +6,21 @@ module.exports = {
   syllabus: {
     prelims: ['Partition of Bengal; Swadeshi and boycott; Surat split; Muslim League; Morley-Minto; Lucknow Pact; Home Rule Leagues'],
     mains: ['GS-I: Swadeshi movement; Extremists vs Moderates; Home Rule movement'],
-    weight: 'Swadeshi movement and the Surat split are high-yield; the Lucknow Pact and Home Rule are frequent Prelims topics.',
+    weight: 'Tier B. Swadeshi movement and the Surat split are high-yield; the Lucknow Pact and Home Rule are frequent Prelims topics.',
   },
 
   bigPicture: `
-<p>Dissatisfaction with Moderate methods, Curzon's policies and international events produced the <b>Extremists</b>
-— Lal, Bal, Pal (Lajpat Rai, Tilak, Bipin Chandra Pal) and Aurobindo Ghosh — who demanded <b>swaraj</b> and used mass
-methods. Curzon's <b>partition of Bengal (1905)</b> triggered the <b>Swadeshi movement</b>, the first mass movement of
-modern India. The <b>Surat split (1907)</b>, repression and the Morley-Minto reforms followed. During the First World
-War, the <b>Lucknow Pact (1916)</b> reunited the Congress and brought it together with the Muslim League, and the
-<b>Home Rule Leagues</b> revived agitation.</p>
-<div class="box why"><p>Explain why the Extremists emerged, what Swadeshi achieved and why it declined.</p></div>`,
+<p>By 1900 a younger generation of nationalists had lost faith in the Moderates' petitions. They were led by Lal, Bal
+and Pal (Lajpat Rai, Tilak, Bipin Chandra Pal) and Aurobindo Ghosh, and became known as the <b>Extremists</b>. They
+demanded <b>swaraj</b> and wanted to win it through the strength of the people, not the goodwill of the British.
+Curzon's <b>partition of Bengal (1905)</b> gave them their chance: it set off the <b>Swadeshi movement</b>, the first
+mass movement of modern India. The movement brought new methods (boycott, swadeshi, national education) but also the
+<b>Surat split (1907)</b>, repression, and the separate electorates of the Morley-Minto reforms. During the First World
+War the <b>Lucknow Pact (1916)</b> reunited the Congress and brought it together with the Muslim League, and the
+<b>Home Rule Leagues</b> kept agitation alive until Gandhi's arrival.</p>
+<div class="box why"><p>Mains asks why the Extremists emerged, why Bengal was partitioned (RAS Mains 2016), what
+Swadeshi achieved and why it declined. Prelims picks facts: dates of partition, Surat, Lucknow and the two Home Rule
+Leagues, and cultural details such as Abanindranath Tagore's <i>Bharat Mata</i> (RAS Pre 2024).</p></div>`,
 
   timeline: [
     ['1899–1905', 'Curzon Viceroy'],
@@ -35,74 +39,87 @@ War, the <b>Lucknow Pact (1916)</b> reunited the Congress and brought it togethe
 
   sections: [
     { title: 'Rise of the Extremists', html: `
-<ol>
-<li>Failure of Moderate methods to win concessions.</li>
-<li>Curzon's reactionary policies: Calcutta Corporation Act (1899), Official Secrets Act (1904), Indian Universities Act
-(1904), partition of Bengal (1905).</li>
-<li>Famines and plague (1896–1900) and harsh plague measures in Pune (Rand's murder, 1897; Chapekar brothers).</li>
-<li>International: Japan's defeat of Russia (1905), Ethiopia's defeat of Italy (Adwa, 1896), nationalist movements in
-Ireland, Egypt, Turkey, Persia.</li>
-<li>Growth of self-confidence and pride in Indian culture (Vivekananda, Dayanand, Bankim).</li>
-</ol>
-<p><b>Ideas:</b> <b>swaraj</b> as the goal; self-reliance; mass participation; passive resistance; boycott and
-swadeshi; national education. Tilak: "Swaraj is my birthright and I shall have it"; Ganapati (1893) and Shivaji
-(1895) festivals; papers <i>Kesari</i> and <i>Mahratta</i>.</p>` },
+<p>Several forces pushed nationalists beyond the Moderate approach. First, two decades of petitions had won little,
+which convinced many that the British would concede only to pressure. Second, <b>Curzon</b> (Viceroy 1899–1905) seemed
+to go out of his way to offend educated Indians: the Calcutta Corporation Act (1899) cut elected members, the Indian
+Universities Act (1904) tightened government control of universities, the Official Secrets Act (1904) curbed the
+press, and finally he partitioned Bengal. Third, the famines and plague of 1896–1900, and harsh plague measures in
+Pune, caused deep anger; the plague commissioner Rand was shot in 1897 by the Chapekar brothers. Fourth, events abroad
+showed that Europeans could be beaten: Ethiopia defeated Italy at Adwa (1896) and Japan defeated Russia (1905), while
+nationalists struggled in Ireland, Egypt, Turkey and Persia. Finally, Vivekananda, Dayanand and Bankim had given
+Indians a new pride in their own culture.</p>
+<div class="box concept"><p><b>Moderates and Extremists: the real difference.</b> Both wanted Indian self-government
+and both used the economic critique. They differed on <b>method and confidence</b>. Moderates trusted British
+liberalism and appealed to it through petitions; Extremists believed freedom had to be taken, through
+<b>self-reliance</b>, <b>passive resistance</b>, <b>boycott</b>, <b>swadeshi</b>, <b>national education</b> and mass
+participation. Tilak declared, "Swaraj is my birthright and I shall have it," and used the Ganapati (1893) and
+Shivaji (1895) festivals and his papers <i>Kesari</i> and <i>Mahratta</i> to reach ordinary people. The use of
+religious festivals widened the movement's base but also gave it a Hindu tone that kept many Muslims away.</p></div>` },
 
     { title: 'Partition of Bengal and the Swadeshi movement', html: `
-<ul>
-<li><b>Announced</b> July 1905 by Curzon; <b>effective 16 October 1905</b>: Eastern Bengal and Assam (capital Dacca),
-Muslim majority; western Bengal with Bihar and Odisha — Bengali speakers became a minority.</li>
-<li><b>Official reason:</b> administrative convenience; <b>real motive</b> (Risley's notes): "Bengal united is a power;
-Bengal divided will pull in several different ways" — weaken Bengali nationalism and divide Hindus and Muslims.</li>
-<li><b>Boycott resolution</b> at the Calcutta Town Hall, <b>7 August 1905</b>.</li>
-<li>16 October observed as a day of mourning; <b>raksha bandhan</b> as a symbol of unity; <b>Amar Sonar Bangla</b>
-(Tagore).</li>
-<li><b>Methods:</b> boycott of British goods, swadeshi industries (Bengal Chemicals of P.C. Ray, Banga Lakshmi cotton
-mills, swadeshi match and soap factories), <b>national education</b> (Bengal National College, 1906, Aurobindo
-principal; National Council of Education), <b>samitis</b> (Swadesh Bandhab Samiti of Ashwini Kumar Dutta, Barisal),
-social boycott, traditional festivals and folk theatre (jatras), songs (Tagore, Rajanikanta Sen, Mukunda Das).</li>
-<li><b>Spread:</b> Tilak (Bombay, Poona), Lajpat Rai and Ajit Singh (Punjab), Syed Haider Raza (Delhi), V.O.
-Chidambaram Pillai (Swadeshi Steam Navigation Company, Tuticorin).</li>
-<li><b>Decline (after 1908):</b> repression; Surat split; lack of an effective organisation; failure to involve peasants
-and Muslims (the Muslim peasantry of east Bengal was largely alienated; Nawab Salimullah backed partition); leaders
-arrested or exiled (Tilak to Mandalay; Aurobindo withdrew to Pondicherry; Pal retired).</li>
-<li><b>Significance:</b> first mass movement; brought students, women and some workers into politics; boost to
-indigenous industry and culture; tested methods (boycott, non-cooperation, passive resistance) later used by
-Gandhi.</li>
-</ul>` },
+<p>Curzon announced the partition in <b>July 1905</b>, and it took effect on <b>16 October 1905</b>. It created a new
+province of Eastern Bengal and Assam (capital Dacca) with a Muslim majority, while in western Bengal, joined to Bihar
+and Odisha, Bengali speakers became a minority. The official reason was administrative convenience, since Bengal was
+too large to govern. The real motive appears in the notes of Home Secretary Risley: "Bengal united is a power; Bengal
+divided will pull in several different ways." The aim was to weaken Bengal, the centre of Indian nationalism, and to
+divide Hindus and Muslims.</p>
+<p>Bengal answered with the <b>boycott resolution</b> at the Calcutta Town Hall (<b>7 August 1905</b>). On 16 October
+people fasted and mourned, tied <b>rakhis</b> on one another as a symbol of unity, and sang Tagore's <i>Amar Sonar
+Bangla</i>. The movement used many methods. Foreign cloth was boycotted and burnt, and <b>swadeshi</b> enterprises were
+set up: P.C. Ray's Bengal Chemicals, the Banga Lakshmi cotton mills, and swadeshi match and soap factories.
+<b>National education</b> began with the Bengal National College (1906, Aurobindo principal) under the National
+Council of Education. Volunteer <b>samitis</b> such as Ashwini Kumar Dutta's Swadesh Bandhab Samiti (Barisal) spread
+the message, together with social boycott, festivals, folk theatre (jatras) and songs by Tagore, Rajanikanta Sen and
+Mukunda Das. In art, <b>Abanindranath Tagore</b> painted <i>Bharat Mata</i> (1905), the first image of India as a
+mother goddess.</p>
+<p>The movement spread beyond Bengal: Tilak in Bombay and Poona, Lajpat Rai and Ajit Singh in Punjab, Syed Haider Raza
+in Delhi, and V.O. Chidambaram Pillai, who founded the Swadeshi Steam Navigation Company at Tuticorin.</p>
+<div class="box concept"><p><b>Why Swadeshi declined, and why it still mattered.</b> After 1908 the movement faded.
+The government crushed it with arrests and press laws; the Surat split divided the leadership; it had no lasting
+organisation; and it failed to win over the peasantry, especially the <b>Muslim peasants</b> of east Bengal, whose
+landlords were often Hindu and whose leaders, such as Nawab Salimullah, backed partition. Its leaders were removed:
+Tilak was sent to Mandalay, Aurobindo withdrew to Pondicherry and Pal retired. Yet Swadeshi was the <b>first mass
+movement</b>: it brought students, women and some workers into politics, boosted Indian industry and culture, and
+tested boycott, non-cooperation and passive resistance, the methods Gandhi later used on a national scale.</p></div>` },
 
     { title: 'Surat split (1907) and after', html: `
-<ul>
-<li>At <b>Calcutta (1906)</b>, under Naoroji, compromise resolutions on swaraj, swadeshi, boycott and national
-education.</li>
-<li>At <b>Surat (1907)</b>: Extremists wanted Lajpat Rai or Tilak as president; Moderates chose <b>Rash Behari Ghosh</b>;
-fear that the four resolutions would be dropped; the session broke up in chaos.</li>
-<li>The government repressed the Extremists (Seditious Meetings Act 1907, Newspapers Act 1908, Explosive Substances Act,
-Tilak sentenced 1908) and conciliated the Moderates with the <b>Morley-Minto Reforms (1909)</b> — "rally the Moderates".</li>
-<li><b>Muslim League</b> (Dacca, 30 December 1906): Aga Khan led the <b>Simla deputation</b> (1 October 1906) to Minto
-seeking separate electorates; founded under Nawab Salimullah of Dacca, Aga Khan first president; Morley-Minto granted
-separate electorates (1909).</li>
-<li><b>Annulment</b> of partition and transfer of the capital to Delhi announced at the <b>Delhi Durbar</b> (12 December
-1911) of George V.</li>
-</ul>` },
+<p>At the <b>Calcutta session (1906)</b>, under Dadabhai Naoroji, the two groups agreed on compromise resolutions on
+swaraj, swadeshi, boycott and national education. A year later at <b>Surat (1907)</b> the compromise broke. The
+Extremists wanted Lajpat Rai or Tilak as president; the Moderates chose <b>Rash Behari Ghosh</b>, and the Extremists
+feared the four Calcutta resolutions would be dropped. The session broke up in chaos. At root, the Extremists had lost
+faith in the Moderates' ability to win anything by negotiating with the British.</p>
+<p>The government used the split to <b>"rally the Moderates"</b> and crush the Extremists. It passed the Seditious
+Meetings Act (1907), the Newspapers Act (1908) and the Explosive Substances Act, and sentenced Tilak to six years in
+Mandalay (1908). At the same time it offered the Moderates the <b>Morley-Minto Reforms (1909)</b>.</p>
+<p>Meanwhile Muslim politics took its own course. The Aga Khan led the <b>Simla deputation</b> (1 October 1906) to Minto
+seeking separate electorates, and the <b>Muslim League</b> was founded at Dacca on 30 December 1906 under Nawab
+Salimullah, with the Aga Khan as first president. Morley-Minto granted separate electorates in 1909. Finally, at the
+<b>Delhi Durbar</b> (12 December 1911) George V announced the annulment of the partition and the transfer of the
+capital to Delhi.</p>` },
 
     { title: 'Lucknow Pact and the Home Rule movement', html: `
+<p>The First World War changed the mood. At the <b>Lucknow session (1916)</b>, president A.C. Majumdar, the Moderates
+and Extremists <b>reunited</b>. In the <b>Lucknow Pact</b> the Congress and the League made joint demands for
+self-government and reforms, and the Congress accepted <b>separate electorates</b> for Muslims. Tilak and Jinnah played
+key roles. The pact brought Hindu–Muslim cooperation but also gave the League legitimacy and accepted the principle of
+separate electorates.</p>
+<p>The <b>Home Rule Leagues</b> (1916), on the Irish model, aimed at home rule, meaning self-government within the
+empire. <b>Tilak's League</b> (April 1916, Belgaum) covered Maharashtra (except Bombay city), Karnataka, the Central
+Provinces and Berar. <b>Annie Besant's League</b> (September 1916, Madras) covered the rest of India, with her papers
+<i>New India</i> and <i>Commonweal</i> and helpers such as George Arundale, B.P. Wadia and C.P. Ramaswami Aiyar. They
+worked through meetings, newspapers, libraries and pamphlets. Besant's internment (June 1917) caused nationwide
+protest; she was released and elected Congress president (1917). The movement declined after Montagu's <b>August
+Declaration (1917)</b>, which promised the "gradual development of self-governing institutions, with a view to the
+progressive realisation of responsible government".</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
 <ul>
-<li><b>Lucknow session (1916)</b>, president A.C. Majumdar: Moderates and Extremists <b>reunited</b>.</li>
-<li><b>Lucknow Pact</b> (Congress–League): joint demand for self-government and reforms; Congress accepted
-<b>separate electorates</b> for Muslims; Tilak and Jinnah played key roles. Gave the League political legitimacy.</li>
-<li><b>Home Rule Leagues</b> (1916), on the Irish model:
-  <ul>
-  <li><b>Tilak's League</b> (April 1916, Belgaum): Maharashtra (except Bombay city), Karnataka, Central Provinces,
-  Berar.</li>
-  <li><b>Annie Besant's League</b> (September 1916, Madras): the rest of India; papers <i>New India</i> and
-  <i>Commonweal</i>; George Arundale, B.P. Wadia, C.P. Ramaswami Aiyar.</li>
-  <li>Aim: home rule (self-government within the empire); methods: meetings, newspapers, libraries, pamphlets.</li>
-  <li>Besant interned (June 1917), released after protest; elected Congress president (1917).</li>
-  <li>Decline after Montagu's <b>August Declaration (1917)</b> — "gradual development of self-governing institutions,
-  with a view to the progressive realisation of responsible government".</li>
-  </ul></li>
-</ul>` },
+<li><b>Before:</b> the Moderates and the economic critique (I31, I36); reform and revivalist movements (I35).</li>
+<li><b>Alongside:</b> revolutionary nationalism grew from the Swadeshi samitis (I38); Morley-Minto and separate
+electorates (I29).</li>
+<li><b>After:</b> Gandhi's non-cooperation took up boycott and swadeshi (I39); separate electorates led towards the
+communal question and partition (I42).</li>
+<li><b>Rajasthan:</b> revolutionaries such as Arjunlal Sethi, Kesari Singh Barhath and Rao Gopal Singh (R19).</li>
+</ul></div>` },
   ],
 
   historians: `
@@ -129,6 +146,8 @@ the Home Rule movement.</p>`,
     'Tilak\'s Home Rule League was founded in April 1916 at Belgaum.',
     'Annie Besant\'s Home Rule League was founded in September 1916 at Madras.',
     'Montagu\'s August Declaration was made in 1917.',
+    'Abanindranath Tagore painted Bharat Mata during the Swadeshi movement.',
+    'Risley\'s note: "Bengal united is a power; Bengal divided will pull in several different ways."',
   ],
 
   traps: [
@@ -137,6 +156,7 @@ the Home Rule movement.</p>`,
     'Lucknow Pact: Congress accepted separate electorates.',
     'Tilak\'s League first (April 1916); Besant\'s (September 1916).',
     'Muslim League first president: Aga Khan; founded at Dacca.',
+    'Bharat Mata was painted by Abanindranath Tagore, not Rabindranath.',
   ],
 
   pyqs: {
@@ -152,6 +172,11 @@ the Home Rule movement.</p>`,
   },
 
   mains: [
+    {
+      q: 'Why was Bengal partitioned in 1905? Also highlight its consequences.', marks: 10, words: 100, pyq: 'RAS Mains 2016',
+      outline: ['Official reason', 'Real motive', 'Consequences: Swadeshi', 'Communal consequences', 'Annulment'],
+      answer: '<p>Curzon justified the partition as administrative convenience, since Bengal was too large to govern. The real aim, seen in Risley\'s notes, was to weaken Bengal, the centre of nationalism, and to divide Hindus and Muslims by creating a Muslim-majority Eastern Bengal and Assam. The consequences were the opposite of what was intended: it provoked the Swadeshi movement, with boycott, swadeshi industry, national education and the first mass participation in politics, and radicalised nationalism, leading to the Surat split and revolutionary activity. It also deepened communal division: the Muslim League was founded (1906) and separate electorates followed (1909). The partition was annulled in 1911.</p>',
+    },
     {
       q: 'Discuss the methods and significance of the Swadeshi movement.', marks: 10, words: 100,
       outline: ['Cause', 'Methods', 'Spread', 'Decline', 'Significance'],
@@ -186,6 +211,10 @@ the Home Rule movement.</p>`,
     { q: 'When was the partition annulled?', a: '1911.' },
     { q: 'What did the Congress accept in the Lucknow Pact?', a: 'Separate electorates for Muslims.' },
     { q: 'Which newspapers did Annie Besant run?', a: 'New India and Commonweal.' },
+    { q: 'Who painted Bharat Mata?', a: 'Abanindranath Tagore.' },
+    { q: 'Why did Curzon partition Bengal, beyond the official reason?', a: 'To weaken Bengali nationalism and divide Hindus and Muslims.' },
+    { q: 'Why did the Swadeshi movement fail to win over the Muslim peasants of east Bengal?', a: 'Their landlords were often Hindu, Muslim leaders backed partition, and the movement used Hindu symbols and festivals.' },
+    { q: 'How did the government respond to the Surat split?', a: 'It repressed the Extremists and conciliated the Moderates with the Morley-Minto reforms ("rally the Moderates").' },
   ],
 
   glossary: [
@@ -198,7 +227,7 @@ the Home Rule movement.</p>`,
 
   sources: [
     'Sumit Sarkar, <i>The Swadeshi Movement in Bengal</i>.',
-    'Bipan Chandra et al., <i>India\'s Struggle for Independence</i>, chs. 8–9, 12.',
+    'Bipan Chandra et al., <i>India\'s Struggle for Independence</i>, chs. 8–9, 12 — standard text for this rewrite.',
     'Spectrum, <i>A Brief History of Modern India</i>.',
   ],
 };
