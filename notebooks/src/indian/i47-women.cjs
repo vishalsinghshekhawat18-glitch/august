@@ -12,7 +12,7 @@ module.exports = {
       'Rajasthan link: Deorala (1987) and the Sati (Prevention) law; the Women\'s Development Programme and the Bhanwari Devi case leading to Vishaka (1997)',
     ],
     mains: ['GS-I Part B: Post-independent India — Women empowerment and women reform movement', 'GS-I Part B: Socio-religious reform movements in the 19th and 20th century'],
-    weight: 'New in the 2026 syllabus, so there is no RAS PYQ yet. Expect a 10-mark question on the course of the women\'s movement from social reform to empowerment, and short questions on laws, reports and reformers. Links: I35 (reform movements), I42 (women in Quit India), Law notebook (Domestic Violence Act, POSH Act).',
+    weight: 'Tier C. New in the 2026 syllabus, so there is no RAS PYQ yet. Expect a 10-mark question on the course of the women\'s movement from social reform to empowerment, and short questions on laws, reports and reformers. Links: I35 (reform movements), I42 (women in Quit India), Law notebook (Domestic Violence Act, POSH Act).',
   },
 
   bigPicture: `
@@ -78,7 +78,15 @@ to do so. Women won a limited franchise in the provinces in the 1920s and under 
 flag at Gowalia Tank (9 August 1942) and Usha Mehta ran the underground Congress Radio; the INA's Rani of Jhansi
 Regiment was led by Lakshmi Swaminathan.</li>
 <li><b>Karachi resolution (1931)</b> promised equal rights regardless of sex: the bridge to the Constitution.</li>
-</ul>` },
+</ul>
+<div class="box concept"><p><b>From reform "for" women to a movement "by" women.</b> The 19th-century reforms were
+mostly led by men, and they framed women as victims to be rescued through laws and schools. Those schools, however,
+produced educated women who began to speak for themselves, first in writing (Tarabai Shinde, Pandita Ramabai) and then
+through their own organisations. The national movement, especially Gandhi's mass campaigns, drew women into public
+life in large numbers, which made it hard to deny them political rights. By the 1930s women's bodies such as the AIWC
+were demanding the vote and legal equality as rights, not favours, and the Karachi resolution (1931) committed the
+Congress to them. This is the line that runs into the Constitution.</p></div>
+` },
 
     { title: 'Stage 3: rights and empowerment after 1947', html: `
 <ul>
@@ -105,7 +113,15 @@ Empowerment of Women (2001).</li>
 The gang-rape of <b>Bhanwari Devi</b>, a sathin, in 1992 led to the Supreme Court's <b>Vishaka guidelines</b> (1997),
 later the basis of the POSH Act 2013 (Law notebook).</li>
 <li>Rajasthan's women reformers and Praja Mandal activists are covered in the Rajasthan History notebook (R19, R20).</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Roots:</b> the socio-religious reform movements (I35); Bentinck and the ban on sati (I30).</li>
+<li><b>Freedom struggle:</b> women in Civil Disobedience (I41) and Quit India (I42).</li>
+<li><b>After 1947:</b> the Hindu Code laws and the Nehru era (I45).</li>
+<li><b>Rajasthan:</b> women in the Praja Mandals (R20); changing social patterns in Rajasthan (R23).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -188,6 +204,10 @@ India.</p>`,
     { q: 'What did Towards Equality (1974) report on?', a: 'The status of women in India (Committee on the Status of Women in India).' },
     { q: 'Which constitutional amendments reserved one-third of local body seats for women?', a: 'The 73rd and 74th (1992).' },
     { q: 'Which Rajasthan case led to the Vishaka guidelines?', a: 'The Bhanwari Devi case.' },
+    { q: 'Why were 19th-century reforms called reforms "for" women?', a: 'Male reformers led them and treated women as victims to be rescued by law.' },
+    { q: 'How did the national movement change women\'s position?', a: 'Mass campaigns drew women into public life, strengthening their claim to political rights.' },
+    { q: 'Why was Towards Equality (1974) a turning point?', a: 'It showed how far women\'s real status lagged behind constitutional promises and sparked a new women\'s movement.' },
+    { q: 'How did the Bhanwari Devi case change the law?', a: 'It led to the Vishaka guidelines (1997) on sexual harassment at work, later the POSH Act.' },
   ],
 
   glossary: [
@@ -203,6 +223,6 @@ India.</p>`,
     'Radha Kumar, <i>The History of Doing</i> (Kali for Women, 1993).',
     'Government of India, <i>Towards Equality: Report of the Committee on the Status of Women in India</i> (1974).',
     'Constitution of India (Bare Act); National Commission for Women Act, 1990; Vishaka v. State of Rajasthan (1997).',
-    'Bipan Chandra et al., <i>India\'s Struggle for Independence</i>, and NCERT Class 12, <i>Themes in Indian History III</i>.',
+    'Bipan Chandra et al., <i>India\'s Struggle for Independence</i>, and NCERT Class 12, <i>Themes in Indian History III</i>. — standard text for this rewrite',
   ],
 };
