@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Sangam literature; Cheras, Cholas, Pandyas; society and economy of the far south'],
     mains: ['GS-I: Ancient south India — Sangam polity, society, economy'],
-    weight: 'Mostly Prelims: Sangam texts, kingdoms and capitals, tinai landscapes.',
+    weight: 'Tier C. Mostly Prelims: Sangam texts, kingdoms and capitals, tinai landscapes.',
   },
 
   bigPicture: `
@@ -27,16 +27,16 @@ they show regional diversity in ancient India.</p></div>`,
 
   sections: [
     { title: 'Sangam literature', html: `
-<ul>
-<li>Tradition speaks of three Sangams at Madurai; only works of the third survive.</li>
-<li><b>Tolkappiyam</b> (Tolkappiyar): Tamil grammar and poetics.</li>
-<li><b>Ettuttogai</b> (Eight Anthologies) and <b>Pattuppattu</b> (Ten Idylls) — the core Sangam corpus.</li>
-<li><b>Patinenkilkanakku</b> (18 minor works), including the <b>Tirukkural</b> of <b>Tiruvalluvar</b> — ethics,
-wealth and love.</li>
-<li>Epics (slightly later): <b>Silappadikaram</b> (Ilango Adigal; Kannagi and Kovalan) and <b>Manimekalai</b>
-(Sittalai Sattanar; Buddhist) — the "twin epics".</li>
-<li>Themes: <b>akam</b> (inner — love) and <b>puram</b> (outer — war, kings, generosity).</li>
-</ul>` },
+<p>Tamil tradition speaks of three Sangams (assemblies of poets) at Madurai; only works of the third survive. The
+oldest is the <b>Tolkappiyam</b> of Tolkappiyar, a work of Tamil grammar and poetics. The core Sangam corpus is the
+<b>Ettuttogai</b> (Eight Anthologies) and the <b>Pattuppattu</b> (Ten Idylls). The <b>Patinenkilkanakku</b> (18 minor
+works) includes the <b>Tirukkural</b> of <b>Tiruvalluvar</b>, a book of short verses on ethics, wealth and love that
+is still widely quoted. Slightly later come the "twin epics": <b>Silappadikaram</b> by Ilango Adigal, the story of
+Kannagi and Kovalan, and <b>Manimekalai</b> by Sittalai Sattanar, a Buddhist work.</p>
+<p>Sangam poems fall into two kinds: <b>akam</b> ("inner"), about love, and <b>puram</b> ("outer"), about war,
+kings and generosity. Because many puram poems were composed by bards praising real chiefs, they are a valuable,
+though poetic, record of the society.</p>
+` },
 
     { title: 'The three kingdoms', html: `
 <div class="tbl"><table>
@@ -48,18 +48,31 @@ wealth and love.</li>
 <p>Smaller chiefs (<i>velir</i>) such as Pari and Ay were celebrated for generosity.</p>` },
 
     { title: 'Society, economy and polity', html: `
+<div class="box concept"><p><b>Tinai: land shapes life.</b> Sangam poets divided the Tamil country into five
+landscapes (<b>tinai</b>), each with its own way of life and poetic mood: <b>kurinji</b> (hills; hunting and
+gathering), <b>mullai</b> (forest and pasture; herding), <b>marutam</b> (riverine plains; farming), <b>neytal</b>
+(coast; fishing and salt) and <b>palai</b> (dry land; raiding). The idea shows that early Tamil society was not
+uniform: the rich farming villages of the Kaveri delta supported kings and towns, while hill and dry zones lived by
+hunting, herding and plunder. It also explains why chiefs and kings fought constantly over the fertile marutam
+lands.</p></div>
+<p>Kingship was hereditary, and the king was advised by an assembly (<b>sabha</b> or <b>manram</b>). His revenue came
+from land (<i>karai</i>), tribute and plunder, and he rewarded bards and warriors generously. Warriors who died in
+battle were honoured with <b>hero stones</b> (<i>nadukal</i>).</p>
+<p>Society was not organised by varna as in the north. Bards (<i>panar</i>, <i>viraliyar</i>) travelled between
+courts; the <i>vellalar</i> were large landowners, the <i>uzhavar</i> ploughmen, and the <i>kadaisiyar</i> and
+<i>adimai</i> landless labourers, including slaves. Women poets such as Avvaiyar and Nachchellaiyar are named. The
+chief deity was <b>Murugan</b>, linked with the hills, alongside Mayon (Vishnu) and Kotravai, the war goddess; Vedic
+sacrifice, Buddhism and Jainism spread later.</p>
+<p>Trade linked the far south to the wider world. Pepper, pearls, fine cotton (muslin) and ivory went to Rome, Roman
+coins are found widely, and <b>Yavanas</b> (westerners) lived at the ports.</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
 <ul>
-<li><b>Tinai</b> — five landscapes, each with its occupation and theme: <b>kurinji</b> (hills; hunting), <b>mullai</b>
-(forest/pasture; herding), <b>marutam</b> (riverine plains; farming), <b>neytal</b> (coast; fishing, salt), <b>palai</b>
-(dry land; raiding).</li>
-<li>Kingship hereditary; king advised by the <b>sabha/manram</b>; revenue from land (karai), tribute and plunder.</li>
-<li>Hero stones (<i>nadukal</i>) for warriors who died in battle.</li>
-<li>Society: varna was weak; groups such as the <i>panar</i> and <i>viraliyar</i> (bards), <i>vellalar</i> (large landowners),
-<i>uzhavar</i> (ploughmen), <i>kadaisiyar</i> and <i>adimai</i> (landless labourers, including slaves). Women poets: Avvaiyar, Nachchellaiyar.</li>
-<li>Religion: <b>Murugan</b> (chief deity, with Kurinji), Mayon (Vishnu), Kotravai (war goddess); Vedic sacrifices and
-Buddhism and Jainism spread later.</li>
-<li>Trade: pepper, pearls, muslin, ivory to Rome; Roman coins found widely; Yavanas resident at ports.</li>
-</ul>` },
+<li><b>Alongside:</b> the post-Mauryan kingdoms and Indo-Roman trade (I08).</li>
+<li><b>After:</b> the Pallavas and later the Cholas (I11, I12).</li>
+<li><b>Literature:</b> Tamil literature and the Tirukkural (I51); Tamil bhakti (I20).</li>
+<li><b>Sources:</b> Sangam poems as a historical source (I01).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -121,6 +134,10 @@ redistribution of plunder, not a full state. Dating the poems is difficult; the 
     { q: 'Which landscape was associated with farming?', a: 'Marutam.' },
     { q: 'Who was the chief Sangam deity?', a: 'Murugan.' },
     { q: 'Which was the Pandya pearl port?', a: 'Korkai.' },
+    { q: 'What were the five tinai?', a: 'Kurinji (hills), mullai (pasture), marutam (farmland), neytal (coast) and palai (dry land).' },
+    { q: 'Why are puram poems useful to historians?', a: 'They praise real chiefs and describe war, kingship and generosity, though in poetic form.' },
+    { q: 'How did Sangam society differ from north Indian society?', a: 'Varna was weak; groups were defined by occupation and landscape.' },
+    { q: 'Why did chiefs fight so often over marutam lands?', a: 'The fertile riverine plains produced the surplus that supported kings and towns.' },
   ],
 
   glossary: [
@@ -134,6 +151,6 @@ redistribution of plunder, not a full state. Dating the poems is difficult; the 
   sources: [
     'K.A. Nilakanta Sastri, <i>A History of South India</i>.',
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, ch. 8.',
-    'NCERT (old), R.S. Sharma, <i>Ancient India</i>.',
+    'NCERT (old), R.S. Sharma, <i>Ancient India</i>. — standard text for this rewrite',
   ],
 };
