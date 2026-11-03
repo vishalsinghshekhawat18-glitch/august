@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Ten Gurus; Guru Granth Sahib; Khalsa; Banda Bahadur; misls; Ranjit Singh; Anglo-Sikh wars'],
     mains: ['GS-I: Rise of Sikh power; Ranjit Singh'],
-    weight: 'Mostly Prelims (Gurus and their contributions); Ranjit Singh and the transformation of the Sikh community into a political power suit Mains.',
+    weight: 'Tier C. Mostly Prelims (Gurus and their contributions); Ranjit Singh and the transformation of the Sikh community into a political power suit Mains.',
   },
 
   bigPicture: `
@@ -66,7 +66,16 @@ reasons (Mughal persecution, Jat peasant base, collapse of Mughal authority in P
 system, which had become corrupt.</li>
 <li>Created a disciplined community for armed resistance; Guru Gobind Singh's sons died (Chamkaur; the younger two at
 Sirhind).</li>
-</ul>` },
+</ul>
+<div class="box concept"><p><b>From devotional community to military power.</b> Guru Nanak's followers were at first
+a community of worship, bound by shared hymns, the langar and the sangat. Three things changed this. The Gurus built
+<b>institutions</b> that made the community self-governing: a script, a scripture, a centre at Amritsar and the masand
+network that collected offerings. <b>Mughal hostility</b>, above all the executions of Guru Arjan (1606) and Guru Tegh
+Bahadur (1675), convinced the Gurus that the community needed arms; Guru Hargobind's "miri and piri" and Guru Gobind
+Singh's Khalsa followed. The followers were largely <b>Jat peasants</b> of Punjab, a sturdy rural base for armed
+resistance. When Mughal authority in Punjab collapsed under Nadir Shah's and Abdali's invasions, these armed bands
+(misls) took control of the land.</p></div>
+` },
 
     { title: 'Banda Bahadur and the misls', html: `
 <ul>
@@ -105,7 +114,15 @@ doab ceded; Kashmir sold to Gulab Singh (Treaty of Amritsar, 1846); British Resi
 (1846) — Council of Regency under the Resident.</li>
 <li><b>Second Anglo-Sikh War (1848–49):</b> revolt of Mulraj at Multan; Chillianwala, Gujrat; <b>Punjab annexed (1849)</b>
 by Lord Dalhousie; Dalip Singh pensioned and sent to England.</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Roots:</b> Guru Nanak among the nirguna bhakti saints (I20).</li>
+<li><b>Mughal context:</b> Jahangir and Guru Arjan, Aurangzeb and Guru Tegh Bahadur (I22).</li>
+<li><b>Alongside:</b> the Marathas and Abdali (I24).</li>
+<li><b>After:</b> British expansion and the annexation of Punjab under Dalhousie (I28).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -182,6 +199,10 @@ grievances.</p>`,
     { q: 'Which city did Banda Bahadur capture in 1710?', a: 'Sirhind.' },
     { q: 'What did the Treaty of Amritsar (1809) fix?', a: 'The Sutlej as the British–Sikh boundary.' },
     { q: 'When was Punjab annexed?', a: '1849, by Dalhousie.' },
+    { q: 'Why did the Sikhs take up arms in the 17th century?', a: 'Mughal hostility, especially the executions of Guru Arjan and Guru Tegh Bahadur.' },
+    { q: 'What does "miri and piri" mean?', a: 'Temporal and spiritual authority, held together by the Guru.' },
+    { q: 'Why did Guru Gobind Singh abolish the masand system?', a: 'The masands had become corrupt; the Khalsa tied followers directly to the Guru.' },
+    { q: 'How did Ranjit Singh strengthen his kingdom?', a: 'By modernising his army with European officers and ruling through a secular administration.' },
   ],
 
   glossary: [
@@ -198,5 +219,6 @@ grievances.</p>`,
     'Khushwant Singh, <i>A History of the Sikhs</i>, vol. I.',
     'Satish Chandra, <i>Medieval India</i>, vol. II.',
     'Bipan Chandra, <i>History of Modern India</i>.',
+    'NCERT Class 7, <i>Our Pasts II</i> — standard text for this rewrite.',
   ],
 };
