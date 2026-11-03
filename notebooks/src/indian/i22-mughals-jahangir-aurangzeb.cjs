@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Jahangir, Nur Jahan; Shah Jahan — architecture, war of succession; Aurangzeb — religious and Deccan policy; later Mughals; Nadir Shah, Abdali'],
     mains: ['GS-I: Mughal empire — Aurangzeb\'s policies; causes of decline (historiographical debate)'],
-    weight: '"Causes of decline of the Mughal empire" with the historiographical schools is a classic Mains question. Rajput relations under Aurangzeb (Marwar, Mewar, Durgadas) are in R08–R09.',
+    weight: 'Tier C. "Causes of decline of the Mughal empire" with the historiographical schools is a classic Mains question. Rajput relations under Aurangzeb (Marwar, Mewar, Durgadas) are in R08–R09.',
   },
 
   bigPicture: `
@@ -102,7 +102,14 @@ Ahmednagar (1707).</li>
 </ul>
 <div class="box debate"><p>Was Aurangzeb a religious bigot who ruined the empire (J.N. Sarkar), or a ruler whose
 policies were politically motivated and whose problems were structural (Satish Chandra, Athar Ali)? Audrey Truschke
-argues his temple destructions were few and political. Present both; avoid moral verdicts.</p></div>` },
+argues his temple destructions were few and political. Present both; avoid moral verdicts.</p></div>
+<div class="box concept"><p><b>Why the Deccan drained the empire.</b> Aurangzeb spent his last 26 years (1681–1707)
+in the Deccan. Annexing Bijapur and Golconda removed two states that had held the Marathas in check, and their nobles
+had to be absorbed into the mansab system, so more officers competed for the same jagirs. The Marathas, fighting a
+mobile war from hill forts, could not be finished off: each fort taken cost time and money, and Maratha raids cut
+into revenue. Meanwhile the emperor's absence loosened control of the north, where Jats, Sikhs and zamindars grew
+bolder. The war thus linked Aurangzeb's policy to the structural crisis described below.</p></div>
+` },
 
     { title: 'The later Mughals and external invasions', html: `
 <ul>
@@ -146,7 +153,16 @@ last emperor (1857).</li>
 </table></div>
 <p><b>Synthesis for answers:</b> structural strains (jagir crisis, agrarian pressure, factions) + Aurangzeb's long
 Deccan wars and alienation of key groups + weak successors and court factions + external blows = rapid
-decentralisation into regional states, which the British exploited.</p>` },
+decentralisation into regional states, which the British exploited.</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> Babur to Akbar (I21).</li>
+<li><b>Alongside:</b> mansab and jagir, the heart of the jagirdari crisis (I23); the Marathas (I24); the Sikhs (I25).</li>
+<li><b>After:</b> the European companies, Plassey and Buxar (I26, I27).</li>
+<li><b>Architecture and painting:</b> the Taj Mahal and Shahjahanabad (I48); Jahangir's painters (I49).</li>
+<li><b>Rajasthan:</b> the Mewar treaty of 1615 (R08); Durgadas and the Rathore war (R09).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -238,6 +254,10 @@ no private property in land — a view later used by Marx's "Asiatic mode"), Tav
     { q: 'Who sacked Delhi in 1739?', a: 'Nadir Shah.' },
     { q: 'Who proposed the jagirdari crisis theory?', a: 'Satish Chandra.' },
     { q: 'Name two revisionist historians of Mughal decline.', a: 'Muzaffar Alam and C.A. Bayly.' },
+    { q: 'Why did the 1615 Mewar treaty matter?', a: 'Mewar accepted Mughal suzerainty with honour, ending decades of war, and its ruler did not have to attend court.' },
+    { q: 'How did the Deccan wars weaken the empire?', a: 'They removed buffers against the Marathas, swelled the nobility competing for jagirs, drained money and loosened control of the north.' },
+    { q: 'What is meant by be-jagiri?', a: 'Mansabdars left without productive jagirs because there were too many officers for the land available.' },
+    { q: 'How do revisionist historians view the 18th century?', a: 'As decentralisation into prosperous regional states, not simple decline.' },
   ],
 
   glossary: [
@@ -254,5 +274,6 @@ no private property in land — a view later used by Marx's "Asiatic mode"), Tav
     'M. Athar Ali, <i>The Mughal Nobility under Aurangzeb</i>.',
     'Muzaffar Alam, <i>The Crisis of Empire in Mughal North India</i>.',
     'J.N. Sarkar, <i>History of Aurangzib</i>.',
+    'NCERT Class 7, <i>Our Pasts II</i>; NCERT Class 12, <i>Themes in Indian History II</i> — standard text for this rewrite.',
   ],
 };
