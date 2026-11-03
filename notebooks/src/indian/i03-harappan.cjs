@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Harappan civilisation: sites, town planning, economy, religion, decline'],
     mains: ['GS-I: Indus–Saraswati civilisation — features and decline'],
-    weight: 'A favourite at every level. Mains asks features of town planning, economy or reasons for decline; Prelims asks site–river–discoverer–find matching.',
+    weight: 'Tier C. A favourite at every level. Mains asks features of town planning, economy or reasons for decline; Prelims asks site–river–discoverer–find matching.',
   },
 
   bigPicture: `
@@ -47,19 +47,25 @@ or shared ideology — coordinated bricks, weights and town plans.</p></div>`,
 <tr><td>Alamgirpur</td><td>Hindon (UP)</td><td>Y.D. Sharma</td><td>Easternmost site</td></tr>
 <tr><td>Manda</td><td>Chenab (J&amp;K)</td><td>—</td><td>Northernmost</td></tr>
 <tr><td>Daimabad</td><td>Pravara (Maharashtra)</td><td>—</td><td>Southernmost (with late Harappan phase)</td></tr>
-</table></div>` },
+</table></div>
+<p>J.P. Joshi, who discovered Surkotada and Dholavira, is Jagatpati Joshi; RAS Prelims 2023 used his full name.</p>
+` },
 
     { title: 'Town planning', html: `
-<ol>
-<li><b>Grid layout:</b> streets at right angles; main roads north–south and east–west.</li>
-<li><b>Two parts:</b> a raised <b>citadel</b> (west) with public buildings and a <b>lower town</b> (east) for houses.
-Dholavira had three parts.</li>
-<li><b>Standardised baked bricks</b> in the ratio <b>1:2:4</b>.</li>
-<li><b>Drainage:</b> covered drains along streets, connected to house drains — unmatched in the ancient world.</li>
-<li><b>Houses</b> around courtyards, with wells, bathrooms, doors opening on side lanes.</li>
-<li><b>Public buildings:</b> the Great Bath (Mohenjodaro), granaries (Harappa), dockyard (Lothal), reservoirs
-(Dholavira).</li>
-</ol>` },
+<p>Harappan cities were planned before they were built. Streets ran at right angles in a <b>grid</b>, with main roads
+north–south and east–west. Most cities had two parts: a raised <b>citadel</b> to the west with public buildings, and
+a larger <b>lower town</b> to the east for houses; Dholavira had three parts. Houses were built of <b>standardised
+baked bricks</b> in the ratio <b>1:2:4</b>, arranged around courtyards with wells and bathrooms, and doors opened on
+side lanes rather than main streets.</p>
+<p>The most striking feature is <b>drainage</b>: covered drains ran along the streets and connected to drains from
+each house, a system unmatched in the ancient world. Public works included the Great Bath at Mohenjodaro, granaries at
+Harappa, the dockyard at Lothal and the water reservoirs of Dholavira.</p>
+<div class="box concept"><p><b>What the uniformity tells us.</b> The same brick ratio, the same weights and similar
+town plans appear across sites hundreds of kilometres apart. Laying out a grid before building, and maintaining
+drains that served every house, needed planning, labour and rules that someone enforced. Yet there are no clear
+palaces, royal tombs or images of kings. Historians therefore debate who ruled: a single state, several city-states,
+a priestly elite or merchants. Whatever the answer, the Harappans had some strong coordinating authority.</p></div>
+` },
 
     { title: 'Economy and society', html: `
 <p><b>Agriculture:</b> wheat, barley, peas, sesame, mustard, <b>cotton</b> (earliest in the world; Greeks later called it
@@ -81,21 +87,20 @@ Magan (Oman). Shortughai (Afghanistan) was a trading outpost for lapis lazuli.</
 or royal burials; scholars debate whether rule was by priests, merchants, a city-state elite or a single state.</p>` },
 
     { title: 'Religion, script and art', html: `
-<ul>
-<li><b>Religion:</b> terracotta female figurines (mother goddess); the "Pashupati" seal (a horned figure surrounded by
-animals, identified by Marshall as proto-Shiva); worship of trees (pipal), animals (humped bull), <i>linga</i>-like
-stones; fire altars at Kalibangan and Lothal.</li>
-<li><b>Script:</b> about 375–400 signs, written mostly right to left (boustrophedon on some), on seals; inscriptions
-are short (the longest has about 26 signs) and the script is not alphabetic; still <b>undeciphered</b>. Dholavira
-has a unique large signboard of inlaid white stone signs.</li>
-<li><b>Discovery:</b> railway builders in the 1850s carried away Harappa's bricks for track ballast; Alexander
-Cunningham published a Harappan seal in 1875 but did not recognise its age; Daya Ram Sahni (Harappa, 1921) and R.D.
-Banerji (Mohenjodaro, 1922) found seals in pre-historic levels, and John Marshall announced the new civilisation in
-1924.</li>
-<li><b>Art:</b> bronze "dancing girl" (lost-wax method), stone "priest-king", seals with the "unicorn", terracotta
-toys.</li>
-<li><b>Burials:</b> extended burials with pots; joint burial at Lothal.</li>
-</ul>` },
+<p><b>Religion</b> is known only from objects, since the script cannot be read. Terracotta female figurines suggest a
+mother goddess; the "Pashupati" seal shows a horned figure surrounded by animals, identified by Marshall as
+proto-Shiva; trees (pipal), animals (the humped bull) and <i>linga</i>-like stones seem to have been sacred; and fire
+altars appear at Kalibangan and Lothal. These identifications are likely but not certain.</p>
+<p>The <b>script</b> has about 375–400 signs, written mostly right to left (boustrophedon on some), chiefly on seals.
+Inscriptions are short (the longest has about 26 signs) and the script is not alphabetic; it is still
+<b>undeciphered</b>. Dholavira has a unique large signboard of inlaid white stone signs.</p>
+<p>The civilisation was found by accident. In the 1850s railway builders carried away Harappa's bricks for track
+ballast; Alexander Cunningham published a Harappan seal in 1875 but did not recognise its age. Daya Ram Sahni
+(Harappa, 1921) and R.D. Banerji (Mohenjodaro, 1922) found seals in pre-historic levels, and John Marshall announced
+the new civilisation in 1924.</p>
+<p><b>Art</b> includes the bronze "dancing girl" (made by the lost-wax method), the stone "priest-king", seals with
+the "unicorn" and terracotta toys. People were buried extended, with pots; Lothal has a joint burial.</p>
+` },
 
     { title: 'Decline', html: `
 <div class="tbl"><table>
@@ -111,7 +116,15 @@ toys.</li>
 settlements grew in Gujarat, Haryana and western Uttar Pradesh. Where occupation continued after 1900 BCE, seals,
 weights, special beads, writing and long-distance trade disappeared: the "Late Harappan" cultures were rural.</p>
 <div class="box debate"><p>No single cause explains decline. Historians now speak of <b>de-urbanisation</b>, not
-collapse: people moved east and south into smaller settlements, and many Harappan traits continued.</p></div>` },
+collapse: people moved east and south into smaller settlements, and many Harappan traits continued.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> Mehrgarh and Neolithic villages (I02).</li>
+<li><b>After:</b> the Vedic age and the debate on continuity (I04); Chalcolithic village cultures (I02).</li>
+<li><b>Art and architecture:</b> Harappan town planning and sculpture (I48, I49).</li>
+<li><b>Rajasthan:</b> Kalibangan, Ganeshwar and the Khetri copper belt (R03).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -197,6 +210,10 @@ sites on the dry Ghaggar–Hakra channel; its identification with the Vedic Sara
     { q: 'Who proposed the Aryan invasion theory of decline?', a: 'Mortimer Wheeler.' },
     { q: 'Where was a ploughed field found?', a: 'Kalibangan (pre-Harappan level).' },
     { q: 'Name the westernmost Harappan site.', a: 'Sutkagendor.' },
+    { q: 'Who discovered Surkotada?', a: 'Jagatpati (J.P.) Joshi.' },
+    { q: 'Why do historians think a strong authority existed in Harappan cities?', a: 'Standard bricks, weights and grid plans across distant sites needed planning and enforcement.' },
+    { q: 'Why is the Harappan political system a puzzle?', a: 'There are no clear palaces, royal tombs or images of kings, and the script is undeciphered.' },
+    { q: 'Why do historians prefer "de-urbanisation" to "collapse"?', a: 'People moved to smaller settlements and many traits continued; cities ended, but life did not.' },
   ],
 
   glossary: [
@@ -212,6 +229,6 @@ sites on the dry Ghaggar–Hakra channel; its identification with the Vedic Sara
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, ch. 4.',
     'J.M. Kenoyer, <i>Ancient Cities of the Indus Valley Civilization</i>.',
     'Shereen Ratnagar, <i>Understanding Harappa</i>.',
-    'NCERT, <i>Themes in Indian History</i> Part I, ch. 1.',
+    'NCERT, <i>Themes in Indian History</i> Part I, ch. 1. — standard text for this rewrite',
   ],
 };
