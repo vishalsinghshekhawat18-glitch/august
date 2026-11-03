@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Political awakening in Rajasthan', 'Newspapers and organisations', 'Revolutionaries of Rajasthan'],
     mains: ['GS-I Part A: Socio-political awakening; freedom movement in Rajasthan'],
-    weight: 'RAS Mains 2016 asked a 10-mark question on the causes of political awakening in early 20th-century Rajasthan. Newspapers (founder–paper–place) and revolutionaries (Barhath family, Kharwa, Sethi, Pathik, Gopa) recur in Prelims.',
+    weight: 'Tier B. RAS Mains 2016 asked a 10-mark question on the causes of political awakening in early 20th-century Rajasthan. Newspapers (founder–paper–place) and revolutionaries (Barhath family, Kharwa, Sethi, Pathik, Gopa) recur in Prelims.',
   },
 
   bigPicture: `
@@ -41,19 +41,25 @@ distress, national and international events, local movements, and organisations.
 
   sections: [
     { title: 'Causes of political awakening', html: `
-<ol>
-<li><b>Education and social reform:</b> modern schools and colleges, the Arya Samaj (R15), and students educated outside
-the states.</li>
-<li><b>The press:</b> newspapers from Ajmer and outside (Kanpur's <i>Pratap</i>, Wardha) exposed misrule in the states.</li>
-<li><b>Economic distress:</b> the great famine of 1899–1900, heavy revenue and cesses, war levies during the First World
-War.</li>
-<li><b>National events:</b> the partition of Bengal and Swadeshi, Gandhi's non-cooperation, the Civil Disobedience
-movement.</li>
-<li><b>International events:</b> the First World War (returning soldiers), the Russian Revolution.</li>
-<li><b>Local movements:</b> Bijolia and other peasant and tribal struggles.</li>
-<li><b>Marwari merchants</b> and migrants in Calcutta and Bombay funded and publicised reform.</li>
-<li><b>Organisations</b> and the Congress's changing policy towards the states (Haripura, 1938).</li>
-</ol>` },
+<p>The people of the princely states faced a double burden: the ruler and his jagirdars above them, and the British
+paramount power protecting both. Political ideas therefore reached them later and by different routes than in British
+India.</p>
+<p>The first route was <b>education and social reform</b>. Modern schools and colleges, the Arya Samaj (R15) and
+students educated outside the states spread ideas of equality and rights. The second was the <b>press</b>: papers from
+Ajmer and from outside (Kanpur's <i>Pratap</i>, papers from Wardha) exposed misrule that local rulers kept hidden.
+The third was <b>economic distress</b>: the great famine of 1899–1900 (the "Chhappaniya akal"), heavy revenue and
+cesses, and war levies during the First World War made peasants ready to listen.</p>
+<p>Events outside also mattered. The partition of Bengal and Swadeshi, Gandhi's non-cooperation and Civil
+Disobedience showed what organised protest could do, while the First World War (returning soldiers) and the Russian
+Revolution suggested that old orders could fall. Inside Rajasthan, <b>Bijolia</b> and other peasant and tribal
+struggles (R17, R18) mobilised villages. <b>Marwari merchants</b> and migrants in Calcutta and Bombay funded and
+publicised reform. Finally, <b>organisations</b> and the Congress's changing policy towards the states (Haripura,
+1938) gave the movement a shape.</p>
+<div class="box concept"><p><b>Why Ajmer mattered.</b> Ajmer–Merwara was directly under British rule, so the
+press, meetings and Congress work there enjoyed the limited freedoms of British India, which the princely states
+denied. Newspapers such as <i>Tyag Bhoomi</i> and <i>Navjyoti</i> were printed in Ajmer and smuggled into the states;
+the Rajasthan Seva Sangh made it its base; activists expelled from a state could work from it. Ajmer was the window
+through which national politics reached Rajasthan.</p></div>` },
 
     { title: 'Revolutionaries', html: `
 <div class="tbl"><table>
@@ -84,21 +90,31 @@ movement.</li>
 Vidyarthi, Kanpur) carried Rajasthan news when local ones could not.</p>` },
 
     { title: 'Organisations', html: `
+<p>Awakening became a movement when people formed organisations. In Churu the <b>Sarvahitkarini Sabha</b> (1907) of
+Swami Gopaldas and Kanhaiyalal Dhandh worked for education and reform; on <b>26 January 1930</b> they hoisted the
+tricolour on the Dhandhan tower in Churu. The <b>Rajputana Madhya Bharat Sabha</b> (1918–19), formed at the time of
+the Delhi Congress session with Ganesh Shankar Vidyarthi and Jamnalal Bajaj prominent, raised the problems of the
+states' people at the national level. The <b>Rajasthan Seva Sangh</b> (1919, Wardha; moved to Ajmer 1920) of Vijay
+Singh Pathik, Ramnarayan Chaudhary and Haribhau Upadhyay coordinated the Bijolia, Begun and Bhil movements, but split
+in the late 1920s. In <b>Marwar</b> the Marwar Seva Sangh (1920), the Marwar Hitkarini Sabha (1923–24) and the Marwar
+Youth League (1931) worked under <b>Jai Narayan Vyas</b>.</p>
+<p>At the national level the <b>All India States People's Conference</b> (AISPC, 1927, Bombay) brought the states'
+movements together; its Rajputana regional council coordinated local work, and its 1945–46 session was held at
+<b>Udaipur</b> under Nehru.</p>
+<div class="box concept"><p><b>Why the Congress kept out of the states, then changed.</b> At first the Congress
+avoided agitation in the princely states: they were legally separate from British India, the rulers could crush
+local workers, and Gandhi hoped to persuade the princes rather than fight them. As movements in the states grew in the
+1930s, this position became hard to hold. At <b>Haripura (1938)</b> the Congress said the states' people should
+organise their own bodies, and at <b>Tripuri (1939)</b> it gave more open support. The result was the formation of
+<b>Praja Mandals</b> in almost every state (R20).</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
 <ul>
-<li><b>Sarvahitkarini Sabha</b> (Churu, 1907): Swami Gopaldas and Kanhaiyalal Dhandh; education and reform. On
-<b>26 January 1930</b> they hoisted the tricolour on the Dhandhan tower in Churu.</li>
-<li><b>Rajputana Madhya Bharat Sabha</b> (1918–19): formed at the time of the Delhi Congress session; Ganesh Shankar
-Vidyarthi and Jamnalal Bajaj were prominent; raised the problems of states' people.</li>
-<li><b>Rajasthan Seva Sangh</b> (1919, Wardha; moved to Ajmer 1920): Vijay Singh Pathik, Ramnarayan Chaudhary and
-Haribhau Upadhyay; coordinated Bijolia, Begun and the Bhil movements; split in the late 1920s.</li>
-<li><b>Marwar:</b> Marwar Seva Sangh (1920), Marwar Hitkarini Sabha (1923–24) and the Marwar Youth League (1931) under
-<b>Jai Narayan Vyas</b>.</li>
-<li><b>All India States People's Conference</b> (AISPC, 1927, Bombay): national body for the states; its Rajputana
-regional council coordinated local work; its 1945–46 session was held at <b>Udaipur</b> under Nehru.</li>
-<li><b>Congress policy:</b> at first the Congress kept out of the states. At <b>Haripura (1938)</b> it said states'
-people should organise their own bodies; at Tripuri (1939) it gave more open support. This led to the formation of
-Praja Mandals in almost every state (R20).</li>
-</ul>` },
+<li><b>Before:</b> Arya Samaj and social reform in the states (R15); the 1857 revolt in Rajasthan (R16).</li>
+<li><b>Alongside:</b> peasant and tribal movements (R17, R18); revolutionary nationalism in India, the Hardinge bomb
+and Rash Behari Bose (I38); Swadeshi (I37).</li>
+<li><b>After:</b> Praja Mandal movements (R20) and the integration of Rajasthan (R21).</li>
+<li><b>People:</b> Pathik, Sethi, Barhath, Gopa, Vyas in personalities (R22).</li>
+</ul></div>` },
   ],
 
   historians: `
@@ -145,6 +161,11 @@ government. Ajmer's role as a channel for nationalist ideas is widely stressed.<
 
   mains: [
     {
+      q: 'How did political awakening in the princely states of Rajasthan differ from that in British India?', marks: 10, words: 100,
+      outline: ['Double rule', 'Later start', 'Path: reform, peasants, press', 'Role of Ajmer and outside centres', 'Congress policy'],
+      answer: '<p>People in the states faced both their rulers and the British paramount power, with little press freedom, education or right to organise, so awakening came later than in British India. It began not with constitutional demands but with social reform (Arya Samaj, schools), peasant and tribal grievances (Bijolia, Eki) and press campaigns. Much of it was organised from outside: British-ruled Ajmer, Wardha, Kanpur and Marwari centres in Calcutta and Bombay. Revolutionaries such as the Barhaths and Kharwa drew on links with Rash Behari Bose. The Congress at first kept out of the states, so local bodies and the AISPC led until Haripura (1938) opened the way for the Praja Mandals.</p>',
+    },
+    {
       q: 'What were the causes of political awakening in Rajasthan in the early 20th century?', marks: 10, words: 100, pyq: 'RAS Mains 2016',
       outline: ['Education and reform', 'Press', 'Economic distress', 'National and international events', 'Local movements and organisations'],
       answer: '<p>Modern education and the Arya Samaj spread new ideas. Newspapers — Rajasthan Kesari, Tyag Bhoomi, Navjyoti, and Kanpur\'s Pratap — exposed misrule. The 1899–1900 famine, heavy cesses and war levies caused distress. Swadeshi, non-cooperation, the First World War and the Russian Revolution inspired people. Revolutionaries such as the Barhaths, Kharwa and Sethi set examples of sacrifice. Peasant and tribal movements (Bijolia, Eki) mobilised the masses. Organisations — the Rajasthan Seva Sangh and AISPC — and the Congress\'s Haripura resolution channelled this awareness into the Praja Mandal movements.</p>',
@@ -178,6 +199,9 @@ government. Ajmer's role as a channel for nationalist ideas is widely stressed.<
     { q: 'Who edited Tyag Bhoomi?', a: 'Haribhau Upadhyay (1927, Ajmer).' },
     { q: 'Where and when was the tricolour hoisted in Churu?', a: 'On the Dhandhan tower, 26 January 1930.' },
     { q: 'What did the Haripura Congress decide about the states?', a: 'States\' people should organise their own bodies, leading to the Praja Mandals.' },
+    { q: 'Where and when was Majhar-ul-Sarur published?', a: 'Bharatpur, 1849.' },
+    { q: 'Why did the Congress at first keep out of the princely states?', a: 'They were legally separate, rulers could crush local workers, and Gandhi hoped to persuade the princes.' },
+    { q: 'How did economic distress contribute to awakening?', a: 'The 1899–1900 famine, heavy cesses and war levies made peasants ready for protest and organisation.' },
   ],
 
   glossary: [
@@ -191,7 +215,7 @@ government. Ajmer's role as a channel for nationalist ideas is widely stressed.<
   sources: [
     'Shankar Sahai Saxena, works on the freedom movement in Rajasthan.',
     'Pema Ram, <i>Agrarian Movement in Rajasthan</i> (context).',
-    'Rima Hooja, <i>A History of Rajasthan</i>.',
+    'Rima Hooja, <i>A History of Rajasthan</i> — standard text for this rewrite.',
     'Rajasthan Board of Secondary Education, Rajasthan history textbooks.',
   ],
 };
