@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Atomic energy and space programmes; Green and White Revolutions; IT; 1991 crisis and LPG reforms'],
     mains: ['GS-I: Post-independence India — science and technology, economic reforms'],
-    weight: 'This closes the RAS history syllabus\'s "post-independence" section. Detailed science and economy content belongs in GS-III notebooks; here the historical narrative is enough.',
+    weight: 'Tier C. This closes the RAS history syllabus\'s "post-independence" section. Detailed science and economy content belongs in GS-III notebooks; here the historical narrative is enough.',
   },
 
   bigPicture: `
@@ -51,7 +51,11 @@ Singh.</p>
 <tr><td><b>Telecom and IT</b></td><td><b>Sam Pitroda</b> — C-DOT (1984); software growth (Bangalore), Software Technology Parks (1991)</td></tr>
 </table></div>
 <p><b>Green Revolution effects:</b> food self-sufficiency; but regional and inter-personal inequality, soil and water
-degradation, wheat bias, rise of rich farmers.</p>` },
+degradation, wheat bias, rise of rich farmers.</p>
+<p><b>CSIR laboratories:</b> the Council of Scientific and Industrial Research (1942) built a chain of national
+laboratories after independence, among them the Central Electrochemical Research Institute at <b>Karaikudi</b> (Tamil
+Nadu, 1953).</p>
+` },
 
     { title: 'The 1991 crisis', html: `
 <ul>
@@ -60,7 +64,15 @@ remittances; political instability; collapse of the USSR (a major trade partner)
 two weeks of imports; credit rating downgraded.</li>
 <li><b>Emergency steps:</b> gold pledged (Bank of England, Union Bank of Switzerland); IMF loan with conditions; rupee
 devalued (July 1991).</li>
-</ul>` },
+</ul>
+<div class="box concept"><p><b>Why the planned economy reached a crisis.</b> The Nehruvian model protected Indian
+industry behind high tariffs and licences, and gave the public sector the lead. This built an industrial base, but
+over time protected firms had little reason to become efficient, licences bred delay and corruption, and exports stayed
+weak, so India earned little foreign exchange. In the 1980s growth was financed by government borrowing at home and
+abroad. When the Gulf War raised oil prices and cut remittances, and the Soviet Union, a major trading partner,
+collapsed, India could no longer pay for its imports. The crisis gave the government the reason, and the IMF
+conditions the pressure, to dismantle the licence raj.</p></div>
+` },
 
     { title: 'The LPG reforms', html: `
 <ul>
@@ -75,7 +87,15 @@ account (1993–94); foreign direct and portfolio investment encouraged; WTO (19
 </ul>
 <p><b>Impact:</b> higher growth rates (especially services and IT), larger foreign exchange reserves, expansion of the
 middle class; but critics point to jobless growth, agrarian distress, regional inequality and limited gains for the
-poor.</p>` },
+poor.</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> planning, the Mahalanobis model and the first science institutions (I45).</li>
+<li><b>Ancient roots:</b> India's scientific tradition, Aryabhata and zero (I14).</li>
+<li><b>Alongside:</b> women in independent India (I47).</li>
+<li><b>Rajasthan:</b> the nuclear tests at Pokhran (1974, 1998) were held in Jaisalmer district.</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -151,6 +171,10 @@ of the Indian Atomic Bomb</i>) and <b>Gyan Prakash</b> (<i>Another Reason</i>) s
     { q: 'Who led the IGMDP?', a: 'A.P.J. Abdul Kalam.' },
     { q: 'Name two causes of the 1991 crisis.', a: 'Fiscal deficits and the Gulf War oil shock (also debt, Soviet collapse).' },
     { q: 'Who was Finance Minister in 1991?', a: 'Manmohan Singh.' },
+    { q: 'Why did the Green Revolution increase inequality?', a: 'Its gains went to irrigated regions and richer farmers who could afford seeds, fertiliser and water.' },
+    { q: 'Why did the planned economy run into a crisis by 1991?', a: 'Protected inefficient industry, weak exports and heavy borrowing left India unable to pay for imports after the Gulf War shock.' },
+    { q: 'How did the IMF loan shape the 1991 reforms?', a: 'Its conditions pushed India to liberalise trade, cut deficits and open to foreign investment.' },
+    { q: 'Why did Bhabha\'s programme plan a thorium stage?', a: 'India has large thorium reserves but little uranium.' },
   ],
 
   glossary: [
@@ -165,6 +189,6 @@ of the Indian Atomic Bomb</i>) and <b>Gyan Prakash</b> (<i>Another Reason</i>) s
   sources: [
     'Bipan Chandra et al., <i>India since Independence</i>, chs. 22–24, 29.',
     'Ramachandra Guha, <i>India after Gandhi</i>.',
-    'NCERT Class 11, <i>Indian Economic Development</i>, chs. 1–3.',
+    'NCERT Class 11, <i>Indian Economic Development</i>, chs. 1–3. — standard text for this rewrite',
   ],
 };
