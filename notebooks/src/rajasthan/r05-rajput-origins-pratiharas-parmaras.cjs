@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Major dynasties of Rajasthan and their achievements', 'Origin of the Rajputs'],
     mains: ['GS-I Part A: Important historical events and major dynasties, their administrative and revenue system'],
-    weight: 'The theories of Rajput origin are a standard Mains question; Pratihara rulers, the Agnikula myth, Osian and the Abu temples recur in Prelims.',
+    weight: 'Tier C. The theories of Rajput origin are a standard Mains question; Pratihara rulers, the Agnikula myth, Osian and the Abu temples recur in Prelims.',
   },
 
   bigPicture: `
@@ -50,7 +50,15 @@ noble; only later did "Rajput" become the name of a caste group. Five main expla
 </table></div>
 <div class="box debate"><p>No single origin fits every clan. Modern historians treat "Rajput" as a status achieved
 through political power and land control between the 7th and 12th centuries, not as a race. In an answer, present
-the theories, then conclude with the social-process view.</p></div>` },
+the theories, then conclude with the social-process view.</p></div>
+<div class="box concept"><p><b>How a chief became a Rajput.</b> The social-process view explains the pattern seen across
+Rajasthan. A local chief, a pastoral or tribal leader, or a settled immigrant group gained control of land and men.
+It then <b>built forts</b>, took grander titles, made <b>land grants to Brahmins and temples</b>, and had genealogies
+composed linking it to the solar or lunar lines or to the fire-pit on Abu. Brahmins in turn recognised it as
+Kshatriya. Marriage alliances with established clans confirmed the new status. This is why so many clans appear in
+the 7th to 12th centuries, why the origin stories differ, and why the samanta system of the age (I15) produced new
+dynasties so readily.</p></div>
+` },
 
     { title: 'The Gurjara-Pratiharas: Mandore and Bhinmal', html: `
 <p><b>Name.</b> "Pratihara" means door-keeper; the dynasty claimed descent from Lakshmana, door-keeper to his brother
@@ -83,7 +91,10 @@ but the long war weakened all three.</p>
 <li>Patronised literature (Rajashekhara) and temple building; their western Indian temple style is called the
 <b>Mahamaru</b> style (M.A. Dhaky) — best seen at <b>Osian</b> (Harihara temples, Mahavira temple, Sachiya Mata).</li>
 <li>Their decline left room for the Chauhans, Guhils, Parmaras and Chandelas.</li>
-</ol>` },
+</ol>
+<p>Pratihara feudatories also built temples: the <b>Mathandev temple at Rajorgarh</b> (Alwar), associated with the
+feudatory Mathanadeva, is dedicated to <b>Shiva</b>.</p>
+` },
 
     { title: 'The Parmaras of Abu, Kiradu, Jalore and Vagad', html: `
 <p>The Parmaras (Pawars) claimed the Agnikula origin from Abu. Several branches ruled in and around Rajasthan:</p>
@@ -101,7 +112,17 @@ but the long war weakened all three.</p>
 <li><b>Luna Vasahi</b> (1230–31), to Neminath, by the brothers <b>Vastupala and Tejapala</b>, ministers of the Vaghelas, in
 memory of Tejapala's son Lunig; under the Parmara Somasimha, son of Dharavarsha.</li>
 </ul>
-<p>(Temple architecture is treated fully in the Art and Culture notebook.)</p>` },
+<p>(Temple architecture is treated fully in the Art and Culture notebook.)</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> Bhinmal and the Gurjaras (R04).</li>
+<li><b>All-India context:</b> the Rajput age, samantas and the tripartite struggle (I15); the Arab conquest of Sindh
+and Mahmud of Ghazni (I16).</li>
+<li><b>After:</b> the Chauhans (R06); the Guhils of Mewar (R07); the Rathores at Mandore (R09); the Deoras of Abu
+(R10).</li>
+<li><b>Architecture:</b> Osian, Kiradu and Dilwara (I48).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -191,6 +212,10 @@ narrative.</p>
     { q: 'What was the tripartite struggle?', a: 'The contest among the Pratiharas, Palas and Rashtrakutas for Kannauj (c. 750–900).' },
     { q: 'Who was Dharavarsha?', a: 'The most famous Parmara ruler of Abu (c. 1163–1219), who fought Ghori and Aibak alongside the Chaulukyas.' },
     { q: 'Which temples are called the "Khajuraho of Rajasthan"?', a: 'The Kiradu temples (Barmer).' },
+    { q: 'How did a local chief acquire Rajput status?', a: 'By controlling land, building forts, patronising Brahmins and getting genealogies that gave Kshatriya descent.' },
+    { q: 'Why was Kannauj fought over in the tripartite struggle?', a: 'It was the symbolic imperial capital of north India and controlled the rich doab.' },
+    { q: 'Why are the Pratiharas called a shield against the Arabs?', a: 'From Nagabhata I to Mihira Bhoja they checked Arab expansion from Sindh for nearly three centuries.' },
+    { q: 'Why do the Agnikula clans\' early inscriptions matter to the debate?', a: 'They do not mention the fire-pit myth, showing it was a later invention.' },
   ],
 
   glossary: [
@@ -209,6 +234,6 @@ narrative.</p>
     'Dasharath Sharma (ed.), <i>Rajasthan Through the Ages</i>, vol. I.',
     'Baij Nath Puri, <i>The History of the Gurjara-Pratiharas</i>.',
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, ch. 9.',
-    'Rima Hooja, <i>A History of Rajasthan</i>.',
+    'Rima Hooja, <i>A History of Rajasthan</i>. — standard text for this rewrite',
   ],
 };
