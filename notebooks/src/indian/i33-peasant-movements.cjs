@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Indigo revolt; Pabna; Deccan riots; Champaran, Kheda; Moplah; Bardoli; Kisan Sabha; Tebhaga; Telangana'],
     mains: ['GS-I: Peasant movements under colonial rule — phases and character'],
-    weight: 'Frequently asked in both papers. Rajasthan peasant movements (Bijolia, Begun, Shekhawati) are in R17.',
+    weight: 'Tier C. Frequently asked in both papers. Rajasthan peasant movements (Bijolia, Begun, Shekhawati) are in R17.',
   },
 
   bigPicture: `
@@ -49,7 +49,16 @@ movement and organised by Kisan Sabhas and the Left (Champaran, Kheda, Bardoli, 
 <tr><td><b>Deccan riots</b> (1875)</td><td>Poona and Ahmednagar; ryots against Marwari and Gujarati moneylenders after the cotton boom collapsed (the customary rule that interest could not exceed the principal had broken down, and the Limitation Law of 1859, which made loan bonds valid for three years, led moneylenders to make ryots sign fresh bonds with interest added to principal); the Deccan Riots Commission recorded the abuses (the revolt began at <b>Supa</b>, Poona district, on 12 May 1875, where ryots seized and burned the moneylenders' account books (bahi khatas) and bonds; ruined peasants had been made to sign "deeds of hire" for land and cattle that had become the moneylender's. The Commission blamed the moneylenders, not the revenue demand); social boycott and seizure of bonds; <b>Deccan Agriculturists Relief Act (1879)</b></td></tr>
 </table></div>
 <p><b>Features:</b> targeted immediate enemies (planters, zamindars, moneylenders), not colonialism as such; limited
-territorial reach; no long-term programme; but built peasant consciousness.</p>` },
+territorial reach; no long-term programme; but built peasant consciousness.</p>
+<div class="box concept"><p><b>Why peasant protest changed after 1857.</b> Early revolts such as the Sanyasi–Fakir and
+Faraizi risings drew on religious leadership and often turned to arms, which the Company crushed. After 1857 peasants
+faced a state that was far stronger, but also one that had courts, commissions and newspapers. So movements such as
+the <b>Indigo revolt, Pabna and the Deccan riots</b> fought specific enemies (planters, zamindars, moneylenders) by
+refusing to sow, forming leagues, going to court and winning the support of the educated middle class. Their results
+were laws such as the Bengal Tenancy Act (1885) and the Deccan Agriculturists Relief Act (1879). In the 20th century
+the national movement and the Kisan Sabhas gave peasants all-India leadership and linked their grievances to the
+fight against colonial rule itself.</p></div>
+` },
 
     { title: 'Twentieth-century movements', html: `
 <div class="tbl"><table>
@@ -63,7 +72,16 @@ territorial reach; no long-term programme; but built peasant consciousness.</p>`
 <tr><td><b>Tebhaga</b> (1946–47)</td><td>Bengal; sharecroppers (bargadars) demanded two-thirds of the crop instead of half; Bengal Provincial Kisan Sabha; Floud Commission recommendation</td></tr>
 <tr><td><b>Telangana</b> (1946–51)</td><td>Hyderabad state; against jagirdars, deshmukhs and the Nizam's Razakars; Communist-led; largest peasant guerrilla war of modern India; called off after the police action and in 1951</td></tr>
 <tr><td>Others</td><td>Punjab (Kirti Kisan), Kerala (Punnapra-Vayalar, 1946), Bakasht movement (Bihar), Warli revolt (Maharashtra)</td></tr>
-</table></div>` },
+</table></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Causes:</b> colonial land revenue systems (I30); commercialisation and indebtedness (I31).</li>
+<li><b>Alongside:</b> tribal movements (I34); the Revolt of 1857 (I32).</li>
+<li><b>National movement:</b> Gandhi at Champaran and Kheda (I39); Kisan Sabhas and the Congress socialists (I41).</li>
+<li><b>After:</b> zamindari abolition and land reform (I45).</li>
+<li><b>Rajasthan:</b> Bijolia, Begun and other peasant movements in the princely states (R17).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -140,6 +158,10 @@ peasant movements as autonomous, with their own consciousness, not merely led by
     { q: 'Who led the Eka movement?', a: 'Madari Pasi.' },
     { q: 'When was the AIKS founded?', a: '1936, Lucknow.' },
     { q: 'What did the Tebhaga movement demand?', a: 'Two-thirds of the crop for sharecroppers.' },
+    { q: 'Why did post-1857 peasant movements mostly use legal methods?', a: 'The state was stronger, and courts, commissions and the press offered ways to win specific demands.' },
+    { q: 'Why did the Deccan riots break out in 1875?', a: 'The cotton boom collapsed and moneylenders used bonds and the 1859 Limitation Law to seize peasants\' land.' },
+    { q: 'How did the Indigo revolt gain middle-class support?', a: 'Through Nil Darpan and newspapers like the Hindoo Patriot that exposed the planters.' },
+    { q: 'How did peasant movements change in the 20th century?', a: 'They were linked to the national movement and organised by Kisan Sabhas and the Left.' },
   ],
 
   glossary: [
@@ -154,5 +176,6 @@ peasant movements as autonomous, with their own consciousness, not merely led by
     'Bipan Chandra et al., <i>India\'s Struggle for Independence</i>, chs. 4, 14.',
     'Spectrum, <i>A Brief History of Modern India</i>, peasant movements chapter.',
     'D.N. Dhanagare, <i>Peasant Movements in India 1920–1950</i>.',
+    'NCERT Class 12, <i>Themes in Indian History III</i>, "Colonialism and the Countryside" — standard text for this rewrite.',
   ],
 };
