@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['August Offer; individual satyagraha; Cripps Mission; Quit India; INA; Wavell Plan; RIN mutiny; Cabinet Mission; Direct Action; Mountbatten Plan; Independence Act'],
     mains: ['GS-I: Quit India — significance; INA; Cabinet Mission; causes of partition'],
-    weight: 'Quit India, Cripps and Cabinet Mission, and "causes of partition" are among the most-asked questions of modern history.',
+    weight: 'Tier B. Quit India, Cripps and Cabinet Mission, and "causes of partition" are among the most-asked questions of modern history.',
   },
 
   bigPicture: `
@@ -89,7 +89,10 @@ Ambedkar opposed it; princes supported the British.</li>
 <li><b>Significance:</b> demand for independence became non-negotiable; youth, students, peasants and women
 participated massively; showed that British rule could not continue without consent; though crushed by 1944, it made
 withdrawal a question of time.</li>
-</ul>` },
+</ul>
+<p>In Assam, <b>Kanaklata Barua</b> was shot dead at <b>Gohpur</b> in September 1942 while leading a procession to hoist the
+national flag at the police station.</p>
+` },
 
     { title: 'Subhas Bose and the INA', html: `
 <ul>
@@ -118,7 +121,15 @@ Commander-in-Chief; parity of caste Hindus and Muslims; failed over Jinnah's cla
 ships and 20 shore establishments; supported by strikes; called off on Patel and Jinnah's advice. Also RIAF strikes and
 Jabalpur army unrest.</li>
 <li>Peasant and worker struggles: Tebhaga, Telangana, Punnapra-Vayalar; postal strike; princely state movements.</li>
-</ul>` },
+</ul>
+<div class="box concept"><p><b>Why the British decided to leave.</b> By 1946 the foundations of British rule had given
+way. The war had left Britain economically exhausted and dependent on the USA, and the new Labour government had no
+wish to hold India by force. More important, the British could no longer rely on the <b>instruments of control</b>:
+the INA trials (1945) roused sympathy across communities and even within the Indian army, the <b>RIN mutiny</b>
+(February 1946) and unrest in the air force and police showed that Indian forces might not obey, and the bureaucracy
+was tired and short of British recruits. Quit India had shown that ruling without consent meant constant repression.
+The question was no longer whether Britain would leave, but how, and whether India would stay united.</p></div>
+` },
 
     { title: 'Cabinet Mission (1946)', html: `
 <ul>
@@ -172,7 +183,16 @@ to obtain a strong centre and quick transfer of power.</li>
 <div class="box debate"><p><b>Ayesha Jalal</b> argues Jinnah used the Pakistan demand as a bargaining counter for parity
 in a federal India and that the Congress's insistence on a strong centre made partition unavoidable. <b>Bipan
 Chandra</b> stresses colonial communal policy and the failure to contain communalism. <b>Anita Inder Singh</b> and
-<b>Yasmin Khan</b> (<i>The Great Partition</i>) emphasise the contingency of 1946–47 and the role of violence.</p></div>` },
+<b>Yasmin Khan</b> (<i>The Great Partition</i>) emphasise the contingency of 1946–47 and the role of violence.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the 1937 ministries and their resignation (I41); separate electorates and the Communal Award (I29,
+I41); revolutionaries and the INA's roots (I38).</li>
+<li><b>Constitutional link:</b> the Indian Independence Act, 1947 (I29).</li>
+<li><b>After:</b> integration of the princely states (I43); the Constituent Assembly and the Nehru era (I45).</li>
+<li><b>Rajasthan:</b> Praja Mandals in 1942 (R20); the integration of Rajasthan (R21).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -240,6 +260,11 @@ Chandra</b> stresses colonial communal policy and the failure to contain communa
 
   mains: [
     {
+      q: 'Highlight the role of Aruna Asaf Ali in the Quit India Movement.', marks: 2, words: 15, pyq: 'RAS Mains 2021',
+      outline: ['Flag at Gowalia Tank', 'Underground leader'],
+      answer: '<p>She hoisted the Congress flag at Gowalia Tank on 9 August 1942 and led the movement underground.</p>',
+    },
+    {
       q: 'Assess the significance of the Quit India Movement.', marks: 10, words: 100,
       outline: ['Causes', 'Course', 'Parallel governments', 'Repression', 'Significance'],
       answer: '<p>After the Cripps failure, wartime hardship and the Japanese threat, the Congress passed the Quit India resolution on 8 August 1942; Gandhi gave the call "Do or Die". Leaders were arrested next morning, and the movement became a spontaneous uprising: railways and police stations were attacked, underground leaders such as JP, Lohia and Aruna Asaf Ali organised resistance, and parallel governments arose in Ballia, Tamluk and Satara. It was crushed by 1944 with massive repression. Yet it made independence the only acceptable demand, involved youth, peasants and women on an unprecedented scale and showed Britain could not rule without consent.</p>',
@@ -274,6 +299,10 @@ Chandra</b> stresses colonial communal policy and the failure to contain communa
     { q: 'Who were the members of the Cabinet Mission?', a: 'Pethick-Lawrence, Cripps, A.V. Alexander.' },
     { q: 'What was Direct Action Day?', a: '16 August 1946, League\'s call that led to Calcutta killings.' },
     { q: 'When was the Mountbatten Plan announced?', a: '3 June 1947.' },
+    { q: 'Why did the Congress launch Quit India after the Cripps Mission?', a: 'Cripps offered no immediate transfer of power, while wartime hardship and the Japanese threat grew.' },
+    { q: 'Why did the British decide to leave India after 1945?', a: 'War exhaustion, a Labour government, and doubt about the loyalty of Indian forces after the INA trials and RIN mutiny.' },
+    { q: 'Why did the Cabinet Mission Plan fail?', a: 'The Congress and the League disagreed over grouping and the powers of the centre.' },
+    { q: 'Why did Congress leaders accept partition?', a: 'Communal violence made a united India seem unworkable, and they wanted a strong centre and a quick transfer of power.' },
   ],
 
   glossary: [
@@ -289,6 +318,6 @@ Chandra</b> stresses colonial communal policy and the failure to contain communa
     'Bipan Chandra et al., <i>India\'s Struggle for Independence</i>, chs. 35–38.',
     'Ayesha Jalal, <i>The Sole Spokesman</i>.',
     'Yasmin Khan, <i>The Great Partition</i>.',
-    'NCERT Class 12, <i>Themes in Indian History III</i>, ch. 14 ("Understanding Partition").',
+    'NCERT Class 12, <i>Themes in Indian History III</i>, ch. 14 ("Understanding Partition"). — standard text for this rewrite',
   ],
 };
