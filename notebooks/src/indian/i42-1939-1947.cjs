@@ -113,6 +113,7 @@ sentences remitted.</li>
 
     { title: 'Post-war upsurge', html: `
 <ul>
+<li><b>Desai–Liaquat Pact</b> (January 1945): an informal understanding between <b>Bhulabhai Desai</b> (Congress leader in the Central Assembly) and <b>Liaquat Ali Khan</b> (League) for an interim government at the centre with <b>equal numbers of Congress and League nominees</b> and 20% of seats for minorities. Neither party adopted it, but the idea of Congress–League parity passed into the Wavell Plan.</li>
 <li><b>Wavell Plan / Simla Conference</b> (June 1945): Executive Council of Indians except the Viceroy and
 Commander-in-Chief; parity of caste Hindus and Muslims; failed over Jinnah's claim to nominate all Muslim members.</li>
 <li>Labour Party won in Britain (July 1945, Attlee).</li>
@@ -303,6 +304,7 @@ I41); revolutionaries and the INA's roots (I38).</li>
     { q: 'Why did the British decide to leave India after 1945?', a: 'War exhaustion, a Labour government, and doubt about the loyalty of Indian forces after the INA trials and RIN mutiny.' },
     { q: 'Why did the Cabinet Mission Plan fail?', a: 'The Congress and the League disagreed over grouping and the powers of the centre.' },
     { q: 'Why did Congress leaders accept partition?', a: 'Communal violence made a united India seem unworkable, and they wanted a strong centre and a quick transfer of power.' },
+    { q: 'What did the Desai–Liaquat Pact (1945) propose?', a: 'An interim government with equal Congress and League nominees and 20% of seats for minorities.' },
   ],
 
   glossary: [

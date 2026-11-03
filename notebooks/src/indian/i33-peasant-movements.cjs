@@ -60,6 +60,33 @@ the national movement and the Kisan Sabhas gave peasants all-India leadership an
 fight against colonial rule itself.</p></div>
 ` },
 
+    { title: 'Before 1857: civil rebellions and sepoy mutinies', html: `
+<p>Long before 1857, Company rule met armed resistance. Bipan Chandra groups it as <b>civil rebellions</b> (led by
+deposed rulers, former zamindars and poligars, backed by rack-rented peasants and disbanded soldiers), <b>tribal
+revolts</b> (I34), <b>peasant risings with a religious colour</b>, and <b>sepoy mutinies</b>. Their common causes were
+new revenue settlements and taxes, the loss of land and office by old ruling groups, and the ruin of artisans whose
+courtly patrons had disappeared. All were local and fought with old weapons, so none threatened Company power as
+1857 did; but they show that 1857 did not come out of nowhere.</p>
+<div class="tbl"><table>
+<tr><th>Rising</th><th>Region, years</th><th>Leader and cause</th></tr>
+<tr><td><b>Poligar revolts</b></td><td>Tirunelveli and south Tamil Nadu, 1795–1805</td><td><b>Veerapandiya Kattabomman</b> of Panchalankurichi resisted Company revenue demands; he was hanged in 1799, and a second rising (the Marudu brothers) was crushed by 1801</td></tr>
+<tr><td><b>Pazhassi Raja</b></td><td>Malabar (Wayanad), 1790s–1805</td><td>Kerala Varma of Kottayam fought Company revenue claims; killed in 1805</td></tr>
+<tr><td><b>Velu Thampi</b></td><td>Travancore, 1808–09</td><td>The Dewan rose against the subsidiary alliance and its payments; issued the <b>Kundara Proclamation</b> (1809); took his own life when defeated</td></tr>
+<tr><td><b>Paika rebellion</b></td><td>Khurda (Odisha), 1817</td><td>Bakshi Jagabandhu; loss of the Paikas' rent-free lands (see the table above)</td></tr>
+<tr><td><b>Ramosi risings</b></td><td>Satara and Poona, 1822–29 and 1839–41</td><td>The Ramosis, who had served the Maratha state, lost their place after 1818; leaders included Chittur Singh and Umaji Naik</td></tr>
+<tr><td><b>Pagal Panthis</b></td><td>Mymensingh (Bengal), 1825–35</td><td>A sect founded by Karam Shah; under his son <b>Tipu</b>, Hajong and Garo peasants refused excess rent and attacked zamindars</td></tr>
+<tr><td><b>Titu Mir</b></td><td>24 Parganas (Bengal), 1831</td><td>Mir Nithar Ali led Muslim peasants against landlords and indigo planters, building a bamboo fort at <b>Narkelberia</b>; killed in 1831</td></tr>
+<tr><td><b>Kuka (Namdhari) movement</b></td><td>Punjab, from 1840</td><td>Began as Sikh religious reform under Bhagat Jawahar Mal; under <b>Baba Ram Singh</b> it preached boycott of British goods, schools and courts; crushed in 1872 and Ram Singh deported to Rangoon</td></tr>
+</table></div>
+<p><b>Urban tax protests</b> also occurred: against a house tax at <b>Benares</b> (1810–11), a police tax at
+<b>Bareilly</b> (1816) and a higher salt duty at <b>Surat</b> (1844).</p>
+<p><b>Sepoy mutinies before 1857</b> grew from low pay, blocked promotion, and orders that offended caste or religion:
+<b>Vellore (1806)</b>, where sepoys rose against a new dress code (a new headgear replacing the turban, and a ban on
+caste marks) and raised the flag of Tipu Sultan's family, whose sons were held in the fort; <b>Barrackpore (1824)</b>,
+against orders to go to Burma by sea; and several regiments in the 1840s and 1850s over allowances for service in
+Sindh and Punjab.</p>
+` },
+
     { title: 'Twentieth-century movements', html: `
 <div class="tbl"><table>
 <tr><th>Movement</th><th>Details</th></tr>
@@ -162,6 +189,10 @@ peasant movements as autonomous, with their own consciousness, not merely led by
     { q: 'Why did the Deccan riots break out in 1875?', a: 'The cotton boom collapsed and moneylenders used bonds and the 1859 Limitation Law to seize peasants\' land.' },
     { q: 'How did the Indigo revolt gain middle-class support?', a: 'Through Nil Darpan and newspapers like the Hindoo Patriot that exposed the planters.' },
     { q: 'How did peasant movements change in the 20th century?', a: 'They were linked to the national movement and organised by Kisan Sabhas and the Left.' },
+    { q: 'Why did civil rebellions before 1857 fail?', a: 'They were local, uncoordinated and fought with outdated weapons against a strong Company army.' },
+    { q: 'What caused the Vellore mutiny of 1806?', a: 'A new dress code replacing the turban and banning caste marks; the rebels raised the Mysore royal flag.' },
+    { q: 'Who was Veerapandiya Kattabomman?', a: 'A poligar of Panchalankurichi who resisted Company revenue demands and was hanged in 1799.' },
+    { q: 'What did the Kuka movement preach?', a: 'Sikh religious purification and boycott of British goods, schools and courts.' },
   ],
 
   glossary: [

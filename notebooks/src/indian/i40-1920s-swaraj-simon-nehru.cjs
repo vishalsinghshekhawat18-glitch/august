@@ -67,6 +67,26 @@ Disputes Act (1929); Girni Kamgar Union strikes (Bombay, 1928).</li>
 <li><b>Caste movements:</b> Self-Respect (1925), Ambedkar's Mahad satyagraha (1927).</li>
 </ul>` },
 
+    { title: 'The workers\' movement', html: `
+<p>Railways, coal mines and cotton and jute mills created a modern working class from the mid-19th century. Early
+efforts to help workers were philanthropic: <b>Sasipada Banerjea</b> started a workingmen's club (1870), and
+<b>N.M. Lokhande</b> ran the paper <i>Deenbandhu</i> (1880) and founded the Bombay Mill Hands Association (1890). The
+<b>Factory Acts of 1881 and 1891</b>, which limited child labour and working hours, were pushed by Lancashire mill
+owners who wanted to blunt Indian competition, so the early nationalists did not support them.</p>
+<p>Workers entered national politics in the <b>Swadeshi</b> years, with strikes in railways and presses, at the
+<b>Tuticorin</b> coral mill led by V.O. Chidambaram Pillai, and in Bombay after Tilak's conviction (1908). After the
+First World War came Gandhi's <b>Ahmedabad mill strike (1918)</b>, which won a 35% wage rise, and the <b>All India
+Trade Union Congress</b>, founded on <b>31 October 1920</b> with Lala Lajpat Rai as president and Dewan Chaman Lal as
+general secretary.</p>
+<p>The government answered growing militancy with the <b>Trade Unions Act (1926)</b>, which registered unions, and the
+<b>Trade Disputes Act (1929)</b>, which restricted strikes. The long <b>Bombay textile strike of 1928</b> under the
+Communist-led Girni Kamgar Union was followed by the <b>Meerut Conspiracy Case (1929)</b>, in which 31 labour leaders,
+among them S.A. Dange, Muzaffar Ahmed and Philip Spratt, were tried. The <b>Royal Commission on Labour</b> (Whitley
+Commission, 1929–31) reported on working conditions. The movement split in 1929–31 between moderate, Congress and
+Communist groups, revived under the Congress ministries (1937–39), and joined the post-war upsurge of 1945–46, when
+dock workers refused to load ships for Indonesia and workers struck in support of the naval ratings.</p>
+` },
+
     { title: 'Simon Commission', html: `
 <ul>
 <li>Appointed <b>November 1927</b> (two years early, under the 1919 Act's ten-year review) by the Conservative government
@@ -219,6 +239,10 @@ of his amendments was a turning point.</p>`,
     { q: 'Why did the Simon Commission provoke a united boycott?', a: 'It had no Indian member, though it was to decide India\'s constitutional future.' },
     { q: 'Why did the Nehru Report fail to win Muslim support?', a: 'Jinnah\'s amendments on seats and residuary powers were rejected at the Calcutta convention.' },
     { q: 'How did the Irwin Declaration lead to the Lahore resolution?', a: 'Irwin could not assure dominion status, so the Congress declared purna swaraj.' },
+    { q: 'Why did early nationalists not back the Factory Acts of 1881 and 1891?', a: 'They saw them as pushed by Lancashire to blunt Indian mills\' competition.' },
+    { q: 'Who were AITUC\'s first president and general secretary?', a: 'Lala Lajpat Rai and Dewan Chaman Lal (31 October 1920).' },
+    { q: 'How did the government respond to labour militancy in 1928–29?', a: 'The Trade Disputes Act (1929) and the Meerut Conspiracy Case against labour leaders.' },
+    { q: 'What did Gandhi\'s 1918 Ahmedabad strike win?', a: 'A 35% wage rise for the mill workers through arbitration.' },
   ],
 
   glossary: [
