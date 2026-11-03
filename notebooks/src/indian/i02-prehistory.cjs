@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Prehistoric cultures of India: Palaeolithic, Mesolithic, Neolithic, Chalcolithic'],
     mains: ['GS-I: Ancient Indian history — prehistoric cultures'],
-    weight: 'Mostly Prelims: site–phase–region matching (Bhimbetka, Mehrgarh, Burzahom, Chirand, Bagor, Adamgarh). For Rajasthan sites see R02 and R03.',
+    weight: 'Tier C. Mostly Prelims: site–phase–region matching (Bhimbetka, Mehrgarh, Burzahom, Chirand, Bagor, Adamgarh). For Rajasthan sites see R02 and R03.',
   },
 
   bigPicture: `
@@ -43,16 +43,22 @@ Harappan civilisation grew from local roots.</p></div>`,
 <tr><td>Middle</td><td>Flake tools: scrapers, points</td><td>Nevasa (Maharashtra, on the Pravara), Narmada valley</td></tr>
 <tr><td>Upper</td><td>Blades, burins; bone tools</td><td>Belan valley (UP), Bhimbetka, Kurnool caves</td></tr>
 </table></div>
-<p><b>Hathnora</b> (Narmada valley, Madhya Pradesh) has yielded a hominin skull fossil ("Narmada Man").</p>` },
+<p><b>Hathnora</b> (Narmada valley, Madhya Pradesh) has yielded a hominin skull fossil ("Narmada Man").</p>
+<p>Palaeolithic people lived by hunting animals and gathering plants, moved with the seasons and camped near water and
+stone sources. The change from heavy hand-axes to flakes and then blades shows growing skill: each step got more
+cutting edge from the same stone and produced more specialised tools.</p>
+` },
 
     { title: 'The Mesolithic', html: `
-<ul>
-<li>Microliths — small geometric blades used in composite tools (arrows, sickles).</li>
-<li>Sites: <b>Bagor</b> (Rajasthan), <b>Adamgarh</b> (MP) — both with early domesticated animals; <b>Sarai Nahar Rai</b>,
-<b>Mahadaha</b> and <b>Damdama</b> (UP) with burials; <b>Langhnaj</b> (Gujarat).</li>
-<li><b>Bhimbetka</b> (Raisen, MP): rock shelters with paintings from the Upper Palaeolithic onward — animals, hunting,
-dancing; a UNESCO World Heritage Site, discovered by <b>V.S. Wakankar</b> (1957).</li>
-</ul>` },
+<p>After the last Ice Age (from about 10,000 BCE) the climate became warmer, and people adapted to smaller game, fish
+and wild plants. Their typical tools were <b>microliths</b>, small geometric blades set in wood or bone to make
+arrows, harpoons and sickles. Some Mesolithic people began to keep animals: <b>Bagor</b> (Rajasthan) and
+<b>Adamgarh</b> (MP) have early domesticated animals. <b>Sarai Nahar Rai</b>, <b>Mahadaha</b> and <b>Damdama</b> (UP)
+have burials, and <b>Langhnaj</b> (Gujarat) is another important site.</p>
+<p>Prehistoric people also left art. The rock shelters of <b>Bhimbetka</b> (Raisen, MP), discovered by <b>V.S.
+Wakankar</b> (1957) and now a UNESCO World Heritage Site, have paintings from the Upper Palaeolithic onward showing
+animals, hunting and dancing.</p>
+` },
 
     { title: 'The Neolithic', html: `
 <div class="tbl"><table>
@@ -63,7 +69,13 @@ dancing; a UNESCO World Heritage Site, discovered by <b>V.S. Wakankar</b> (1957)
 <tr><td>South</td><td>Brahmagiri, Maski, Utnur, Piklihal, Sanganakallu</td><td>Ash mounds from cattle pens</td></tr>
 <tr><td>North-east</td><td>Daojali Hading (Assam)</td><td>Shouldered celts; links with South-East Asia</td></tr>
 </table></div>
-<p><b>Lahuradewa</b> (UP) has early evidence of rice cultivation (claims go back to c. 6000 BCE or earlier).</p>` },
+<p><b>Lahuradewa</b> (UP) has early evidence of rice cultivation (claims go back to c. 6000 BCE or earlier).</p>
+<div class="box concept"><p><b>Why food production was a turning point.</b> Hunter-gatherers depend on what nature
+provides and must keep moving. Once people grew crops and kept animals, they could store food, stay in one place and
+support more people on less land. Villages, houses, pottery for storage and, later, surplus for traders and rulers all
+followed. Mehrgarh shows this beginning in South Asia around 7000 BCE, and its long sequence leading towards the
+Harappan civilisation shows that Indian cities grew from local roots, not from outside.</p></div>
+` },
 
     { title: 'Chalcolithic cultures', html: `
 <p>Farming villages using copper and stone, mostly after or outside the Harappan zone:</p>
@@ -84,7 +96,19 @@ menhirs and urn burials. At <b>Brahmagiri</b> (Karnataka, excavated by Wheeler),
 others had only a few pots, showing status differences. Other sites: Hallur, Maski (Karnataka), Adichanallur (urn
 burials, Tamil Nadu), Junapani (Vidarbha).</p>
 <p>Common features: black-and-red painted pottery, mud houses, cattle, cereals, child burials under floors (Maharashtra),
-no writing.</p>` },
+no writing.</p>
+<div class="box concept"><p><b>What burials tell us.</b> Where there is no writing, graves are one of the best
+guides to belief and society. Pots of food and water in Chalcolithic and megalithic graves suggest belief in a life
+after death. Differences in grave goods, as at Brahmagiri, where one skeleton had 33 gold beads and others only a few
+pots, show that some people had more wealth and status than others: the beginnings of social inequality.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Next:</b> the Harappan civilisation, which grew from Neolithic and Chalcolithic villages (I03).</li>
+<li><b>Sources:</b> archaeology and dating methods (I01).</li>
+<li><b>Art:</b> Bhimbetka rock art in the painting unit (I49).</li>
+<li><b>Rajasthan:</b> Didwana, Bagor and Tilwara (R02); Ahar, Gilund and Balathal (R03).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -152,6 +176,9 @@ diffusion from West Asia alone.</p>`,
     { q: 'Where was the "Narmada Man" fossil found?', a: 'Hathnora, Narmada valley (MP).' },
     { q: 'Name two Jorwe culture sites.', a: 'Inamgaon and Daimabad (also Nevasa).' },
     { q: 'What are microliths?', a: 'Tiny geometric stone blades used in composite tools (Mesolithic).' },
+    { q: 'Why was the shift to food production a turning point?', a: 'It allowed storage, settled villages, larger populations and later surplus for trade and rulers.' },
+    { q: 'What does Mehrgarh show about the origins of the Harappan civilisation?', a: 'That it grew from local farming roots in South Asia.' },
+    { q: 'How do grave goods reveal social differences?', a: 'Unequal goods, such as gold beads in one grave at Brahmagiri, show differences of wealth and status.' },
   ],
 
   glossary: [
@@ -165,6 +192,6 @@ diffusion from West Asia alone.</p>`,
   sources: [
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, chs. 2–3.',
     'H.D. Sankalia, <i>Prehistory and Protohistory of India and Pakistan</i>.',
-    'NCERT (old), R.S. Sharma, <i>Ancient India</i>.',
+    'NCERT (old), R.S. Sharma, <i>Ancient India</i>. — standard text for this rewrite',
   ],
 };
