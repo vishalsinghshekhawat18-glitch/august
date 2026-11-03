@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Mansabdari system (zat, sawar); jagirdari; zabt / dahsala; central and provincial officers; Mughal architecture and painting'],
     mains: ['GS-I: Mughal administration and economy; art and architecture'],
-    weight: 'Mansabdari and Todar Mal\'s dahsala system are among the most-asked medieval Mains topics.',
+    weight: 'Tier C. Mansabdari and Todar Mal\'s dahsala system are among the most-asked medieval Mains topics.',
   },
 
   bigPicture: `
@@ -72,7 +72,15 @@ land.</li>
 <li>Jagirdars were <b>transferred</b> every few years to prevent local roots; this tempted them to squeeze peasants.</li>
 <li>Land not assigned was <b>khalisa</b> — revenue went directly to the treasury (Akbar about one-fourth to one-fifth).</li>
 <li><b>Crisis</b> under Aurangzeb: more mansabdars than available jagirs (be-jagiri).</li>
-</ul>` },
+</ul>
+<div class="box concept"><p><b>How mansab, jagir and zabt fitted together.</b> The <b>mansab</b> fixed what an
+officer was owed: his personal pay (zat) and the cost of the cavalry he kept (sawar). The <b>jagir</b> was how he was
+usually paid: he was assigned territory whose estimated revenue (jama) equalled that sum. The <b>zabt</b> survey made
+this possible, because only measured land with known average yields and cash rates gave a reliable estimate of what a
+jagir would produce. Frequent <b>transfers</b> kept jagirdars from building local power, but they also tempted them
+to take as much as they could quickly. When the number of mansabdars outgrew the land available, the whole system
+came under strain (I22).</p></div>
+` },
 
     { title: 'Land revenue: from zabt to dahsala', html: `
 <ol>
@@ -132,7 +140,16 @@ Pahari) schools.</li>
 <li><b>Nobility:</b> Turanis and Iranis first, then Rajputs and Indian Muslims (Shaikhzadas) from the 1560s; Iranians rose under Nur Jahan; Marathas were numerous under Aurangzeb. Holders of 1,000 zat or more were <b>umara</b>. Akbar had 29 mansabdars of 5,000 zat; Aurangzeb had 79. A candidate was recommended through a noble's <b>tajwiz</b>; nobles posted at court (<b>tainat-i-rakab</b>) formed a reserve.</li>
 <li><b>Information:</b> court writers (waqia-navis) recorded proceedings; nobles' agents sent home the <b>akhbarat-i-darbar-i-mualla</b> (news of the exalted court); relays of runners (<b>qasid</b>, pathmar) carried papers in bamboo tubes.</li>
 <li><b>Pargana level:</b> three semi-hereditary officers — the qanungo (revenue records), the chaudhuri (collection) and the qazi. Persian was the language of administration, but village accounts were kept in local languages.</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Roots:</b> the Sultanate iqta and Alauddin's measurement (I18); Sher Shah's reforms (I21).</li>
+<li><b>Strain:</b> the jagirdari and agrarian crisis in Mughal decline (I22).</li>
+<li><b>After:</b> British land revenue settlements that built on zamindari and pargana records (I30).</li>
+<li><b>Culture:</b> Mughal architecture and painting (I48, I49).</li>
+<li><b>Rajasthan:</b> watan jagirs of the Rajput states and Rajput administration and revenue (R14).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -220,6 +237,10 @@ negotiation with local power holders.</p>`,
     { q: 'Who headed the Mughal military department?', a: 'The Mir Bakhshi.' },
     { q: 'Who introduced du-aspa sih-aspa?', a: 'Jahangir.' },
     { q: 'What were taqavi loans?', a: 'State loans to peasants for seed and cattle.' },
+    { q: 'How was a mansabdar usually paid?', a: 'By a jagir whose estimated revenue equalled his zat and sawar dues.' },
+    { q: 'Why were jagirdars transferred every few years?', a: 'To stop them building local roots and power.' },
+    { q: 'Why did the dahsala need a land survey?', a: 'Average yields and cash rates could only be applied to measured land of known quality.' },
+    { q: 'How did the watan jagir differ from the tankha jagir?', a: 'The watan jagir was a hereditary homeland, not transferable; the tankha jagir was a transferable salary assignment.' },
   ],
 
   glossary: [
@@ -237,6 +258,6 @@ negotiation with local power holders.</p>`,
     'Irfan Habib, <i>The Agrarian System of Mughal India</i>.',
     'Shireen Moosvi, <i>The Economy of the Mughal Empire c. 1595</i>.',
     'Satish Chandra, <i>Medieval India</i>, vol. II.',
-    'NCERT Class 12, <i>Themes in Indian History II</i>, ch. 8 ("Peasants, Zamindars and the State").',
+    'NCERT Class 12, <i>Themes in Indian History II</i>, ch. 8 ("Peasants, Zamindars and the State"). — standard text for this rewrite',
   ],
 };
