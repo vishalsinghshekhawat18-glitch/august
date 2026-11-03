@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Portuguese, Dutch, English, Danish, French companies; Carnatic wars'],
     mains: ['GS-I: Advent of Europeans; Anglo-French rivalry'],
-    weight: 'Dates of arrival and factories are Prelims staples; "Why did the English succeed against the French?" is a standard Mains question.',
+    weight: 'Tier C. Dates of arrival and factories are Prelims staples; "Why did the English succeed against the French?" is a standard Mains question.',
   },
 
   bigPicture: `
@@ -75,14 +75,26 @@ a year, the right to issue dastaks — called the "Magna Carta" of the Company.<
 </table></div>` },
 
     { title: 'Why the English won', html: `
-<ol>
-<li><b>Company structure:</b> the English company was private, with commercial motives and steady finances; the
-French company was state-controlled and dependent on the crown.</li>
-<li><b>Naval supremacy</b> of Britain — reinforcements and supplies.</li>
-<li><b>Bases:</b> Bombay, Madras and Calcutta; after Plassey (1757), Bengal's revenue financed the war.</li>
-<li><b>Leadership:</b> Clive, Coote, Lawrence vs. quarrels among Dupleix, La Bourdonnais, Lally.</li>
-<li><b>French home policy:</b> preoccupation with continental wars in Europe; recall of Dupleix.</li>
-</ol>` },
+<p>The English and French companies started from similar footholds, but the English had deeper advantages. The
+English company was a <b>private</b> body run for profit, with steady finances and freedom to act; the French company
+was <b>controlled by the state</b> and depended on royal funds and decisions made in Paris. Britain's <b>navy</b>
+controlled the sea routes, so English forces could be reinforced and supplied while French ones were cut off.</p>
+<p>The English also held better <b>bases</b> in Bombay, Madras and Calcutta, and after <b>Plassey (1757)</b> the
+revenue of Bengal paid for the war in the south. Their commanders, Clive, Lawrence and Coote, worked together, while
+the French leaders Dupleix, La Bourdonnais and Lally quarrelled, and France, absorbed in wars on the European
+continent, recalled Dupleix in 1754. Wandiwash (1760) and the fall of Pondicherry (1761) settled the contest.</p>
+<div class="box concept"><p><b>The lesson of the Carnatic wars.</b> At St Thome (1746) a small French force with
+disciplined infantry and artillery defeated the Nawab's much larger army. Dupleix drew the conclusion that European
+companies could <b>decide Indian succession disputes</b> by lending such troops to one claimant and taking land,
+revenue and influence in return. The English learned the lesson and used it better, first in the Carnatic and then in
+Bengal. Trading companies thus became territorial powers.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> Krishnadevaraya and the Portuguese (I19); Roe at Jahangir's court and the 1717 farman (I22).</li>
+<li><b>After:</b> Plassey and Buxar (I27); British expansion through war and the Subsidiary Alliance (I28).</li>
+<li><b>Economy:</b> Company trade and the drain of wealth (I31).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -164,6 +176,10 @@ trade) are standard. <b>Ashin Das Gupta</b> studied Indian merchants of Surat an
     { q: 'Who seized Arcot in 1751?', a: 'Robert Clive.' },
     { q: 'Which battle ended French ambitions?', a: 'Wandiwash (1760).' },
     { q: 'Which treaty ended the Third Carnatic War?', a: 'Treaty of Paris (1763).' },
+    { q: 'Why did the English company outlast the French?', a: 'It was private and financially steady, backed by naval supremacy, better bases and Bengal\'s revenue.' },
+    { q: 'What did the battle of St Thome (1746) show?', a: 'That a small disciplined European force could defeat a large Indian army.' },
+    { q: 'How did Dupleix try to gain power in the Second Carnatic War?', a: 'By backing rival claimants in Hyderabad and the Carnatic in return for land and influence.' },
+    { q: 'Why was Farrukhsiyar\'s 1717 farman important?', a: 'It gave the Company duty-free trade in Bengal for Rs 3,000 a year, later a source of conflict with the Nawabs.' },
   ],
 
   glossary: [
@@ -177,5 +193,6 @@ trade) are standard. <b>Ashin Das Gupta</b> studied Indian merchants of Surat an
     'Bipan Chandra, <i>History of Modern India</i>, ch. 3.',
     'Sekhar Bandyopadhyay, <i>From Plassey to Partition</i>, ch. 1.',
     'Spectrum, <i>A Brief History of Modern India</i>.',
+    'NCERT Class 8, <i>Our Pasts III</i>, "From Trade to Territory" — standard text for this rewrite.',
   ],
 };
