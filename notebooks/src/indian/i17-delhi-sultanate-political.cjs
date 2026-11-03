@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Five dynasties of the Sultanate; Iltutmish, Balban, Alauddin Khalji, Muhammad bin Tughluq, Firoz Shah; Timur; Lodis'],
     mains: ['GS-I: Delhi Sultanate — consolidation, expansion, decline'],
-    weight: 'Alauddin\'s reforms and Muhammad bin Tughluq\'s experiments are the most-asked topics. Sultanate relations with Rajasthan (Ranthambore, Chittor, Jalore) are in R06–R07.',
+    weight: 'Tier C. Alauddin\'s reforms and Muhammad bin Tughluq\'s experiments are the most-asked topics. Sultanate relations with Rajasthan (Ranthambore, Chittor, Jalore) are in R06–R07.',
   },
 
   bigPicture: `
@@ -57,29 +57,33 @@ centralisation; Muhammad bin Tughluq — experiments; Firoz — welfare and decl
 </table></div>
 <p><b>Balban's theory of kingship:</b> the king is <i>Niyabat-i-Khudai</i> (God's deputy) and <i>Zil-i-Ilahi</i> (shadow of
 God); kingship requires awe and distance; only nobles of high birth to hold office.</p>
-<p><b>Razia in context:</b> the chronicler Minhaj-us-Siraj accepted her ability but felt rule by a queen went against the social order of his day. Other women rulers of the period: <b>Rudramadevi</b> of the Kakatiyas (1262–89), who was shown as a man in some of her inscriptions, and <b>Didda</b> of Kashmir (980–1003).</p>` },
+<p><b>Razia in context:</b> the chronicler Minhaj-us-Siraj accepted her ability but felt rule by a queen went against the social order of his day. Other women rulers of the period: <b>Rudramadevi</b> of the Kakatiyas (1262–89), who was shown as a man in some of her inscriptions, and <b>Didda</b> of Kashmir (980–1003).</p>
+<div class="box concept"><p><b>Why slaves became Sultans.</b> In the Turkish world, boys bought as slaves
+(<i>bandagan</i>) were trained as soldiers and administrators in the master's household. Cut off from their own
+families, they owed everything to their master, which made them more trustworthy than his own relatives. Ghori relied
+on such men, and Aibak and Iltutmish rose this way. The danger was that a group of powerful slave-officers, such as
+Iltutmish's <b>Forty</b>, could dominate weaker successors, as they did under Razia. Balban, himself one of the
+Forty, solved this by destroying the group and raising the Sultan far above all nobles. The struggle between Sultan
+and nobility runs through the whole Sultanate.</p></div>
+` },
 
     { title: 'The Khaljis, 1290–1320', html: `
-<p>The <b>"Khalji revolution"</b>: the Khaljis, though Turks, were treated as non-Turkish Afghans by the old nobility.
-Their rise opened office to non-Turks and Indian Muslims — power based on merit and loyalty, not race.</p>
-<ul>
-<li><b>Jalaluddin</b> (1290–96): mild ruler; killed by his nephew Alauddin.</li>
-<li><b>Alauddin</b> (1296–1316):
-  <ul>
-  <li><b>Conquests:</b> Gujarat (1299), <b>Ranthambore</b> (1301, Hammir Deva), <b>Chittor</b> (1303, Ratan Singh),
-  Malwa, Siwana, <b>Jalore</b> (1311, Kanhadadeva).</li>
-  <li><b>Deccan and south</b> through <b>Malik Kafur</b> (a slave bought for 1,000 dinars — "hazar-dinari"): Devagiri (Yadavas), Warangal (Kakatiyas), Dwarasamudra
-  (Hoysalas), Madurai (Pandyas) — tribute, not annexation.</li>
-  <li><b>Mongols:</b> repulsed repeated invasions (1299, 1303, 1305–06); built Siri fort.</li>
-  <li><b>Reforms</b> (market control, revenue, army) — see I18.</li>
-  <li>Four ordinances against noble conspiracy: confiscation of grants, spy network, ban on liquor, ban on nobles'
-  social gatherings and marriages without permission.</li>
-  <li>Said "I do not know what is lawful or unlawful; I issue orders for the good of the state" (Barani) — state
-  interest above the ulema.</li>
-  <li>Buildings: Alai Darwaza, Hauz-i-Khas, Siri.</li>
-  </ul></li>
-<li>After Alauddin: Malik Kafur, Mubarak Shah, Khusrau Khan (1320).</li>
-</ul>` },
+<p>The <b>"Khalji revolution"</b> changed who could hold power. The Khaljis, though Turks, were treated as non-Turkish
+Afghans by the old nobility; their seizure of the throne opened office to non-Turks and Indian Muslims, so that power
+rested on merit and loyalty rather than race. <b>Jalaluddin</b> (1290–96) was a mild ruler, killed by his ambitious
+nephew Alauddin.</p>
+<p><b>Alauddin</b> (1296–1316) built the Sultanate into an empire. In the north and west he took Gujarat (1299),
+<b>Ranthambore</b> (1301, from Hammir Deva), <b>Chittor</b> (1303, from Ratan Singh), Malwa, Siwana and <b>Jalore</b>
+(1311, from Kanhadadeva). His general <b>Malik Kafur</b>, a slave bought for 1,000 dinars ("hazar-dinari"), led
+campaigns to Devagiri (Yadavas), Warangal (Kakatiyas), Dwarasamudra (Hoysalas) and Madurai (Pandyas), taking tribute
+rather than annexing. He repulsed repeated <b>Mongol</b> invasions (1299, 1303, 1305–06) and built Siri fort. His
+market, revenue and army reforms are in I18.</p>
+<p>Alauddin guarded against conspiracy with four ordinances: confiscation of grants, a spy network, a ban on liquor,
+and a ban on nobles' gatherings and marriages without permission. Barani reports him saying, "I do not know what is
+lawful or unlawful; I issue orders for the good of the state", placing state interest above the ulema. His buildings
+include the Alai Darwaza, the Hauz-i-Khas and Siri. After him came Malik Kafur, Mubarak Shah and Khusrau Khan
+(1320).</p>
+` },
 
     { title: 'The Tughluqs, 1320–1414', html: `
 <p><b>Ghiyasuddin Tughluq</b> (1320–25): founded Tughluqabad; annexed Warangal; died when a pavilion collapsed.</p>
@@ -132,7 +136,17 @@ kingdoms (Jaunpur, Malwa, Gujarat, Bengal, Mewar).</p>` },
 <li>Timur's invasion (1398).</li>
 <li>Dependence on the personality of the ruler; narrow social base.</li>
 <li>Afghan tribal notions of equality under the Lodis; Babur's superior artillery and tactics.</li>
-</ol>` },
+</ol>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> Ghori's conquest (I16).</li>
+<li><b>Alongside:</b> administration, iqta and Alauddin's reforms (I18); Vijayanagara and the Bahmanis (I19); Sufis
+and bhakti saints (I20).</li>
+<li><b>After:</b> Babur and the Mughals (I21).</li>
+<li><b>Architecture:</b> Qutb Minar, Alai Darwaza, Tughluqabad (I48).</li>
+<li><b>Rajasthan:</b> Alauddin at Ranthambore, Chittor and Jalore (R06, R07); the Sultanate and Rajasthan (R13).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -231,6 +245,10 @@ revolts).</p></div>`,
     { q: 'Who made iqtas hereditary?', a: 'Firoz Shah Tughluq.' },
     { q: 'When did Timur sack Delhi?', a: '1398.' },
     { q: 'Who founded Agra?', a: 'Sikandar Lodi (1504).' },
+    { q: 'Why did Sultans rely on slave-officers?', a: 'Slaves cut off from their families owed everything to their master and were more trustworthy than relatives.' },
+    { q: 'Why is the Khalji rise called a "revolution"?', a: 'It opened high office to non-Turks and Indian Muslims, basing power on merit and loyalty, not race.' },
+    { q: 'Why did Muhammad bin Tughluq\'s token currency fail?', a: 'The tokens were easily forged, so they had to be redeemed in silver at great cost.' },
+    { q: 'How did Firoz Shah Tughluq weaken the Sultanate?', a: 'By making iqtas hereditary and conciliating nobles, which reduced central control.' },
   ],
 
   glossary: [
@@ -246,6 +264,6 @@ revolts).</p></div>`,
     'Satish Chandra, <i>Medieval India</i>, vol. I.',
     'Peter Jackson, <i>The Delhi Sultanate: A Political and Military History</i>.',
     'K.A. Nizami (ed.), <i>Comprehensive History of India</i>, vol. V.',
-    'NCERT Class 7, <i>Our Pasts II</i>, ch. 3.',
+    'NCERT Class 7, <i>Our Pasts II</i>, ch. 3. — standard text for this rewrite',
   ],
 };
