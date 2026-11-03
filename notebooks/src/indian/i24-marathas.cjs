@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Shivaji — conquests, administration (Ashtapradhan, chauth, sardeshmukhi); Peshwas; third battle of Panipat; Maratha confederacy'],
     mains: ['GS-I: Rise of the Marathas; Shivaji\'s administration; Panipat III'],
-    weight: 'Shivaji\'s administration and Panipat III are classic questions. Maratha intervention in Rajasthan (chauth, Holkar–Scindia) is in R15.',
+    weight: 'Tier C. Shivaji\'s administration and Panipat III are classic questions. Maratha intervention in Rajasthan (chauth, Holkar–Scindia) is in R15.',
   },
 
   bigPicture: `
@@ -52,13 +52,19 @@ replace the Mughals or resist the British.</p></div>`,
 
   sections: [
     { title: 'Rise: factors', html: `
-<ul>
-<li><b>Geography:</b> Sahyadri hills and forts suited guerrilla warfare.</li>
-<li><b>Experience</b> of Maratha chiefs in Bijapur and Ahmadnagar service (Shahji Bhonsle, Shivaji's father).</li>
-<li><b>Bhakti movement</b> (Tukaram, Ramdas) created regional identity in Marathi.</li>
-<li>Decline of Ahmadnagar and Bijapur; Mughal overstretch.</li>
-<li>Leadership of Shivaji; mother <b>Jijabai</b> and guardian <b>Dadaji Kondadev</b>.</li>
-</ul>` },
+<p>The Maratha rise had deep roots. The <b>Sahyadri hills</b> and their forts gave a base that large armies found hard
+to take and that suited quick, light raids. Maratha chiefs such as <b>Shahji Bhonsle</b>, Shivaji's father, had long
+served Ahmadnagar and Bijapur, and so had experience of war and revenue administration. The <b>bhakti movement</b>
+of Tukaram and Ramdas, preached in Marathi, built a shared regional identity among peasants and chiefs. When
+Ahmadnagar fell and Bijapur weakened, and the Mughals were overstretched in the Deccan, there was room for a new
+power. <b>Shivaji</b>, raised by his mother <b>Jijabai</b> and guardian <b>Dadaji Kondadev</b>, turned these
+conditions into a state.</p>
+<div class="box concept"><p><b>Chauth and sardeshmukhi.</b> <b>Chauth</b> was a claim to one-fourth of the land revenue
+of a territory, and <b>sardeshmukhi</b> a further one-tenth, claimed by the Maratha ruler as the "head deshmukh". Paid
+by neighbouring rulers, they bought protection from Maratha raids. The system let the Marathas draw income from a huge
+area without the cost of governing it, and the Mughal grant of 1719 gave it legal standing in the Deccan. But it also
+made the Marathas look like raiders to Rajputs, Jats and others, which cost them allies at Panipat in 1761.</p></div>
+` },
 
     { title: 'Shivaji\'s career', html: `
 <ul>
@@ -140,7 +146,16 @@ decade; Abdali gained little; the British, free of rivals, consolidated in Benga
 <li>Weak economy and administration in conquered areas.</li>
 <li>Outdated military: reliance on cavalry; artillery dependent on foreign officers.</li>
 <li>British diplomacy (Subsidiary Alliance, Bassein) and superior organisation.</li>
-</ol>` },
+</ol>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the Deccan Sultanates (I19); Aurangzeb's Deccan wars (I22).</li>
+<li><b>Alongside:</b> Mughal decline and successor states (I22); the Sikhs (I25).</li>
+<li><b>After:</b> the Anglo-Maratha wars, Subsidiary Alliance and British expansion (I28).</li>
+<li><b>Rajasthan:</b> Mirza Raja Jai Singh and Purandar (R11); Maratha chauth and interference in the Rajput states
+(R15).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -220,6 +235,10 @@ use of Persianate administrative practices.</p></div>`,
     { q: 'Where did Baji Rao I defeat the Nizam in 1728?', a: 'Palkhed.' },
     { q: 'Who led the Marathas at Panipat in 1761?', a: 'Sadashiv Rao Bhau.' },
     { q: 'Which family ruled Baroda?', a: 'The Gaekwads.' },
+    { q: 'Why did the Sahyadri hills favour the Marathas?', a: 'Hill forts and rough terrain suited guerrilla war against large Mughal armies.' },
+    { q: 'How did chauth help and hurt the Marathas?', a: 'It brought income without the cost of governing, but alienated Rajputs, Jats and others.' },
+    { q: 'Why did the Marathas lose at Panipat in 1761?', a: 'No allies, cut supply lines, a starving army slowed by non-combatants, and Abdali\'s superior cavalry.' },
+    { q: 'How did the bhakti movement help the Maratha rise?', a: 'Saints like Tukaram and Ramdas built a shared Marathi identity.' },
   ],
 
   glossary: [
@@ -235,6 +254,6 @@ use of Persianate administrative practices.</p></div>`,
     'G.S. Sardesai, <i>New History of the Marathas</i>.',
     'Stewart Gordon, <i>The Marathas 1600–1818</i>.',
     'Satish Chandra, <i>Medieval India</i>, vol. II.',
-    'NCERT Class 7, <i>Our Pasts II</i>, ch. 8.',
+    'NCERT Class 7, <i>Our Pasts II</i>, ch. 8. — standard text for this rewrite',
   ],
 };
