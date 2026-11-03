@@ -12,7 +12,7 @@ module.exports = {
       'After integration: abolition of jagirs and zamindari; Tenancy and Land Revenue Acts; Panchayati Raj (1959)',
     ],
     mains: ['GS-I Part A: Revenue and administrative system and changing patterns'],
-    weight: 'The 2026 Mains line asks for "changing patterns", not only the medieval system. RAS Mains 2024 asked for the revenue system of medieval Rajasthan (10 marks); a question on how that system changed under the British and after 1947 is the natural next step. Pair this unit with R14 (the medieval system) and R17 (peasant movements, which were a reaction to these changes).',
+    weight: 'Tier C. The 2026 Mains line asks for "changing patterns", not only the medieval system. RAS Mains 2024 asked for the revenue system of medieval Rajasthan (10 marks); a question on how that system changed under the British and after 1947 is the natural next step. Pair this unit with R14 (the medieval system) and R17 (peasant movements, which were a reaction to these changes).',
   },
 
   bigPicture: `
@@ -91,7 +91,23 @@ Mandals (R20) demanded responsible government.</li>
 <tr><td><b>Panchayati Raj</b></td><td>2 October 1959</td><td>Three-tier democratic decentralisation inaugurated at Nagaur by Jawaharlal Nehru; Rajasthan was the first state</td></tr>
 </table></div>
 <p>The Tenancy Act and the Land Revenue Act are now Mains Paper III law topics (LW8, LW9), so this unit is the history
-behind them.</p>` },
+behind them.</p>
+<div class="box concept"><p><b>Why reform came only after integration.</b> Under paramountcy, the princes depended on
+their jagirdars for prestige and support, and the British, who wanted stable and loyal states, had no wish to upset
+the landed order; reforms came from the top and stopped at the jagir boundary. Integration removed both obstacles.
+The new state of Rajasthan was a democracy answerable to voters, most of them peasants; the Praja Mandal and kisan
+leaders who had fought jagirdari now held office; and the Constitution's directive principles and the Congress's
+programme called for ending intermediaries. So within a decade the jagirdari order that had lasted centuries was
+replaced by khatedari rights, a single revenue code and elected panchayats.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the medieval revenue and jagir system (R14); the treaties of 1818 (R15).</li>
+<li><b>Resistance:</b> peasant movements against lag-bag and begar (R17); Praja Mandals (R20); integration (R21).</li>
+<li><b>All-India context:</b> British land settlements (I30); zamindari abolition and land reform in the Nehru era
+(I45).</li>
+<li><b>Law:</b> the Rajasthan Tenancy Act and Land Revenue Act in the Mains Paper III law notebook (LW8, LW9).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -165,6 +181,10 @@ so the burden on peasants grew until land reform ended the system.</p>`,
     { q: 'Which Act gave khatedari rights?', a: 'The Rajasthan Tenancy Act, 1955.' },
     { q: 'When was the Zamindari and Biswedari Abolition Act passed?', a: '1959.' },
     { q: 'Where and when was Panchayati Raj inaugurated?', a: 'Nagaur, 2 October 1959.' },
+    { q: 'Why did the jagirdar\'s position become harder to justify after 1818?', a: 'The British took over defence, so the military service that justified jagirs lost its purpose.' },
+    { q: 'Why did peasant burdens rise under paramountcy?', a: 'Jagirdars kept their rights and raised cash rents, cesses and begar without the old customary limits.' },
+    { q: 'Why could land reform happen only after integration?', a: 'A democratic state answerable to peasant voters and led by former Praja Mandal leaders replaced princes who relied on jagirdars.' },
+    { q: 'What did khatedari rights give cultivators?', a: 'Heritable and transferable rights in land, with protection from arbitrary eviction.' },
   ],
 
   glossary: [
@@ -181,5 +201,6 @@ so the burden on peasants grew until land reform ended the system.</p>`,
     'Dilbagh Singh, <i>The State, Landlords and Peasants: Rajasthan in the 18th Century</i> (1990).',
     'Rajasthan Tenancy Act, 1955 and Rajasthan Land Revenue Act, 1956 (bare Acts, Government of Rajasthan).',
     'RBSE Class 12, <i>Rajasthan ka Itihas evam Sanskriti</i>.',
+    'Rima Hooja, <i>A History of Rajasthan</i> — standard text for this rewrite.',
   ],
 };
