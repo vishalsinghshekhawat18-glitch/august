@@ -16,14 +16,61 @@ import { UniversityCourse, UniversityItem, UniversityItemType, UniversityItemSta
 import { dbService } from '../services/db';
 import { formatMinutes, formatHoursDecimal, getTodayDateString, daysBetween } from '../services/dateUtils';
 
-const OPTIONAL_STARTER_COURSES: UniversityCourse[] = [
-  { id: 'mec_01', code: 'MEC-01', name: 'Microeconomic Analysis', semester: 1, credits: 8 },
-  { id: 'mec_02', code: 'MEC-02', name: 'Macroeconomic Analysis', semester: 1, credits: 8 },
-  { id: 'mec_03', code: 'MEC-03', name: 'Quantitative Methods for Economics', semester: 1, credits: 8 },
-  { id: 'mec_04', code: 'MEC-04', name: 'Economics of Growth and Development', semester: 1, credits: 8 },
-  { id: 'mec_05', code: 'MEC-05', name: 'Indian Economic Policy', semester: 2, credits: 8 },
-  { id: 'mec_06', code: 'MEC-06', name: 'Public Economics', semester: 2, credits: 8 },
-  { id: 'mec_07', code: 'MEC-07', name: 'International Trade and Finance', semester: 2, credits: 8 },
+export const VMOU_MA_ECONOMICS_COURSES: UniversityCourse[] = [
+  { id: 'vmou_maec_01', code: 'MAEC-01', name: 'Economic Theory - I (आर्थिक सिद्धांत - I)', semester: 1, credits: 8 },
+  { id: 'vmou_maec_02', code: 'MAEC-02', name: 'Economic Theory - II (आर्थिक सिद्धांत - II)', semester: 1, credits: 8 },
+  { id: 'vmou_maec_03', code: 'MAEC-03', name: 'Public Economics (सार्वजनिक अर्थशास्त्र)', semester: 2, credits: 8 },
+  { id: 'vmou_maec_04', code: 'MAEC-04', name: 'Quantitative Methods (परिमाणात्मक विधियां)', semester: 2, credits: 8 },
+  { id: 'vmou_md_01', code: 'MD 01', name: 'Business Environment (व्यावसायिक वातावरण)', semester: 2, credits: 4 },
+  { id: 'vmou_md_02', code: 'MD 02', name: 'Writing for Mass Media (जनसंचार माध्यमों के लिए लेखन)', semester: 2, credits: 4 },
+  { id: 'vmou_md_03', code: 'MD 03', name: 'Society: Structure and Problems (समाज: संरचना एवं समस्याएं)', semester: 2, credits: 4 },
+];
+
+export const DEFAULT_VMOU_ASSIGNMENTS: UniversityItem[] = [
+  {
+    id: 'univ_item_maec_01_assign',
+    courseId: 'vmou_maec_01',
+    title: 'MAEC-01 Internal Assignment: Economic Theory - I',
+    type: 'assignment',
+    deadline: '2026-11-15',
+    status: 'pending',
+    studyMinutesSpent: 0,
+    notes: '20 Marks total. Handwritten. Section A (4 qns × 1m, max 30 words), Section B (2 qns × 4m, max 200 words), Section C (1 qn × 8m, max 500 words). Submit to Regional Centre before 15th.',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'univ_item_maec_02_assign',
+    courseId: 'vmou_maec_02',
+    title: 'MAEC-02 Internal Assignment: Economic Theory - II',
+    type: 'assignment',
+    deadline: '2026-11-15',
+    status: 'pending',
+    studyMinutesSpent: 0,
+    notes: '20 Marks total. Handwritten. Section A (4 qns × 1m, max 30 words), Section B (2 qns × 4m, max 200 words), Section C (1 qn × 8m, max 500 words). Submit to Regional Centre before 15th.',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'univ_item_maec_03_assign',
+    courseId: 'vmou_maec_03',
+    title: 'MAEC-03 Internal Assignment: Public Economics',
+    type: 'assignment',
+    deadline: '2026-11-15',
+    status: 'pending',
+    studyMinutesSpent: 0,
+    notes: '20 Marks total. Handwritten. Section A (4 qns × 1m, max 30 words), Section B (2 qns × 4m, max 200 words), Section C (1 qn × 8m, max 500 words). Submit to Regional Centre before 15th.',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'univ_item_maec_04_assign',
+    courseId: 'vmou_maec_04',
+    title: 'MAEC-04 Internal Assignment: Quantitative Methods',
+    type: 'assignment',
+    deadline: '2026-11-15',
+    status: 'pending',
+    studyMinutesSpent: 0,
+    notes: '20 Marks total. Handwritten. Section A (4 qns × 1m, max 30 words), Section B (2 qns × 4m, max 200 words), Section C (1 qn × 8m, max 500 words). Submit to Regional Centre before 15th.',
+    createdAt: new Date().toISOString(),
+  },
 ];
 
 export const UniversityView: React.FC = () => {
@@ -47,6 +94,12 @@ export const UniversityView: React.FC = () => {
   const [courseSemester, setCourseSemester] = useState<number>(1);
   const [courseCredits, setCourseCredits] = useState<number>(8);
 
+  // Log writing session modal
+  const [loggingWritingItem, setLoggingWritingItem] = useState<UniversityItem | null>(null);
+  const [writingMinutes, setWritingMinutes] = useState<number>(60);
+  const [writingDate, setWritingDate] = useState<string>(getTodayDateString());
+  const [writingNotes, setWritingNotes] = useState<string>('');
+
   const loadData = async () => {
     try {
       const today = getTodayDateString();
@@ -58,12 +111,25 @@ export const UniversityView: React.FC = () => {
         dbService.getAll<StudyLog>('studyLogs'),
       ]);
 
-      setCourses(cList);
-      if (cList.length > 0 && !selectedCourseId) {
-        setSelectedCourseId(cList[0].id);
+      let finalCourses = cList;
+      let finalItems = iList;
+
+      // Auto-seed VMOU M.A. Economics official courses and assignments if empty
+      if (cList.length === 0) {
+        await dbService.putMany<UniversityCourse>('universityCourses', VMOU_MA_ECONOMICS_COURSES);
+        finalCourses = await dbService.getAll<UniversityCourse>('universityCourses');
+        if (iList.length === 0) {
+          await dbService.putMany<UniversityItem>('universityItems', DEFAULT_VMOU_ASSIGNMENTS);
+          finalItems = await dbService.getAll<UniversityItem>('universityItems');
+        }
       }
 
-      setItems(iList.sort((a, b) => (a.deadline || '').localeCompare(b.deadline || '')));
+      setCourses(finalCourses);
+      if (finalCourses.length > 0 && !selectedCourseId) {
+        setSelectedCourseId(finalCourses[0].id);
+      }
+
+      setItems(finalItems.sort((a, b) => (a.deadline || '').localeCompare(b.deadline || '')));
       setStudyLogs(lList.filter((l) => l.examId === 'comm_vmou_ma_eco'));
     } catch (err) {
       console.error('Error loading university data:', err);
@@ -77,14 +143,66 @@ export const UniversityView: React.FC = () => {
   // Total VMOU study minutes
   const totalVmouMinutes = studyLogs.reduce((acc, l) => acc + (l.durationMinutes || 0), 0);
 
-  // Optional: Load Starter Courses
+  // Load Starter Courses
   const handleLoadStarterCourses = async () => {
     try {
-      await dbService.putMany<UniversityCourse>('universityCourses', OPTIONAL_STARTER_COURSES);
+      await dbService.putMany<UniversityCourse>('universityCourses', VMOU_MA_ECONOMICS_COURSES);
       loadData();
     } catch (err) {
       console.error('Failed to load starter courses:', err);
     }
+  };
+
+  // Pre-seed 4 Official VMOU Assignments (Nov 15 Deadline)
+  const handleSeedVmouAssignments = async () => {
+    try {
+      await dbService.putMany<UniversityCourse>('universityCourses', VMOU_MA_ECONOMICS_COURSES);
+      const existingItems = await dbService.getAll<UniversityItem>('universityItems');
+      for (const it of DEFAULT_VMOU_ASSIGNMENTS) {
+        if (!existingItems.some((e) => e.id === it.id || (e.courseId === it.courseId && e.type === 'assignment'))) {
+          await dbService.put<UniversityItem>('universityItems', it);
+        }
+      }
+      await loadData();
+    } catch (err) {
+      console.error('Failed to seed VMOU assignments:', err);
+    }
+  };
+
+  // Save Writing Log
+  const handleSaveWritingLog = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!loggingWritingItem) return;
+
+    const course = courseMap.get(loggingWritingItem.courseId);
+    const courseCodeStr = course ? course.code : 'VMOU';
+    const mins = Math.max(5, Number(writingMinutes) || 60);
+
+    // 1. Create StudyLog under comm_vmou_ma_eco
+    const newLog: StudyLog = {
+      id: `log_univ_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+      date: writingDate,
+      timestamp: new Date().toISOString(),
+      examId: 'comm_vmou_ma_eco',
+      subjectId: loggingWritingItem.courseId,
+      durationMinutes: mins,
+      activityType: 'learning',
+      notes: `Assignment Writing: ${courseCodeStr} — ${loggingWritingItem.title}${writingNotes ? ` • ${writingNotes.trim()}` : ''}`,
+      createdAt: new Date().toISOString(),
+    };
+    await dbService.put<StudyLog>('studyLogs', newLog);
+
+    // 2. Increment studyMinutesSpent and set status to 'in_progress' if pending
+    const updatedItem: UniversityItem = {
+      ...loggingWritingItem,
+      studyMinutesSpent: (loggingWritingItem.studyMinutesSpent || 0) + mins,
+      status: loggingWritingItem.status === 'pending' ? 'in_progress' : loggingWritingItem.status,
+    };
+    await dbService.put<UniversityItem>('universityItems', updatedItem);
+
+    setLoggingWritingItem(null);
+    setWritingNotes('');
+    await loadData();
   };
 
   // Add Custom Course
@@ -200,6 +318,15 @@ export const UniversityView: React.FC = () => {
             <span>VMOU Portal</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
+
+          <button
+            onClick={handleSeedVmouAssignments}
+            className="px-3.5 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-xl text-xs font-semibold border border-emerald-200 transition-colors flex items-center gap-1.5 shadow-2xs"
+            title="Pre-populate MAEC-01 to MAEC-04 assignments with Nov 15 deadline"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Seed 4 Assignments</span>
+          </button>
 
           <button
             onClick={() => setIsAddCourseOpen(true)}
@@ -473,9 +600,41 @@ export const UniversityView: React.FC = () => {
                         </>
                       )}
                     </div>
+
+                    {/* Time logged & Log Writing Time button */}
+                    <div className="flex items-center gap-2 mt-2">
+                      <button
+                        onClick={() => {
+                          setLoggingWritingItem(item);
+                          setWritingMinutes(60);
+                          setWritingDate(todayStr);
+                          setWritingNotes(`Drafting answers for ${item.title}`);
+                        }}
+                        className="px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-lg text-xs font-semibold flex items-center gap-1 transition-colors active:scale-95 cursor-pointer shadow-2xs"
+                        title="Log study / handwriting hours for this assignment"
+                      >
+                        <Clock className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>+ Log Writing Time</span>
+                      </button>
+
+                      {item.studyMinutesSpent > 0 ? (
+                        <span className="text-[11px] font-medium text-emerald-800 bg-emerald-100/70 border border-emerald-200 px-2 py-0.5 rounded-full flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                          <span>{formatMinutes(item.studyMinutesSpent)} written</span>
+                        </span>
+                      ) : (
+                        <span className="text-[11px] text-slate-400">0m written</span>
+                      )}
+                    </div>
+
+                    {item.notes && (
+                      <div className="text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-lg border border-slate-100 mt-2 max-w-2xl leading-relaxed">
+                        {item.notes}
+                      </div>
+                    )}
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 shrink-0">
                     <select
                       value={item.status}
                       onChange={(e) => handleUpdateStatus(item, e.target.value as UniversityItemStatus)}
@@ -514,7 +673,7 @@ export const UniversityView: React.FC = () => {
           <div>
             <h3 className="text-sm font-bold text-slate-900">Configured Course Modules ({courses.length})</h3>
             <p className="text-xs text-slate-500 mt-0.5">
-              Manage your subjects gradually. All courses are optional and removable.
+              Official VMOU M.A. Economics syllabus modules and electives.
             </p>
           </div>
 
@@ -534,7 +693,7 @@ export const UniversityView: React.FC = () => {
             <BookOpen className="w-7 h-7 text-slate-300 mx-auto mb-2" />
             <p className="text-xs text-slate-500">No course modules configured yet.</p>
             <p className="text-[11px] text-slate-400 mt-0.5">
-              Click &quot;Add Course&quot; to define your own courses, or load the optional VMOU starter template.
+              Click &quot;Add Course&quot; to define your own courses, or load the official VMOU starter template.
             </p>
             <div className="flex justify-center gap-2 mt-3">
               <button
@@ -547,7 +706,7 @@ export const UniversityView: React.FC = () => {
                 onClick={handleLoadStarterCourses}
                 className="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium"
               >
-                Load Starter Template (MEC 01-07)
+                Load Starter Template (MAEC 01-04)
               </button>
             </div>
           </div>
@@ -574,6 +733,105 @@ export const UniversityView: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Log Writing Time Modal */}
+      {loggingWritingItem && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
+          <div className="bg-white rounded-xl shadow-xl border border-slate-200 w-full max-w-md p-5 space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div>
+                <h3 className="text-sm font-bold text-slate-900">Log Assignment Writing Time</h3>
+                <p className="text-xs text-slate-500 mt-0.5 truncate max-w-xs">
+                  {loggingWritingItem.title}
+                </p>
+              </div>
+              <button
+                onClick={() => setLoggingWritingItem(null)}
+                className="text-slate-400 hover:text-slate-600 p-1 rounded-lg text-sm"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveWritingLog} className="space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1">Session Date</label>
+                  <input
+                    type="date"
+                    value={writingDate}
+                    onChange={(e) => setWritingDate(e.target.value)}
+                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1">Time Spent (Minutes)</label>
+                  <input
+                    type="number"
+                    min="5"
+                    step="5"
+                    value={writingMinutes}
+                    onChange={(e) => setWritingMinutes(parseInt(e.target.value, 10) || 0)}
+                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Quick Preset Buttons */}
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="text-[11px] text-slate-400">Quick Select:</span>
+                {[30, 45, 60, 90, 120].map((m) => (
+                  <button
+                    key={m}
+                    type="button"
+                    onClick={() => setWritingMinutes(m)}
+                    className={`text-[11px] px-2.5 py-1 rounded-md border font-medium transition-colors ${
+                      writingMinutes === m
+                        ? 'bg-emerald-600 text-white border-emerald-600'
+                        : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                    }`}
+                  >
+                    {m >= 60 ? `${m / 60}h` : `${m}m`}
+                  </button>
+                ))}
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-700 mb-1">Writing Notes / Questions Drafted</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Completed Section A (4 questions) & Section B question 2"
+                  value={writingNotes}
+                  onChange={(e) => setWritingNotes(e.target.value)}
+                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg"
+                />
+              </div>
+
+              <div className="p-3 bg-emerald-50/70 border border-emerald-100 rounded-lg text-xs text-emerald-900 leading-relaxed">
+                💡 This session automatically counts toward <strong>Today&apos;s Focused Study</strong>, your weekly attainment goal, and tracks cumulative writing time on this assignment.
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setLoggingWritingItem(null)}
+                  className="px-3 py-1.5 text-xs text-slate-600 hover:bg-slate-100 rounded-lg"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-1.5 text-xs text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg font-medium shadow-sm"
+                >
+                  Save Writing Session
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

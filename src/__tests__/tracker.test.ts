@@ -38,6 +38,7 @@ import {
   parseOctoberHtml,
 } from '../services/octoberLibrary';
 import { coachService } from '../services/coachService';
+import { VMOU_MA_ECONOMICS_COURSES, DEFAULT_VMOU_ASSIGNMENTS } from '../views/UniversityView';
 import {
   WeeklyTask,
   StudyLog,
@@ -1533,6 +1534,80 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       const allProgress = await dbService.getAll<TopicProgress>('topicProgress');
       const rasProgress = allProgress.filter((p) => p.examId === 'comm_rpsc_ras');
       expect(rasProgress.length).toBeGreaterThanOrEqual(68); // 22 + 46 = 68
+    });
+  });
+
+  describe('16. VMOU Kota M.A. Economics Internal Assignment Tracking Suite', () => {
+    it('defines official VMOU course modules matching assignment booklet (MAEC 01-04 & MD electives)', () => {
+      expect(VMOU_MA_ECONOMICS_COURSES.length).toBe(7);
+      const codes = VMOU_MA_ECONOMICS_COURSES.map((c) => c.code);
+      expect(codes).toContain('MAEC-01');
+      expect(codes).toContain('MAEC-02');
+      expect(codes).toContain('MAEC-03');
+      expect(codes).toContain('MAEC-04');
+      expect(codes).toContain('MD 01');
+      expect(codes).toContain('MD 02');
+      expect(codes).toContain('MD 03');
+    });
+
+    it('pre-configures default internal assignments for the 4 core papers with November 15 deadline', () => {
+      expect(DEFAULT_VMOU_ASSIGNMENTS.length).toBe(4);
+      for (const assign of DEFAULT_VMOU_ASSIGNMENTS) {
+        expect(assign.deadline).toBe('2026-11-15');
+        expect(assign.type).toBe('assignment');
+        expect(assign.notes).toContain('20 Marks total');
+        expect(assign.notes).toContain('Handwritten');
+      }
+    });
+
+    it('records assignment writing time as a focused StudyLog under comm_vmou_ma_eco', async () => {
+      const assignment: UniversityItem = {
+        id: 'univ_test_assign_1',
+        courseId: 'vmou_maec_01',
+        title: 'MAEC-01 Internal Assignment: Economic Theory - I',
+        type: 'assignment',
+        deadline: '2026-11-15',
+        status: 'pending',
+        studyMinutesSpent: 0,
+        createdAt: new Date().toISOString(),
+      };
+      await dbService.put<UniversityItem>('universityItems', assignment);
+
+      // Student logs a 90-minute handwriting session
+      const writingLog: StudyLog = {
+        id: 'log_test_vmou_writing',
+        date: '2026-11-03',
+        timestamp: new Date().toISOString(),
+        examId: 'comm_vmou_ma_eco',
+        subjectId: assignment.courseId,
+        durationMinutes: 90,
+        activityType: 'learning',
+        notes: 'Assignment Writing: MAEC-01 — Completed Section A (4 questions) & Section B question 2',
+        createdAt: new Date().toISOString(),
+      };
+      await dbService.put<StudyLog>('studyLogs', writingLog);
+
+      // Update assignment item
+      assignment.studyMinutesSpent = 90;
+      assignment.status = 'in_progress';
+      await dbService.put<UniversityItem>('universityItems', assignment);
+
+      // Verify in DB
+      const fetchedItem = await dbService.get<UniversityItem>('universityItems', 'univ_test_assign_1');
+      expect(fetchedItem?.studyMinutesSpent).toBe(90);
+      expect(fetchedItem?.status).toBe('in_progress');
+
+      const fetchedLog = await dbService.get<StudyLog>('studyLogs', 'log_test_vmou_writing');
+      expect(fetchedLog).toBeDefined();
+      expect(fetchedLog?.durationMinutes).toBe(90);
+      expect(fetchedLog?.examId).toBe('comm_vmou_ma_eco');
+
+      // Verify today's focused study includes the 90 minutes
+      const allLogs = await dbService.getAll<StudyLog>('studyLogs');
+      const todayMinutes = allLogs
+        .filter((l) => l.date === '2026-11-03')
+        .reduce((sum, l) => sum + l.durationMinutes, 0);
+      expect(todayMinutes).toBeGreaterThanOrEqual(90);
     });
   });
 });
