@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Sources of ancient Indian history: literary, archaeological, epigraphic, numismatic, foreign accounts'],
     mains: ['GS-I: Indian history — the basis for every ancient and medieval topic'],
-    weight: 'Rarely a full Mains question by itself, but source facts (decipherment, first inscriptions, foreign travellers) are steady Prelims material and strengthen every answer.',
+    weight: 'Tier C. Rarely a full Mains question by itself, but source facts (decipherment, first inscriptions, foreign travellers) are steady Prelims material and strengthen every answer.',
   },
 
   bigPicture: `
@@ -41,32 +41,38 @@ bare claim. This unit gives you the vocabulary of evidence for the whole noteboo
 </table></div>` },
 
     { title: 'Inscriptions and coins', html: `
-<p><b>Epigraphy</b> (the study of inscriptions) gives dated, contemporary, official evidence.</p>
-<ul>
-<li>Scripts: <b>Brahmi</b> (written left to right; ancestor of most Indian scripts) and <b>Kharosthi</b> (right to left,
-north-west). <b>James Prinsep</b> deciphered Brahmi in <b>1837</b>.</li>
-<li><b>Texts as sources:</b> the Critical Edition of the Mahabharata, led by V.S. Sukthankar at the Bhandarkar
-Oriental Research Institute, Pune (1919–1966), compared manuscripts from all over India and showed both a common core
-and wide regional variation. B.B. Lal's excavation at Hastinapura (1951–52) tried to match the Mahabharata with archaeology.</li>
-<li>Earliest deciphered inscriptions: <b>Ashoka's edicts</b> (3rd c. BCE), mostly in Prakrit; also Greek and Aramaic in
-the north-west.</li>
-<li>Key inscriptions: Hathigumpha (Kharavela), Junagadh (Rudradaman, 150 CE — first long Sanskrit inscription), Allahabad
-pillar (Samudragupta, by Harishena), Aihole (Pulakeshin II, by Ravikirti), Uttaramerur (Chola village assemblies).</li>
-<li>Land grants on copper plates (from the Gupta period) show agrarian change and the rise of landed intermediaries.</li>
-</ul>
-<p><b>Numismatics</b> (the study of coins): punch-marked coins (silver, from c. 6th–5th c. BCE); Indo-Greek coins with
-portraits and names; Kushan gold coins; Gupta gold coins (the dinara); the decline in coin finds after the Guptas is
-used in the debate on early medieval "feudalism".</p>` },
+<p><b>Epigraphy</b> (the study of inscriptions) gives dated, contemporary, official evidence, which is why historians
+trust it more than texts copied and revised over centuries. Inscriptions were written in two main scripts:
+<b>Brahmi</b> (written left to right, the ancestor of most Indian scripts) and <b>Kharosthi</b> (right to left, used in
+the north-west). For centuries no one could read Brahmi, until <b>James Prinsep</b> deciphered it in <b>1837</b>. That
+single breakthrough let historians read <b>Ashoka's edicts</b> (3rd c. BCE, mostly in Prakrit, with Greek and Aramaic
+versions in the north-west) and recover a whole emperor almost forgotten by Indian tradition.</p>
+<p>Key inscriptions recur throughout this notebook: Hathigumpha (Kharavela), Junagadh (Rudradaman, 150 CE, the first
+long Sanskrit inscription), the Allahabad pillar (Samudragupta, by Harishena), Aihole (Pulakeshin II, by Ravikirti) and
+Uttaramerur (Chola village assemblies). From the Gupta period, <b>land grants on copper plates</b> become common; they
+show agrarian change and the rise of landed intermediaries.</p>
+<div class="box concept"><p><b>Reading a prashasti.</b> A prashasti is a eulogy composed by a court poet. It is
+valuable because it is contemporary and names places, rulers and events; the Allahabad pillar is our main source for
+Samudragupta's campaigns. But it was written to glorify, so defeats are left out and victories enlarged. Historians
+therefore treat a prashasti as the king's own claim, and test it against coins, other inscriptions and archaeology.</p></div>
+<p>Texts too can be studied critically. The Critical Edition of the Mahabharata, led by V.S. Sukthankar at the
+Bhandarkar Oriental Research Institute, Pune (1919–1966), compared manuscripts from all over India and showed both a
+common core and wide regional variation. B.B. Lal's excavation at Hastinapura (1951–52) tried to match the
+Mahabharata with archaeology.</p>
+<p><b>Numismatics</b> (the study of coins) traces kings, trade and economic health: punch-marked coins (silver, from
+c. 6th–5th c. BCE); Indo-Greek coins with portraits and names; Kushan gold coins; Gupta gold coins (the dinara). The
+decline in coin finds after the Guptas is used in the debate on early medieval "feudalism".</p>
+` },
 
     { title: 'Archaeology', html: `
-<ul>
-<li>The <b>Archaeological Survey of India</b> was founded in <b>1861</b> under <b>Alexander Cunningham</b>, who identified
-many Buddhist sites using Xuanzang's account.</li>
-<li><b>John Marshall</b> (DG from 1902) directed the Harappan excavations; <b>Mortimer Wheeler</b> introduced stratigraphic
-digging (1940s).</li>
-<li>Dating methods: <b>stratigraphy</b> (layers), <b>radiocarbon (C-14)</b>, dendrochronology, thermoluminescence.</li>
-<li>Archaeology is the only source for prehistory and the Harappan civilisation, whose script is undeciphered.</li>
-</ul>` },
+<p>Archaeology became systematic under colonial rule. The <b>Archaeological Survey of India</b> was founded in
+<b>1861</b> under <b>Alexander Cunningham</b>, who identified many Buddhist sites by following Xuanzang's travel
+account. <b>John Marshall</b> (Director-General from 1902) directed the Harappan excavations, and <b>Mortimer
+Wheeler</b> introduced careful stratigraphic digging in the 1940s.</p>
+<p>Sites are dated by <b>stratigraphy</b> (the order of layers, older below younger) and by scientific methods:
+<b>radiocarbon (C-14)</b>, dendrochronology (tree rings) and thermoluminescence. Archaeology is the only source for
+prehistory and for the Harappan civilisation, whose script is still undeciphered.</p>
+` },
 
     { title: 'Foreign accounts', html: `
 <div class="tbl"><table>
@@ -82,7 +88,20 @@ digging (1940s).</li>
 </table></div>
 <div class="box debate"><p>Foreign accounts are valuable outsiders' views but often misread Indian society:
 Megasthenes' "seven castes" mixes occupation with varna, and his claim that India had no slavery contradicts Indian
-texts.</p></div>` },
+texts.</p></div>
+<div class="box concept"><p><b>Why compare sources.</b> Every source answers a different question and carries a
+different bias. Texts give ideas and ideals; inscriptions give royal claims; coins give economic clues; archaeology
+gives material life; foreign visitors give an outsider's eye. When two independent sources agree, as when Xuanzang's
+account helped Cunningham find Buddhist sites on the ground, historians can be confident. When they disagree, the
+historian asks who wrote each, when and why.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Uses:</b> every ancient unit relies on these sources, from the Harappans (I03) to the Guptas (I10).</li>
+<li><b>Later sources:</b> Persian chronicles of the Sultanate and Mughals (I17, I21).</li>
+<li><b>Literature as source:</b> Vedic texts, the Mahabharata and Ramayana, and classical works (I51).</li>
+<li><b>Rajasthan:</b> inscriptions, coins, khyats and archives of Rajasthan (R01).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -154,6 +173,10 @@ as <b>Upinder Singh</b> stress weighing all source types together.</p>`,
     { q: 'What is Kitab-ul-Hind?', a: 'Al-Biruni\'s account of India (c. 1030).' },
     { q: 'Which edict names Ashoka directly?', a: 'Maski (also Gujarra and others).' },
     { q: 'Which ancient Indian text is closest to a critical history?', a: 'Kalhana\'s Rajatarangini.' },
+    { q: 'Why are inscriptions often more reliable than texts?', a: 'They are contemporary, often dated and not revised over centuries, though prashastis still exaggerate.' },
+    { q: 'How did the decipherment of Brahmi change Indian history?', a: 'It made Ashoka\'s edicts readable and recovered a great emperor almost forgotten by tradition.' },
+    { q: 'Why must foreign accounts be used with care?', a: 'Outsiders often misread Indian society, as Megasthenes did with his "seven castes".' },
+    { q: 'How do archaeologists date a site?', a: 'By stratigraphy and scientific methods such as radiocarbon dating.' },
   ],
 
   glossary: [
@@ -168,6 +191,6 @@ as <b>Upinder Singh</b> stress weighing all source types together.</p>`,
   sources: [
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, ch. 1.',
     'R.S. Sharma, <i>India\'s Ancient Past</i>, chs. 1–3.',
-    'NCERT, <i>Themes in Indian History</i> Part I.',
+    'NCERT, <i>Themes in Indian History</i> Part I. — standard text for this rewrite',
   ],
 };
