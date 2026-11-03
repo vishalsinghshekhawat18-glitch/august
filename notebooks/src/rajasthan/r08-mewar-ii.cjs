@@ -13,7 +13,7 @@ module.exports = {
       'GS-I Part A: Political and cultural achievements of various rulers of Rajasthan (up to the 18th century)',
       'Links to GS-I Part B: Mughal Rajput policy (Indian History unit I21–I22)',
     ],
-    weight: 'Mewar is the single most-asked dynasty in Rajasthan history. Expect 1–2 Prelims questions on dates, battles, titles and inscriptions, and Mains questions that ask you to <i>evaluate</i> (Pratap\'s resistance, the 1615 treaty, Khanwa).',
+    weight: 'Tier C. Mewar is the single most-asked dynasty in Rajasthan history. Expect 1–2 Prelims questions on dates, battles, titles and inscriptions, and Mains questions that ask you to <i>evaluate</i> (Pratap\'s resistance, the 1615 treaty, Khanwa).',
   },
 
   bigPicture: `
@@ -167,7 +167,10 @@ Bandoli.</p>
 <div class="box why"><p><b>Pratap's achievement</b> is not that he defeated the Mughal empire — he did not — but that
 he kept Mewar's political independence alive for 25 years against the strongest state in India, using guerrilla
 warfare and the loyalty of Bhils, Afghans and ordinary Rajputs. This made the eventual 1615 settlement far better
-than anything Akbar had offered.</p></div>` },
+than anything Akbar had offered.</p></div>
+<p><b>Court learning.</b> Pratap's court scholar <b>Chakrapani Mishra</b> wrote <i>Vishva Vallabh</i> (on gardening and water),
+<i>Muhurtamala</i> and <i>Rajyabhishek Paddhati</i> (R07).</p>
+` },
 
     { title: 'Amar Singh I and the treaty of 1615', html: `
 <p>Amar Singh I (1597–1620) continued resistance against expeditions under Prince Salim, then (as emperor Jahangir)
@@ -186,7 +189,15 @@ inscription later recorded it from the Mewar side.</p>
 <div class="box why"><p>Compare with Amber (1562) and Marwar: those rulers attended court, gave marriage alliances and
 served as high mansabdars. Mewar accepted suzerainty but kept the two symbols that mattered most — no personal
 attendance and no marriage alliance. The 1615 treaty is the clearest example of the "honourable compromise" that
-Pratap's resistance made possible.</p></div>` },
+Pratap's resistance made possible.</p></div>
+<div class="box concept"><p><b>Why Mewar's resistance ended in compromise.</b> Mewar could not defeat the Mughal empire:
+it was one state of modest revenue against an empire with many times its resources and with other Rajput houses (Amber,
+Marwar, Bikaner) serving in its armies. What Mewar could do was make conquest too costly. Its hills and forts, guerrilla
+tactics and the loyalty of Bhils and nobles kept Mughal garrisons under constant pressure. But forty years of war
+devastated the countryside, and Khurram's campaign of 1613–15 showed that the empire could keep up the pressure
+longer than Mewar could bear it. The empire, for its part, wanted submission, not destruction. Both sides gained from
+a settlement that recognised Mughal suzerainty while sparing Mewar's honour.</p></div>
+` },
 
     { title: 'Karan Singh, Jagat Singh I and Raj Singh (1620–1680)', html: `
 <ul>
@@ -211,7 +222,16 @@ Tailang</b> and carved on <b>25 black stone slabs</b> — regarded as the larges
 for Mewar's history, including the 1615 treaty.</p>
 <div class="box why"><p>Raj Singh's reign shows that the 1615 settlement depended on Mughal restraint. When Aurangzeb
 reimposed jizya and intervened in Marwar's succession, Mewar and Marwar together turned against the empire — one of
-the Rajput "breakdowns" historians cite when explaining the weakening of the Mughal empire.</p></div>` },
+the Rajput "breakdowns" historians cite when explaining the weakening of the Mughal empire.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> Kumbha and the rise of Mewar (R07).</li>
+<li><b>All-India context:</b> Babur and Khanwa, Akbar's Rajput policy (I21); Jahangir, the 1615 treaty and Aurangzeb's
+policies (I22).</li>
+<li><b>Alongside:</b> Maldeo, Chandrasen and Durgadas of Marwar (R09); Amber and Man Singh (R11).</li>
+<li><b>After:</b> the Marathas and the British in Rajasthan (R15).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -333,6 +353,10 @@ partly in religious language.</li>
     { q: 'Why is Dewair (1582) called the "Marathon of Mewar", and by whom?', a: 'By James Tod: it marked the turning point after which Mughal outposts in Mewar collapsed and Pratap recovered his territory.' },
     { q: 'List the four terms of the 1615 treaty.', a: 'No personal attendance by the Maharana; 1,000 horse; Chittor returned but not to be refortified; no marriage alliance.' },
     { q: 'Who composed the Raj Prashasti and on how many slabs is it carved?', a: 'Ranchhod Bhatt Tailang; 25 slabs.' },
+    { q: 'Why did Rana Sanga lose at Khanwa?', a: 'Babur\'s artillery and tulughma tactics defeated a large but loosely united Rajput confederacy.' },
+    { q: 'Why did Pratap refuse to attend Akbar\'s court?', a: 'Personal attendance meant ending the independence Mewar had kept for centuries.' },
+    { q: 'How did Pratap fight the Mughals after Haldighati?', a: 'By guerrilla war from the Aravallis, cutting supply lines and avoiding pitched battles.' },
+    { q: 'Why did Mewar accept the treaty of 1615?', a: 'Decades of war had exhausted it, and the terms spared the ruler personal attendance and a marriage alliance.' },
   ],
 
   glossary: [
@@ -351,7 +375,7 @@ partly in religious language.</li>
   sources: [
     'G.N. Sharma, <i>Mewar and the Mughal Emperors</i> and <i>Rajasthan Through the Ages</i>.',
     'Satish Chandra, <i>Medieval India: From Sultanat to the Mughals</i>, Part II.',
-    'Rima Hooja, <i>A History of Rajasthan</i>.',
+    'Rima Hooja, <i>A History of Rajasthan</i>. — standard text for this rewrite',
     'Babur, <i>Baburnama</i> (tr. A.S. Beveridge); Badayuni, <i>Muntakhab-ut-Tawarikh</i>; Abul Fazl, <i>Akbarnama</i>.',
     'James Tod, <i>Annals and Antiquities of Rajasthan</i> (read critically).',
     'Rajasthan Board of Secondary Education, Rajasthan history textbooks; The Quint (2017) on the Haldighati textbook revision.',
