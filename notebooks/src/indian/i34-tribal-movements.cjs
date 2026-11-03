@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Paharia, Kol, Santhal, Munda (Birsa), Bhil, Khond, Rampa, Naga, Tana Bhagat revolts'],
     mains: ['GS-I: Tribal uprisings — causes and character'],
-    weight: 'Santhal and Munda (Birsa) revolts are the most asked. Rajasthan tribal movements (Govind Guru, Bhil, Meena, Eki) are in R18.',
+    weight: 'Tier C. Santhal and Munda (Birsa) revolts are the most asked. Rajasthan tribal movements (Govind Guru, Bhil, Meena, Eki) are in R18.',
   },
 
   bigPicture: `
@@ -35,14 +35,22 @@ detail.</p></div>`,
 
   sections: [
     { title: 'Causes', html: `
-<ol>
-<li><b>Land:</b> introduction of private property and revenue settlements; land passed to outsiders (dikus).</li>
-<li><b>Forest laws:</b> Forest Acts (1865, 1878, 1927) restricted shifting cultivation (jhum), grazing and collection of
-forest produce; forced labour (begar).</li>
-<li><b>Moneylenders and traders</b> exploited tribals through debt.</li>
-<li><b>Missionaries</b> undermined customs (though some aided education).</li>
-<li><b>Loss of chiefs' authority</b> and imposition of courts and police.</li>
-</ol>` },
+<p>Before British rule most tribal communities lived largely outside the reach of the state. They held land jointly
+under their own chiefs, practised shifting cultivation (jhum), and depended on the forest for food, fuel, grazing and
+trade. Colonial rule broke this world apart in several ways at once.</p>
+<p><b>Land</b> became private property under revenue settlements, so it could be sold or seized for debt, and it
+passed to outsiders, the <b>dikus</b>: moneylenders, traders and landlords who came in with the new order. <b>Forest
+laws</b> (the Forest Acts of 1865, 1878 and 1927) declared forests state property, banned or restricted jhum, grazing
+and the collection of forest produce, and brought forced labour (begar) for forest officials. <b>Moneylenders</b>
+charged high interest and took land in payment. <b>Missionaries</b> attacked tribal customs, though some brought
+education. Chiefs lost their authority to courts and police that tribals did not understand.</p>
+<div class="box concept"><p><b>Why tribal revolts took the form they did.</b> Because the whole way of life was under
+threat, revolts were total: they targeted every outsider, Indian or European, and they looked to a
+<b>charismatic leader</b> who promised to restore a golden age, as Birsa Munda did. Strong ethnic solidarity made them
+fierce, but bows, arrows and axes could not stand against modern armies, and each revolt was local. Their lasting
+result was protective law: tenancy acts that barred the transfer of tribal land, and the "excluded areas" of 1935 that
+became the Fifth and Sixth Schedules.</p></div>
+` },
 
     { title: 'Major revolts', html: `
 <div class="tbl"><table>
@@ -71,7 +79,15 @@ forest produce; forced labour (begar).</li>
 <li>Messianic leaders (Birsa claimed divine mission); millenarian hopes of a golden age.</li>
 <li>Results: protective laws (Santhal Parganas Tenancy, Chotanagpur Tenancy Act 1908), "excluded" and "partially
 excluded" areas (1935) — the base for the Fifth and Sixth Schedules of the Constitution.</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Causes:</b> colonial land revenue and forest policy (I30); commercialisation and moneylenders (I31).</li>
+<li><b>Alongside:</b> peasant movements (I33); the Revolt of 1857 (I32).</li>
+<li><b>After:</b> the Fifth and Sixth Schedules and tribal policy in independent India (I45).</li>
+<li><b>Rajasthan:</b> Govind Guru and Mangarh, Motilal Tejawat and the Eki movement (R18).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -145,6 +161,10 @@ in western India. <b>Ramachandra Guha</b> (<i>The Unquiet Woods</i>) linked trib
     { q: 'Who led the Kol uprising?', a: 'Buddho Bhagat.' },
     { q: 'What were dikus?', a: 'Outsiders who exploited tribals.' },
     { q: 'Which district was created after the Santhal hul?', a: 'Santhal Parganas.' },
+    { q: 'Why did forest laws hit tribal communities so hard?', a: 'They banned or restricted jhum, grazing and forest produce on which tribal life depended.' },
+    { q: 'How did dikus take tribal land?', a: 'Through debt and the new private property in land, which could be sold or seized.' },
+    { q: 'Why did tribal revolts look to messianic leaders?', a: 'The whole way of life was threatened, and leaders like Birsa promised to restore a golden age.' },
+    { q: 'What lasting result did tribal revolts have?', a: 'Protective tenancy laws and excluded areas, the basis of the Fifth and Sixth Schedules.' },
   ],
 
   glossary: [
@@ -158,6 +178,6 @@ in western India. <b>Ramachandra Guha</b> (<i>The Unquiet Woods</i>) linked trib
   sources: [
     'K.S. Singh, <i>Birsa Munda and His Movement</i>.',
     'Spectrum, <i>A Brief History of Modern India</i>, ch. on tribal revolts.',
-    'NCERT Class 8, <i>Our Pasts III</i>, ch. 4.',
+    'NCERT Class 8, <i>Our Pasts III</i>, ch. 4. — standard text for this rewrite',
   ],
 };
