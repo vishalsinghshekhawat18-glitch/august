@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Major dynasties of Rajasthan and their achievements', 'Battles: Tarain, Ranthambhor, Siwana, Jalore'],
     mains: ['GS-I Part A: Important historical events and major dynasties'],
-    weight: 'Prithviraj III and Tarain, Vigraharaja IV\'s culture, and Hammir of Ranthambhor are the most-asked Chauhan topics; Jalore and Siwana come up in Prelims.',
+    weight: 'Tier C. Prithviraj III and Tarain, Vigraharaja IV\'s culture, and Hammir of Ranthambhor are the most-asked Chauhan topics; Jalore and Siwana come up in Prelims.',
   },
 
   bigPicture: `
@@ -95,7 +95,15 @@ against Alauddin; also Alauddin's wish to control the strategic fort.</li>
 This is often called the first jauhar of Rajasthan.</li>
 </ol>
 <p><b>Sources:</b> <b>Amir Khusrau</b>'s <i>Khazain-ul-Futuh</i> (eyewitness, from the Sultan's side); Nayachandra
-Suri's <i>Hammira Mahakavya</i> (Sanskrit, 15th c.); <i>Hammir Raso</i> (Jodhraj); Ziauddin Barani.</p>` },
+Suri's <i>Hammira Mahakavya</i> (Sanskrit, 15th c.); <i>Hammir Raso</i> (Jodhraj); Ziauddin Barani.</p>
+<div class="box concept"><p><b>Why Alauddin attacked the Rajasthan forts.</b> Forts such as Ranthambhor, Chittor,
+Siwana and Jalore controlled the routes from Delhi to Gujarat and Malwa, whose trade and revenue Alauddin wanted; an
+independent Rajput fort on the route could cut off his armies. Their rulers also sheltered his enemies, as Hammir did
+the Mongol rebels. The Rajput defence relied on strong hill forts, but against Alauddin's large standing army (I18)
+and long sieges, a fort could hold out only as long as its food, water and loyalty lasted. When defeat was certain,
+the women performed <b>jauhar</b> (self-immolation to avoid capture) and the men rode out to die in <b>saka</b>. These
+sieges made honour in defeat a central theme of Rajasthan's history and literature.</p></div>
+` },
 
     { title: 'Nadol, Jalore and Siwana', html: `
 <p><b>Nadol</b> (Pali): branch founded by <b>Lakshmana</b> (Rao Lakha, c. 960).</p>
@@ -110,7 +118,16 @@ called Suvarnagiri (Sonalgarh), so the branch is called <b>Songara</b>.</p>
 and his son <b>Viramadeva</b> were killed; the fort was renamed Jalalabad.</li>
 </ul>
 <p><b>Source:</b> Padmanabha's <i>Kanhadade Prabandh</i> (1455). The story of Alauddin's daughter Firoza's love for
-Viramadeva is legend.</p>` },
+Viramadeva is legend.</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> Rajput origins and the Pratiharas (R05).</li>
+<li><b>All-India context:</b> Ghori and Tarain (I16); Alauddin Khalji's conquests and reforms (I17, I18).</li>
+<li><b>Alongside:</b> Chittor and Ratan Singh, 1303 (R07); the Sultanate and Rajasthan (R13).</li>
+<li><b>After:</b> the Hadas of Bundi and Kota (R12); the Deoras of Sirohi (R10).</li>
+<li><b>Architecture:</b> Adhai Din ka Jhonpra (I48).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -203,6 +220,10 @@ Older explanations blaming "Rajput disunity" in general are now seen as too simp
     { q: 'Which eyewitness described the siege of Ranthambhor?', a: 'Amir Khusrau, in Khazain-ul-Futuh.' },
     { q: 'What was Siwana renamed after 1308?', a: 'Khairabad.' },
     { q: 'Who betrayed Jalore in 1311?', a: 'Bika Dahiya.' },
+    { q: 'Why did Alauddin want the Rajasthan forts?', a: 'They controlled the routes to Gujarat and Malwa, and their rulers sheltered his enemies.' },
+    { q: 'Why did Prithviraj lose at Tarain in 1192 after winning in 1191?', a: 'Ghori returned with mounted archers, feigned retreat and reserves, while Prithviraj had no allies.' },
+    { q: 'What were jauhar and saka?', a: 'Jauhar was the women\'s self-immolation to avoid capture; saka was the men\'s last fight to the death.' },
+    { q: 'Why is Vigraharaja IV seen as the high point of Chauhan power?', a: 'He took Delhi and patronised learning, writing a play and founding a Sanskrit college.' },
   ],
 
   glossary: [
@@ -219,7 +240,7 @@ Older explanations blaming "Rajput disunity" in general are now seen as too simp
     'Dasharath Sharma, <i>Early Chauhan Dynasties</i> (1959).',
     'Dasharath Sharma (ed.), <i>Rajasthan Through the Ages</i>, vol. I.',
     'Satish Chandra, <i>Medieval India</i>, vol. I (Tarain; Khalji campaigns).',
-    'Rima Hooja, <i>A History of Rajasthan</i>.',
+    'Rima Hooja, <i>A History of Rajasthan</i>. — standard text for this rewrite',
     'G.N. Sharma, <i>Rajasthan ka Itihas</i>.',
   ],
 };
