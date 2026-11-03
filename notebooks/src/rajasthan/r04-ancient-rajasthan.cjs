@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Pre-historical sites (Iron Age)', 'Society and culture of ancient Rajasthan', 'Sources: archaeological and numismatic'],
     mains: ['GS-I Part A: Prehistoric culture and various ancient historic sites and their importance'],
-    weight: 'Bairat, Noh, Rangmahal, Nagari and the tribal republics (Malava, Yaudheya, Arjunayana) recur in Prelims; "society and culture of ancient Rajasthan" is an explicit syllabus line.',
+    weight: 'Tier C. Bairat, Noh, Rangmahal, Nagari and the tribal republics (Malava, Yaudheya, Arjunayana) recur in Prelims; "society and culture of ancient Rajasthan" is an explicit syllabus line.',
   },
 
   bigPicture: `
@@ -58,7 +58,14 @@ and northern Rajasthan to the Vedic heartland.</p>` },
 </table></div>
 <p>The republics (<i>gana-sangha</i>) were ruled by assemblies of clan elders rather than kings. Samudragupta's
 <b>Allahabad pillar inscription</b> lists the Malavas, Arjunayanas and Yaudheyas among frontier peoples who paid him
-tribute and obeyed his orders — the beginning of their end as independent powers.</p>` },
+tribute and obeyed his orders — the beginning of their end as independent powers.</p>
+<div class="box concept"><p><b>Why the republics disappeared.</b> The Malavas, Yaudheyas and Arjunayanas survived for
+centuries as clan republics because they were martial peoples on the edges of the great kingdoms, and their coins
+show pride in their own victories ("Malavanam Jayah"). But assemblies of clan elders could not match the armies and
+revenue of large monarchies. Samudragupta made them tributaries in the 4th century, and the Huna invasions of the
+6th century broke the remaining order. In their place rose new ruling clans with kings, land grants and Brahmin
+genealogies, from whom the Rajput dynasties emerged (R05).</p></div>
+` },
 
     { title: 'Mauryas, Indo-Greeks, Shakas and Kushans', html: `
 <p><b>Bairat (Viratnagar)</b> is Rajasthan's key Mauryan site. Excavated by Daya Ram Sahni (1936–37) and later by
@@ -76,7 +83,10 @@ Chittor — showing Indo-Greek raids into Rajasthan in the 2nd century BCE.</p>
 territories, and Western Kshatrapa coins are found in south-western Rajasthan. Chandragupta II's conquest of the
 Shakas (c. 400) brought the region into the Gupta orbit.</p>
 <p><b>Kushans.</b> <b>Rangmahal</b> (Hanumangarh), excavated by a Swedish team under Hanna Rydh (1952–54), has
-Kushan-period pottery, terracottas and coins. Noh's Yaksha also belongs to this age.</p>` },
+Kushan-period pottery, terracottas and coins. Noh's Yaksha also belongs to this age.</p>
+<p><b>Naliasar</b> (near Sambhar, Jaipur district) was identified by T.H. Hendley in the 19th century as the site of an
+old Buddhist town.</p>
+` },
 
     { title: 'Guptas, Hunas and the rise of Bhinmal', html: `
 <p><b>Guptas.</b> Rajasthan was largely a tributary frontier for the Guptas. Their wealth is shown by the <b>Bayana
@@ -92,7 +102,10 @@ Chapa king Vyaghramukha.</li>
 <li>The Sanskrit poet <b>Magha</b> (<i>Shishupalavadha</i>) came from Bhinmal.</li>
 <li><b>Xuanzang</b> described the Gurjara kingdom with its capital at Bhinmal (c. 641).</li>
 </ul>
-<p>Bhinmal leads directly into the story of the Gurjara-Pratiharas (unit R05).</p>` },
+<p>Bhinmal leads directly into the story of the Gurjara-Pratiharas (unit R05).</p>
+<p>Gupta-period evidence also includes the <b>victory pillar of Vishnuvardhana</b> in Vijaygarh fort, Bayana (late
+4th century).</p>
+` },
 
     { title: 'Society and culture of ancient Rajasthan', html: `
 <p>Combine these strands in any answer on ancient society and culture:</p>
@@ -107,7 +120,15 @@ Ashvamedha.</li>
 <li><b>Economy:</b> copper and iron working (Ganeshwar, Sunari), punch-marked and tribal coinage, trade routes
 linking the Ganga plains with Gujarat's ports and the north-west.</li>
 <li><b>Learning:</b> Bhinmal's astronomy (Brahmagupta) and poetry (Magha).</li>
-</ol>` },
+</ol>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> Ganeshwar and the copper cultures (R03).</li>
+<li><b>All-India context:</b> the Mahajanapadas (I05); Ashoka (I07); Indo-Greeks, Shakas and Kushans (I08); the
+Guptas and Samudragupta (I10); Brahmagupta and Indian science (I14).</li>
+<li><b>After:</b> the Gurjara-Pratiharas of Bhinmal and Rajput origins (R05).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -195,6 +216,10 @@ foreign invaders such as the Hunas and Gurjaras; others stress local origins. Un
     { q: 'Which scholar wrote the Brahmasphutasiddhanta at Bhinmal, and when?', a: 'Brahmagupta, 628 CE.' },
     { q: 'Who defeated the Huna ruler Mihirakula?', a: 'Yashodharman of Mandsaur.' },
     { q: 'What is the five-phase site in Bharatpur district?', a: 'Noh.' },
+    { q: 'Why did the Rajasthan republics lose their independence?', a: 'Clan assemblies could not match large monarchies; Samudragupta made them tributaries and the Huna invasions finished the old order.' },
+    { q: 'Why is Painted Grey Ware at Noh and Jodhpura significant?', a: 'It links eastern Rajasthan to the later Vedic culture of the Ganga–Yamuna doab.' },
+    { q: 'How do yupa inscriptions show the society of the time?', a: 'They record Vedic sacrifices, showing Brahmanical religion among local rulers.' },
+    { q: 'Why is Bairat important for Buddhism?', a: 'It has Ashoka\'s Bhabru edict and one of India\'s earliest structural Buddhist shrines.' },
   ],
 
   glossary: [
@@ -210,7 +235,7 @@ foreign invaders such as the Hunas and Gurjaras; others stress local origins. Un
   sources: [
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, chs. 6–9.',
     'R.S. Sharma, <i>Aspects of Political Ideas and Institutions in Ancient India</i> (republics).',
-    'Rima Hooja, <i>A History of Rajasthan</i>; G.N. Sharma, <i>Rajasthan Through the Ages</i> vol. I.',
+    'Rima Hooja, <i>A History of Rajasthan</i>; G.N. Sharma, <i>Rajasthan Through the Ages</i> vol. I. — standard text for this rewrite',
     'Rajasthan Board of Secondary Education, Rajasthan history textbooks.',
   ],
 };
