@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Important personalities of Rajasthan history', 'Chronology'],
     mains: ['GS-I Part A: Important historical personalities; revision across the Rajasthan history syllabus'],
-    weight: 'A revision unit. Mains often asks short notes on a personality (2 or 5 marks); Prelims tests person–role matching. Use the master chronology the week before the exam.',
+    weight: 'Tier C. A revision unit. Mains often asks short notes on a personality (2 or 5 marks); Prelims tests person–role matching. Use the master chronology the week before the exam.',
   },
 
   bigPicture: `
@@ -117,14 +117,31 @@ important contribution. That is exactly what the tables below give you.</p></div
 <tr><td>Kishori Devi</td><td>Led the Katrathal women's conference (1934)</td><td>R17</td></tr>
 <tr><td>Narayani Devi Verma</td><td>Social worker; Mewar Praja Mandal; Mahila Ashram, Bhilwara</td><td>R20</td></tr>
 <tr><td>Birbal Singh</td><td>Killed at Raisinghnagar (1946)</td><td>R20</td></tr>
-</table></div>` },
+</table></div>
+<div class="box concept"><p><b>Rajasthan's history in five turning points.</b> The personalities make sense when placed
+in the period that shaped them. (1) <b>State formation</b> (7th–12th centuries): Rajput clans such as the Pratiharas,
+Chauhans and Guhils rose from chiefs to kings (R05–R07). (2) <b>Resistance to the Sultanate</b> (1192–1526): forts,
+sieges, jauhar and saka, from Tarain to Kumbha and Sanga (R06–R08). (3) <b>Partnership with the Mughals</b> (1562–1707):
+alliance, mansabs and watan jagirs, with Mewar's long resistance as the exception (R08–R13). (4) <b>Maratha raids and
+British paramountcy</b> (1734–1818 onwards): the treaties of 1818 tied the states to the Company (R15–R16). (5)
+<b>Awakening and integration</b> (1857–1956): peasant and tribal movements, Praja Mandals and the seven stages that
+created Rajasthan (R17–R21). A "who was" answer is stronger when it names the period as well as the person.</p></div>
+` },
 
     { title: 'How to use this notebook in the last month', html: `
 <ol>
 <li><b>Week 1–2:</b> read the revision card and fact bank of every unit; answer each self-test aloud.</li>
 <li><b>Week 3:</b> write all model-answer questions within the word limit, then compare with the model answers.</li>
 <li><b>Week 4:</b> revise from this unit's chronology and personality tables, plus the traps list of every unit.</li>
-</ol>` },
+</ol>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Every unit:</b> each person here is taught in full in the unit named in the table.</li>
+<li><b>All-India parallels:</b> the Indian History notebook gives the national context for each period (I15–I17,
+I21–I22, I28, I32, I36–I43).</li>
+<li><b>After:</b> changing patterns of society and economy (R23).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -194,6 +211,10 @@ Secondary Education textbooks. Each unit's "What historians say" section explain
     { q: 'Who sponsored the Child Marriage Restraint Act (1929)?', a: 'Har Bilas Sarda.' },
     { q: 'Which ruler founded Jaipur?', a: 'Sawai Jai Singh II (1727).' },
     { q: 'Who led the Katrathal women\'s conference?', a: 'Kishori Devi.' },
+    { q: 'Into which period does Rana Kumbha fall, and why?', a: 'Resistance to the Sultanate; he defeated Malwa and resisted Malwa and Gujarat together.' },
+    { q: 'How do the treaties of 1818 link R15 and R16?', a: 'They tied the rulers to the British, which is why the princes stayed loyal in 1857.' },
+    { q: 'How does Haribhau Upadhyay connect the freedom struggle to integration?', a: 'A freedom fighter who became chief minister of Ajmer state before its 1956 merger.' },
+    { q: 'Why does Bhogilal Pandya appear in both R18 and R20?', a: 'His Vagad Seva Mandir worked among tribals and he founded the Dungarpur Praja Mandal.' },
   ],
 
   glossary: [
@@ -205,7 +226,7 @@ Secondary Education textbooks. Each unit's "What historians say" section explain
   sources: [
     'G.N. Sharma, <i>Rajasthan ka Itihas</i>.',
     'Dasharath Sharma (ed.), <i>Rajasthan Through the Ages</i>.',
-    'Rima Hooja, <i>A History of Rajasthan</i>.',
+    'Rima Hooja, <i>A History of Rajasthan</i>. — standard text for this rewrite',
     'Rajasthan Board of Secondary Education, Rajasthan history textbooks.',
   ],
 };
