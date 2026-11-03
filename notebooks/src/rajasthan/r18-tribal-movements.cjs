@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Tribal movements: Bhil, Mer, Meena; Govind Guru, Motilal Tejawat'],
     mains: ['GS-I Part A: Peasant and tribal movements'],
-    weight: 'RAS Mains 2016 asked about "Mewar Pukar" (2 marks). Mangarh (1913), Govind Guru, Motilal Tejawat\'s Eki movement and Neemda (1922) recur in Prelims.',
+    weight: 'Tier B. RAS Mains 2016 asked about "Mewar Pukar" (2 marks). Mangarh (1913), Govind Guru, Motilal Tejawat\'s Eki movement and Neemda (1922) recur in Prelims.',
   },
 
   bigPicture: `
@@ -45,7 +45,15 @@ the region.</li>
 <li><b>Mers</b> of Merwara (around Beawar) resisted British control (1818–21); the British pacified them and raised the
 <b>Mer Battalion</b> (1822) at <b>Beawar</b>. Colonel <b>Dixon</b> founded Nayanagar (Beawar) and settled Mers as
 cultivators.</li>
-</ul>` },
+</ul>
+<div class="box concept"><p><b>Why tribal protest in Rajasthan was a double struggle.</b> The Bhils, Garasias and
+Meenas faced two layers of power. The <b>princely states and thikanas</b> collected land revenue, cesses and begar
+(forced labour) from them, while the <b>British</b>, after 1818, backed the rulers, restricted forest use and raised
+Bhil corps to police the hills. Reformers such as Govind Guru first worked through <b>social reform</b> (no liquor,
+cleanliness, education), which built unity and self-respect; that unity then turned into demands against begar and
+taxes, which the states and the British treated as rebellion. Mangarh (1913) and Neemda (1922) were the results. Later
+the constructive workers and Praja Mandals linked tribal grievances to the freedom movement.</p></div>
+` },
 
     { title: 'Govind Guru and the Bhagat movement', html: `
 <p><b>Govind Guru</b> (Govindgiri, born 1858, village Bansia, Dungarpur), a Banjara by birth, worked among the Bhils of
@@ -65,7 +73,7 @@ six years before Jallianwala Bagh.</p>
 (Gujarat).</p>` },
 
     { title: 'Motilal Tejawat and the Eki movement', html: `
-<p><b>Motilal Tejawat</b> (born at Kolyari, Udaipur; called "Bawji" by the Bhils), a former employee of the Jhadol
+<p><b>Motilal Tejawat</b> (born at Kolyari, Udaipur; called "Bawji" by the Bhils), a former kamdar (manager) of the Jhadol (Jharol)
 thikana, launched the <b>Eki</b> ("unity") movement in <b>1921</b> from <b>Matrikundia</b> (Chittorgarh).</p>
 <ul>
 <li><b>Mewar Pukar:</b> a memorandum of <b>21 demands</b> presented to the Maharana of Mewar (1921), asking for an end to
@@ -96,7 +104,14 @@ who was beaten to death; the teacher <b>Sengabhai</b> was tied to a truck and dr
 <b>Kalibai</b>, cut the rope and was shot; she died soon after. She is remembered as a martyr for education.</p>
 <div class="box debate"><p>Accounts differ on who Kalibai's teacher was and how she was related to the school —
 some name Sengabhai, others link her mainly to Nanabhai Khant. In an exam, state that she tried to save Sengabhai,
-the teacher at Nanabhai Khant's school.</p></div>` },
+the teacher at Nanabhai Khant's school.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>All-India context:</b> tribal movements in British India, Birsa Munda and the Santhal hul (I34).</li>
+<li><b>Alongside:</b> peasant movements in the states, Bijolia and Begun (R17).</li>
+<li><b>After:</b> the Praja Mandals, including Dungarpur's (R20); integration (R21).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -174,6 +189,10 @@ massacres is disputed; official records give low figures, oral tradition high on
     { q: 'Where did the Neemda massacre take place?', a: 'Neemda, Vijaynagar, in Idar state (now Gujarat), 7 March 1922.' },
     { q: 'Which law targeted the Meenas of Jaipur?', a: 'The Jarayam Peshaa law (1930), under the Criminal Tribes system.' },
     { q: 'Who was Kalibai?', a: 'A Bhil girl shot at Rastapal (1947) while trying to save her teacher Sengabhai.' },
+    { q: 'Why did Govind Guru\'s reform movement alarm the rulers?', a: 'Bhil unity and refusal of begar and unjust taxes challenged the states\' and British authority.' },
+    { q: 'Why is Mangarh called the "Jallianwala of the tribals"?', a: 'Troops fired on a large peaceful Bhil gathering in 1913, six years before Jallianwala Bagh.' },
+    { q: 'Why were the Meenas of Jaipur forced to report to the police?', a: 'The Jarayam Peshaa law (1930) labelled them a criminal tribe.' },
+    { q: 'How did constructive workers change tribal protest?', a: 'Schools and seva work linked tribal grievances to the Praja Mandals and the freedom movement.' },
   ],
 
   glossary: [
@@ -191,5 +210,6 @@ massacres is disputed; official records give low figures, oral tradition high on
     'Shankar Sahai Saxena, works on Rajasthan freedom movements.',
     'David Hardiman, <i>The Coming of the Devi</i> (comparative).',
     'Rajasthan Board of Secondary Education, Rajasthan history textbooks.',
+    'Rima Hooja, <i>A History of Rajasthan</i> — standard text for this rewrite.',
   ],
 };
