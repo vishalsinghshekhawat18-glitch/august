@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Anglo-Mysore wars; Anglo-Maratha wars; Subsidiary Alliance; Doctrine of Lapse; annexation of Awadh; Governors-General'],
     mains: ['GS-I: Expansion of British paramountcy — policies and instruments'],
-    weight: 'Subsidiary Alliance and Doctrine of Lapse are frequently asked; the Rajasthan treaties of 1817–18 are in R15.',
+    weight: 'Tier C. Subsidiary Alliance and Doctrine of Lapse are frequently asked; the Rajasthan treaties of 1817–18 are in R15.',
   },
 
   bigPicture: `
@@ -77,7 +77,15 @@ and Scindia (1803), later Rajput states.</p>
 neglected governance under British protection; Company got a large army at others' expense, and territory in lieu of
 payment.</p>
 <p><b>Note:</b> the idea predates Wellesley — Dupleix used Indian rulers to pay for French troops; Wellesley made it a
-system.</p>` },
+system.</p>
+<div class="box concept"><p><b>Why the Subsidiary Alliance was so effective.</b> Conquering and governing every state
+directly would have been costly and risky. The Subsidiary Alliance let the Company gain the same control
+<b>cheaply</b>. The Indian ruler paid for a British force stationed in his own territory, so the Company's army grew
+at his expense. He gave up his foreign relations, so he could not combine with other states against the British. A
+Resident at his court watched his government. When he fell behind on payments, territory was ceded. The ruler kept
+his throne and title, but real power passed to the Company, and a ruler protected from both enemies and rebels had
+little reason to govern well, which later gave the British a pretext for annexation.</p></div>
+` },
 
     { title: 'Paramountcy and Doctrine of Lapse', html: `
 <ul>
@@ -101,7 +109,16 @@ Tanjore abolished.</li>
 <li><b>First Anglo-Afghan War</b> (1839–42): disastrous retreat from Kabul.</li>
 <li><b>Sindh</b> annexed (1843) by Charles Napier.</li>
 <li><b>Anglo-Sikh wars</b> — see I25.</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> Plassey, Buxar and the Diwani (I27); the Marathas (I24); the Sikhs and Ranjit Singh (I25).</li>
+<li><b>After:</b> annexations as a cause of the Revolt of 1857 (I32); the princely states and their integration
+(I43).</li>
+<li><b>Administration:</b> how the conquered territory was governed (I29, I30).</li>
+<li><b>Rajasthan:</b> the treaties of 1817–18 that brought the Rajput states under British paramountcy (R15).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -181,6 +198,10 @@ Colonialism</i>) studied Tipu Sultan as a modernising ruler, against the older B
     { q: 'On what ground was Awadh annexed?', a: 'Misgovernment (1856).' },
     { q: 'Which treaty ended the Anglo-Nepal War?', a: 'Sugauli.' },
     { q: 'Who followed the policy of paramountcy?', a: 'Lord Hastings.' },
+    { q: 'Why did the Subsidiary Alliance cost the Company little?', a: 'The Indian ruler paid for the British troops stationed in his state.' },
+    { q: 'How did the Subsidiary Alliance stop Indian states combining against the British?', a: 'Rulers surrendered foreign relations and could make no alliances or wars without British consent.' },
+    { q: 'Why was Awadh\'s annexation different from Jhansi\'s?', a: 'Awadh was annexed for "misgovernment", Jhansi under the Doctrine of Lapse.' },
+    { q: 'How did the suppression of the Pindaris connect to the Subsidiary Alliance?', a: 'Many Pindaris were soldiers left unemployed when allied states disbanded their armies.' },
   ],
 
   glossary: [
@@ -194,5 +215,6 @@ Colonialism</i>) studied Tipu Sultan as a modernising ruler, against the older B
     'Bipan Chandra, <i>History of Modern India</i>, ch. 5.',
     'Sekhar Bandyopadhyay, <i>From Plassey to Partition</i>, ch. 2.',
     'C.A. Bayly, <i>Indian Society and the Making of the British Empire</i>.',
+    'NCERT Class 8, <i>Our Pasts III</i>, "From Trade to Territory" — standard text for this rewrite.',
   ],
 };
