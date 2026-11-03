@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Dandi March; Civil Disobedience; Round Table Conferences; Gandhi-Irwin Pact; Karachi session; Communal Award; Poona Pact; 1937 elections; Tripuri crisis'],
     mains: ['GS-I: Civil Disobedience — features and comparison with NCM; Poona Pact; Congress ministries'],
-    weight: 'Civil Disobedience (and its comparison with NCM), the Gandhi-Irwin Pact and the Poona Pact are very frequent.',
+    weight: 'Tier C. Civil Disobedience (and its comparison with NCM), the Gandhi-Irwin Pact and the Poona Pact are very frequent.',
   },
 
   bigPicture: `
@@ -135,7 +135,23 @@ Gandhi's candidate); Gandhi: "Pattabhi's defeat is my defeat"; Bose resigned and
 1939).</li>
 <li>Ministries <b>resigned</b> (October–November 1939) in protest against India being declared a party to World War II
 without consultation.</li>
-</ul>` },
+</ul>
+<div class="box concept"><p><b>Why the 1937 ministries mattered.</b> For the first time Indians governed most of British
+India's provinces. The 28 months showed that the Congress could <b>run a government</b>: it released prisoners,
+restored civil liberties, passed tenancy and debt-relief laws and began basic education. This raised the Congress's
+prestige and showed the British that power could be handed over. But office also exposed limits and divisions: the
+Governors kept wide powers, the ministries moved cautiously on land reform, the Left grew impatient, and the Muslim
+League's attacks on "Congress rule" (the Pirpur Report) helped it build support among Muslims. Both trends shaped the
+1940s.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the Lahore resolution (I40); Non-Cooperation compared (I39).</li>
+<li><b>Alongside:</b> Bhagat Singh's execution and the pact (I38); the Communal Award and Ambedkar's movement (I35).</li>
+<li><b>Constitutional link:</b> the 1935 Act under which the ministries worked (I29).</li>
+<li><b>After:</b> war, Quit India and independence (I42).</li>
+<li><b>Rajasthan:</b> after the Haripura session (1938), Praja Mandals spread in the Rajput states (R20).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -219,6 +235,10 @@ Poona Pact, which he later criticised.</p>`,
     { q: 'How many seats did the Poona Pact reserve?', a: '148 in provincial legislatures.' },
     { q: 'Who founded the Forward Bloc?', a: 'Subhas Chandra Bose (1939).' },
     { q: 'Why did the Congress ministries resign in 1939?', a: 'India was declared a party to the war without consultation.' },
+    { q: 'Why did Gandhi choose salt?', a: 'A tax on a necessity used by every Indian, easy to break, non-communal and a clear symbol of injustice.' },
+    { q: 'Why did Gandhi oppose separate electorates for the depressed classes?', a: 'He saw them as dividing Hindu society permanently.' },
+    { q: 'How did the Poona Pact change the Communal Award?', a: 'It replaced separate electorates for depressed classes with joint electorates and 148 reserved seats.' },
+    { q: 'Why did business groups support Civil Disobedience?', a: 'They wanted protection from imports and a better rupee–sterling ratio.' },
   ],
 
   glossary: [
@@ -232,6 +252,6 @@ Poona Pact, which he later criticised.</p>`,
   sources: [
     'Bipan Chandra et al., <i>India\'s Struggle for Independence</i>, chs. 21–25.',
     'Judith Brown, <i>Gandhi and Civil Disobedience</i>.',
-    'NCERT Class 12, <i>Themes in Indian History III</i>, ch. 13.',
+    'NCERT Class 12, <i>Themes in Indian History III</i>, ch. 13. — standard text for this rewrite',
   ],
 };
