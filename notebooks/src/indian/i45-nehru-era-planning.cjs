@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Constituent Assembly; Planning Commission; Five-Year Plans; land reforms; Non-Alignment; Panchsheel; 1962 war; Bhoodan'],
     mains: ['GS-I: Post-independence consolidation — planning, land reforms, foreign policy; Nehru\'s legacy'],
-    weight: 'Planning (Mahalanobis model), land reforms and Non-Alignment are frequently asked. Links to Economy and International Relations.',
+    weight: 'Tier B. Planning (Mahalanobis model), land reforms and Non-Alignment are frequently asked. Links to Economy and International Relations.',
   },
 
   bigPicture: `
@@ -67,7 +67,18 @@ Planning Committee (1938, Nehru).</li>
 <tr><td><b>Third (1961–66)</b></td><td>Self-reliance; agriculture and industry</td><td>Failed — 1962 and 1965 wars, droughts; Plan holiday (1966–69)</td></tr>
 </table></div>
 <p>Institutions: IITs (Kharagpur 1951), AIIMS (1956), Atomic Energy Commission (1948, Homi Bhabha), CSIR, ISRO's
-predecessor INCOSPAR (1962, Vikram Sarabhai), UGC (1953).</p>` },
+predecessor INCOSPAR (1962, Vikram Sarabhai), UGC (1953).</p>
+<p>Education commissions: the University Education Commission (1948–49) under <b>S. Radhakrishnan</b> and the Secondary
+Education Commission (1952–53) under <b>A. Lakshmanaswami Mudaliar</b>.</p>
+<div class="box concept"><p><b>Why Nehru chose planning and heavy industry.</b> In 1947 India was poor, mostly
+agricultural, and dependent on imported machines. Private capital was too small and too cautious to build steel
+plants, dams and power stations, and nationalists believed colonial rule had kept India industrially backward on
+purpose. So the state would plan and invest. The First Plan (Harrod–Domar model) stressed agriculture, irrigation and
+power after partition's food crisis. The Second Plan (Mahalanobis model) argued that long-run growth needed India to
+make its own <b>capital goods</b>, machines that make machines, so it put the public sector into steel and heavy
+industry. This built an industrial base, but it starved agriculture of attention until the food crisis of the
+mid-1960s.</p></div>
+` },
 
     { title: 'Land reforms and rural development', html: `
 <ol>
@@ -101,7 +112,17 @@ resigned; Henderson Brooks–Bhagat report.</li>
 <p><b>Achievements:</b> democratic institutions survived; secularism; integration; planned industrial base;
 scientific and educational institutions; independent foreign policy and global standing.</p>
 <p><b>Shortcomings:</b> agriculture neglected (food imports, PL-480); incomplete land reforms; licence-permit raj
-bureaucracy; slow poverty reduction; illiteracy; defeat in 1962; Kashmir unresolved.</p>`,
+bureaucracy; slow poverty reduction; illiteracy; defeat in 1962; Kashmir unresolved.</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the National Planning Committee (I41); partition and the Constituent Assembly (I42); integration of
+the states (I43).</li>
+<li><b>Alongside:</b> linguistic reorganisation (I44); science and technology (I46); women and the Hindu Code Bill
+(I47).</li>
+<li><b>Roots:</b> zamindari created by colonial settlements, now abolished (I30); peasant movements (I33).</li>
+<li><b>Rajasthan:</b> land reform and jagirdari abolition in Rajasthan (R21, R23).</li>
+</ul></div>
+`,
     },
   ],
 
@@ -156,6 +177,11 @@ survived. <b>Sunil Khilnani</b> (<i>The Idea of India</i>) analyses Nehru's visi
 
   mains: [
     {
+      q: "Who drafted India's First Five Year Plan and on which growth model was it based?", marks: 2, words: 15, pyq: 'RAS Mains 2024',
+      outline: ['K.N. Raj', 'Harrod–Domar'],
+      answer: '<p>It was drafted chiefly by the economist K.N. Raj, on the Harrod–Domar growth model.</p>',
+    },
+    {
       q: 'Assess the achievements and limitations of planning in the Nehru era.', marks: 10, words: 100,
       outline: ['Framework', 'Plans', 'Achievements', 'Limitations'],
       answer: '<p>Nehru set up the Planning Commission (1950) and, through the 1956 Industrial Policy Resolution, gave the public sector the commanding heights of a mixed economy. The First Plan (Harrod–Domar) built irrigation and power and exceeded targets; the Second (Mahalanobis) created heavy industry — Bhilai, Rourkela, Durgapur — and institutions such as the IITs and the Atomic Energy Commission. But agriculture was neglected, leading to food imports; land reform remained incomplete; the licence raj bred inefficiency; and the Third Plan failed amid war and drought. Planning laid an industrial and scientific base but did not end poverty.</p>',
@@ -188,6 +214,10 @@ survived. <b>Sunil Khilnani</b> (<i>The Idea of India</i>) analyses Nehru's visi
     { q: 'When was Panchsheel signed?', a: '1954.' },
     { q: 'Where was the first NAM summit held?', a: 'Belgrade (1961).' },
     { q: 'Who was the first Chief Election Commissioner?', a: 'Sukumar Sen.' },
+    { q: 'Why did the Second Plan stress heavy industry?', a: 'The Mahalanobis model held that making capital goods at home was the key to long-run growth.' },
+    { q: 'Why did land ceilings achieve little?', a: 'Landowners evaded them through benami and fictitious transfers.' },
+    { q: 'Why did India choose Non-Alignment?', a: 'To keep its independence of the Cold War blocs and take aid and support from both.' },
+    { q: 'How did the 1962 war affect Nehru\'s policies?', a: 'It exposed defence weakness, ended the Panchsheel hopes with China and strained the Third Plan.' },
   ],
 
   glossary: [
@@ -202,6 +232,6 @@ survived. <b>Sunil Khilnani</b> (<i>The Idea of India</i>) analyses Nehru's visi
   sources: [
     'Bipan Chandra et al., <i>India since Independence</i>, chs. 3–5, 11, 14, 25.',
     'Ramachandra Guha, <i>India after Gandhi</i>.',
-    'NCERT Class 12, <i>Politics in India since Independence</i>, chs. 3–4.',
+    'NCERT Class 12, <i>Politics in India since Independence</i>, chs. 3–4. — standard text for this rewrite',
   ],
 };
