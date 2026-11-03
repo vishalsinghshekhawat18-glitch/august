@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Six schools of Indian philosophy; purusharthas, ashramas, sanskaras; ancient education'],
     mains: ['GS-I: Indian knowledge tradition, value system and philosophy; ancient education'],
-    weight: 'Short notes on darshanas, purusharthas, Nalanda/Taxila and concepts such as rita, dharma and rina are common in both stages.',
+    weight: 'Tier C. Short notes on darshanas, purusharthas, Nalanda/Taxila and concepts such as rita, dharma and rina are common in both stages.',
   },
 
   bigPicture: `
@@ -50,7 +50,14 @@ his service.</li>
 <li><b>Karma</b> and rebirth (samsara); liberation (moksha / nirvana / kaivalya).</li>
 <li>Ethical ideals: ahimsa, satya, daana (charity), seva; tolerance (Ashoka's RE XII; "ekam sat viprah bahudha vadanti" —
 Rig Veda).</li>
-</ul>` },
+</ul>
+<div class="box concept"><p><b>Balancing the world and liberation.</b> The purusharthas and ashramas together
+answered an old tension in Indian thought: should one live in the world, or renounce it? The Vedic householder
+sought wealth, sons and long life; the shramana teachers and the Upanishads prized renunciation. The Brahmanical
+synthesis gave each its place: pursue artha and kama within dharma as a student and householder, then turn towards
+moksha in old age. That is why the grihastha was praised as the support of all other stages, and why the Gita taught
+<b>nishkama karma</b>, action in the world without attachment.</p></div>
+` },
 
     { title: 'The six orthodox darshanas', html: `
 <div class="tbl"><table>
@@ -63,7 +70,13 @@ Rig Veda).</li>
 <tr><td><b>Vedanta</b> (Uttara Mimamsa)</td><td>Badarayana, <i>Brahma Sutra</i></td><td>Knowledge of Brahman from the Upanishads; schools: <b>Advaita</b> (Shankara — non-dualism), <b>Vishishtadvaita</b> (Ramanuja — qualified non-dualism), <b>Dvaita</b> (Madhva — dualism). Its three foundational texts, the <b>Prasthan Trayi</b>, are the <b>Upanishads</b>, the <b>Bhagavad Gita</b> and the <b>Brahma Sutra</b>; each Vedanta teacher proved his school by commenting on all three</td></tr>
 </table></div>
 <p>They form three pairs: Samkhya–Yoga, Nyaya–Vaisheshika, Mimamsa–Vedanta. <b>Heterodox</b> (nastika): Buddhism,
-Jainism, Charvaka (materialism), Ajivika (fatalism) — see I06.</p>` },
+Jainism, Charvaka (materialism), Ajivika (fatalism) — see I06.</p>
+<div class="box concept"><p><b>Astika and nastika.</b> The six darshanas are called <b>astika</b> ("orthodox")
+because they accept the authority of the Vedas, not because they all believe in God; early Samkhya and Mimamsa had no
+creator god. The <b>nastika</b> schools rejected Vedic authority: Buddhism, Jainism, the materialist Charvakas, who
+accepted only perception as knowledge, and the fatalist Ajivikas. Debate between these schools sharpened Indian logic
+and epistemology, especially in Nyaya.</p></div>
+` },
 
     { title: 'Education and learning', html: `
 <ul>
@@ -87,7 +100,15 @@ went to Tibet from here.</li>
 <li><b>Rajadharma</b>: the king's duty to protect subjects and uphold dharma (Mahabharata Shanti Parva).</li>
 <li>Dharmashastras (Manu, Yajnavalkya, Narada) set social and legal norms; they were prescriptive and contested.</li>
 <li>Bhagavad Gita: <b>nishkama karma</b> (action without attachment to results); paths of knowledge, action and devotion.</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Roots:</b> rita, Brahman and Atman in the Vedic age (I04); the heterodox schools (I06).</li>
+<li><b>State:</b> Kautilya and the Mauryan state (I07); Nalanda under the Guptas, Harsha and the Palas (I10, I11).</li>
+<li><b>Later:</b> Shankara, Ramanuja and Madhva in the bhakti movement (I20); science and mathematics (I14).</li>
+<li><b>Literature:</b> Vedic texts, Upanishads and the Gita (I51).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -128,6 +149,16 @@ Dharmashastra ideals (varna, ashrama) describe norms, not how everyone lived.</p
 
   mains: [
     {
+      q: 'Name any four of the six orthodox schools of Indian philosophy.', marks: 2, words: 15, pyq: 'RAS Mains 2021',
+      outline: ['Four names'],
+      answer: '<p>Samkhya, Yoga, Nyaya, Vaisheshika (also Mimamsa and Vedanta).</p>',
+    },
+    {
+      q: "Which three sacred texts of ancient India are termed 'Prasthan Trayi'?", marks: 2, words: 15, pyq: 'RAS Mains 2018',
+      outline: ['Three texts'],
+      answer: '<p>The Upanishads, the Bhagavad Gita and the Brahma Sutra — the foundations of Vedanta.</p>',
+    },
+    {
       q: 'Write a note on the six schools of Indian philosophy.', marks: 10, words: 100,
       outline: ['Astika vs nastika', 'Three pairs', 'Main ideas', 'Significance'],
       answer: '<p>The six astika schools accepted Vedic authority. Samkhya (Kapila) taught dualism of purusha and prakriti; Yoga (Patanjali) offered the eight-limbed path to liberation. Nyaya (Gautama) developed logic and valid knowledge; Vaisheshika (Kanada) taught atomism. Purva Mimamsa (Jaimini) upheld Vedic ritual; Vedanta (Badarayana) sought Brahman, interpreted by Shankara as non-dual, by Ramanuja as qualified non-dual and by Madhva as dual. Alongside them, Buddhist, Jain and Charvaka schools rejected the Vedas. Together they reflect a rich tradition of rational debate.</p>',
@@ -160,6 +191,10 @@ Dharmashastra ideals (varna, ashrama) describe norms, not how everyone lived.</p
     { q: 'Who founded Vikramashila?', a: 'The Pala king Dharmapala.' },
     { q: 'Name the seven limbs of the state in the Arthashastra.', a: 'Swami, amatya, janapada, durga, kosha, danda, mitra.' },
     { q: 'What is nishkama karma?', a: 'Action without attachment to its results (Bhagavad Gita).' },
+    { q: 'Which three texts form the Prasthan Trayi?', a: 'The Upanishads, the Bhagavad Gita and the Brahma Sutra.' },
+    { q: 'Why are the six darshanas called astika?', a: 'They accept the authority of the Vedas, though not all accept a creator god.' },
+    { q: 'How did the ashrama system reconcile worldly life and renunciation?', a: 'It gave each stage its place: study and householder life first, renunciation later.' },
+    { q: 'Why was the Mahasammata myth important?', a: 'It based kingship on people\'s choice, with taxes as payment for the king\'s service.' },
   ],
 
   glossary: [
@@ -177,6 +212,6 @@ Dharmashastra ideals (varna, ashrama) describe norms, not how everyone lived.</p
     'S. Radhakrishnan, <i>Indian Philosophy</i>.',
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>.',
     'Amartya Sen, <i>The Argumentative Indian</i>.',
-    'NCERT, <i>Themes in Indian History</i> Part I.',
+    'NCERT, <i>Themes in Indian History</i> Part I. — standard text for this rewrite',
   ],
 };
