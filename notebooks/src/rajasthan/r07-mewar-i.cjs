@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Major dynasties of Rajasthan and their achievements', 'Rana Kumbha: wars, forts and literature'],
     mains: ['GS-I Part A: Important historical events and major dynasties'],
-    weight: 'Rana Kumbha is one of the most-asked rulers in all of Rajasthan history (titles, forts, Vijay Stambh, books, Sarangpur). Bappa Rawal, Jaitra Singh, the 1303 siege of Chittor and Rana Hammir follow.',
+    weight: 'Tier B. Rana Kumbha is one of the most-asked rulers in all of Rajasthan history (titles, forts, Vijay Stambh, books, Sarangpur). Bappa Rawal, Jaitra Singh, the 1303 siege of Chittor and Rana Hammir follow.',
   },
 
   bigPicture: `
@@ -121,7 +121,26 @@ reign.</p>
 Sultan), <i>Rana Raso</i> (patron of poets), <i>Halaguru</i>, <i>Danaguru</i>.</p>
 <p><b>End.</b> Kumbha was killed at Kumbhalgarh in <b>1468</b> by his son <b>Uda</b> (Udai Singh I), who was soon
 driven out. <b>Rana Raimal</b> (1473–1509) restored order; the quarrel among his sons Prithviraj, Jaimal and
-Sangram Singh ended with <b>Rana Sanga</b>'s accession (R08).</p>` },
+Sangram Singh ended with <b>Rana Sanga</b>'s accession (R08).</p>
+<p><b>The tradition continued.</b> Mewar's court kept up this Sanskrit scholarship. Under <b>Maharana Pratap</b> (R08) the
+scholar <b>Chakrapani Mishra</b> wrote <b><i>Vishva Vallabh</i></b>, a Sanskrit work on <b>gardening and water</b>:
+how to find underground water, dig wells and tanks, and plant and care for trees and gardens. He also wrote
+<i>Muhurtamala</i> and <i>Rajyabhishek Paddhati</i>.</p>
+<div class="box concept"><p><b>Why Mewar became the leading Rajput power.</b> After 1303 Mewar recovered faster than
+other Rajput states for three reasons. Its <b>geography</b> of Aravalli hills and forts made it hard to hold, so
+Khalji rule at Chittor did not last. Its <b>wealth</b> grew when the Zawar silver and lead mines were worked under
+Rana Lakha. And it had <b>able rulers</b>: Hammir rebuilt the state, and Kumbha used the money to build a chain of
+forts and an army that could defeat Malwa and resist Malwa and Gujarat together. Kumbha's patronage of temples,
+music and Sanskrit learning turned this power into prestige, making Mewar the natural leader of Rajput resistance under
+Rana Sanga and Pratap (R08).</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> Rajput origins (R05); the Chauhans and the Khalji sieges (R06).</li>
+<li><b>All-India context:</b> Iltutmish and Alauddin Khalji (I17); the regional Sultanates of Malwa and Gujarat.</li>
+<li><b>After:</b> Rana Sanga to Raj Singh (R08); Jodha and the Rathores (R09).</li>
+<li><b>Architecture and music:</b> Vijay Stambh, Kumbhalgarh and Ranakpur (I48); Kumbha's Sangitraj (I50).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -177,6 +196,11 @@ Gujarat prepared the ground for Sanga's bid for supremacy.</p>`,
 
   mains: [
     {
+      q: 'Describe the text "Vishva Vallabh" in brief.', marks: 2, words: 15, pyq: 'RAS Mains 2018',
+      outline: ['Author and court', 'Subject'],
+      answer: '<p>A Sanskrit work by Chakrapani Mishra, Maharana Pratap\'s court scholar, on gardening, wells and water.</p>',
+    },
+    {
       q: 'Evaluate the achievements of Rana Kumbha as a ruler, builder and patron of learning.', marks: 10, words: 100,
       outline: ['Consolidation', 'Wars: Sarangpur, Champaner', 'Forts and monuments', 'Literature and titles', 'Conclusion'],
       answer: '<p>Kumbha (1433–68) punished Mokal\'s murderers and ended Rathore dominance at court. He defeated Mahmud Khalji of Malwa at Sarangpur (1437) and resisted the joint Malwa–Gujarat attack planned at Champaner (1456), making Mewar Rajasthan\'s leading state. He built or repaired 32 forts, chief among them Kumbhalgarh (architect Mandan), and the Vijay Stambh at Chittor. He wrote Sangitraj and Rasikapriya, earning the title Abhinava Bharatacharya, and patronised Mandan and Atri. His reign marks Mewar\'s political and cultural high point before Sanga.</p>',
@@ -215,6 +239,10 @@ Gujarat prepared the ground for Sanga's bid for supremacy.</p>`,
     { q: 'Who designed Kumbhalgarh?', a: 'Mandan.' },
     { q: 'Who composed the Kirti Stambh Prashasti?', a: 'Atri, completed by his son Mahesh.' },
     { q: 'Name two of Kumbha\'s works on music.', a: 'Sangitraj and Sangit Mimansa.' },
+    { q: 'Why did Mewar recover quickly after 1303?', a: 'Aravalli forts, Zawar mining wealth and able rulers like Hammir and Kumbha.' },
+    { q: 'Why did Malwa and Gujarat sign the Treaty of Champaner?', a: 'Kumbha\'s power threatened both, so they agreed to attack Mewar together.' },
+    { q: 'Why is Chunda called the "Bhishma of Mewar"?', a: 'He gave up his right to the throne so that Hansabai\'s son Mokal would rule.' },
+    { q: 'Why do historians doubt the Padmini story?', a: 'It first appears in Jayasi\'s Padmavat (1540); Amir Khusrau, who was at the siege, does not mention her.' },
   ],
 
   glossary: [
@@ -234,6 +262,6 @@ Gujarat prepared the ground for Sanga's bid for supremacy.</p>`,
     'Dasharath Sharma (ed.), <i>Rajasthan Through the Ages</i>, vol. I.',
     'G.N. Sharma, <i>Rajasthan ka Itihas</i>.',
     'Satish Chandra, <i>Medieval India</i>, vol. I (Khalji and regional kingdoms).',
-    'Rima Hooja, <i>A History of Rajasthan</i>.',
+    'Rima Hooja, <i>A History of Rajasthan</i>. — standard text for this rewrite',
   ],
 };
