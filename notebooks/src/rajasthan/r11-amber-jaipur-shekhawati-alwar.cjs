@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Major dynasties of Rajasthan and their achievements', 'Sawai Jai Singh: Jaipur, observatories, Hurda'],
     mains: ['GS-I Part A: Important historical events and major dynasties; Rajput–Mughal relations'],
-    weight: 'Bharmal\'s alliance (1562), Man Singh I, Mirza Raja Jai Singh (Purandar) and above all Sawai Jai Singh II (Jaipur, Jantar Mantar, Hurda) are standard Prelims and Mains topics.',
+    weight: 'Tier B. Bharmal\'s alliance (1562), Man Singh I, Mirza Raja Jai Singh (Purandar) and above all Sawai Jai Singh II (Jaipur, Jantar Mantar, Hurda) are standard Prelims and Mains topics.',
   },
 
   bigPicture: `
@@ -95,7 +95,19 @@ opened Rajasthan to Maratha intervention (R15).</p>
 <p><b>Pratap Singh</b> (1778–1803) built the <b>Hawa Mahal</b> (1799, architect Lalchand); wrote poetry as
 <i>Brajnidhi</i>; joined Jodhpur at Tunga (1787). <b>Jagat Singh II</b> signed the treaty of <b>1818</b>.
 <b>Ram Singh II</b> (1835–80) started modern colleges and public works; the city was painted pink for the Prince of
-Wales's visit (1876).</p>` },
+Wales's visit (1876).</p>
+<p><b>Art and literature.</b> Jai Singh II gathered scholars at his court. <b>Jagannath Samrat</b> wrote the
+<i>Samrat Siddhanta</i> (a Sanskrit version of Ptolemy's astronomy) and <i>Rekhaganit</i> (Euclid);
+<b>Pundarik Ratnakar</b> wrote the <i>Jaisingh Kalpadrum</i>. The state's workshops (karkhanas) included a painting
+studio, the <b>suratkhana</b>, where the Jaipur style of painting developed. Jaipur's plan, the Jantar Mantar
+instruments and the palaces of the city are themselves his main artistic legacy.</p>
+<div class="box concept"><p><b>Why Amber prospered under the Mughals.</b> The Kachhwahas were a small state close to
+Agra and Delhi, too near the imperial centre to resist for long. Bharmal chose alliance in 1562, and the family gained
+more from it than any other Rajput house: Man Singh I and Mirza Raja Jai Singh I held the highest mansabs and governed
+whole provinces, and the revenue of their jagirs across the empire flowed back to Amber. That wealth and experience of
+imperial administration paid for forts, palaces, and finally Sawai Jai Singh II's planned city and observatories. When
+the empire weakened, the same closeness drew Jaipur into Mughal and Maratha politics (R15).</p></div>
+` },
 
     { title: 'Shekhawati and Alwar', html: `
 <p><b>Shekhawati</b> (Sikar, Jhunjhunu, Churu): <b>Rao Shekha</b> (1433–88), a Kachhwaha of Amarsar, built an
@@ -106,7 +118,16 @@ independent chiefdom; his descendants, the <b>Shekhawats</b>, ruled many small t
 <b>Pratap Singh Naruka</b>, of a Kachhwaha branch, broke from Jaipur and founded <b>Alwar state</b> (1775).
 <b>Bakhtawar Singh</b> signed a treaty with the Company in <b>1803</b> — with Bharatpur's (also 1803), the earliest in Rajasthan. Later
 <b>Jai Singh</b> (1892–1937) promoted Hindi but was deposed by the British (1933) after the <b>Neemuchana</b> firing
-(1925; R17).</p>` },
+(1925; R17).</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>All-India context:</b> Akbar's Rajput policy (I21); Mirza Raja Jai Singh and Shivaji at Purandar (I24);
+Mughal decline (I22).</li>
+<li><b>Alongside:</b> Mewar's different choice (R08); Marwar (R09).</li>
+<li><b>After:</b> the Marathas, Hurda and British treaties (R15); Neemuchana (R17); Praja Mandals (R20).</li>
+<li><b>Architecture and science:</b> Amber, Jaipur and the Jantar Mantar (I48; I14 for Indian astronomy).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -151,10 +172,15 @@ historians note that his Hurda plan was undermined by the rivalries of the same 
     verified: [
       { exam: 'RAS Mains', year: '2016', marks: 5, q: "Evaluate the contribution of Sawai Jai Singh in the field of art and literature." },
     ],
-    note: 'No verified RAS Mains question on this unit found yet in the RajRAS list. The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
+    note: 'RAS Mains 2016 asked about Sawai Jai Singh II\'s contribution to art and literature (model answer below). The history sections of the RAS Prelims 2021, 2023 and 2024 papers had no question on this unit (checked against RPSC final answer keys; 2018 not checked, key unavailable).',
   },
 
   mains: [
+    {
+      q: 'Evaluate the contribution of Sawai Jai Singh in the field of art and literature.', marks: 5, words: 50, pyq: 'RAS Mains 2016',
+      outline: ['Jaipur and observatories', 'Scholars and texts', 'Painting'],
+      answer: '<p>Sawai Jai Singh II planned Jaipur (1727) with Vidyadhar and built five Jantar Mantars. His court scholars produced Samrat Siddhanta and Rekhaganit (Jagannath Samrat) and Jaisingh Kalpadrum (Pundarik Ratnakar), and his suratkhana fostered the Jaipur school of painting. He joined science, scholarship and art in one programme.</p>',
+    },
     {
       q: 'Evaluate the achievements of Sawai Jai Singh II.', marks: 10, words: 100,
       outline: ['Mughal service', 'Jaipur', 'Astronomy', 'Hurda and Marathas', 'Assessment'],
@@ -193,6 +219,10 @@ historians note that his Hurda plan was undermined by the rivalries of the same 
     { q: 'What does the Isarlat commemorate?', a: 'Ishwari Singh\'s victory at Rajmahal (1747).' },
     { q: 'Who built the Hawa Mahal?', a: 'Pratap Singh of Jaipur (1799), architect Lalchand.' },
     { q: 'Which two Rajasthan states signed treaties with the Company in 1803?', a: 'Alwar and Bharatpur.' },
+    { q: 'Why did the Kachhwahas gain so much from the Mughal alliance?', a: 'Their rulers held top mansabs and provinces, and jagir revenue across the empire flowed back to Amber.' },
+    { q: 'Why did the Hurda conference fail?', a: 'Mutual rivalries among the Rajput rulers prevented joint action against the Marathas.' },
+    { q: 'How did the Jaipur succession dispute help the Marathas?', a: 'Both sides invited them in, opening Rajasthan to Maratha intervention.' },
+    { q: 'Why is Jaipur called a planned city?', a: 'Vidyadhar Bhattacharya laid it out on a grid of wide streets and blocks based on Vastu principles.' },
   ],
 
   glossary: [
@@ -209,6 +239,6 @@ historians note that his Hurda plan was undermined by the rivalries of the same 
     'Jadunath Sarkar, <i>A History of Jaipur</i>.',
     'V.S. Bhatnagar, <i>Life and Times of Sawai Jai Singh</i>.',
     'Satish Chandra, <i>Medieval India</i>, vol. II (Akbar\'s Rajput policy).',
-    'G.N. Sharma, <i>Rajasthan ka Itihas</i>; Rima Hooja, <i>A History of Rajasthan</i>.',
+    'G.N. Sharma, <i>Rajasthan ka Itihas</i>; Rima Hooja, <i>A History of Rajasthan</i>. — standard text for this rewrite',
   ],
 };
