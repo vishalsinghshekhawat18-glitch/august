@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Pre-historical sites of Rajasthan — from Palaeolithic to Chalcolithic and Bronze Age'],
     mains: ['GS-I Part A: Prehistoric culture and various ancient historic sites and their importance'],
-    weight: 'Site–river–district matching is a Prelims favourite. RAS Mains 2018 asked a 10-mark question on Bagor, Kalibangan and Ahar (answered in unit R03).',
+    weight: 'Tier B. Site–river–district matching is a Prelims favourite. RAS Mains 2018 asked a 10-mark question on Bagor, Kalibangan and Ahar (answered in unit R03).',
   },
 
   bigPicture: `
@@ -40,7 +40,19 @@ one of the biggest transitions in human history, and it is regularly asked in ex
 <tr><td>Upper Palaeolithic</td><td>Blades and burins</td><td>Scattered sites; desert edges</td></tr>
 </table></div>
 <p>These people lived by hunting and gathering, moved with the seasons, and camped near water. Their tools were
-made mainly of quartzite.</p>` },
+made mainly of quartzite, a hard stone found in the Aravalli region that could be flaked to a sharp edge.</p>
+<div class="box concept"><p><b>How stone tools tell time.</b> With no writing, archaeologists date prehistoric
+periods mainly by changes in tool-making. Early people struck large blocks of stone to make heavy, all-purpose
+<b>hand-axes</b> and <b>cleavers</b>. Later they learnt to prepare a core and strike off thinner <b>flakes</b> for
+scrapers and points. Later still they made long, narrow <b>blades</b>. Each step used stone more efficiently and
+produced more specialised tools. Because tools lie in layers, with older ones deeper, the sequence of layers
+(stratigraphy) gives a relative order, and scientific methods such as radiocarbon and luminescence give approximate
+dates. This is why Didwana's stratified layers matter: they show the sequence in one place.</p></div>
+<div class="box concept"><p><b>The Thar was not always a desert.</b> Studies of lake beds and dunes at sites such as
+Didwana show that western Rajasthan swung between wetter and drier phases. In wet phases, lakes and rivers held water
+and game, and people camped at their edges; in dry phases, sand dunes advanced and sites were abandoned. Human
+settlement in Rajasthan has always followed water, from prehistoric lake-edge camps to the river-valley villages of
+the Chalcolithic and the step-wells and tanks of later times.</p></div>` },
 
     { title: 'The Mesolithic: microliths and the first herders', html: `
 <p>After the last Ice Age, warmer conditions brought smaller animals and new resources. People made
@@ -56,15 +68,27 @@ earliest evidence of animal domestication in India.</li>
 <p>Burials, stone-paved floors and hut traces show that people stayed for long periods.</p>
 <p><b>Tilwara</b> (Barmer, on the Luni) is another important Mesolithic site with microliths and animal bones. Other
 Mesolithic sites lie around Sojat, Didwana and the Banas valley.</p>
-<div class="box why"><p>Bagor shows that the move from hunting to food production was gradual: people hunted, herded
-and later used metal at the same site over thousands of years.</p></div>` },
+<div class="box concept"><p><b>Why domestication matters.</b> Hunting and gathering depend on what nature
+provides; herding and farming let people produce food, store it and live in one place longer. This made larger
+groups, permanent houses, exchange and, eventually, villages and towns possible. Bagor matters because it shows this
+change happening slowly in Rajasthan: the same people hunted wild animals and kept sheep and goats, and only later
+took up metal. The move from hunting to food production was a long process, not a sudden revolution.</p></div>` },
 
     { title: 'Rock art and the Neolithic', html: `
 <p><b>Rock paintings</b> in shelters along the Chambal and its tributaries — in Kota, Bundi, Jhalawar and Bharatpur
 districts — show animals, hunting scenes and human figures, comparable to the better-known Bhimbetka paintings in
 Madhya Pradesh.</p>
+<p>These paintings, made with natural colours such as red ochre, are a record of what early people saw and valued:
+the animals they hunted and the group activities of hunting and dancing. They are hard to date precisely, but they
+show that prehistoric people of the Chambal region shared the artistic traditions of central India.</p>
 <p>A fully separate Neolithic phase is not well marked in Rajasthan: microlithic herders like those at Bagor lead
-fairly directly into the copper-using farming cultures (Ahar, Ganeshwar), described in unit R03.</p>` },
+fairly directly into the copper-using farming cultures (Ahar, Ganeshwar), described in unit R03.</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Next:</b> the copper-using cultures of Ahar, Ganeshwar and Kalibangan (R03), which grew from these herders.</li>
+<li><b>Sources:</b> archaeology as a source of Rajasthan history (R01).</li>
+<li><b>India:</b> prehistory of India, Bhimbetka and Mehrgarh (I02).</li>
+</ul></div>` },
   ],
 
   historians: `
@@ -106,6 +130,11 @@ numbers.</p>`,
 
   mains: [
     {
+      q: 'Trace the development of prehistoric cultures in Rajasthan.', marks: 10, words: 100,
+      outline: ['Discovery', 'Lower, Middle, Upper Palaeolithic', 'Climate', 'Mesolithic and Bagor', 'Transition to the Chalcolithic'],
+      answer: '<p>C.A. Hacket first reported Palaeolithic tools at Jaipur and Indragarh (1870). Lower Palaeolithic hand-axes and cleavers occur along the Banas, Berach and Chambal, and Didwana (Nagaur) has some of India\'s oldest stratified sites; Middle Palaeolithic flake tools are typical of the Luni valley, followed by Upper Palaeolithic blades. Settlement followed the Thar\'s wet and dry phases. In the Mesolithic, people used microliths: Bagor (Bhilwara), excavated by V.N. Misra, shows domesticated sheep and goat around 5000 BCE, later copper and iron; Tilwara (Barmer) is another site. Rock art in the Chambal region records hunting life. These herders led into the Chalcolithic cultures of Ahar and Ganeshwar.</p>',
+    },
+    {
       q: 'Why is Bagor important in the prehistory of Rajasthan?', marks: 5, words: 50,
       outline: ['Location and excavator', 'Three phases', 'Significance'],
       answer: '<p>Bagor (Bhilwara, Kothari river), excavated by V.N. Misra, is among India\'s largest Mesolithic sites. Its microliths occur with domesticated sheep and goat bones (c. 5000 BCE), then with copper and later iron. It shows a gradual shift from hunting to herding and links the Mesolithic to the Chalcolithic.</p>',
@@ -134,6 +163,10 @@ numbers.</p>`,
     { q: 'Name a Mesolithic site in Barmer.', a: 'Tilwara.' },
     { q: 'In which district is Didwana?', a: 'Nagaur.' },
     { q: 'What are microliths used for?', a: 'Set in handles as arrowheads, barbs and sickle blades.' },
+    { q: 'How do archaeologists date prehistoric periods without writing?', a: 'By changes in tool types, the order of layers (stratigraphy) and scientific dating.' },
+    { q: 'Why did prehistoric people settle in the Thar at some times and not others?', a: 'The region swung between wet and dry phases; people followed water and game.' },
+    { q: 'Why is domestication a turning point?', a: 'Producing food allowed storage, longer stays in one place and larger settled groups.' },
+    { q: 'Where are rock paintings found in Rajasthan?', a: 'Shelters along the Chambal and its tributaries in Kota, Bundi, Jhalawar and Bharatpur.' },
   ],
 
   glossary: [
@@ -149,7 +182,7 @@ numbers.</p>`,
   sources: [
     'V.N. Misra, "Bagor: a late Mesolithic settlement in north-west India", <i>World Archaeology</i> (1973).',
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, ch. 2.',
-    'Rima Hooja, <i>A History of Rajasthan</i>, prehistory chapters.',
+    'Rima Hooja, <i>A History of Rajasthan</i>, prehistory chapters — standard text for this rewrite.',
     'Rajasthan Board of Secondary Education, Rajasthan history textbooks.',
   ],
 };
