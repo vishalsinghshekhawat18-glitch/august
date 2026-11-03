@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Babur\'s battles; Humayun and Sher Shah; Sur administration; Akbar — conquests, Rajput policy, religious policy (Sulh-i-kul, Din-i-Ilahi)'],
     mains: ['GS-I: Mughal empire — establishment, consolidation; Akbar\'s policies'],
-    weight: 'Akbar\'s Rajput and religious policies and Sher Shah\'s administration are the highest-yield topics; battles and dates are Prelims staples. Rajasthan angles (Sanga, Pratap, Haldighati, Amber) are in R08–R11.',
+    weight: 'Tier C. Akbar\'s Rajput and religious policies and Sher Shah\'s administration are the highest-yield topics; battles and dates are Prelims staples. Rajasthan angles (Sanga, Pratap, Haldighati, Amber) are in R08–R11.',
   },
 
   bigPicture: `
@@ -61,7 +61,14 @@ confederacy; took title <i>Ghazi</i>.</li>
 <li>Chanderi (1528) and Ghaghra (1529).</li>
 <li>Memoirs: <b><i>Tuzuk-i-Baburi</i> / <i>Baburnama</i></b> in Chaghatai Turkish — candid observations of India.</li>
 <li>Called himself <i>Padshah</i> (rather than Sultan).</li>
-</ul>` },
+</ul>
+<div class="box concept"><p><b>Why Babur won.</b> Babur's army was small, but it combined two things Indian armies
+had not yet put together: <b>field artillery and matchlocks</b> behind a barrier of linked carts, and <b>fast
+mounted archers</b> who swept round the enemy's flanks (tulughma). Ibrahim Lodi's larger army, built on massed
+infantry and elephants, was hemmed in and shot down; the elephants panicked under gunfire. Politics helped too: the
+Afghan nobles were divided and resented Ibrahim, and at Khanwa the Rajput confederacy, though brave, fought on
+Babur's chosen ground against the same defensive system.</p></div>
+` },
 
     { title: 'Humayun and the Sur interlude', html: `
 <ul>
@@ -102,19 +109,19 @@ his last conquest.</li>
 </ul>` },
 
     { title: 'Akbar\'s Rajput policy', html: `
-<ul>
-<li><b>Matrimonial alliances:</b> Bharmal of Amber (1562; mother of Jahangir — Harkha Bai, called Mariam-uz-Zamani);
-later Bikaner, Jaisalmer, Marwar (Mota Raja Udai Singh).</li>
-<li>Rajputs given <b>high mansabs</b>: Man Singh and Bhagwant Das of Amber, Raja Todar Mal (Khatri), Rai Singh of
-Bikaner.</li>
-<li>Rajput rulers kept their <b>watan jagirs</b> (hereditary lands) and internal autonomy.</li>
-<li>Abolition of pilgrim tax and jizya won wider support.</li>
-<li>Those who resisted (Mewar — Udai Singh, Maharana Pratap at Haldighati 1576) were attacked; Mewar never submitted
-in Akbar's time.</li>
-<li><b>Nagaur Durbar (1570):</b> Bikaner and Jaisalmer submitted.</li>
-<li><b>Significance:</b> a loyal martial class balanced Turani and Irani nobles, secured Rajasthan and the routes to
-Gujarat, and gave the empire Indian roots.</li>
-</ul>` },
+<p>Akbar inherited a regime of Central Asian (Turani) and Persian (Irani) nobles whose loyalty was uncertain; their
+revolts in the 1560s showed the danger. He needed a second pillar of support, and the <b>Rajputs</b>, a martial class
+rooted in India and controlling the routes to Gujarat and the ports, were the obvious choice.</p>
+<p>The policy worked through <b>marriage alliances</b> and <b>office</b>. In 1562 Raja <b>Bharmal of Amber</b> gave his
+daughter (Harkha Bai, later called Mariam-uz-Zamani, mother of Jahangir) in marriage; Bikaner, Jaisalmer and Marwar
+(Mota Raja Udai Singh) followed, and at the <b>Nagaur Durbar (1570)</b> Bikaner and Jaisalmer submitted. Rajput chiefs
+received <b>high mansabs</b>, such as Man Singh and Bhagwant Das of Amber and Rai Singh of Bikaner (Raja Todar Mal,
+a Khatri, also rose high), while keeping their hereditary lands as <b>watan jagirs</b> and their internal autonomy.
+The abolition of the pilgrim tax (1563) and jizya (1564) widened support.</p>
+<p>Those who refused were attacked: Chittor fell in 1568 and Ranthambore in 1569, and Mewar under Udai Singh and
+<b>Maharana Pratap</b> (Haldighati, 1576) never submitted in Akbar's time. The result was a loyal military class that
+balanced the Turani and Irani nobles, secured Rajasthan, and gave the empire Indian roots.</p>
+` },
 
     { title: 'Akbar\'s religious policy', html: `
 <ol>
@@ -135,7 +142,17 @@ religion; few members (Birbal was one Hindu member; Man Singh declined).</li>
 <div class="box debate"><p>Was Din-i-Ilahi a new religion? <b>Badauni</b> (hostile) said Akbar left Islam;
 <b>Abul Fazl</b> presented it as a spiritual discipleship; modern historians (S.R. Sharma, Iqtidar Alam Khan, Irfan
 Habib) see it as a political-ideological device for loyalty around a divinely-illumined emperor — not a religion.
-<b>V.A. Smith</b> called it "a monument of Akbar's folly", a view now rejected.</p></div>` },
+<b>V.A. Smith</b> called it "a monument of Akbar's folly", a view now rejected.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the Lodis and the end of the Sultanate (I17).</li>
+<li><b>Alongside:</b> mansab, jagir and zabt (I23); Sufis and bhakti saints such as Salim Chishti's order (I20).</li>
+<li><b>After:</b> Jahangir to Aurangzeb (I22).</li>
+<li><b>Architecture:</b> Humayun's tomb, Fatehpur Sikri, Sher Shah's tomb at Sasaram (I48).</li>
+<li><b>Rajasthan:</b> Khanwa and Rana Sanga, Maharana Pratap and Haldighati (R08); Maldeo and Sammel (R09); Amber and
+Man Singh (R11).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -228,6 +245,10 @@ is more neutral. <b>Satish Chandra</b> and <b>Iqtidar Alam Khan</b> analysed the
     { q: 'What was sulh-i-kul?', a: 'Universal peace — equal treatment of all religions.' },
     { q: 'Who is the critical contemporary historian of Akbar?', a: 'Badauni.' },
     { q: 'What was Akbar\'s last conquest?', a: 'Asirgarh (1601).' },
+    { q: 'Why did Babur win at Panipat against a larger army?', a: 'Artillery and matchlocks behind carts plus flanking cavalry against an elephant-and-infantry army.' },
+    { q: 'Why did Akbar ally with the Rajputs?', a: 'To balance the Turani and Irani nobles with a loyal Indian martial class and secure Rajasthan and the Gujarat routes.' },
+    { q: 'How did the Mahzar strengthen Akbar?', a: 'It made him the final arbiter among the ulema\'s conflicting interpretations of Islamic law.' },
+    { q: 'How did Sher Shah\'s reforms connect to Akbar\'s?', a: 'His land measurement, rupiya and roads were the basis Todar Mal developed under Akbar.' },
   ],
 
   glossary: [
@@ -244,6 +265,6 @@ is more neutral. <b>Satish Chandra</b> and <b>Iqtidar Alam Khan</b> analysed the
     'Satish Chandra, <i>Medieval India</i>, vol. II.',
     'J.F. Richards, <i>The Mughal Empire</i> (New Cambridge History of India).',
     'Iqtidar Alam Khan, "The Nobility under Akbar and the Development of his Religious Policy".',
-    'NCERT Class 12, <i>Themes in Indian History II</i>, ch. 9 ("Kings and Chronicles").',
+    'NCERT Class 12, <i>Themes in Indian History II</i>, ch. 9 ("Kings and Chronicles"). — standard text for this rewrite',
   ],
 };
