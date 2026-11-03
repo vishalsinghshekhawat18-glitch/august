@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Major dynasties of Rajasthan and their achievements'],
     mains: ['GS-I Part A: Important historical events and major dynasties'],
-    weight: 'Rai Singh, Anup Singh and Ganga Singh of Bikaner; the "dhai saka" of Jaisalmer; and Rao Surtan of Sirohi (Dattani) are the usual Prelims targets.',
+    weight: 'Tier C. Rai Singh, Anup Singh and Ganga Singh of Bikaner; the "dhai saka" of Jaisalmer; and Rao Surtan of Sirohi (Dattani) are the usual Prelims targets.',
   },
 
   bigPicture: `
@@ -82,7 +82,15 @@ performed, so it counts as a "half" saka.</li>
 Jaisalmer's wealth came from the caravan trade across the Thar; it declined when sea routes and British rule diverted
 trade.</p>
 <p><b>Later:</b> treaty with the Company (1818, Mularaj II). The 19th-century minister <b>Salim Singh</b> was notorious
-for oppression; Maharawal Jawahar Singh's rule saw the persecution of <b>Sagarmal Gopa</b> (R19).</p>` },
+for oppression; Maharawal Jawahar Singh's rule saw the persecution of <b>Sagarmal Gopa</b> (R19).</p>
+<div class="box concept"><p><b>Why the desert states took different paths.</b> Geography and position shaped each
+state's choices. <b>Bikaner</b>, a new state wedged between powerful Marwar and the Mughal north, needed a protector
+against Jodhpur, so it allied early with Akbar and its rulers rose as Mughal generals. <b>Jaisalmer</b>, deep in the
+Thar, lived on the <b>caravan trade</b>; its isolation protected it, but its wealth drew raiders, and when trade moved
+to the sea routes under British rule it declined. <b>Sirohi</b>, a small hill state around Abu, could resist in its
+hills, as Surtan did at Dattani, and was the last to sign a treaty with the Company. In each case, location decided
+whether a state allied, resisted or traded.</p></div>
+` },
 
     { title: 'Sirohi: the Deora Chauhans', html: `
 <ul>
@@ -94,7 +102,15 @@ imperial force; Pratap's brother <b>Jagmal</b>, who had been given part of Siroh
 <b>Dursa Adha</b> praised him.</li>
 <li>Sirohi was the last Rajasthan state to sign a treaty with the Company (<b>1823</b>).</li>
 <li>Its integration (1950, with Abu and Delwara added only in 1956) is covered in R21.</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Roots:</b> the Chauhans of Jalore and the Parmaras of Abu (R05, R06); Rao Jodha and Marwar (R09).</li>
+<li><b>All-India context:</b> Akbar's Rajput policy and the Nagaur darbar (I21).</li>
+<li><b>After:</b> British treaties of 1818 (R15); 1857 (R16); Praja Mandals in Bikaner and Jaisalmer (R19, R20);
+integration and Sirohi's Abu question (R21).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -178,6 +194,10 @@ balance his reforms against his autocracy.</p>`,
     { q: 'Why is the third Jaisalmer saka called "half"?', a: 'The men fought to death but no jauhar was performed.' },
     { q: 'Who founded Sirohi?', a: 'Sahasmal (1425).' },
     { q: 'What happened at Dattani in 1583?', a: 'Rao Surtan of Sirohi defeated a Mughal force; Jagmal was killed.' },
+    { q: 'Why did Bikaner ally early with the Mughals?', a: 'A new state between Marwar and the north, it needed protection against Jodhpur and gained high mansabs.' },
+    { q: 'Why did Jaisalmer decline in the 19th century?', a: 'Its caravan trade across the Thar was diverted by sea routes under British rule.' },
+    { q: 'Why is Lunkaran\'s saka at Jaisalmer counted as "half"?', a: 'The men fought to death but no jauhar was performed.' },
+    { q: 'How did Ganga Singh transform Bikaner\'s economy?', a: 'The Ganga Canal from the Sutlej (1927) turned Ganganagar into farmland.' },
   ],
 
   glossary: [
@@ -193,6 +213,6 @@ balance his reforms against his autocracy.</p>`,
     'G.H. Ojha, <i>Bikaner Rajya ka Itihas</i>.',
     'Karni Singh, <i>The Relations of the House of Bikaner with the Central Powers</i>.',
     'K.M. Panikkar, <i>His Highness the Maharaja of Bikaner</i>.',
-    'G.N. Sharma, <i>Rajasthan ka Itihas</i>; Rima Hooja, <i>A History of Rajasthan</i>.',
+    'G.N. Sharma, <i>Rajasthan ka Itihas</i>; Rima Hooja, <i>A History of Rajasthan</i>. — standard text for this rewrite',
   ],
 };
