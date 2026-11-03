@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Swaraj Party; no-changers; Simon Commission; Nehru Report; Jinnah\'s 14 points; Lahore session and purna swaraj; left-wing, youth and workers\' movements'],
     mains: ['GS-I: National movement 1922–29; Nehru Report and communal question'],
-    weight: 'The Nehru Report, Simon boycott and the Lahore session are high-yield.',
+    weight: 'Tier C. The Nehru Report, Simon boycott and the Lahore session are high-yield.',
   },
 
   bigPicture: `
@@ -80,7 +80,16 @@ on my body will be a nail in the coffin of British rule". Nehru and Pant were be
 <li><b>Report (1930):</b> abolish dyarchy, establish representative government in provinces, federation, retain separate
 electorates — basis of the 1935 Act; no mention of dominion status.</li>
 <li>Birkenhead challenged Indians to produce an agreed constitution → the Nehru Report.</li>
-</ul>` },
+</ul>
+<div class="box concept"><p><b>Why the Simon Commission united Indians.</b> After Non-Cooperation ended in 1922, the
+national movement was divided: Swarajists against no-changers, Hindus against Muslims in riots, moderates against
+radicals. The Simon Commission ended this drift because it insulted everyone equally. It was to decide India's
+constitutional future, yet it had <b>no Indian member</b>, implying that Indians were unfit to judge their own needs.
+Congress, Jinnah's League and the Hindu Mahasabha boycotted it together. Birkenhead's challenge to produce an agreed
+constitution drew Indians into drafting one (the Nehru Report), and its failure on the communal question, together
+with the government's refusal to promise dominion status, pushed the Congress to declare purna swaraj and prepare for
+Civil Disobedience.</p></div>
+` },
 
     { title: 'Nehru Report and Jinnah\'s 14 points', html: `
 <ul>
@@ -118,7 +127,16 @@ Table Conference promised. Delhi Manifesto by Indian leaders demanded assurances
   <li>Tricolour hoisted on the banks of the Ravi at midnight of 31 December 1929.</li>
   <li><b>26 January 1930</b> celebrated as Independence Day (Purna Swaraj Day) — later chosen as Republic Day.</li>
   </ul></li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> Non-Cooperation and Chauri Chaura (I39); the 1919 Act and its ten-year review (I29).</li>
+<li><b>Alongside:</b> Bhagat Singh and the HSRA (I38); Bardoli (I33).</li>
+<li><b>After:</b> Dandi and Civil Disobedience (I41); the 1935 Act built on the Simon report (I29).</li>
+<li><b>Sessions:</b> the Congress sessions table in I36.</li>
+<li><b>Rajasthan:</b> political awakening and early associations in the princely states (R19).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -197,6 +215,10 @@ of his amendments was a turning point.</p>`,
     { q: 'When did Jinnah present his 14 points?', a: 'March 1929.' },
     { q: 'Who presided over the Lahore session of 1929?', a: 'Jawaharlal Nehru.' },
     { q: 'When was Purna Swaraj Day first observed?', a: '26 January 1930.' },
+    { q: 'Why did the Swarajists want to enter the councils?', a: 'To obstruct the 1919 reforms from within and expose their hollowness.' },
+    { q: 'Why did the Simon Commission provoke a united boycott?', a: 'It had no Indian member, though it was to decide India\'s constitutional future.' },
+    { q: 'Why did the Nehru Report fail to win Muslim support?', a: 'Jinnah\'s amendments on seats and residuary powers were rejected at the Calcutta convention.' },
+    { q: 'How did the Irwin Declaration lead to the Lahore resolution?', a: 'Irwin could not assure dominion status, so the Congress declared purna swaraj.' },
   ],
 
   glossary: [
@@ -211,5 +233,6 @@ of his amendments was a turning point.</p>`,
     'Bipan Chandra et al., <i>India\'s Struggle for Independence</i>, chs. 18–21.',
     'Sumit Sarkar, <i>Modern India 1885–1947</i>.',
     'Spectrum, <i>A Brief History of Modern India</i>.',
+    'NCERT Class 8, <i>Our Pasts III</i>, "The Making of the National Movement: 1870s–1947" — standard text for this rewrite.',
   ],
 };
