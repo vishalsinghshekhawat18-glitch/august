@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Mathematics, astronomy, medicine, metallurgy and technology in ancient India; scientists and their works'],
     mains: ['GS-I: Contribution of ancient India to science and technology'],
-    weight: 'Scientist–work matching (Aryabhata, Brahmagupta, Bhaskara, Charaka, Sushruta, Nagarjuna) is a Prelims staple; a Mains question on ancient Indian science is common.',
+    weight: 'Tier C. Scientist–work matching (Aryabhata, Brahmagupta, Bhaskara, Charaka, Sushruta, Nagarjuna) is a Prelims staple; a Mains question on ancient Indian science is common.',
   },
 
   bigPicture: `
@@ -32,30 +32,35 @@ claims — examiners value precision over pride.</p></div>`,
 
   sections: [
     { title: 'Mathematics', html: `
-<ul>
-<li><b>Sulbasutras</b> (Baudhayana, Apastamba, Katyayana): geometry for building fire altars; Baudhayana states the
-relation known as Pythagoras' theorem; approximations of √2.</li>
-<li><b>Pingala</b> (Chhandasutra): binary-like patterns in metres.</li>
-<li><b>Decimal place-value system and zero</b>: the <b>Bakhshali manuscript</b> (dated variously, 3rd–7th c.) uses a dot
-for zero; the <b>Gwalior inscription</b> (876 CE) has a written zero; Brahmagupta gave rules for zero and negative
-numbers.</li>
-<li><b>Aryabhata</b> (Aryabhatiya, 499): value of π ≈ 3.1416; sine tables; algebra.</li>
-<li><b>Brahmagupta</b> (Brahmasphutasiddhanta, 628, at Bhinmal): rules for zero and negatives; quadratic equations; its
-Arabic translation spread Indian numerals.</li>
-<li><b>Bhaskara II</b> (Siddhanta Shiromani, 1150; parts Lilavati and Bijaganita): arithmetic, algebra, early ideas
-of calculus.</li>
-<li>Arab scholars called the numerals "Hindu numerals" (Al-Khwarizmi); Europe called them "Arabic numerals".</li>
-</ul>` },
+<p>Indian mathematics grew from practical needs. The <b>Sulbasutras</b> of Baudhayana, Apastamba and Katyayana gave
+rules of geometry for building Vedic fire altars of exact shapes and areas; Baudhayana states the relation now known
+as Pythagoras' theorem and gives approximations of √2. <b>Pingala</b>'s <i>Chhandasutra</i>, a work on poetic metre,
+uses binary-like patterns.</p>
+<p>The greatest contribution was the <b>decimal place-value system with zero</b>. The <b>Bakhshali manuscript</b>
+(dated variously, 3rd–7th century) uses a dot for zero, and the <b>Gwalior inscription</b> (876 CE) has a written
+zero. <b>Aryabhata</b> (<i>Aryabhatiya</i>, 499) gave π ≈ 3.1416, sine tables and algebra. <b>Brahmagupta</b>
+(<i>Brahmasphutasiddhanta</i>, 628, written at Bhinmal) gave rules for zero and negative numbers and solved quadratic
+equations; the Arabic translation of his work spread Indian numerals westward. <b>Bhaskara II</b> (<i>Siddhanta
+Shiromani</i>, 1150, with the parts <i>Lilavati</i> and <i>Bijaganita</i>) covered arithmetic and algebra and
+anticipated ideas of calculus. Arab scholars such as Al-Khwarizmi called the numerals "Hindu numerals"; Europe later
+called them "Arabic numerals".</p>
+<div class="box concept"><p><b>Why place value with zero mattered.</b> In Roman numerals, writing and multiplying
+large numbers is slow and clumsy. With only ten signs whose value depends on position, and a zero to mark an empty
+place, any number can be written compactly and calculated with simple written methods. This made possible faster
+arithmetic for trade, astronomy and later science. It is one of India's most important gifts to the world, carried
+west through Baghdad and Spain.</p></div>
+` },
 
     { title: 'Astronomy', html: `
-<ul>
-<li><b>Vedanga Jyotisha</b> (Lagadha): earliest astronomical text, for the ritual calendar.</li>
-<li><b>Aryabhata</b>: earth rotates on its axis; eclipses caused by shadows of earth and moon (not Rahu); length of the
-year. India's first satellite (1975) was named after him.</li>
-<li><b>Varahamihira</b>: <i>Panchasiddhantika</i> (summary of five astronomical systems including Greek-influenced
-Romaka and Paulisha); <i>Brihatsamhita</i> (encyclopaedia: astronomy, weather, architecture, gems).</li>
-<li><b>Brahmagupta</b> and <b>Bhaskara I</b> refined calculations; Bhaskara II discussed gravitation-like attraction.</li>
-</ul>` },
+<p>Astronomy began with the needs of the ritual calendar: the <b>Vedanga Jyotisha</b> of Lagadha is the earliest
+astronomical text. It became a mathematical science in the Gupta age. <b>Aryabhata</b> held that the earth rotates on
+its axis and explained eclipses as caused by the shadows of the earth and moon, not by the demon Rahu; he also
+calculated the length of the year. India's first satellite (1975) was named after him. <b>Varahamihira</b>
+summarised five astronomical systems, including the Greek-influenced Romaka and Paulisha, in his
+<i>Panchasiddhantika</i>, and wrote the <i>Brihatsamhita</i>, an encyclopaedia of astronomy, weather, architecture and
+gems. <b>Brahmagupta</b> and <b>Bhaskara I</b> refined calculations, and Bhaskara II discussed an attraction like
+gravitation. The Greek influence shows that Indian science grew through exchange as well as on its own.</p>
+` },
 
     { title: 'Medicine (Ayurveda)', html: `
 <div class="tbl"><table>
@@ -83,7 +88,15 @@ large-scale production; mining much earlier).</li>
 <li><b>Linguistics</b>: <b>Panini</b>'s <i>Ashtadhyayi</i> — a formal grammar of Sanskrit with about 4,000 rules, admired
 by modern linguists; Patanjali's <i>Mahabhashya</i>.</li>
 <li><b>Architecture</b>: Vastu and Shilpa shastras; Mayamata, Manasara.</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Roots:</b> Harappan weights and lost-wax casting (I03); Vedic altars (I04).</li>
+<li><b>Context:</b> the Gupta age (I10); Nalanda and learning (I13); Charaka at Kanishka's court (I08).</li>
+<li><b>Later:</b> science and technology in modern India (I46).</li>
+<li><b>Rajasthan:</b> zinc at Zawar; Brahmagupta at Bhinmal; copper from Khetri (R03).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -156,6 +169,10 @@ historians warn against inflated claims not supported by texts.</p>`,
     { q: 'Which text is a summary of five astronomical systems?', a: 'Varahamihira\'s Panchasiddhantika.' },
     { q: 'Where was zinc distilled in ancient India?', a: 'Zawar (Rajasthan).' },
     { q: 'Who wrote the Ashtadhyayi?', a: 'Panini.' },
+    { q: 'Why was the place-value system with zero so important?', a: 'Ten signs with positional value made writing and calculating large numbers simple, aiding trade and science.' },
+    { q: 'How did Aryabhata explain eclipses?', a: 'As shadows of the earth and moon, rejecting the Rahu myth.' },
+    { q: 'Why did geometry develop in the Vedic period?', a: 'To build fire altars of exact shapes and sizes (Sulbasutras).' },
+    { q: 'Where did Brahmagupta write his Brahmasphutasiddhanta?', a: 'Bhinmal (Rajasthan), 628 CE.' },
   ],
 
   glossary: [
@@ -172,5 +189,6 @@ historians warn against inflated claims not supported by texts.</p>`,
     'Debiprasad Chattopadhyaya, <i>Science and Society in Ancient India</i>.',
     'D.M. Bose et al., <i>A Concise History of Science in India</i>.',
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>.',
+    'NCERT (old), R.S. Sharma, <i>Ancient India</i> — standard text for this rewrite.',
   ],
 };
