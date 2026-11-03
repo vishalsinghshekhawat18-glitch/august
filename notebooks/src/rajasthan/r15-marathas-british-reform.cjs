@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Maratha intervention in Rajasthan', 'Treaties with the East India Company', 'Social reform in Rajasthan (sati, female infanticide, dakan pratha)'],
     mains: ['GS-I Part A: Socio-political awakening; British paramountcy and its impact'],
-    weight: 'RAS Mains 2018 asked who Dungji and Jawaharji were (2 marks). The 1817–18 treaties, the AGG and the dates of social-reform bans are frequent Prelims topics.',
+    weight: 'Tier B. RAS Mains 2018 asked who Dungji and Jawaharji were (2 marks). The 1817–18 treaties, the AGG and the dates of social-reform bans are frequent Prelims topics.',
   },
 
   bigPicture: `
@@ -45,19 +45,20 @@ the local rulers and jagirdars whom the British protected (R17–R20).</p></div>
 
   sections: [
     { title: 'The Marathas in Rajasthan', html: `
-<p><b>How they came in.</b> Rajput rulers invited the Marathas into their own quarrels:</p>
-<ul>
-<li><b>Bundi (1734):</b> the queen of Budh Singh called Malhar Rao Holkar against Jaipur.</li>
-<li><b>Jaipur (1747–50):</b> Madho Singh used Holkar against his brother Ishwari Singh (Bagru, 1748).</li>
-<li><b>Marwar (1750s):</b> Ram Singh sought Scindia's help against Bakht Singh and Vijay Singh; <b>Jayappa Scindia</b> was
-murdered at Nagaur (1755), and the settlement gave <b>Ajmer</b> to the Marathas.</li>
-<li><b>Mewar:</b> succession disputes and tribute demands under Scindia and Holkar.</li>
-</ul>
-<p><b>Resistance:</b> the Hurda conference (1734) failed; at <b>Tunga</b> (Lalsot, 1787) Jaipur and Jodhpur defeated
-Mahadji Scindia, but his general De Boigne won at <b>Patan</b> and <b>Merta</b> (1790).</p>
-<p><b>Effects:</b> heavy tribute (<i>khiraj</i>) and repeated plunder ruined state finances and peasants; rulers raised
-cesses and turned to revenue farming (R14); Pindari bands (Amir Khan) added to the chaos. This weakness drove the
-rulers to accept British protection.</p>` },
+<p><b>How they came in.</b> The Marathas did not conquer Rajasthan so much as get invited in. Rajput rulers, fighting
+over successions, called them in as allies and then could not get them out. In <b>Bundi (1734)</b> the queen of Budh
+Singh called Malhar Rao Holkar against Jaipur. In <b>Jaipur</b> (1747–50) Madho Singh used Holkar against his brother
+Ishwari Singh (Bagru, 1748). In <b>Marwar</b> in the 1750s Ram Singh sought Scindia's help against Bakht Singh and
+Vijay Singh; <b>Jayappa Scindia</b> was murdered at Nagaur (1755), and the settlement gave <b>Ajmer</b> to the
+Marathas. <b>Mewar</b> too suffered succession disputes and tribute demands under Scindia and Holkar.</p>
+<p><b>Resistance</b> failed to unite the Rajputs. The Hurda conference (1734) of Rajput rulers came to nothing. At
+<b>Tunga</b> (Lalsot, 1787) Jaipur and Jodhpur defeated Mahadji Scindia, but his general De Boigne won at <b>Patan</b>
+and <b>Merta</b> (1790).</p>
+<div class="box concept"><p><b>Why Maratha intervention was so damaging.</b> The Marathas wanted money, not
+territory. Their heavy tribute (<i>khiraj</i>) and repeated plunder emptied state treasuries; rulers passed the burden
+on through new cesses and revenue farming (R14), ruining peasants. Pindari bands (Amir Khan) added to the chaos.
+Exhausted and divided, the rulers were ready by 1817 to accept almost any power that promised order, which is why they
+accepted British terms.</p></div>` },
 
     { title: 'The treaties of 1817–18', html: `
 <p><b>Background.</b> Under Wellesley, <b>Alwar and Bharatpur</b> signed treaties (1803). The next Governor-General
@@ -96,7 +97,12 @@ rebelled (1857, R16).</li>
 <li>Tribute drained finances; British customs and salt policies hurt trade (e.g. salt from Sambhar).</li>
 <li>Rulers became answerable to the British rather than to their people — a key grievance of the later Praja Mandal
 movements.</li>
-</ul>` },
+</ul>
+<div class="box concept"><p><b>Subordinate isolation.</b> The treaties followed a policy later called "subordinate
+isolation": each state was tied to the British separately, could not deal with any other state, and accepted British
+supremacy. This kept the states divided and dependent. The promise of internal autonomy proved hollow because the
+British decided successions, ran states during minorities, and backed rulers against their own nobles and people.
+Protected from both outside enemies and internal revolt, rulers had little reason to govern well.</p></div>` },
 
     { title: 'British military units and outlaws', html: `
 <p>The British raised local forces to control unrest:</p>
@@ -124,16 +130,30 @@ surrendered to the ruler of Jodhpur and Jawaharji to Bikaner. Folk songs remembe
 <tr><td>Tyag (payments to Charans and bards at weddings)</td><td>Regulated from the 1840s</td><td>The heavy cost encouraged infanticide</td></tr>
 </table></div>
 <p><b>Walterkrit Rajputra Hitkarini Sabha</b> (1888–89), named after the AGG Colonel Walter: set limits on marriage
-expenses and tyag and fixed minimum marriage ages for Rajputs.</p>
+expenses and tyag and fixed minimum marriage ages. Its work was among <b>Rajputs</b> only, not other communities.</p>
+<div class="box concept"><p><b>Why these customs persisted, and why reform came from above.</b> Many of these
+practices were tied to status and money. Rajput families faced crushing marriage costs, including <b>tyag</b>, the
+gifts Charans and Bhats claimed at weddings; daughters became a financial burden, which encouraged female infanticide.
+Sati was glorified as a mark of honour. Because these customs were bound up with caste pride, reform came mainly
+through state bans under British pressure and through the rulers' councils, rather than from popular movements.
+Indian reformers such as Dayanand worked to change opinion from below.</p></div>
 <p><b>Indian reformers:</b></p>
 <ul>
 <li><b>Swami Dayanand Saraswati</b> visited several states; at Udaipur (guest of Maharana <b>Sajjan Singh</b>) he
 completed <i>Satyarth Prakash</i> and founded the <b>Paropkarini Sabha</b> (1883); he died at <b>Ajmer</b> (30
 October 1883). The Arya Samaj spread education and opposed child marriage and caste rigidity.</li>
 <li><b>Har Bilas Sarda</b> of Ajmer introduced the <b>Child Marriage Restraint Act (1929)</b>, known as the Sarda Act.</li>
+<li>The Arya Samaj's printing press, the <b>Vedic Yantralaya</b>, was set up at <b>Ajmer</b>.</li>
 <li><b>Education:</b> Mayo College, Ajmer (1875) for princes; state colleges in Jaipur and elsewhere; missionary
 schools.</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the later Rajput rulers and Marathas (R09–R12); administration, cesses and ijara (R14).</li>
+<li><b>India:</b> Maratha expansion (I24) and the Anglo-Maratha wars (I28); social reform movements (I35).</li>
+<li><b>After:</b> the 1857 revolt in Rajasthan (R16); peasant and tribal movements (R17, R18); political awakening
+and the Arya Samaj's role (R19).</li>
+</ul></div>` },
   ],
 
   historians: `
@@ -183,6 +203,11 @@ the conditions for 1857 and later movements.</p>`,
 
   mains: [
     {
+      q: 'Define the tyag custom of Rajasthan.', marks: 2, words: 15, pyq: 'RAS Mains 2016',
+      outline: ['Meaning', 'Effect'],
+      answer: '<p>Gifts Charans and Bhats claimed at Rajput weddings; the heavy cost encouraged female infanticide.</p>',
+    },
+    {
       q: 'Discuss the main terms of the 1818 treaties and their effects on the Rajput states.', marks: 10, words: 100,
       outline: ['Background', 'Terms', 'Political effects', 'Economic and social effects'],
       answer: '<p>Weakened by Maratha tribute and Pindari raids, the Rajput states accepted Hastings\' treaties, negotiated by Metcalfe in 1817–18. The Company promised protection; states surrendered foreign relations, paid tribute and supplied troops, while keeping internal autonomy. Peace returned, but Political Agents and the AGG (1832) interfered in successions and administration. Rulers, secure under British protection, curbed their nobles, provoking discontent seen in 1857. Tribute and British trade policies strained finances. Rulers became answerable to the British, not their subjects — the grievance behind later Praja Mandal movements.</p>',
@@ -221,6 +246,9 @@ the conditions for 1857 and later movements.</p>`,
     { q: 'Which state first banned sati?', a: 'Bundi (1822).' },
     { q: 'Which state first banned dakan pratha?', a: 'Mewar (1853).' },
     { q: 'Who introduced the Child Marriage Restraint Act?', a: 'Har Bilas Sarda of Ajmer (1929).' },
+    { q: 'Where was the Vedic Yantralaya press set up?', a: 'Ajmer.' },
+    { q: 'Why did Rajput rulers accept the 1818 treaties?', a: 'Maratha tribute and Pindari raids had exhausted them; British protection promised order.' },
+    { q: 'Why did British protection weaken the nobles?', a: 'Rulers no longer needed their nobles\' military support, and could curb them with British backing.' },
   ],
 
   glossary: [
@@ -235,7 +263,7 @@ the conditions for 1857 and later movements.</p>`,
   ],
 
   sources: [
-    'Rima Hooja, <i>A History of Rajasthan</i>, chs. on the 18th–19th centuries.',
+    'Rima Hooja, <i>A History of Rajasthan</i>, chs. on the 18th–19th centuries — standard text for this rewrite.',
     'M.S. Jain, <i>Concise History of Modern Rajasthan</i>.',
     'Kalu Ram Sharma, <i>Unnisavin Sadi ke Rajasthan ka Samajik evam Arthik Jivan</i>.',
     'V.S. Bhatnagar, <i>Life and Times of Sawai Jai Singh</i> (Marathas).',
