@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Mauryan empire: Chandragupta, Bindusara, Ashoka; administration; dhamma; edicts; decline'],
     mains: ['GS-I: Mauryan polity, administration and Ashoka\'s dhamma'],
-    weight: 'Ashoka\'s dhamma, Mauryan administration and the causes of decline are classic Mains questions; edict content and locations are Prelims favourites.',
+    weight: 'Tier C. Ashoka\'s dhamma, Mauryan administration and the causes of decline are classic Mains questions; edict content and locations are Prelims favourites.',
   },
 
   bigPicture: `
@@ -32,16 +32,18 @@ content (tolerance, welfare, non-violence) in answers.</p></div>`,
 
   sections: [
     { title: 'Chandragupta and Bindusara', html: `
-<ul>
-<li><b>Chandragupta</b> (Greek "Sandrocottus", identified by William Jones), with <b>Kautilya</b> (Chanakya, Vishnugupta),
-took the Punjab after Alexander's death and then Magadha (c. 321 BCE).</li>
-<li>Defeated <b>Seleucus Nicator</b> (305–303 BCE), gaining Arachosia, Gedrosia, Paropamisadae (Afghanistan, Baluchistan) in
-return for 500 elephants; a marriage alliance followed; <b>Megasthenes</b> came as ambassador.</li>
-<li>His governor <b>Pushyagupta</b> built the <b>Sudarshana lake</b> in Saurashtra (Junagadh inscription of Rudradaman).</li>
-<li>Jain tradition: became a Jain, went south with Bhadrabahu and died at <b>Shravanabelagola</b> by sallekhana.</li>
-<li><b>Bindusara</b>: called <i>Amitraghata</i> ("slayer of foes"); extended rule into the Deccan; contacts with Antiochus I
-(asked for sweet wine, figs and a sophist); patron of Ajivikas.</li>
-</ul>` },
+<p><b>Chandragupta</b>, called "Sandrocottus" by the Greeks (the identification was made by William Jones), rose with
+the help of the Brahmin strategist <b>Kautilya</b> (Chanakya, Vishnugupta). After Alexander's death he took the Punjab
+from the Greek governors and then overthrew Dhana Nanda of Magadha (c. 321 BCE). He defeated <b>Seleucus Nicator</b>
+(305–303 BCE) and gained Arachosia, Gedrosia and Paropamisadae (Afghanistan and Baluchistan) in return for 500
+elephants; a marriage alliance followed, and Seleucus sent <b>Megasthenes</b> as ambassador to Pataliputra. In the
+west his governor <b>Pushyagupta</b> built the <b>Sudarshana lake</b> in Saurashtra, as Rudradaman's Junagadh
+inscription later recorded. Jain tradition says Chandragupta became a Jain, went south with Bhadrabahu and died at
+<b>Shravanabelagola</b> by sallekhana (fasting unto death).</p>
+<p>His son <b>Bindusara</b>, called <i>Amitraghata</i> ("slayer of foes"), extended Mauryan rule into the Deccan. He
+kept up contacts with the Seleucid king Antiochus I, asking him for sweet wine, figs and a sophist, and patronised the
+Ajivikas.</p>
+` },
 
     { title: 'Ashoka and the dhamma', html: `
 <p><b>Kalinga war</b> (8th regnal year): Rock Edict XIII records 1,50,000 deported, 1,00,000 killed; Ashoka's remorse
@@ -58,7 +60,14 @@ Antiochus II, Ptolemy II and others).</li>
 </ul>
 <div class="box debate"><p>Was dhamma Buddhist propaganda or statecraft? Ashoka was a Buddhist (Bhabru edict), but
 dhamma avoided Buddhist doctrine and stressed common ethics. <b>Romila Thapar</b> sees it as a policy to unify a vast,
-diverse empire; others stress personal conviction. Most historians combine both.</p></div>` },
+diverse empire; others stress personal conviction. Most historians combine both.</p></div>
+<div class="box concept"><p><b>Why an empire needed dhamma.</b> Ashoka ruled peoples of many languages, beliefs and
+ways of life, from Greek-speaking Kandahar to forest tribes and Tamil borderlands. Force alone could not hold such an
+empire together cheaply. Dhamma offered a shared code of conduct that any subject could accept: respect for elders,
+tolerance of all sects, non-violence and welfare. Carved on rocks and pillars along trade routes and at borders, and
+carried by dhamma-mahamattas, it spread the king's voice to every region. It was both Ashoka's personal conviction
+after Kalinga and a way of governing diversity.</p></div>
+` },
 
     { title: 'The edicts', html: `
 <div class="tbl"><table>
@@ -96,7 +105,10 @@ national emblem (adopted 26 January 1950) shows three of the lions, the wheel, a
 <i>Satyameva Jayate</i> below.</p>
 <p><b>Later Mauryas:</b> Dasharatha, Ashoka's grandson, gave the <b>Nagarjuni hill</b> caves (near Barabar) to the
 Ajivikas; Jain tradition makes <b>Samprati</b> a great patron of Jainism; <b>Brihadratha</b>, the last ruler, was killed
-by his general Pushyamitra Shunga (c. 185 BCE).</p>` },
+by his general Pushyamitra Shunga (c. 185 BCE).</p>
+<p>Mauryan art also includes large free-standing stone images of <b>yakshas</b> and yakshis, popular nature deities.
+The yaksha from <b>Parkham</b> (near Mathura) bears an inscription naming him <b>Manibhadra</b>.</p>
+` },
 
     { title: 'Decline', html: `
 <div class="tbl"><table>
@@ -107,7 +119,16 @@ by his general Pushyamitra Shunga (c. 185 BCE).</p>` },
 <tr><td>Financial crisis: huge army and bureaucracy (debasement of coins)</td><td>D.D. Kosambi</td></tr>
 <tr><td>Provincial revolts, Greek invasions in the north-west</td><td>General</td></tr>
 </table></div>
-<p>The last ruler, <b>Brihadratha</b>, was killed by his general <b>Pushyamitra Shunga</b> (c. 185 BCE).</p>` },
+<p>The last ruler, <b>Brihadratha</b>, was killed by his general <b>Pushyamitra Shunga</b> (c. 185 BCE).</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the rise of Magadha and Alexander's invasion (I05).</li>
+<li><b>Religion:</b> Ashoka and Buddhism; the third council (I06).</li>
+<li><b>After:</b> the Shungas, Satavahanas and foreign rulers (I08).</li>
+<li><b>Art:</b> Mauryan pillars and capitals (I48, I49); sources: Ashokan edicts and Prinsep (I01).</li>
+<li><b>Rajasthan:</b> Ashoka's Bhabru and Bairat edicts at Viratnagar (R01, R04).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -188,6 +209,10 @@ arguing for a core with looser control over peripheries.</p>`,
     { q: 'Who was the samaharta?', a: 'The chief collector of revenue.' },
     { q: 'How did Megasthenes describe Pataliputra\'s administration?', a: 'Six boards of five members each (30 officials).' },
     { q: 'Who ended the Maurya dynasty?', a: 'Pushyamitra Shunga (c. 185 BCE).' },
+    { q: 'Where was the Mauryan yaksha inscribed "Manibhadra" found?', a: 'Parkham (near Mathura).' },
+    { q: 'Why did Ashoka adopt dhamma?', a: 'Remorse after Kalinga, and the need for a shared moral code to hold a diverse empire together.' },
+    { q: 'How did Ashoka spread his message across the empire?', a: 'Through rock and pillar edicts, dhamma-mahamattas, dhamma-yatras and missions abroad.' },
+    { q: 'Why did the Mauryan empire decline so quickly after Ashoka?', a: 'Over-centralisation, weak successors, division of the empire, financial strain and invasions.' },
   ],
 
   glossary: [
@@ -204,6 +229,6 @@ arguing for a core with looser control over peripheries.</p>`,
     'Romila Thapar, <i>Ashoka and the Decline of the Mauryas</i>.',
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, ch. 7.',
     'R.S. Sharma, <i>India\'s Ancient Past</i>, chs. 16–17.',
-    'NCERT, <i>Themes in Indian History</i> Part I, ch. 2.',
+    'NCERT, <i>Themes in Indian History</i> Part I, ch. 2. — standard text for this rewrite',
   ],
 };
