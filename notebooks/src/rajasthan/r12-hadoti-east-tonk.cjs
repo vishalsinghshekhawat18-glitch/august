@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Major dynasties of Rajasthan and their achievements'],
     mains: ['GS-I Part A: Important historical events and major dynasties'],
-    weight: 'Zalim Singh Jhala and the creation of Jhalawar, Surjan Hada\'s treaty with Akbar, Maharaja Suraj Mal of Bharatpur, the 1805 siege of Bharatpur and Amir Khan of Tonk are the usual questions.',
+    weight: 'Tier C. Zalim Singh Jhala and the creation of Jhalawar, Surjan Hada\'s treaty with Akbar, Maharaja Suraj Mal of Bharatpur, the 1805 siege of Bharatpur and Amir Khan of Tonk are the usual questions.',
   },
 
   bigPicture: `
@@ -104,7 +104,15 @@ the fleeing Maratha soldiers.</li>
 <p><b>Jawahar Singh</b> lost to Jaipur at <b>Maonda–Mandholi</b> (1767).</p>
 <p><b>Ranjit Singh</b> (1776–1805) signed a treaty with the Company (1803) but sheltered Jaswant Rao Holkar; Lord
 <b>Lake</b> besieged Bharatpur in <b>1805</b> and failed after four assaults — the Company's most famous setback in
-India of that time. A treaty followed. In <b>1826</b> Lord Combermere captured the fort during a succession dispute.</p>` },
+India of that time. A treaty followed. In <b>1826</b> Lord Combermere captured the fort during a succession dispute.</p>
+<div class="box concept"><p><b>How new states arose in the 18th century.</b> The eastern and south-eastern states show
+the variety of ways power was won as the Mughal empire weakened. <b>Bharatpur</b> grew from a peasant revolt: Jat
+cultivators who rose against Aurangzeb's revenue demands became, under Badan Singh and Suraj Mal, a kingdom with forts
+and palaces. <b>Kota</b> showed a minister replacing a king, as Zalim Singh ruled in the Maharao's name and finally won
+a state of his own (Jhalawar) from the British. <b>Tonk</b> was created when a mercenary leader, Amir Khan, traded his
+army for recognition in 1817. The old Rajput houses of Bundi and Karauli survived by balancing between Jaipur, the
+Marathas and the Company. These are the same processes NCERT describes for the successor states (I22).</p></div>
+` },
 
     { title: 'Tonk: Amir Khan', html: `
 <ul>
@@ -115,7 +123,15 @@ early 19th century, serving Holkar and extracting tribute from Rajput states.</l
 <li>Later nawabs patronised Islamic learning; the <b>Arabic and Persian Research Institute</b> and Sunehri Kothi are at
 Tonk.</li>
 <li>Tonk joined the Rajasthan union in 1948 (R21).</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Roots:</b> the Chauhans of Ranthambhor and Gagron (R06); Rana Sanga at Bari and Gagron (R08).</li>
+<li><b>All-India context:</b> the Jat revolt and Mughal decline (I22); the Marathas and Panipat (I24); the Pindari war
+and British paramountcy (I28).</li>
+<li><b>After:</b> Maratha and British dominance in Rajasthan (R15); 1857 at Kota (R16); integration (R21).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -199,6 +215,10 @@ standard; Qanungo stressed the peasant roots of the Jat state.</p>`,
     { q: 'Who built the Lohagarh fort?', a: 'Maharaja Suraj Mal of Bharatpur.' },
     { q: 'Which British commander failed to take Bharatpur in 1805?', a: 'Lord Lake.' },
     { q: 'Who founded Tonk state?', a: 'Amir Khan (1817).' },
+    { q: 'How did Bharatpur become a state?', a: 'A Jat peasant revolt against Aurangzeb grew into a kingdom under Badan Singh and Suraj Mal.' },
+    { q: 'Why was Jhalawar created in 1838?', a: 'To settle the conflict between Kota\'s ruler and Zalim Singh\'s family by giving the Jhalas a separate state.' },
+    { q: 'Why did Lake fail at Bharatpur in 1805?', a: 'Lohagarh\'s thick mud walls and moat absorbed cannon fire and resisted four assaults.' },
+    { q: 'How did Amir Khan become Nawab of Tonk?', a: 'He disbanded his army and accepted British terms during the Pindari war in 1817.' },
   ],
 
   glossary: [
@@ -216,6 +236,6 @@ standard; Qanungo stressed the peasant roots of the Jat state.</p>`,
     'K.R. Qanungo, <i>History of the Jats</i>.',
     'Jadunath Sarkar, <i>Fall of the Mughal Empire</i>.',
     'James Tod, <i>Annals and Antiquities of Rajasthan</i> (on Zalim Singh).',
-    'G.N. Sharma, <i>Rajasthan ka Itihas</i>; Rima Hooja, <i>A History of Rajasthan</i>.',
+    'G.N. Sharma, <i>Rajasthan ka Itihas</i>; Rima Hooja, <i>A History of Rajasthan</i>. — standard text for this rewrite',
   ],
 };
