@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Nawabs of Bengal; Plassey; Mir Jafar, Mir Qasim; Buxar; Treaty of Allahabad; Dual government'],
     mains: ['GS-I: Establishment of British power in Bengal'],
-    weight: '"Plassey was a conspiracy, Buxar a battle" — compare their significance. Dual government is frequently asked.',
+    weight: 'Tier C. "Plassey was a conspiracy, Buxar a battle" — compare their significance. Dual government is frequently asked.',
   },
 
   bigPicture: `
@@ -50,7 +50,14 @@ allow European fortifications.</li>
   </ol></li>
 <li>Siraj took Kasimbazar and Calcutta (June 1756). The <b>"Black Hole"</b> story (Holwell) of 146 prisoners in a small
 room — numbers widely disputed by historians.</li>
-</ul>` },
+</ul>
+<div class="box concept"><p><b>Why trade privileges led to war.</b> The 1717 farman let the Company trade duty-free in
+Bengal, using passes called <b>dastaks</b>. Company servants began using dastaks for their own private trade, and
+even sold them to Indian merchants, so goods escaped duties that honest Indian traders had to pay. The Nawab lost
+revenue, Indian merchants were undercut, and the Company behaved as a state within his state, fortifying Calcutta and
+sheltering his enemies. For the Nawabs, from Siraj-ud-Daula to Mir Qasim, the question was sovereignty: who ruled
+Bengal. That is why every Nawab who tried to govern firmly ended up at war with the Company.</p></div>
+` },
 
     { title: 'Battle of Plassey (23 June 1757)', html: `
 <ul>
@@ -98,7 +105,15 @@ against the Company under <b>Hector Munro</b>; the allies were defeated.</li>
 justice; decline of crafts as Company servants forced weavers; drain of wealth.</li>
 <li><b>Bengal famine of 1770</b>: about one-third of the population died; revenue collection continued.</li>
 <li>Abolished by <b>Warren Hastings</b> (1772); the Company took direct control of revenue; treasury moved to Calcutta.</li>
-</ul>` },
+</ul>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> the 1717 farman and the Carnatic wars (I26); the Bengal successor state (I22).</li>
+<li><b>After:</b> British expansion in the south and north (I28); the Regulating Act of 1773 that followed the Bengal
+crisis (I29); the Permanent Settlement (I30).</li>
+<li><b>Economy:</b> the drain of wealth and deindustrialisation (I31).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -177,6 +192,10 @@ private interests drawing the Company in; nationalist historians stress delibera
     { q: 'What did the Company get by the Treaty of Allahabad?', a: 'The Diwani of Bengal, Bihar and Odisha.' },
     { q: 'Who devised the dual government?', a: 'Robert Clive.' },
     { q: 'Who ended the dual government?', a: 'Warren Hastings (1772).' },
+    { q: 'Why did dastaks cause conflict with the Nawabs?', a: 'Company servants misused them for duty-free private trade, cutting revenue and undercutting Indian merchants.' },
+    { q: 'Why is Buxar considered more decisive than Plassey?', a: 'It was a real military victory over three powers and brought the Diwani and legal authority.' },
+    { q: 'Why did Mir Qasim abolish internal duties in 1763?', a: 'To put Indian merchants on equal terms with Company servants abusing dastaks.' },
+    { q: 'What was wrong with the dual government?', a: 'The Company had power without responsibility, so revenue was extracted while administration collapsed.' },
   ],
 
   glossary: [
@@ -190,5 +209,6 @@ private interests drawing the Company in; nationalist historians stress delibera
     'P.J. Marshall, <i>Bengal: The British Bridgehead</i>.',
     'Bipan Chandra, <i>History of Modern India</i>, ch. 4.',
     'Sekhar Bandyopadhyay, <i>From Plassey to Partition</i>, ch. 1.',
+    'NCERT Class 8, <i>Our Pasts III</i>, "From Trade to Territory" — standard text for this rewrite.',
   ],
 };
