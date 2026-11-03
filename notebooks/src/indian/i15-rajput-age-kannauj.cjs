@@ -6,7 +6,7 @@ module.exports = {
   syllabus: {
     prelims: ['Tripartite struggle; Palas, Pratiharas, Rashtrakutas; Rajput kingdoms; early medieval society'],
     mains: ['GS-I: Early medieval India — polity, the feudalism debate'],
-    weight: 'The tripartite struggle and the "Indian feudalism" debate are the analytical questions; Palas and Rajput dynasties are Prelims material. Rajasthan dynasties are covered in detail in R05–R07.',
+    weight: 'Tier C. The tripartite struggle and the "Indian feudalism" debate are the analytical questions; Palas and Rajput dynasties are Prelims material. Rajasthan dynasties are covered in detail in R05–R07.',
   },
 
   bigPicture: `
@@ -58,31 +58,42 @@ dynasties and making north India vulnerable to the Turks.</p>` },
 <p>For Rajput origins, Guhils and other Rajasthan dynasties, see R05–R07.</p>` },
 
     { title: 'Society, economy and the feudalism debate', html: `
-<ul>
-<li>Land grants to Brahmins, temples and officials multiplied; grantees received fiscal and judicial rights.</li>
-<li><b>How new dynasties rose:</b> subordinate chiefs (<b>samantas</b>) owed gifts, attendance at court and troops; as
-they grew strong they took titles like <i>maha-samanta</i> and <i>maha-mandaleshvara</i> and broke away. Some Brahmin
-families took to arms: Mayurasharman founded the Kadamba kingdom (Karnataka) and Harichandra the Gurjara-Pratihara line
-(Rajasthan). Dantidurga, the Rashtrakuta chief who overthrew his Chalukya overlord, performed the
-<b>hiranyagarbha</b> ("golden womb") ritual to be "reborn" a Kshatriya. New kings took titles such as
-<i>maharajadhiraja</i> and <i>tribhuvana-chakravartin</i>.</li>
-<li>Jatis (sub-castes) ranked by occupation and power framed their own rules, enforced by a <b>jati panchayat</b> of
-elders.</li>
-<li>Regional identities grew: in 1318 Amir Khusrau listed a separate language in each region (Sindhi, Lahori,
+<div class="box concept"><p><b>How new dynasties rose: the samanta system.</b> Kings of this age ruled through
+subordinate chiefs, <b>samantas</b>, who owed their overlord gifts, attendance at court and troops. As a samanta
+grew in land and men, he took grander titles such as <i>maha-samanta</i> and <i>maha-mandaleshvara</i>, and when the
+overlord weakened he broke away and became a king himself. New rulers then sought legitimacy: Brahmin families who
+took to arms founded kingdoms (Mayurasharman the Kadambas in Karnataka, Harichandra the Gurjara-Pratihara line in
+Rajasthan), and the Rashtrakuta Dantidurga, after overthrowing his Chalukya overlord, performed the
+<b>hiranyagarbha</b> ("golden womb") ritual to be "reborn" a Kshatriya. Titles such as <i>maharajadhiraja</i> and
+<i>tribhuvana-chakravartin</i>, genealogies composed by Brahmins, and grand temples all proclaimed the new king's
+status. This explains why so many Rajput and other dynasties appear in this period.</p></div>
+<p>Land grants to Brahmins, temples and officials multiplied, and grantees received fiscal and judicial rights.
+Society grew more complex: <b>jatis</b> (sub-castes) ranked by occupation and power framed their own rules, enforced
+by a <b>jati panchayat</b> of elders; the <b>Kayasthas</b> (scribes) rose as a group; and new Rajput clans appeared.
+Regional identities strengthened. In 1318 Amir Khusrau listed a separate language in each region (Sindhi, Lahori,
 Kashmiri, Dvarsamudri, Telangani, Gujari, Ma'bari, Gauri, Awadhi and Hindawi) and noted that Sanskrit belonged to no
-region and was known only to Brahmins.</li>
-<li>Proliferation of castes; <b>Kayasthas</b> (scribes) rose as a group; new Rajput clans.</li>
-<li>Temple building became central to kingship (Khajuraho, Modhera, Lingaraja).</li>
-<li><b>Small towns</b> grew from large villages from the 8th century: each had a <b>mandapika</b> (the later mandi) where villagers sold produce, market streets (<b>hatta</b>, later haat) and streets of artisans. A samanta often built a fortified palace nearby, taxed traders and artisans, and sometimes granted the right to collect those taxes to a temple; a 10th-century inscription from Rajasthan lists such dues, some in cash and some in kind.</li>
-<li><b>Temple towns</b> grew around endowed temples, e.g. Bhillasvamin (Vidisha), Somnath, Kanchipuram, Madurai and Tirupati; temples also financed trade and lending.</li>
-<li>Regional languages and scripts emerged; Apabhramsha literature.</li>
-</ul>
+region and was known only to Brahmins. Regional scripts and Apabhramsha literature grew.</p>
+<p>The economy was not simply in decline. From the 8th century large villages grew into <b>small towns</b>, each with a
+<b>mandapika</b> (the later mandi) where villagers sold produce, market streets (<b>hatta</b>, later haat) and streets
+of artisans. A samanta often built a fortified palace nearby, taxed traders and artisans, and sometimes granted the
+right to collect those taxes to a temple; a 10th-century inscription from Rajasthan lists such dues, some in cash and
+some in kind. <b>Temple towns</b> grew around endowed temples, such as Bhillasvamin (Vidisha), Somnath, Kanchipuram,
+Madurai and Tirupati, and temples financed trade and lending. Temple building became central to kingship
+(Khajuraho, Modhera, Lingaraja).</p>
 <div class="box debate"><p><b>R.S. Sharma</b> (<i>Indian Feudalism</i>, 1965) argued that land grants created a hierarchy
 of landed intermediaries, while trade, towns and coinage declined and peasants were tied to land — a feudal social
 formation. <b>Harbans Mukhia</b> ("Was there feudalism in Indian history?") argued that Indian peasants were never
 serfs. <b>B.D. Chattopadhyaya</b> argued that the period saw <b>regional state formation</b>, agrarian expansion into new
 areas and new urban centres, not decline. <b>Burton Stein</b> offered the segmentary model for the south. Present the
-debate rather than a verdict.</p></div>` },
+debate rather than a verdict.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> Harsha and the Deccan kingdoms (I11); Gupta land grants (I10).</li>
+<li><b>After:</b> Arab and Turkish invasions and the fall of Rajput kingdoms (I16, I17).</li>
+<li><b>Architecture:</b> Khajuraho, Modhera and Nagara temples (I48).</li>
+<li><b>Rajasthan:</b> Rajput origins, the Pratiharas and Paramaras (R05); the Chauhans (R06); the Guhils (R07).</li>
+</ul></div>
+` },
   ],
 
   historians: `
@@ -155,6 +166,10 @@ coins continued in debased forms.</p>`,
     { q: 'Where was Jaichand killed?', a: 'Chandawar (1194).' },
     { q: 'Who wrote Indian Feudalism?', a: 'R.S. Sharma.' },
     { q: 'Who argued for regional state formation instead of feudal decline?', a: 'B.D. Chattopadhyaya.' },
+    { q: 'How did a samanta become a king?', a: 'By growing in land and troops, taking grander titles and breaking away when the overlord weakened.' },
+    { q: 'Why did Dantidurga perform the hiranyagarbha ritual?', a: 'To be ritually "reborn" a Kshatriya and legitimise his new kingship.' },
+    { q: 'Why did Kannauj matter in the tripartite struggle?', a: 'It was Harsha\'s prestigious capital and controlled the fertile doab and trade routes.' },
+    { q: 'How did B.D. Chattopadhyaya challenge the feudalism thesis?', a: 'He saw regional state formation, agrarian expansion and new towns, not decline.' },
   ],
 
   glossary: [
@@ -169,5 +184,6 @@ coins continued in debased forms.</p>`,
     'B.D. Chattopadhyaya, <i>The Making of Early Medieval India</i>.',
     'Satish Chandra, <i>History of Medieval India</i>, ch. 1.',
     'Upinder Singh, <i>A History of Ancient and Early Medieval India</i>, ch. 10.',
+    'NCERT, <i>Our Pasts II</i> (Class VII), ch. 2 — standard text for this rewrite.',
   ],
 };
