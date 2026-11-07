@@ -1,4 +1,9 @@
 // Planned roadmap for both notebooks. A unit is "written" when src/<notebook>/<file>.cjs exists.
+const fs = require('fs');
+const path = require('path');
+// World units are listed before they are written; a unit counts as written once its file exists.
+const w = (id, title, file) => [id, title, fs.existsSync(path.join(__dirname, 'world', file)) ? file : null];
+
 module.exports = {
   rajasthan: {
     title: 'Rajasthan History — Master Notebook',
@@ -103,6 +108,31 @@ module.exports = {
         ['I49', 'Sculpture and Painting', 'i49-sculpture-painting.cjs'],
         ['I50', 'Music, Dance and Theatre', 'i50-performing-arts.cjs'],
         ['I51', 'Literature: Vedic to the British Era', 'i51-literature.cjs'],
+      ]},
+    ],
+  },
+  world: {
+    title: 'Modern World History — Master Notebook',
+    short: 'Modern World History',
+    file: 'Modern_World_History_Notebook.html',
+    mainsOnly: true,
+    intro: 'Modern world history from the Renaissance to the end of the Cold War (1991), written for RAS Mains GS Paper I and mapped to the 2026 syllabus. Modern world history has no separate line in the Prelims syllabus, so the fact bank here supports short Mains answers.',
+    parts: [
+      { name: 'Part I — The New Outlook', units: [
+        w('W01', 'The Renaissance', 'w01-renaissance.cjs'),
+        w('W02', 'The Reformation and the Enlightenment', 'w02-reformation-enlightenment.cjs'),
+      ]},
+      { name: 'Part II — The Age of Revolutions', units: [
+        w('W03', 'The Industrial Revolution and the New Imperialism', 'w03-industrial-revolution.cjs'),
+        w('W04', 'The American War of Independence', 'w04-american-revolution.cjs'),
+        w('W05', 'The French Revolution and Napoleon', 'w05-french-revolution.cjs'),
+        w('W06', 'The Russian Revolution', 'w06-russian-revolution.cjs'),
+      ]},
+      { name: 'Part III — The World in Conflict', units: [
+        w('W07', 'World War I, Versailles and the League of Nations', 'w07-world-war-i.cjs'),
+        w('W08', 'The Great Depression, Fascism and Nazism', 'w08-depression-fascism-nazism.cjs'),
+        w('W09', 'World War II and Its Impact', 'w09-world-war-ii.cjs'),
+        w('W10', 'The Cold War, Decolonisation and the End of the USSR', 'w10-cold-war.cjs'),
       ]},
     ],
   },

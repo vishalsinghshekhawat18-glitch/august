@@ -128,4 +128,21 @@ module.exports = {
       I51: { pre: ['PI3', 'PI7'], mains: ['IH1'] },
     },
   },
+  world: {
+    prelims: {},
+    mains: ['WH1', 'WH2', 'WH3', 'WH4'],
+    elsewhere: {},
+    units: {
+      W01: { pre: [], mains: ['WH1'] },
+      W02: { pre: [], mains: ['WH1'], note: 'The Enlightenment is not named in the 2026 list (RAS Mains 2018 asked it under the older syllabus), but it is the ideological base of WH2.' },
+      W03: { pre: [], mains: ['WH2'], note: 'Imperialism is not named in the 2026 list (OLD-WH in the PYQ database), but RAS Mains asked it in both 2023 and 2024, so it is covered here.' },
+      W04: { pre: [], mains: ['WH2'] },
+      W05: { pre: [], mains: ['WH2'] },
+      W06: { pre: [], mains: ['WH2'] },
+      W07: { pre: [], mains: ['WH4'] },
+      W08: { pre: [], mains: ['WH3'] },
+      W09: { pre: [], mains: ['WH4'] },
+      W10: { pre: [], mains: ['WH4'] },
+    },
+  },
 };

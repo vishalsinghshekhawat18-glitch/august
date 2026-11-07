@@ -6,7 +6,7 @@ const path = require('path');
 const ROOT = __dirname;
 const OCTOBER = path.join(ROOT, '..', 'October', 'books');
 const manifest = require('./src/manifest.cjs');
-const SLUGS = { rajasthan: 'ras-rajasthan-history', indian: 'ras-indian-history' };
+const SLUGS = { rajasthan: 'ras-rajasthan-history', indian: 'ras-indian-history', world: 'ras-modern-world-history' };
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const text = html => html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
@@ -22,10 +22,10 @@ const boxes = html => html
   .replace(/<div class="box bridge">([\s\S]*?)<\/div>/g, (_, b) => box('data', 'Connections', b))
   .replace(/<div class="tbl">([\s\S]*?<\/table>)<\/div>/g, '$1');
 
-function unit(u, partName) {
+function unit(u, partName, mainsOnly) {
   const h3 = (id, title) => `<h3 id="${u.id.toLowerCase()}-${id}">${title}</h3>`;
   const syl = box('plain', 'Where this fits in the syllabus',
-    `<p><b>Prelims:</b> ${u.syllabus.prelims.join('; ')}</p><p><b>Mains:</b> ${u.syllabus.mains.join('; ')}</p>` +
+    `<p><b>${mainsOnly ? 'Topics' : 'Prelims'}:</b> ${u.syllabus.prelims.join('; ')}</p><p><b>Mains:</b> ${u.syllabus.mains.join('; ')}</p>` +
     (u.syllabus.weight ? `<p>${u.syllabus.weight}</p>` : ''));
   const timeline = `<table><thead><tr><th>When</th><th>What happened</th></tr></thead><tbody>${
     u.timeline.map(([d, t]) => `<tr><td>${d}</td><td>${t}</td></tr>`).join('')}</tbody></table>`;
@@ -51,7 +51,7 @@ ${h3('notes', 'Core notes')}
 ${core}
 ${h3('historians', 'What historians say')}
 ${boxes(u.historians)}
-${h3('facts', 'Prelims fact bank')}
+${h3('facts', mainsOnly ? 'Fact bank' : 'Prelims fact bank')}
 ${list(u.facts)}
 ${box('trap', 'Exam traps', list(u.traps))}
 ${h3('pyq', 'Previous-year questions (RAS)')}
@@ -78,7 +78,7 @@ for (const [key, nb] of Object.entries(manifest)) {
     const [no, name] = p.name.split(/\s+—\s+/);
     out.push(`<h1 class="rd-part" id="part-${pi + 1}" data-toc="${esc(name || p.name)}" data-count="${units.length} units"><span class="rd-part-no">${esc(no)}</span>${esc(name || p.name)}</h1>
 <p class="rd-part-tally"><span><b>${units.length}</b> units</span><span><b>${units.reduce((a, u) => a + u.pyqs.verified.length, 0)}</b> verified PYQs</span><span><b>${units.reduce((a, u) => a + u.selfTest.length, 0)}</b> self-test questions</span></p>`);
-    units.forEach(u => out.push(unit(u, no)));
+    units.forEach(u => out.push(unit(u, no, nb.mainsOnly)));
     count += units.length;
   });
   const html = `<!DOCTYPE html>

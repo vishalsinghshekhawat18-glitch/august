@@ -71,7 +71,7 @@ function renderUnit(u, meta) {
   const m = meta.map;
   const line = (id, text) => `<span class="lid">${id}</span> ${text}`;
   const syllabus = `<div class="syl">
-    <div><b>Prelims 2026</b>${list(m.pre.map(id => line(id, meta.syl.prelims[id])))}</div>
+    <div><b>Prelims 2026</b>${m.pre.length ? list(m.pre.map(id => line(id, meta.syl.prelims[id]))) : '<p>No separate line in the Prelims syllabus.</p>'}</div>
     <div><b>Mains 2026 (GS Paper I)</b>${m.mains.length ? list(m.mains.map(id => line(id, MAINS_LINES[id]))) : '<p>Background for Mains; no line of its own.</p>'}</div>
     </div>
     <p class="label">Topics this unit covers</p>${list(u.syllabus.prelims)}
@@ -107,7 +107,7 @@ function renderUnit(u, meta) {
   ${sec(2, 'The big picture', u.bigPicture + timeline)}
   ${sec(3, 'Core notes', core)}
   ${sec(4, 'What historians say', u.historians)}
-  ${sec(5, 'Prelims fact bank', list(u.facts) + `<p class="label trap-label">Exam traps</p>` + list(u.traps), 'facts')}
+  ${sec(5, meta.mainsOnly ? 'Fact bank' : 'Prelims fact bank', list(u.facts) + `<p class="label trap-label">Exam traps</p>` + list(u.traps), 'facts')}
   ${sec(6, 'Previous-year questions (RAS)', pyq)}
   ${sec(7, 'Mains answer writing', mains)}
   ${sec(8, 'One-screen revision card', list(u.revision), 'card')}
@@ -123,7 +123,7 @@ function renderNotebook(key, nb, units) {
          : `<li class="planned" title="Planned"><span>${id}</span>${esc(title)}</li>`).join('')}</ul>`).join('');
   const written = units.length, total = nb.parts.reduce((a, p) => a + p.units.length, 0);
   const syl = SYL[key];
-  const body = units.map(({ u, num }) => renderUnit(u, { num, map: syl.units[u.id], syl })).join('\n');
+  const body = units.map(({ u, num }) => renderUnit(u, { num, map: syl.units[u.id], syl, mainsOnly: nb.mainsOnly })).join('\n');
   const isWritten = new Set(units.map(x => x.u.id));
   const coverRow = (id, text) => {
     const hits = Object.entries(syl.units).filter(([, v]) => v.pre.includes(id) || v.mains.includes(id)).map(([uid]) => uid);
@@ -135,7 +135,7 @@ function renderNotebook(key, nb, units) {
   };
   const coverage = `<details class="coverage"><summary>2026 syllabus coverage map: every line and the units that cover it</summary>
   <table><tr><th>Line</th><th>2026 syllabus</th><th>Units</th></tr>
-  <tr><th colspan="3">Prelims</th></tr>${Object.entries(syl.prelims).map(([id, t]) => coverRow(id, t)).join('')}
+  ${nb.mainsOnly ? '' : `<tr><th colspan="3">Prelims</th></tr>${Object.entries(syl.prelims).map(([id, t]) => coverRow(id, t)).join('')}`}
   <tr><th colspan="3">Mains, GS Paper I</th></tr>${syl.mains.map(id => coverRow(id, MAINS_LINES[id])).join('')}
   </table><p class="note">Mains line IDs match the RAS Mains PYQ Database, so a line's past questions can be looked up there.</p></details>`;
   const css = fs.readFileSync(path.join(ROOT, 'src', 'notebook.css'), 'utf8');
@@ -156,7 +156,7 @@ function renderNotebook(key, nb, units) {
     <button data-size="-1">A−</button><button data-size="1">A+</button>
   </div>
   <header class="book-head"><h1>${esc(nb.title)}</h1><p>${nb.intro}</p>
-  <p class="howto"><b>How to use each unit:</b> read 1–4 for understanding, use 5 for Prelims revision, 6–7 for Mains practice, and 8–9 the day before the exam. Greyed units in the contents are planned but not written yet.</p>
+  <p class="howto"><b>How to use each unit:</b> read 1–4 for understanding, use 5 for ${nb.mainsOnly ? 'fact' : 'Prelims'} revision, 6–7 for Mains practice, and 8–9 the day before the exam. Greyed units in the contents are planned but not written yet.</p>
   ${coverage}</header>
   ${body}
 </main>
