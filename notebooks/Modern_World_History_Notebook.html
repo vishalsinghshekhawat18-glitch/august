@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modern World History Notebook</title>
+<style>:root{--bg:#f8f1e3;--paper:#fffaf0;--ink:#2b231b;--muted:#6b5e50;--line:#e3d6bf;--accent:#9a3f0b;--soft:#f2e7d3;--trap:#a1231b;--trapbg:#fbe9e5;--good:#235f34;--goodbg:#e6f2e8;--nav:#f3e8d4}
+body[data-theme="light"]{--bg:#f6f6f4;--paper:#fff;--ink:#1c1c1c;--muted:#5d5d5d;--line:#e2e2e2;--accent:#1f4fa8;--soft:#f0f2f6;--trapbg:#fdecea;--goodbg:#e9f5ec;--nav:#efefec}
+body[data-theme="dark"]{--bg:#121212;--paper:#1c1b1a;--ink:#e9e4da;--muted:#a49d90;--line:#33302b;--accent:#f0a36b;--soft:#26231f;--trap:#ff8a80;--trapbg:#3a1d1a;--good:#7fd69a;--goodbg:#173022;--nav:#181716}
+*{box-sizing:border-box}
+html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Noto Serif","Noto Serif Devanagari",serif;line-height:1.7}
+.side{position:fixed;top:0;left:0;bottom:0;width:300px;overflow-y:auto;background:var(--nav);border-right:1px solid var(--line);padding:18px 14px 40px;font-family:system-ui,"Segoe UI",sans-serif;font-size:.86rem}
+.brand{font-weight:700;font-size:1rem;margin:0 0 2px}
+.prog{color:var(--muted);margin:0 0 12px}
+.part{font-weight:700;color:var(--accent);margin:16px 0 4px;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+.side ul{list-style:none;margin:0;padding:0}
+.side li{margin:1px 0}
+.side li span{display:inline-block;width:36px;color:var(--muted);font-variant-numeric:tabular-nums}
+.side a{display:block;padding:4px 6px;border-radius:6px;color:var(--ink);text-decoration:none}
+.side a:hover{background:var(--soft)}
+.side .planned{padding:4px 6px;color:var(--muted);opacity:.6}
+main{margin-left:300px;max-width:880px;padding:20px 32px 120px}
+.menu{display:none}
+.tools{display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;font-family:system-ui,sans-serif}
+.tools button,.menu{background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:.8rem}
+.book-head h1{font-size:2rem;line-height:1.2;margin:18px 0 8px}
+.book-head p{color:var(--muted)}
+.howto{background:var(--soft);padding:10px 14px;border-radius:8px;color:var(--ink)!important;font-size:.92rem}
+.unit{margin-top:56px}
+.unit-head{border-bottom:3px double var(--line);padding-bottom:8px}
+.kicker{margin:0;color:var(--accent);font-family:system-ui,sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.03em}
+.unit-head h2{margin:4px 0 0;font-size:1.65rem;line-height:1.25}
+.block{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:18px 0}
+.block h3{margin:0 0 10px;font-family:system-ui,sans-serif;font-size:1.05rem;display:flex;align-items:center;gap:10px}
+.num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--paper);font-size:.8rem}
+.topic h4{font-size:1.12rem;margin:22px 0 6px;color:var(--accent)}
+.topic:first-child h4{margin-top:4px}
+p{margin:.55em 0}
+ul,ol{padding-left:22px}
+li{margin:.25em 0}
+.syl{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.syl ul{margin:4px 0 0}
+.weight{grid-column:1/-1;background:var(--soft);padding:8px 12px;border-radius:6px;font-size:.92rem}
+.timeline{list-style:none;padding:0;margin:14px 0 0;border-left:2px solid var(--line)}
+.timeline li{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:3px 0 3px 14px;position:relative}
+.timeline li::before{content:"";position:absolute;left:-6px;top:12px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.when{font-weight:700;font-family:system-ui,sans-serif;font-size:.9rem}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:10px 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-family:system-ui,sans-serif}
+.tbl{overflow-x:auto}
+table.gloss td,table.pyq td{overflow-wrap:anywhere}
+.box{background:var(--soft);border-left:4px solid var(--accent);padding:8px 14px;border-radius:6px;margin:10px 0}
+.box.why::before{content:"Why it matters";display:block;font-family:system-ui,sans-serif;font-weight:700;font-size:.78rem;color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
+.box.debate::before{content:"Contested";display:block;font-family:system-ui,sans-serif;font-weight:700;font-size:.78rem;color:var(--trap);text-transform:uppercase;letter-spacing:.04em}
+.box.concept{border-left-color:var(--good);background:var(--goodbg)}
+.box.concept::before{content:"Concept";display:block;font-family:system-ui,sans-serif;font-weight:700;font-size:.78rem;color:var(--good);text-transform:uppercase;letter-spacing:.04em}
+.box.bridge{border-left-color:var(--muted)}
+.box.bridge::before{content:"Connections";display:block;font-family:system-ui,sans-serif;font-weight:700;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.facts ul:last-of-type li{background:var(--trapbg);border-radius:6px;padding:4px 8px;list-style:none;margin-left:-22px;margin-bottom:6px}
+.label{font-family:system-ui,sans-serif;font-weight:700;font-size:.85rem;margin:14px 0 4px}
+.trap-label{color:var(--trap)}
+.note{color:var(--muted);font-size:.92rem}
+.mains{border-top:1px dashed var(--line);padding-top:10px;margin-top:12px}
+.mains:first-child{border-top:0;margin-top:0;padding-top:0}
+.mq{font-weight:700}
+.tag{display:inline-block;background:var(--soft);border:1px solid var(--line);border-radius:99px;padding:0 8px;font-size:.75rem;font-family:system-ui,sans-serif;font-weight:600;color:var(--accent)}
+details{margin:8px 0}
+summary{cursor:pointer;font-family:system-ui,sans-serif;font-weight:600;font-size:.88rem;color:var(--accent)}
+.answer{background:var(--goodbg);border-radius:8px;padding:8px 14px;margin-top:6px}
+.card{border:2px solid var(--accent)}
+.test li{margin-bottom:10px}
+.test p{margin:0}
+.sources{font-size:.88rem;color:var(--muted)}
+a{color:var(--accent)}
+@media (max-width:900px){
+  .side{transform:translateX(-100%);transition:transform .2s;z-index:10;width:85%;max-width:320px}
+  body.nav-open .side{transform:none}
+  main{margin-left:0;padding:12px 16px 100px}
+  .menu{display:inline-block;position:sticky;top:8px;z-index:11;margin:8px 0 0 16px}
+  .syl{grid-template-columns:1fr}
+  .block{padding:14px 14px}
+  .tbl table{min-width:560px}
+  .timeline li{grid-template-columns:90px 1fr}
+}
+.lid{display:inline-block;font:600 .74rem/1.6 system-ui,sans-serif;background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-right:2px}
+.coverage{margin:18px 0;border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.coverage summary{cursor:pointer;font-weight:600}
+.coverage table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.88rem}
+.coverage th,.coverage td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+.coverage .planned{color:var(--muted)}
+.coverage .gap{color:var(--trap)}
+</style>
+</head>
+<body>
+<button class="menu" onclick="document.body.classList.toggle('nav-open')" aria-label="Contents">☰ Contents</button>
+<nav class="side"><p class="brand">Modern World History — Master Notebook</p><p class="prog">2 of 10 units written</p><p class="part">Part I — The New Outlook</p><ul><li><a href="#W01"><span>W01</span>The Renaissance</a></li><li><a href="#W02"><span>W02</span>The Reformation and the Enlightenment</a></li></ul><p class="part">Part II — The Age of Revolutions</p><ul><li class="planned" title="Planned"><span>W03</span>The Industrial Revolution and the New Imperialism</li><li class="planned" title="Planned"><span>W04</span>The American War of Independence</li><li class="planned" title="Planned"><span>W05</span>The French Revolution and Napoleon</li><li class="planned" title="Planned"><span>W06</span>The Russian Revolution</li></ul><p class="part">Part III — The World in Conflict</p><ul><li class="planned" title="Planned"><span>W07</span>World War I, Versailles and the League of Nations</li><li class="planned" title="Planned"><span>W08</span>The Great Depression, Fascism and Nazism</li><li class="planned" title="Planned"><span>W09</span>World War II and Its Impact</li><li class="planned" title="Planned"><span>W10</span>The Cold War, Decolonisation and the End of the USSR</li></ul></nav>
+<main>
+  <div class="tools">
+    <button data-theme="sepia">Sepia</button><button data-theme="light">Light</button><button data-theme="dark">Dark</button>
+    <button data-size="-1">A−</button><button data-size="1">A+</button>
+  </div>
+  <header class="book-head"><h1>Modern World History — Master Notebook</h1><p>Modern world history from the Renaissance to the end of the Cold War (1991), written for RAS Mains GS Paper I and mapped to the 2026 syllabus. Modern world history has no separate line in the Prelims syllabus, so the fact bank here supports short Mains answers.</p>
+  <p class="howto"><b>How to use each unit:</b> read 1–4 for understanding, use 5 for fact revision, 6–7 for Mains practice, and 8–9 the day before the exam. Greyed units in the contents are planned but not written yet.</p>
+  <details class="coverage"><summary>2026 syllabus coverage map: every line and the units that cover it</summary>
+  <table><tr><th>Line</th><th>2026 syllabus</th><th>Units</th></tr>
+  
+  <tr><th colspan="3">Mains, GS Paper I</th></tr><tr><td><span class="lid">WH1</span></td><td>Renaissance and Reformation</td><td><a href="#W01">W01</a> <a href="#W02">W02</a></td></tr><tr><td><span class="lid">WH2</span></td><td>American War of Independence, French, Industrial and Russian Revolutions</td><td><span class="planned">W03 (planned)</span> <span class="planned">W04 (planned)</span> <span class="planned">W05 (planned)</span> <span class="planned">W06 (planned)</span></td></tr><tr><td><span class="lid">WH3</span></td><td>Nazism in Germany and Fascism in Italy</td><td><span class="planned">W08 (planned)</span></td></tr><tr><td><span class="lid">WH4</span></td><td>Impact of World Wars; world during the Cold War</td><td><span class="planned">W07 (planned)</span> <span class="planned">W09 (planned)</span> <span class="planned">W10 (planned)</span></td></tr>
+  </table><p class="note">Mains line IDs match the RAS Mains PYQ Database, so a line's past questions can be looked up there.</p></details></header>
+  <article class="unit" id="W01">
+  <header class="unit-head"><p class="kicker">Unit W01 · c. 1300 – 1600</p><h2>The Renaissance</h2></header>
+  <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
+    <div><b>Prelims 2026</b><p>No separate line in the Prelims syllabus.</p></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">WH1</span> Renaissance and Reformation</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Medieval background: feudalism, the Church, towns and trade</li><li>Why the Renaissance began in Italy: city-states, wealth, patrons, classical remains</li><li>Humanism: Petrarch, Valla, Erasmus, More, Machiavelli</li><li>Art: perspective, Leonardo, Michelangelo, Raphael, Brunelleschi</li><li>Printing, science and exploration</li><li>Northern Renaissance and the limits of the movement</li></ul>
+    
+    <p class="weight">Tier B. RAS Mains 2016 asked for the factors behind the Renaissance (10 marks) and 2021 asked where The Last Supper was painted (2 marks). Learn the causes as a chain, and keep a small list of artists with works and places.</p></section>
+  <section class="block "><h3><span class="num">2</span>The big picture</h3>
+<p>Between about 1300 and 1600, educated Europeans, starting in the cities of northern Italy, changed how they looked
+at human life. They returned to Greek and Roman texts, valued human ability and life in this world, and made art and
+writing that studied nature closely. This shift is called the <b>Renaissance</b>, French for "rebirth". It did not
+overthrow the medieval world at once. It grew out of a change in the economy: trade had made Italian towns rich, and
+rich townsmen paid for scholars and artists who served their own tastes and needs. Printing then carried the new
+learning across Europe, and that wider reading public prepared the ground for the Reformation (W02), modern science
+and the voyages of exploration.</p>
+<div class="box why"><p><b>How to read this unit.</b> For a "factors" question, do not list events. Show the chain:
+trade → rich towns → a lay urban class and patrons → classical learning (humanism) → new art and thought → printing
+spreads it. Short questions ask for an artist, a work or a place, so learn the table in section 3.</p></div><ol class="timeline"><li><span class="when">1304–1374</span><span class="what">Life of Petrarch, often called the father of humanism</span></li><li><span class="when">1347–1351</span><span class="what">The Black Death kills perhaps a third of Europe, and raises the value of labour</span></li><li><span class="when">1397</span><span class="what">Manuel Chrysoloras begins teaching Greek at Florence</span></li><li><span class="when">1436</span><span class="what">Brunelleschi completes the dome of Florence Cathedral</span></li><li><span class="when">1440</span><span class="what">Lorenzo Valla shows the Donation of Constantine to be a forgery</span></li><li><span class="when">1453</span><span class="what">Ottoman Turks capture Constantinople; the Hundred Years War also ends</span></li><li><span class="when">c. 1455</span><span class="what">Gutenberg prints the Bible with movable metal type at Mainz</span></li><li><span class="when">c. 1495–1498</span><span class="what">Leonardo paints The Last Supper at Santa Maria delle Grazie, Milan</span></li><li><span class="when">1498</span><span class="what">Vasco da Gama reaches Calicut by the Cape route</span></li><li><span class="when">1508–1512</span><span class="what">Michelangelo paints the Sistine Chapel ceiling</span></li><li><span class="when">1511</span><span class="what">Erasmus publishes In Praise of Folly</span></li><li><span class="when">1516</span><span class="what">Thomas More publishes Utopia</span></li><li><span class="when">1532</span><span class="what">The Prince of Machiavelli is published (written about 1513)</span></li><li><span class="when">1543</span><span class="what">Copernicus publishes On the Revolutions; Vesalius publishes On the Fabric of the Human Body</span></li></ol></section>
+  <section class="block "><h3><span class="num">3</span>Core notes</h3><div class="topic"><h4>W01.1 The medieval background and why change came</h4>
+<p>Medieval Western Europe rested on two institutions. <b>Feudalism</b> tied the peasant to a lord's land and tied the
+lord to a king through military service. The <b>Roman Catholic Church</b> owned vast lands, controlled education and
+gave the main explanation of life: this world was a preparation for the next, and truth lay in scripture as explained
+by the clergy. <b>Scholasticism</b>, the learning of the medieval universities, used logic mainly to support that
+teaching.</p>
+<p>From about the 11th century this order began to loosen. Farm output rose, towns grew, and the <b>Crusades</b>
+widened trade with the eastern Mediterranean. Then the <b>Black Death</b> (1347–51) killed perhaps a third of the
+population. Labour became scarce, so surviving peasants could demand better terms and serfdom weakened in the west.
+The Church's prestige also fell, partly because of the plague and partly because of the <b>Great Schism</b> (1378–1417),
+when rival popes claimed office. A society with more money, more towns and less certainty was ready for new ideas.</p></div><div class="topic"><h4>W01.2 Why Italy came first</h4>
+<p>The question "why Italy?" is the core of the RAS 2016 question. Five factors worked together.</p>
+<ul>
+<li><b>Trade and wealth.</b> Venice and Genoa dominated Mediterranean trade with the East. Florence grew rich on
+woollen cloth and banking.</li>
+<li><b>Independent city-states.</b> Italy had no single monarch. Florence, Venice and Milan governed themselves or were
+ruled by local families, so civic life and public service were valued. A merchant or lawyer needed rhetoric, history
+and ethics more than theology.</li>
+<li><b>Patrons.</b> The <b>Medici</b> bankers of Florence, the Sforza dukes of Milan and the popes at Rome competed for
+prestige by paying artists and collecting manuscripts.</li>
+<li><b>The Roman inheritance.</b> Ruins, statues and inscriptions stood all around Italians, who saw ancient Rome as
+their own past.</li>
+<li><b>Contact with Greek and Arab learning.</b> Greek scholars came from Byzantium: Chrysoloras taught at Florence from
+1397, and more arrived around the fall of Constantinople in 1453. Works of Aristotle had already reached Europe through
+Arabic translations and the commentaries of Ibn Rushd (Averroes), and medical knowledge through Ibn Sina (Avicenna).</li>
+</ul>
+<div class="box concept"><p><b>Humanism.</b> Humanism was first an education, the <i>studia humanitatis</i>: grammar,
+rhetoric, history, poetry and moral philosophy, studied from classical texts. It arose because the urban elite wanted a
+training for public and business life that the Church-centred schools did not give. It worked through careful reading
+of original texts. Lorenzo Valla used language study to prove in 1440 that the Donation of Constantine, a document that
+supported papal claims to territory, was a later forgery. Humanists did not usually reject God; Erasmus was a devout
+Christian. What changed was the emphasis, from the next world to human dignity and ability in this one. Pico della
+Mirandola's <i>Oration on the Dignity of Man</i> (1486) is the classic statement.</p></div></div><div class="topic"><h4>W01.3 Art: seeing the world as it is</h4>
+<p>Medieval art served religious teaching and did not try to show space or bodies exactly. Renaissance artists wanted
+their paintings to look true, and to do that they studied mathematics and anatomy. <b>Linear perspective</b>, worked out
+by Brunelleschi in the early 15th century, showed depth on a flat surface. <b>Chiaroscuro</b> used light and shade to
+model forms. Patrons wanted their fame and their city displayed, so portraits and secular subjects grew alongside
+religious ones.</p>
+<div class="tbl"><table>
+<tr><th>Artist</th><th>Main works</th><th>Where</th></tr>
+<tr><td><b>Giotto</b></td><td>Frescoes with solid, human figures (forerunner)</td><td>Arena Chapel, Padua</td></tr>
+<tr><td><b>Brunelleschi</b></td><td>Dome of the cathedral (completed 1436)</td><td>Florence</td></tr>
+<tr><td><b>Donatello</b></td><td>Bronze David</td><td>Florence</td></tr>
+<tr><td><b>Leonardo da Vinci</b></td><td><b>The Last Supper</b> (c. 1495–98); Mona Lisa</td><td><b>Refectory of Santa Maria delle Grazie, Milan</b>; Mona Lisa now in the Louvre, Paris</td></tr>
+<tr><td><b>Michelangelo</b></td><td>David (1501–04); Sistine Chapel ceiling (1508–12); The Last Judgment</td><td>Florence; Vatican</td></tr>
+<tr><td><b>Raphael</b></td><td>The School of Athens</td><td>Vatican</td></tr>
+<tr><td><b>Titian</b></td><td>Venetian colour and portraiture</td><td>Venice</td></tr>
+</table></div>
+<p>Leonardo shows the Renaissance ideal of the many-sided person: his notebooks hold anatomy, machines and studies of
+water alongside painting. The artist's status rose too, from a craftsman in a guild to a celebrated individual.
+Giorgio Vasari's <i>Lives of the Artists</i> (1550) recorded this, and used the word <i>rinascita</i> (rebirth).</p></div><div class="topic"><h4>W01.4 Literature and political thought</h4>
+<p>Writing in the <b>vernacular</b> widened the reading public beyond those who knew Latin. Dante's <i>Divine Comedy</i>,
+Petrarch's sonnets and Boccaccio's <i>Decameron</i> made Tuscan the base of literary Italian. Later, national literatures
+grew elsewhere: Chaucer in English, Rabelais and Montaigne in French, Cervantes (<i>Don Quixote</i>) in Spanish, and
+Shakespeare.</p>
+<p>The most lasting political book was <b>Machiavelli's <i>The Prince</i></b>. Italy was being invaded by France and
+Spain from 1494, and Machiavelli, a Florentine official, asked how a ruler actually keeps power. He judged actions by
+results and not by Christian morality, which separated politics from religious ethics. This is why he is seen as a
+founder of modern political thought. Castiglione's <i>The Courtier</i> (1528) set the model of the cultivated
+gentleman.</p>
+<div class="tbl"><table>
+<tr><th>Writer</th><th>Work</th><th>Point</th></tr>
+<tr><td>Dante</td><td>Divine Comedy</td><td>Written in Tuscan, not Latin</td></tr>
+<tr><td>Boccaccio</td><td>Decameron</td><td>Worldly tales told during the plague</td></tr>
+<tr><td>Machiavelli</td><td>The Prince</td><td>Power judged by results</td></tr>
+<tr><td>Erasmus (Dutch)</td><td>In Praise of Folly (1511)</td><td>Satire on clergy and the abuses of the Church</td></tr>
+<tr><td>Thomas More (English)</td><td>Utopia (1516)</td><td>An imagined just society that criticises his own</td></tr>
+</table></div></div><div class="topic"><h4>W01.5 Printing, science and exploration</h4>
+<p><b>Printing</b> made the Renaissance a European event. Paper had come from China through the Arab world. Johannes
+Gutenberg combined movable metal type, oil-based ink and a press at Mainz, and printed his Bible about 1455. Books became
+cheap and identical copies spread quickly, so scholars could compare and correct texts and ideas could not easily be
+suppressed. Luther's writings of 1517 and after spread by this route (W02).</p>
+<p><b>Science</b> began to rest on observation. Copernicus argued in 1543 that the earth moves around the sun, against
+the Ptolemaic view the Church accepted. Vesalius corrected ancient anatomy from dissection in the same year. Galileo,
+later, used the telescope and was forced by the Inquisition to recant in 1633. This line of work led to the Scientific
+Revolution and to Newton (W02).</p>
+<p><b>Exploration</b> had practical causes. Europeans wanted direct access to Asian spices and gold, and Ottoman control
+of the eastern routes raised the incentive, though Portugal's Atlantic voyages had begun well before 1453. The compass,
+better maps and the caravel made long voyages possible. Dias rounded the Cape in 1488, Columbus reached the Americas in
+1492, Vasco da Gama reached Calicut in 1498, and Magellan's expedition (1519–22) sailed round the world. This opened the
+colonial age that reached India (I26).</p></div><div class="topic"><h4>W01.6 How far did it spread, and whom did it reach?</h4>
+<p>North of the Alps the Renaissance took a more religious form. <b>Christian humanists</b> such as Erasmus and More used
+classical scholarship to criticise Church abuses and return to the Bible itself; Erasmus published a Greek New Testament
+in 1516. Dürer took Italian technique to Germany. Because these scholars read scripture directly and printed widely, the
+Northern Renaissance led straight to the Reformation.</p>
+<p>The limits matter for a balanced answer. The movement touched a small literate urban elite, and most peasants saw
+little change. Renaissance states were not more peaceful, and belief in witchcraft and persecution continued. Women's
+educational gains were confined to a few, such as the writer Christine de Pizan and the patron Isabella d'Este.
+Its results were long-term: a confidence in reason and in the individual, and a habit of testing old authority against
+evidence.</p>
+<div class="box debate"><p><b>Was it really a "rebirth"?</b> <b>Jacob Burckhardt</b> (1860) described a sharp break, the birth
+of modern individualism in Italy. <b>C.H. Haskins</b> (1927) replied that a "Renaissance of the twelfth century" had
+already revived Latin classics and universities. <b>Joan Kelly</b> (1977) asked whether women had a Renaissance at all.
+Others stress the debt to Arab and Byzantine scholars, which shows the classical revival was not a purely European
+achievement. A safe answer: real change, but gradual, elite and built on medieval foundations.</p></div>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>After:</b> the Reformation and the Enlightenment (W02); the commercial wealth and science behind the Industrial
+Revolution (W03).</li>
+<li><b>India:</b> Vasco da Gama and the European companies (I26). The "Indian Renaissance" of the 19th century (I35) borrows
+this word, and RAS Mains 2018 asked about it, so compare the two.</li>
+<li><b>Art and Rajasthan:</b> compare with Mughal and Rajput court patronage of painting (I49).</li>
+</ul></div></div></section>
+  <section class="block "><h3><span class="num">4</span>What historians say</h3>
+<p><b>Jacob Burckhardt</b>, <i>The Civilization of the Renaissance in Italy</i> (1860), set the classic view of
+individualism born in Italy. <b>Jules Michelet</b> had already popularised the term in 1855. <b>C.H. Haskins</b> pushed
+the roots back to the 12th century. <b>Peter Burke</b> treats it as a social process in which patrons, markets and
+audiences matter as much as genius. NCERT's <i>Themes in World History</i> also stresses the Arab contribution and the
+role of Italian towns.</p></section>
+  <section class="block facts"><h3><span class="num">5</span>Fact bank</h3><ul><li>Renaissance means "rebirth"; Vasari used rinascita in 1550.</li><li>Petrarch is often called the father of humanism.</li><li>Studia humanitatis covered grammar, rhetoric, history, poetry and moral philosophy.</li><li>Lorenzo Valla showed in 1440 that the Donation of Constantine was a forgery.</li><li>The Medici family of Florence were bankers and leading patrons.</li><li>Leonardo painted The Last Supper in the refectory of Santa Maria delle Grazie, Milan.</li><li>Michelangelo painted the Sistine Chapel ceiling between 1508 and 1512.</li><li>Raphael painted The School of Athens in the Vatican.</li><li>Brunelleschi built the dome of Florence Cathedral and worked out linear perspective.</li><li>Gutenberg printed his Bible with movable metal type at Mainz about 1455.</li><li>Machiavelli wrote The Prince; Erasmus In Praise of Folly; Thomas More Utopia.</li><li>Copernicus and Vesalius both published their main works in 1543.</li><li>Vasco da Gama reached Calicut in 1498.</li></ul><p class="label trap-label">Exam traps</p><ul><li>The Last Supper is a wall painting in Milan, not in Florence or Rome. The Mona Lisa is the painting in the Louvre.</li><li>The fall of Constantinople (1453) did not cause the Renaissance. Petrarch died in 1374 and Greek teaching at Florence began in 1397.</li><li>The Sistine Chapel is Michelangelo, not Leonardo; The School of Athens is Raphael.</li><li>Humanists were not atheists. Humanism changed the focus of study, and most humanists remained Christian.</li><li>Printing paper came from China through the Arab world; Gutenberg did not invent paper.</li></ul></section>
+  <section class="block "><h3><span class="num">6</span>Previous-year questions (RAS)</h3><table class="pyq"><tr><th>Exam</th><th>Question</th><th>Marks</th></tr><tr><td>RAS Mains 2016</td><td>Examine the factors responsible for the emergence of Renaissance Movement in Europe.</td><td>10</td></tr><tr><td>RAS Mains 2021</td><td>Where did Leonardo da Vinci paint his famous painting 'The Last Supper'?</td><td>2</td></tr></table><p class="note">Both questions have model answers below. Related: the Indian Renaissance question of RAS Mains 2018 in I35.</p></section>
+  <section class="block "><h3><span class="num">7</span>Mains answer writing</h3><div class="mains">
+      <p class="mq"><span class="tag">10 marks · 100 words · RAS Mains 2016</span> Examine the factors responsible for the emergence of Renaissance Movement in Europe.</p>
+      <p class="label">How to frame it</p><ul><li>Define the Renaissance</li><li>Economic base: trade and towns</li><li>Political: city-states and patrons</li><li>Intellectual: classical and Arab learning, weak Church</li><li>Printing spreads it</li><li>Conclude: gradual process</li></ul>
+      <details><summary>Model answer (106 words)</summary><div class="answer"><p>The Renaissance was the revival of classical learning and a new human-centred outlook, from about the 14th century. Its base was economic: Mediterranean trade made Italian towns rich and created a lay urban class. Independent city-states such as Florence and Venice valued civic skills, and patrons like the Medici funded scholars and artists. Roman ruins, Greek scholars from Byzantium and Arabic translations of Aristotle supplied the learning. The Black Death and the Great Schism weakened feudal and Church authority. Gutenberg's printing press then spread these ideas across Europe. Thus the Renaissance grew from social and economic change rather than a sudden break with the medieval past.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">2 marks · 15 words · RAS Mains 2021</span> Where did Leonardo da Vinci paint his famous painting 'The Last Supper'?</p>
+      <p class="label">How to frame it</p><ul><li>Place and building</li></ul>
+      <details><summary>Model answer (15 words)</summary><div class="answer"><p>On the refectory wall of the convent of Santa Maria delle Grazie, Milan (c. 1495–98).</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">5 marks · 50 words</span> What is meant by humanism in the Renaissance?</p>
+      <p class="label">How to frame it</p><ul><li>Studia humanitatis</li><li>Why it arose</li><li>Example and shift of emphasis</li></ul>
+      <details><summary>Model answer (53 words)</summary><div class="answer"><p>Humanism was an education in grammar, rhetoric, history, poetry and moral philosophy, based on classical texts. It served the urban elite's need for public skills. Petrarch began it, and Valla used textual criticism to expose the Donation of Constantine. Without rejecting God, it shifted attention to human dignity and life in this world.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">10 marks · 100 words</span> Why did the Renaissance begin in Italy?</p>
+      <p class="label">How to frame it</p><ul><li>Trade and wealth</li><li>City-states</li><li>Patrons</li><li>Roman remains</li><li>Greek and Arab learning</li><li>Conclusion</li></ul>
+      <details><summary>Model answer (95 words)</summary><div class="answer"><p>Italy had the conditions first. Venice and Genoa controlled trade with the East, and Florence prospered on cloth and banking. With no single monarch, self-governing city-states valued civic life, so merchants and lawyers wanted rhetoric and history more than theology. The Medici, the Sforza and the popes competed as patrons. Roman ruins reminded Italians of their own past. Greek scholars such as Chrysoloras taught at Florence from 1397, and Arabic learning had already reached Europe through translations. Wealth, freedom, patrons and texts together explain why Italy led, and why northern Europe followed later through printing.</p></div></details>
+    </div></section>
+  <section class="block card"><h3><span class="num">8</span>One-screen revision card</h3><ul><li>Chain: trade → towns → lay urban class and patrons → classical learning → new art and thought → printing.</li><li>Humanism: studia humanitatis; Petrarch, Valla (Donation forgery, 1440), Erasmus, More, Pico.</li><li>Art: Leonardo (Last Supper, Milan), Michelangelo (Sistine, David), Raphael (School of Athens), Brunelleschi (Florence dome).</li><li>Print: Gutenberg, Mainz, c. 1455. Science: Copernicus and Vesalius, 1543. Voyages: 1488, 1492, 1498, 1519–22.</li><li>Limits: elite and urban; built on medieval foundations (Haskins against Burckhardt).</li></ul></section>
+  <section class="block "><h3><span class="num">9</span>Self-test</h3><ol class="test"><li><p>What does "Renaissance" mean?</p><details><summary>Answer</summary><p>Rebirth, the revival of classical learning and a human-centred outlook.</p></details></li><li><p>Why is Petrarch important?</p><details><summary>Answer</summary><p>He is often called the father of humanism for reviving the study of classical texts.</p></details></li><li><p>What did Lorenzo Valla prove?</p><details><summary>Answer</summary><p>That the Donation of Constantine was a later forgery (1440).</p></details></li><li><p>Where is The Last Supper?</p><details><summary>Answer</summary><p>In the refectory of Santa Maria delle Grazie, Milan.</p></details></li><li><p>Who painted The School of Athens?</p><details><summary>Answer</summary><p>Raphael, in the Vatican.</p></details></li><li><p>Why did the Renaissance begin in Italy and not in France or England?</p><details><summary>Answer</summary><p>Trade wealth, independent city-states, rival patrons, Roman remains and contact with Greek and Arab learning came together in Italy first.</p></details></li><li><p>How did the Black Death help to weaken the medieval order?</p><details><summary>Answer</summary><p>Labour became scarce, so peasants could demand better terms and serfdom weakened; faith in the Church was also shaken.</p></details></li><li><p>Why is Machiavelli called a founder of modern political thought?</p><details><summary>Answer</summary><p>He judged political action by its results and separated politics from religious morality.</p></details></li><li><p>How did printing connect the Renaissance to the Reformation?</p><details><summary>Answer</summary><p>Cheap identical copies spread Bible study and criticism of the Church, so Luther's writings reached a wide public quickly.</p></details></li><li><p>Connect: why did the Northern Renaissance take a more religious form?</p><details><summary>Answer</summary><p>Christian humanists like Erasmus applied classical scholarship to scripture and Church reform.</p></details></li><li><p>Why is the 1453 explanation of the Renaissance wrong?</p><details><summary>Answer</summary><p>Humanism and Greek teaching in Florence were already established before Constantinople fell.</p></details></li></ol></section>
+  <section class="block "><h3><span class="num">10</span>Glossary (हिन्दी ↔ English)</h3><table class="gloss"><tr><th>हिन्दी</th><th>English</th><th>Meaning</th></tr><tr><td lang="hi">पुनर्जागरण</td><td>Renaissance</td><td>Revival of classical learning and a new outlook in Europe.</td></tr><tr><td lang="hi">मानववाद</td><td>Humanism</td><td>Study centred on human life and classical texts.</td></tr><tr><td lang="hi">संरक्षक</td><td>Patron</td><td>A person who pays for and protects artists or scholars.</td></tr><tr><td lang="hi">देशज भाषा</td><td>Vernacular</td><td>The local spoken language, as opposed to Latin.</td></tr><tr><td lang="hi">परिप्रेक्ष्य</td><td>Perspective</td><td>Showing depth on a flat surface.</td></tr><tr><td lang="hi">धर्मशास्त्र</td><td>Theology</td><td>The systematic study of religious belief.</td></tr></table></section>
+  <section class="block sources"><h3>Sources used for this unit</h3><ul><li>NCERT Class 11, <i>Themes in World History</i>, chapter on changing cultural traditions — standard text for this rewrite.</li><li>Arjun Dev, <i>The Story of Civilization</i>, Vol. II (old NCERT).</li><li>Jacob Burckhardt, <i>The Civilization of the Renaissance in Italy</i> (1860).</li><li>Peter Burke, <i>The Italian Renaissance: Culture and Society in Italy</i>.</li></ul></section>
+</article>
+<article class="unit" id="W02">
+  <header class="unit-head"><p class="kicker">Unit W02 · 1517 – c. 1789</p><h2>The Reformation and the Enlightenment</h2></header>
+  <section class="block "><h3><span class="num">1</span>Where this fits in the syllabus</h3><div class="syl">
+    <div><b>Prelims 2026</b><p>No separate line in the Prelims syllabus.</p></div>
+    <div><b>Mains 2026 (GS Paper I)</b><ul><li><span class="lid">WH1</span> Renaissance and Reformation</li></ul></div>
+    </div>
+    <p class="label">Topics this unit covers</p><ul><li>Causes of the Reformation; indulgences; Martin Luther and the 95 Theses</li><li>Key doctrines: justification by faith, universal priesthood, authority of scripture</li><li>Zwingli, Calvin and predestination; Henry VIII and the Church of England</li><li>The Counter-Reformation: Council of Trent, Jesuits, Inquisition</li><li>Results: wars of religion, Peace of Westphalia, the state and capitalism debate</li><li>The Scientific Revolution and the Enlightenment: Locke, Montesquieu, Voltaire, Rousseau, Smith</li></ul>
+    <p class="weight">The Enlightenment is not named in the 2026 list (RAS Mains 2018 asked it under the older syllabus), but it is the ideological base of WH2.</p>
+    <p class="weight">Tier B. RAS Mains 2023 asked "Explain Universal Priesthood" (2 marks); 2018 asked to define the European Enlightenment (2 marks). The Enlightenment also supplies the ideas behind W04 and W05.</p></section>
+  <section class="block "><h3><span class="num">2</span>The big picture</h3>
+<p>In 1517 a German monk, <b>Martin Luther</b>, attacked the Church's sale of indulgences. Within a generation Western
+Christendom had split into Catholic and Protestant churches, and rulers had taken new power over religion. Luther
+himself wanted to reform the Church and not to divide it. His challenge spread because it joined three forces: long
+anger at Church wealth and abuses, German princes who wanted power and land, and a printing press that made pamphlets
+cheap. The Catholic Church reformed itself in reply, and over a century of religious wars ended in a Europe of sovereign
+states. Then, from the late 17th century, thinkers of the <b>Enlightenment</b> applied the methods of the new science
+to society itself, and asked whether kings, churches and privileges could justify themselves before reason. Those
+questions led to the revolutions of America and France.</p>
+<div class="box why"><p><b>How to read this unit.</b> Keep the two movements linked: the Reformation questioned the
+Church's authority on the basis of scripture, and the Enlightenment questioned all authority on the basis of reason.
+The two RAS questions so far are 2-mark definitions, so define every bold term in one exact line.</p></div><ol class="timeline"><li><span class="when">1517</span><span class="what">Luther sets out his 95 Theses at Wittenberg</span></li><li><span class="when">1521</span><span class="what">Diet of Worms: Luther refuses to recant and is outlawed</span></li><li><span class="when">1534</span><span class="what">Act of Supremacy: Henry VIII becomes head of the Church of England</span></li><li><span class="when">1536</span><span class="what">Calvin publishes the Institutes of the Christian Religion</span></li><li><span class="when">1540</span><span class="what">Pope approves the Society of Jesus (Jesuits), founded by Ignatius Loyola</span></li><li><span class="when">1545–1563</span><span class="what">Council of Trent</span></li><li><span class="when">1555</span><span class="what">Peace of Augsburg: "whose realm, his religion"</span></li><li><span class="when">1618–1648</span><span class="what">Thirty Years War, ended by the Peace of Westphalia</span></li><li><span class="when">1687</span><span class="what">Newton publishes the Principia</span></li><li><span class="when">1690</span><span class="what">Locke publishes Two Treatises of Government</span></li><li><span class="when">1748</span><span class="what">Montesquieu publishes The Spirit of the Laws</span></li><li><span class="when">1751</span><span class="what">First volume of the Encyclopédie of Diderot and d'Alembert</span></li><li><span class="when">1762</span><span class="what">Rousseau publishes The Social Contract</span></li><li><span class="when">1776</span><span class="what">Adam Smith publishes The Wealth of Nations</span></li><li><span class="when">1784</span><span class="what">Kant answers "What is Enlightenment?"</span></li></ol></section>
+  <section class="block "><h3><span class="num">3</span>Core notes</h3><div class="topic"><h4>W02.1 Why the Reformation came</h4>
+<p>By 1500 the Church was the richest landowner in Europe and it collected tithes and fees from all. Many of its offices
+were bought and sold (<b>simony</b>), bishops often held several posts at once, and clergy were exempt from ordinary
+courts. Earlier critics had raised these issues: <b>John Wycliffe</b> in England and <b>Jan Hus</b> in Bohemia, who was
+burnt in 1415. Humanists such as Erasmus mocked abuses and sent readers back to the Greek New Testament.</p>
+<p>Politics made the difference. Rising monarchs and German princes resented money flowing to Rome and courts beyond
+their control. Germany was especially open: it had no strong central ruler, and hundreds of small states could protect a
+rebel. The trigger came when Pope Leo X needed money to rebuild St Peter's in Rome, and <b>indulgences</b> were sold in
+Germany by the Dominican Johann Tetzel.</p>
+<div class="box concept"><p><b>Indulgences.</b> The Church taught that sins carried punishment after death, which could be
+reduced by good works. An indulgence granted a reduction drawn from the merits of Christ and the saints. It arose as a
+pious practice, for example as a reward for crusading, but by 1500 it had become a source of revenue, and preachers made
+it sound as if a payment bought salvation. Luther's protest was theological: no payment could affect God's forgiveness.
+The Council of Trent abolished the office of indulgence seller in 1562.</p></div></div><div class="topic"><h4>W02.2 Luther and his ideas</h4>
+<p>Luther, a professor at Wittenberg, reached his central belief through personal anxiety: humans cannot earn salvation
+by their own works; it comes only through faith, as God's free gift. In 1517 he set out <b>95 Theses</b> against
+indulgences. Printers spread them through Germany within weeks. In 1520 he published three major pamphlets, and in 1521
+he refused to recant before Emperor Charles V at the <b>Diet of Worms</b>. Frederick the Wise of Saxony sheltered him at
+Wartburg, where he translated the New Testament into German.</p>
+<div class="tbl"><table>
+<tr><th>Doctrine</th><th>Meaning</th><th>What it undermined</th></tr>
+<tr><td><b>Justification by faith alone</b></td><td>Salvation comes through faith, not works</td><td>Indulgences, pilgrimages, the Church's sale of grace</td></tr>
+<tr><td><b>Scripture alone</b></td><td>The Bible is the final authority, not popes or councils</td><td>Papal authority and Church tradition</td></tr>
+<tr><td><b>Universal priesthood</b></td><td>All baptised believers are priests before God</td><td>The special status of the clergy</td></tr>
+</table></div>
+<div class="box concept"><p><b>Universal priesthood (priesthood of all believers).</b> Luther taught that every baptised
+Christian has direct access to God and needs no priest as a go-between. He stated it in his 1520 address to the German
+nobility, in order to deny the clergy's claim to be a separate and higher estate. In practice clergy remained, but as
+ministers appointed for a duty and not as a sacred caste. They could marry, and the laity were encouraged to read the
+Bible in their own language. It also let secular rulers act in church matters.</p></div>
+<p>Luther was socially conservative. When peasants rose in the <b>Peasants' War</b> (1524–25), citing his language of
+Christian freedom, he urged princes to crush them. Lutheranism therefore grew as a religion protected by princes. The
+name "Protestant" comes from the princes' protest at the Diet of Speyer (1529). The <b>Peace of Augsburg</b> (1555) let
+each German ruler choose Catholicism or Lutheranism for his subjects: <i>cuius regio, eius religio</i>.</p></div><div class="topic"><h4>W02.3 Other reformers and the Catholic reply</h4>
+<p><b>Zwingli</b> led reform in Zurich. <b>John Calvin</b>, a French lawyer, made Geneva a disciplined godly city from
+1541. His <b>predestination</b> taught that God has already chosen who will be saved. Calvinism had a clear organisation
+without bishops, and it spread to Scotland (John Knox), the Netherlands, France (the Huguenots) and England (the
+Puritans). In England the cause was political: <b>Henry VIII</b> wanted his marriage annulled, the pope refused, and the
+<b>Act of Supremacy (1534)</b> made the king head of the church.</p>
+<p>The Catholic response is called the <b>Counter-Reformation</b> or Catholic Reformation. The <b>Council of Trent
+(1545–63)</b> reaffirmed doctrine, including the seven sacraments and the value of works, but it also corrected abuses
+and ordered seminaries to train priests. The <b>Jesuits</b>, founded by Ignatius Loyola and approved in 1540, ran
+excellent schools and sent missionaries abroad; Francis Xavier reached Goa in 1542. The Roman Inquisition and the Index
+of Prohibited Books policed belief.</p>
+<div class="tbl"><table>
+<tr><th>Point</th><th>Lutheran</th><th>Calvinist</th><th>Catholic after Trent</th></tr>
+<tr><td>Salvation</td><td>Faith alone</td><td>Predestination</td><td>Faith and works</td></tr>
+<tr><td>Authority</td><td>Scripture</td><td>Scripture</td><td>Scripture and tradition, with the pope</td></tr>
+<tr><td>Church government</td><td>Under princes</td><td>Elders and pastors</td><td>Pope and bishops</td></tr>
+</table></div></div><div class="topic"><h4>W02.4 What the Reformation changed</h4>
+<p>Religious unity ended, and war followed: the French Wars of Religion, the Dutch Revolt and the <b>Thirty Years War
+(1618–48)</b>. The <b>Peace of Westphalia (1648)</b> recognised rulers' authority within their territories, and it is
+often taken as the start of the modern system of sovereign states. Monarchs gained church land and control over
+religion. Bible translation strengthened national languages. Literacy grew because believers were expected to read.</p>
+<div class="box debate"><p><b>Did Protestantism create capitalism?</b> <b>Max Weber</b>, in <i>The Protestant Ethic and the
+Spirit of Capitalism</i> (1905), argued that Calvinist believers sought signs of being chosen through disciplined work
+and saving, which encouraged capitalist habits. <b>R.H. Tawney</b> saw a more complicated two-way relation, and critics
+point to capitalism in Catholic Italy and Flanders long before Calvin. A careful answer treats it as a helpful influence
+and not as a single cause.</p></div></div><div class="topic"><h4>W02.5 From the Scientific Revolution to the Enlightenment</h4>
+<p>The new science gave Europe a method and a model. Copernicus, Kepler and Galileo overturned the old picture of the
+heavens. <b>Francis Bacon</b> urged experiment and induction, and <b>Descartes</b> urged systematic doubt. <b>Newton's
+Principia (1687)</b> showed that one set of mathematical laws governed falling apples and planets. If nature had laws
+that reason could find, thinkers asked, might society have them too? Religious wars and the absolute monarchy of Louis
+XIV made that question urgent, and the growth of print, salons and coffee houses gave it a public.</p>
+<div class="box concept"><p><b>The Enlightenment.</b> The Enlightenment was the 18th-century European intellectual movement
+that held that reason, not tradition or revelation, should judge institutions and guide human progress. It grew from the
+success of science and from disgust at religious persecution and arbitrary rule. It worked through books, the
+<i>Encyclopédie</i>, salons and correspondence, with the French <i>philosophes</i> at its centre. Kant summed it up in
+1784 with the motto "Dare to know". Its critics, from Romantics onward, said that it undervalued feeling, custom and
+faith.</p></div>
+<div class="tbl"><table>
+<tr><th>Thinker</th><th>Work</th><th>Main idea</th></tr>
+<tr><td><b>John Locke</b></td><td>Two Treatises of Government (1690)</td><td>Natural rights to life, liberty and property; government rests on consent and can be replaced</td></tr>
+<tr><td><b>Montesquieu</b></td><td>The Spirit of the Laws (1748)</td><td>Separation of powers</td></tr>
+<tr><td><b>Voltaire</b></td><td>Candide (1759), Letters on the English (1733)</td><td>Religious toleration, free speech, attack on Church power</td></tr>
+<tr><td><b>Rousseau</b></td><td>The Social Contract (1762)</td><td>Popular sovereignty and the general will</td></tr>
+<tr><td><b>Diderot</b></td><td>Encyclopédie (from 1751)</td><td>Organised useful knowledge for a public</td></tr>
+<tr><td><b>Adam Smith</b></td><td>The Wealth of Nations (1776)</td><td>Free markets and the division of labour, against mercantilism</td></tr>
+</table></div>
+<p>Some rulers, called <b>enlightened despots</b>, took up parts of the programme: Frederick II of Prussia, Catherine II
+of Russia and Joseph II of Austria. They reformed law and administration but kept their own power. The sharper results
+came elsewhere: Locke shaped the American Declaration of Independence (W04), and Rousseau shaped the language of the
+French Revolution (W05). Indian reformers such as Rammohun Roy later read these writers too (I35).</p>
+<div class="box bridge"><p><b>How this unit connects.</b></p>
+<ul>
+<li><b>Before:</b> humanism, printing and the Northern Renaissance (W01).</li>
+<li><b>After:</b> the ideological background of the American and French Revolutions (W04, W05); Smith and the Industrial
+Revolution (W03).</li>
+<li><b>India:</b> Jesuit missions and Goa (I26); Protestant missionaries and reform debates (I35). Compare universal
+priesthood with the Bhakti saints' rejection of priests (I20).</li>
+<li><b>Rajasthan:</b> no direct link; but the Bhakti comparison is useful in answers on Mira or Dadu.</li>
+</ul></div></div></section>
+  <section class="block "><h3><span class="num">4</span>What historians say</h3>
+<p><b>Max Weber</b> linked Calvinism and capitalism, and <b>R.H. Tawney</b> qualified the claim in <i>Religion and the
+Rise of Capitalism</i> (1926). <b>Peter Gay</b> treats the Enlightenment as a confident movement of secular reason, while
+<b>Robert Darnton</b> studies its books, publishers and readers, and <b>Roger Chartier</b> asks whether it caused the French
+Revolution or was invented afterwards as its cause. <b>Horkheimer and Adorno</b> criticise it for treating reason as a tool
+of domination.</p></section>
+  <section class="block facts"><h3><span class="num">5</span>Fact bank</h3><ul><li>Luther set out his 95 Theses at Wittenberg in 1517.</li><li>Johann Tetzel sold the indulgence that provoked Luther; the money was linked to rebuilding St Peter's.</li><li>Luther refused to recant at the Diet of Worms in 1521.</li><li>Universal priesthood means all baptised believers have direct access to God without a priest.</li><li>The word Protestant comes from the protest at the Diet of Speyer in 1529.</li><li>The Peace of Augsburg (1555) set the rule cuius regio, eius religio.</li><li>Calvin taught predestination and made Geneva his centre; he wrote the Institutes.</li><li>The Act of Supremacy (1534) made Henry VIII head of the Church of England.</li><li>The Council of Trent sat from 1545 to 1563.</li><li>Ignatius Loyola founded the Society of Jesus, approved in 1540.</li><li>The Peace of Westphalia (1648) ended the Thirty Years War.</li><li>Newton published the Principia in 1687.</li><li>Montesquieu proposed the separation of powers in The Spirit of the Laws (1748).</li><li>Rousseau wrote The Social Contract (1762), with the idea of the general will.</li><li>Kant gave the Enlightenment the motto "Dare to know" in 1784.</li></ul><p class="label trap-label">Exam traps</p><ul><li>Predestination is Calvin, not Luther. Luther's core idea is justification by faith.</li><li>Luther did not set out to found a new church, and he opposed the rebel peasants of 1524–25.</li><li>The English break of 1534 was political, not doctrinal, in its origin.</li><li>Separation of powers is Montesquieu; the general will is Rousseau; natural rights and consent are Locke.</li><li>The Enlightenment is 18th century; do not date it with the Renaissance.</li></ul></section>
+  <section class="block "><h3><span class="num">6</span>Previous-year questions (RAS)</h3><table class="pyq"><tr><th>Exam</th><th>Question</th><th>Marks</th></tr><tr><td>RAS Mains 2023</td><td>Explain Universal Priesthood.</td><td>2</td></tr><tr><td>RAS Mains 2018</td><td>Define the European Enlightenment of 18th century.</td><td>2</td></tr></table><p class="note">The Enlightenment question is tagged OLD-WH, since the 2026 list names only Renaissance and Reformation; it remains the base of WH2.</p></section>
+  <section class="block "><h3><span class="num">7</span>Mains answer writing</h3><div class="mains">
+      <p class="mq"><span class="tag">2 marks · 15 words · RAS Mains 2023</span> Explain Universal Priesthood.</p>
+      <p class="label">How to frame it</p><ul><li>Who taught it</li><li>Meaning</li></ul>
+      <details><summary>Model answer (15 words)</summary><div class="answer"><p>Luther's doctrine that all baptised believers have direct access to God, without priests as intermediaries.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">2 marks · 15 words · RAS Mains 2018</span> Define the European Enlightenment of 18th century.</p>
+      <p class="label">How to frame it</p><ul><li>Movement</li><li>Core idea</li></ul>
+      <details><summary>Model answer (17 words)</summary><div class="answer"><p>An 18th-century intellectual movement holding that reason, not tradition or revelation, should judge institutions and guide progress.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">10 marks · 100 words</span> Examine the causes and consequences of the Reformation in Europe.</p>
+      <p class="label">How to frame it</p><ul><li>Abuses and earlier critics</li><li>Rulers and German politics</li><li>Printing and the trigger of indulgences</li><li>Consequences: division, Trent, wars</li><li>State power, literacy</li><li>Conclusion</li></ul>
+      <details><summary>Model answer (96 words)</summary><div class="answer"><p>The Reformation arose from Church wealth, simony and clerical privilege, already criticised by Wycliffe, Hus and Erasmus. Princes resented payments to Rome, and fragmented Germany could shelter a rebel. The sale of indulgences provoked Luther's 95 Theses (1517), which printing spread quickly. Western Christianity then split into Lutheran, Calvinist, Anglican and Catholic churches. Rome replied with the Council of Trent and the Jesuits. Religious wars ended at Westphalia (1648) in a system of sovereign states. Rulers gained church lands and control, while vernacular Bibles strengthened literacy and national languages. A religious protest thus reshaped European politics.</p></div></details>
+    </div><div class="mains">
+      <p class="mq"><span class="tag">5 marks · 50 words</span> How did the Enlightenment prepare the ground for the revolutions of the late 18th century?</p>
+      <p class="label">How to frame it</p><ul><li>Reason against authority</li><li>Locke, Montesquieu, Rousseau</li><li>Applied in America and France</li></ul>
+      <details><summary>Model answer (52 words)</summary><div class="answer"><p>The Enlightenment made reason the test of authority. Locke's natural rights and consent, Montesquieu's separation of powers and Rousseau's general will offered alternatives to absolute rule. America's Declaration and Constitution used Locke and Montesquieu; France's Declaration of Rights used Rousseau. Ideas alone did not cause revolution, but they gave grievances a language.</p></div></details>
+    </div></section>
+  <section class="block card"><h3><span class="num">8</span>One-screen revision card</h3><ul><li>Causes: abuses, wealth, princes against Rome, humanism, printing; trigger: indulgences (Tetzel), 1517.</li><li>Luther: faith alone, scripture alone, universal priesthood; Worms 1521; opposed peasants 1525.</li><li>Calvin: predestination, Geneva. England: Act of Supremacy 1534. Augsburg 1555: cuius regio, eius religio.</li><li>Counter-Reformation: Trent 1545–63, Jesuits 1540, Inquisition, Index. Westphalia 1648: sovereign states.</li><li>Enlightenment: reason as the test. Locke (rights), Montesquieu (separation), Voltaire (toleration), Rousseau (general will), Smith (markets).</li></ul></section>
+  <section class="block "><h3><span class="num">9</span>Self-test</h3><ol class="test"><li><p>What provoked the 95 Theses?</p><details><summary>Answer</summary><p>The sale of indulgences in Germany by Tetzel, linked to the rebuilding of St Peter's.</p></details></li><li><p>Define universal priesthood.</p><details><summary>Answer</summary><p>All baptised believers have direct access to God and need no priest as an intermediary.</p></details></li><li><p>What rule did the Peace of Augsburg set?</p><details><summary>Answer</summary><p>Each ruler decides the religion of his territory: cuius regio, eius religio.</p></details></li><li><p>What was the Council of Trent?</p><details><summary>Answer</summary><p>The Catholic council of 1545–63 that reaffirmed doctrine, corrected abuses and ordered seminaries.</p></details></li><li><p>Who wrote The Spirit of the Laws?</p><details><summary>Answer</summary><p>Montesquieu, in 1748.</p></details></li><li><p>Why did Luther survive when Hus had been burnt?</p><details><summary>Answer</summary><p>Printing spread his ideas quickly, and German princes such as Frederick the Wise protected him for their own political reasons.</p></details></li><li><p>How did universal priesthood affect the power of secular rulers?</p><details><summary>Answer</summary><p>By denying that clergy were a separate estate, it let rulers act in church matters.</p></details></li><li><p>Why did the new science lead to the Enlightenment?</p><details><summary>Answer</summary><p>Newton's success suggested that reason could also find laws of society and test its institutions.</p></details></li><li><p>Connect: how does the Weber thesis link W02 and W03?</p><details><summary>Answer</summary><p>Weber argued Calvinist discipline and saving encouraged capitalist habits, which some see as part of the background to industrial growth.</p></details></li><li><p>Compare universal priesthood with Bhakti ideas in India.</p><details><summary>Answer</summary><p>Both rejected priests as necessary intermediaries and valued the believer's direct relationship with God, and both used vernacular languages.</p></details></li></ol></section>
+  <section class="block "><h3><span class="num">10</span>Glossary (हिन्दी ↔ English)</h3><table class="gloss"><tr><th>हिन्दी</th><th>English</th><th>Meaning</th></tr><tr><td lang="hi">धर्मसुधार</td><td>Reformation</td><td>The 16th-century movement that split Western Christianity.</td></tr><tr><td lang="hi">क्षमापत्र</td><td>Indulgence</td><td>A Church grant reducing punishment for sins.</td></tr><tr><td lang="hi">सार्वभौमिक पुरोहितवाद</td><td>Universal priesthood</td><td>All believers have direct access to God.</td></tr><tr><td lang="hi">पूर्वनियति</td><td>Predestination</td><td>God has already chosen who will be saved.</td></tr><tr><td lang="hi">प्रबोधन</td><td>Enlightenment</td><td>The 18th-century movement based on reason.</td></tr><tr><td lang="hi">सामान्य इच्छा</td><td>General will</td><td>Rousseau's idea of the common interest of the people.</td></tr></table></section>
+  <section class="block sources"><h3>Sources used for this unit</h3><ul><li>NCERT Class 11, <i>Themes in World History</i>, chapter on changing cultural traditions — standard text for this rewrite.</li><li>Arjun Dev, <i>The Story of Civilization</i>, Vol. II (old NCERT).</li><li>Max Weber, <i>The Protestant Ethic and the Spirit of Capitalism</i> (1905); R.H. Tawney, <i>Religion and the Rise of Capitalism</i> (1926).</li><li>Peter Gay, <i>The Enlightenment: An Interpretation</i>.</li></ul></section>
+</article>
+</main>
+<script>
+(function(){
+  var b=document.body, s=16;
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function theme(t){b.dataset.theme=t;set('nb-theme',t)}
+  function size(d){s=Math.max(13,Math.min(22,s+d));document.documentElement.style.fontSize=s+'px';set('nb-size',s)}
+  theme(get('nb-theme')||'sepia'); var sv=parseInt(get('nb-size'),10); if(sv){s=sv;size(0)}
+  document.querySelectorAll('[data-theme]').forEach(function(x){x.onclick=function(){theme(x.dataset.theme)}});
+  document.querySelectorAll('[data-size]').forEach(function(x){x.onclick=function(){size(+x.dataset.size)}});
+  document.querySelectorAll('nav a').forEach(function(a){a.onclick=function(){b.classList.remove('nav-open')}});
+})();
+</script>
+</body>
+</html>
