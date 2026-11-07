@@ -184,8 +184,7 @@ one imperial triangle.</p>
 <li><b>After:</b> Colonial rivalry as a cause of World War I (W07); Marxism in Russia (W06); decolonisation (W10).</li>
 <li><b>India:</b> Deindustrialisation and the drain of wealth (I31); the railways and British policy (I30); early
 nationalist economic critique (I36); factory labour and strikes (I40).</li>
-<li><b>Rajasthan:</b> Malwa opium trade through Rajputana, and the decline of local crafts under British paramountcy (R23
-for the changes in administration).</li>
+<li><b>Rajasthan:</b> Malwa opium was carried across Rajputana to the ports, and British paramountcy reshaped the states' economy (R23).</li>
 </ul></div>` },
   ],
 
