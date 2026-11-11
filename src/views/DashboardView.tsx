@@ -49,7 +49,6 @@ import {
 import { calculateWeightedCompletion } from '../services/planning';
 import { CompleteRevisionModal } from '../components/CompleteRevisionModal';
 import { AnalyzeMockModal } from '../components/AnalyzeMockModal';
-import { MentorCoachCorner } from '../components/MentorCoachCorner';
 import { LiveMockFeedbackModal } from '../components/LiveMockFeedbackModal';
 import { EditStudyLogModal } from '../components/EditStudyLogModal';
 import { coachService } from '../services/coachService';
@@ -474,17 +473,6 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
         </div>
       </div>
 
-      {/* AI Mentor Coach Hub & Live Commentary */}
-      <MentorCoachCorner
-        todayFocusedMinutes={todayFocusedMinutes}
-        streak={currentStreak}
-        weeklyActualMinutes={weeklyActualMinutes}
-        weeklyTargetHours={weeklyTargetHours}
-        dueRevisionsCount={dueRevisions.length}
-        recentMocks={mockTests}
-        currentPlanTasks={weeklyTasks}
-        onDispatchUpdated={loadDashboardData}
-      />
 
       {/* Official Form & Exam Status Tracking Hub Banner */}
       <div className="bg-gradient-to-r from-sky-50 via-white to-sky-50/40 border border-sky-200/90 rounded-2xl p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
