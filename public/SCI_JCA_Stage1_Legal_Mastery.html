@@ -143,15 +143,12 @@
       display: grid;
       grid-template-columns: 280px 1fr;
       gap: 28px;
+      transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1), gap 0.3s ease;
     }
 
-    @media (max-width: 1024px) {
-      .main-container {
-        grid-template-columns: 1fr;
-      }
-      .sidebar {
-        display: none;
-      }
+    .main-container.sidebar-collapsed {
+      grid-template-columns: 0px 1fr;
+      gap: 0px;
     }
 
     /* Sticky Sidebar Nav */
@@ -164,6 +161,80 @@
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
       padding: 16px;
+      transition: opacity 0.25s ease, transform 0.25s ease, padding 0.25s ease;
+    }
+
+    .main-container.sidebar-collapsed .sidebar {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-30px);
+      padding: 0;
+      border: none;
+      overflow: hidden;
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .sidebar-title {
+      font-size: 0.825rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sidebar-close-btn {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sidebar-close-btn:hover {
+      background: var(--bg-card);
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+    }
+
+    @media (max-width: 1024px) {
+      .main-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .sidebar {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 280px;
+        height: calc(100vh - 70px);
+        z-index: 99;
+        border-radius: 0;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.4);
+        transform: translateX(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+      }
+      .main-container.sidebar-open-mobile .sidebar {
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .main-container.sidebar-collapsed {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
     }
 
     .nav-group-title {
@@ -524,14 +595,19 @@
       </div>
     </div>
     <div class="header-actions">
+      <button class="action-pill" id="sidebarToggleBtn" onclick="toggleSidebar()" title="Toggle navigation sidebar">◀ Collapse Sidebar</button>
       <button class="action-pill" onclick="window.print()" title="Print or save as PDF">🖨️ PDF Export</button>
       <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">☀️ Light Mode</button>
     </div>
   </header>
 
-  <div class="main-container">
+  <div class="main-container" id="mainContainer">
     <!-- Sticky Table of Contents -->
-    <nav class="sidebar">
+    <nav class="sidebar" id="sidebarNav">
+      <div class="sidebar-header">
+        <span class="sidebar-title">📑 Navigation</span>
+        <button class="sidebar-close-btn" onclick="toggleSidebar()" title="Collapse navigation">◀ Hide</button>
+      </div>
       <div class="nav-group-title">Syllabus Architecture</div>
       <a href="#overview" class="nav-item active">
         <span>🚀 Master Overview</span>
@@ -1059,6 +1135,53 @@
       document.body.classList.add('light-theme');
       document.getElementById('themeToggleBtn').innerHTML = '🌙 Dark Mode';
     }
+
+    // Sidebar Collapsible Management
+    function toggleSidebar() {
+      const container = document.getElementById('mainContainer');
+      const btn = document.getElementById('sidebarToggleBtn');
+      const isMobile = window.innerWidth <= 1024;
+      
+      if (isMobile) {
+        container.classList.toggle('sidebar-open-mobile');
+        const isOpen = container.classList.contains('sidebar-open-mobile');
+        btn.innerHTML = isOpen ? '✕ Close Menu' : '☰ Menu';
+      } else {
+        container.classList.toggle('sidebar-collapsed');
+        const isCollapsed = container.classList.contains('sidebar-collapsed');
+        btn.innerHTML = isCollapsed ? '▶ Expand Sidebar' : '◀ Collapse Sidebar';
+        localStorage.setItem('sci_sidebar_collapsed', isCollapsed ? 'true' : 'false');
+      }
+    }
+
+    // Restore desktop sidebar preference
+    if (window.innerWidth > 1024 && localStorage.getItem('sci_sidebar_collapsed') === 'true') {
+      document.getElementById('mainContainer').classList.add('sidebar-collapsed');
+      document.getElementById('sidebarToggleBtn').innerHTML = '▶ Expand Sidebar';
+    } else if (window.innerWidth <= 1024) {
+      document.getElementById('sidebarToggleBtn').innerHTML = '☰ Menu';
+    }
+
+    window.addEventListener('resize', () => {
+      const btn = document.getElementById('sidebarToggleBtn');
+      const container = document.getElementById('mainContainer');
+      if (window.innerWidth <= 1024) {
+        btn.innerHTML = container.classList.contains('sidebar-open-mobile') ? '✕ Close Menu' : '☰ Menu';
+      } else {
+        const isCollapsed = container.classList.contains('sidebar-collapsed');
+        btn.innerHTML = isCollapsed ? '▶ Expand Sidebar' : '◀ Collapse Sidebar';
+      }
+    });
+
+    // Auto-close mobile drawer on link click
+    document.querySelectorAll('.nav-item').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          document.getElementById('mainContainer').classList.remove('sidebar-open-mobile');
+          document.getElementById('sidebarToggleBtn').innerHTML = '☰ Menu';
+        }
+      });
+    });
 
     // 30 High-Yield Questions Database
     const quizData = [
