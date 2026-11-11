@@ -574,6 +574,108 @@
       border-left: 3px solid var(--accent-blue);
     }
 
+    /* PYQ Section & Solutions */
+    .pyq-filter-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 14px 18px;
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .filter-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      min-width: 90px;
+    }
+
+    .filter-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: 16px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-bright);
+    }
+
+    .filter-btn.active {
+      background: var(--tag-law-bg);
+      border-color: var(--border-accent);
+      color: var(--accent-blue);
+    }
+
+    .solution-btn {
+      background: rgba(56, 139, 253, 0.1);
+      border: 1px dashed var(--accent-blue);
+      color: var(--accent-blue);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      width: fit-content;
+      transition: all 0.2s;
+    }
+
+    .solution-btn:hover {
+      background: rgba(56, 139, 253, 0.2);
+    }
+
+    .solution-box {
+      display: none;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-top: 8px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .solution-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .solution-step {
+      margin-bottom: 8px;
+    }
+
+    .solution-step strong {
+      color: var(--accent-cyan);
+    }
+
     /* Print styles */
     @media print {
       body { background: #fff !important; color: #000 !important; }
@@ -630,6 +732,12 @@
       <a href="#module-3" class="nav-item">
         <span>👔 Mod 3: Officers & Servants Rules</span>
         <span class="badge">10 M</span>
+      </a>
+
+      <div class="nav-group-title">Authentic Papers & Solutions</div>
+      <a href="#pyq-bank" class="nav-item">
+        <span>📂 4 PYQs &amp; Solutions</span>
+        <span class="badge">2017 &amp; 2022</span>
       </a>
 
       <div class="nav-group-title">Active Recall Simulator</div>
@@ -1093,7 +1201,45 @@
       </section>
 
       <!-- =================================================================== -->
-      <!-- INTERACTIVE MCQ EXAM SIMULATOR (30 HIGH-YIELD QUESTIONS)            -->
+      <!-- SECTION: 4 PYQs & COMPREHENSIVE WORKED SOLUTIONS BANK               -->
+      <!-- =================================================================== -->
+      <section class="module-card" id="pyq-bank">
+        <div class="module-header">
+          <div>
+            <h3>📂 4 Previous Year Question Papers (PYQs) &amp; Step-by-Step Solutions Bank</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Authentic questions across 17 Sept 2017, 26 Sept 2022 (Shift 1 &amp; 2), and 27 Sept 2022 covering English, Aptitude, GK &amp; Computers.</p>
+          </div>
+          <span class="module-weight-tag" id="pyqCountTag">24 Authentic PYQs</span>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="pyq-filter-container">
+          <div class="filter-row">
+            <span class="filter-label">Filter Paper:</span>
+            <button class="filter-btn active" id="btnPaperAll" onclick="filterPyqs('paper', 'all', this)">All 4 Papers</button>
+            <button class="filter-btn" onclick="filterPyqs('paper', '17-Sep-2017', this)">17 Sept 2017 (Offline)</button>
+            <button class="filter-btn" onclick="filterPyqs('paper', '26-Sep-2022-S1', this)">26 Sept 2022 (Shift 1)</button>
+            <button class="filter-btn" onclick="filterPyqs('paper', '26-Sep-2022-S2', this)">26 Sept 2022 (Shift 2)</button>
+            <button class="filter-btn" onclick="filterPyqs('paper', '27-Sep-2022', this)">27 Sept 2022 (CBT)</button>
+          </div>
+          <div class="filter-row" style="margin-top: 6px;">
+            <span class="filter-label">Filter Subject:</span>
+            <button class="filter-btn active" id="btnSubAll" onclick="filterPyqs('subject', 'all', this)">All Subjects</button>
+            <button class="filter-btn" onclick="filterPyqs('subject', 'English', this)">General English</button>
+            <button class="filter-btn" onclick="filterPyqs('subject', 'Aptitude', this)">Aptitude &amp; Quant</button>
+            <button class="filter-btn" onclick="filterPyqs('subject', 'GK', this)">GK &amp; Polity</button>
+            <button class="filter-btn" onclick="filterPyqs('subject', 'Computer', this)">Computer Knowledge</button>
+          </div>
+        </div>
+
+        <!-- Dynamic PYQ Cards Container -->
+        <div id="pyqCardsContainer" style="display: flex; flex-direction: column; gap: 16px;">
+          <!-- Dynamically Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- INTERACTIVE MCQ EXAM SIMULATOR (35 HIGH-YIELD QUESTIONS)            -->
       <!-- =================================================================== -->
       <section class="quiz-section" id="quiz-bank">
         <div class="module-header">
@@ -1497,8 +1643,526 @@
       document.getElementById('sidebarScore').innerText = `Score: 0/${quizData.length}`;
     }
 
-    // Initialize
+    // ==========================================
+    // 4 PREVIOUS YEAR PAPERS (PYQ) DATA & ENGINE
+    // ==========================================
+    const pyqData = [
+      // 17 SEPTEMBER 2017 (OFFLINE PAPER)
+      {
+        id: "pyq_2017_1",
+        paper: "17-Sep-2017",
+        paperLabel: "17 Sept 2017 (Offline Paper)",
+        subject: "English",
+        topic: "Grammar: Subject-Verb Proximity",
+        q: "Neither the presiding judge nor the advocates ______ present in the court during the urgent mention hour.",
+        opts: ["was", "were", "has been", "is"],
+        ans: 1,
+        concept: "Rule of Proximity in Correlative Conjunctions (Neither... Nor)",
+        steps: "When subjects are joined by 'Neither... nor' or 'Either... or', the verb must agree in number and person with the SUBJECT CLOSER TO IT. Here, the closer subject is 'the advocates' (plural noun), which strictly requires the plural past tense verb 'were'.",
+        trap: "Candidates often fixate on 'presiding judge' (singular) and choose 'was', which is grammatically incorrect under the proximity rule."
+      },
+      {
+        id: "pyq_2017_2",
+        paper: "17-Sep-2017",
+        paperLabel: "17 Sept 2017 (Offline Paper)",
+        subject: "English",
+        topic: "Legal Maxim: Sub Judice",
+        q: "What is the exact legal definition of the Latin term 'SUB JUDICE'?",
+        opts: [
+          "A decree that has been executed by the bailiff",
+          "A matter currently under judicial consideration and therefore prohibited from public discussion outside court",
+          "An order passed by the judge without giving notice to the opposite party",
+          "A petition that has been dismissed for non-prosecution"
+        ],
+        ans: 1,
+        concept: "Latin Legal Maxims & Contempt Safeguards",
+        steps: "'Sub judice' literally translates to 'under a judge'. In procedural law, it signifies that a particular dispute is actively pending judicial determination. Public commentary, media trials, or political agitation that could prejudge or influence the outcome of a sub judice matter may attract criminal contempt under Section 2(c) of the Contempt of Courts Act, 1971.",
+        trap: "Do not confuse 'Sub Judice' with 'Ex-Parte' (without hearing the other side) or 'Res Judicata' (a matter already judged and conclusively decided)."
+      },
+      {
+        id: "pyq_2017_3",
+        paper: "17-Sep-2017",
+        paperLabel: "17 Sept 2017 (Offline Paper)",
+        subject: "Aptitude",
+        topic: "Logical Reasoning: Syllogisms",
+        q: "Statements:\n1. All judges are lawyers.\n2. Some lawyers are writers.\n\nConclusions:\nI. Some writers are judges.\nII. Some lawyers are judges.",
+        opts: [
+          "Only conclusion I follows",
+          "Only conclusion II follows",
+          "Both conclusions I and II follow",
+          "Neither conclusion I nor II follows"
+        ],
+        ans: 1,
+        concept: "Categorical Syllogism & Venn Deduction",
+        steps: "1. Statement 1 ('All judges are lawyers') converts directly by limitation to 'Some lawyers are judges'. Therefore, Conclusion II is 100% valid.\n2. The circle for 'writers' overlaps with 'lawyers', but has no mandatory intersection with the inner circle of 'judges'. Hence, Conclusion I ('Some writers are judges') is only a possibility, not a definite conclusion. Therefore, only Conclusion II follows.",
+        trap: "Assuming an indirect link between writers and judges without a universal premise connecting them."
+      },
+      {
+        id: "pyq_2017_4",
+        paper: "17-Sep-2017",
+        paperLabel: "17 Sept 2017 (Offline Paper)",
+        subject: "Aptitude",
+        topic: "Quantitative: Time & Work",
+        q: "A court clerk can type a 120-page judgment in 15 hours. Another assistant can type the same judgment in 10 hours. If both work together at their respective speeds, in how many hours will they finish typing the judgment?",
+        opts: ["5 Hours", "6 Hours", "7.5 Hours", "8 Hours"],
+        ans: 1,
+        concept: "Combined Rate Equation: Work = Rate × Time",
+        steps: "• Clerk 1's Rate = 120 pages / 15 hrs = 8 pages/hour.\n• Clerk 2's Rate = 120 pages / 10 hrs = 12 pages/hour.\n• Combined Rate = 8 + 12 = 20 pages/hour.\n• Total Time Required = Total Pages / Combined Rate = 120 / 20 = 6 Hours.\n(Shortcut Formula: (A × B) / (A + B) = (15 × 10) / (15 + 10) = 150 / 25 = 6 Hours).",
+        trap: "Averaging the two times ((15 + 10)/2 = 12.5 hrs), which violates the physical laws of combined work."
+      },
+      {
+        id: "pyq_2017_5",
+        paper: "17-Sep-2017",
+        paperLabel: "17 Sept 2017 (Offline Paper)",
+        subject: "GK",
+        topic: "Indian Polity: Inter-State Case Transfers",
+        q: "Under which Article of the Constitution can the Supreme Court transfer a civil or criminal case pending before one High Court to another High Court?",
+        opts: ["Article 131", "Article 136", "Article 139A(2)", "Article 143"],
+        ans: 2,
+        concept: "Article 139A — Transfer of Certain Cases (Inserted by 42nd Amendment, 1976)",
+        steps: "Article 139A(2) explicitly provides that the Supreme Court may, if it deems expedient for the ends of justice, transfer any case, appeal or other proceeding pending before any High Court to any other High Court. This can be done upon application by the Attorney-General of India or by an interested party.",
+        trap: "Selecting Article 136 (which is discretionary special leave to appeal against decrees, NOT an administrative power to transfer pending suits between High Courts)."
+      },
+      {
+        id: "pyq_2017_6",
+        paper: "17-Sep-2017",
+        paperLabel: "17 Sept 2017 (Offline Paper)",
+        subject: "Computer",
+        topic: "MS Word: Workstation Shortcuts",
+        q: "In Microsoft Word, which standard keyboard shortcut is pressed to open the 'Insert Hyperlink' dialogue box?",
+        opts: ["Ctrl + H", "Ctrl + K", "Ctrl + L", "Alt + K"],
+        ans: 1,
+        concept: "Standard Microsoft Office Workstation Key Mappings",
+        steps: "• 'Ctrl + K' inserts a hyperlink to a web URL, external file, or heading bookmark.\n• 'Ctrl + H' opens the 'Find and Replace' dialogue box.\n• 'Ctrl + L' aligns the selected paragraph to the Left margin.",
+        trap: "Associating 'Hyperlink' with 'Ctrl + H' (which is Find & Replace in Word and History in web browsers)."
+      },
+
+      // 26 SEPTEMBER 2022 (SHIFT 1 CBT)
+      {
+        id: "pyq_2022_s1_1",
+        paper: "26-Sep-2022-S1",
+        paperLabel: "26 Sept 2022 (Shift 1 CBT)",
+        subject: "English",
+        topic: "Vocabulary: Antonyms in Legal Context",
+        q: "Choose the word that is most nearly OPPOSITE in meaning to the word 'REPUDIATE':",
+        opts: ["Renounce", "Disown", "Acknowledge", "Nullify"],
+        ans: 2,
+        concept: "Administrative & Legal Vocabulary Antonyms",
+        steps: "• 'Repudiate' means to formally reject, refuse to accept, or deny validity (e.g. 'repudiate a court contract').\n• Synonyms: Renounce, Disown, Reject, Disavow, Nullify.\n• Antonyms: Acknowledge, Accept, Confirm, Ratify, Validate.\nTherefore, 'Acknowledge' is the direct antonym.",
+        trap: "Selecting 'Renounce' or 'Disown', which are direct synonyms."
+      },
+      {
+        id: "pyq_2022_s1_2",
+        paper: "26-Sep-2022-S1",
+        paperLabel: "26 Sept 2022 (Shift 1 CBT)",
+        subject: "English",
+        topic: "Grammar: Prepositional Collocations",
+        q: "The petition was filed in compliance ______ the mandatory format prescribed under Order VIII of the Supreme Court Rules.",
+        opts: ["to", "with", "for", "against"],
+        ans: 1,
+        concept: "Fixed Prepositional Collocation",
+        steps: "In English grammar and legal drafting, the phrase is strictly fixed as 'in compliance with' (meaning adhering to a statutory rule or order).",
+        trap: "Confusing 'in accordance with' (which uses 'with') and 'in conformity to/with' by incorrectly writing 'in compliance to'."
+      },
+      {
+        id: "pyq_2022_s1_3",
+        paper: "26-Sep-2022-S1",
+        paperLabel: "26 Sept 2022 (Shift 1 CBT)",
+        subject: "Aptitude",
+        topic: "Reasoning: Alphanumeric Coding",
+        q: "If in a certain code language, 'COURT' is coded as 'DPVSU', how will the word 'BENCH' be coded in that same system?",
+        opts: ["ADMBG", "CFODI", "CEODI", "CGPEI"],
+        ans: 1,
+        concept: "Forward Letter-Shift Cipher (+1)",
+        steps: "Examine letter transformations in COURT -> DPVSU:\nC (+1) -> D\nO (+1) -> P\nU (+1) -> V\nR (+1) -> S\nT (+1) -> U\nApply the identical +1 rule to BENCH:\nB (+1) -> C\nE (+1) -> F\nN (+1) -> O\nC (+1) -> D\nH (+1) -> I\nResult: 'CFODI'.",
+        trap: "Miscalculating the shift for 'E' or 'N' due to rushed mental counting."
+      },
+      {
+        id: "pyq_2022_s1_4",
+        paper: "26-Sep-2022-S1",
+        paperLabel: "26 Sept 2022 (Shift 1 CBT)",
+        subject: "Aptitude",
+        topic: "Quantitative: Successive Percentages",
+        q: "If the official filing fee of a Special Leave Petition is increased by 20% and subsequently reduced by 20%, what is the net percentage change in the fee?",
+        opts: ["0% change (remains same)", "4% increase", "4% decrease", "2% decrease"],
+        ans: 2,
+        concept: "Successive Percentage Formula: Net % = a + b + (ab / 100)",
+        steps: "Let initial fee = Rs. 100.\n1. After +20% increase: 100 + 20 = Rs. 120.\n2. After -20% decrease on Rs. 120: 120 - (20% of 120) = 120 - 24 = Rs. 96.\n3. Net change = 96 - 100 = -Rs. 4 (which is a 4% decrease).\nUsing formula: (+20) + (-20) + [(+20)(-20) / 100] = 0 - 400/100 = -4% (4% reduction).",
+        trap: "Thinking the percentage increase and decrease cancel each other out to 0%. They do not, because the decrease is calculated on a larger base!"
+      },
+      {
+        id: "pyq_2022_s1_5",
+        paper: "26-Sep-2022-S1",
+        paperLabel: "26 Sept 2022 (Shift 1 CBT)",
+        subject: "GK",
+        topic: "Polity: Quorum for Presidential References",
+        q: "Under Article 145(3) of the Constitution, what is the minimum quorum of judges required to sit for answering an advisory reference made by the President under Article 143?",
+        opts: ["3 Judges", "5 Judges", "7 Judges", "9 Judges"],
+        ans: 1,
+        concept: "Constitutional Bench Quorum Requirements",
+        steps: "Article 145(3) strictly specifies: 'The minimum number of Judges who are to sit for the purpose of deciding any case involving a substantial question of law as to the interpretation of this Constitution or for the purpose of hearing any reference under article 143 shall be five.'",
+        trap: "Confusing ordinary Division Bench (2 judges) or Full Bench (3 judges) with Constitutional / Advisory Bench (min 5 judges)."
+      },
+      {
+        id: "pyq_2022_s1_6",
+        paper: "26-Sep-2022-S1",
+        paperLabel: "26 Sept 2022 (Shift 1 CBT)",
+        subject: "Computer",
+        topic: "Windows OS: Accessibility Shortcuts",
+        q: "Which key combination is used to turn on and ZOOM IN using the Windows Magnifier accessibility tool?",
+        opts: [
+          "Windows Logo Key + Plus (+)",
+          "Ctrl + Alt + Z",
+          "Windows Logo Key + M",
+          "Alt + Plus (+)"
+        ],
+        ans: 0,
+        concept: "Windows 10/11 Workstation Navigation & Accessibility",
+        steps: "• 'Win + (+)' turns on Magnifier (if closed) and zooms in on the active screen cursor.\n• 'Win + (-)' zooms out.\n• 'Win + Esc' closes and exits Magnifier.\n• 'Win + M' minimizes all open desktop windows.",
+        trap: "Guessing 'Ctrl + Alt + Z' (a Photoshop / browser zoom shortcut) rather than the standard Windows OS key sequence."
+      },
+
+      // 26 SEPTEMBER 2022 (SHIFT 2 CBT)
+      {
+        id: "pyq_2022_s2_1",
+        paper: "26-Sep-2022-S2",
+        paperLabel: "26 Sept 2022 (Shift 2 CBT)",
+        subject: "English",
+        topic: "Grammar: Active to Passive Voice",
+        q: "Change into Passive Voice: 'The Chief Justice will deliver the landmark verdict tomorrow.'",
+        opts: [
+          "The landmark verdict will deliver by the Chief Justice tomorrow.",
+          "The landmark verdict would be delivered by the Chief Justice tomorrow.",
+          "The landmark verdict will be delivered by the Chief Justice tomorrow.",
+          "The landmark verdict is delivered by the Chief Justice tomorrow."
+        ],
+        ans: 2,
+        concept: "Simple Future Passive Voice Transformation (will + be + V3)",
+        steps: "• Active Voice Formula: Subject + will + V1 (base verb) + Object.\n• Passive Voice Formula: Object + will + be + V3 (past participle) + by + Subject.\n• 'will deliver' transforms into 'will be delivered'. (Modal auxiliary 'will' does NOT convert to 'would' in passive voice; 'would' is used only in indirect speech reporting).",
+        trap: "Selecting 'would be delivered', mistakenly applying the Indirect Speech tense-shift rule instead of Passive Voice."
+      },
+      {
+        id: "pyq_2022_s2_2",
+        paper: "26-Sep-2022-S2",
+        paperLabel: "26 Sept 2022 (Shift 2 CBT)",
+        subject: "English",
+        topic: "Legal Maxim: Ratio Decidendi",
+        q: "What does the judicial doctrine of 'RATIO DECIDENDI' signify?",
+        opts: [
+          "Remarks made by a judge casually in passing without binding force",
+          "The underlying legal principle or reason upon which the court's judgment is based",
+          "The operative decree executed by the registrar",
+          "The preliminary argument made during the bail hearing"
+        ],
+        ans: 1,
+        concept: "Doctrine of Precedent & Stare Decisis",
+        steps: "• 'Ratio Decidendi' literally means 'the reason for deciding'. It is the legal principle, rationale, and reasoning upon which the court bases its decision. Under Article 141, it is the Ratio Decidendi of the Supreme Court's judgment that constitutes binding precedent for all subordinate courts.\n• Contrast with 'Obiter Dicta': opinions expressed by a judge in passing that are not essential to the final decision and possess only persuasive (not binding) authority.",
+        trap: "Confusing 'Ratio Decidendi' (binding core rationale) with 'Obiter Dicta' (incidental remarks in passing)."
+      },
+      {
+        id: "pyq_2022_s2_3",
+        paper: "26-Sep-2022-S2",
+        paperLabel: "26 Sept 2022 (Shift 2 CBT)",
+        subject: "Aptitude",
+        topic: "Reasoning: Direction Sense",
+        q: "A process server leaves the registry gate and walks 40 metres North, turns right and walks 30 metres, then turns right again and walks 40 metres. In which direction and at what distance is he now from his starting point?",
+        opts: ["30 metres East", "30 metres West", "40 metres South", "70 metres North-East"],
+        ans: 0,
+        concept: "2D Cartesian Coordinate & Vector Tracking",
+        steps: "1. Start at origin (0, 0).\n2. Walks 40 m North -> Point is (0, +40).\n3. Turns right (East) and walks 30 m -> Point is (+30, +40).\n4. Turns right (South) and walks 40 m -> Point is (+30, 40 - 40) = (+30, 0).\n5. Distance from origin (0, 0) to (+30, 0) = 30 metres due East.",
+        trap: "Adding total distance walked (40 + 30 + 40 = 110 m) instead of displacement from starting point."
+      },
+      {
+        id: "pyq_2022_s2_4",
+        paper: "26-Sep-2022-S2",
+        paperLabel: "26 Sept 2022 (Shift 2 CBT)",
+        subject: "Aptitude",
+        topic: "Reasoning: Number Series",
+        q: "Identify the next number in the progression: 7, 14, 28, 56, 112, ______?",
+        opts: ["168", "214", "224", "256"],
+        ans: 2,
+        concept: "Geometric Progression (Constant Multiplier × 2)",
+        steps: "Pattern is straightforward doubling:\n7 × 2 = 14\n14 × 2 = 28\n28 × 2 = 56\n56 × 2 = 112\n112 × 2 = 224.",
+        trap: "Adding 56 (linear difference trap) instead of multiplying by 2."
+      },
+      {
+        id: "pyq_2022_s2_5",
+        paper: "26-Sep-2022-S2",
+        paperLabel: "26 Sept 2022 (Shift 2 CBT)",
+        subject: "GK",
+        topic: "Judiciary: Tenure & Retirement Ages",
+        q: "A Judge of the Supreme Court of India holds office until attaining the age of:",
+        opts: ["60 Years", "62 Years", "65 Years", "70 Years"],
+        ans: 2,
+        concept: "Article 124(2) of the Constitution of India",
+        steps: "• Under Article 124(2), every Judge of the Supreme Court holds office until he attains the age of 65 years.\n• Note: A High Court Judge retires at 62 years (Article 217(1)).",
+        trap: "Confusing the retirement age of High Court judges (62 years) with Supreme Court judges (65 years)."
+      },
+      {
+        id: "pyq_2022_s2_6",
+        paper: "26-Sep-2022-S2",
+        paperLabel: "26 Sept 2022 (Shift 2 CBT)",
+        subject: "Computer",
+        topic: "Web Protocols: HTTPS Architecture",
+        q: "In secure web browsers, what does the letter 'S' signify in the protocol prefix 'HTTPS'?",
+        opts: ["Standard", "System", "Secure", "Server"],
+        ans: 2,
+        concept: "Networking & Cryptographic Transport Layer (TLS/SSL)",
+        steps: "• 'HTTPS' stands for Hypertext Transfer Protocol Secure.\n• Unlike HTTP (port 80) which transmits plain text, HTTPS (port 443) encrypts communication between the client's browser and the web server using SSL/TLS (Secure Sockets Layer / Transport Layer Security), safeguarding sensitive data such as login credentials and payments.",
+        trap: "Confusing with 'Simple' or 'System'."
+      },
+
+      // 27 SEPTEMBER 2022 (CBT)
+      {
+        id: "pyq_2022_s3_1",
+        paper: "27-Sep-2022",
+        paperLabel: "27 Sept 2022 (CBT)",
+        subject: "English",
+        topic: "Grammar: Inverted Correlative Conjunctions",
+        q: "Identify whether the sentence has an error: 'Scarcely had the registrar entered the chamber when the advocates began arguing their applications.'",
+        opts: [
+          "Error in 'Scarcely had'",
+          "Error in 'when the advocates'",
+          "Error in 'began arguing'",
+          "No error (Sentence is grammatically correct)"
+        ],
+        ans: 3,
+        concept: "Correlative Inversion: Scarcely / Hardly... When",
+        steps: "1. 'Scarcely' and 'Hardly' are negative adverbs that trigger subject-auxiliary inversion when placed at the start of a sentence: 'Scarcely + had + Subject + V3'. Here: 'Scarcely had the registrar entered'. (Correct)\n2. The mandatory correlative conjunction paired with 'Scarcely' is 'WHEN' (or 'before'), NOT 'than'. Here: 'when the advocates began'. (Correct)\n3. Past tense verb 'began' matches past perfect 'had entered'.\nTherefore, the sentence is 100% grammatically correct.",
+        trap: "Thinking 'than' should follow scarcely. 'Than' is used ONLY with 'No sooner' ('No sooner had... THAN')."
+      },
+      {
+        id: "pyq_2022_s3_2",
+        paper: "27-Sep-2022",
+        paperLabel: "27 Sept 2022 (CBT)",
+        subject: "English",
+        topic: "Idioms & Phrasal Meaning",
+        q: "What is the meaning of the English idiom 'TO CAST IN THE SAME MOULD'?",
+        opts: [
+          "To break a legal document into fragments",
+          "To be identical or very similar in character, nature, or appearance",
+          "To act with extreme prejudice without judicial evidence",
+          "To forge an official court seal"
+        ],
+        ans: 1,
+        concept: "English Idiomatic Expressions",
+        steps: "'To cast in the same mould' is derived from metalworking, where molten metal poured into the identical mould produces indistinguishable copies. In prose and language, it means two or more individuals or things share virtually identical traits, habits, or style.",
+        trap: "Interpreting 'mould' literally as rot/fungus or casting blame."
+      },
+      {
+        id: "pyq_2022_s3_3",
+        paper: "27-Sep-2022",
+        paperLabel: "27 Sept 2022 (CBT)",
+        subject: "Aptitude",
+        topic: "Reasoning: Blood Relations",
+        q: "Pointing to an advocate in court, a lady said: 'His mother is the only daughter of my mother.' How is the lady related to the advocate?",
+        opts: ["Sister", "Mother", "Aunt", "Grandmother"],
+        ans: 1,
+        concept: "Single-Path Family Tree Tracing",
+        steps: "1. Break down the speaker's statement: 'my mother' = The lady's mother.\n2. 'the only daughter of my mother' = Since the speaker is female ('a lady') and there is only ONE daughter, the only daughter must be the LADY HERSELF.\n3. The statement becomes: 'His mother is [the lady herself]'.\n4. Therefore, the lady is the advocate's MOTHER.",
+        trap: "Selecting 'Sister' or 'Aunt' by misinterpreting 'only daughter' in the female speaker's context."
+      },
+      {
+        id: "pyq_2022_s3_4",
+        paper: "27-Sep-2022",
+        paperLabel: "27 Sept 2022 (CBT)",
+        subject: "Aptitude",
+        topic: "Quantitative: Ratio & Proportion",
+        q: "The monthly salaries of a Senior Court Assistant and a Junior Court Assistant are in the ratio 7 : 5. If the Senior Court Assistant receives Rs. 14,000 more than the Junior Court Assistant, what is the monthly salary of the Junior Court Assistant?",
+        opts: ["Rs. 28,000", "Rs. 35,000", "Rs. 42,000", "Rs. 49,000"],
+        ans: 1,
+        concept: "Linear Ratio Difference Equation",
+        steps: "• Let the common ratio factor be $x$.\n• Senior Assistant Salary = $7x$.\n• Junior Assistant Salary = $5x$.\n• Difference = $7x - 5x = 2x$.\n• Given: $2x = 14,000 \\implies x = 7,000$.\n• Salary of Junior Court Assistant = $5x = 5 \\times 7,000 = \\text{Rs. } 35,000$.\n(Salary of Senior Assistant = $7 \\times 7,000 = \\text{Rs. } 49,000$).",
+        trap: "Calculating the Senior Assistant's salary (Rs. 49,000) instead of the Junior Assistant's."
+      },
+      {
+        id: "pyq_2022_s3_5",
+        paper: "27-Sep-2022",
+        paperLabel: "27 Sept 2022 (CBT)",
+        subject: "GK",
+        topic: "Judicial History: Supreme Court Inauguration",
+        q: "On which historic date was the Supreme Court of India officially inaugurated in New Delhi?",
+        opts: [
+          "August 15, 1947",
+          "November 26, 1949",
+          "January 26, 1950",
+          "January 28, 1950"
+        ],
+        ans: 3,
+        concept: "Establishment of the Federal Supreme Court of India",
+        steps: "• While the Constitution came into force on January 26, 1950, the Supreme Court of India was officially inaugurated two days later on January 28, 1950, in the Chamber of Princes in the Parliament building.\n• It replaced both the Federal Court of India (established under Govt of India Act 1935) and the Judicial Committee of the Privy Council.",
+        trap: "Selecting January 26, 1950 (Republic Day) or November 26, 1949 (Constitution Adoption Day)."
+      },
+      {
+        id: "pyq_2022_s3_6",
+        paper: "27-Sep-2022",
+        paperLabel: "27 Sept 2022 (CBT)",
+        subject: "Computer",
+        topic: "MS Excel: Absolute Cell References",
+        q: "In Microsoft Excel, what is the specific operational purpose of placing the dollar symbol ($) before the row and column coordinates (e.g. '=$B$5') in a formula?",
+        opts: [
+          "To format the number into US Dollar currency",
+          "To create an Absolute Reference that freezes the cell address when copying the formula",
+          "To indicate that the cell contains string data rather than numeric values",
+          "To encrypt the cell against unauthorized changes"
+        ],
+        ans: 1,
+        concept: "Excel Relative vs Absolute Referencing",
+        steps: "• By default, cell references in Excel are Relative (e.g., B5 shifts to C5 if dragged right, or B6 if dragged down).\n• Adding '$' creates an Absolute Reference: '$B$5' locks BOTH Column B and Row 5. When the formula is copied across rows or columns, the reference remains fixed on cell B5.\n• Pressing 'F4' toggles between relative (B5), absolute ($B$5), and mixed ($B5 or B$5) references.",
+        trap: "Assuming '$' denotes financial currency formatting."
+      }
+    ];
+
+    let currentPaperFilter = 'all';
+    let currentSubjectFilter = 'all';
+    let userPyqAnswers = {};
+
+    function renderPyqs() {
+      const container = document.getElementById('pyqCardsContainer');
+      container.innerHTML = '';
+
+      const filtered = pyqData.filter(item => {
+        const matchPaper = currentPaperFilter === 'all' || item.paper === currentPaperFilter;
+        const matchSubject = currentSubjectFilter === 'all' || item.subject === currentSubjectFilter;
+        return matchPaper && matchSubject;
+      });
+
+      document.getElementById('pyqCountTag').innerText = `${filtered.length} of ${pyqData.length} PYQs`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text-muted); font-size:0.9rem;">No questions match the selected filter combination.</div>';
+        return;
+      }
+
+      filtered.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+        card.id = `card_${item.id}`;
+
+        // Header Meta
+        const meta = document.createElement('div');
+        meta.className = 'quiz-meta';
+        const subBadgeClass = item.subject === 'English' ? 'var(--accent-blue)' : (item.subject === 'Aptitude' ? 'var(--accent-gold)' : (item.subject === 'GK' ? 'var(--accent-purple)' : 'var(--accent-cyan)'));
+        meta.innerHTML = `
+          <div>
+            <span style="background:var(--border-subtle); padding:2px 8px; border-radius:6px; font-weight:700;">${item.paperLabel}</span>
+            <span style="color:${subBadgeClass}; margin-left:8px; font-weight:700;">${item.subject} • ${item.topic}</span>
+          </div>
+          <span>Official CBT / OMR</span>
+        `;
+
+        // Question text
+        const qText = document.createElement('div');
+        qText.className = 'quiz-question';
+        qText.style.whiteSpace = 'pre-line';
+        qText.innerText = `${index + 1}. ${item.q}`;
+
+        // Options
+        const optContainer = document.createElement('div');
+        optContainer.className = 'quiz-options';
+
+        item.opts.forEach((opt, oIndex) => {
+          const btn = document.createElement('button');
+          btn.className = 'quiz-opt-btn';
+          btn.id = `btn_${item.id}_${oIndex}`;
+          btn.innerHTML = `<span style="font-weight:700; color:var(--text-muted);">${String.fromCharCode(65 + oIndex)}.</span> ${opt}`;
+          btn.onclick = () => selectPyqOption(item.id, oIndex);
+          optContainer.appendChild(btn);
+        });
+
+        // Solution Toggle Button
+        const solBtn = document.createElement('button');
+        solBtn.className = 'solution-btn';
+        solBtn.id = `solBtn_${item.id}`;
+        solBtn.innerHTML = `📖 View Step-by-Step Worked Solution &amp; Trap`;
+        solBtn.onclick = () => toggleSolution(item.id);
+
+        // Solution Box
+        const solBox = document.createElement('div');
+        solBox.className = 'solution-box';
+        solBox.id = `solBox_${item.id}`;
+        solBox.innerHTML = `
+          <div class="solution-title">
+            <span>✅ Official Correct Answer: Option (${String.fromCharCode(65 + item.ans)}) — ${item.opts[item.ans]}</span>
+          </div>
+          <div class="solution-step">
+            <strong>💡 Core Law / Principle:</strong> ${item.concept}
+          </div>
+          <div class="solution-step" style="white-space: pre-line;">
+            <strong>📝 Step-by-Step Derivation / Rule:</strong>
+            ${item.steps}
+          </div>
+          <div class="solution-step" style="color:var(--accent-rose); margin-bottom:0;">
+            <strong>⚠️ Examiner's Trap Warning:</strong> ${item.trap}
+          </div>
+        `;
+
+        card.appendChild(meta);
+        card.appendChild(qText);
+        card.appendChild(optContainer);
+        card.appendChild(solBtn);
+        card.appendChild(solBox);
+
+        container.appendChild(card);
+      });
+    }
+
+    function filterPyqs(type, value, btn) {
+      if (type === 'paper') {
+        currentPaperFilter = value;
+        document.querySelectorAll('.filter-row:first-child .filter-btn').forEach(b => b.classList.remove('active'));
+      } else if (type === 'subject') {
+        currentSubjectFilter = value;
+        document.querySelectorAll('.filter-row:nth-child(2) .filter-btn').forEach(b => b.classList.remove('active'));
+      }
+      btn.classList.add('active');
+      renderPyqs();
+    }
+
+    function selectPyqOption(qId, oIndex) {
+      if (userPyqAnswers[qId] !== undefined) return;
+      userPyqAnswers[qId] = oIndex;
+
+      const item = pyqData.find(q => q.id === qId);
+      if (!item) return;
+
+      const isCorrect = oIndex === item.ans;
+
+      for (let i = 0; i < item.opts.length; i++) {
+        const btn = document.getElementById(`btn_${qId}_${i}`);
+        if (!btn) continue;
+        btn.disabled = true;
+        if (i === item.ans) {
+          btn.classList.add('correct');
+        } else if (i === oIndex && !isCorrect) {
+          btn.classList.add('wrong');
+        }
+      }
+
+      // Automatically open the solution drawer when answered!
+      const solBox = document.getElementById(`solBox_${qId}`);
+      const solBtn = document.getElementById(`solBtn_${qId}`);
+      if (solBox) solBox.style.display = 'block';
+      if (solBtn) solBtn.innerHTML = `📕 Hide Worked Solution`;
+    }
+
+    function toggleSolution(qId) {
+      const solBox = document.getElementById(`solBox_${qId}`);
+      const solBtn = document.getElementById(`solBtn_${qId}`);
+      if (!solBox) return;
+
+      if (solBox.style.display === 'block') {
+        solBox.style.display = 'none';
+        solBtn.innerHTML = `📖 View Step-by-Step Worked Solution &amp; Trap`;
+      } else {
+        solBox.style.display = 'block';
+        solBtn.innerHTML = `📕 Hide Worked Solution`;
+      }
+    }
+
+    // Initialize both
     renderQuiz();
+    renderPyqs();
   </script>
 </body>
 </html>
