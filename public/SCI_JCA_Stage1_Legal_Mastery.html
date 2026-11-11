@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCI JCA 2026: The 35% Legal & Procedural Mastery Notebook</title>
+  <style>
+    :root {
+      --bg-body: #0d1117;
+      --bg-surface: #161b22;
+      --bg-card: #1f2937;
+      --bg-card-hover: #263344;
+      --border-subtle: #30363d;
+      --border-accent: #388bfd;
+      
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --text-bright: #ffffff;
+      
+      --accent-blue: #58a6ff;
+      --accent-cyan: #39c5cf;
+      --accent-gold: #f1e05a;
+      --accent-emerald: #3fb950;
+      --accent-rose: #f85149;
+      --accent-purple: #bc8cff;
+      
+      --tag-law-bg: rgba(88, 166, 255, 0.15);
+      --tag-law-border: #58a6ff;
+      --tag-warn-bg: rgba(248, 81, 73, 0.15);
+      --tag-warn-border: #f85149;
+      --tag-success-bg: rgba(63, 185, 80, 0.15);
+      --tag-success-border: #3fb950;
+    }
+
+    .light-theme {
+      --bg-body: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-card: #f1f5f9;
+      --bg-card-hover: #e2e8f0;
+      --border-subtle: #cbd5e1;
+      --border-accent: #0284c7;
+      
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-bright: #020617;
+      
+      --accent-blue: #0284c7;
+      --accent-cyan: #0891b2;
+      --accent-gold: #d97706;
+      --accent-emerald: #16a34a;
+      --accent-rose: #dc2626;
+      --accent-purple: #7c3aed;
+      
+      --tag-law-bg: rgba(2, 132, 199, 0.1);
+      --tag-law-border: #0284c7;
+      --tag-warn-bg: rgba(220, 38, 38, 0.1);
+      --tag-warn-border: #dc2626;
+      --tag-success-bg: rgba(22, 163, 74, 0.1);
+      --tag-success-border: #16a34a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Layout */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .header-branding {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .seal-icon {
+      font-size: 1.6rem;
+    }
+
+    .title-group h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      letter-spacing: -0.01em;
+    }
+
+    .title-group p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theme-toggle-btn, .action-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .theme-toggle-btn:hover, .action-pill:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 28px;
+    }
+
+    @media (max-width: 1024px) {
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        display: none;
+      }
+    }
+
+    /* Sticky Sidebar Nav */
+    .sidebar {
+      position: sticky;
+      top: 85px;
+      height: calc(100vh - 110px);
+      overflow-y: auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .nav-group-title {
+      font-size: 0.725rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin: 16px 0 8px 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      margin-bottom: 4px;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-card);
+      color: var(--text-bright);
+    }
+
+    .nav-item.active {
+      background: var(--tag-law-bg);
+      border: 1px solid var(--border-accent);
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .nav-item .badge {
+      margin-left: auto;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 10px;
+      background: var(--border-subtle);
+      color: var(--text-main);
+    }
+
+    /* Content Area */
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* Hero / Master Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(88, 166, 255, 0.12), rgba(188, 140, 255, 0.08));
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      border-radius: 14px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-banner h2 {
+      font-size: 1.5rem;
+      color: var(--text-bright);
+      font-weight: 700;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-card .num {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent-cyan);
+    }
+
+    .stat-card .desc {
+      font-size: 0.775rem;
+      color: var(--text-muted);
+    }
+
+    /* Module Card */
+    .module-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      scroll-margin-top: 90px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .module-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 16px;
+    }
+
+    .module-header h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .module-weight-tag {
+      background: var(--tag-law-bg);
+      border: 1px solid var(--tag-law-border);
+      color: var(--accent-blue);
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* Pedagogical Concept Card */
+    .concept-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-left: 4px solid var(--accent-blue);
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .concept-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mental-model-pill {
+      background: rgba(57, 197, 207, 0.15);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      font-size: 0.725rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    /* Trap Radar Alert */
+    .trap-alert {
+      background: var(--tag-warn-bg);
+      border: 1px solid var(--tag-warn-border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 12px 0;
+    }
+
+    .trap-alert-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-rose);
+      font-weight: 700;
+      font-size: 0.875rem;
+      margin-bottom: 6px;
+    }
+
+    .trap-alert p {
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    /* Comparison & Data Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 0.875rem;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid var(--border-subtle);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .data-table th {
+      background: var(--bg-card);
+      color: var(--accent-cyan);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .data-table tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .data-table .highlight-num {
+      color: var(--accent-gold);
+      font-weight: 700;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
+
+    /* Legal Article Badges */
+    .art-badge {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background: rgba(188, 140, 255, 0.15);
+      border: 1px solid var(--accent-purple);
+      color: var(--accent-purple);
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.825rem;
+      white-space: nowrap;
+    }
+
+    .rule-badge {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background: rgba(57, 197, 207, 0.15);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.825rem;
+      white-space: nowrap;
+    }
+
+    /* Interactive Quiz Section */
+    .quiz-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+
+    .quiz-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.775rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .quiz-question {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-bright);
+      line-height: 1.45;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .quiz-opt-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .quiz-opt-btn:hover:not(:disabled) {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-blue);
+      transform: translateX(4px);
+    }
+
+    .quiz-opt-btn.correct {
+      background: var(--tag-success-bg) !important;
+      border-color: var(--accent-emerald) !important;
+      color: var(--accent-emerald) !important;
+      font-weight: 600;
+    }
+
+    .quiz-opt-btn.wrong {
+      background: var(--tag-warn-bg) !important;
+      border-color: var(--accent-rose) !important;
+      color: var(--accent-rose) !important;
+    }
+
+    .quiz-feedback {
+      display: none;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.825rem;
+      line-height: 1.4;
+      background: rgba(0, 0, 0, 0.2);
+      border-left: 3px solid var(--accent-blue);
+    }
+
+    /* Print styles */
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      .app-header, .sidebar, .quiz-section, .theme-toggle-btn { display: none !important; }
+      .main-container { display: block !important; padding: 0 !important; }
+      .module-card { box-shadow: none !important; border: 1px solid #ccc !important; page-break-after: always; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-branding">
+      <span class="seal-icon">⚖️</span>
+      <div class="title-group">
+        <h1>Supreme Court of India (JCA 2026)</h1>
+        <p>Stage 1 • Specialized 35% Legal & Procedural Mastery Notebook</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="action-pill" onclick="window.print()" title="Print or save as PDF">🖨️ PDF Export</button>
+      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <!-- Sticky Table of Contents -->
+    <nav class="sidebar">
+      <div class="nav-group-title">Syllabus Architecture</div>
+      <a href="#overview" class="nav-item active">
+        <span>🚀 Master Overview</span>
+        <span class="badge">35 M</span>
+      </a>
+      <a href="#timeline-matrix" class="nav-item">
+        <span>⏱️ Master Timeline Matrix</span>
+        <span class="badge">Must Revise</span>
+      </a>
+      
+      <div class="nav-group-title">The 3 Core Modules</div>
+      <a href="#module-1" class="nav-item">
+        <span>🏛️ Mod 1: Judiciary in Constitution</span>
+        <span class="badge">15 M</span>
+      </a>
+      <a href="#module-2" class="nav-item">
+        <span>📜 Mod 2: SC Rules, 2013</span>
+        <span class="badge">10 M</span>
+      </a>
+      <a href="#module-3" class="nav-item">
+        <span>👔 Mod 3: Officers & Servants Rules</span>
+        <span class="badge">10 M</span>
+      </a>
+
+      <div class="nav-group-title">Active Recall Simulator</div>
+      <a href="#quiz-bank" class="nav-item">
+        <span>🎯 Exam Drill (30 MCQs)</span>
+        <span class="badge" id="sidebarScore">Score: 0/30</span>
+      </a>
+    </nav>
+
+    <!-- Main Content Stream -->
+    <main class="content-area">
+
+      <!-- Hero Header & High-Level Breakdown -->
+      <section class="hero-banner" id="overview">
+        <h2>Targeting 35/35: The Beginner-to-Topper Legal Framework</h2>
+        <p>This interactive notebook is engineered specifically for non-law backgrounds. Court statutes and constitutional articles operate as <strong>algorithmic rules</strong>: logical hierarchies, specific triggers, rigid limitation deadlines, and clear exceptions. Master these, and this 35% becomes your highest-converting, zero-ambiguity score driver.</p>
+        
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="num">15 Marks</span>
+            <span class="desc">Module 1: Constitutional Provisions (Arts 124–147, 214–231, Writs)</span>
+          </div>
+          <div class="stat-card">
+            <span class="num">10 Marks</span>
+            <span class="desc">Module 2: Supreme Court Rules 2013 (Filing, Registrars, Caveats, SLPs)</span>
+          </div>
+          <div class="stat-card">
+            <span class="num">10 Marks</span>
+            <span class="desc">Module 3: SC Officers & Servants Rules 1961 (JCA Cadre, Ethics, Penalties)</span>
+          </div>
+          <div class="stat-card">
+            <span class="num">35 / 100</span>
+            <span class="desc">Decisive Merit Differentiator (Negative Marking: 0.25)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- MASTER TIMELINE & NUMBERS CHEAT SHEET -->
+      <section class="module-card" id="timeline-matrix">
+        <div class="module-header">
+          <div>
+            <h3>⏱️ Master Timeline & Hard Numbers Cheat Sheet</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Memorize these exact days, years, and quorums. Examiners repeatedly test these numerical parameters.</p>
+          </div>
+          <span class="module-weight-tag">Instant Recall</span>
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Legal Trigger / Mechanism</th>
+              <th>Statutory Metric</th>
+              <th>Rule / Article Authority</th>
+              <th>Crucial Operational Nuance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Review Petition</strong> Filing Window</td>
+              <td><span class="highlight-num">30 Days</span></td>
+              <td>Order XLVII, Rule 2</td>
+              <td>From the date of judgment/order; heard by circulation in chambers.</td>
+            </tr>
+            <tr>
+              <td><strong>Caveat</strong> Lifespan / Validity</td>
+              <td><span class="highlight-num">90 Days</span></td>
+              <td>Order XV, Rule 2</td>
+              <td>Expires automatically after 90 days unless renewed.</td>
+            </tr>
+            <tr>
+              <td><strong>Special Leave Petition (Civil/Crim)</strong></td>
+              <td><span class="highlight-num">90 Days</span></td>
+              <td>Order XXI / XXII</td>
+              <td>From date of High Court judgment; reduced to <span class="highlight-num">60 Days</span> if HC certificate refused.</td>
+            </tr>
+            <tr>
+              <td><strong>Curing Defects</strong> Extension by Registrar</td>
+              <td><span class="highlight-num">Up to 28 Days</span></td>
+              <td>Order V & VIII</td>
+              <td>Registrar Court can grant time to remove office objections.</td>
+            </tr>
+            <tr>
+              <td><strong>Constitutional Bench Quorum</strong></td>
+              <td><span class="highlight-num">Min. 5 Judges</span></td>
+              <td>Article 145(3)</td>
+              <td>Mandatory for constitutional interpretation or Art 143 references.</td>
+            </tr>
+            <tr>
+              <td><strong>Supreme Court Judge Retirement Age</strong></td>
+              <td><span class="highlight-num">65 Years</span></td>
+              <td>Article 124(2)</td>
+              <td>High Court Judge retires at <span class="highlight-num">62 Years</span> (Art 217).</td>
+            </tr>
+            <tr>
+              <td><strong>Sanctioned Strength of Supreme Court</strong></td>
+              <td><span class="highlight-num">34 Judges</span></td>
+              <td>SC (Number of Judges) Act</td>
+              <td>1 Chief Justice of India + 33 Puissne Judges.</td>
+            </tr>
+            <tr>
+              <td><strong>JCA Probation Period</strong></td>
+              <td><span class="highlight-num">2 Years</span></td>
+              <td>1961 Rules, Rule 8</td>
+              <td>Extendable at the discretion of the Appointing Authority (CJI).</td>
+            </tr>
+            <tr>
+              <td><strong>English Typing Speed Standard</strong></td>
+              <td><span class="highlight-num">35 w.p.m.</span></td>
+              <td>Stage 2 Skill Mandate</td>
+              <td>10-minute computer test; max allowable errors: 3%.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- MODULE 1: CONSTITUTIONAL PROVISIONS RELATING TO JUDICIARY (15 MARKS) -->
+      <!-- =================================================================== -->
+      <section class="module-card" id="module-1">
+        <div class="module-header">
+          <div>
+            <h3>🏛️ Module 1: Judiciary in the Constitution of India</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Articles 124–147 (Supreme Court), Articles 214–231 (High Courts), and the 5 Prerogative Writs.</p>
+          </div>
+          <span class="module-weight-tag">15 Marks Weightage</span>
+        </div>
+
+        <!-- Part A: Supreme Court Composition & Appointment -->
+        <div class="concept-box">
+          <div class="concept-title">
+            <span>Part 1: Composition, Appointment & Impeachment</span>
+            <span class="mental-model-pill">Articles 124 – 130</span>
+          </div>
+          <p>• <span class="art-badge">Article 124</span>: <strong>Establishment of the Supreme Court</strong>. Originally had 1 CJI + 7 Judges (Total 8 in 1950). Parliament has the exclusive power to alter court strength via ordinary legislation (current strength: <strong>34 Judges</strong> including the CJI).</p>
+          <p>• <strong>Eligibility Criteria for SC Judge:</strong> Must be a Citizen of India AND satisfy <em>any one</em> of these three conditions:</p>
+          <ul style="margin-left: 20px; font-size: 0.875rem;">
+            <li>Has been a Judge of a High Court (or successive HCs) for at least <strong>5 years</strong>; OR</li>
+            <li>Has been an Advocate of a High Court for at least <strong>10 years</strong>; OR</li>
+            <li>Is, in the opinion of the President, a <strong>distinguished jurist</strong> (<em>Note: A distinguished jurist can be appointed to the Supreme Court, but NOT to a High Court!</em>).</li>
+          </ul>
+          <p>• <strong>Tenure & Resignation:</strong> Holds office until age <strong>65 years</strong>. Resignation must be addressed in writing to the <strong>President of India</strong>.</p>
+          <p>• <strong>Removal Process (Art 124(4) & Judges Inquiry Act 1968):</strong> Can ONLY be removed on two grounds: <em>(1) Proven misbehaviour</em> or <em>(2) Incapacity</em>. Motion requires <strong>100 Lok Sabha</strong> or <strong>50 Rajya Sabha</strong> signatures. Requires an address by each House passed by a <strong>Special Majority</strong> (majority of total membership + at least 2/3 of members present and voting).</p>
+          <p>• <span class="art-badge">Article 126</span>: <strong>Acting CJI</strong> is appointed by the <strong>President</strong> when the office of CJI is vacant or CJI is unable to perform duties.</p>
+          <p>• <span class="art-badge">Article 127</span>: <strong>Ad-hoc Judges</strong>: Appointed by the <strong>Chief Justice of India</strong> (NOT the President!), with prior consent of the President and consultation with the Chief Justice of the concerned High Court, when there is lack of quorum.</p>
+          <p>• <span class="art-badge">Article 129</span>: <strong>Court of Record</strong>: Its judgments have evidentiary value and cannot be questioned in lower courts. It possesses the inherent power to punish for <strong>contempt of itself</strong>.</p>
+          <p>• <span class="art-badge">Article 130</span>: <strong>Seat of the Supreme Court</strong>: Delhi. The CJI has power to appoint another place or places with the prior approval of the President.</p>
+        </div>
+
+        <div class="trap-alert">
+          <div class="trap-alert-header">⚠️ Examiner's Trap #1: Who Appoints Ad-hoc Judges?</div>
+          <p>Candidates instinctively pick "President of India". <strong>Wrong!</strong> Under <span class="art-badge">Article 127</span>, Ad-hoc judges are appointed by the <strong>Chief Justice of India</strong> with the previous consent of the President.</p>
+        </div>
+
+        <!-- Part B: The 7 Jurisdictions of the Supreme Court -->
+        <div class="concept-box" style="border-left-color: var(--accent-purple);">
+          <div class="concept-title" style="color: var(--accent-purple);">
+            <span>Part 2: The Jurisdictions of the Supreme Court</span>
+            <span class="mental-model-pill">Articles 131 – 143</span>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Jurisdiction</th>
+                <th>Article</th>
+                <th>Scope & Trigger</th>
+                <th>Key Exceptions / Exclusions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Original Federal Jurisdiction</strong></td>
+                <td><span class="art-badge">Art 131</span></td>
+                <td>Exclusive disputes between: (a) Centre vs One or more States; (b) Centre + State(s) vs other State(s); (c) State vs State.</td>
+                <td><strong>Excludes:</strong> Pre-constitution treaties, inter-state water disputes (Art 262), Finance Commission references, private citizen suits.</td>
+              </tr>
+              <tr>
+                <td><strong>Appellate Jurisdiction</strong></td>
+                <td><span class="art-badge">Arts 132–134</span></td>
+                <td>Appeals from High Courts on Constitutional (132), Civil (133), and Criminal (134) matters on certificate under <span class="art-badge">Art 134A</span>.</td>
+                <td>Criminal appeal lies as of right if HC reversed acquittal and sentenced accused to death.</td>
+              </tr>
+              <tr>
+                <td><strong>Special Leave Petition (SLP)</strong></td>
+                <td><span class="art-badge">Art 136</span></td>
+                <td>Extraordinary, discretionary power to grant leave to appeal against ANY judgment, decree, sentence or order from ANY court or tribunal.</td>
+                <td><strong>Absolute Bar:</strong> Cannot hear appeals against judgments passed by <strong>Military Tribunals / Courts Martial</strong> (<span class="art-badge">Art 136(2)</span>).</td>
+              </tr>
+              <tr>
+                <td><strong>Review Jurisdiction</strong></td>
+                <td><span class="art-badge">Art 137</span></td>
+                <td>Power to review its own judgments/orders. Must be filed within <strong>30 days</strong>.</td>
+                <td>Heard by circulation in chambers by the same bench.</td>
+              </tr>
+              <tr>
+                <td><strong>Curative Petition</strong></td>
+                <td>Inherent / <span class="art-badge">Art 142</span></td>
+                <td>Final judicial remedy after review dismissal. Evolved in <em>Rupa Ashok Hurra v. Ashok Hurra (2002)</em> to cure gross miscarriage of justice.</td>
+                <td>Must be certified by a Senior Advocate; circulated to 3 senior-most judges + original bench.</td>
+              </tr>
+              <tr>
+                <td><strong>Complete Justice</strong></td>
+                <td><span class="art-badge">Art 142</span></td>
+                <td>Plenary power to pass any decree or order necessary for doing "complete justice" in any cause or matter.</td>
+                <td>Cannot be restricted by ordinary statutory provisions.</td>
+              </tr>
+              <tr>
+                <td><strong>Advisory Jurisdiction</strong></td>
+                <td><span class="art-badge">Art 143</span></td>
+                <td>President seeks opinion of SC. <strong>Clause 1:</strong> Public question (SC may refuse). <strong>Clause 2:</strong> Pre-constitution disputes (SC <em>bound</em> to answer).</td>
+                <td>SC opinion is <strong>advisory only</strong> (not binding on President, not law under Art 141).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Part C: Writs Comparison (Art 32 vs Art 226) -->
+        <div class="concept-box" style="border-left-color: var(--accent-emerald);">
+          <div class="concept-title" style="color: var(--accent-emerald);">
+            <span>Part 3: The 5 Prerogative Writs (Art 32 vs Art 226)</span>
+            <span class="mental-model-pill">High-Frequency Question Area</span>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Comparison Parameter</th>
+                <th>Article 32 (Supreme Court)</th>
+                <th>Article 226 (High Court)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Nature of Right</strong></td>
+                <td>Itself a <strong>Fundamental Right</strong> (Part III). SC cannot refuse remedy. Called the <em>"Heart and Soul of the Constitution"</em> by Dr. B.R. Ambedkar.</td>
+                <td>A <strong>Constitutional Discretionary Remedy</strong>. HC may refuse if an alternative efficacious remedy exists.</td>
+              </tr>
+              <tr>
+                <td><strong>Scope of Enforcement</strong></td>
+                <td><strong>Narrower:</strong> Can be issued ONLY for enforcement of Fundamental Rights.</td>
+                <td><strong>Wider:</strong> Can be issued for Fundamental Rights AND for <em>"any other legal purpose"</em>.</td>
+              </tr>
+              <tr>
+                <td><strong>Territorial Reach</strong></td>
+                <td>Throughout the entire territory of India.</td>
+                <td>Within its state territory (or where cause of action arises).</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 10px; font-size: 0.875rem;">
+            <strong>The 5 Writs Decoded in 1 Line:</strong>
+            <p>1. <strong>Habeas Corpus</strong> ("To have the body"): Remedy against unlawful detention. Can be issued against both State and private individuals.</p>
+            <p>2. <strong>Mandamus</strong> ("We command"): Directs a public official, tribunal, or government to perform a mandatory statutory duty. Cannot be issued against the President or Governors.</p>
+            <p>3. <strong>Prohibition</strong> ("To forbid"): Issued to an inferior court or quasi-judicial body to prevent it from exceeding its jurisdiction (preventive in nature).</p>
+            <p>4. <strong>Certiorari</strong> ("To be certified / to quash"): Issued to an inferior court or tribunal to quash an order already passed without jurisdiction or in violation of natural justice (curative & corrective).</p>
+            <p>5. <strong>Quo-Warranto</strong> ("By what authority"): Inquires into the legality of a person holding a substantive public office. Any citizen can apply (relaxed *locus standi*).</p>
+          </div>
+        </div>
+
+        <div class="trap-alert">
+          <div class="trap-alert-header">⚠️ Examiner's Trap #2: Which Court Has Wider Writ Jurisdiction?</div>
+          <p><strong>The High Court (<span class="art-badge">Art 226</span>) has a WIDER writ jurisdiction than the Supreme Court (<span class="art-badge">Art 32</span>)</strong> because the HC can issue writs for ordinary legal rights as well as fundamental rights, whereas the SC can ONLY issue writs for fundamental rights.</p>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- MODULE 2: SUPREME COURT RULES, 2013 (10 MARKS)                      -->
+      <!-- =================================================================== -->
+      <section class="module-card" id="module-2">
+        <div class="module-header">
+          <div>
+            <h3>📜 Module 2: Supreme Court Rules, 2013</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Framed under Article 145 of the Constitution. Regulates practice, Registry procedures, filing, and listing.</p>
+          </div>
+          <span class="module-weight-tag">10 Marks Weightage</span>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-title">
+            <span>Part 1: The Registry & Powers of the Registrar</span>
+            <span class="mental-model-pill">Orders V & VI</span>
+          </div>
+          <p>The Registry is the administrative backbone of the Court. As a Junior Court Assistant, your daily duties tie directly into Registry workflows:</p>
+          <ul style="margin-left: 20px; font-size: 0.875rem; display: flex; flex-direction: column; gap: 6px;">
+            <li><strong>Registrar's Delegated Quasi-Judicial Powers (Order V):</strong> The Registrar sits in open court ("Registrar Court") to dispose of procedural matters:
+              <br>• Scrutinizing defective petitions and issuing defect notices.
+              <br>• Power to grant extension of time to cure defects up to a maximum of <strong>28 days</strong>.
+              <br>• Ordering substituted service (publication in newspapers) when personal notice fails.
+              <br>• Summoning records from lower courts and tribunals.
+            </li>
+            <li><strong>Matters Reserved for Judge in Chambers (Order VI):</strong> If a procedural matter exceeds the Registrar's power, it is listed before a single Judge in Chambers:
+              <br>• Applications for leave to appeal as an indigent person (in forma pauperis).
+              <br>• Application for exemption from surrendering (in criminal appeals).
+              <br>• Substitution of legal representatives in pending appeals.
+            </li>
+          </ul>
+        </div>
+
+        <div class="concept-box" style="border-left-color: var(--accent-gold);">
+          <div class="concept-title" style="color: var(--accent-gold);">
+            <span>Part 2: Crucial Filing Rules & Timelines</span>
+            <span class="mental-model-pill">Orders XV, XXI, XXII, XLVII</span>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Procedure / Instrument</th>
+                <th>Applicable Order</th>
+                <th>Limitation / Time Window</th>
+                <th>Critical Exam Rules</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Caveat</strong></td>
+                <td><span class="rule-badge">Order XV</span></td>
+                <td><span class="highlight-num">90 Days</span> from lodging</td>
+                <td>Lodged to prevent ex-parte interim orders. Caveator must serve copy on the prospective petitioner.</td>
+              </tr>
+              <tr>
+                <td><strong>Special Leave Petition (Civil)</strong></td>
+                <td><span class="rule-badge">Order XXI</span></td>
+                <td><span class="highlight-num">90 Days</span> (or 60 Days)</td>
+                <td>90 days from HC decree; 60 days if HC refuses certificate of fitness.</td>
+              </tr>
+              <tr>
+                <td><strong>Review Petition</strong></td>
+                <td><span class="rule-badge">Order XLVII</span></td>
+                <td><span class="highlight-num">30 Days</span></td>
+                <td>Filed within 30 days of judgment. <strong>Heard by circulation in chambers without oral arguments</strong>. Accompanied by certificate of Advocate-on-Record.</td>
+              </tr>
+              <tr>
+                <td><strong>Advocate-on-Record (AoR)</strong></td>
+                <td><span class="rule-badge">Order IV</span></td>
+                <td>Mandatory Representation</td>
+                <td>Only an AoR can file appearance or act for a party. Senior Advocates CANNOT file vakalatnama or appear without an AoR.</td>
+              </tr>
+              <tr>
+                <td><strong>Defect Curing Notice</strong></td>
+                <td><span class="rule-badge">Order VIII</span></td>
+                <td><span class="highlight-num">28 Days</span></td>
+                <td>Petitioner given 28 days to cure Registry objections before petition is treated as defective.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="trap-alert">
+          <div class="trap-alert-header">⚠️ Examiner's Trap #3: Review Petition Oral Hearings</div>
+          <p>Exam question: <em>"In the Supreme Court, a Review Petition is normally heard in open court by oral arguments. True or False?"</em>
+          <br><strong>FALSE!</strong> Under <span class="rule-badge">Order XLVII Rule 3</span>, Review Petitions are disposed of <strong>by circulation in Judges' Chambers without oral arguments</strong>, unless the Court specially directs an oral hearing.</p>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- MODULE 3: SC OFFICERS & SERVANTS RULES, 1961 (10 MARKS)             -->
+      <!-- =================================================================== -->
+      <section class="module-card" id="module-3">
+        <div class="module-header">
+          <div>
+            <h3>👔 Module 3: Supreme Court Officers & Servants Rules, 1961</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Framed under Article 146(2) of the Constitution by the Chief Justice of India. Governs the JCA service cadre.</p>
+          </div>
+          <span class="module-weight-tag">10 Marks Weightage</span>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-title">
+            <span>Part 1: Constitutional Source & Independence</span>
+            <span class="mental-model-pill">Article 146 Anchor</span>
+          </div>
+          <p>• <strong>Sole Authority of CJI (<span class="art-badge">Art 146(1)</span>):</strong> Appointments of officers and servants of the Supreme Court are made exclusively by the <strong>Chief Justice of India</strong> or such other Judge or officer directed by him.</p>
+          <p>• <strong>Complete Independence from UPSC:</strong> The Union Public Service Commission (UPSC) has <strong>no consultation role</strong> in recruiting Supreme Court staff, unless the President by rule requires it (which is not mandated).</p>
+          <p>• <strong>Cadre Classification:</strong> Posts are divided into Class I (Gazetted), Class II (Gazetted / Non-Gazetted), Class III, and Class IV. The post of <strong>Junior Court Assistant (JCA)</strong> is a <strong>Class II / Group B Non-Gazetted post</strong>.</p>
+          <p>• <strong>Probation:</strong> Direct recruits to the post of JCA serve a mandatory probation period of <strong>2 Years</strong>, extendable by the Appointing Authority.</p>
+        </div>
+
+        <div class="concept-box" style="border-left-color: var(--accent-rose);">
+          <div class="concept-title" style="color: var(--accent-rose);">
+            <span>Part 2: Conduct, Confidentiality & Disciplinary Actions</span>
+            <span class="mental-model-pill">The Rules Matrix</span>
+          </div>
+
+          <p>• <strong>Absolute Duty of Confidentiality:</strong> No officer or servant of the Court shall, except in accordance with general or special orders of the CJI, communicate directly or indirectly any official document, draft judgment, or roster information to any unauthorized person.</p>
+          <p>• <strong>Political Neutrality:</strong> Court servants are strictly barred from membership in, or association with, any political movement, political party, or standing for political elections.</p>
+          <p>• <strong>Classification of Penalties:</strong> A high-yield MCQ trap tests the exact statutory difference between <strong>Minor Penalties</strong> and <strong>Major Penalties</strong>:</p>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Penalty Category</th>
+                <th>Statutory Penalties Included</th>
+                <th>Exam Trap Distinction</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color: var(--accent-gold);">Minor Penalties</strong></td>
+                <td>
+                  1. <strong>Censure</strong> (formal written reprimand)<br>
+                  2. <strong>Withholding of promotion</strong> for a specified period<br>
+                  3. <strong>Recovery from pay</strong> of whole or part of pecuniary loss caused to Court<br>
+                  4. <strong>Withholding of increments of pay WITHOUT cumulative effect</strong>
+                </td>
+                <td>Withholding increments <em>without</em> cumulative effect is a <strong>Minor</strong> penalty.</td>
+              </tr>
+              <tr>
+                <td><strong style="color: var(--accent-rose);">Major Penalties</strong></td>
+                <td>
+                  1. <strong>Withholding of increments of pay WITH cumulative effect</strong><br>
+                  2. <strong>Reduction to a lower post, grade, or lower stage in time-scale</strong><br>
+                  3. <strong>Compulsory Retirement</strong><br>
+                  4. <strong>Removal from Service</strong> (does <em>not</em> disqualify from future govt employment)<br>
+                  5. <strong>Dismissal from Service</strong> (ordinarily <em>disqualifies</em> from future govt employment)
+                </td>
+                <td>
+                  <strong>Removal vs Dismissal:</strong> Dismissal carries the bar for future government jobs; Removal does NOT disqualify.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 10px; font-size: 0.875rem;">
+            <p>• <strong>Appellate Authority:</strong> Any appeal against an order imposing a penalty lies directly to the <strong>Chief Justice of India</strong>, whose decision is final and conclusive.</p>
+          </div>
+        </div>
+
+        <div class="trap-alert">
+          <div class="trap-alert-header">⚠️ Examiner's Trap #4: Removal vs Dismissal</div>
+          <p>Exam question: <em>"Which of the following penalties disqualifies a person from future employment under the Government?"</em>
+          <br>Answer: <strong>Dismissal from service</strong> (Removal from service does NOT disqualify from future government employment).</p>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- INTERACTIVE MCQ EXAM SIMULATOR (30 HIGH-YIELD QUESTIONS)            -->
+      <!-- =================================================================== -->
+      <section class="quiz-section" id="quiz-bank">
+        <div class="module-header">
+          <div>
+            <h3>🎯 30 High-Yield Active-Recall Drill (All 3 Modules)</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Click an option to test your retention instantly. Instant grading with detailed statutory rationale.</p>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <span class="module-weight-tag" id="scoreTracker">Score: 0 / 30</span>
+            <button class="action-pill" onclick="resetQuiz()">🔄 Reset</button>
+          </div>
+        </div>
+
+        <div id="quizContainer" style="display: flex; flex-direction: column; gap: 16px;">
+          <!-- Dynamically Rendered via JS -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // Theme Management
+    function toggleTheme() {
+      const body = document.body;
+      const btn = document.getElementById('themeToggleBtn');
+      if (body.classList.contains('light-theme')) {
+        body.classList.remove('light-theme');
+        btn.innerHTML = '☀️ Light Mode';
+        localStorage.setItem('sci_theme', 'dark');
+      } else {
+        body.classList.add('light-theme');
+        btn.innerHTML = '🌙 Dark Mode';
+        localStorage.setItem('sci_theme', 'light');
+      }
+    }
+
+    if (localStorage.getItem('sci_theme') === 'light') {
+      document.body.classList.add('light-theme');
+      document.getElementById('themeToggleBtn').innerHTML = '🌙 Dark Mode';
+    }
+
+    // 30 High-Yield Questions Database
+    const quizData = [
+      // MODULE 1 (Q1 - Q12)
+      {
+        q: "1. Who among the following has the constitutional power to appoint an 'Ad-hoc Judge' of the Supreme Court under Article 127?",
+        opts: ["The President of India", "The Chief Justice of India with previous consent of the President", "The Union Minister of Law & Justice", "The Collegium of five senior-most judges"],
+        ans: 1,
+        exp: "Article 127 states that an Ad-hoc Judge is appointed by the Chief Justice of India with the previous consent of the President and consultation with the CJ of the concerned High Court."
+      },
+      {
+        q: "2. Under Article 136 of the Constitution, against which of the following can the Supreme Court NOT grant Special Leave to Appeal?",
+        opts: ["An order passed by the National Green Tribunal", "A decree passed by a High Court Division Bench", "A sentence passed by a Court Martial constituted under the Army Act", "An award passed by an Industrial Tribunal"],
+        ans: 2,
+        exp: "Article 136(2) explicitly bars the Supreme Court from granting Special Leave against any judgment, determination, sentence or order passed by any court or tribunal constituted by or under any law relating to the Armed Forces."
+      },
+      {
+        q: "3. The concept of 'Curative Petition' was evolved by the Supreme Court of India in which landmark judgment?",
+        opts: ["Kesavananda Bharati v. State of Kerala (1973)", "Maneka Gandhi v. Union of India (1978)", "Rupa Ashok Hurra v. Ashok Hurra (2002)", "Supreme Court Advocates-on-Record Association v. UOI (1993)"],
+        ans: 2,
+        exp: "A 5-judge Constitution Bench in Rupa Ashok Hurra v. Ashok Hurra (2002) evolved the mechanism of Curative Petition under inherent powers and Article 142 to prevent abuse of its process and cure gross miscarriage of justice."
+      },
+      {
+        q: "4. What is the minimum number of judges required to sit on a Constitution Bench for deciding a case involving a substantial question of constitutional law under Article 145(3)?",
+        opts: ["3 Judges", "5 Judges", "7 Judges", "9 Judges"],
+        ans: 1,
+        exp: "Article 145(3) mandates that the minimum number of Judges who are to sit for the purpose of deciding any case involving a substantial question of law as to the interpretation of this Constitution or for Art 143 references shall be five."
+      },
+      {
+        q: "5. Which article of the Constitution provides that the law declared by the Supreme Court shall be binding on all courts within the territory of India?",
+        opts: ["Article 141", "Article 142", "Article 144", "Article 139"],
+        ans: 0,
+        exp: "Article 141 embodies the doctrine of precedent (stare decisis), providing that law declared by the SC is binding on all courts in India (though the SC itself is not bound by its earlier decisions)."
+      },
+      {
+        q: "6. Under Article 143(2) of the Constitution, if the President refers a dispute arising out of a pre-constitution treaty or agreement, the Supreme Court:",
+        opts: ["Has the discretion to decline giving an opinion", "Is bound to report its opinion to the President", "Must forward the reference to the Law Commission", "Can only adjudicate if both parties submit consent"],
+        ans: 1,
+        exp: "Under Article 143(1) (public question of law/fact), the SC 'may' give opinion or refuse. But under Article 143(2) (pre-constitution treaty/covenant), the SC 'shall' report its opinion (bound to answer)."
+      },
+      {
+        q: "7. Which of the following writs can be issued against private individuals as well as public authorities?",
+        opts: ["Mandamus", "Certiorari", "Habeas Corpus", "Quo-Warranto"],
+        ans: 2,
+        exp: "Habeas Corpus can be issued against both public officials and private entities/individuals who unlawfully detain or confine a person."
+      },
+      {
+        q: "8. A person is qualified for appointment as a Judge of the Supreme Court if he/she has been an advocate of a High Court for at least:",
+        opts: ["5 Years", "7 Years", "10 Years", "15 Years"],
+        ans: 2,
+        exp: "Under Article 124(3)(b), the candidate must have been for at least 10 years an advocate of a High Court or two or more such courts in succession."
+      },
+      {
+        q: "9. Original jurisdiction under Article 131 excludes disputes concerning which of the following?",
+        opts: ["Government of India vs State of Rajasthan", "State of Punjab vs State of Haryana", "Inter-State River Water Disputes under Article 262", "Both State of Bihar and State of UP vs Government of India"],
+        ans: 2,
+        exp: "Article 262 explicitly empowers Parliament to exclude Supreme Court jurisdiction under Article 131 for disputes relating to the waters of inter-state rivers or river valleys."
+      },
+      {
+        q: "10. Which writ is specifically issued to quash an order passed by a lower court or quasi-judicial tribunal that acted without jurisdiction?",
+        opts: ["Prohibition", "Certiorari", "Mandamus", "Quo-Warranto"],
+        ans: 1,
+        exp: "Certiorari is curative and corrective—it quashes an illegal order already passed by an inferior body. Prohibition is purely preventive, issued while proceedings are still pending."
+      },
+      {
+        q: "11. Under Article 124(4), an address for the removal of a Supreme Court Judge must be supported by:",
+        opts: ["Simple majority of members present and voting in both Houses", "Special majority: Majority of total membership AND at least 2/3 of members present and voting in each House", "3/4th majority of the total membership of Lok Sabha", "Absolute majority of both Houses sitting in joint session"],
+        ans: 1,
+        exp: "Article 124(4) mandates a special majority: a majority of the total membership of that House AND by a majority of not less than two-thirds of the members of that House present and voting."
+      },
+      {
+        q: "12. The writ jurisdiction of a High Court under Article 226 is considered wider than that of the Supreme Court under Article 32 because:",
+        opts: ["High Court can punish the Supreme Court", "High Court can issue writs for fundamental rights as well as ordinary legal rights", "High Court can issue writs to foreign nations", "High Court cannot refuse a writ petition under any circumstance"],
+        ans: 1,
+        exp: "The Supreme Court under Article 32 can ONLY issue writs to enforce Part III Fundamental Rights. The High Court under Article 226 can issue writs for Fundamental Rights AND 'for any other purpose' (legal rights)."
+      },
+
+      // MODULE 2 (Q13 - Q21)
+      {
+        q: "13. Under Order XLVII of the Supreme Court Rules 2013, a Review Petition must be filed within how many days from the date of decree or order?",
+        opts: ["15 Days", "30 Days", "60 Days", "90 Days"],
+        ans: 1,
+        exp: "Order XLVII Rule 2 prescribes that an application for review shall be filed within 30 days from the date of the judgment or order sought to be reviewed."
+      },
+      {
+        q: "14. A Caveat lodged under Order XV of the Supreme Court Rules 2013 remains in force for how many days from the date of lodging?",
+        opts: ["30 Days", "60 Days", "90 Days", "120 Days"],
+        ans: 2,
+        exp: "Order XV Rule 2 provides that a caveat shall not remain in force after the expiry of 90 days from the date on which it was lodged."
+      },
+      {
+        q: "15. How are Review Petitions in the Supreme Court normally heard and disposed of?",
+        opts: ["By open court physical hearing with oral arguments", "By circulation in Judges' Chambers without oral arguments", "By the Registrar in Registrar Court", "By a single Judge in Chambers"],
+        ans: 1,
+        exp: "Under Order XLVII Rule 3, a review application is disposed of by circulation in chambers without oral arguments unless the Court otherwise orders."
+      },
+      {
+        q: "16. Under the Supreme Court Rules, what is the maximum time extension the Registrar Court can grant to cure office defects in pleadings?",
+        opts: ["7 Days", "14 Days", "28 Days", "60 Days"],
+        ans: 2,
+        exp: "Under Orders V and VIII, the Registrar has the delegated power to grant time not exceeding 28 days to cure defects in the petition."
+      },
+      {
+        q: "17. Under Order IV of the Supreme Court Rules 2013, who alone has the exclusive privilege of filing appearances and acting for a party in the Court?",
+        opts: ["Senior Advocates", "Advocates-on-Record (AoR)", "Any member of the Bar Council of Delhi", "State Attorneys General"],
+        ans: 1,
+        exp: "Only an Advocate-on-Record (AoR) can file a vakalatnama, appearance, or act for a party before the Supreme Court."
+      },
+      {
+        q: "18. What is the normal limitation period for filing a Special Leave Petition (Civil) against an order of a High Court?",
+        opts: ["30 Days", "60 Days", "90 Days", "180 Days"],
+        ans: 2,
+        exp: "Under Order XXI Rule 1, an SLP against a High Court judgment must be filed within 90 days from the date of the order (or 60 days if certificate of fitness is refused)."
+      },
+      {
+        q: "19. Which of the following matters CANNOT be disposed of by the Registrar and must be heard by a Judge in Chambers?",
+        opts: ["Extension of time to cure defects", "Issue of notice to respondent", "Application for exemption from surrendering in a criminal appeal", "Summoning of trial court records"],
+        ans: 2,
+        exp: "Under Order VI Rule 1, applications for exemption from surrender or bail during appeal are judicial matters reserved for a Judge in Chambers."
+      },
+      {
+        q: "20. Can a Senior Advocate designated by the Supreme Court file a petition or vakalatnama directly in the Supreme Court Registry?",
+        opts: ["Yes, unrestricted", "Yes, with permission of Chief Justice", "No, a Senior Advocate cannot file appearance or act without an Advocate-on-Record", "Only in criminal capital punishment appeals"],
+        ans: 2,
+        exp: "Under Order IV, Senior Advocates are subject to restrictions: they cannot file appearance, act, or accept brief directly from a client without an Advocate-on-Record."
+      },
+      {
+        q: "21. A party lodging a Caveat under Order XV is legally required to:",
+        opts: ["Pay 50% of the suit valuation", "Serve a copy of the caveat on the person by whom application is expected to be made", "Obtain consent of the Attorney General", "Publish the caveat in two national newspapers"],
+        ans: 1,
+        exp: "Under Order XV Rule 1, the caveator must serve a copy of the caveat along with supporting documents on the expected applicant/petitioner."
+      },
+
+      // MODULE 3 (Q22 - Q30)
+      {
+        q: "22. Under Article 146(1) of the Constitution, who is the sole appointing authority for officers and servants of the Supreme Court?",
+        opts: ["The President of India", "The Chief Justice of India or an officer directed by him", "The Union Minister of Law and Justice", "The Secretary General of the Supreme Court"],
+        ans: 1,
+        exp: "Article 146(1) vests the power of appointment of officers and servants of the Court exclusively in the Chief Justice of India or such other Judge or officer of the Court as he may direct."
+      },
+      {
+        q: "23. In the Supreme Court Officers and Servants Rules 1961, which of the following is classified as a 'Minor Penalty'?",
+        opts: ["Compulsory Retirement", "Withholding of increments of pay without cumulative effect", "Reduction to a lower post or grade", "Dismissal from service"],
+        ans: 1,
+        exp: "Withholding increments of pay WITHOUT cumulative effect is a minor penalty. Withholding increments WITH cumulative effect is a major penalty."
+      },
+      {
+        q: "24. What is the fundamental legal distinction between 'Removal from Service' and 'Dismissal from Service'?",
+        opts: ["Removal carries a pension, Dismissal does not", "Dismissal disqualifies from future government employment, whereas Removal does not ordinarily disqualify", "Removal is a minor penalty, Dismissal is a major penalty", "Removal is ordered by the Registrar, Dismissal only by the President"],
+        ans: 1,
+        exp: "Both are major penalties, but Dismissal ordinarily disqualifies a person from future employment under the Government, whereas Removal does not disqualify."
+      },
+      {
+        q: "25. What is the normal period of probation for a direct recruit appointed to the post of Junior Court Assistant (JCA)?",
+        opts: ["6 Months", "1 Year", "2 Years", "3 Years"],
+        ans: 2,
+        exp: "Direct recruits to the cadre of Junior Court Assistant (JCA) serve a mandatory initial probation period of 2 years, subject to confirmation."
+      },
+      {
+        q: "26. What role does the Union Public Service Commission (UPSC) play in the recruitment of Supreme Court staff under Article 146?",
+        opts: ["Mandatory screening of all Group A & B staff", "Conducting the typing and descriptive exam", "No role, unless specifically required by rules made by the CJI with President's approval", "Appointing the Inquiry Officer in disciplinary cases"],
+        ans: 2,
+        exp: "Article 146 guarantees institutional autonomy; the UPSC has no jurisdiction over Supreme Court appointments unless specified by rule."
+      },
+      {
+        q: "27. Under the 1961 Conduct Rules, to whom does an appeal lie against an order passed by the Disciplinary Authority imposing a penalty on a court servant?",
+        opts: ["Central Administrative Tribunal (CAT)", "Delhi High Court", "The Chief Justice of India", "The President of India"],
+        ans: 2,
+        exp: "The Chief Justice of India is the sole and final appellate authority for disciplinary appeals from Supreme Court staff."
+      },
+      {
+        q: "28. Can an employee of the Supreme Court participate in political activities or rallies under the Conduct Rules?",
+        opts: ["Yes, outside office hours", "Yes, with permission of the Section Officer", "Strictly prohibited under all circumstances", "Permitted only in municipal elections"],
+        ans: 2,
+        exp: "The Conduct Rules impose an absolute prohibition on court employees taking part in, subscribing to, or assisting any political movement or party."
+      },
+      {
+        q: "29. The post of Junior Court Assistant (JCA) in the Supreme Court establishment is categorized as:",
+        opts: ["Class I / Group A Gazetted", "Class II / Group B Non-Gazetted", "Class III / Group C Clerical", "Class IV / Group D Support"],
+        ans: 1,
+        exp: "Junior Court Assistant is classified as a Class II / Group 'B' Non-Gazetted post in the Supreme Court registry hierarchy."
+      },
+      {
+        q: "30. Unauthorized leakage or disclosure of draft judgments, orders, or roster documents by a court assistant constitutes:",
+        opts: ["A minor irregularity", "Grave professional misconduct warranting major disciplinary penalty", "A civil breach of contract punishable by 1 day pay deduction", "Acceptable practice if shared with accredited journalists"],
+        ans: 1,
+        exp: "Breach of official secrecy and premature disclosure of court proceedings is classified as severe misconduct attracting major penalties including dismissal."
+      }
+    ];
+
+    let userAnswers = {};
+
+    function renderQuiz() {
+      const container = document.getElementById('quizContainer');
+      container.innerHTML = '';
+
+      quizData.forEach((item, qIndex) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+        card.id = `qCard_${qIndex}`;
+
+        const meta = document.createElement('div');
+        meta.className = 'quiz-meta';
+        const moduleTag = qIndex < 12 ? "Module 1: Constitution" : (qIndex < 21 ? "Module 2: SC Rules 2013" : "Module 3: 1961 Rules");
+        meta.innerHTML = `<span>${moduleTag}</span><span>1 Mark</span>`;
+
+        const qText = document.createElement('div');
+        qText.className = 'quiz-question';
+        qText.innerText = item.q;
+
+        const optContainer = document.createElement('div');
+        optContainer.className = 'quiz-options';
+
+        item.opts.forEach((opt, oIndex) => {
+          const btn = document.createElement('button');
+          btn.className = 'quiz-opt-btn';
+          btn.id = `qBtn_${qIndex}_${oIndex}`;
+          btn.innerHTML = `<span style="font-weight:700; color:var(--text-muted);">${String.fromCharCode(65 + oIndex)}.</span> ${opt}`;
+          btn.onclick = () => selectOption(qIndex, oIndex);
+          optContainer.appendChild(btn);
+        });
+
+        const feedback = document.createElement('div');
+        feedback.className = 'quiz-feedback';
+        feedback.id = `qFeedback_${qIndex}`;
+
+        card.appendChild(meta);
+        card.appendChild(qText);
+        card.appendChild(optContainer);
+        card.appendChild(feedback);
+
+        container.appendChild(card);
+      });
+    }
+
+    function selectOption(qIndex, oIndex) {
+      if (userAnswers[qIndex] !== undefined) return; // already answered
+      userAnswers[qIndex] = oIndex;
+
+      const item = quizData[qIndex];
+      const feedback = document.getElementById(`qFeedback_${qIndex}`);
+      const isCorrect = oIndex === item.ans;
+
+      // Style selected buttons
+      for (let i = 0; i < item.opts.length; i++) {
+        const btn = document.getElementById(`qBtn_${qIndex}_${i}`);
+        btn.disabled = true;
+        if (i === item.ans) {
+          btn.classList.add('correct');
+        } else if (i === oIndex && !isCorrect) {
+          btn.classList.add('wrong');
+        }
+      }
+
+      feedback.style.display = 'block';
+      if (isCorrect) {
+        feedback.style.borderColor = 'var(--accent-emerald)';
+        feedback.innerHTML = `<strong>✅ Correct!</strong> ${item.exp}`;
+      } else {
+        feedback.style.borderColor = 'var(--accent-rose)';
+        feedback.innerHTML = `<strong>❌ Incorrect.</strong> Correct answer is <strong>(${String.fromCharCode(65 + item.ans)})</strong>. <br>${item.exp}`;
+      }
+
+      updateScore();
+    }
+
+    function updateScore() {
+      let score = 0;
+      Object.keys(userAnswers).forEach(qIndex => {
+        if (userAnswers[qIndex] === quizData[qIndex].ans) {
+          score++;
+        }
+      });
+      const totalAnswered = Object.keys(userAnswers).length;
+      document.getElementById('scoreTracker').innerText = `Score: ${score} / ${quizData.length}`;
+      document.getElementById('sidebarScore').innerText = `Score: ${score}/${quizData.length}`;
+    }
+
+    function resetQuiz() {
+      userAnswers = {};
+      renderQuiz();
+      document.getElementById('scoreTracker').innerText = `Score: 0 / ${quizData.length}`;
+      document.getElementById('sidebarScore').innerText = `Score: 0/${quizData.length}`;
+    }
+
+    // Initialize
+    renderQuiz();
+  </script>
+</body>
+</html>
