@@ -1764,6 +1764,48 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(quant?.incorrectCount).toBe(3);
     });
 
+    it('accurately parses Oliveboard scorecard text with sectional scores', () => {
+      const oliveboardText = `
+        Oliveboard
+        IBPS RRB PO Prelims Mock Test - 02
+        Result & Performance Analysis
+        Your Score: 44.50 / 80
+        Cut Off Marks: 53.75
+        Rank: 1820 / 22400
+        Percentile: 91.87%
+        Accuracy: 90.2%
+        Attempted: 49
+        Correct: 45
+        Incorrect: 4
+        Unattempted: 31
+        Time Taken: 43 Mins 20 Sec
+        Reasoning Ability: 30.00 / 40
+        Quantitative Aptitude: 14.50 / 40
+      `;
+
+      const parsed = parseScorecardText(oliveboardText);
+      expect(parsed).not.toBeNull();
+      expect(parsed?.platform).toBe('Oliveboard');
+      expect(parsed?.totalScore).toBe(44.5);
+      expect(parsed?.maxScore).toBe(80);
+      expect(parsed?.cutoffMarks).toBe(53.75);
+      expect(parsed?.rank).toBe(1820);
+      expect(parsed?.totalCandidates).toBe(22400);
+      expect(parsed?.percentile).toBe(91.87);
+      expect(parsed?.accuracyPercent).toBe(90.2);
+      expect(parsed?.attemptedCount).toBe(49);
+      expect(parsed?.correctCount).toBe(45);
+      expect(parsed?.incorrectCount).toBe(4);
+      expect(parsed?.skippedCount).toBe(31);
+      expect(parsed?.timeTakenMinutes).toBe(43);
+
+      expect(parsed?.subjectScores?.length).toBe(2);
+      const reasoning = parsed?.subjectScores?.find((s) => s.subjectName.includes('Reasoning'));
+      expect(reasoning?.score).toBe(30);
+      const quant = parsed?.subjectScores?.find((s) => s.subjectName.includes('Quant'));
+      expect(quant?.score).toBe(14.5);
+    });
+
     it('verifies mockTests seed file exists and contains the latest scorecard', () => {
       const fs = require('fs');
       const path = require('path');

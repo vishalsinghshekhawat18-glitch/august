@@ -1,8 +1,10 @@
 /**
  * src/services/scorecardParser.ts
  * Smart Optical & Text Parser for Exam Mock Test Scorecards
- * Supports Smartkeeda, Testbook, Oliveboard, PracticeMock, and raw tabular text.
+ * Supports Oliveboard, Smartkeeda, Testbook, PracticeMock, and raw tabular text.
  */
+
+import Tesseract from 'tesseract.js';
 
 export interface ParsedSubjectScore {
   subjectName: string;
@@ -38,20 +40,53 @@ export interface ParsedScorecard {
   notes?: string;
 }
 
+/**
+ * Runs true client-side optical character recognition (OCR) on an image file or blob
+ */
+export async function recognizeScorecardImage(
+  imageSource: File | Blob | string,
+  onProgress?: (percent: number, status: string) => void
+): Promise<{ parsed: ParsedScorecard | null; rawText: string }> {
+  try {
+    onProgress?.(10, 'Initializing OCR worker...');
+    const {
+      data: { text },
+    } = await Tesseract.recognize(imageSource, 'eng', {
+      logger: (m) => {
+        if (m.status === 'recognizing text') {
+          const pct = Math.min(95, Math.round(15 + m.progress * 80));
+          onProgress?.(pct, `Scanning image with OCR (${Math.round(m.progress * 100)}%)...`);
+        }
+      },
+    });
+
+    onProgress?.(100, 'Scorecard text extracted successfully.');
+    const parsed = parseScorecardText(text);
+    return { parsed, rawText: text };
+  } catch (err) {
+    console.error('OCR recognition error:', err);
+    return { parsed: null, rawText: '' };
+  }
+}
+
+/**
+ * Parses raw text extracted via OCR or copied directly from portal result pages
+ */
 export function parseScorecardText(rawText: string): ParsedScorecard | null {
   if (!rawText || !rawText.trim()) return null;
 
   const text = rawText.replace(/\r\n/g, '\n');
 
-  // Platform detection
+  // 1. Platform detection
   let platform = 'Mock Platform';
-  if (/smartkeeda/i.test(text)) platform = 'Smartkeeda';
+  if (/olive\s*board/i.test(text)) platform = 'Oliveboard';
+  else if (/smartkeeda/i.test(text)) platform = 'Smartkeeda';
   else if (/testbook/i.test(text)) platform = 'Testbook';
-  else if (/oliveboard/i.test(text)) platform = 'Oliveboard';
-  else if (/practicemock/i.test(text)) platform = 'PracticeMock';
+  else if (/practicemock|practice\s*mock/i.test(text)) platform = 'PracticeMock';
   else if (/adda247/i.test(text)) platform = 'Adda247';
+  else if (/guidely/i.test(text)) platform = 'Guidely';
 
-  // Exam detection
+  // 2. Exam detection
   let examId = 'comm_ibps_rrb_po';
   let testName = `${platform} Mock Test`;
 
@@ -75,53 +110,59 @@ export function parseScorecardText(rawText: string): ParsedScorecard | null {
     testName = `${platform} RVUNL JE Electrical Mock`;
   }
 
-  // Extract explicit title if found
-  const fullLengthMatch = text.match(/Full\s+Length\s+([^\n\r]+)/i);
-  if (fullLengthMatch) {
-    testName = `${platform} Full Length ${fullLengthMatch[1].trim()}`;
+  // Look for specific test title strings (e.g. "Mock Test - 02", "Full Length RRB PO Pre #1")
+  const titleMatch =
+    text.match(/(?:Full\s+Length\s+[^\n\r]+|Mock\s+Test\s*[-#]?\s*[0-9]+|Live\s+Mock\s*[-#]?\s*[0-9]+)/i);
+  if (titleMatch) {
+    testName = `${platform} ${titleMatch[0].trim()}`;
   }
 
-  // Extract Scores (e.g. "Your Marks: 35.25/80" or "Score: 35.25/80")
+  // 3. Score & Maximum Score
   let totalScore = 0;
-  let maxScore = 80;
+  let maxScore = 80; // default for RRB PO Pre
 
-  const yourMarksMatch = text.match(/Your\s*Marks[:\s]*([0-9.]+)\s*\/\s*([0-9.]+)/i) ||
-                         text.match(/Score[:\s]*([0-9.]+)\s*\/\s*([0-9.]+)/i);
-  if (yourMarksMatch) {
-    totalScore = parseFloat(yourMarksMatch[1]);
-    maxScore = parseFloat(yourMarksMatch[2]);
+  const scoreMatch =
+    text.match(/(?:Your\s*Score|Total\s*Score|Score|Marks\s*Scored|Your\s*Marks)[:\s]*([0-9.]+)\s*(?:\/|of)\s*([0-9.]+)/i) ||
+    text.match(/([0-9.]+)\s*\/\s*(80|100|200)/);
+
+  if (scoreMatch) {
+    totalScore = parseFloat(scoreMatch[1]);
+    maxScore = parseFloat(scoreMatch[2]);
   } else {
-    const singleScoreMatch = text.match(/Your\s*Marks[:\s]*([0-9.]+)/i) || text.match(/Score[:\s]*([0-9.]+)/i);
+    const singleScoreMatch = text.match(/(?:Your\s*Score|Score|Your\s*Marks)[:\s]*([0-9.]+)/i);
     if (singleScoreMatch) {
       totalScore = parseFloat(singleScoreMatch[1]);
     }
   }
 
-  // Cutoff marks
+  // 4. Cutoff Marks
   let cutoffMarks: number | undefined;
-  const cutoffMatch = text.match(/Cut\s*Off(?:\s*Marks)?[:\s]*([0-9.]+)(?:\s*\/\s*([0-9.]+))?/i);
+  const cutoffMatch = text.match(/Cut\s*[-]?\s*off(?:\s*Marks)?[:\s]*([0-9.]+)(?:\s*(?:\/|of)\s*([0-9.]+))?/i);
   if (cutoffMatch) {
     cutoffMarks = parseFloat(cutoffMatch[1]);
   }
 
-  // Accuracy
+  // 5. Accuracy Percent
   let accuracyPercent = 0;
   const accuracyMatch = text.match(/Accuracy[:\s]*([0-9.]+)%?/i);
   if (accuracyMatch) {
     accuracyPercent = parseFloat(accuracyMatch[1]);
   }
 
-  // Percentile
+  // 6. Percentile
   let percentile: number | undefined;
-  const percentileMatch = text.match(/Percentile[:\s]*([0-9.]+)%?/i);
+  const percentileMatch =
+    text.match(/Percentile[:\s]*([0-9.]+)%?/i) ||
+    text.match(/([0-9.]+)%ile/i);
   if (percentileMatch) {
     percentile = parseFloat(percentileMatch[1]);
   }
 
-  // Rank (e.g. "Your Rank #88397 Out of 153003" or "Rank: 88397/153003")
+  // 7. Rank & Total Test Takers
   let rank: number | undefined;
   let totalCandidates: number | undefined;
-  const rankMatch = text.match(/Rank[:\s]*#?([0-9,]+)(?:\s*(?:\/|Out of)\s*([0-9,]+))?/i);
+  const rankMatch =
+    text.match(/(?:All\s*India\s*Rank|Your\s*Rank|Rank)[:\s]*#?([0-9,]+)(?:\s*(?:\/|of|Out of)\s*([0-9,]+))?/i);
   if (rankMatch) {
     rank = parseInt(rankMatch[1].replace(/,/g, ''), 10);
     if (rankMatch[2]) {
@@ -129,28 +170,40 @@ export function parseScorecardText(rawText: string): ParsedScorecard | null {
     }
   }
 
-  // Time taken (e.g. "Time taken: 00:45:00" or "45 Mins")
+  // 8. Time Taken (in minutes)
   let timeTakenMinutes = 45;
-  const timeTakenMatch = text.match(/Time\s*taken[:\s]*(?:([0-9]+):)?([0-9]+):([0-9]+)/i);
-  if (timeTakenMatch) {
-    const hrs = timeTakenMatch[1] ? parseInt(timeTakenMatch[1], 10) : 0;
-    const mins = parseInt(timeTakenMatch[2], 10);
-    timeTakenMinutes = hrs * 60 + mins;
+  const minsSecMatch = text.match(/Time(?:\s*taken)?[:\s]*([0-9]+)\s*Mins?(?:\s*([0-9]+)\s*Sec)?/i);
+  if (minsSecMatch) {
+    timeTakenMinutes = parseInt(minsSecMatch[1], 10);
   } else {
-    const minsMatch = text.match(/([0-9]+)\s*Mins/i);
-    if (minsMatch) {
-      timeTakenMinutes = parseInt(minsMatch[1], 10);
+    const clockMatch = text.match(/Time(?:\s*taken)?[:\s]*(?:([0-9]+):)?([0-9]+):([0-9]+)/i);
+    if (clockMatch) {
+      const hrs = clockMatch[1] ? parseInt(clockMatch[1], 10) : 0;
+      const mins = parseInt(clockMatch[2], 10);
+      timeTakenMinutes = hrs * 60 + mins;
     }
   }
 
-  // Extract Question Breakdown (Correct, Incorrect, Unattempted)
+  // 9. Question Breakdown (Attempted, Correct, Incorrect, Skipped)
   let correctCount = 0;
   let incorrectCount = 0;
   let skippedCount = 0;
   let attemptedCount = 0;
 
-  // Check Overall Table Row
-  // Example: Overall 80 37 7 36 45 Mins 52 35.25/80 (44.00%) 41.91
+  // Oliveboard or generic explicit counts
+  const correctMatch = text.match(/(?:Correct|Right)[:\s]*([0-9]+)/i);
+  if (correctMatch) correctCount = parseInt(correctMatch[1], 10);
+
+  const incorrectMatch = text.match(/(?:Incorrect|Wrong)[:\s]*([0-9]+)/i);
+  if (incorrectMatch) incorrectCount = parseInt(incorrectMatch[1], 10);
+
+  const skippedMatch = text.match(/(?:Unattempted|Skipped|Left)[:\s]*([0-9]+)/i);
+  if (skippedMatch) skippedCount = parseInt(skippedMatch[1], 10);
+
+  const attemptedMatch = text.match(/(?:Attempted|Attempts)[:\s]*([0-9]+)/i);
+  if (attemptedMatch) attemptedCount = parseInt(attemptedMatch[1], 10);
+
+  // Overall table row (Smartkeeda / Testbook format)
   const overallRowMatch = text.match(/Overall\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)/i);
   if (overallRowMatch) {
     maxScore = parseInt(overallRowMatch[1], 10);
@@ -158,73 +211,80 @@ export function parseScorecardText(rawText: string): ParsedScorecard | null {
     incorrectCount = parseInt(overallRowMatch[3], 10);
     skippedCount = parseInt(overallRowMatch[4], 10);
     attemptedCount = correctCount + incorrectCount;
-  } else {
-    const correctMatch = text.match(/Correct[:\s]*([0-9]+)/i);
-    if (correctMatch) correctCount = parseInt(correctMatch[1], 10);
+  }
 
-    const incorrectMatch = text.match(/Incorrect[:\s]*([0-9]+)/i);
-    if (incorrectMatch) incorrectCount = parseInt(incorrectMatch[1], 10);
-
-    const unattemptedMatch = text.match(/Unattempted[:\s]*([0-9]+)/i) || text.match(/Skipped[:\s]*([0-9]+)/i);
-    if (unattemptedMatch) skippedCount = parseInt(unattemptedMatch[1], 10);
-
+  if (attemptedCount === 0 && (correctCount > 0 || incorrectCount > 0)) {
     attemptedCount = correctCount + incorrectCount;
-    if (skippedCount === 0 && maxScore > attemptedCount) {
-      skippedCount = maxScore - attemptedCount;
-    }
+  }
+  if (skippedCount === 0 && maxScore > attemptedCount) {
+    skippedCount = Math.max(0, maxScore - attemptedCount);
   }
 
   if (accuracyPercent === 0 && attemptedCount > 0) {
     accuracyPercent = Number(((correctCount / attemptedCount) * 100).toFixed(2));
   }
 
-  // Section Breakdown parsing
+  // 10. Section Scores
   const subjectScores: ParsedSubjectScore[] = [];
 
-  // Parse Reasoning Aptitude row
-  // e.g.: Reasoning Aptitude 40 29 4 7 25 Mins 9.25 28/40
-  const reasoningMatch = text.match(/Reasoning(?:\s+Aptitude)?\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s*(?:([0-9]+)\s*Mins)?\s*([0-9.]+)?\s*([0-9.]+)\/([0-9.]+)/i);
+  // Reasoning section
+  const reasoningMatch =
+    text.match(/Reasoning(?:\s+Ability|\s+Aptitude)?[:\s]*([0-9.]+)\s*(?:\/|of)\s*([0-9.]+)/i) ||
+    text.match(/Reasoning(?:\s+Aptitude)?\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s*(?:([0-9]+)\s*Mins)?\s*([0-9.]+)?\s*([0-9.]+)\/([0-9.]+)/i);
+
   if (reasoningMatch) {
-    const rCorrect = parseInt(reasoningMatch[2], 10);
-    const rIncorrect = parseInt(reasoningMatch[3], 10);
-    const rAttempted = rCorrect + rIncorrect;
-    subjectScores.push({
-      subjectName: 'Reasoning Aptitude',
-      correctCount: rCorrect,
-      incorrectCount: rIncorrect,
-      skippedCount: parseInt(reasoningMatch[4], 10),
-      timeMinutes: reasoningMatch[5] ? parseInt(reasoningMatch[5], 10) : undefined,
-      cutoff: reasoningMatch[6] ? parseFloat(reasoningMatch[6]) : undefined,
-      score: parseFloat(reasoningMatch[7]),
-      maxScore: parseFloat(reasoningMatch[8]),
-      accuracyPercent: rAttempted > 0 ? Number(((rCorrect / rAttempted) * 100).toFixed(2)) : 0,
-    });
+    if (reasoningMatch[7] && reasoningMatch[8]) {
+      subjectScores.push({
+        subjectName: 'Reasoning Aptitude',
+        score: parseFloat(reasoningMatch[7]),
+        maxScore: parseFloat(reasoningMatch[8]),
+        correctCount: parseInt(reasoningMatch[2], 10),
+        incorrectCount: parseInt(reasoningMatch[3], 10),
+        skippedCount: parseInt(reasoningMatch[4], 10),
+        timeMinutes: reasoningMatch[5] ? parseInt(reasoningMatch[5], 10) : undefined,
+        cutoff: reasoningMatch[6] ? parseFloat(reasoningMatch[6]) : undefined,
+      });
+    } else if (reasoningMatch[1] && reasoningMatch[2]) {
+      subjectScores.push({
+        subjectName: 'Reasoning Ability',
+        score: parseFloat(reasoningMatch[1]),
+        maxScore: parseFloat(reasoningMatch[2]),
+      });
+    }
   }
 
-  // Parse Quantitative Aptitude row
-  // e.g.: Quantitative Aptitude 40 8 3 29 20 Mins 8 7.25/40
-  const quantMatch = text.match(/Quant(?:itative)?(?:\s+Aptitude)?\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s*(?:([0-9]+)\s*Mins)?\s*([0-9.]+)?\s*([0-9.]+)\/([0-9.]+)/i);
+  // Quantitative section
+  const quantMatch =
+    text.match(/Quant(?:itative)?(?:\s+Ability|\s+Aptitude)?[:\s]*([0-9.]+)\s*(?:\/|of)\s*([0-9.]+)/i) ||
+    text.match(/Quant(?:itative)?(?:\s+Aptitude)?\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s*(?:([0-9]+)\s*Mins)?\s*([0-9.]+)?\s*([0-9.]+)\/([0-9.]+)/i);
+
   if (quantMatch) {
-    const qCorrect = parseInt(quantMatch[2], 10);
-    const qIncorrect = parseInt(quantMatch[3], 10);
-    const qAttempted = qCorrect + qIncorrect;
-    subjectScores.push({
-      subjectName: 'Quantitative Aptitude',
-      correctCount: qCorrect,
-      incorrectCount: qIncorrect,
-      skippedCount: parseInt(quantMatch[4], 10),
-      timeMinutes: quantMatch[5] ? parseInt(quantMatch[5], 10) : undefined,
-      cutoff: quantMatch[6] ? parseFloat(quantMatch[6]) : undefined,
-      score: parseFloat(quantMatch[7]),
-      maxScore: parseFloat(quantMatch[8]),
-      accuracyPercent: qAttempted > 0 ? Number(((qCorrect / qAttempted) * 100).toFixed(2)) : 0,
-    });
+    if (quantMatch[7] && quantMatch[8]) {
+      subjectScores.push({
+        subjectName: 'Quantitative Aptitude',
+        score: parseFloat(quantMatch[7]),
+        maxScore: parseFloat(quantMatch[8]),
+        correctCount: parseInt(quantMatch[2], 10),
+        incorrectCount: parseInt(quantMatch[3], 10),
+        skippedCount: parseInt(quantMatch[4], 10),
+        timeMinutes: quantMatch[5] ? parseInt(quantMatch[5], 10) : undefined,
+        cutoff: quantMatch[6] ? parseFloat(quantMatch[6]) : undefined,
+      });
+    } else if (quantMatch[1] && quantMatch[2]) {
+      subjectScores.push({
+        subjectName: 'Quantitative Aptitude',
+        score: parseFloat(quantMatch[1]),
+        maxScore: parseFloat(quantMatch[2]),
+      });
+    }
   }
 
-  // Construct comprehensive diagnostic notes
+  // Diagnostic summary note
   const notesParts: string[] = [];
   if (rank && totalCandidates) {
     notesParts.push(`Rank: #${rank.toLocaleString()}/${totalCandidates.toLocaleString()}`);
+  } else if (rank) {
+    notesParts.push(`Rank: #${rank.toLocaleString()}`);
   }
   if (percentile) {
     notesParts.push(`Percentile: ${percentile}%`);
@@ -234,8 +294,9 @@ export function parseScorecardText(rawText: string): ParsedScorecard | null {
     notesParts.push(`Cutoff: ${cutoffMarks}/${maxScore} (${diff >= 0 ? `+${diff}` : `${diff}`})`);
   }
   if (subjectScores.length > 0) {
-    const subSummaries = subjectScores.map((s) => `${s.subjectName.split(' ')[0]}: ${s.score}/${s.maxScore} (${s.accuracyPercent}% acc${s.cutoff !== undefined ? `, Cutoff: ${s.cutoff}` : ''})`);
-    notesParts.push(subSummaries.join(' • '));
+    notesParts.push(
+      subjectScores.map((s) => `${s.subjectName.split(' ')[0]}: ${s.score}/${s.maxScore}`).join(' • ')
+    );
   }
 
   return {

@@ -19,6 +19,7 @@ import {
   Check,
   FileText,
   Image as ImageIcon,
+  Loader2,
 } from 'lucide-react';
 import { MockTest, MistakeEntry, Commitment, Subject, Topic, ErrorType, SubjectMockScore, CoachDispatch } from '../types';
 import { dbService } from '../services/db';
@@ -26,7 +27,7 @@ import { getTodayDateString } from '../services/dateUtils';
 import { AnalyzeMockModal } from '../components/AnalyzeMockModal';
 import { LiveMockFeedbackModal } from '../components/LiveMockFeedbackModal';
 import { coachService } from '../services/coachService';
-import { parseScorecardText } from '../services/scorecardParser';
+import { parseScorecardText, recognizeScorecardImage } from '../services/scorecardParser';
 import seedMockTests from '../data/mockTests.json';
 
 export const MockTestsView: React.FC = () => {
@@ -71,18 +72,21 @@ export const MockTestsView: React.FC = () => {
   const [scorecardImagePreview, setScorecardImagePreview] = useState<string | null>(null);
   const [autoFillNotice, setAutoFillNotice] = useState<string | null>(null);
   const [isSmartAutoFillOpen, setIsSmartAutoFillOpen] = useState<boolean>(true);
+  const [isOcrScanning, setIsOcrScanning] = useState<boolean>(false);
+  const [ocrProgress, setOcrProgress] = useState<number>(0);
+  const [ocrStatus, setOcrStatus] = useState<string>('');
 
   const applyParsedScorecard = (parsed: ReturnType<typeof parseScorecardText>) => {
     if (!parsed) return;
     if (parsed.examId) setExamId(parsed.examId);
     if (parsed.testName) setTestName(parsed.testName);
-    if (parsed.totalScore !== undefined) setTotalScore(parsed.totalScore);
-    if (parsed.maxScore) setMaxScore(parsed.maxScore);
-    if (parsed.timeTakenMinutes) setTimeTakenMinutes(parsed.timeTakenMinutes);
-    if (parsed.attemptedCount !== undefined) setAttemptedCount(parsed.attemptedCount);
-    if (parsed.correctCount !== undefined) setCorrectCount(parsed.correctCount);
-    if (parsed.incorrectCount !== undefined) setIncorrectCount(parsed.incorrectCount);
-    if (parsed.skippedCount !== undefined) setSkippedCount(parsed.skippedCount);
+    if (parsed.totalScore !== undefined && !isNaN(parsed.totalScore)) setTotalScore(parsed.totalScore);
+    if (parsed.maxScore && !isNaN(parsed.maxScore)) setMaxScore(parsed.maxScore);
+    if (parsed.timeTakenMinutes && !isNaN(parsed.timeTakenMinutes)) setTimeTakenMinutes(parsed.timeTakenMinutes);
+    if (parsed.attemptedCount !== undefined && !isNaN(parsed.attemptedCount)) setAttemptedCount(parsed.attemptedCount);
+    if (parsed.correctCount !== undefined && !isNaN(parsed.correctCount)) setCorrectCount(parsed.correctCount);
+    if (parsed.incorrectCount !== undefined && !isNaN(parsed.incorrectCount)) setIncorrectCount(parsed.incorrectCount);
+    if (parsed.skippedCount !== undefined && !isNaN(parsed.skippedCount)) setSkippedCount(parsed.skippedCount);
     if (parsed.notes) setNotes(parsed.notes);
     setAutoFillNotice(`✓ Auto-filled ${parsed.platform || 'Scorecard'}: ${parsed.totalScore}/${parsed.maxScore} (${parsed.accuracyPercent}% acc)!`);
   };
@@ -95,17 +99,43 @@ export const MockTestsView: React.FC = () => {
     }
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const processImageWithOcr = async (file: File | Blob) => {
+    try {
+      setIsOcrScanning(true);
+      setOcrProgress(10);
+      setOcrStatus('Initializing OCR engine...');
+
+      const { parsed, rawText } = await recognizeScorecardImage(file, (pct, status) => {
+        setOcrProgress(pct);
+        setOcrStatus(status);
+      });
+
+      if (rawText) {
+        setPastedScorecardText(rawText);
+      }
+
+      if (parsed && (parsed.totalScore > 0 || parsed.attemptedCount > 0)) {
+        applyParsedScorecard(parsed);
+      } else {
+        setAutoFillNotice('OCR scanned image. Review and verify the detected numbers in the form.');
+      }
+    } catch (err) {
+      console.error('OCR processing error:', err);
+      setAutoFillNotice('OCR scan encountered an issue. You can paste the text directly from the portal.');
+    } finally {
+      setIsOcrScanning(false);
+    }
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
     reader.onload = () => {
-      const result = reader.result as string;
-      setScorecardImagePreview(result);
-      // Auto-populate with Smartkeeda template if file or text matches
-      handleFillLatestSmartkeeda();
+      setScorecardImagePreview(reader.result as string);
     };
     reader.readAsDataURL(file);
+    await processImageWithOcr(file);
   };
 
   const handleFillLatestSmartkeeda = () => {
@@ -125,7 +155,7 @@ export const MockTestsView: React.FC = () => {
     setAutoFillNotice('✓ Auto-filled from Smartkeeda Scorecard: 35.25/80 (44 att, 37 correct, 7 incorrect, 45m)!');
   };
 
-  const handleModalPaste = (e: React.ClipboardEvent) => {
+  const handleModalPaste = async (e: React.ClipboardEvent) => {
     const text = e.clipboardData.getData('text');
     if (text && text.trim()) {
       handleAutoFillFromText(text);
@@ -139,9 +169,9 @@ export const MockTestsView: React.FC = () => {
           const reader = new FileReader();
           reader.onload = () => {
             setScorecardImagePreview(reader.result as string);
-            handleFillLatestSmartkeeda();
           };
           reader.readAsDataURL(file);
+          await processImageWithOcr(file);
         }
         break;
       }
@@ -439,13 +469,32 @@ export const MockTestsView: React.FC = () => {
                 <div>
                   <textarea
                     rows={2}
-                    placeholder="Or paste result text from portal..."
+                    placeholder="Or paste result text from Oliveboard / Testbook / Smartkeeda..."
                     value={pastedScorecardText}
                     onChange={(e) => handleAutoFillFromText(e.target.value)}
                     className="w-full text-[11px] p-2 border border-indigo-200 rounded-lg bg-white/90 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                   />
                 </div>
               </div>
+
+              {/* OCR Scanning Progress Banner */}
+              {isOcrScanning && (
+                <div className="bg-white/95 rounded-lg border border-indigo-200 p-2.5 space-y-1.5 shadow-2xs">
+                  <div className="flex items-center justify-between text-xs font-semibold text-indigo-900">
+                    <span className="flex items-center gap-1.5">
+                      <Loader2 className="w-3.5 h-3.5 animate-spin text-indigo-600" />
+                      <span>{ocrStatus || 'Scanning image with OCR...'}</span>
+                    </span>
+                    <span className="font-mono text-indigo-700">{ocrProgress}%</span>
+                  </div>
+                  <div className="w-full bg-indigo-100 rounded-full h-1.5 overflow-hidden">
+                    <div
+                      className="bg-indigo-600 h-1.5 rounded-full transition-all duration-200"
+                      style={{ width: `${ocrProgress}%` }}
+                    />
+                  </div>
+                </div>
+              )}
 
               {/* Quick Fill Actions & Feedback */}
               <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-indigo-100/80">
