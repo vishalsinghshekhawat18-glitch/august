@@ -1610,4 +1610,32 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(todayMinutes).toBeGreaterThanOrEqual(90);
     });
   });
+
+  describe('17. Official Exam Status & Forms Dashboard Integration Suite', () => {
+    it('verifies public/Exam_Status_Dashboard.html exists and includes all 8 tracked exams', () => {
+      const fs = require('fs');
+      const path = require('path');
+      const htmlPath = path.resolve(__dirname, '../../public/Exam_Status_Dashboard.html');
+      expect(fs.existsSync(htmlPath)).toBe(true);
+
+      const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
+      expect(htmlContent).toContain('Exam Status & Official Syllabus Tracker');
+      expect(htmlContent).toContain('NICL AO 2026');
+      expect(htmlContent).toContain('Supreme Court JCA 2026');
+      expect(htmlContent).toContain('IBPS CRP-RRBs-XV');
+      expect(htmlContent).toContain('RVUNL Junior Engineer-I');
+      expect(htmlContent).toContain('UIIC AO (Scale-I) 2026');
+      expect(htmlContent).toContain('UPSC EPFO APFC 2026');
+      expect(htmlContent).toContain('IBPS CRP PO/MT-XVI');
+      expect(htmlContent).toContain('NICL Assistant 2026');
+    });
+
+    it('verifies sync-exam-status script executes and syncs successfully', () => {
+      const { sync, DEST_PATH } = require('../../scripts/sync-exam-status.cjs');
+      const fs = require('fs');
+      expect(typeof sync).toBe('function');
+      sync();
+      expect(fs.existsSync(DEST_PATH)).toBe(true);
+    });
+  });
 });

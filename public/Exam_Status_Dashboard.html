@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Status & Official Syllabus Tracker | Vishal Singh Shekhawat</title>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-subtle: #cbd5e1;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      
+      --accent-blue: #0284c7;
+      --accent-blue-hover: #0369a1;
+      --accent-indigo: #4f46e5;
+      
+      --tag-red-bg: #ffe4e6;
+      --tag-red-text: #be123c;
+      --tag-red-border: #fecdd3;
+
+      --tag-amber-bg: #fef3c7;
+      --tag-amber-text: #b45309;
+      --tag-amber-border: #fde68a;
+
+      --tag-green-bg: #dcfce7;
+      --tag-green-text: #15803d;
+      --tag-green-border: #bbf7d0;
+
+      --tag-blue-bg: #e0f2fe;
+      --tag-blue-text: #0369a1;
+      --tag-blue-border: #bae6fd;
+
+      --tag-purple-bg: #f3e8ff;
+      --tag-purple-text: #7e22ce;
+      --tag-purple-border: #e9d5ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding: 20px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1380px;
+      margin: 0 auto;
+    }
+
+    /* Header Profile Card */
+    .profile-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+      border-top: 4px solid var(--accent-blue);
+    }
+
+    .profile-info h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .profile-info h1 span.badge-pill {
+      font-size: 0.75rem;
+      background: var(--tag-blue-bg);
+      color: var(--accent-blue);
+      border: 1px solid var(--tag-blue-border);
+      padding: 2px 10px;
+      border-radius: 9999px;
+      font-weight: 600;
+    }
+
+    .profile-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .profile-details span strong {
+      color: var(--text-main);
+    }
+
+    .profile-details code {
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      border: 1px solid var(--border-color);
+      color: #0369a1;
+    }
+
+    .stat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .stat-pill {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 8px 14px;
+      text-align: center;
+      min-width: 100px;
+    }
+
+    .stat-pill .num {
+      font-size: 1.35rem;
+      font-weight: 800;
+      display: block;
+      line-height: 1.1;
+    }
+
+    .stat-pill .lbl {
+      font-size: 0.675rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .num-urgent { color: var(--tag-red-text); }
+    .num-action { color: var(--tag-amber-text); }
+    .num-success { color: var(--tag-green-text); }
+    .num-total { color: var(--accent-blue); }
+
+    /* Urgency Banner */
+    .urgent-banner {
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .urgent-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .urgent-content {
+      font-size: 0.875rem;
+      color: #9f1239;
+      line-height: 1.45;
+    }
+
+    .urgent-content strong {
+      color: #881337;
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Action Toolbar & Filters */
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.825rem;
+      min-width: 230px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+    }
+
+    .btn {
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+    }
+
+    .btn:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .btn-active {
+      background: #0284c7;
+      border-color: #0284c7;
+      color: #ffffff;
+    }
+
+    .btn-active:hover {
+      background: #0369a1;
+      color: #ffffff;
+    }
+
+    /* 3-COLUMN TABLE STYLES (Ultra-Compact, Zero Horizontal Scroll) */
+    .table-container {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+      table-layout: fixed; /* Guarantees strict fit within 100% width */
+    }
+
+    /* 3-Column Proportions */
+    col.col-exam   { width: 44%; }
+    col.col-dates  { width: 28%; }
+    col.col-action { width: 28%; }
+
+    thead th {
+      background-color: #f1f5f9;
+      color: #475569;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.725rem;
+      letter-spacing: 0.05em;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    tbody tr {
+      border-bottom: 2px solid #94a3b8; /* Strong, high-contrast dividing line between exams */
+      transition: background-color 0.15s;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f8fafc; /* Alternating zebra background for instant differentiation */
+    }
+
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background-color: #e2e8f0;
+    }
+
+    /* Distinct colored left accent bar for each exam row based on urgency */
+    tbody tr[data-badge="urgent"] {
+      border-left: 5px solid #e11d48;
+    }
+
+    tbody tr[data-badge="upcoming"] {
+      border-left: 5px solid #d97706;
+    }
+
+    tbody tr[data-badge="result"] {
+      border-left: 5px solid #9333ea;
+    }
+
+    tbody tr[data-badge="scheduled"] {
+      border-left: 5px solid #0284c7;
+    }
+
+    tbody tr[data-badge="done"] {
+      border-left: 5px solid #16a34a;
+    }
+
+    /* Faded rows for concluded exams (not cleared by a thin margin) */
+    tbody tr.row-faded, tbody tr[data-badge="concluded"] {
+      opacity: 0.52;
+      background-color: #f1f5f9 !important;
+      border-left: 5px solid #94a3b8 !important;
+      transition: opacity 0.2s, background-color 0.2s;
+    }
+
+    tbody tr.row-faded:hover, tbody tr[data-badge="concluded"]:hover {
+      opacity: 0.85;
+      background-color: #e2e8f0 !important;
+    }
+
+    .badge-concluded {
+      background: #f1f5f9;
+      color: #64748b;
+      border: 1px solid #cbd5e1;
+    }
+
+    details.exam-accordion.accordion-faded {
+      opacity: 0.65;
+      border-left-color: #94a3b8;
+    }
+    details.exam-accordion.accordion-faded:hover {
+      opacity: 0.9;
+    }
+
+    td {
+      padding: 16px 18px;
+      vertical-align: top;
+      color: var(--text-main);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* Column 1: Exam & Credentials Card Layout */
+    .exam-composite {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .exam-header-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .row-index {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 2px 7px;
+      border-radius: 6px;
+      border: 1px solid #bae6fd;
+      line-height: 1;
+    }
+
+    .exam-title-text {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 0.95rem;
+      line-height: 1.25;
+    }
+
+    .post-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e293b;
+      background: #f1f5f9;
+      padding: 1px 7px;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+      display: inline-block;
+    }
+
+    .org-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .credentials-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .reg-cell {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.775rem;
+      background: #f8fafc;
+      color: #0f172a;
+      padding: 3px 7px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid var(--border-color);
+      font-weight: 600;
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.8rem;
+      padding: 1px 3px;
+      border-radius: 3px;
+      transition: color 0.15s, transform 0.1s;
+      line-height: 1;
+    }
+
+    .copy-btn:hover {
+      color: var(--accent-blue);
+      transform: scale(1.2);
+    }
+
+    .exam-web-link {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      transition: color 0.15s;
+    }
+
+    .exam-web-link:hover {
+      color: #0369a1;
+      text-decoration: underline;
+    }
+
+    /* Column 2: Dates & Status Layout */
+    .dates-status-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 9999px;
+      font-size: 0.725rem;
+      font-weight: 600;
+      line-height: 1.2;
+      align-self: flex-start;
+    }
+
+    .badge-urgent {
+      background: var(--tag-red-bg);
+      color: var(--tag-red-text);
+      border: 1px solid var(--tag-red-border);
+    }
+
+    .badge-upcoming {
+      background: var(--tag-amber-bg);
+      color: var(--tag-amber-text);
+      border: 1px solid var(--tag-amber-border);
+    }
+
+    .badge-result {
+      background: var(--tag-purple-bg);
+      color: var(--tag-purple-text);
+      border: 1px solid var(--tag-purple-border);
+    }
+
+    .badge-scheduled {
+      background: var(--tag-blue-bg);
+      color: var(--tag-blue-text);
+      border: 1px solid var(--tag-blue-border);
+    }
+
+    .badge-done {
+      background: var(--tag-green-bg);
+      color: var(--tag-green-text);
+      border: 1px solid var(--tag-green-border);
+    }
+
+    .pulse-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: currentColor;
+    }
+
+    .date-highlight {
+      font-weight: 700;
+      color: #0f172a;
+      display: block;
+      font-size: 0.875rem;
+      line-height: 1.3;
+    }
+
+    .date-secondary {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: block;
+      line-height: 1.3;
+    }
+
+    /* Column 3: Action Layout */
+    .action-text {
+      font-size: 0.825rem;
+      line-height: 1.45;
+      color: #334155;
+    }
+
+    .action-text strong {
+      color: #0f172a;
+    }
+
+    /* Collapsible Syllabus Master Accordion */
+    .syllabus-section {
+      margin-bottom: 30px;
+    }
+
+    details.exam-accordion {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1; /* Clear, well-defined border */
+      border-left: 5px solid var(--accent-blue); /* Left accent bar separating each syllabus */
+      border-radius: 10px;
+      margin-bottom: 14px;
+      transition: all 0.2s ease;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    details.exam-accordion[open] {
+      border-color: #3b82f6;
+      border-left-color: #1d4ed8;
+      box-shadow: 0 4px 12px -2px rgba(2, 132, 199, 0.15);
+    }
+
+    summary.accordion-header {
+      list-style: none;
+      padding: 14px 18px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      font-weight: 600;
+      font-size: 0.925rem;
+      background: #ffffff;
+      transition: background 0.15s;
+      color: #0f172a;
+    }
+
+    summary.accordion-header::-webkit-details-marker {
+      display: none;
+    }
+
+    summary.accordion-header:hover {
+      background: #f8fafc;
+    }
+
+    details[open] > summary.accordion-header {
+      background: #f0f9ff;
+      border-bottom: 1px solid #e0f2fe;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-number {
+      background: #e0f2fe;
+      color: var(--accent-blue);
+      font-size: 0.75rem;
+      font-weight: 700;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #bae6fd;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chevron {
+      transition: transform 0.25s ease;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    details[open] > summary .chevron {
+      transform: rotate(180deg);
+      color: var(--accent-blue);
+    }
+
+    .accordion-body {
+      padding: 20px;
+      background: #f8fafc;
+    }
+
+    /* Syllabus Stage Cards */
+    .stage-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    .stage-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .stage-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0369a1;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 8px;
+    }
+
+    .pattern-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 12px;
+      font-size: 0.8rem;
+    }
+
+    .pattern-table th, .pattern-table td {
+      border: 1px solid var(--border-color);
+      padding: 7px 10px;
+    }
+
+    .pattern-table th {
+      background: #f1f5f9;
+      color: #475569;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .pattern-table td {
+      background: #ffffff;
+      color: #334155;
+    }
+
+    .syllabus-topics {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 0.825rem;
+      color: #334155;
+      line-height: 1.55;
+    }
+
+    .syllabus-topics strong {
+      color: #0f172a;
+    }
+
+    .topic-group {
+      margin-bottom: 10px;
+    }
+
+    .topic-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .topic-group-title {
+      font-weight: 700;
+      color: #4338ca;
+      margin-bottom: 4px;
+      font-size: 0.825rem;
+    }
+
+    /* Timeline Checklist */
+    .timeline-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .timeline-item {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px 14px;
+      border-left: 4px solid var(--accent-blue);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    .timeline-item.urgent {
+      border-left-color: #e11d48;
+      background: #fffafa;
+    }
+
+    .timeline-item.upcoming {
+      border-left-color: #d97706;
+      background: #fffdfa;
+    }
+
+    .timeline-date {
+      font-size: 0.725rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 3px;
+      color: var(--text-muted);
+    }
+
+    .timeline-item.urgent .timeline-date {
+      color: #be123c;
+    }
+
+    .timeline-item.upcoming .timeline-date {
+      color: #b45309;
+    }
+
+    .timeline-title {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 0.875rem;
+      margin-bottom: 3px;
+    }
+
+    .timeline-desc {
+      font-size: 0.775rem;
+      color: #475569;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px 0 10px;
+      color: var(--text-muted);
+      font-size: 0.775rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+        padding: 0;
+      }
+      .profile-card, .table-container, details.exam-accordion {
+        border-color: #ccc;
+        box-shadow: none;
+      }
+      details.exam-accordion {
+        display: block;
+      }
+      .toolbar, .btn, .copy-btn {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Candidate Profile & Header (Light Theme) -->
+  <header class="profile-card">
+    <div class="profile-info">
+      <h1>
+        Candidate Exam Dashboard
+        <span class="badge-pill">8 Tracked Exams</span>
+      </h1>
+      <div class="profile-details">
+        <span>Candidate: <strong>Vishal Singh Shekhawat</strong></span>
+        <span>DOB: <strong>31-10-1996</strong></span>
+        <span>Mobile: <strong>+91 9694900918</strong></span>
+        <span>Email: <strong>vishalsinghshekhawat18@gmail.com</strong></span>
+        <span>Directory: <code>C:\Users\visha\Desktop\FORM</code></span>
+      </div>
+    </div>
+    <div class="stat-pills">
+      <div class="stat-pill">
+        <span class="num num-urgent">4</span>
+        <span class="lbl">Active Nov Exams</span>
+      </div>
+      <div class="stat-pill">
+        <span class="num num-action">1</span>
+        <span class="lbl">Result Awaited</span>
+      </div>
+      <div class="stat-pill">
+        <span class="num num-total">1</span>
+        <span class="lbl">Dec Exam</span>
+      </div>
+      <div class="stat-pill">
+        <span class="num" style="color: #64748b;">2</span>
+        <span class="lbl">Concluded</span>
+      </div>
+      <div class="stat-pill">
+        <span class="num num-total">8</span>
+        <span class="lbl">Total Tracked</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Urgent Notification Alert -->
+  <div class="urgent-banner">
+    <div class="urgent-icon">⚡</div>
+    <div class="urgent-content">
+      <strong>High Priority Window:</strong> Four major competitive exams have their Preliminary/CBT stages scheduled within the next 3 weeks starting <strong>November 17 (NICL AO)</strong>, followed by <strong>November 20 (SCI JCA)</strong>, <strong>November 21–22 (IBPS RRB Scale-I)</strong>, and <strong>November 29–30 (RVUNL JE)</strong>. In addition, the <strong>UIIC AO Prelims</strong> result is slated for release this month (exam held Oct 22). <em>Note: Prelims for IBPS PO XVI &amp; NICL Assistant were not cleared by a thin margin; their rows are faded below.</em>
+    </div>
+  </div>
+
+  <!-- Master Status Table Section (Ultra-Compact 3-Column Layout) -->
+  <section>
+    <div class="section-header">
+      <div class="section-title">
+        <span>📋 Master Status &amp; Form Tracking Table (3-Column Ultra-Compact)</span>
+      </div>
+      <div class="toolbar">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search exam, post or registration no..." onkeyup="filterTable()">
+        <button class="btn btn-active" id="btn-all" onclick="filterByBadge('all', this)">All (8)</button>
+        <button class="btn" id="btn-urgent" onclick="filterByBadge('urgent', this)">🔴 Nov Active (4)</button>
+        <button class="btn" id="btn-result" onclick="filterByBadge('result', this)">🟣 Result Due (1)</button>
+        <button class="btn" id="btn-dec" onclick="filterByBadge('dec', this)">🟡 Dec (1)</button>
+        <button class="btn" id="btn-concluded" onclick="filterByBadge('concluded', this)">⚪ Concluded (2)</button>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table id="statusTable">
+        <colgroup>
+          <col class="col-exam">
+          <col class="col-dates">
+          <col class="col-action">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Exam, Post &amp; Application Details</th>
+            <th>Dates &amp; Stage Status</th>
+            <th>Immediate Action Needed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 1. NICL AO -->
+          <tr data-badge="urgent">
+            <td>
+              <div class="exam-composite">
+                <div class="exam-header-row">
+                  <span class="row-index">#1</span>
+                  <span class="exam-title-text">NICL AO 2026 (Scale-I)</span>
+                  <span class="post-badge">Generalist</span>
+                </div>
+                <div class="org-subtitle">National Insurance Company Ltd. • 321 Posts (Paid: 13-10-2026)</div>
+                <div class="credentials-row">
+                  <div class="reg-cell">
+                    <span>Reg: 881044879</span>
+                    <button class="copy-btn" onclick="copyText('881044879', this)" title="Copy Reg No">📋</button>
+                  </div>
+                  <a href="https://nationalinsurance.nic.co.in" target="_blank" class="exam-web-link">
+                    🌐 nationalinsurance.nic.co.in ↗
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="dates-status-box">
+                <span class="status-badge badge-urgent">
+                  <span class="pulse-dot"></span> Prelims in 10 Days
+                </span>
+                <span class="date-highlight">Nov 17, 2026 (Phase-I Prelims)</span>
+                <span class="date-secondary">Phase-II Mains: Dec 22, 2026</span>
+              </div>
+            </td>
+            <td class="action-text">
+              <strong>Download Phase-I Admit Card</strong> releasing this week on the NICL portal. Review Prelims syllabus &amp; practice mocks.
+            </td>
+          </tr>
+
+          <!-- 2. SCI JCA -->
+          <tr data-badge="urgent">
+            <td>
+              <div class="exam-composite">
+                <div class="exam-header-row">
+                  <span class="row-index">#2</span>
+                  <span class="exam-title-text">Supreme Court JCA 2026</span>
+                  <span class="post-badge">Junior Court Assistant (Code 01)</span>
+                </div>
+                <div class="org-subtitle">Supreme Court of India • Advt: 30-09-2026 (250 Posts)</div>
+                <div class="credentials-row">
+                  <div class="reg-cell">
+                    <span>App No: SCIJ260002431</span>
+                    <button class="copy-btn" onclick="copyText('SCIJ260002431', this)" title="Copy App No">📋</button>
+                  </div>
+                  <a href="https://www.sci.gov.in" target="_blank" class="exam-web-link">
+                    🌐 sci.gov.in ↗
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="dates-status-box">
+                <span class="status-badge badge-urgent">
+                  <span class="pulse-dot"></span> Written Exam in ~13 Days
+                </span>
+                <span class="date-highlight">Nov 20, 2026 (Tentative)</span>
+                <span class="date-secondary">Typing (35 wpm) &amp; Descriptive after</span>
+              </div>
+            </td>
+            <td class="action-text">
+              <strong>Watch for Admit Card</strong> on sci.gov.in next week. Practice daily English computer typing (min 35 w.p.m.).
+            </td>
+          </tr>
+
+          <!-- 3. IBPS RRB Scale I -->
+          <tr data-badge="urgent">
+            <td>
+              <div class="exam-composite">
+                <div class="exam-header-row">
+                  <span class="row-index">#3</span>
+                  <span class="exam-title-text">IBPS CRP-RRBs-XV</span>
+                  <span class="post-badge">Officer Scale-I (Assistant Manager)</span>
+                </div>
+                <div class="org-subtitle">Regional Rural Banks • Group 'A' Officers (Paid: 06-09-2026)</div>
+                <div class="credentials-row">
+                  <div class="reg-cell">
+                    <span>Reg: 2740110053</span>
+                    <button class="copy-btn" onclick="copyText('2740110053', this)" title="Copy Reg No">📋</button>
+                  </div>
+                  <a href="https://www.ibps.in" target="_blank" class="exam-web-link">
+                    🌐 ibps.in ↗
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="dates-status-box">
+                <span class="status-badge badge-urgent">
+                  <span class="pulse-dot"></span> Prelims in ~2 Weeks
+                </span>
+                <span class="date-highlight">Nov 21 &amp; 22, 2026 (Prelims)</span>
+                <span class="date-secondary">Phase-II Mains: Dec 20, 2026 (Tentative)</span>
+              </div>
+            </td>
+            <td class="action-text">
+              <strong>Download Prelims Call Letter</strong> from ibps.in (expected around Nov 10–12). Speed drill on Reasoning &amp; Quant.
+            </td>
+          </tr>
+
+          <!-- 4. RVUNL JE -->
+          <tr data-badge="urgent">
+            <td>
+              <div class="exam-composite">
+                <div class="exam-header-row">
+                  <span class="row-index">#4</span>
+                  <span class="exam-title-text">RVUNL Junior Engineer-I</span>
+                  <span class="post-badge">JE-I (Electrical)</span>
+                </div>
+                <div class="org-subtitle">Rajasthan State Power Companies • Advt: 2026-27/02 (Submitted: 28-08-2026)</div>
+                <div class="credentials-row">
+                  <div class="reg-cell">
+                    <span>Reg: 3700382341</span>
+                    <button class="copy-btn" onclick="copyText('3700382341', this)" title="Copy Reg No">📋</button>
+                  </div>
+                  <a href="https://energy.rajasthan.gov.in" target="_blank" class="exam-web-link">
+                    🌐 energy.rajasthan.gov.in ↗
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="dates-status-box">
+                <span class="status-badge badge-upcoming">
+                  <span class="pulse-dot"></span> CBT Date Announced
+                </span>
+                <span class="date-highlight">Nov 29 &amp; 30, 2026 (CBT Exam)</span>
+                <span class="date-secondary">Discipline: Electrical (Part A 60% + Part B 40%)</span>
+              </div>
+            </td>
+            <td class="action-text">
+              <strong>Download CBT Admit Card</strong> around mid-November. Revise Electrical Core (Machines, Power Systems) &amp; Rajasthan GK.
+            </td>
+          </tr>
+
+          <!-- 5. UIIC AO -->
+          <tr data-badge="result">
+            <td>
+              <div class="exam-composite">
+                <div class="exam-header-row">
+                  <span class="row-index">#5</span>
+                  <span class="exam-title-text">UIIC AO (Scale-I) 2026</span>
+                  <span class="post-badge">Administrative Officer - Generalist</span>
+                </div>
+                <div class="org-subtitle">United India Insurance Company Ltd. (Paid: 11-09-2026)</div>
+                <div class="credentials-row">
+                  <div class="reg-cell">
+                    <span>Reg: 861022622</span>
+                    <button class="copy-btn" onclick="copyText('861022622', this)" title="Copy Reg No">📋</button>
+                  </div>
+                  <a href="https://uiic.co.in" target="_blank" class="exam-web-link">
+                    🌐 uiic.co.in ↗
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="dates-status-box">
+                <span class="status-badge badge-result">
+                  <span class="pulse-dot"></span> Prelims Done • Result Due
+                </span>
+                <span class="date-highlight">Phase-II Mains: Nov 30, 2026</span>
+                <span class="date-secondary">Prelims Result: Mid-Nov 2026 (Exam held Oct 22)</span>
+              </div>
+            </td>
+            <td class="action-text">
+              <strong>Check Prelims Shortlist PDF</strong> on uiic.co.in. Prepare for Phase-II Mains on Nov 30 (Insurance awareness + Descriptive).
+            </td>
+          </tr>
+
+          <!-- 6. UPSC EPFO APFC -->
+          <tr data-badge="dec">
+            <td>
+              <div class="exam-composite">
+                <div class="exam-header-row">
+                  <span class="row-index">#6</span>
+                  <span class="exam-title-text">UPSC EPFO APFC 2026</span>
+                  <span class="post-badge">Assistant Provident Fund Commissioner</span>
+                </div>
+                <div class="org-subtitle">Union Public Service Commission • Gazette: 11-03-2026 (Paid: 14-09-2026)</div>
+                <div class="credentials-row">
+                  <div class="reg-cell">
+                    <span>Reg: 259133170922</span>
+                    <button class="copy-btn" onclick="copyText('259133170922', this)" title="Copy Reg">📋</button>
+                  </div>
+                  <div class="reg-cell">
+                    <span>URN: 12698106025</span>
+                    <button class="copy-btn" onclick="copyText('12698106025', this)" title="Copy URN">📋</button>
+                  </div>
+                  <a href="https://upsc.gov.in" target="_blank" class="exam-web-link">
+                    🌐 upsc.gov.in ↗
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="dates-status-box">
+                <span class="status-badge badge-scheduled">
+                  <span class="pulse-dot"></span> RT in December
+                </span>
+                <span class="date-highlight">Dec 20, 2026</span>
+                <span class="date-secondary">Recruitment Test (RT: 300 Marks)</span>
+              </div>
+            </td>
+            <td class="action-text">
+              Admit Card releases ~3 weeks prior (early Dec). Comprehensive revision of 4 Labour Codes, Auditing, Economy &amp; Social Security Acts.
+            </td>
+          </tr>
+
+          <!-- 7. IBPS CRP PO/MT-XVI (Prelims Not Cleared - Faded) -->
+          <tr data-badge="concluded" class="row-faded">
+            <td>
+              <div class="exam-composite">
+                <div class="exam-header-row">
+                  <span class="row-index" style="background: #f1f5f9; color: #64748b; border-color: #cbd5e1;">#7</span>
+                  <span class="exam-title-text" style="color: #475569;">IBPS CRP PO/MT-XVI</span>
+                  <span class="post-badge" style="color: #64748b; background: #e2e8f0;">Probationary Officer / M.T.</span>
+                </div>
+                <div class="org-subtitle">Public Sector Banks • Prelims Exam: 22-08-2026</div>
+                <div class="credentials-row">
+                  <div class="reg-cell" style="background: #e2e8f0; color: #475569;">
+                    <span>Reg: 2660049988</span>
+                    <button class="copy-btn" onclick="copyText('2660049988', this)" title="Copy Reg">📋</button>
+                  </div>
+                  <div class="reg-cell" style="background: #e2e8f0; color: #475569;">
+                    <span>Roll: 2381006668</span>
+                    <button class="copy-btn" onclick="copyText('2381006668', this)" title="Copy Roll">📋</button>
+                  </div>
+                  <a href="https://www.ibps.in" target="_blank" class="exam-web-link" style="color: #64748b;">
+                    🌐 ibps.in ↗
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="dates-status-box">
+                <span class="status-badge badge-concluded">
+                  <span class="pulse-dot" style="background-color: #94a3b8;"></span> Prelims Not Cleared (Thin Margin)
+                </span>
+                <span class="date-highlight" style="color: #64748b;">Prelims Exam: Aug 22, 2026</span>
+                <span class="date-secondary">Prelims Result Declared: Sept 23, 2026</span>
+              </div>
+            </td>
+            <td class="action-text" style="color: #64748b;">
+              Cycle concluded. Missed the preliminary cutoff by a narrow margin. Speed and preparation insights carry forward directly to <strong>IBPS RRB (Nov 21–22)</strong>.
+            </td>
+          </tr>
+
+          <!-- 8. NICL Assistant (Prelims Not Cleared - Faded) -->
+          <tr data-badge="concluded" class="row-faded">
+            <td>
+              <div class="exam-composite">
+                <div class="exam-header-row">
+                  <span class="row-index" style="background: #f1f5f9; color: #64748b; border-color: #cbd5e1;">#8</span>
+                  <span class="exam-title-text" style="color: #475569;">NICL Assistant 2026</span>
+                  <span class="post-badge" style="color: #64748b; background: #e2e8f0;">Assistant (Class III)</span>
+                </div>
+                <div class="org-subtitle">National Insurance Co. Ltd. • Prelims Exam: 27-08-2026</div>
+                <div class="credentials-row">
+                  <div class="reg-cell" style="background: #e2e8f0; color: #475569;">
+                    <span>Reg: 852006016</span>
+                    <button class="copy-btn" onclick="copyText('852006016', this)" title="Copy Reg">📋</button>
+                  </div>
+                  <div class="reg-cell" style="background: #e2e8f0; color: #475569;">
+                    <span>Roll: 2271003368</span>
+                    <button class="copy-btn" onclick="copyText('2271003368', this)" title="Copy Roll">📋</button>
+                  </div>
+                  <a href="https://nationalinsurance.nic.co.in" target="_blank" class="exam-web-link" style="color: #64748b;">
+                    🌐 nationalinsurance.nic.co.in ↗
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="dates-status-box">
+                <span class="status-badge badge-concluded">
+                  <span class="pulse-dot" style="background-color: #94a3b8;"></span> Prelims Not Cleared (Thin Margin)
+                </span>
+                <span class="date-highlight" style="color: #64748b;">Prelims Exam: Aug 27, 2026</span>
+                <span class="date-secondary">Prelims Result Declared: Oct 08, 2026</span>
+              </div>
+            </td>
+            <td class="action-text" style="color: #64748b;">
+              Cycle concluded. Missed the cutoff by a thin margin. Sectional practice directly benefits the upcoming <strong>NICL AO (Scale-I) Prelims on Nov 17</strong>.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Chronological Timeline Cards (Light Theme) -->
+  <section class="timeline-card">
+    <div class="section-title" style="margin-bottom: 6px;">
+      <span>📅 Chronological Action &amp; Exam Timeline</span>
+    </div>
+    <div class="timeline-grid">
+      <div class="timeline-item urgent">
+        <div class="timeline-date">Nov 17, 2026 • In ~10 Days</div>
+        <div class="timeline-title">NICL AO (Scale-I) Phase-I Prelims</div>
+        <div class="timeline-desc">Online CBT (English, Reasoning, Quantitative Aptitude) • 100 Marks • 60 Mins.</div>
+      </div>
+      <div class="timeline-item urgent">
+        <div class="timeline-date">Nov 20, 2026 • In ~13 Days</div>
+        <div class="timeline-title">Supreme Court of India JCA Exam</div>
+        <div class="timeline-desc">Written Objective Test (English, Aptitude, GK, Judiciary &amp; Court Rules, Computer) + Typing.</div>
+      </div>
+      <div class="timeline-item urgent">
+        <div class="timeline-date">Nov 21 &amp; 22, 2026 • In ~2 Weeks</div>
+        <div class="timeline-title">IBPS RRB Officer Scale-I Prelims</div>
+        <div class="timeline-desc">Online Prelims Examination (Reasoning: 40 Qs, Quant: 40 Qs) • 80 Marks • 45 Mins.</div>
+      </div>
+      <div class="timeline-item upcoming">
+        <div class="timeline-date">Nov 29 &amp; 30, 2026</div>
+        <div class="timeline-title">RVUNL Junior Engineer-I (Electrical)</div>
+        <div class="timeline-desc">Computer Based Test (Part A: Electrical Engg 60%, Part B: Non-Tech &amp; Rajasthan GK 40%).</div>
+      </div>
+      <div class="timeline-item upcoming">
+        <div class="timeline-date">Nov 30, 2026</div>
+        <div class="timeline-title">UIIC AO (Scale-I) Phase-II Mains</div>
+        <div class="timeline-desc">Subject to clearing Oct 22 Prelims (Reasoning, English, Quant, Insurance/GA, Computer + Descriptive).</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Dec 20, 2026</div>
+        <div class="timeline-title">UPSC EPFO APFC Recruitment Test</div>
+        <div class="timeline-desc">Objective Offline/CBT RT (Labour Laws, Industrial Relations, Auditing, Economy, Heritage, English).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collapsible Syllabus Section (Light Theme, Closed by Default) -->
+  <section class="syllabus-section">
+    <div class="section-header">
+      <div>
+        <div class="section-title">
+          <span>📚 Official Exam Patterns &amp; Detailed Syllabuses</span>
+        </div>
+        <p style="font-size: 0.825rem; color: var(--text-muted); margin-top: 3px;">
+          All syllabus sections are kept <strong>closed by default</strong> to keep the dashboard clutter-free. Click any bar to toggle the breakdown.
+        </p>
+      </div>
+      <div class="toolbar">
+        <button class="btn" onclick="toggleAllAccordions(true)">Expand All Syllabuses</button>
+        <button class="btn" onclick="toggleAllAccordions(false)">Collapse All</button>
+      </div>
+    </div>
+
+    <!-- 1. NICL AO Syllabus Accordion -->
+    <details class="exam-accordion" id="syl-nicl-ao">
+      <summary class="accordion-header">
+        <div class="header-left">
+          <span class="header-number">1</span>
+          <span>NICL Administrative Officer (Scale-I) Generalist — Exam Pattern &amp; Syllabus</span>
+        </div>
+        <div class="header-right">
+          <span class="status-badge badge-urgent">Prelims: Nov 17, 2026</span>
+          <span class="chevron">▼</span>
+        </div>
+      </summary>
+      <div class="accordion-body">
+        <!-- Stage 1 -->
+        <div class="stage-card">
+          <div class="stage-title">
+            <span>Phase-I: Preliminary Examination (Online Objective)</span>
+            <span style="font-size: 0.775rem; color: var(--text-muted);">100 Questions • 100 Marks • 60 Minutes</span>
+          </div>
+          <table class="pattern-table">
+            <thead>
+              <tr>
+                <th>Section</th>
+                <th>No. of Qs</th>
+                <th>Max Marks</th>
+                <th>Duration</th>
+                <th>Medium</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Test of English Language</td>
+                <td>30</td>
+                <td>30</td>
+                <td>20 mins</td>
+                <td>English</td>
+              </tr>
+              <tr>
+                <td>Test of Reasoning Ability</td>
+                <td>35</td>
+                <td>35</td>
+                <td>20 mins</td>
+                <td>English / Hindi</td>
+              </tr>
+              <tr>
+                <td>Test of Quantitative Aptitude</td>
+                <td>35</td>
+                <td>35</td>
+                <td>20 mins</td>
+                <td>English / Hindi</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="syllabus-topics">
+            <div class="topic-group">
+              <div class="topic-group-title">Syllabus Breakdown:</div>
+              <p>• <strong>Reasoning Ability:</strong> Seating Arrangements (Circular, Linear, Square), Puzzles (Floor, Box, Day/Month, Flat), Syllogisms, Inequalities, Direction Sense, Blood Relations, Coding-Decoding, Order &amp; Ranking, Alpha-Numeric Series.</p>
+              <p>• <strong>Quantitative Aptitude:</strong> Data Interpretation (Bar, Line, Pie, Tabular, Caselets), Quadratic Equations, Missing &amp; Wrong Number Series, Simplification / Approximation, Arithmetic (Percentages, Profit &amp; Loss, Ratio &amp; Proportion, Time &amp; Work, Pipes &amp; Cisterns, Speed Time &amp; Distance, Boats &amp; Streams, Simple &amp; Compound Interest, Mixtures &amp; Alligations).</p>
+              <p>• <strong>English Language:</strong> Reading Comprehension, Cloze Test, Spotting Errors, Sentence Improvement, Parajumbles, Fillers, Vocabulary (Synonyms/Antonyms), Phrase Replacement.</p>
+              <p>• <em>Negative Marking: 1/4th (0.25) mark deducted for each wrong answer.</em></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="stage-card">
+          <div class="stage-title">
+            <span>Phase-II: Main Examination (Objective + Descriptive Online)</span>
+            <span style="font-size: 0.775rem; color: var(--text-muted);">Dec 22, 2026 • 250 Marks (Obj) + 30 Marks (Desc)</span>
+          </div>
+          <table class="pattern-table">
+            <thead>
+              <tr>
+                <th>Section</th>
+                <th>Questions</th>
+                <th>Marks</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Test of Reasoning</td><td>50</td><td>50</td><td>40 mins</td></tr>
+              <tr><td>Test of English Language</td><td>50</td><td>50</td><td>40 mins</td></tr>
+              <tr><td>Test of General Awareness (Finance/Insurance)</td><td>50</td><td>50</td><td>30 mins</td></tr>
+              <tr><td>Test of Quantitative Aptitude</td><td>50</td><td>50</td><td>40 mins</td></tr>
+              <tr><td>Test of Computer Knowledge</td><td>50</td><td>50</td><td>30 mins</td></tr>
+              <tr><td><strong>Descriptive Test (Essay, Precis, Comprehension)</strong></td><td>3</td><td>30</td><td>30 mins</td></tr>
+            </tbody>
+          </table>
+          <div class="syllabus-topics">
+            <p>• <strong>General Awareness:</strong> National &amp; International Current Affairs (last 6 months), Insurance Sector Developments (IRDAI regulations, insurance terminology, history, principles), Banking &amp; Financial Awareness, Union Budget, Government Schemes, Static GK.</p>
+            <p>• <strong>Computer Knowledge:</strong> Computer Hardware/Software, Operating Systems, Networking &amp; Internet, MS Office (Word, Excel, PPT), Cybersecurity, Database Management (DBMS basics), Keyboard shortcuts.</p>
+            <p>• <strong>Descriptive English:</strong> Typed on computer; Essay on contemporary socio-economic/insurance topics (200-250 words), Précis writing, and Comprehension. (Qualifying nature).</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 2. SCI JCA Syllabus Accordion -->
+    <details class="exam-accordion" id="syl-sci-jca">
+      <summary class="accordion-header">
+        <div class="header-left">
+          <span class="header-number">2</span>
+          <span>Supreme Court of India: Junior Court Assistant (JCA) — Official Syllabus</span>
+        </div>
+        <div class="header-right">
+          <span class="status-badge badge-urgent">Exam: Nov 20, 2026 (Tentative)</span>
+          <span class="chevron">▼</span>
+        </div>
+      </summary>
+      <div class="accordion-body">
+        <div class="stage-card">
+          <div class="stage-title">
+            <span>Stage 1: Written Objective Test</span>
+            <span style="font-size: 0.775rem; color: var(--text-muted);">100 Questions • 100 Marks • 90 Minutes (Negative marking: 0.25)</span>
+          </div>
+          <table class="pattern-table">
+            <thead>
+              <tr>
+                <th>Subject / Component</th>
+                <th>Questions</th>
+                <th>Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>General English (including Comprehension)</td><td>20</td><td>20</td></tr>
+              <tr><td>General Aptitude (Reasoning &amp; Numerical Ability)</td><td>15</td><td>15</td></tr>
+              <tr><td>General Knowledge &amp; Current Affairs</td><td>15</td><td>15</td></tr>
+              <tr><td>Provisions Relating to Judiciary in the Constitution of India</td><td>15</td><td>15</td></tr>
+              <tr><td>Supreme Court Rules, 2013</td><td>10</td><td>10</td></tr>
+              <tr><td>Supreme Court Officers &amp; Servants (Conditions of Service &amp; Conduct) Rules, 1961</td><td>10</td><td>10</td></tr>
+              <tr><td>Computer Knowledge</td><td>15</td><td>15</td></tr>
+            </tbody>
+          </table>
+          <div class="syllabus-topics">
+            <div class="topic-group">
+              <div class="topic-group-title">Specific Legal &amp; Administrative Core:</div>
+              <p>• <strong>Judiciary in the Constitution:</strong> Articles 124–147 (Supreme Court composition, jurisdiction, appointment of judges, removal, Court of Record, advisory jurisdiction, curative petitions), Articles 214–231 (High Courts), Writ Jurisdiction (Articles 32 &amp; 226), Judicial Review, Basic Structure doctrine.</p>
+              <p>• <strong>Supreme Court Rules, 2013:</strong> Procedural regulations, powers of registrar, listing of cases, lodging petitions (SLPs, Appeals, Caveats), affidavits, court fees, paper books.</p>
+              <p>• <strong>Supreme Court Officers &amp; Servants Rules, 1961:</strong> Hierarchy, conduct rules, disciplinary action, leave, attendance, office confidentiality.</p>
+              <p>• <strong>General English &amp; Aptitude:</strong> Grammar, vocabulary, error correction, legal maxims and terms, syllogisms, series, analogies, basic percentages, ratio &amp; averages.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-title">
+            <span>Stage 2 &amp; 3: Typing Test, Descriptive Test &amp; Interview</span>
+          </div>
+          <div class="syllabus-topics">
+            <p>• <strong>Typing Test on Computer:</strong> English typing test with minimum speed of <strong>35 words per minute</strong> (w.p.m.) after 10 minutes test (Mistakes allowed up to 3%).</p>
+            <p>• <strong>Descriptive Written Test:</strong> Duration: 2 Hours. Consists of English Comprehension Passage, Précis Writing, and Essay Writing.</p>
+            <p>• <strong>Interview:</strong> Personal interview assessing court suitability, temperament, and communication skills.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 3. IBPS RRB Officer Scale I Syllabus Accordion -->
+    <details class="exam-accordion" id="syl-ibps-rrb">
+      <summary class="accordion-header">
+        <div class="header-left">
+          <span class="header-number">3</span>
+          <span>IBPS CRP-RRBs-XV: Officer Scale-I (Assistant Manager) — Exam Pattern &amp; Syllabus</span>
+        </div>
+        <div class="header-right">
+          <span class="status-badge badge-urgent">Prelims: Nov 21 &amp; 22, 2026</span>
+          <span class="chevron">▼</span>
+        </div>
+      </summary>
+      <div class="accordion-body">
+        <div class="stage-card">
+          <div class="stage-title">
+            <span>Phase-I: Preliminary Examination</span>
+            <span style="font-size: 0.775rem; color: var(--text-muted);">80 Questions • 80 Marks • 45 Minutes (Composite Time)</span>
+          </div>
+          <table class="pattern-table">
+            <thead>
+              <tr>
+                <th>Test</th>
+                <th>No. of Qs</th>
+                <th>Max Marks</th>
+                <th>Medium</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Reasoning Ability</td><td>40</td><td>40</td><td>Regional / English / Hindi</td></tr>
+              <tr><td>Quantitative Aptitude</td><td>40</td><td>40</td><td>Regional / English / Hindi</td></tr>
+            </tbody>
+          </table>
+          <div class="syllabus-topics">
+            <p>• <strong>Note:</strong> There is NO English language section in IBPS RRB Officer Scale-I Prelims.</p>
+            <p>• <strong>Reasoning:</strong> High weightage on Puzzles &amp; Seating Arrangement (20-25 questions), Syllogism (Only a few / Possibility), Inequality, Direction Sense, Coding-Decoding, Blood Relation.</p>
+            <p>• <strong>Quantitative Aptitude:</strong> Approximations (5 Qs), Missing/Wrong Number Series (5 Qs), Quadratic Equations (5 Qs), Data Interpretation (10-15 Qs), Arithmetic word problems (10 Qs).</p>
+          </div>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-title">
+            <span>Phase-II: Main Examination &amp; Phase-III Interview</span>
+            <span style="font-size: 0.775rem; color: var(--text-muted);">200 Questions • 200 Marks • 120 Minutes</span>
+          </div>
+          <table class="pattern-table">
+            <thead>
+              <tr><th>Test</th><th>Qs</th><th>Marks</th><th>Medium</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Reasoning</td><td>40</td><td>50</td><td>Regional / Eng / Hindi</td></tr>
+              <tr><td>Computer Knowledge</td><td>40</td><td>20</td><td>Regional / Eng / Hindi</td></tr>
+              <tr><td>General Awareness</td><td>40</td><td>40</td><td>Regional / Eng / Hindi</td></tr>
+              <tr><td>English Language OR Hindi Language</td><td>40</td><td>40</td><td>English OR Hindi</td></tr>
+              <tr><td>Quantitative Aptitude</td><td>40</td><td>50</td><td>Regional / Eng / Hindi</td></tr>
+            </tbody>
+          </table>
+          <div class="syllabus-topics">
+            <p>• <strong>General Awareness:</strong> Heavy emphasis on Rural Banking, NABARD initiatives, Priority Sector Lending (PSL), Agriculture &amp; Allied sectors, Government Rural welfare schemes (PM-KISAN, PMFBY, KCC), RBI Monetary policies.</p>
+            <p>• <strong>Phase-III Interview:</strong> 100 Marks. Combined weightage ratio (Main : Interview) is 80:20.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 4. RVUNL JE Electrical Syllabus Accordion -->
+    <details class="exam-accordion" id="syl-rvunl-je">
+      <summary class="accordion-header">
+        <div class="header-left">
+          <span class="header-number">4</span>
+          <span>RVUNL: Junior Engineer-I (Electrical) — Detailed Syllabus (Advt: 2026-27/02)</span>
+        </div>
+        <div class="header-right">
+          <span class="status-badge badge-upcoming">CBT: Nov 29 &amp; 30, 2026</span>
+          <span class="chevron">▼</span>
+        </div>
+      </summary>
+      <div class="accordion-body">
+        <div class="stage-card">
+          <div class="stage-title">
+            <span>Computer Based Test (CBT) Structure</span>
+            <span style="font-size: 0.775rem; color: var(--text-muted);">2 Hours • 140 Questions • 200 Marks</span>
+          </div>
+          <table class="pattern-table">
+            <thead>
+              <tr>
+                <th>Part</th>
+                <th>Scope</th>
+                <th>Weightage</th>
+                <th>Level</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Part 'A'</strong></td>
+                <td>Electrical Engineering Degree Core</td>
+                <td><strong>60%</strong> (120 Marks)</td>
+                <td>Graduation / B.Tech Level</td>
+              </tr>
+              <tr>
+                <td><strong>Part 'B'</strong></td>
+                <td>General Awareness, Reasoning, Maths, Hindi &amp; English</td>
+                <td><strong>40%</strong> (80 Marks)</td>
+                <td>10th / 12th Standard Level</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="syllabus-topics">
+            <div class="topic-group">
+              <div class="topic-group-title">Part 'A' — Electrical Engineering Degree Syllabus (60%):</div>
+              <p>• <strong>Electrical Circuits &amp; Networks:</strong> Mesh and nodal analysis, Thevenin’s, Norton’s, Superposition, Maximum Power Transfer theorems, transient response of RL, RC, RLC circuits, sinusoidal steady-state analysis, resonance, three-phase balanced and unbalanced circuits.</p>
+              <p>• <strong>Electrical Machines:</strong> Single-phase and three-phase transformers (equivalent circuit, testing, parallel operation, autotransformers), DC machines (characteristics, starting, braking, speed control), Three-phase induction motors (torque-speed, slip, starting methods), Synchronous machines (voltage regulation, V-curves, parallel operation, hunting).</p>
+              <p>• <strong>Power Systems:</strong> Generation, transmission line parameters, performance of lines, sag calculation, underground cables, load flow studies, fault analysis (symmetrical &amp; unsymmetrical), circuit breakers, protective relays, power system stability.</p>
+              <p>• <strong>Control Systems:</strong> Transfer functions, block diagrams, signal flow graphs, time response, Routh-Hurwitz, Bode plot, Nyquist criterion.</p>
+              <p>• <strong>Power Electronics &amp; Drives:</strong> SCR, MOSFET, IGBT characteristics, Phase controlled rectifiers, inverters, choppers, AC voltage controllers, electric drive speed control.</p>
+              <p>• <strong>Measurements &amp; Instrumentation:</strong> Bridges, PMMC, MI meters, wattmeters, energy meters, digital voltmeters, instrument transformers (CT/PT).</p>
+            </div>
+            <div class="topic-group">
+              <div class="topic-group-title">Part 'B' — Non-Technical &amp; Rajasthan GK (40%):</div>
+              <p>• <strong>Rajasthan General Knowledge:</strong> History, Art, Culture, Architecture, Heritage, Geography, Natural Resources, and Socio-Economic development of Rajasthan.</p>
+              <p>• <strong>Everyday Science &amp; Current Affairs:</strong> Basic scientific principles, current events of Rajasthan and national importance.</p>
+              <p>• <strong>Reasoning &amp; Mental Ability:</strong> Analogies, Series, Coding-Decoding, Blood relations, Venn diagrams, Decision making.</p>
+              <p>• <strong>Mathematics:</strong> 10th standard arithmetic, algebra, mensuration, trigonometry basics.</p>
+              <p>• <strong>General Hindi &amp; General English:</strong> Grammar, spelling errors, idioms, antonyms/synonyms, comprehension.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 5. UIIC AO Syllabus Accordion -->
+    <details class="exam-accordion" id="syl-uiic-ao">
+      <summary class="accordion-header">
+        <div class="header-left">
+          <span class="header-number">5</span>
+          <span>UIIC: Administrative Officer (Scale-I) Generalist — Exam Pattern &amp; Syllabus</span>
+        </div>
+        <div class="header-right">
+          <span class="status-badge badge-result">Mains: Nov 30, 2026</span>
+          <span class="chevron">▼</span>
+        </div>
+      </summary>
+      <div class="accordion-body">
+        <div class="stage-card">
+          <div class="stage-title">
+            <span>Phase-II: Main Examination Pattern</span>
+            <span style="font-size: 0.775rem; color: var(--text-muted);">200 Questions • 200 Marks • 120 Minutes</span>
+          </div>
+          <table class="pattern-table">
+            <thead>
+              <tr><th>Test Section</th><th>No. of Qs</th><th>Max Marks</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Test of Reasoning</td><td>50</td><td>50</td></tr>
+              <tr><td>Test of English Language</td><td>40</td><td>40</td></tr>
+              <tr><td>Test of Quantitative Aptitude</td><td>50</td><td>50</td></tr>
+              <tr><td>General Awareness (with special reference to Financial / Insurance sector)</td><td>40</td><td>40</td></tr>
+              <tr><td>Computer Literacy</td><td>20</td><td>20</td></tr>
+            </tbody>
+          </table>
+          <div class="syllabus-topics">
+            <p>• <strong>Insurance &amp; Financial Awareness:</strong> Principles of General Insurance (Indemnity, Insurable Interest, Utmost Good Faith, Proximate Cause, Subrogation, Contribution), Motor Insurance, Health Insurance, Fire &amp; Marine Insurance policies, IRDAI guidelines, recent insurance mergers and public sector insurance initiatives.</p>
+            <p>• <strong>Descriptive Test:</strong> English Essay &amp; Letter Writing (30 Marks, 30 minutes, online typed).</p>
+            <p>• <strong>Interview:</strong> Shortlisted candidates from Phase-II are called for the final interview.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 6. UPSC EPFO APFC Syllabus Accordion -->
+    <details class="exam-accordion" id="syl-upsc-apfc">
+      <summary class="accordion-header">
+        <div class="header-left">
+          <span class="header-number">6</span>
+          <span>UPSC: Assistant Provident Fund Commissioner (EPFO APFC) — Detailed Official Syllabus</span>
+        </div>
+        <div class="header-right">
+          <span class="status-badge badge-scheduled">RT Exam: Dec 20, 2026</span>
+          <span class="chevron">▼</span>
+        </div>
+      </summary>
+      <div class="accordion-body">
+        <div class="stage-card">
+          <div class="stage-title">
+            <span>Recruitment Test (RT) Scheme</span>
+            <span style="font-size: 0.775rem; color: var(--text-muted);">2 Hours • 120 Questions • 300 Marks (1/3rd Negative Marking)</span>
+          </div>
+          <div class="syllabus-topics">
+            <div class="topic-group">
+              <div class="topic-group-title">Part A: General English</div>
+              <p>Candidate’s understanding of English language and workman-like use of words, sentence correction, vocabulary, idioms and phrases, comprehension.</p>
+            </div>
+            <div class="topic-group">
+              <div class="topic-group-title">Part B: Core General Studies &amp; Specialized Subjects</div>
+              <p>• <strong>Indian Culture, Heritage &amp; Freedom Movements:</strong> Architecture, art forms, literature, social reform movements, 1857 revolt, phases of freedom struggle (moderate, extremist, Gandhian phase), post-independence consolidation.</p>
+              <p>• <strong>Governance and Constitution of India:</strong> Preamble, Fundamental Rights, DPSPs, Fundamental Duties, Union Executive, Parliament, Judiciary, Centre-State Relations, Statutory and Regulatory Bodies, RTI, Citizen Charters.</p>
+              <p>• <strong>Present Trends in Indian Economy:</strong> Economic planning, inflation, fiscal &amp; monetary policy, banking reforms, external sector &amp; balance of payments, infrastructure, agriculture reforms.</p>
+              <p>• <strong>Accounting and Auditing:</strong> Principles of accounting, ledger, trial balance, financial statements, cash flow statements, depreciation, auditing concepts, internal control.</p>
+              <p>• <strong>Industrial Relations &amp; Labour Laws:</strong> Trade Unions Act, Industrial Disputes Act, Factories Act, The New 4 Labour Codes (Code on Wages, Industrial Relations Code, Social Security Code, OSHWC Code).</p>
+              <p>• <strong>Insurance &amp; Social Security in India:</strong> Life &amp; Non-life insurance concepts, Employees' Provident Funds and Miscellaneous Provisions Act (1952), Employees' State Insurance (ESI) Act, Maternity Benefit Act, Gratuity Act, National Pension System (NPS), Atal Pension Yojana, PMJJBY, PMSBY.</p>
+              <p>• <strong>Population, Development and Globalization:</strong> Demographics, urbanization, migration, globalization impacts on employment, sustainable development goals (SDGs).</p>
+              <p>• <strong>Basic Computer Applications &amp; General Science:</strong> Computer networks, internet protocols, MS office, cyber laws, physics, chemistry, biology in everyday life.</p>
+              <p>• <strong>Elementary Mathematics, Statistics &amp; General Mental Ability:</strong> Number systems, percentages, ratios, permutations &amp; combinations, probability, data interpretation, measures of central tendency.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 7. IBPS PO XVI Syllabus Accordion (Concluded - Faded) -->
+    <details class="exam-accordion accordion-faded" id="syl-ibps-po">
+      <summary class="accordion-header">
+        <div class="header-left">
+          <span class="header-number" style="background: #f1f5f9; color: #64748b; border-color: #cbd5e1;">7</span>
+          <span style="color: #64748b;">IBPS CRP PO/MT-XVI: Reference Pattern (Cycle Concluded)</span>
+        </div>
+        <div class="header-right">
+          <span class="status-badge badge-concluded">Cycle Concluded</span>
+          <span class="chevron">▼</span>
+        </div>
+      </summary>
+      <div class="accordion-body">
+        <div class="stage-card">
+          <div class="stage-title">
+            <span style="color: #64748b;">Phase-III: Common Interview Structure (Reference)</span>
+            <span style="font-size: 0.775rem; color: var(--text-muted);">Total Marks: 100 • Qualifying: 40% (35% for SC/ST/OBC/PwD)</span>
+          </div>
+          <div class="syllabus-topics">
+            <p>• <strong>Selection Weightage:</strong> The final merit list is compiled on the basis of scores obtained in the <strong>Main Examination (225 marks normalized to 80%)</strong> and the <strong>Common Interview (100 marks normalized to 20%)</strong>.</p>
+            <p>• <strong>Key Preparation Areas for Future Banking Interviews:</strong></p>
+            <p>&nbsp;&nbsp;1. <em>Banking &amp; Financial Awareness:</em> Repo/Reverse Repo, SLR/CRR, NPA management, Prompt Corrective Action (PCA), Digital Rupee (CBDC), Unified Payments Interface (UPI) advancements, financial inclusion schemes.</p>
+            <p>&nbsp;&nbsp;2. <em>Academic &amp; Profile Defense:</em> Electrical Engineering graduation background questions, gap year explanations, why transition from engineering to commercial banking.</p>
+            <p>&nbsp;&nbsp;3. <em>Situational &amp; HR Questions:</em> Conflict resolution, dealing with difficult bank customers, leadership experience, ethics in banking.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 8. NICL Assistant Syllabus Accordion (Concluded - Faded) -->
+    <details class="exam-accordion accordion-faded" id="syl-nicl-asst">
+      <summary class="accordion-header">
+        <div class="header-left">
+          <span class="header-number" style="background: #f1f5f9; color: #64748b; border-color: #cbd5e1;">8</span>
+          <span style="color: #64748b;">NICL Assistant: Reference Pattern (Cycle Concluded)</span>
+        </div>
+        <div class="header-right">
+          <span class="status-badge badge-concluded">Cycle Concluded</span>
+          <span class="chevron">▼</span>
+        </div>
+      </summary>
+      <div class="accordion-body">
+        <div class="stage-card">
+          <div class="stage-title">
+            <span style="color: #64748b;">Regional Language Test (RLT) (Reference)</span>
+            <span style="font-size: 0.775rem; color: var(--text-muted);">Qualifying Nature</span>
+          </div>
+          <div class="syllabus-topics">
+            <p>• <strong>Regional Language Proficiency:</strong> Candidates shortlisted in the Phase-II Main Exam must undergo the Regional Language Test of the State/UT applied for (Rajasthan - Hindi).</p>
+            <p>• <strong>Components:</strong> Reading comprehension in the regional language, writing short paragraphs/sentences, and speaking/comprehending spoken dialogue.</p>
+            <p>• <em>Note: Candidates who fail the Regional Language Test are not considered for final selection even if they score above the Main Exam cut-off.</em></p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Exam Status &amp; Syllabus Dashboard • Generated on November 07, 2026 for Vishal Singh Shekhawat</p>
+    <p style="margin-top: 3px;">Always verify the latest dates with official recruitment notifications.</p>
+  </footer>
+
+</div>
+
+<script>
+  // Filter table by text search
+  function filterTable() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("#statusTable tbody tr");
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = text.includes(input) ? "" : "none";
+    });
+  }
+
+  // Filter table by badge category
+  function filterByBadge(badge, btnElement) {
+    document.querySelectorAll(".toolbar .btn").forEach(b => b.classList.remove("btn-active"));
+    if (btnElement) {
+      btnElement.classList.add("btn-active");
+    }
+
+    const rows = document.querySelectorAll("#statusTable tbody tr");
+    rows.forEach(row => {
+      if (badge === 'all') {
+        row.style.display = "";
+      } else {
+        const rowBadge = row.getAttribute("data-badge");
+        row.style.display = (rowBadge === badge) ? "" : "none";
+      }
+    });
+  }
+
+  // Toggle all syllabus accordions
+  function toggleAllAccordions(shouldOpen) {
+    const accordions = document.querySelectorAll("details.exam-accordion");
+    accordions.forEach(acc => {
+      acc.open = shouldOpen;
+    });
+  }
+
+  // Copy text to clipboard with visual feedback
+  function copyText(text, btnElement) {
+    navigator.clipboard.writeText(text).then(() => {
+      const originalText = btnElement.innerText;
+      btnElement.innerText = "✓";
+      btnElement.style.color = "#15803d";
+      setTimeout(() => {
+        btnElement.innerText = originalText;
+        btnElement.style.color = "";
+      }, 1500);
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  }
+</script>
+
+</body>
+</html>

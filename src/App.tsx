@@ -9,6 +9,7 @@ import { MockTestsView } from './views/MockTestsView';
 import { UniversityView } from './views/UniversityView';
 import { ReviewsView } from './views/ReviewsView';
 import { AnalyticsView } from './views/AnalyticsView';
+import { ExamStatusView } from './views/ExamStatusView';
 import { SettingsView } from './views/SettingsView';
 import { QuickAddStudyModal } from './components/QuickAddStudyModal';
 import { GuidedSetupModal } from './components/GuidedSetupModal';
@@ -60,6 +61,7 @@ export const App: React.FC = () => {
           onNavigate={(v) => setActiveView(v)}
         />
       )}
+      {activeView === 'exam-status' && <ExamStatusView />}
       {activeView === 'syllabus' && <SyllabusView />}
       {activeView === 'logs' && (
         <StudyLogsView onOpenQuickAdd={() => setIsQuickAddOpen(true)} />

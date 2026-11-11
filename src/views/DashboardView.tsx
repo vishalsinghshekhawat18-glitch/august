@@ -21,6 +21,7 @@ import {
   Trash2,
   X,
   CheckSquare,
+  ClipboardList,
 } from 'lucide-react';
 import {
   Commitment,
@@ -484,6 +485,38 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenQuickAdd, on
         currentPlanTasks={weeklyTasks}
         onDispatchUpdated={loadDashboardData}
       />
+
+      {/* Official Form & Exam Status Tracking Hub Banner */}
+      <div className="bg-gradient-to-r from-sky-50 via-white to-sky-50/40 border border-sky-200/90 rounded-2xl p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-start sm:items-center gap-3.5">
+          <div className="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+            <ClipboardList className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h3 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight">
+                Exam Status &amp; Official Forms Tracker
+              </h3>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-200">
+                4 Active Nov Exams
+              </span>
+              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-sky-100 text-sky-800 border border-sky-200 hidden md:inline">
+                Synced from Desktop/FORM
+              </span>
+            </div>
+            <p className="text-xs text-slate-600 mt-0.5">
+              NICL AO (Nov 17) • SCI JCA (Nov 20) • IBPS RRB Scale-I (Nov 21–22) • RVUNL JE (Nov 29–30). Credentials, dates &amp; official syllabuses.
+            </p>
+          </div>
+        </div>
+        <button
+          onClick={() => onNavigate('exam-status')}
+          className="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-1.5 shrink-0 active:scale-95 cursor-pointer"
+        >
+          <span>Open Exam Status Hub</span>
+          <ArrowRight className="w-4 h-4" />
+        </button>
+      </div>
 
       {/* SECTION 1: TODAY'S TASKS (FIRST PER REQUIREMENT #7) */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">

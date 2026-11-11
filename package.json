@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "node scripts/sync-exam-status.cjs && tsc && vite build",
+    "sync:exam-status": "node scripts/sync-exam-status.cjs",
     "preview": "vite preview",
     "test": "vitest run"
   },
