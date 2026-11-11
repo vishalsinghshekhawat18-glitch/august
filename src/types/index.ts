@@ -309,6 +309,48 @@ export interface CoachDispatch {
   author: 'Antigravity Mentor' | 'Live Coach Engine';
 }
 
+// Opportunities Radar Types
+export type OpportunityCategory =
+  | 'regulatory_banking'
+  | 'engineering_psu'
+  | 'professional_certification'
+  | 'fellowship_academic';
+
+export type OpportunityStatus = 'open' | 'upcoming' | 'closing_soon' | 'archived';
+
+export interface Opportunity {
+  id: string;
+  title: string;
+  organization: string;
+  category: OpportunityCategory;
+  qualificationMatch: string;
+  matchPercentage: number; // e.g. 95%
+  description: string;
+  eligibilityCriteria: string;
+  ageLimitNote?: string;
+  applicationStartDate?: string;
+  applicationDeadline?: string;
+  examDate?: string;
+  officialUrl: string;
+  status: OpportunityStatus;
+  saved?: boolean;
+  applied?: boolean;
+  tags: string[];
+  syllabusOverlap?: string;
+  discoveredAt: string;
+  lastVerifiedAt: string;
+  source: 'ai_radar' | 'manual';
+}
+
+export interface OpportunityScannerState {
+  lastScannedAt: string;
+  totalFound: number;
+  activeCount: number;
+  autoScanFrequencyHours: number;
+  status: 'idle' | 'scanning' | 'success' | 'error';
+  lastLog?: string;
+}
+
 // Data Package for Full Export / Import
 export interface ApplicationDataPackage {
   app: 'PersonalExamTracker';
@@ -330,6 +372,7 @@ export interface ApplicationDataPackage {
     dailyReviews: DailyReview[];
     weeklyReviews: WeeklyReview[];
     coachDispatches?: CoachDispatch[];
+    opportunities?: Opportunity[];
     settings: AppSettings;
   };
 }

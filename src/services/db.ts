@@ -15,12 +15,13 @@ import {
   DailyReview,
   WeeklyReview,
   CoachDispatch,
+  Opportunity,
   AppSettings,
   ApplicationDataPackage,
 } from '../types';
 
 const DB_NAME = 'August_ExamTracker_DB';
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 
 export type StoreName =
   | 'commitments'
@@ -38,6 +39,7 @@ export type StoreName =
   | 'dailyReviews'
   | 'weeklyReviews'
   | 'coachDispatches'
+  | 'opportunities'
   | 'settings';
 
 export const INITIAL_COMMITMENTS: Commitment[] = [
@@ -152,6 +154,7 @@ class IndexedDBStorage {
           { name: 'dailyReviews', keyPath: 'id', indexes: [{ name: 'date', keyPath: 'date', unique: true }] },
           { name: 'weeklyReviews', keyPath: 'id', indexes: [{ name: 'weekStartDate', keyPath: 'weekStartDate', unique: true }] },
           { name: 'coachDispatches', keyPath: 'id', indexes: [{ name: 'date', keyPath: 'date' }, { name: 'type', keyPath: 'type' }] },
+          { name: 'opportunities', keyPath: 'id', indexes: [{ name: 'category', keyPath: 'category' }, { name: 'status', keyPath: 'status' }] },
           { name: 'settings', keyPath: 'id' },
         ];
 
@@ -475,6 +478,7 @@ class IndexedDBStorage {
       dailyReviews,
       weeklyReviews,
       coachDispatches,
+      opportunities,
       settingsList,
     ] = await Promise.all([
       this.getAll<Commitment>('commitments'),
@@ -492,6 +496,7 @@ class IndexedDBStorage {
       this.getAll<DailyReview>('dailyReviews'),
       this.getAll<WeeklyReview>('weeklyReviews'),
       this.getAll<CoachDispatch>('coachDispatches'),
+      this.getAll<Opportunity>('opportunities'),
       this.getAll<AppSettings>('settings'),
     ]);
 
@@ -517,6 +522,7 @@ class IndexedDBStorage {
         dailyReviews,
         weeklyReviews,
         coachDispatches,
+        opportunities,
         settings,
       },
     };
@@ -545,6 +551,7 @@ class IndexedDBStorage {
       'dailyReviews',
       'weeklyReviews',
       'coachDispatches',
+      'opportunities',
       'settings',
     ];
 
@@ -575,6 +582,7 @@ class IndexedDBStorage {
         ['dailyReviews', d.dailyReviews || []],
         ['weeklyReviews', d.weeklyReviews || []],
         ['coachDispatches', d.coachDispatches || []],
+        ['opportunities', d.opportunities || []],
         ['settings', d.settings ? [d.settings] : [DEFAULT_SETTINGS]],
       ];
 

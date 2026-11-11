@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/sync-exam-status.cjs && tsc && vite build",
+    "build": "node scripts/sync-exam-status.cjs && node scripts/scan-opportunities.cjs && tsc && vite build",
     "sync:exam-status": "node scripts/sync-exam-status.cjs",
+    "scan:opportunities": "node scripts/scan-opportunities.cjs",
     "preview": "vite preview",
     "test": "vitest run"
   },

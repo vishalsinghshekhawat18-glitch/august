@@ -8,6 +8,7 @@ import {
   GraduationCap,
   FileCheck2,
   ClipboardList,
+  Compass,
   BarChart2,
   Settings,
   Plus,
@@ -30,6 +31,7 @@ interface LayoutProps {
 const NAV_ITEMS = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { id: 'exam-status', label: 'Exam Status', icon: ClipboardList },
+  { id: 'opportunities', label: 'Opportunities', icon: Compass },
   { id: 'syllabus', label: 'Syllabus', icon: BookOpen },
   { id: 'logs', label: 'Study Logs', icon: Clock },
   { id: 'planning', label: 'Planning', icon: Calendar },

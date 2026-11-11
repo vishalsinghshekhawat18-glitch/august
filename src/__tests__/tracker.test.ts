@@ -38,6 +38,7 @@ import {
   parseOctoberHtml,
 } from '../services/octoberLibrary';
 import { coachService } from '../services/coachService';
+import { opportunityService, CANDIDATE_PROFILE } from '../services/opportunityService';
 import { VMOU_MA_ECONOMICS_COURSES, DEFAULT_VMOU_ASSIGNMENTS } from '../views/UniversityView';
 import {
   WeeklyTask,
@@ -1636,6 +1637,79 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(typeof sync).toBe('function');
       sync();
       expect(fs.existsSync(DEST_PATH)).toBe(true);
+    });
+  });
+
+  describe('18. Opportunities Radar & Autonomous Scanner Suite', () => {
+    it('verifies candidate profile anchors match Vishal Singh Shekhawat', () => {
+      expect(CANDIDATE_PROFILE.name).toBe('Vishal Singh Shekhawat');
+      expect(CANDIDATE_PROFILE.dob).toBe('1996-10-31');
+      expect(CANDIDATE_PROFILE.qualifications).toContain('B.Tech in Electrical Engineering');
+      expect(CANDIDATE_PROFILE.qualifications).toContain('M.A. in Economics (VMOU Kota)');
+    });
+
+    it('loads and seeds opportunities if store is initially empty', async () => {
+      const opps = await opportunityService.getOpportunities();
+      expect(Array.isArray(opps)).toBe(true);
+      expect(opps.length).toBeGreaterThanOrEqual(10);
+
+      // Verify specific high-match positions exist
+      const depr = opps.find((o) => o.id === 'opp_rbi_grade_b_depr');
+      expect(depr).toBeDefined();
+      expect(depr?.matchPercentage).toBeGreaterThanOrEqual(95);
+
+      const sebi = opps.find((o) => o.id === 'opp_sebi_grade_a');
+      expect(sebi).toBeDefined();
+      expect(sebi?.matchPercentage).toBeGreaterThanOrEqual(90);
+
+      const bee = opps.find((o) => o.id === 'opp_bee_energy_auditor');
+      expect(bee).toBeDefined();
+      expect(bee?.category).toBe('professional_certification');
+    });
+
+    it('filters opportunities by category, search term, and watchlist flag', async () => {
+      const opps = await opportunityService.getOpportunities();
+
+      // Category filter
+      const regulatory = opportunityService.filterOpportunities(opps, 'regulatory_banking', '', false);
+      expect(regulatory.every((o) => o.category === 'regulatory_banking')).toBe(true);
+      expect(regulatory.length).toBeGreaterThanOrEqual(3);
+
+      // Search term
+      const searchRes = opportunityService.filterOpportunities(opps, 'all', 'Electrical', false);
+      expect(searchRes.length).toBeGreaterThanOrEqual(2);
+
+      // Watchlist filter
+      const savedRes = opportunityService.filterOpportunities(opps, 'all', '', true);
+      expect(savedRes.every((o) => o.saved === true)).toBe(true);
+    });
+
+    it('toggles saved and applied status for an opportunity', async () => {
+      const opps = await opportunityService.getOpportunities();
+      const target = opps[0];
+
+      const initialSaved = !!target.saved;
+      const updated = await opportunityService.toggleSave(target.id);
+      expect(updated?.saved).toBe(!initialSaved);
+
+      // Toggle back
+      const reverted = await opportunityService.toggleSave(target.id);
+      expect(reverted?.saved).toBe(initialSaved);
+
+      // Toggle applied
+      const initialApplied = !!target.applied;
+      const appliedUpdated = await opportunityService.toggleApplied(target.id);
+      expect(appliedUpdated?.applied).toBe(!initialApplied);
+      await opportunityService.toggleApplied(target.id);
+    });
+
+    it('runs radar scan, recalculates statuses and updates scanner state', async () => {
+      const { updated, state } = await opportunityService.runRadarScan();
+      expect(Array.isArray(updated)).toBe(true);
+      expect(updated.length).toBeGreaterThanOrEqual(10);
+      expect(state.status).toBe('success');
+      expect(state.autoScanFrequencyHours).toBe(24);
+      expect(state.totalFound).toBe(updated.length);
     });
   });
 });
