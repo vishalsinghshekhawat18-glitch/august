@@ -19,6 +19,7 @@ import {
   AppSettings,
   ApplicationDataPackage,
 } from '../types';
+import seedMockTests from '../data/mockTests.json';
 
 const DB_NAME = 'August_ExamTracker_DB';
 const DB_VERSION = 3;
@@ -175,6 +176,7 @@ class IndexedDBStorage {
         try {
           await this.applyFreshStartMigration(db);
           await this.seedInitialCommitmentsIfEmpty(db);
+          await this.seedInitialMockTestsIfEmpty(db);
         } catch (e) {
           console.warn('Database initialization / migration error:', e);
         }
@@ -317,6 +319,43 @@ class IndexedDBStorage {
           settingsStore.put(DEFAULT_SETTINGS);
         }
       };
+
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+
+  private async seedInitialMockTestsIfEmpty(db: IDBDatabase): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (!Array.isArray(seedMockTests) || seedMockTests.length === 0) {
+        resolve();
+        return;
+      }
+
+      const tx = db.transaction(['mockTests', 'studyLogs'], 'readwrite');
+      const mockStore = tx.objectStore('mockTests');
+      const studyStore = tx.objectStore('studyLogs');
+
+      for (const m of seedMockTests as MockTest[]) {
+        const req = mockStore.get(m.id);
+        req.onsuccess = () => {
+          if (!req.result) {
+            mockStore.put(m);
+            const mockLog: StudyLog = {
+              id: `log_mock_${m.id}`,
+              date: m.date,
+              timestamp: m.createdAt || new Date().toISOString(),
+              examId: m.examId,
+              subjectId: '',
+              durationMinutes: Number(m.timeTakenMinutes || 45),
+              activityType: 'mock_test',
+              notes: `Mock Test: ${m.testName} — Score: ${m.totalScore}/${m.maxScore} (${m.accuracyPercent}% acc)` + (m.notes ? ` • ${m.notes}` : ''),
+              createdAt: m.createdAt || new Date().toISOString(),
+            };
+            studyStore.put(mockLog);
+          }
+        };
+      }
 
       tx.oncomplete = () => resolve();
       tx.onerror = () => reject(tx.error);

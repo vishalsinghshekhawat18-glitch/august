@@ -39,6 +39,7 @@ import {
 } from '../services/octoberLibrary';
 import { coachService } from '../services/coachService';
 import { opportunityService, CANDIDATE_PROFILE } from '../services/opportunityService';
+import { parseScorecardText } from '../services/scorecardParser';
 import { VMOU_MA_ECONOMICS_COURSES, DEFAULT_VMOU_ASSIGNMENTS } from '../views/UniversityView';
 import {
   WeeklyTask,
@@ -1710,6 +1711,75 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(state.status).toBe('success');
       expect(state.autoScanFrequencyHours).toBe(24);
       expect(state.totalFound).toBe(updated.length);
+    });
+  });
+
+  describe('19. Smart Scorecard Optical & Text Auto-Fill Suite', () => {
+    it('accurately parses Smartkeeda RRB PO Pre scorecard text', () => {
+      const sampleText = `
+        Full Length RRB PO Pre
+        Smartkeeda Govt Exam Prep App Test Analysis
+        Hi Vishal Shekhawat
+        Your Rank #88397
+        Out of 153003 test takers
+        Cut Off Marks: 52/80
+        Your Marks: 35.25/80
+        Percentage: 44.06%
+        Accuracy: 84.09%
+        Percentile: 41.91%
+        Insight: You still need 16.75 marks to reach the cutoff marks
+        Time taken: 00:45:00
+        Section No. of Ques. Correct Incorrect Unattempted Time Taken Cut off Score Percentile
+        Reasoning Aptitude 40 29 4 7 25 Mins 9.25 28/40 (70.00%) 76.81
+        Quantitative Aptitude 40 8 3 29 20 Mins 8 7.25/40 (18.00%) 33.84
+        Overall 80 37 7 36 45 Mins 52 35.25/80 (44.00%) 41.91
+      `;
+
+      const parsed = parseScorecardText(sampleText);
+      expect(parsed).not.toBeNull();
+      expect(parsed?.platform).toBe('Smartkeeda');
+      expect(parsed?.totalScore).toBe(35.25);
+      expect(parsed?.maxScore).toBe(80);
+      expect(parsed?.cutoffMarks).toBe(52);
+      expect(parsed?.accuracyPercent).toBe(84.09);
+      expect(parsed?.percentile).toBe(41.91);
+      expect(parsed?.rank).toBe(88397);
+      expect(parsed?.totalCandidates).toBe(153003);
+      expect(parsed?.timeTakenMinutes).toBe(45);
+      expect(parsed?.attemptedCount).toBe(44);
+      expect(parsed?.correctCount).toBe(37);
+      expect(parsed?.incorrectCount).toBe(7);
+      expect(parsed?.skippedCount).toBe(36);
+
+      // Verify sectional breakdown
+      expect(parsed?.subjectScores?.length).toBe(2);
+      const reasoning = parsed?.subjectScores?.find((s) => s.subjectName.includes('Reasoning'));
+      expect(reasoning?.score).toBe(28);
+      expect(reasoning?.correctCount).toBe(29);
+      expect(reasoning?.incorrectCount).toBe(4);
+
+      const quant = parsed?.subjectScores?.find((s) => s.subjectName.includes('Quant'));
+      expect(quant?.score).toBe(7.25);
+      expect(quant?.correctCount).toBe(8);
+      expect(quant?.incorrectCount).toBe(3);
+    });
+
+    it('verifies mockTests seed file exists and contains the latest scorecard', () => {
+      const fs = require('fs');
+      const path = require('path');
+      const seedPath = path.resolve(__dirname, '../data/mockTests.json');
+      expect(fs.existsSync(seedPath)).toBe(true);
+
+      const seedData = JSON.parse(fs.readFileSync(seedPath, 'utf-8'));
+      expect(Array.isArray(seedData)).toBe(true);
+      expect(seedData.length).toBeGreaterThanOrEqual(1);
+
+      const latest = seedData.find((m: any) => m.id === 'mock_smartkeeda_rrb_po_pre_20261111');
+      expect(latest).toBeDefined();
+      expect(latest.totalScore).toBe(35.25);
+      expect(latest.maxScore).toBe(80);
+      expect(latest.accuracyPercent).toBe(84.09);
+      expect(latest.attemptedCount).toBe(44);
     });
   });
 });

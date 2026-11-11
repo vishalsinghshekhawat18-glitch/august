@@ -1,0 +1,34 @@
+[
+  {
+    "id": "mock_smartkeeda_rrb_po_pre_20261111",
+    "examId": "comm_ibps_rrb_po",
+    "testName": "Smartkeeda Full Length RRB PO Pre #01",
+    "date": "2026-11-11",
+    "totalScore": 35.25,
+    "maxScore": 80,
+    "accuracyPercent": 84.09,
+    "correctCount": 37,
+    "incorrectCount": 7,
+    "skippedCount": 36,
+    "attemptedCount": 44,
+    "timeTakenMinutes": 45,
+    "analysisCompleted": false,
+    "analysisMinutes": 45,
+    "subjectScores": [
+      {
+        "subjectName": "Reasoning Aptitude",
+        "score": 28.0,
+        "maxScore": 40,
+        "accuracyPercent": 87.88
+      },
+      {
+        "subjectName": "Quantitative Aptitude",
+        "score": 7.25,
+        "maxScore": 40,
+        "accuracyPercent": 72.73
+      }
+    ],
+    "notes": "Smartkeeda Full Length RRB PO Pre • Rank: #88397/153003 (Percentile: 41.91%) • Cutoff: 52/80 (Deficit: -16.75) • Reasoning: 28/40 (70% score, 76.81%ile, 25m) • Quant: 7.25/40 (18% score, 33.84%ile, 20m, 29 unattempted - missed sectional cutoff 8.00 by 0.75m)",
+    "createdAt": "2026-11-11T12:52:48.000Z"
+  }
+]

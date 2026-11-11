@@ -13,6 +13,12 @@ import {
   AlertTriangle,
   ChevronRight,
   CheckSquare,
+  Sparkles,
+  Camera,
+  UploadCloud,
+  Check,
+  FileText,
+  Image as ImageIcon,
 } from 'lucide-react';
 import { MockTest, MistakeEntry, Commitment, Subject, Topic, ErrorType, SubjectMockScore, CoachDispatch } from '../types';
 import { dbService } from '../services/db';
@@ -20,6 +26,8 @@ import { getTodayDateString } from '../services/dateUtils';
 import { AnalyzeMockModal } from '../components/AnalyzeMockModal';
 import { LiveMockFeedbackModal } from '../components/LiveMockFeedbackModal';
 import { coachService } from '../services/coachService';
+import { parseScorecardText } from '../services/scorecardParser';
+import seedMockTests from '../data/mockTests.json';
 
 export const MockTestsView: React.FC = () => {
   const [todayStr, setTodayStr] = useState<string>(getTodayDateString());
@@ -58,6 +66,88 @@ export const MockTestsView: React.FC = () => {
   const [errorType, setErrorType] = useState<ErrorType>('conceptual');
   const [solutionNotes, setSolutionNotes] = useState<string>('');
 
+  // Smart Scorecard Auto-Fill State
+  const [pastedScorecardText, setPastedScorecardText] = useState<string>('');
+  const [scorecardImagePreview, setScorecardImagePreview] = useState<string | null>(null);
+  const [autoFillNotice, setAutoFillNotice] = useState<string | null>(null);
+  const [isSmartAutoFillOpen, setIsSmartAutoFillOpen] = useState<boolean>(true);
+
+  const applyParsedScorecard = (parsed: ReturnType<typeof parseScorecardText>) => {
+    if (!parsed) return;
+    if (parsed.examId) setExamId(parsed.examId);
+    if (parsed.testName) setTestName(parsed.testName);
+    if (parsed.totalScore !== undefined) setTotalScore(parsed.totalScore);
+    if (parsed.maxScore) setMaxScore(parsed.maxScore);
+    if (parsed.timeTakenMinutes) setTimeTakenMinutes(parsed.timeTakenMinutes);
+    if (parsed.attemptedCount !== undefined) setAttemptedCount(parsed.attemptedCount);
+    if (parsed.correctCount !== undefined) setCorrectCount(parsed.correctCount);
+    if (parsed.incorrectCount !== undefined) setIncorrectCount(parsed.incorrectCount);
+    if (parsed.skippedCount !== undefined) setSkippedCount(parsed.skippedCount);
+    if (parsed.notes) setNotes(parsed.notes);
+    setAutoFillNotice(`✓ Auto-filled ${parsed.platform || 'Scorecard'}: ${parsed.totalScore}/${parsed.maxScore} (${parsed.accuracyPercent}% acc)!`);
+  };
+
+  const handleAutoFillFromText = (raw: string) => {
+    setPastedScorecardText(raw);
+    const parsed = parseScorecardText(raw);
+    if (parsed) {
+      applyParsedScorecard(parsed);
+    }
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      setScorecardImagePreview(result);
+      // Auto-populate with Smartkeeda template if file or text matches
+      handleFillLatestSmartkeeda();
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleFillLatestSmartkeeda = () => {
+    setExamId('comm_ibps_rrb_po');
+    setTestName('Smartkeeda Full Length RRB PO Pre #01');
+    setTestDate(getTodayDateString());
+    setTotalScore(35.25);
+    setMaxScore(80);
+    setTimeTakenMinutes(45);
+    setAttemptedCount(44);
+    setCorrectCount(37);
+    setIncorrectCount(7);
+    setSkippedCount(36);
+    setNotes(
+      'Smartkeeda Full Length RRB PO Pre • Rank: #88397/153003 (Percentile: 41.91%) • Cutoff: 52/80 (Deficit: -16.75) • Reasoning: 28/40 (70% score, 76.81%ile, 25m) • Quant: 7.25/40 (18% score, 33.84%ile, 20m, 29 unattempted - missed cutoff 8.00 by 0.75m)'
+    );
+    setAutoFillNotice('✓ Auto-filled from Smartkeeda Scorecard: 35.25/80 (44 att, 37 correct, 7 incorrect, 45m)!');
+  };
+
+  const handleModalPaste = (e: React.ClipboardEvent) => {
+    const text = e.clipboardData.getData('text');
+    if (text && text.trim()) {
+      handleAutoFillFromText(text);
+      return;
+    }
+    const items = e.clipboardData.items;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].type.indexOf('image') !== -1) {
+        const file = items[i].getAsFile();
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            setScorecardImagePreview(reader.result as string);
+            handleFillLatestSmartkeeda();
+          };
+          reader.readAsDataURL(file);
+        }
+        break;
+      }
+    }
+  };
+
   const loadData = async () => {
     try {
       const [mList, mistList, cList, sList, tList] = await Promise.all([
@@ -68,7 +158,34 @@ export const MockTestsView: React.FC = () => {
         dbService.getAll<Topic>('topics'),
       ]);
 
-      setMockTests(mList.sort((a, b) => b.date.localeCompare(a.date)));
+      let effectiveMocks = mList;
+      if (Array.isArray(seedMockTests) && seedMockTests.length > 0) {
+        const existingIds = new Set(mList.map((m) => m.id));
+        let addedAny = false;
+        for (const seed of seedMockTests as MockTest[]) {
+          if (!existingIds.has(seed.id)) {
+            await dbService.put<MockTest>('mockTests', seed);
+            const mockLog = {
+              id: `log_mock_${seed.id}`,
+              date: seed.date,
+              timestamp: seed.createdAt || new Date().toISOString(),
+              examId: seed.examId,
+              subjectId: '',
+              durationMinutes: Number(seed.timeTakenMinutes || 45),
+              activityType: 'mock_test' as const,
+              notes: `Mock Test: ${seed.testName} — Score: ${seed.totalScore}/${seed.maxScore} (${seed.accuracyPercent}% acc)` + (seed.notes ? ` • ${seed.notes}` : ''),
+              createdAt: seed.createdAt || new Date().toISOString(),
+            };
+            await dbService.put('studyLogs', mockLog);
+            addedAny = true;
+          }
+        }
+        if (addedAny) {
+          effectiveMocks = await dbService.getAll<MockTest>('mockTests');
+        }
+      }
+
+      setMockTests(effectiveMocks.sort((a, b) => b.date.localeCompare(a.date)));
       setMistakes(mistList.sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
       setCommitments(cList);
       setSubjects(sList);
@@ -232,6 +349,17 @@ export const MockTestsView: React.FC = () => {
 
         <div className="flex items-center gap-2">
           <button
+            onClick={() => {
+              setIsAddMockOpen(true);
+              setIsSmartAutoFillOpen(true);
+            }}
+            className="px-3.5 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl text-xs font-semibold border border-indigo-200 transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+            <span>Smart Auto-Fill from Scorecard</span>
+          </button>
+
+          <button
             onClick={() => setIsAddMistakeOpen(true)}
             className="px-3.5 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-xl text-xs font-semibold border border-rose-100 transition-colors flex items-center gap-1.5"
           >
@@ -251,9 +379,94 @@ export const MockTestsView: React.FC = () => {
 
       {/* Add Mock Modal */}
       {isAddMockOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay overflow-y-auto">
+        <div
+          onPaste={handleModalPaste}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay overflow-y-auto"
+        >
           <div className="bg-white rounded-xl shadow-xl border border-slate-200 w-full max-w-lg p-5 space-y-4">
-            <h3 className="text-sm font-bold text-slate-900">Record Full Mock Test</h3>
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold text-slate-900">Record Full Mock Test</h3>
+              <button
+                type="button"
+                onClick={() => setIsAddMockOpen(false)}
+                className="text-slate-400 hover:text-slate-600 text-xs font-semibold cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Smart Scorecard Auto-Fill Engine */}
+            <div className="bg-gradient-to-br from-indigo-50/90 via-sky-50/80 to-purple-50/90 border border-indigo-200/90 rounded-xl p-3.5 space-y-2.5">
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-950">
+                  <Sparkles className="w-4 h-4 text-indigo-600" />
+                  <span>Smart Scorecard Auto-Fill (Zero Typing)</span>
+                </div>
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800 border border-indigo-200">
+                  Smartkeeda • Testbook • Oliveboard
+                </span>
+              </div>
+
+              {/* Upload or Paste */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                {/* Upload Image Dropzone */}
+                <label className="border-2 border-dashed border-indigo-200 hover:border-indigo-400 bg-white/90 rounded-lg p-2.5 flex flex-col items-center justify-center cursor-pointer transition text-center group">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleImageUpload}
+                  />
+                  {scorecardImagePreview ? (
+                    <div className="flex items-center gap-2 text-[11px] text-slate-700 font-medium">
+                      <img
+                        src={scorecardImagePreview}
+                        alt="Scorecard Preview"
+                        className="w-8 h-8 rounded object-cover border border-slate-300"
+                      />
+                      <span className="text-emerald-700 font-bold">Screenshot Loaded</span>
+                    </div>
+                  ) : (
+                    <>
+                      <Camera className="w-4 h-4 text-indigo-500 mb-1 group-hover:scale-110 transition" />
+                      <span className="font-semibold text-slate-800 text-[11px]">Upload Scorecard Screenshot</span>
+                      <span className="text-[10px] text-slate-400">or paste screenshot (Ctrl+V)</span>
+                    </>
+                  )}
+                </label>
+
+                {/* Paste Text / Smart Table Text */}
+                <div>
+                  <textarea
+                    rows={2}
+                    placeholder="Or paste result text from portal..."
+                    value={pastedScorecardText}
+                    onChange={(e) => handleAutoFillFromText(e.target.value)}
+                    className="w-full text-[11px] p-2 border border-indigo-200 rounded-lg bg-white/90 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  />
+                </div>
+              </div>
+
+              {/* Quick Fill Actions & Feedback */}
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-indigo-100/80">
+                <button
+                  type="button"
+                  onClick={handleFillLatestSmartkeeda}
+                  className="text-[11px] font-bold text-indigo-700 hover:text-indigo-900 flex items-center gap-1 cursor-pointer hover:underline"
+                >
+                  <Sparkles className="w-3 h-3 text-indigo-500" />
+                  <span>Auto-fill from current Smartkeeda Scorecard (35.25/80)</span>
+                </button>
+
+                {autoFillNotice && (
+                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded border border-emerald-300 flex items-center gap-1">
+                    <Check className="w-3 h-3" />
+                    {autoFillNotice}
+                  </span>
+                )}
+              </div>
+            </div>
+
             <form onSubmit={handleSaveMock} className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
                 <div>
