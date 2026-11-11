@@ -155,6 +155,75 @@ export const MockTestsView: React.FC = () => {
     setAutoFillNotice('✓ Auto-filled from Smartkeeda Scorecard: 35.25/80 (44 att, 37 correct, 7 incorrect, 45m)!');
   };
 
+  const handleFillLatestOliveboard = () => {
+    setExamId('comm_ibps_rrb_po');
+    setTestName('Oliveboard IBPS RRB PO Prelims Mock #02');
+    setTestDate(getTodayDateString());
+    setTotalScore(36.25);
+    setMaxScore(80);
+    setTimeTakenMinutes(45);
+    setAttemptedCount(40);
+    setCorrectCount(37);
+    setIncorrectCount(3);
+    setSkippedCount(40);
+    setNotes(
+      'Oliveboard IBPS RRB PO Prelims Mock • Score: 36.25/80 • Accuracy: 93.0% (37 Correct, 3 Incorrect, 40 Skipped) • Time Taken: 44m 58s'
+    );
+    setAutoFillNotice('✓ Auto-filled Oliveboard Scorecard: 36.25/80 (40 att, 37 correct, 3 incorrect, 45m)!');
+  };
+
+  const handleDirectSaveFromAutoFill = async () => {
+    const finalTestName = testName.trim() || 'Oliveboard IBPS RRB PO Prelims Mock';
+    const computedAccuracy = attemptedCount > 0 ? Number(((correctCount / attemptedCount) * 100).toFixed(1)) : 0;
+
+    const newMock: MockTest = {
+      id: `mock_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+      examId,
+      testName: finalTestName,
+      date: testDate,
+      totalScore: Number(totalScore),
+      maxScore: Number(maxScore),
+      accuracyPercent: computedAccuracy,
+      correctCount: Number(correctCount),
+      incorrectCount: Number(incorrectCount),
+      skippedCount: Number(skippedCount),
+      attemptedCount: Number(attemptedCount),
+      timeTakenMinutes: Number(timeTakenMinutes),
+      notes: notes.trim() || undefined,
+      createdAt: new Date().toISOString(),
+      analysisCompleted: mockAnalysisCompleted,
+      analysisMinutes: mockAnalysisCompleted ? Number(mockAnalysisMinutes) : undefined,
+      analysisDate: mockAnalysisCompleted ? testDate : undefined,
+    };
+
+    await dbService.put<MockTest>('mockTests', newMock);
+
+    // Auto-log focused study time
+    if (newMock.timeTakenMinutes && newMock.timeTakenMinutes > 0) {
+      const mockLog = {
+        id: `log_mock_${newMock.id}`,
+        date: testDate,
+        timestamp: new Date().toISOString(),
+        examId,
+        subjectId: '',
+        durationMinutes: Number(timeTakenMinutes),
+        activityType: 'mock_test' as const,
+        notes: `Mock Test: ${newMock.testName} — Score: ${totalScore}/${maxScore} (${computedAccuracy}% acc)` + (notes.trim() ? ` • ${notes.trim()}` : ''),
+        createdAt: new Date().toISOString(),
+      };
+      await dbService.put('studyLogs', mockLog);
+    }
+
+    // Coach review
+    const examName = examMap.get(examId) || 'IBPS RRB PO (Officer Scale I)';
+    const coachReview = coachService.generateMockReview(newMock, mockTests, examName);
+    await coachService.saveDispatch(coachReview);
+    setActiveMockReview(coachReview);
+
+    setIsAddMockOpen(false);
+    await loadData();
+  };
+
   const handleModalPaste = async (e: React.ClipboardEvent) => {
     const text = e.clipboardData.getData('text');
     if (text && text.trim()) {
@@ -497,21 +566,46 @@ export const MockTestsView: React.FC = () => {
               )}
 
               {/* Quick Fill Actions & Feedback */}
-              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-indigo-100/80">
-                <button
-                  type="button"
-                  onClick={handleFillLatestSmartkeeda}
-                  className="text-[11px] font-bold text-indigo-700 hover:text-indigo-900 flex items-center gap-1 cursor-pointer hover:underline"
-                >
-                  <Sparkles className="w-3 h-3 text-indigo-500" />
-                  <span>Auto-fill from current Smartkeeda Scorecard (35.25/80)</span>
-                </button>
+              <div className="space-y-2 pt-1 border-t border-indigo-100/80">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <button
+                      type="button"
+                      onClick={handleFillLatestOliveboard}
+                      className="text-[11px] font-bold text-sky-700 hover:text-sky-900 bg-sky-50 px-2.5 py-1 rounded-md border border-sky-200 flex items-center gap-1 cursor-pointer transition hover:bg-sky-100"
+                    >
+                      <Sparkles className="w-3 h-3 text-sky-600" />
+                      <span>Oliveboard (36.25/80)</span>
+                    </button>
 
-                {autoFillNotice && (
-                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded border border-emerald-300 flex items-center gap-1">
-                    <Check className="w-3 h-3" />
-                    {autoFillNotice}
-                  </span>
+                    <button
+                      type="button"
+                      onClick={handleFillLatestSmartkeeda}
+                      className="text-[11px] font-bold text-indigo-700 hover:text-indigo-900 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-200 flex items-center gap-1 cursor-pointer transition hover:bg-indigo-100"
+                    >
+                      <Sparkles className="w-3 h-3 text-indigo-600" />
+                      <span>Smartkeeda (35.25/80)</span>
+                    </button>
+                  </div>
+
+                  {autoFillNotice && (
+                    <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-md border border-emerald-300 flex items-center gap-1">
+                      <Check className="w-3 h-3 text-emerald-600" />
+                      {autoFillNotice}
+                    </span>
+                  )}
+                </div>
+
+                {/* Direct One-Click Save to Table Button */}
+                {totalScore > 0 && (
+                  <button
+                    type="button"
+                    onClick={handleDirectSaveFromAutoFill}
+                    className="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow-md transition flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                  >
+                    <Check className="w-4 h-4 text-white" />
+                    <span>⚡ Save &amp; Add Directly to Mock Tests Table ({totalScore}/{maxScore})</span>
+                  </button>
                 )}
               </div>
             </div>

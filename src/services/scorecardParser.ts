@@ -79,7 +79,7 @@ export function parseScorecardText(rawText: string): ParsedScorecard | null {
 
   // 1. Platform detection
   let platform = 'Mock Platform';
-  if (/olive\s*board/i.test(text)) platform = 'Oliveboard';
+  if (/olive\s*board|Total\s*Questions\s*Time\s*Taken/i.test(text)) platform = 'Oliveboard';
   else if (/smartkeeda/i.test(text)) platform = 'Smartkeeda';
   else if (/testbook/i.test(text)) platform = 'Testbook';
   else if (/practicemock|practice\s*mock/i.test(text)) platform = 'PracticeMock';
@@ -218,6 +218,59 @@ export function parseScorecardText(rawText: string): ParsedScorecard | null {
   }
   if (skippedCount === 0 && maxScore > attemptedCount) {
     skippedCount = Math.max(0, maxScore - attemptedCount);
+  }
+
+  // 10. Robust Fallback Heuristic for noisy OCR text (e.g. "80 | 00:44:58 & 93% El 37 El 3 00 40 36.25")
+  if (totalScore === 0 || attemptedCount === 0) {
+    // Check for sequence like "93% El 37 El 3" or "93% 37 3"
+    const seqM = text.match(/([0-9]{2}(?:\.[0-9]+)?)%\s*[^0-9\n]*\s*([0-9]{1,2})\s*[^0-9\n]*\s*([0-9]{1,2})/);
+    if (seqM) {
+      if (accuracyPercent === 0) accuracyPercent = parseFloat(seqM[1]);
+      if (correctCount === 0) correctCount = parseInt(seqM[2], 10);
+      if (incorrectCount === 0) incorrectCount = parseInt(seqM[3], 10);
+      attemptedCount = correctCount + incorrectCount;
+    }
+
+    // Time fallback
+    const anyTimeMatch = text.match(/(?:([0-9]+):)?([0-9]{2}):([0-9]{2})/);
+    if (anyTimeMatch) {
+      const hrs = anyTimeMatch[1] ? parseInt(anyTimeMatch[1], 10) : 0;
+      const mins = parseInt(anyTimeMatch[2], 10);
+      const secs = parseInt(anyTimeMatch[3], 10);
+      timeTakenMinutes = hrs * 60 + mins + (secs >= 30 ? 1 : 0);
+    }
+
+    // Extract all numerical tokens
+    const allNumbers = text.match(/\b([0-9]+(?:\.[0-9]+)?)\b/g) || [];
+    const floatNums = allNumbers.map(Number).filter((n) => !isNaN(n));
+
+    // Calculate expected score mathematically from correct and incorrect
+    if (correctCount > 0) {
+      const expectedScore = Number((correctCount - incorrectCount * 0.25).toFixed(2));
+      if (floatNums.includes(expectedScore)) {
+        totalScore = expectedScore;
+      } else {
+        // Look for any decimal score candidate like 36.25, 42.5
+        const decCandidate = floatNums.find((n) => n > 5 && n < maxScore && n % 1 !== 0);
+        if (decCandidate !== undefined) {
+          totalScore = decCandidate;
+        } else {
+          totalScore = expectedScore;
+        }
+      }
+    }
+
+    if (maxScore === 80 && (floatNums.includes(100) || text.includes('/100'))) {
+      maxScore = 100;
+    }
+
+    if (attemptedCount > 0) {
+      skippedCount = Math.max(0, maxScore - attemptedCount);
+    }
+
+    if (accuracyPercent === 0 && attemptedCount > 0) {
+      accuracyPercent = Number(((correctCount / attemptedCount) * 100).toFixed(1));
+    }
   }
 
   if (accuracyPercent === 0 && attemptedCount > 0) {

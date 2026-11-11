@@ -1806,6 +1806,24 @@ describe('Personal Exam Tracker Comprehensive Audit Suite', () => {
       expect(quant?.score).toBe(14.5);
     });
 
+    it('accurately parses noisy OCR text from Oliveboard screenshot', () => {
+      const ocrNoiseText = `
+        ® 80 | © 00:44:58 & 93% El 37 El 3 00
+        40 36.25
+        Total Questions Time Taken Accuracy
+      `;
+      const parsed = parseScorecardText(ocrNoiseText);
+      expect(parsed).not.toBeNull();
+      expect(parsed?.totalScore).toBe(36.25);
+      expect(parsed?.maxScore).toBe(80);
+      expect(parsed?.correctCount).toBe(37);
+      expect(parsed?.incorrectCount).toBe(3);
+      expect(parsed?.attemptedCount).toBe(40);
+      expect(parsed?.skippedCount).toBe(40);
+      expect(parsed?.accuracyPercent).toBe(93);
+      expect(parsed?.timeTakenMinutes).toBe(45);
+    });
+
     it('verifies mockTests seed file exists and contains the latest scorecard', () => {
       const fs = require('fs');
       const path = require('path');
