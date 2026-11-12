@@ -63,8 +63,8 @@ export const ExamStatusView: React.FC = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
                 4 Nov Active
               </span>
-              <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-700 border border-purple-200 font-semibold text-[11px]">
-                1 Result Due
+              <span className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 border border-slate-200 font-semibold text-[11px]">
+                3 Concluded
               </span>
               <span className="px-2.5 py-1 rounded-lg bg-sky-50 text-sky-700 border border-sky-200 font-semibold text-[11px]">
                 8 Tracked Total

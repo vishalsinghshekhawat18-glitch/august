@@ -840,7 +840,7 @@
         <span class="lbl">Active Nov Exams</span>
       </div>
       <div class="stat-pill">
-        <span class="num num-action">1</span>
+        <span class="num num-action">0</span>
         <span class="lbl">Result Awaited</span>
       </div>
       <div class="stat-pill">
@@ -848,7 +848,7 @@
         <span class="lbl">Dec Exam</span>
       </div>
       <div class="stat-pill">
-        <span class="num" style="color: #64748b;">2</span>
+        <span class="num" style="color: #64748b;">3</span>
         <span class="lbl">Concluded</span>
       </div>
       <div class="stat-pill">
@@ -862,7 +862,7 @@
   <div class="urgent-banner">
     <div class="urgent-icon">⚡</div>
     <div class="urgent-content">
-      <strong>High Priority Window:</strong> Four major competitive exams have their Preliminary/CBT stages scheduled within the next 3 weeks starting <strong>November 17 (NICL AO)</strong>, followed by <strong>November 20 (SCI JCA)</strong>, <strong>November 21–22 (IBPS RRB Scale-I)</strong>, and <strong>November 29–30 (RVUNL JE)</strong>. In addition, the <strong>UIIC AO Prelims</strong> result is slated for release this month (exam held Oct 22). <em>Note: Prelims for IBPS PO XVI &amp; NICL Assistant were not cleared by a thin margin; their rows are faded below.</em>
+      <strong>High Priority Window:</strong> Four major competitive exams have their Preliminary/CBT stages scheduled within the next 3 weeks starting <strong>November 17 (NICL AO)</strong>, followed by <strong>November 20 (SCI JCA)</strong>, <strong>November 21–22 (IBPS RRB Scale-I)</strong>, and <strong>November 29–30 (RVUNL JE)</strong>. <em>Note: UIIC AO Prelims (result declared Nov 12 — not cleared), IBPS PO XVI, and NICL Assistant cycles have concluded; their rows are faded below.</em>
     </div>
   </div>
 
@@ -876,9 +876,9 @@
         <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search exam, post or registration no..." onkeyup="filterTable()">
         <button class="btn btn-active" id="btn-all" onclick="filterByBadge('all', this)">All (8)</button>
         <button class="btn" id="btn-urgent" onclick="filterByBadge('urgent', this)">🔴 Nov Active (4)</button>
-        <button class="btn" id="btn-result" onclick="filterByBadge('result', this)">🟣 Result Due (1)</button>
+        <button class="btn" id="btn-result" onclick="filterByBadge('result', this)">🟣 Result Due (0)</button>
         <button class="btn" id="btn-dec" onclick="filterByBadge('dec', this)">🟡 Dec (1)</button>
-        <button class="btn" id="btn-concluded" onclick="filterByBadge('concluded', this)">⚪ Concluded (2)</button>
+        <button class="btn" id="btn-concluded" onclick="filterByBadge('concluded', this)">⚪ Concluded (3)</button>
       </div>
     </div>
 
@@ -1038,22 +1038,22 @@
             </td>
           </tr>
 
-          <!-- 5. UIIC AO -->
-          <tr data-badge="result">
+          <!-- 5. UIIC AO (Prelims Not Cleared - Faded) -->
+          <tr data-badge="concluded" class="row-faded">
             <td>
               <div class="exam-composite">
                 <div class="exam-header-row">
-                  <span class="row-index">#5</span>
-                  <span class="exam-title-text">UIIC AO (Scale-I) 2026</span>
-                  <span class="post-badge">Administrative Officer - Generalist</span>
+                  <span class="row-index" style="background: #f1f5f9; color: #64748b; border-color: #cbd5e1;">#5</span>
+                  <span class="exam-title-text" style="color: #475569;">UIIC AO (Scale-I) 2026</span>
+                  <span class="post-badge" style="color: #64748b; background: #e2e8f0;">Administrative Officer - Generalist</span>
                 </div>
-                <div class="org-subtitle">United India Insurance Company Ltd. (Paid: 11-09-2026)</div>
+                <div class="org-subtitle">United India Insurance Company Ltd. • Prelims Exam: 22-10-2026 (Paid: 11-09-2026)</div>
                 <div class="credentials-row">
-                  <div class="reg-cell">
+                  <div class="reg-cell" style="background: #e2e8f0; color: #475569;">
                     <span>Reg: 861022622</span>
                     <button class="copy-btn" onclick="copyText('861022622', this)" title="Copy Reg No">📋</button>
                   </div>
-                  <a href="https://uiic.co.in" target="_blank" class="exam-web-link">
+                  <a href="https://uiic.co.in" target="_blank" class="exam-web-link" style="color: #64748b;">
                     🌐 uiic.co.in ↗
                   </a>
                 </div>
@@ -1061,15 +1061,15 @@
             </td>
             <td>
               <div class="dates-status-box">
-                <span class="status-badge badge-result">
-                  <span class="pulse-dot"></span> Prelims Done • Result Due
+                <span class="status-badge badge-concluded">
+                  <span class="pulse-dot" style="background-color: #94a3b8;"></span> Prelims Not Cleared (Disqualified)
                 </span>
-                <span class="date-highlight">Phase-II Mains: Nov 30, 2026</span>
-                <span class="date-secondary">Prelims Result: Mid-Nov 2026 (Exam held Oct 22)</span>
+                <span class="date-highlight" style="color: #64748b;">Prelims Exam: Oct 22, 2026</span>
+                <span class="date-secondary">Prelims Result Declared: Nov 12, 2026</span>
               </div>
             </td>
-            <td class="action-text">
-              <strong>Check Prelims Shortlist PDF</strong> on uiic.co.in. Prepare for Phase-II Mains on Nov 30 (Insurance awareness + Descriptive).
+            <td class="action-text" style="color: #64748b;">
+              Cycle concluded (disqualified in Prelims). Shift 100% of insurance &amp; reasoning preparation to <strong>NICL AO Prelims (Nov 17)</strong> and <strong>IBPS RRB PO (Nov 21–22)</strong>.
             </td>
           </tr>
 
@@ -1219,11 +1219,6 @@
         <div class="timeline-date">Nov 29 &amp; 30, 2026</div>
         <div class="timeline-title">RVUNL Junior Engineer-I (Electrical)</div>
         <div class="timeline-desc">Computer Based Test (Part A: Electrical Engg 60%, Part B: Non-Tech &amp; Rajasthan GK 40%).</div>
-      </div>
-      <div class="timeline-item upcoming">
-        <div class="timeline-date">Nov 30, 2026</div>
-        <div class="timeline-title">UIIC AO (Scale-I) Phase-II Mains</div>
-        <div class="timeline-desc">Subject to clearing Oct 22 Prelims (Reasoning, English, Quant, Insurance/GA, Computer + Descriptive).</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-date">Dec 20, 2026</div>
@@ -1537,15 +1532,15 @@
       </div>
     </details>
 
-    <!-- 5. UIIC AO Syllabus Accordion -->
-    <details class="exam-accordion" id="syl-uiic-ao">
+    <!-- 5. UIIC AO Syllabus Accordion (Concluded - Faded) -->
+    <details class="exam-accordion accordion-faded" id="syl-uiic-ao">
       <summary class="accordion-header">
         <div class="header-left">
-          <span class="header-number">5</span>
-          <span>UIIC: Administrative Officer (Scale-I) Generalist — Exam Pattern &amp; Syllabus</span>
+          <span class="header-number" style="background: #f1f5f9; color: #64748b; border-color: #cbd5e1;">5</span>
+          <span style="color: #64748b;">UIIC: Administrative Officer (Scale-I) Generalist — Reference Pattern (Cycle Concluded)</span>
         </div>
         <div class="header-right">
-          <span class="status-badge badge-result">Mains: Nov 30, 2026</span>
+          <span class="status-badge badge-concluded">Cycle Concluded</span>
           <span class="chevron">▼</span>
         </div>
       </summary>
@@ -1676,7 +1671,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>Exam Status &amp; Syllabus Dashboard • Generated on November 07, 2026 for Vishal Singh Shekhawat</p>
+    <p>Exam Status &amp; Syllabus Dashboard • Updated on November 12, 2026 for Vishal Singh Shekhawat</p>
     <p style="margin-top: 3px;">Always verify the latest dates with official recruitment notifications.</p>
   </footer>
 
